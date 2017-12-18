@@ -30,7 +30,6 @@ Job Switch
 
 
 
-
 FIS checklist 
     1. Project Details and related questions - Done
     2. JSP and interview questions - Done
@@ -65,9 +64,9 @@ CitiUsTech & Bezamatics
        
 Sears Holding:
 1. Core Java (Primary): 40%
-2. Web Services (REST) (Primary): 80% 
-3. Spring Framework (Primary): 75%
-4. Maven, SVN 
+2. Web Services (REST) (Primary): Done 
+3. Spring Framework (Primary): Done (Some Interview Questions are pending)
+4. Maven, SVN: Done 
 5. RDBMS and SQl (Good to Have): 50%
 6. Shell Scripting (Good to Have)
 7. Cloud Based Deployement (Primary)
