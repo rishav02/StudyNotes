@@ -2,3 +2,4 @@ Important updates:
 1. Write detail functioning of HashMap.
 2. write below note in Set section:
 This is an eye opener. Let me just brief on the normal behavior of Sets. HashSet maintains no order, LinkedHashSet maintains order of insertion so while iterating it will print the values in the order of insertion and Treeset maintain ascending order which means the elements will be printed in increasing order. 
+3. Study about AtomicInteger Class. 
