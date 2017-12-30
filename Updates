@@ -3,3 +3,18 @@ Important updates:
 2. write below note in Set section:
 This is an eye opener. Let me just brief on the normal behavior of Sets. HashSet maintains no order, LinkedHashSet maintains order of insertion so while iterating it will print the values in the order of insertion and Treeset maintain ascending order which means the elements will be printed in increasing order. 
 3. Study about AtomicInteger Class. 
+
+************************************************************************************************************************************
+ServletStudy file
+Difference between web server, web container and application server with examples. 
+Web server: Web server is a server capable of handling HTTP request and send back HTTP response. Web server performs different functons like transalating DNS name to IP address, load balancing is also taken care in case of pool servers or server farms. Examples are Apache HTTP server, 
+Web container or Servlet container: It a container that contains java servlets, JSP and other component and manages them. When i say manage them, then i mean by their co 0mplete life cycle. Example is Apache tomcat.  
+Application servers: Application server contains web server so can priovide all the feature of a web server and in addition to these features it can provide applicatio level services like exposing business logics, connection pooling, transaction support, messaging service. etc. Weblogic, Glassfish are some examples of application servers. 
+
+Make a note in Servlet Attribute section:
+"As we already know that servlet attribute has scopes like session, context or request. So, to create an attribute we have to use the object of the desired scope. Example: for request  attribute request.setAttribute("Id", 101);. Likewise for context and config we will create their objects."
+
+*************************************************************************************************************************************
+ServletInterviewQuestions File
+RRR: Source1: 1, 11, 18, 20, 24, Source2: what is servlet config obkect?, 
+AAA: Source1: 7: "The only difference between printwriter and ServletOutputStream is that first the char oriented used for creating char or string may be while other is used to create may be byte array." Source2: 2: Idempotent method are those which gives the same result even when called multiple times in a row while non idempotent are those which can have different result when same request is sent again. GET is idempotent while POST is non idempotent. Now, Safe methods are those which do not change the representation state of resource at server side. Do not mix up in idempotent and safe because they loop same. 
