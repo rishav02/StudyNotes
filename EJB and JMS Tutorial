@@ -1,0 +1,391 @@
+EJB Tutorial
+
+BEFORE WE START
+We need to start thinking about an enterprise application perspective. Enterprise applications are very big application and chances of distributed computing are quite high. With distributed computing, i mean that an Enterprise application may have different components on different physical servers or bound with different JVMs. So, how will we connect different component of our application together? 
+One simple option is RMI. With RMI, we can access the object at different machine through remote procedure calls just like we use object of the same machine. This way we can solve the problem of distributed computing. However, many middleware services like connection pooling, transaction management, messsaging, security and other needs to be implemented by us in the enterprise application. We can remove this burden by using EJB technology. 
+EJB technology is built on top of RMI and thus it provides the feature of RMI alongside many services like connection pooling, transaction management, messaging, security and other through the application server container which implement EJB. 
+
+Note: Since, EJB is java based technology thus the client interactive with EJB application must be a java client. Interaction is not possible with application using other technologies. To overcome this problem, we can use webservices which lets interaction of component writen in different languages. 
+
+EJB INTRODUCTION
+EJB is enterprise java beans which is a specification provided by sun microsystem that is used to develope robust and scalable distributed enterprise applications. To run a EJB application we need an application server which provides the middleware services to EJBs like life cyccle management, connection pooling, transaction management, messaging, security and other. Other point of view of seeing EJB is to create a 3 layer application where we are sparating the business logic in EJB. 
+When we have to create a distributed enterprise application provide support for middleware services and to take advantage of clustering and other many services, we should use EJB.
+Types of Enterprise Java Bean:
+1. Session EJB: EJB which contains the business logic and can be invoked by local, remote or web service clients. 
+2. Message Driven EJB: EJB which also contains the business logic but invoked through messaging. 
+3. Entity EJB: EJB that encapsulate the state which can be persisteed. Well, this is decrepeted. We have JPA in place now. 
+
+Difference between RMI and EJB
+1. RMI only provide solution to distributed computing while EJB provides solution to provide middle ware services. 
+2. RMI does not need an application server while EJB runs only on application server. 
+3. RMI is build on socket programming while EJB is build on RMI. 
+4. RMI is not deployed on server thus its client side component while EJB is deployed on server thus it is server side component. 
+
+Disadvantages of EJB:
+1. EJB needs application server to run.
+2. EJB only support java client. For other client, we need to use web services. 
+3. EJB is slightly complex to build an application. 
+
+
+SESSION BEAN
+As we already know the session beans can be invoked from local, remote or through web service client. It has got the business logic like some calculation or access to the database. The lifecycle of session bean is managed by applicatio container. 
+Three types of session beans:
+1. Stateless session bean
+2. Stateful session bean
+3. Singleton session bean
+
+
+STATELESS SESSION BEAN
+Stateless session bean is the one that only has the business logic but does not store the state(data). The consersational state between multiple method calls is not maintained by container in stateless session bean. Important this to note here is that one instance of the EJB method can entertain one client at a time thus if concurrent client interact with bean then different instance is used. This is managed by application container. 
+
+Let's see a cool example of depicting stateless session bean. We will first create a remote interface. To do that we need to create a simple interface and use annotation @Remote which imports javax.ejb.remote package. Then, we will create an imeplemtation classor the same interface by using @stateless annotation by mentioning the mappedName attribute which tells that we need a stateless bean management. Now, from client side we need an object of remote interface to use its method. We have something call InitialContext class which is a part of javax naming package. Then, we can use its lookup method which will get us the object of remote interface by passing the mappedName. 
+
+STATEFUL SESSION BEAN
+Stateful session beans stored the state of the object along with the business logic. Here, the conversation state between multiple client and ejb application is maintained by the container. For this we need to use the @stateful annotation. 
+
+Let's check an example of stateful session bean. Well, we will be create the a page where a user can enter an amount and click on deposite or withdrawal. He also has a different button to check the balance. If the user is able to check the balance, referesh the page and check the balance again then it is stateful. This we can do by creating a remote interface and giving its implementation class. With the implementation class we have to use @stateful(MappedName="someName"). Then, on the client side we need to use the InitialCOntext class and its lookup(MappedName) method to get an object of remote interface. 
+
+Doubt: The only doubt i have is the only difference in the implementation of stateful and stateless session bean is of the the annotation? Right now, i am assuming that its because of annotation because this way app container gets to know whether to save the state or not. However, we can verify this but implementing the example of stateful session bean and replace the @stateful annotation with @stateless.
+
+Other important annotation that we have are @postContructCall, @preDestroy, @prepassivate, @postActivate. 
+
+EJB MESSAGE DRIVEN BEAN
+As the name suggest, message driven bean contains the business logic but only gets invoked when the receives a message. So, in this way they are the JMS receiver. For message driven beans, we need to use the @MessageDriven annotation. 
+Just like in JMS, we need to implement the onMessage API on messageListener interface. 
+
+ENTITY BEAN
+Entity bean represent the persistent data stored in the database. It was a part of EJB 2 only. From EJb 3 it was deprecated and JPA was introduced. 
+
+
+JMS Tutorial
+JMS stands for Java Messaging Service which is an API that facilitate to create, send and receive messages. It provides loosely coupled asynchronouos messaging. So, in the distributed environment we may need a messaging technique which is JMS. Couple of very important benefits of JMS are it provides asynchronous and reliable(delivery notification) messaging. 
+
+There are way models for JMS which are described below.
+1. Point to Point: As the name suggest, point to point is sender's message will be for one receiver only. Queue is used as the message oriented middleware (MOM) to hold the message until the receiver is not ready to receive the mesaage. As the message is delivered acknowledgement is given to sender. There is no timing dependency. 
+
+2. Publish/subscribe: Message is delivered to multiple receiver in this model. It is more like broadcasting. Table is used as MOM in this model. There is tim.ing dependency. 
+
+Let's check one example to understand how do we implement JMS.
+To begin, we need to create a JMS connection factory(sender) which is basically a pool of connections. The resource type should be QueueConnectionFactory. Then, we need to create a destination resource. A sender application will make use of queueConnectionFactory available under the app server on which it is hosted. Then, there is some boiler plate code which is a kind of template to first create an object of queryConnectionFactory and connect to the one that we just created. Then, we have a queueSender class which creates a textmessage using createTextMessage() API and send through send() API. On the receiver side, we can use myLister class setMessageListerner() API. 
+
+We will check the publish subscriber method later. 
+
+
+EJB related Interview Questions
+Source1: https://career.guru99.com/top-50-ejb-enterprise-javabeans-interview-questions/
+
+1. What is EJB?
+
+A server-side component, which manages the architecture for constricting enterprise applications and managed is called Enterprise JavaBeans(EJB).
+
+2. When was EJB developed?
+
+EJB was developed by IBM in 1997.
+
+3. Who took over EJB?
+
+EJB was taken over by Sun Microsystems in 1999.
+
+4. Enlist the Enterprise Beans types?
+
+They are:
+
+Session Beans: Expanded as “Stateful”,”Stateless” and “Singleton”, A Remote or Local interface is used to access the EJB files.
+Message Driven Beans (MDB): Asynchronous execution by means of messaging paradigm is supported.
+5. What were Entity Beans?
+
+Entity Beans were presented in the earlier versions of EJB consisting of persistent data in distributed objects.
+
+EJB
+EJB
+6. Enlist the Declarative Transaction types?
+
+They are:
+
+MANDATORY:
+REQUIRED
+REQUIRES_NEW
+SUPPORTS
+NOT_SUPPORTED
+NEVER
+
+7. What are versions of EJB?
+
+EJB 3.1
+EJB 3.2
+EJB 3.2 Final Release (2013-05-28)
+EJB 3.1 Final Release (2009-12-10)
+EJB 3.0 Final Release (2006-05-11)
+EJB 2.1, Final Release (2003-11-24)
+EJB 2.0 Final Release (2001-08-22)
+EJB 1.1 Final Release (1999-12-17)
+EJB 1.0 (1998-03-24)
+8. What is J2EE?AAA
+
+A collection of synchronized specifications and procedures, which enable solutions regarding deploying, developing supervising multi-tier server-centric applications, is called J2EE.
+
+Added: It is Java 2 Platform enterprise Edition has collection of APIs which is owned by oracle that can be used to create the server side java based application.  
+ 
+9. Enlist the changes in EJB 2.1 ?
+
+The changes made are:
+
+Message Driven Beans (MDBs): messages are accepted from other sources besides JMS.
+EJB Query Language: New functions had been added.
+Web services supported.
+EJB Timer Service: Mechanism based on an event to invoke EJBs at particular times.
+XML schema
+Message destinations
+10. Enlist the contents of Container. • Container contains?
+
+Security support: Used to configure Deployment Descriptor (DD)
+Persistence support: Used to be persistence in transactions.
+Transaction management support: Used to configure Deployment Descriptor (DD)
+Management of Session: Callback methods such as ejbStore (), ejbLoad () are used in the Developer.
+Management of Life Cycle: Automatic
+11. Differentiate ‘Stateful Session’ from ‘Entity Bean’ ?
+
+While both undergo activation and passivation; EB have ejbStore () callback to save state through passivation and ejbLoad () callback to load state through activation. But in case of SS, this is not needed because S.S.B fields are serialized through objects by containers.
+
+12. Which is more beneficial: Stateful or Stateless Bean?
+
+If a conversational state is needed then, Stateful mode is preferred while Stateless paradigm is preferred for a single business process.
+
+13. Which is more beneficial: CMP or BMP?
+
+When “one to one” mapping is involved, and the data is stored persistently is regional database, CMP is preferred. But when no “one to one” mapping is there and data is retrieved from numerous tables having a complex query, Bean Managed Persistence is used.
+
+14. How is consistency maintained by Stateful Session through transaction updates ?
+
+The data consistency is maintained by updating their fields every time a commitment of the transaction is made.
+
+15. Is ejbCreate () method mandatory while defining a Session Bean?
+
+EjbCreate () as being part of the bean’s lifecycle, therefore, it is not mandatory for ejbCreate () method to be present and there will be no errors returned by the compiler.
+
+16. Define Context?
+
+This is a method of binding a name to a specific object by giving an interface like javax.naming.Context.
+
+17. Define Initial Context?
+
+Implementation of available methods in the interface of context such as a context called javax.meaning.InitialContext.
+
+18. Define SessionContext ?
+
+An EJBContext object, the SessionContext is used for accessing the information and container services.
+
+19. Can remove () be a Stateless Session bean?
+
+Yes, remove () can be a Stateless Session bean because the life remains the same till the method is executed.
+
+
+ 
+20. Is state maintained by a Stateless bean?
+
+A Stateless bean contains no-client specific state through client-invoked methods.
+
+21. Can EJB made to handle multiple transactions?
+
+EJB can be made to handle multiple transactions by enabling multiple Entity beans to handle every database and one Session Bean to retain transaction with the Entity Bean.
+
+22. Enlist the CallBack methods of Session Bean?
+
+
+public interface javax.ejb.SessionBean extends javax.ejb.EnterpriseBean {
+Public abstract void ejbCreate();
+public abstract void ejbRemove();
+Public abstract void ejbActivate (); public abstract void setSessionContext(SessionContext ctx); public abstract void ejbPassivate();
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+public interface javax.ejb.SessionBean extends javax.ejb.EnterpriseBean {
+ 
+Public abstract void ejbCreate();
+ 
+public abstract void ejbRemove();
+ 
+Public abstract void ejbActivate (); public abstract void setSessionContext(SessionContext ctx); public abstract void ejbPassivate();
+ 
+}
+ 
+
+23. Enlist the CallBack methods of Entity Bean.
+
+
+public interface javax.ejb.EntityBean extends javax.ejb.EnterpriseBean {
+public abstract void ejbRemove();
+public abstract void ejbActivate();
+public abstract void ejbStore();
+public abstract void ejbPassivate(); public abstract void setEntityContext(EntityContext ctx); public abstract void unsetEntityContext(); public abstract void ejbLoad();
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+public interface javax.ejb.EntityBean extends javax.ejb.EnterpriseBean {
+ 
+public abstract void ejbRemove();
+ 
+public abstract void ejbActivate();
+ 
+public abstract void ejbStore();
+ 
+public abstract void ejbPassivate(); public abstract void setEntityContext(EntityContext ctx); public abstract void unsetEntityContext(); public abstract void ejbLoad();
+ 
+}
+ 
+
+24. How can one EJB be called from within another EJB?
+
+An EJB can be called within another EJB by using JNDI which can be used for locating the Home Interface and acquiring the instance.
+
+25. Differentiate Conversational from Non-conversational interactions?
+
+The interaction between the client and the bean is called conversational while where multi method conversations are not held with clients it is known as non-conversational interactions.
+26. Define  ejb Create() and  EjbPostCreate ()?
+
+When the method is called before the persistence storage is written with the bean state, it is ejbCreate ().
+
+When the method is called after the persistence storage is written with the bean state, it is ejbPostCreate ().
+
+27. Define EAR, WAR and JAR ?
+
+JAR files contain all EJB classes.
+
+WAR files contain all servlets, web component pages, gif, html, beans, applets, classes and classes.
+
+EAR files contain both JAR and WAR files.
+
+28. Differentiate Phantom from Un-repeatable?
+
+When data that did not existed before is inserted, it is read as phantom whereas when data that already existed is changed, un-repeatable occurs.
+
+29. Define ACID Properties?
+
+ACID is Atomicity, Consistency, Isolation and Durability.
+
+Atomicity: Operations that are bundled together and projected a single unit of job.
+Consistency: Guarantees that after a transaction has taken place, there will be consistency.
+Isolation: Helps protect viewing of other simultaneous incomplete transaction results.
+Durability: Ensures durability by keeping a transitional log by which the permanent data be recreated by again applying the steps involved.
+30. What do you mean by ‘Hot deployment’ ?
+
+The act of redeployment, deployment and un-deployment in Web logic when the server is running in EJB is called Hot Deployment.
+
+31. How can a session bean be configured for transactions of bean-managed?
+
+It can be done by setting transaction-attribute in the deployment sector or XML file.
+
+32. Enlist the technologies embraced in J2EE.
+
+The technologies embraced in J2EE are:
+
+Enterprise JavaBeansTM (EJBsTM)
+JavaServer PagesTM (JSPsTM)
+Java Servlets
+The Java Naming and Directory InterfaceTM (JNDITM)
+The Java Transaction API (JTA)
+CORBA
+The JDBCTM data access API.
+33. What do you mean Enterprise JavaBeans (EJB) container?
+
+Enterprise JavaBeans container helps in managing the implementation of enterprise beans applications of J2EE.
+
+34. What do you mean by in-memory replication?
+
+When the contents having the memory of a single physical m/c are simulated in all m/c in that cluster, that process is called memory replication.
+
+35. Define Ripple Effect?
+
+During runtime, when the changes made in the various properties of server group, are propagated in every associated clone, this process is known as Ripple Effect.
+
+36. Define Clone?
+
+Server group copies are defined as clone. But unlike Server Groups, clones are linked by means of nodes.
+
+37. What do you mean by bean managed transaction?
+
+If the Container is not wanted by the developer for managing transactions, every database operation can be implemented to write the suitable JDBC code.
+
+38. Differentiate, “find a method” from “select method” in EJB ?
+
+A persistent field is returned by the select method of an entity bean that is related.  A remote or local interface is returned by the finder method.
+
+39. What do you mean by abstract schema?
+
+An element of an entity’s bean’s deployment descriptor that defines the persistent fields of bean’s and the relationship existing between them is known as Abstract Schema. It is specific for each entity beans which has managed persistence of container.
+
+40. What do you mean by re-entrant? Can you say that session beans as re-entrant? Can entity beans be specified as re-entrant?
+
+If the entity bean is defined as re-entrant, then it is possible by multiple clients to associate with the Entity bean and get methods executed concurrently inside the entity bean. Synchronization is taken care of by container. There is an exception thrown when an entity beam is defined as non-re-entrant and numerous clients are connected to it concurrently to carry out a method.
+
+41. What do you mean by EJB architecture?
+
+A non-visual component involving a transaction-oriented, distributed enterprise application is called Enterprise beans. They are characteristically deployed in containers of EJB and run on servers of EJB.
+
+The three enterprise bean types are:
+
+Session Beans: These enterprise beans are non-persistent and can be stateless or stateful. If a conversational state is needed then, Stateful mode is preferred while Stateless paradigm is preferred for a single business process.
+ Entity Beans: Entity Beans were presented in the earlier versions of EJB consisting of persistent data in distributed objects. They had the ability to be saved in different persistent data stores.
+Message Driven Beans: Asynchronous execution by means of messaging paradigm is supported. Follow the process of receiving and processing data. They are accessed only through messages and do not have a conversational state maintained.
+42. Write the basic requirement of a CMP entity based class in 2.0 from EJB 1.1?
+
+The basic requirement of a CMP is an abstract class which the container extends and gets the methods implemented required for managing the relationships.
+
+43. How can Enterprise JavaBeans be accessed from Active Server Pages?
+
+Enterprise JavaBeans can be accessed from Active Server Pages by:
+
+‘Java 2 Platform’
+Enterprise Edition Client Access Services (J2EETM CAS) COM Bridge 1.0 which has been currently downloaded from the Sun Microsystems.
+44. Is having static initializer blocks legal in EJB?
+
+It is legal technically, but static initializer blocks have been used in executing pieces of code before the final execution of any method or constructor when a class is instantiated.
+
+45. What changes have been made in EJB 2.0 specifications?
+
+Changes that have been made in EJB 2.0 specification are:
+
+JMS is integrated with EJB.
+Message Driven Beans.
+Implementing additional Business methods.
+46. What do you mean by EJBDoclet?
+
+JavaDoc doclet, an open source is a doclet which generates good stuff related to EJB from comment tags of custom JavaDoc, which are embedded in the source file of EJB.
+
+47. What do you mean by EJB QL?
+
+A query language which provides navigation through a network comprising enterprise beans and objects which are dependent and are defined by methods of container managed persistence. EJB 2.0 was the platform for introduction of EJB QL. It defines methods of finder which are used for entity beans, which has container managed persistence and has portability across persistence managers and containers. It is helpful in two kinds of finder methods: Finder methods, which have Home interface and return objects of entity. Select methods, which remain unexposed for the client to see but which the Bean provider uses.
+
+48. How does EJB invocation take place?
+
+Home Object reference is retrieved from the Naming Service via JNDI. Home Object reference is returned to the client. The steps are:
+
+Created a new EJB Object via Home Object interface.
+Created an EJB Object from the Ejb Object.
+Returned an EJB Object reference to the client.
+Invoked business method by using EJB Object reference.
+Delegate requested to Bean (Enterprise Bean).
+49. Can more than a single table be mapped in CMP?
+
+No, more than one table cannot be mapped in a single CMP.
+
+50. Are entity beans allowed to create () methods?
+
+Yes, it is allowed in cases where data is not inserted by using Java application.
+
