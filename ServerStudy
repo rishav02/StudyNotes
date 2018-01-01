@@ -1,0 +1,25 @@
+Server is very important part for developing and managing enterprise application.
+
+Application serve clustering
+Well application server clustering is a very important concept yet simple to manage workload of a enterprise application over multiple server which together forms a cluster. In application clustering, we form a cluster consisting of many servers. We deploy our application directly to the cluster or individually to each server of the cluster. Lets see what are the benifits of clustering.
+Benifits:
+1. High availability: THis will make sure the application is available always through at least on of the member server of cluster.
+2. No or quite less downtime during server downtime.
+3. Easy Maintenance. 
+4. No need to deploy to each server cluster individually but can deploy to server cluster. 
+
+Horizontal and Vertical CLustering
+Horizontal clustering is when multiple JVM's on multiple physical servers are used to create a cluster while vertical clustering is when we have all the JVM on one physical server are cused to create clustering. If that physical server is down in vertical clustering then that will down the entire application. Therefore, horizontal clustering is more secure and thus widely used. 
+With webshere 8.5 or abov we can create dynamic clusters which we will discuss later. 
+
+HOw to create clusters:
+we can create clusters through command line or by using GUI of webshere server. 
+Way to create using webshere's GUI:
+Servers>>cluster>>Webshere application server cluster
+CLusterName>>click Next
+Enter Cluster member name and node where we want to create that cluster member
+We can use JVM default template to create a member or can do it yourself.
+finally, we can check under application server type>>we will see the cluster details there. 
+
+JFR tool - an application performance tunning tool
+Java flight Recorder is a tool that is used to record the details regarding the JVM and applicatio running. the data like executing profile, garbage collection statics, optimization decision, object allocation and other can be analyzed offline through this tool in java missing control. By the way, java mission control is a set of tools running on oracle jdk. 
