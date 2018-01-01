@@ -14,6 +14,25 @@ Application servers: Application server contains web server so can priovide all 
 Make a note in Servlet Attribute section:
 "As we already know that servlet attribute has scopes like session, context or request. So, to create an attribute we have to use the object of the desired scope. Example: for request  attribute request.setAttribute("Id", 101);. Likewise for context and config we will create their objects."
 
+JSP Action Elements
+As the names hints, these are some element created in JSP for some special tasks. Let's have a look at them one by one. 
+1. forward action element: It is used to forward the request and response to another resource. We know about it through servlet. 
+<jsp:forward page="anotherpage.jsp">
+2. include action element: It is the way to implement include fucntion as we ahve in servlet through tags. 
+<jsp:include page="anotherpage.jsp"> 
+3. useBean action element: This element is used to instatiate a bean class in JSP page. 
+<jsp:useBean id="" class="" scope="">
+4. setPropety and getProperty action element: these elements are used to get and set the values of a property of bean. Generally, used in application based on java beans.
+<jsp:getProperty name="nameOfBean" property="propertyName">
+<jsp:setProperty name="nameOfBean" property="propertyName" value="ValueOfProperty">
+5. plugin action element: This element is used to plugin the applet in the bean. 
+
+Expression Language in JSP
+Expression language in JSP actually simplifies the access of object related to session, request, response and other scope.
+The syntax of EL is: ${expression}. To simplify the task even furthur, we are given some commonly used object in JSP. So, we do not need to create them overselve but can use directly. Below are the implcit EL object:
+pageScope (pageLevelScope), requestScope, sessionScope, applicationScope, param, paramValues, header, headerValues, Cookies, initParam, pageContext. 
+There are many operators we can use in Expression language. 
+
 *************************************************************************************************************************************
 ServletInterviewQuestions File
 RRR: Source1: 1, 11, 18, 20, 24, Source2: what is servlet config obkect?, 
@@ -211,7 +230,8 @@ We can have event triggered or untriggered on the basis of time in JS as well. W
 JS Cookies
 We can also creates cookies in JS. document.cookies="name:jhon". We will this later in more depth. 
 
-
+JSTL
+Another very important aspect of JSp is its Standard tag library. We can understand these tags as a small chunk of code that performs a certain task. However, we can create our own custom tags as well. To write view as well as modal part in same JSP, we should use JSTL and Custom tags. Some of the important standard tags are below:
 
 
 
