@@ -217,7 +217,12 @@ We can also creates cookies in JS. document.cookies="name:jhon". We will this la
 
 
 
-
+Some Important Questions:
+1. How to submit form using JavaScript? document.form[0].submit();. 
+2. How o read or write a file using JS? active X object or some JS extension. 
+3. Looping options in JS> Same as java. 
+4. void(0) is used to prevent the page from loading. 
+5. Handling exception is also done through try, catch and finally block only. 
 
 
 
