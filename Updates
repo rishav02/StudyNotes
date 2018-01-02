@@ -264,12 +264,26 @@ CBSI telephonic interview
 
 4. What all is present under jdk folder? When we download java the we get jdk folder which contains jre folder, bin folder and other stuff. Bin of Jdk has got all the executable files like compiler, debugger, documentor, dessembler and other. JRE folder got the bin folder (contains all dll files), classes folder, liscence file, readme file, introduction html file. 
 
+5. What is overhiding? 
+When child class writes the same method as a static method in parent class then this is called as overhiding. No error is received. 
 
 *************************************************************************************************************************************
 Java study
 Topics need to be revised:
 1. Whats present inside jdk, practically and theorytically?
 2. Is java an interpreted language? No Java is not interpreted language. The recompilation of jvm byte code to jit machin code is considered as interpretation. WHile java involves compilation. 
+3. Copy constructor
+4. Can we have static class? We cannot have top level classes as static while inner classes can be static. 
+5. Can we use super method in main method? No. We cannot. Check its use.
+6. Be careful about initializer block and constructor invocation order. It is static initializer of parent, static initializer of child, instance initializer of parent, construtor of parent, instance initializer of child, constructor of child. 
+7. How interface involves loose coupling in java? Interface just not only allow a class to implement its method but it allows multiple classed to implement its method. Now, when we interact with the class using the interface then we can feed any class implementing the class without much modification. 
+8. Object Cloning. Deep Cloning and shallow cloning. Explain using: https://dzone.com/articles/currying-functions-in-scala-1
+9. Unboxing. we do it like int a = b.intValue();
+10. String are immutabe. String are inert concept. 
+11. Immutable Class
+12. Check the working example of string tokenizer. 
+13. Check all note point of Exception handling in java, Correct in note point 6 that after catch block runs the code outside the try block will execute. Also, add one more not point "If we write return only in eighter try or catch block then we will get error. We need to write one at the last as well."
+14. thead lifecycle, note points of how to create a thread and other too. 
+15. What is the difference in wait and sleep or waiting or sleeping? Wait method is object class method and invoked on an object for synchronization while sleep method is of thread class and invoked on thread for intentionally sleeping the threads work for certain duration. 
 
-
-
+Add implementation index 1 to downcasting in java study.
