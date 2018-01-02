@@ -251,6 +251,16 @@ source2: 4, 8, 9, 15, 22, 24 here, cursor is the mouse cursor, put @@@A on 35 36
 Source3: 3, 5, We will do it in hardcore requiorement of JS. 
 Source 4: 
 
+*************************************************************************************************************************************
+
+Question Faced in Interview File
+
+CBSI telephonic interview
+1. Two static overloaded methods in which if one method accept argument as string and other accept Object. If null if passed to the method then which implementation will be invoked? String will get invoked because string can be a null. 
+
+2. Question is same as above question, only this is object argument is replaced by Integer. Now if we pass null then what will happen? It will give compilation error as it will be ambiguous to invoke which of the two overloaded methods. 
+
+3. What is the difference in get and load methods in hibernate. 
 
 
 
