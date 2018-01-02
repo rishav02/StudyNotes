@@ -285,5 +285,13 @@ Topics need to be revised:
 13. Check all note point of Exception handling in java, Correct in note point 6 that after catch block runs the code outside the try block will execute. Also, add one more not point "If we write return only in eighter try or catch block then we will get error. We need to write one at the last as well."
 14. thead lifecycle, note points of how to create a thread and other too. 
 15. What is the difference in wait and sleep or waiting or sleeping? Wait method is object class method and invoked on an object for synchronization while sleep method is of thread class and invoked on thread for intentionally sleeping the threads work for certain duration. 
+16. Order in sets: This is an eye opener. Let me just brief on the normal behavior of Sets. HashSet maintains no order, LinkedHashSet maintains order of insertion so while iterating it will print the values in the order of insertion and Treeset maintain ascending order which means the elements will be printed in increasing order. Also, hashset and linkedhashset can contain one null value while treeset cannot contain any null value. 
+17. Update in the internal working of HashMap: First the hashvalue of key is find out through hashfunction method. Then, hashvalue is devided by 16. Whatever remainder comes would be the index and that will be the bucket. That's why multiple entries many have same bucket. Eeach bucket is a list in itself. When we try to get a map entry then again the hashcode of key is findout followed by division with 16 which will provide the index. There are changes that the bucket will have multiple entries thus we compare the key of each entry with the key provided as the argument of get method. 
+18. Treemap cannot have any null key while can have one null value and it maintains the ascending order. WRT null values, hashtable works the same as treemap. Hashtable do support enumerator as well and is synchronized.
+19. Check example of comparable and comparator interfaces. 
+20. How do we do transaction management through normal JDBC? We have to create transaction management and need to use methods like rollBack(), commit() and save(). Generally, rollback() is written in catch block. 
+
 
 Add implementation index 1 to downcasting in java study.
+
+hymn of weekend, perfect ed shareen, 
