@@ -262,6 +262,14 @@ CBSI telephonic interview
 
 3. What is the difference in get and load methods in hibernate. 
 
+4. What all is present under jdk folder? When we download java the we get jdk folder which contains jre folder, bin folder and other stuff. Bin of Jdk has got all the executable files like compiler, debugger, documentor, dessembler and other. JRE folder got the bin folder (contains all dll files), classes folder, liscence file, readme file, introduction html file. 
+
+
+*************************************************************************************************************************************
+Java study
+Topics need to be revised:
+1. Whats present inside jdk, practically and theorytically?
+2. Is java an interpreted language? No Java is not interpreted language. The recompilation of jvm byte code to jit machin code is considered as interpretation. WHile java involves compilation. 
 
 
 
