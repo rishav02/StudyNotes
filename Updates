@@ -245,6 +245,11 @@ Some Important Questions:
 5. Handling exception is also done through try, catch and finally block only. 
 
 
+JAVASCRIPT COMBO INTERVIEW QUESTIONs
+source1:22, 27, 29. Delete operator is used to deleted the property of an object or the object itself. but it does not have any effect on var or on function, 31, 43, 56, 66, 73. Also tell the event you know, 74. also tell how to create deferred script, 75, 84.
+source2: 4, 8, 9, 15, 22, 24 here, cursor is the mouse cursor, put @@@A on 35 36.
+Source3: 3, 5, We will do it in hardcore requiorement of JS. 
+Source 4: 
 
 
 
