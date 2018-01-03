@@ -1,0 +1,1033 @@
+SQL
+SQL is structured query language and a special purpose programing language designed for managing data held in a relational data base which consist of Data definition language(DDL), Data manipulation language and Data control language.
+SQL was developed at IBM back in 1970’s and initially called as SEQUEL (Structured English QUEryLangauge). 
+SQL is used to maintain the Database Management System. These database management systems are the computer software used to interact with the users. The popular DBMS’s in the market are MySQL, PostgreSQL, Microsoft SQL Server, Oracle Sybase, IBM DB2, Oracle, SAP HANA and few other. Well, these are all Database management systems which are controlled by SQL language but vary a bit with the syntax and usage with each other. 
+Now, let’s understand the term SQL server side and Client side. Actually, if you want to use any database then a lot depend on the purpose. If you want to use it as a server then you will require a SQL server side edition. Then, what is server side? Server side edition actually contains the database engine which defines a DBMS. Also, the actually creation, modification and control happens at server side. If you want to use the resources at the client side then you require SQL client edition. The client edition is used to use the resources of database server and thus, always require a server connection. There are many IDE available for working with SQL. 
+Basic details about the DBMS
+1.	MySQL – it was originally owned by a Swedish company MySQL AB but now owned by Oracle Corporation. The IDP for MySQL DBMS is MySQL workbench.
+2.	PostgreSQL – actually, this DBMS was originally belongs to university of Berkeley ingres project. The head of the team worked outside the university later but returned back. After that it was named as POSTGRE but since 1996, PostgreSQL is named to show the support to SQL and maintained by the PostgreSQLGlabal Development Group. One example of its IDE is Squirrel which supports around 60 DBMS and PostgreSQL is one of them. 
+3.	Microsoft SQL server is bacially a DMBS and developed by Microsoft. I guess the standard IDE for Microsoft SQL server is SQL server Management studio (SSMS). 
+4.	Oracle database which is more commonly known as Oracle RDBMS or just Oracle produced by Oracle Corporation. Oracle SQL Developer is the IDE for the using Oracle. 
+5.	Oracle Sybase – Sybase SQL server is an RDBMS developed by SyabseInc which is called as Sybase Adaptive Server Enterprise Sybase Inc is now a SAP company. Its database engine is same as Microsoft SQL server. 
+6.	 IBM DB2 - It is Database server product which means it is a RDBMS but it is server side and used to provide database service to the other computer programs. Some additional information is that, there is something called as server client model in which server is back end use to provide service to the client so database servers are basically the servers which work as backend and provide service to client. 
+7.	SAP HANA – it is a application server that includes an in-memory, column oriented, relational databse management system developed by SAP SE. what is application server? 
+
+
+Note: Well, we should keep in mind that although we are writing an IDE example with each RDBMS but it can still be practice or used with a lot of other IDE. This is because one IDE can support many RDBMS.     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+JavaTPoint SQL Tutorial
+
+SQL: Know How 
+What is SQL?
+Well, we know this already. But, just for reference, it was developed at IBM back in 1970’s. Ever since then it has evolved as one of major area of study and research in Computer Science. It is based on Relational Algebra and tuple relational calculus. The purpose of its creation is simple and straight to control the database. 
+
+What is Database?
+In the simplest word, a database consists of data which is organized in a systematic way to create, manipulate and control it with ease. Now, in relation with computer science and IT, many websites which are dynamic will require a database to contain all the information related to the website and can 
+be accessed and stored through the website itself. Cylindrical image is shown to display a database. 
+
+What is RDBMS?
+•	It stands for Relational Database Management Systems. It is a relation model. In relational model of database, data is stored in rows (Tuples) and each row has own primary key. The concept of RDBMS was first evolved in 1970’s by E.F Codd. 
+•	Table – A table stores data which is related to each other contains rows and columns. 
+•	Field – it is a smaller entity of a table which contains specific information about every record in the table. Like, ID, name, age, class are the fields in the student table. 
+•	Row – A row is also called as a record. It is a horizontal entity in the table and contains specific information about an individual entry in a table. 
+•	Column – A column is also a smaller entity of a table and it is vertical entity containing all the information associated with a specific field. 
+•	NULL value – it means a field is kept blank while record creation. It is not a field filled with a zero or that contains a space. 
+•	Data Integrity – There are number of data integrities followed by every database which are as follows. First, Entity integrity which specifies that there should be any duplicate entry in a table. Second, Domain Integrity which specifies that a valid entry is given to any column restricted to a 
+data type, range and etc. Third, referential integrity which specifies that a row cannot be deleted which is used in some other record. Last, the user defined integrity which are defined by the user itself.
+Note:we have few more operators, apart from mentioned above, which are NOT NULL constraint, DEFAULT constraint, UNIQUE constraint, check constraint, index constraint. Please check them later.
+
+Difference between DBMS and RDBMS
+1.	DBMS stores the data in file format while RDBMS stores data in tabular format. 
+2.	DBMS does not have Normalization feature while RDBMS has the feature of Normalization.
+3.	DBMS does not provide any security for data manipulation while RDBMS is has integrity constraints. 
+4.	DBMS does not have any relation between tables while RDBMS has.
+5.	DBMs handle small database while RDBMS can handle large databases very efficiently.  
+6.	DBMS does not support the distributed database while RDBMS does. 
+Note:  Distributed database is the one which is distributed to many systems so that one user can use a specific part of the database related to his work without disturbing the work of others.
+
+Normalization
+Normalization is a process of efficiently storing data in the database. It has few main goals which are eliminating redundant data (like storing same data in more than one table), ensuring data dependency is making sense (placing similar data in the table)n and taking care of different anomalies like insert, delete or update anomaly (insert anomaly is about making sure the entity is inserted before inserting the details about it).  Both these goals helps reduce the space consumed in the database and ensures that the database is logical. Other advantages of normalization are improved performance of database, faster transactions and query optimization.
+There are overall six normalization forms a database table can be in. We will be looking first three normalization states.  
+Types of Normalization forms –
+1.	First Normal Form (1NF)
+a.	No repeating group – an array of data (like can write multiple products in products column). The simplest way of fixing this is to have multiple forms for multiple products. Also, we can ceate a separate product table and give each product an id.
+b.	Every row must be identified uniquely – can be set by primary key.  
+2.	Second Normal Formal (2NF) – For being in 2NF, a table must be in 1NF.
+a.	No partial key dependency – This means that every non key attribute (column) must be dependent on each candidate key column (every key that potentially be primary key) of the relation. This we can do by creating a new table with the column of the original table that was not dependent with all the composite keys along with column over which was dependent. Dependent column is required to have relation between both the tables.
+Check: http://www.1keydata.com/database-normalization/second-normal-form-2nf.php
+Note: if a table is 1NF and primary key is not a composite key then it is automatically in 2NF.
+3.	Third Normal Form (3NF) – 
+a.	No transitive dependency – Firstly, what is transitive dependency? When column A determines column B and column B determines column C then C is transitively dependent on A. However, for achieving 3NF there must not exist any transitive dependency. This means that a non key attribute must functionally dependent only on the primary key. This can be fixed by creating a table that with the attribute with its dependent attributes.
+Check: http://www.1keydata.com/database-normalization/third-normal-form-3nf.php
+ 
+Note – 
+1.	MS sql server does not allow array of data in a row.
+2.	Checks the examples to understand all the normalization forms.
+3.	De-normalization can be understood as the concept of lowering the normalization form of any table. 
+4.	SQL query optimization or tuning is using the best query among different type of queries available to perform same task. The sole purpose of doing query optimization is to get the best performance of the database. For example, it is better to write the column name in select query instead of using * when we need to retrieve all the columns. This increases the performance of database. Similarly, we can have different ways of optimizing different queries.  
+
+SQL Syntax 
+SQL follows some syntax which are as follow. 
+1.	SQL is not case sensitive but generally written in upper case. 
+2.	We can place a single SQL statement on one or multiple text lines. SQL is dependent of text lines. 
+3.	SQL statement start with any keyword SELECT or INSERT and ends with a semicolon. Semicolon is used to separate the multiple SQL statements where more SQL statements are used in the same call. 
+
+SQL Data Type
+•	SQL data type defines the kind of values a column can store. Every column will have a data type and a name. Data types vary from RDBMS types. For example, MySQL supports INT and Oracle support NUMBER fir integer value. 
+•	Integer are also of different according to there size. Tinyint(1 bytes), Smallint (2 bytes), int (4 bytes) and bigint (8 bytes). Generally, a default int is signed which means its value exist from 32,768 to 32,767. One the other side, unsigned int is from 0 to 65,535i.e no negative value. 
+•	CHAR(n) is a character type data type with a capacity of n characters. VARCHAR(n) can hold character and numbers. 
+•	Float and double are also available. Actually float and double are same data type except double is double in size of float and so offer double precision. DOUBLE PRECISION  (p,s) where p is the precision and s is the scale value. Decimal(5, 2) indicates a value with three number after the decimal and 2 after the decimal. Real data type is a kind of data type which is used for showing a approximation of the real numbers. Real number is combination of rational and irrational number. 
+•	BIT data type is used to store a bit, either a 0 or 1. It is given a fixed length and storing shorter or longer bit string gives an error. However, BIT VARYING without any limit gives an unlimited space to string.
+•	We also have data types related to date and time. DATE stores year, month and date, TIME stores hour, minutes and seconds, TimeStamp stores year, month, day, hour, minutes and seconds. Similarly there are others as well. 
+Note:  In Sql Server, the data type are different from oracle and mysql. The data types in sql server are described below –
+1.	String data types
+a.	CHAR(size) – for characters, max size is 8000 chars, fixed length and non Unicode.
+b.	VARCHAR – max size is 8000 chars, variable length and non Unicode. 
+c.	TEXT – variable length and non Unicode data.
+d.	NCHAR and NVARCHAR – half size and unicoded versions of CHAR and VARCHAR.
+e.	 BINARY and VARBINARY – fixed and variable datatype for binary data type. 
+f.	IMAGE – Variable length of binary data. 
+2.	Numeric data type
+a.	BIT – 0, 1 or NULL.
+b.	TINYINT, SMALLINT, INT and BIGINT – 1,2,4 and 8 byte of capacity. 
+c.	DECIMAL(m,d) or DEC(m,d) or NUMERIC(m,d)– This contains decimal value as m is the number of digits and d is the number of digits after decimal. M can be 18 max.  
+d.	FLOAT(n) – n is 53 by default. N is the number of bits in the scientific notation. 
+e.	REAL is equivalent to FLOAT(24). We also have SMALLMONEY and MONEY. 
+3.	Date time data type 
+a.	DATE – values ranging from 0001-01-01 to 9999-12-31.
+b.	TIME – value ranging from 00.00.00.00000 – 23:59:59’
+c.	DATETIME – displays both time and date. 
+d.	DATETIME2 – displays date and time with fractional second precision. 
+e.	DATETIMEOFFSET – similar to DATETIME2 but having some time zone off set. 
+Note: 
+1.	The difference in VARCHAR and VARCHAR2 is that VARCHAR distinguish between null and empty string while varchar2 takes them same.
+2.	If we have to change the datatype of any column then we need to drop the constraints and then we can do this.   
+
+SQL Operators
+SQL have three category of operators which are given below. 
+1.	Arithmetic Operator - +,-,*/ and % comes in arithmetic operator. 
+2.	Comparison operator - =, !=, <> (examine the values of operand), >, <, <=, >=, !<, !>
+3.	Logical operator – ALL (compare one value to all values of other value set), AND (for multiple condition), ANY (compare the value in a list according to the condition), BETWEEN, IN, NOT, OR, Exits, LIKE
+
+SET Operator – SET operator combines the result of multiple queries. MS Sql server has EXCEPT, INTERSECT and UNION as the operators. 
+a.	EXCEPT – EXCEPT returns distinct rows from left query which are not output by right query. The left and right query may or may not involve same table. Syntax: QUERY1 EXCEPT QUERY2 i.e. Select col1 from table1 EXCEPT select col2 from table2.  
+b.	INTERSECT – INTERSECT returns the distinct rows from left query which are output by right query. The left and right query may or may not be the same. Syntax: QUERY1 INTERSECT QUERY2.
+c.	UNION – UNION combines the output of all the queries into a single result set which are linked using UNION. System for UNION: QUERY1 UNION QUERY2.
+Note: 
+a.	To use EXCEPT, INTERSECT and UNION, the number and order of the column must be same in both the queries. The columns involved in left and right query in EXCEPT and INTERSECT must not be of same datatype while should be comparable which means it can be implicitly converted into other. 
+b.	Also, remember that the data from the left query is returned while the right query is to compare only. 
+c.	EXCEPT is used in oracle while MINUS is used in SQL Server.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL Database
+SQL CREATE Database
+As the name suggest, to create a database the query is “CREATE Database DatabaseName”. We can rename or drop any database. We can add tables in the database. In oracle, it is not necessary to create database. We can directly create tables in it. The database name is always unique in an RDBMS. 
+
+SQL DROP Database
+Dropping a database means to delete or remove a database. So, with DROP Database query we can do the same. With this command all the tables and views will be deleted in the database so be cautious while using it. 
+
+SQL Rename Database
+You sometime need to change the name of the database because it might be not longer suitable to the data or may be for any other reason you want to change the name of the database. So, with RENAME Database query we can do this. The syntax for it is “RENAME DATABASEold_name to New_name”. 
+
+SQL Select Database
+Select statement is used to select the data from the database.
+
+
+
+
+
+
+
+
+
+
+SQL Table 
+What is a Table?
+Table contains data which is related to each other. A table has rows and columns. It is simple form for storing data. We have lot many keywords related to table that we will study in the upcoming topics. 
+
+SQL Table Variable 
+The SQL Table Variable is use to create, modify, rename, copy and delete a table. Table variable was introduced by Microsoft. It was alternative of tempropary table. The purpose of table variable is same as the temporary table i.e. to store the records and results. When a transaction is rolled back, the table variable is not rolled back. A table variable uses less resources than temporary table. Table variable cannot be used as input or output parameter.
+Syntax: CREATE TABLE “table name”(“column name” ”data type”, “2nd column name” ”Second datatype”). It is similar to create table syntax.
+Note: as we already know that the table variable is replacement of temp table and they serves the same purpose. But they have some difference in them as well. Research some if you want. 
+
+SQL CREATE TABLE 
+This command is use to create a table and we should define each column name, its data type and storing capacity in some cases. The data type may vary from one database to another. For example, NUMBER is used in oracle and INT is used in MySQL for integer.  While creating table, we can use of NOT NULL constraint which implies that the field cannot be kept blank. Also, we have to declare the primary key. Practice creating table. 
+Note:
+1.	Please confirm that if a column is not given not NULL while declaring a table then are they by default considered NULL?Yes, by default columns are Null and can contain the null values. Also, NULL is not being a zero value or an empty string.
+While creating a table, write name of column followed by datatype along with mentioning the size of the column. Mention whether the column is NOT NULL or not. Also, specify primary key column.  
+
+SQL DROP Table
+SQL DROP table is used to delete the table definition and its data as well. Once it is committed then all the information is lost so we have to be very cautious. The syntax is like this: DROP TABLE tableName;. Drop commands are generally same in all RDBMS systems. 
+Note: we drop a table then its data and definition is dropped. Also, relation with other table, integriuty constraints applied on that table and access privileges gives are also dropped.  
+
+SQL DELETE Table
+This command is used to delete rows from a table. If we have to delete an specific row then we have to use where clause. Syntax: DELETE FROM TableName Where empid=”1”; and if we do not give the where condition then the entire data will be deleted. But in both the cases, the space was not free. Also, the definition of the table will be still saved. Truncate is another keyword where the all rows will be deleted while making the space free. Syntax for truncate: TRUNCATE Table Tablename;.
+Note:
+1.	Truncate is only applicable for all the rows of the table which means we cannot use where clause with truncate. 
+2.	The same query is not applicable for deleting column as well since deleting a row does not after the structure of a table while deleting a column affects the structure of as table and thus columns are deleted by after table query.
+3.	We can rollback DELETE but we cannot rollback TRUNCATE.
+
+SQL RENAME Table
+For any reason, if we want to change the name of the table then we should use RENAME command. Syntax: RENAME old_tableName to new_tableName (syntax is slightly different from renaming database). Infect, there is another way for renaming the table with syntax: ALTER TABLE table_name RENAME TO new_nameTable. 
+
+SQL TRUNCATE Table
+We already know a little about it. This command removes all the rows from a table by making the space empty (while delete does not make space free). It is similar to delete command with no where clause. Truncate table is faster and uses lesser resources than delete. The rollback after the truncate command is not possible and we cannot retrieve the same data again. The same happens with drop and delete as well. Truncate kind of refreshes the table.
+Note: Lets look at the difference between DROP and TRUNCATE. DROP drops the definition of the table while TRUNCATE only deletes the data by keeping the definition safe. Same goes with the relationship of the table with other tables, integrity constraints and access priovilages. In the nutshell, with TRUNCATE we just deletes all the data while saving other things. 
+Note: we can rollback delete command but cannot roll back truncate.
+
+SQL COPY Table
+We can copy the data of one table into another table in the same SQL server database. We have to use SELECT statement for this. Syntax: SELECT * into Destination_table from Source_table;. SELECT INTO is entirely different form INSERT INTO. 
+
+SQL TEMP Table
+The concept of temp tables was given by SQL Server. They are created at the run time and can do all kind of operations as a normal table can do. They are of two types which are described below.   
+1.	Local temp table – They are visible only to the creator of that temp table during the same connection and table will be destroyed when the user disconnected from SQL server. 
+2.	Global temp table – They are visible to the creator of the temp table as well as the users made connection after the temp table is created. The temp table will be destroyed 
+The syntax for creating the temp table is “Create table tempTable (column deinition)”.
+Note:
+1.	Temporary tables are used when we have very complicated tables and we need to do some immediate calculation or analysis.
+2.	To check more:
+ http://devzone.advantagedatabase.com/dz/webhelp/advantage8.1/adssql/using_temporary_tables_in_sql_statements.htm
+
+
+
+
+SQL ALTER Table 
+This command is used to add, modify or delete columns in the existing table. It is also used to rename a table. We can also use the ALTER command to add or drop any constraints. 
+1.	Add column – to add a column in the table we can use alter command. Syntax: ALTER TABLE TableName ADD Column_name column definition;. (here column definition means column name and datatype). We can also use the multiple column but then put all definition in a bracket.  
+2.	Modify Table – syntax ALTER TABLE tableName MODIFY Column name column definition. Here, simply put the new definition or any constraints you want to add. 
+3.	Drop a column – we can also drop a column with the help of ALTER. Syntax: ALTER TABLE TableName DROP ColumnName;
+4.	Rename a table – this we already know.  
+
+
+SQL Clauses 
+In this section, we will look at different clauses. 
+Where Clause
+This clause is used to filter the records for attaining the specified condition. It is used with SELECT, UPDATE, DELETE statements etc. However, this is not solely used to limit the number of records. The syntax for where clause is “SELECT column1 FROM tableName Where=[condition]”.
+GroupBy Clause
+GroupBy clause is used on that column where we want to have one row for a repeated entry in that particular column. GroupBy can be applied on one or more columns. COUNT, MAX, SUM, AVG are some functions commonly used with GroupBy clause. 
+Note: always remember that whatever you place under groupBy will give only one row for each row. 
+Having clause 
+In simple query, we have where clause to filter the final result. Similarly, we have HAVING clause for filtering the final result for a group or aggregate function. Having clause is only used in the Select statements. It is typically used in the group by clause and if used without it then it will be treated as where clause. Also, if order by clause is used in the same query then having clause precedes the order by clause. Syntax: “Select SUM (col1) from table having SUM (col1) < condition” OR “Select col1 from table1 where condition group by (col1) having (col1 > condition) order by col1”. So, having is used with either aggregate functions or with group by clause. 	
+Note: I have noticed that we use the having clause generally on those columns (selected column of int data type) which will show effect of group by clause.
+OrderBy Clause
+This is told in detail in next section. Check that out.
+Union Clause 
+•	A union clause or operator is used to combine the data of multiple select statements without any duplicate value. Though the number of column, their order of declaration in select statement and data type should be same, the length of the column may vary. Syntax: “(Select statement1) UNION (select statement2)”. 
+•	Now, we also have UNION ALL which is slightly different from UNION. UNION ALL returns all the rows of the combined select statements including the duplicate rows.
+•	There are two clauses which are similar to UNION clause. First, intersect clause which returns the rows from the first select which are in second select as well. Second, EXCEPT clause which returns rows from the first select which are not in second select.
+Note: But in all the three, the columns should be the same along with the order they are written inside SELECT statement.  
+
+AND Clause
+AND clause is used in SQL when we have to apply two condition inside the same where clause. Check examples. Also, we can assign alias name even without using the AS clause.
+OR Clause
+OR clause is used when either of the two condition should met in where clause. Like, SELECT col1 FROM table where cond1 OR cond2;. Check examples. 
+WITH Clause 
+With clause is used to provide a sub query block.
+AS Clause
+This clause is used for alias. 
+SQL functions
+
+Order in which clauses in SQL gets executed
+1.	FROM/join – determines and filter rows
+2.	Where – further filter rows
+3.	Group By – Combines those rows into groups
+4.	Having – filter groups
+5.	Order by – arranges the finally received rows/groups
+6.	Limits – Limits the result
+Other clauses which are not specific for order are AND, OR, WITH, UNION, LIKE, TOP
+Different keywords in SQL – 
+Different functions in sql - 	
+
+SQL Functions
+SQL have many functions for performing calculation on data. Infect, they are classified in number of categories. Let’s discuss them. 
+
+Aggregate Functions
+These functions return a single value as the result of calculation on data. 
+a.	AVG() – Returns the average value of number of digits. Syntax: “Select AVG(columnName) from tableName”. You can have average of a group of values which can be done by group by. 
+b.	Count() – this function can be used to count the number of rows. Example – to find the number of student by counting the id in the student table. 
+c.	First() – it returns the first value of the column.
+d.	Last() – It returns the last value of the column. 
+e.	Max() – It returns the largest value of the column. 
+f.	MIN() – it returns the minimum value of the column. 
+g.	Sum() – It returns the sum of the column. 
+h.	SQR() – it shows the square root of the value. 
+
+Scalar functions 
+Scalar functions also return a single value according to the input value. 
+a.	UCASE – converts the field to upper case (use UPPER in case of oracle).
+b.	LCASE – coverts the field into lower case (use LOWER in case of oracle).
+c.	MID – this returns specific character from the text field. I am sure where to use it.
+d.	LEN – returns the length of the text field (use LENGTH in case of oracle).
+e.	ROUND – Specify a numeric field into a number of decimal specified. It might only be used in case of decimal numbers. This works from float data type and can show the value rounded of from zero decimal places to the decimal places it is actually declared. 
+f.	Now – it returns current system date and time. SYSDATE is found equivalent to it though I am not able to run query using it. 
+g.	Format – it the formats the field the way it has be displayed. I have to find about this as well. 
+
+Other functions
+a.	RAND – this function is used to generate a random number unsing SQL command. 
+b.	CONCATE – this is used to add two strings inside any sql commands. 
+c.	Numeric – it’s a category of functions itself. These functions are too many so leaving now but I will do it later if required. 
+d.	String – it is also a category of functions in itself. These functions are too many so leaving it for now but I will do if required later. 
+Note: I am leaving it here because I see doing more functions now is out of scope. I will do it later if required.
+SQL Order By
+Order By Clause
+This clause is used to order the data retrieved. We can order the data in one or more columns in ascending or descending order and by default it is order the data in ascending order. Syntax: “Select columnName from tableName where condition order by expression ASC/DESC” where expression is column name. 
+
+Order By ASC
+This is used to order the data in the ascending order and ASC is used to do that. But without it also the data by the help of order by clause get the ascending order. 
+
+Order By DESC
+This is used to order the data in the descending order and DESC keyword is used with order by for this purpose. When we have multiple columns in order by clause then the result will be ordered first for the first column and then for other column.
+
+Order by random 
+Well, if you want to arrange the data in random order for any purpose then we have different syntax for different RDBMS. For example, the syntax in oracle is: Select column from (Select column from table order by dbms_random.value) where rownum = 1;. This is query where it will give one random row. In SQL server, for random order we have a function called NEWID(). We do not need to mention column name in that.
+
+Order by limit
+We can retrieve limited rows through limit keyword. This is also called as pagination. This is also done in different ways in different databases. We can simply write the number of rows we have to retrieve after LIMIT keyword. Remember, this keyword is not available in all databases. 
+Note: 
+1.	Will the result be ordered first or limit will occur first? I result will always be ordered first and then from the ordered result it will fetch the limited result mentioned.
+2.	We do not have LIMIT in oracle as well as MS SQL. It is used in MySQL.  
+
+Order By Multiple Cols
+We also have the facility to order the data by multiple columns. The column written first will be taken first for ordering the data while the other will be considered later. 
+
+
+SQL Select 
+Select statements are used to retrieve data from the database. The different clause used with select statements are WHERE, GROUP BY, HAVING, ORDER BY.
+
+SELECT UNIQUE/DISTINCT
+Both unique and distinct keywords are used to select the unique entries of the columns through select statements. Unique was used before distinct came into picture. Later, Distinct was introduced by ANSI. Syntax for using unique/distinct is “SELECT UNIQUE/DISTINCT FROM TableName”. 
+Note: How a select statement works? #RoundTwo
+
+SELECT COUNT
+Select count is used to return number of rows in a query. It is generally used in SELECT statement. Syntax: “SELECT COUNT(Col) FROM TableName;”. We can also used distinct with count as well like this “SELECT COUNT(DISTICT(Col) FROM TableName;”.
+
+SELECT TOP
+Select top is used to retrieve specified number/percentage from top of the data in table. Syntax: “SELECT TOP 2 FROM TableName;”. 
+
+SELECT FIRST/LAST 
+Select first/last is used to retrieve data from the first row for the specified column(s). Syntax: “SELECT First/LAST(column) FROM TableNAme;”.
+
+SELECT RANDOM
+Whenever we need to either generate a new number, a record or sort randomly, we have have to use New ID() function is SQL server. While we can make use of RAND() function. 
+
+SELECT AS 
+Select AS is used to give alias name to any column. Sometimes we have odd name of the columns so we have this feature. Syntax: “SELECT colName AS AliasName FROM TableName;”.
+
+SELECT IN
+IN is an operator in SQL. it is used to get rid of multiple use of OR clause. Example: “SELECT * FROM student where StudentName IN (Name1, Name2, Name3);”.  
+
+SELECT DATE 
+We can retrieve date stored in our database like this “SELECT * FROM TableName Where DateColumn<=’yyyy-mm-dd’”.
+Note: to print the current date and time, we have different function in different RDBMS. GETDATE() is used in MS SQL.
+
+SELECT NULL
+Entry an sql table can be NULL as well. So, how can we retrieve NULL values. Simple, put it in where clause like this “SELECT colName FROM TableName Where ColName IS NULL”. 
+Note: if we have some entry as null and if we try to retrieve some data by using null value on where clause then no row will be returned. 
+
+  
+
+
+
+
+
+
+
+
+
+SQL insert
+Insert Statement 
+The insert sql statements are used to insert one or multiple record in a table. There are two ways of inserting the data which are below. 
+1.	By SQL insert statement i.e. inserting data directly into the table. Sql insert statement can be written in two ways also. First, you can specify the column name when you are adding a complete row. The syntax for this is: “Insert into tableName [(col1, col2, …..coln)] VALUEs (value1, value2, value3…..value n)”. here we have to careful with the order of the values inserted. Second, the other way is by this syntax: Insert into tableName Values (value1, value2…..valuen). Again, we have to take care of the order of the order of value. It should match the order of column in the table. 
+2.	Inserting the data through select statement – syntax: insert into TableName [(col1, col2, …..coln)] select col1, col2….coln from tableName [where condition]. Two things need to be very much focused on is the order of the values and the data type in accordance with the columns. 
+
+SQL Insert into Value
+This also says the same thing that we may use the column name with values and we may not as well. 
+Example: 1. “Insert into employee (empid, name, designation) value (1, rishav, PA)”, 2. “Insert into employee value(I, rishav, PA)”. 
+
+SQL Insert into SELECT
+This is another way of inserting the data in the table. We can use it in simple case but in a special case where the data needs to be table from another table then it is very crucial. Example: 1. “Insert into employee (empid, name, designation) select (empid, name, designation)”. 2. Insert into employee (empid, name, designation) select (empid, name, designation) from employeedetailscopy”. 
+
+SQL Insert Multiple Rows
+Yes! It is possible to insert three rows in a table in a single statement. Infect, this can be done in three ways. Let’s look at them. 
+1.	Traditional method – I would not prefer to call it a single statement but since it is given as method one. Then, let us have a look on it. Syntax: insert into tableName (col2, col2…) value (value1, value2…) insert into tableName (col1, col2…) value (value1, value2…..)………….conti.
+2.	Select union insert – this is another way which reduces the previous query a bit. Syntax: insert into tableName (col1, col2…) value (value1, value2….) UNION ALL value (value1, value2…..)..continue. 
+3.	SQL server 2008 Row Construction – I guess this might only be for Microsoft SQL server. Insert into tableName (col1, col2,….) Value (value1, value2,..), (value1, value2…),…..
+
+Note: check these – 1. Insert record in one column, 2. Insert record in all the rows, 3. Insert record from another table using select statement, 4. Insert multiple record, 5 insert multiple records using other table. 	
+
+SQL Update 
+Update statement
+SQL Update commands used to modify the already existing data in the database. The SQL update command is used to change the data held in the table. We use WHERE clause the specify the location of change in the table. Syntax:” Update tableName SET [columnName1 = value1……….Column N = value N] [Where condition]”. For example, if we have to correct the spelling of an student’s name. then, “Update Student SET [name=”Rishav”] where StudentID = 1”. We can have multiple column updates in a single query. We can also have update with select. Syntax for it: “Update TableName SET [column1 = value1…….Column N = value N] Select [column1, …….column N] Where Condition”.
+Note: we can update multiple columns through the usual syntax and through select statement as well. 
+
+SQL Update with Join 
+This is used to update data of a table from the data of another table. In a basic condition, we give a value of any field in update query in query itself, but when one table provide data to other data and that is updated then we have to use join. Syntax will be similar as basic. Check example for better understanding. 
+
+SQL Update Date 
+We can also update the date and time field in SQL. Well, this is not much different than the usual update query. Syntax: “update tableName Set columnName =’yyyy-mm-dd HH:MM:SS’ where condition”. Here, the column must be a date data type column. Check the example for better understanding. 
+
+Note: check the default value for every data type in sql.
+
+Note: check this – 1. update one column, 2. Update multiple columns usually, 3. Update column(s) using table through select column and join, 4. Update date.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL Delete 
+Delete Statement
+Delete statement is used to delete one or more rows from a table. “Where” clause is used with delete statement to specify the row to be deleted. If we do not use the where clause then we will receive all the rows of the table. Syntax: “Delete from tableName where condition”.
+Note: abe gadhe delete mai column wise delete nahi karte hai 
+
+SQL delete table
+Well, we understand that if we do not use the where clause then it will delete the table because it will delete all the rows of the table. Truncate and drop also has somewhat similar usage but all the three are different from each other in some way or the other. Delete can delete some rows or the entire table but not makes space free. Truncate can delete all the rows (not few rows) and makes the space free. Drop can delete the table but it deletes the entire structure (definition) of the table and deletes all the relationship with the other tables. 
+
+SQL Delete Row
+This is used to delete rows. Its syntax is: “delete from tableName where condition”. 	
+
+SQL Delete All Rows
+This is used to delete all the rows of a table. Its syntax is: “Delete from tableName”.
+
+SQL delete duplicate rows
+Well, this is interesting. We may have situation where we have duplicate rows in a table. So, how can be select and remove all the duplicate rows from a database. We should write query something like this “WITH TableNameCTE As {SELECT *, ROW_NUMBER() Over{Partition BY id ORDER BY id} as RowNUmber FROM EMPLOYEE} DELETE From EmployeeCTE where RowNumber>1”. 
+Note: 
+1.	WITH clause – WITH clause is used to give name to a subquery block which can be referenced within the main query any number of times. Syntax “WITH AliasName AS (SubQuery)”.
+2.	ROW_NUMBER – It is a function which that gives numbers in increasing order from one.
+3.	OVER clause – It is used to use the aggregate function over different windows. We create different windows through PARTITION BY used inside OVER clause. 
+4.	PARTITION BY – PARTITION BY is used inside over clause to use the aggregate function for a particular partition. Like, creating a partition of gender inside table or on the basis of country. 
+Note: check how can we choose best column possible for partition?
+
+Delete Database
+We can remove or delete any table, database or index with drop. 
+
+
+Delete view 
+Firstly, sql views are the virtual table that does not exist actually. These are the result set of the stored query. We can create them with syntax: “create view viewName As Select columns from tables where conditions”. Now, it is very eady to delete a view with syntax: delete view viewName;. This is manily done when the view is no longer useful. 
+
+Delete Join
+Sometime we have to delete one table of a join (for any reason). It is possible with the syntax: “delete [target tableName] from tableName inner join tablename2 on joining condition where condition”. Infect, we may also require to set the update some column in a join. It can be done with syntax: “update [table tableName] from tableName inner join tableName2 on joining condition where condition”.
+
+
+Note: check this: 1. Delete few and rows from table, 2. Delete duplicate rows from table, 3. Delete view and joins. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL Join 
+Inner Join 
+The simplest join is called as inner join or simply join. For retrieving the column from multiple tables, we require join. Also, for joining two tables we need a common filed among them. Check the example for better understanding. Syntax: “Select table1.co1, table2.col2 from table1 alias1 = table2 alias2 where table1.samecolumn = table2.samecolumn”. Inner join represent the commons rows of the selected column from both the tables. 
+Note:
+1.	Whenever select * is given in select query then the column from both the tables will print over which join is made. 
+2.	For inner join, when you check which all rows will be retrieved then first check the common rows. Then, the common rows might be repeating n number of time then those repeated rows will also come. 
+
+Outer Join
+Outer Join is of three types which are shown below. 
+ 
+Left Outer Join
+This is also called as Left join. In this join, the query returns all the rows of the selected column of the left table and common rows of the right table (Which means, left have value as 2 once and the column of right table has 2 three times. Then, overall it will be printed three times). The table comes first while writing the join is the left table while the other table in right table. Syntax: “Select table1.col1, table2.col from Table 1 left join table 2 ON Join condition”. Join makes difference on the number of rows while the column printed will only be the selected columns. 
+Note: For inner join, when you check which all rows will be retrieved then first check the common rows. Then, the common rows might be repeating n number of time then those repeated rows will also come. 
+
+Right Outer Join
+This is also called as right join. In this join, the query returns all the rows of the selected column of right table and matched rows of the left table. Syntax: “Select table1.column1, table2.column2 from table1 right join table2 ON Join Condition”.
+
+Full Outer Join
+This join is combination of left outer and right outer join. It retrieves all the data from both the table it puts null on the places where match is not found (in simplest words, just place one table over the other table as it is, do not look for matches or unmatched). Syntax: “Select table1.col1, table.col2 From Table1 outer Join table2 ON table1.commoncol=table2.commoncol;”. Check example for better understanding. 
+
+SQL Cross Join 
+SQL cross join joins each row of first table with each row of the other table just like a Cartesian product. This is also called as Cartesian Join. Syntax: Select * from table1 cross join table2. Check example for better understanding. 
+
+SQL Self Join
+SQL self join means to join a table to itself. You can use self join when a table references its own data. Like in a tble where name, emp id and boss emp id is given and we want to show name of employee with boss then we can use self join. Syntax: “SELECT Name.employee, Manager.employee From employee e1 INNER JOIN employee e2 ON e1.commoncolumn = e2.commoncolumn” OR “Select Employee.name, Employee.name From Employee e1, Employee e2 where e1.commonfield=e2.commonfield”. We give different alias to the same table here.
+Note: The self join are also of inner, outer and cross types. We can imagine self join which is of all these types as joining table in different ways having both the table as same.  
+
+Note: Also check the equi join, natural join and theta join. 
+
+
+SQL KEYs
+SQL Primary key 
+Primary key is used to provide entity integrity which in other words means the column/field that has the capability to identify each row of the table uniquely. While creating a table we must define a primary key constraint. So, when we declare a column as primary key then database engine automatically create that column unique. Primary key always have unique data and cannot have null values. A table can have only one primary key. Primary key cannot exceed the length of 900 bytes.  
+Syntax for creating the primary key: “create table TableName (col1 def1 PRIMARY KEY, col2 def2,…….coln, defn)”. Syntax when multiple columns together forms: “create tableName (col1 def1, col2 def2,…..colndefn  Constraints constraintName Primary key (cola, colb0))”. Now, when you already created a table and then have to declare a primary key. Then, the syntax is: “Alter table tableName add primary key (colName)”. When multiple column together form primary key then the syntax is: “alter table tableName Add constraint constraintName add primary key (colA, ColB)”. 
+Note: Constraint name could be anything and it is given in the case when multiple columns yogether forms primary key. 
+Note:
+1.	One of the disadvantages of primary key can be the index that is created in it. That makes the modification of the table a bit slower. Check other disadvantage #RoundTwo.
+
+ 
+
+SQL foreign key
+Foreign key used to provide the referential integrity which in other words the property of join/connect one table to another. The column of the table1 has the same values as the table2 column, then these column will be the foreign keys. The foreign key columns may have different name but shows same property. Now, how to declare the foreign key? The syntax is: “create table tableName (col1 def, col2 def2….colndefn, Primary key col1, col2 foreign key references table2 (colB))”. Syntax in case when foreign key is declared after the table: “alter table tableName Add foreign key(ColA) references table2(ColB)”. If you want to drop a foreigen key then just replace add keyword with drop. Unlike primary key, foreign key can have null value, can have duplicate values, can be more than one in a table and it do not add the clustered index automatically. We have to create index manually for foreign key.  
+
+Composite Key
+It will be answered in the article at the end. 
+
+Unique Key
+These keys is a column or a set of columns of a table that uniquely identify the table. It is similar to primary key but have many differences. Though it also does not contain duplicate values but it can contain one null value. A unique key constraint is automatically within the primary because if ensures the unique values of the column. Also, we can have multiple unique keys while just one primary key per table. Syntax for creating the primary key: “create table tableName (col1 def1 UNIQUE, col2 def2,……colndefn)” where unique keyword declare with a column makes it unique. In case of multiple column: “create table tableName (col1 def1, col1 def2,……colndefn constraint constraintName UNIQUE (cola, colB) )”.  We can also declare a column unique after declaring a table. 
+
+
+Alternate Key 
+It will be answered in the article at the end. 
+
+Some Concepts related to Key (Extra)
+
+Need of Key – Basically with the concept of key, the databases gets the relational property. To add more, to indivially identify wach row in a table we require a key (a column or a set of columns) which have unique value for each row of a table. So, now we understand the requirement of having a key. 
+
+We will also answer the requirement of having multiple key in spite of the facts that this provision was not made originally. But when spl invented, we could have had only one key. Later, that seemed as meaningless restriction so it got changed. So, what made to have multiple key, afterall one is sufficient of uniquely identify each row of a table? I can answer it to some extent. Well, in sql we have some integrity to maintain. For example, primary keys are used for maintaining the entity integrity and foreign key for referential entity.  
+
+Origin of primary key: actually when it was allowed to have multiple keys for a table then was which primary key to be used for reference if any key was not specified for this task? So, we got the concept of primary key or may be called as default key. 
+
+Now, why cannot a primary key have null value? This is for a simple reason that the purpose of having primary will not be solved if it has any null value. Primary key is used to identify each row of a table with a unique value and it does not have any value then it cannot identify that particular row. So, the purpose of having key is not answered. 
+
+Cases for NULL:
+1.	If a column is declared NULL: weel, columns are by default null. So, no need to define them null. But even if you do then it means they can contain null value. 
+2.	If a method is declared NOT NULL: then it will not contain any null value. 
+3.	If we do not metion a column as NULL or NOT NULL – they column are null, as they are by default. 
+
+Insight on all the keys!
+Suppose we have a table bookDetails(BID, BNAME, BAUTHOR)
+Now, BID will have unique entry, Bname can be same with rare possibility, bauthor can be same with high possibilities. A candidate key is one which is able to define each record of a database table uniquely. Below are the combinations of columns which are candidate key for the defined table. 
+BID
+BID + BNAME
+BID + BNAME + BAUTHOR
+BID+BAUTHOR
+BNAME + BAUTHOR
+
+Now, let’s define all the keys with the example above.  
+1.	Super key – Super key is the super set of all the keys. All the combinations above are the super keys. This is because super keys are those which only looks at the condition that a column or a set of column can identify each column uniquely or in other words can provide entity integrity. So, all the above combination can. 
+2.	Candidate key – 1nd and 5th are the candidate key. Candidate keys are those keys which are provide the entity integrity but without redundant columns. Here, redundant column means to those columns which if removed does not affect the purpose. For example, BID + BNAME can provide entity integrity but if BNAME is removed then BID can alone provide it. So, BNAME is a redundant column in this particular case. Please mind, specifically in this case. 
+3.	Primary key – that candidate key which is chosen for serving the purpose of entity integrity is called as primary key. 
+4.	Alternate key – candidate key other than the primary key is called as alternate key.
+5.	Composite key – any key using multiple column for defining entity integrity is a composite key. Even unique and foreign key with multiple columns are composite key. 
+6.	Unique key – a key that has unique values and can have one null value is called as unique key. Unlike primary key, a table can have multiple unique key. Though, I do know what purpose it is solving?
+7.	Foreign key – this key is used to relate one table to other. It solves the referential integrity in sql. Let’s suppose we have another table BookSale which also have BID column. Then, to connect the BookSale table to BookDetail table we require a common column (a column that has same values). So, that column is the foreign key for the joined table. I intentionally used the join keyword here to indicate that join can happen only by foreign keys. 
+
+
+_________________________END OF THE JAVATPOINT TUTORIAL TOPICS________________________
+_____________________________________________________________________________________
+
+
+
+
+
+
+___________________________TOPICS LEFT AFTER JAVATPOINT TUTORIAL______________________
+_____________________________________________________________________________________
+ 
+Topics from Tutorialspoint
+
+SQL Constraints
+Sql constraints are the limitation that we impose on the data that the user can enter in column or a group of columns. These constraints or limitations helps in enforcing the data integrity. Enforcing data integrity ensures the quality of the data in the database. I can explain the meaning of quality of the data by an example. Suppose, we have a table employee id which have an employee with id 1. Now, if an entry was tried inserting employee id as 1 then the database should not except because the employee id is unique. I can do this by an entity constraint. So, this way constraints help provide important feature of the table. So, let us see how many such constraints SQL have. 
+These are some common constrainst in sql 
+1.	Not Null – this constraints is used to specify that the column cannot have null value or cannot kept blank. If we do not specify this constraints then the column in sql table can contain null values. 
+2.	UNIQUE constraints – This constraint makes a column as unique key i.e. that column cannot have the duplicate entries and can contain  only one null value.
+3.	Primary key constraints – This key makes a column as primary key and you know what it means. 
+4.	Foreign key – This makes a column as foreign key. So, this will establish some relation with other table. 
+5.	Check constraint – Described very well in coming heading.
+6.	Default key – this constraint defines a default value of a column. Like, while inserting a row if that column is not given any value then this default value will be used.
+Note: All these constraints are for used while declaring a table while I feel they can be added by alter table command.  
+
+
+1.	Entity integrity or primary key integrity – the entity integrity makes sure that each data in the table should be identified separately. For this purpose each table is assigned a primary key. We already know primary key and this key serves the purpose of entity integrity. 
+2.	Domain Integrity – domain integrity deals with validating the entries of the database. This can be done through restricting the data type of the column, the length of the column. Well, I do not know much about the function table but they also helps enforcing the domain integrity. 
+3.	Referential Integrity – This preserves the relationship between the two tables when the record is deleted or added. The two tables are connected by an appropriate relationship between a foreign key and primary key or foreign key between and unique key of different tables. See in simple words if the two tables have relationship which is based on the current scenario and if any value id deleted or added so that it hampers the current relationship then referential integrity comes in picture and it protects the insertion of any value of the related table that does not associated with the primary table, changing value in the primary table that results orphaned record in the associate table and to delete the records in the primary table if there are any matching related records.
+4.	User-defined Integrity – User allow integrity allows you to define specific business rules that do not fall into the other integrity category. All the other categories support the user defined integrities. 
+Note: The SQL constraints are of two levels which are column level and other is table level. We defined column level constraints on one column only. While when we use multiple column to define any constraints then that constraints is called as table level constraints. 
+
+Sub-queries
+Sub queries are the queries inside the query or can be understood as nested query. These are usually used in the where clause of the statement. It is an alternate way of getting data from multiple tables. It can be used with select, insert, update and delete. There are a few rules it follows which are shown below. 
+1.	Sub queries must be enclosed within the parentheses. 
+2.	A sub query can only return one column, unless the main query does not involves multiple columns to be compared with. 
+3.	Order By cannot be used within the sub query but main query can use. Group by can be used for the same purpose in sub query.
+4.	Sub query that returns multiple rows in one or more columns can only be used with the multi value operators like IN.
+5.	The select list cannot include any reference to value that evaluates to a BLOB, ARRAY, CLOB OR NCLOB. 
+6.	A query cannot be immediately enclosed in a set function.
+7.	A between operator cannot be used with the sub query. However, it can be used within the sub query.
+Now, let’s see the syntax and the logics with which the sub query is used. 
+1.	With select statement – “Select columnA from table where columnN = (select columnN from tableName where condition)”. Here, the columnA is selected and printed only in those columns where the column value is the return value of the sub query. Check example for better understanding. Now only with the where clause, but sub query can also be used in other way. check this: “Select colAT1, (a sub query returning some value of colAt2 i.e. from some other table), colBT1 from tableName from table1 where condition”. So, in this query, we have used sub query to get the column from other table to use in select. 
+2.	With insert statement – “insert into tableName select * from tablename2 where columnN in (sub query)”. In the example, sub query completes the where condition. Also, I feel that this is very basic level. 
+3.	With Update statement – in update statement also it is used as the way it is used in the above two cases i.e. to complete the where condition. 
+4.	With delete statement – again the same way to use it. 
+
+Correlated and Uncorrelated sub-queries
+Firstly, we will take an example of correlated query and then, we will take example of uncorrelated query. Example of correlated query: Select p.product_name from product p where p.product_id NOT IN (Select o.product_id from order_item o where o.product_id = p.product_id). Now, try to read only sub query and understand if is any column of the outer query used? Yes, product_id of outer table product is used. So, sub query will use product_id from product table to run and cannot execute individually. Unlike correlated query, uncorrelated query do not use or become dependent on the outer query for execution and hence called as uncorrelated query. Though, it is worth noticing that the uncorrelated sub query can use any third table.
+Exists – Generally, we use IN in the where clause of the outer query which connects with the inner query. IN is used because the inner query also returns the multiple columns. However, we can use Exists in place of IN. Exists simply check if the inner query returns any row or not. If it does, then the outer query executes otherwise not.  
+Note:
+1.	What is the difference between correlated query and nested query. Correlated query is the one that depends on the outer query and it executes once per row of the outer query. On the other side, nested query runs only once for the entire query and give an intermediate result.
+2.	How a correlated subquery actually gets executed? First, a row from a outer query is process and given to correlated sub query. Then, the sub query will be executed based on the row from outer query. Similarly, for each row output of outer query, the sub query will be executed.  
+
+View
+A view is a virtual table created by simple select statement query which is given a name and stored in the database. That is why it is also called as named or stored query. This does not put load on the disk memory as the result of the view is not stored anywhere in the disk. The view is stored in the database but does not run until explicitly called. So, everytime we call a view, the updated data is taken from the actual tables. It is generally named as BaseTableName_view or v_BasetableName. A view can be made of one or multiple columns of the table or one or multiple tables. 
+Now, let’s see the syntax to create. Syntax: “create View viewName AS Select name from friends where id = 1”. Similar way, you can use the multiple columns or multiple tables. After the AS keyword, it is now on you to write a query you want to save. You can use joins, sub queries in that. Syntax to call a view is: “Select * from viewName”. We can also update and drop a view as well. Syntax: “CREATE/REPLACE VIEW ViewName AS ‘query’” and “DROP VIEW ViewName”.  
+Views with CHECK constraint – we can use the check constraint by the defining the view. For doing so, we can just add “WITH CHECK OPTION” while creating the view. This is for the same purpose as we use the check in the normal table. 
+Updating a View
+We can update a view but there are certain set of rules that should be satisfied for doing so. These rules are
+1.	The view is defined based on one and only one table. 
+2.	The view must contain the primary key of the table. 
+3.	The view should not have any field created outside the aggregate function. 
+4.	The view must not have any distinct clause in its definition.
+5.	The view must not have any group by or having clause.
+6.	The view must not have any sub query in its definition. 
+7.	A view made on the basis of other view will be updated. 
+8.	Any of the selected output field should not use constant, string or value expression. 
+Without following the above rules, a view cannot be updated. Also, data can be inserted and rows can be deleted if above rules are followed. 
+Materialized Views
+Materialized view are the one which are also logical table created through select statements but unlike normal view we have, the result of the materialized view is stored on the disk. Also, since they may be stored in the table and tables are indexed so joining of table is faster. Also, we just need to refresh the materialized view to get the updated value. Materialized views are better in performance than simple view.  
+Note: there is a lot of depth this topic holds. But just to have an idea of it I have done the basics. Check: http://www.java67.com/2012/11/what-is-difference-between-view-vs-materialized-view-database-sql.html 
+Inline View – Inline view are the select statement in the from clause of another select statement. As we already know, that a view is a virtual table that does not actually holds data. This avoids the requirement of joining multiple tables. Look at the syntax: “Select columnName from (inline view) where condition”. So, basically this reduces one step. For complete and good explanation check: http://www.1keydata.com/sql/inline-view.html.
+
+Advantazges and purpose of view
+As we already know that the views are nothing but the saved sql query (virtual table) which fetches the data from the original table whenever explicitly called. Now, what are situations where we exactly uses them.
+First, we have certain tables in our company’s database. However, we generally encounter such situation where we need to join multiple table to get the desired data. So, every time we need such data we have to write query joining those tables. Instead, we can create an sql view by joining the required tables. Then, we can use that view as one table and can perform all the task that we can perform on an actual table. So, to avoid writing complex join queries repeatedly we can create a view. 
+Second, different users use the tables in the database. We can easily find the situation where we need to give access to certain rows or columns of any table to a particular table. So, we can create a view encompassing those rows or columns which we want to give access to a particular user. Therefore, views are used to provide row and column level security. 
+Third, we can also use views to provide access to aggregated data rather than the detailed data of a table.
+Finally, I would say that a view can be used to create virtual table from one or more tables from the tables of the database according to the requirement.    
+
+Disadvantage
+Views has also got some disadvantages as well. The speed of the views are comparatively slower than the query over which they are based. It becomes even slower when a view is created over other view. Materialized views resolves the speed issue to some extent but bring some other problems in. Also, when the base table is dropped then the view becomes irrelevant.  
+Note: check how exactly materialized views are better than normal views.
+
+Indexes
+Indexes are the pointer to the memory which helps in retrieving the data faster from the database. This happens because data can be searched directly with its index number. But they make the insert and update data a bit slower. They can be compared with the indexes of the notebook. We can put index on one column or multiple columns. Syntax: CREATE INDEX IndexName ON TableName (ColumnName ASC/DESC). For dropping the index, the syntax is “DROP INDEX TableName IndexName”. 
+Also, there are some advices on the use of the indexes which are
+1.	Put index on those columns which are more frequently used with the WHERE clause. 
+2.	Avoid indexing those columns which are frequently updated and data is inserted to them.
+3.	If one column is should be used then single column indexing to be done. We should do indexing wherever very much necessary. 
+4.	Indexing should not be done on the columns which have more NULL VALUES.
+5.	Avoid indexing on the small tables and do it on bigger once. 
+
+
+Implicit Index
+These are the indexes which are automatically created by the database whenever a column is given UNIQUE or PRIMARY KEY. 
+Syntax related to the index
+1.	Creating an index – create index indexName ON tableName(col1)
+2.	Creating index for multiple columns – create index indexName ON tableName(col1, col2,…)
+3.	Create Unique index – create UNIQUE index IndexName ON table (column(s))
+4.	Drop index – drop index indexName
+Note: To study indexes in details, first check this link. http://stackoverflow.com/questions/1108/how-does-database-indexing-work
+How exactly the indexes makes search faster? When we create index then another table is created with one column as the table column value (key) which we have declared as index and other column will be the hash code (in case of hash table) or any other value corresponding to the key. Then these entries are sorted. Now, when the search query is executed then the desired data is searched in the index and through the hash code we can directly go to the data required. 
+Note: please prefer any material with example for clear understanding.
+
+Clustered and No-Clustered Index
+Clustered Index – Clustered index is responsible for the physical representation of data in a table. We can have just one clustered index per table. Also, when we give primary as one of the table then we implicitly gets one index on the same column. We can also have composite index i.e. index based on multiple columns. Now, if we have to create a clustered index then we definitely have to delete the existing index on that table. If we try to delete implicit index through drop command then we will get the error while we can do the same by object explorer and right click on the index and delete it. Now, when we have to create a clustered index then the syntax is “CREATE CLUSTERED INDEX ON TableName ColumnName ASC/DESC”. 
+
+Non clustered Index – It is like the normal index that we know which means a non clustered index will create another table with one column  as value of the indexed column of original table while other column as the coded row number. We can have multiple non clustered index in a table. 
+
+Differences between Clustered and Non Clustered index
+1.	We can only have one clustered index while multiple non clustered index in a table. 
+2.	Clustered indexes are faster than the non clustered indexes because clustered indexes are present in the original table itself while the non clustered indexes are separate table. So, when we have to look for other column in case of non clustered then there is extra lookup. 
+3.	Clustered index does not require any additional disk space while non clustered index does not require extra desk space. 
+
+Note: 
+1.	How do we check the already created index? “Execute sp_helpindex TableName” is the query for checking the indexes created on any table.   
+2.	Clustered index is analogues to telephone directory while non clustered index is analogues to a book. 
+3.	If we asked about the number of indexes, then we can tell unique (cannot contains duplicates), implicit, clustered and non-clustered. 
+4.	To use a view we write any query we want in the way we write for a table. Just replace it by table name.
+5.	Check query optimization through indexes. #RoundTwo
+6.	We can drop the views for bulk modification and then can restore then after modification. 
+
+Check constraints
+It is used to limit the value inserted in the column or multiple columns of a table. Firstly, we have to understand the way to create it. We have to simply define it while defining a table, like the way we define primary key or any other constraint. Syntax: “create table tableName (col1 def1, col2 def2…..colndefn, Check(col1>0))”. Please be careful with the syntax difference in different DBMS. We can also add a check on any column with alter keyword and syntax for it is: “Alter Table tableName add check(col1>0)”. We can also drop a constraint with drop keyword just by replacing the add keyword in the query. 
+
+SQL Alias Syntax 
+Alias is a temporary name given to a table which only valid for a particular statement and does not affect the name of the table in the database. This might be done to reduce the complexity by given short and easy name to a table. This can be especially useful in complex SQL statement. Syntax: “Select a.col1, b.col2 from table1 AS a where condition”. We can also give an alias to a column as well. Syntax: “Select col1 as a from table1 where condition”. 
+
+Like Operator
+Like operator is used to compare a value with some similar values using wildcard operators. There are two wildcard operators which are “%” and “_”. Here, % means zero, one or any number of characters and _ means one character or number. Now, on the ground, LIKE clause is used to search in a string about a small string. It can be better understood by example. For example, to search the values starting with 2 in salary column, we can use this like statement: “Select col1 from table1 where col1 LIKE ‘2%’”. This means the first number should be 2 and then any numbers can follow. “%” and “_” is called as wildcard operators. 
+Note: Apart from _ and %, we also have [charset] and [^charset]/[!charset].
+
+SQL Clone Table 
+Clone table is a concept where we gets a table which has got same data, structure, indexes, set of keys and everything left of an existing table. If we create a table from an existing table using create and select then it will only copy the data while does not copy the metadata (index, keys and other) of the table since table created by select will be temporary. So, create a clone table (both data and meta data) we have other few methods which are jotted down below. 
+1.	“Create table newTableName like oldTableName” and “Insert newTableName select * from oldTableName”.
+2.	Create table newTableName like OldtableName. (this will create a same table, I mean with same metadata but with no data copied). 
+3.	Create table newTableNameAs select * from oldTableName. (Check this please.)
+Note: Meta data contains specification of a table like details of the keys and constraints, indexes, no ;of columns, view and other stuff. 
+
+Using Sequence
+Well, every table needs a unique column to maintain the entity integrity. Sometimes, a column in a table just need a simple integer sequence like 1, 2, 3 ….. and so on. So, in these cases we can use the sequence which are actually implemented by AUTO_INCREMENT keyword. For example, if you have to generate the value of the empid through a sequence then mention the AUTO_INCREMENT while declaring the column. Also, mention the unsigned and not null for only positive value and not null value respectively. At the time of inserting the value in the table, just mention the NULL in the value parentheses of this column. This was we can have auto incremented column. Also, we can put an initial starting value of the sequence to avoid a default start from 1. Now, there might occur a situation where you need to re-sequence the column. Then, you have to drop the column and then create it again. Try implementing it for better understanding. This also covers the topic of AUTO_INCREMENT keyword. 
+
+SQL Injection
+•	What is injection? - Injection is a technique where malicious user can inject SQL commands into SQL statement via web page input. Sometime, we require user input from the web page and to run an SQL query on the basis of user input. Though, some hacker can insert some SQL command to access some crucial information. This is definitely a potential threat. To understand this more check the example. Generally, hacker gives the input containing the “=” and “or”. To understand more. Check: http://www.programmerinterview.com/index.php/database-sql/sql-injection-example/. It is definitely very good. 
+•	Preventing the SQL injection – some web developers blacklist some of the user input to prevent the injection attacks. This is called as sanitizing the user input. Though, this is not a good idea as the blacklisted words might actually be the users input like delete, drop and characters like semicolon or quotation mark. Escaping sequence is one of the important way of preventing the Injection attack. In the example, in the link above, emphasize the use of single quote and semicolon for the injection attack. Actually, escaping sequence take care of that quote and semicolon and hence not able to execute the malicious quote. Let’s understand what this escape sequence mean. It means to make special character like single quote, double quote, percentage, semicolon etc to be the part of the string. If this is done then the malicious query following the sql will not execute and injection attack can be prevented. However, a clever hacker can use “\” for running his malicious query even after the escape sequence. So, a special functions are made and used to have greatest chances of prevention from injection attack. Check for prevention from injection attack: http://www.programmerinterview.com/index.php/database-sql/sql-injection-prevention/. Prameterized queries?
+
+Data control language
+DCL is abbreviation for Data Control Language which is used to control privileges in database. The two main commands of DCL isGRANT and REVOKE. Only database owner or administrator can provide or take back the privileges.  
+•	GRANT – grant command is used to provide privileges to a developer. It can be for logging onto the database, creating tables, views, indexes, manipulation and any other kind of change in any table. Syntax for grant privilege is: “GRANT privilegeName on ObjectName to {username/ public/roleName}[with grant option]” where privilege name can be select, update, delete, all, execute, etc, objectName can be any object of the database like table, views, stored procedures. User name is the name of the user, all to all the user and roleName is a group to whom grant is provided. With grant option at the end shows the privilege to grant access to other user or not. Examples: 1. Grant create session/table to username. This means to provide grant to a particular user to create session or table. 2. Alter user username quote unlimited on system. This is to provide some space to the user on the table space. 3. Grant sysdbatp username. This means to grant all privileges to a user.  
+•	REVOKE – it is the command to take the privileges back from a user. Syntax: “REVOKE privilegeName on objectName from UserName/Public/roleName”. Example: “REVOKE create table from username”. 
+•	Privileges– Privileges are the rights provided at the database objects. It is of two types which are system privileges and object privileges. System privileges allows the user to create, alter and drop the database object while object privileges allows the execute, select, insert, update or delete data from the database object over which the privileges are given.
+•	Role - Roles are the collection of the privileges and it is used when there are too many user to give privileges to. So, we can grant or revoke the privileges to a group of user belonging to the same role. We can create a role with this syntax: “create role roleName [identify by a password];”.Lets see the process of creating a role and assigning that role to a user. Step1: create role roleName, step2: grant create table to testing and step3: grant testing to username. To revoke the privilege from a role: revoke crate table from roleName. To drop a role: Drop role roleName.   	
+
+Note: database object is the data structure used to store or reference the data. Most commonly used is table and other are indexes, stored procedure, sequence, views and many more. Once aonject is created then other objects are restricted by the RDBMS itself and whatever else (new table, indexes, views etc) are the instance of the object.  
+
+TransactionControlLanguage
+Transaction is a small unit of work done on the database either manually or automatically. TCL commands are used to control the transaction in database. These are used to manage the changes made by the DML statement. DML commands are used only with DML and cannot be used with create or drop because they are auto committed in the database. 	
+•	ACID properties of Transaction – ACID stands for Atomicity, Consistency, Isolation and Durability. Atomicity ensures that all the changes of a work unit is completed successfully otherwise the work unit is aborted and previous operation is rolled back. Consistency ensures that the database properly changes the state upon the successful committed transaction. Isolation ensure that the transaction operate individually and are transparent to each other. Durability ensures that the result or effect of the committed transaction persist even after system failure.
+•	Commands 
+1.	COMMIT – to permanentlysave the changes in the database. 
+2.	ROLLBACK – to roll back the changes (roll back to previous change made). In other word, it undo the change which is already not saved. 
+3.	SAVEPOINT – creates a point within the transactions in which to rollback. So, we can create save point after any transaction and then, we can get back to any save point by using the roll back. Syntax to create a savepoint: “savepointsavePointName”, syntax for getting back to any savepoint: “Rollback to SavePointName;”. Also, we have option to remove a save point by release Savepoint command. Syntax: “release savepointsavepointName;”.
+4.	SET TRANSACTION – Place a name on a transaction. You can make your transaction read only or write only. Also, set transaction should be at the first line of the transaction but using it is not mandatory. 
+
+Stored Procedures
+Stored procedures are the SQL query which is made to avoid repetitively writing same query again and again. The queries that are used many times are written and stored so that one can call them whenever required (think of feature like data validation which is required in almost every web application). We can also pass parameters from a stored procedure and it can act according to the situation. Now, let’s look at the syntax of creating a stored procedure: “Create Procedure ProcedureName As Select * from tableName where condition;”. This way you can create a stored procedure. Now, we will see the syntax to call it: “EXEC ProcedureName” or “procedureName”.
+
+Stored Procedure with parameter
+We can also stored procedure to have parameter so that the same query can be executed for different set of values. Syntax: CREATE PROCEDURE ProcedueName @ColeName Datatype @colName Datatype AS BEGIN SELECT * FROM EmployeeName WHERE ColName=@colName, colName=@colName END;. Here, these @colName are the declared parameters and act like a place holder in where condition. Also, the order of the parameters declared should be same as the order in the WHERE clause. If this is not taken care then we get an error.
+
+Changeand Dropping a Stored Procedure
+This we cannot do simply by changing the definition. However, we use ALTER PRCEDURE statement. Syntax: ALTER PROCEDURE ProcedureName As BEGIN query END;. Now, to drop a procdure then syntax is “DROP PROCEDURE ProcedureName”.
+
+Stored Procedure with Output Parameter
+As we know that the input parameters are the values which passed by the user. However, output parameter are the parameter that returns the value. So, in stored procedure we can give some output parameter by writing output against that parameter, else it looks same as input parameter. Now, executing a stored procedure with output parameter is also different. We need to declare a variable first that will hold the value which will be given by output parameter. Also, we need to print that decalred variable for showing its value. 
+Check the syntax. Check online videos if not found anywhere. 
+
+Note: 
+1.	How can see the definition of already created stored procedure. First, right click ti script stored procedure and other following option.
+2.	The stored procedure that we create are user defined stored procedure while SQL server has its own stored procedures which are called as system stored procedure. Using the system stored procedure we can see the definition of the user defined stored procedure. Syntax: “sp_helptext ProcedureName”. But this way is not recommended.  
+3.	We can also encrypt a stored procedure. We can use WITH ENCRIPTION clause. Syntax: CREATE PROCEDURE ProcedureName WITH ENCRIPTION AS BEGIN query END;.
+  
+Advantages of Stored Procedure
+1.	Execution plan retention and reusability – Whenever we try to execute a query then three things happens. First the syntax is checked then query gets compiled. Lastly, the execution plan is created to execute the query which is nothing but the best possible way to execute the query. Now, when we create a stored procedure and run it multiple times then the execution plan stored already and the query not just be used multiple times but gets executed very fast as the execution plan is already ready. Also, even if the parameters are changes then also the ame execution plan will be used. This is not the case in ADHOC. ADHOC query?
+2.	Reduce network Traffic – Generally, the stored procedures are created for the long and complex queries which are used again and again. When we use stored procedure then we just pass to the server as “EXEC ProcedureName parameter”. While if do not have the stored procedure then we need to pass long queries which are inside the SP to the server. Remember that the SP are present inside the SQL server. 
+3.	Code Reusability and bteer maintainability - Obviously, once it is written then it can be used multiple time and by multiple applications. 
+4.	Better Security – It is same as the view advantage as we can create SP for a specific data of any tables. 
+5.	Avoid SQL injection attacks – To prevent getting user sql injection executed we can use Stored procedures. (what is sql injection attack and how to prevent it?).
+Note: Do not get confused in the purpose to views and stored procedure. Actually, views are the virtual table over which we can perform any query just like an original table while stored procedure are just a result of a query that we use to get the certain result we want frequently.
+
+
+Advantages of using SQL triggers
+•	SQL triggers provide an alternative way to check the integrity of data.
+•	SQL triggers can catch errors in business logic in the database layer.
+•	SQL triggers provide an alternative way to run scheduled tasks. By using SQL triggers, you don’t have to wait to run the scheduled tasks because the triggers are invoked  automaticallybefore or after a change  is made to the data in the tables.
+•	SQL triggers are very useful to audit the changes of data in tables.
+Disadvantages of using SQL triggers
+•	SQL triggers only can provide an extended validation and they cannot replace all the validations. Some simple validations have to be done in the application layer. For example, you can validate user’s inputs in the client side by using JavaScript or in the server side using server-side scripting languages such as JSP, PHP, ASP.NET, Perl, etc.
+•	SQL triggers are invoked and executed invisible from the client applications, therefore, it is difficult to figure out what happen in the database layer.
+•	SQL triggers may increase the overhead of the database server.
+
+
+Triggers
+Triggers are also a kind of stored procedure but, unlike stored procedures, we do not have to call them explicitly. Triggers are called automatically when the modification event (INSERT, UPDATE or DELETE) related to table occurs or even when any DDL operation is performed. According to the Wikipedia, at schema level, we have trigger before and after create, update, drop and delete.
+
+The basic concept of trigger is to perform certain business logic (or any other less important action) after any action is performed on any specified table without calling it explicitly. The basic concept remains the same while types and syntax of triggers varies in different RDBMS systems. 
+
+In SQL server, triggers are of three types which are DML, DDL and logons trigger. DML is also two types which are AFTER (or for) trigger and INSTEAD OF trigger. AFTER trigger will get triggered once the event occurs while INSTEAD OF triggered in place of a event over which the trigger is used. Remember the example of keeping audit information of any insert event. The Syntax for trigger in MS SQL server is “CREATE TRIGGER TriggerName ON TableName For/AFTER/INSTEAD OF insert AS BEGIN TheSqlStatementsWantsToExecute END”.
+Note: Triggers are created for DML statements only. So, we cannot create trigger for truncate while we can create one for delete. 
+Control of flow SQL – this is special and I guess only in SQL server. Check this. 
+
+Default constraint 
+Default constraint are used to insert the default value in the table. The default value will be added if no other value will be added. SQL default constraint is declared while the defining the table. The syntax is: “create table tableName (col1 def1 NOT NULL, col2 def2 DEFAUlt ‘default value’)”. We can have any system value like GETDATE() as a default value. If we have not used default at the time of declaring the table then we can add it through alter statement. Syntax: alter table tableName modify colName default ‘defaultvalue’. We can later drop the default value as well. Syntax for dropping is: Alter table tablename modify colName Drop default. 
+
+
+SQL Null Functions
+SQL null functions are ISNULL(), NVL(), IFNULL(), COALESCE() functions. ISNULL() function is used to return an alternative value when the expression is NULL. ISNULL(expression, alternate value). NVL() also lets you substitute a value when null value is encountered. NVL(String, replace_with). IFNULL and COALESCE also used for same purpose. 
+Note: this topic is related to “Native null handling”. This topic is of great depth. Look at it later. 
+
+SQL Cursor #ROUNDTWO
+For row by row operation and check specifically for SQL Server.
+Also, we have implicit and explicit cursors. Implicit cursors are automatically created while explicit cursors are created by the user. Explicit cursors gives us better control. Also, we can understand it as implicit cursors are created automatically on primary key and can be advantageous when used in where clause while if other column is used in where clause then explicit cursor comes into picture.  
+
+Database Relationship
+Database Relationship is the relation between different tables in a database.
+•	One to One – This relation means when the common column of table one will have one value mapped in the other table. Better understand it with an example, A customer will have only one address in address table where two tables are joined on customer id. 
+•	One to Many/ Many to One – When a customer can have multiple orders in orders table which are joined on customer id. 
+•	Many to Many – When multiple orders will same item and one item will be in many orders. 
+•	 
+Source: http://www.tech-recipes.com/rx/56738/one-to-one-one-to-many-table-relationships-in-sql-server/
+Also: https://code.tutsplus.com/articles/sql-for-beginners-part-3-database-relationships--net-8561
+
+
+Subquery and it types
+
+Packages in SQL
+We also have the concept of Packages in SQL. Packages have two mandatory parts which are package specification and package body. Let’s have a look on each. 
+•	Packages Specification – This is much similar to the declaration of a method in java where we just define the types, constants, cursors and other things.
+•	Package Body – In package body we write the functions and methods that actually perform some tasks. Similar to the body of the method. 
+The packages have the similar advantage that it has in java like we can put together similar functions and methods together. 
+
+Pivoting and Case in SQL #RoundTwo
+Pivoting is a technique of creating some cross table kind of stuff. Check a clear example here: http://stackoverflow.com/questions/3120835/how-to-pivot-rows-into-columns-custom-pivoting
+
+Hierarchical Query #RoundTwo
+This topic deals with a data that is set in hierarchy. So, for such kind of data we can use hierarchical queries. This topic has got lot of depth.  
+
+
+Dynamic SQL #RoundTwo
+Dynamic sql enables us to build the complete sql statement at runtime. Table name might not be known at compile time but we get to know only at runtime. Calling procedure can be its example. 
+
+Explain Plan #RoundTwo
+This is one of the way for query optimization. Index is also one other way for query optimization.
+ 
+
+Profiling for query optimization #RoundTwo
+Profiling is another technique for query optimization. 
+
+
+SQL Isolation Level #RoundTwo
+This topic is about isolation between multiple sessions. We have below isolation level in SQL server. 
+•	READ COMMITED – This is the default isolation level. Now, what will happen if both the session tries to work on the same table at the same time? If both the tables are only fetching the data i.e. using select statement then both can process at the same time. However, if any one of them is doing any modification like update, insert or delete then the session that tries to modify will lock the table and will do the modification. The second session query will wait and get the updated version of the table in select query. 
+•	READ UNCOMMITED – Now, when we have read uncommitted isolation level then the second session will not wait for the first session transaction to complete and will get the uncommitted data which is also called as dirty read. 
+Note: if we want read committed isolation but want dirty read for any specific table then we can use “wait(nolock)”.
+Similarly, we have other isolation level which are REPEATED READ, SERIALIZABLE, SNAPSOT.
+
+
+ERD diagrams 
+Entity Representation Diagram shows the detailed picture of the entities and their relationship needed for a business. ERD diagram can be logical or physical. 	
+Logical ERD – This ERD diagrams only deals with the needs of the business by representing it in the form of entities and relation between them. This does not talk about how actually a database should be created. 
+Physical ERD – This ERD focuses on how actually a database should be build by satisfying the business needs in the optimized way. Primary key, foreign key and other constraints are decided during making of physical ERD diagrams.
+
+
+Data Modelling: Link/Corrollary Tables #RoundTwo
+These are mainly realted to GUID in SQL server and different things for different tables.
+
+
+Full Text Searching #RoundTwo
+This is a kind of a searching which based on a text. So, we can do a text based seach through this feature but for this we need to have index created by the administrator on the column where we need to search the table. I think the topic name is very much apt. 
+
+Error Handling #RoundTwo
+This is similar as java and other language where we write the statements which are suspect of having error enclosed inside try block. If error comes then the control goes to catch block where we have written some statements to catch the error. 
+
+
+XML with SQL #RoundTwo
+We will do it round two.
+
+•	Error found while working on oracle application express
+1.	Missing right parenthesis – this occurs generally when left parenthesis is not closed or extra information is given in the parenthesis. 
+2.	Missing keyword – trying to run a statement while leaving a required keyword.   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Missing topics
+
+Implementations
+I have created this section for the sole purpose to speak about the implementation of what we have learned in this tutorial. We must use as many practical examples as we can related to the real world.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+________________________________________
+
+To enter into application express – use the credential: “System” and “welcome”
+
+Database username – PA
+Application express username – PA
+Password – welcome
+
+
+Isc\archana
