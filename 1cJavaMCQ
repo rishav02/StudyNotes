@@ -1,0 +1,1937 @@
+Java MCQ questions
+Source 1: http://www.studytonight.com/java/tests/ (first three test completed by 18/9/16).
+We can take test through the above link. 
+Observation:
+1.	String is not a reserved or keyword in java, while volatile, null, default are.
+2.	The size of these data types in java are in the order byte (8bit or 128), short (16bit or 32768), int (32bit) and long (64 bit).
+3.	“int[] arr = new int[] {1,2,3}” is a valid array definition. 
+4.	Check if in public static void main(String [] args), args is just a name? try replace arr to args. 
+5.	Double and float differ in precision in java. Float is 32 bit precision while double is 64 bit. Similarly, decimal is 128 bit. 
+6.	It is possible to create an array of with length zero but we cannot do anything with it. 
+7.	A class cannot be static because it does not make any sense. However, an inner class can be static. 
+8.	In a method, the variable passed as the parameter will also be considered as local variable while this.variable will print instance variable. 
+9.	The access modifier of a constructor is same as the other method but it is also a kind of method. While for the default constructor, it is public. 
+10.	An interface extends another interface and cannot extends other class. 
+11.	I guess the down casting is done from parent class while from third class we can use polymorphism. 
+Exception Handling: Done. Good.
+Collections: Given the test. Good.  
+Multithreading: Given the test. Good.
+Source 2: http://www.sanfoundry.com/java-questions-answers-freshers-experienced/
+Many MCQ’s in the above link to practice. 
+7. Questions on Exception Handling ()
+Methods Taking Parameter
+6. What is the output of this program?
+1.	    class box {
+2.	        int width;
+3.	        int height;
+4.	        int length;
+5.	        int volume;
+6.	        void volume(int height, int length, int width) {
+7.	             volume = width * height * length;
+8.	        } 
+9.	    }    
+10.	    class Prameterized_method{
+11.	        public static void main(String args[]) {
+12.	            box obj = new box();
+13.	            obj.height = 1;
+14.	            obj.length = 5;
+15.	            obj.width = 5;
+16.	            obj.volume(3, 2, 1);
+17.	            System.out.println(obj.volume);        
+18.	        } 
+19.	    }
+
+7. What is the output of this program?
+1.	    class equality {
+2.	        int x;
+3.	        int y;
+4.	        boolean isequal(){
+5.	            return(x == y);  
+6.	        } 
+7.	    }    
+8.	    class Output {
+9.	        public static void main(String args[]) {
+10.	            equality obj = new equality();
+11.	            obj.x = 5;
+12.	            obj.y = 5;
+13.	            System.out.println(obj.isequal);
+14.	        } 
+15.	    }
+
+9. What is the output of this program?
+1.	    class Output {
+2.	        static void main(String args[]) 
+3.	        {    
+4.	             int x , y = 1;
+5.	             x = 10;
+6.	             if(x != 10 && x / 0 == 0)
+7.	                 System.out.println(y);
+8.	             else
+9.	                 System.out.println(++y);
+10.	        } 
+11.	    }
+
+
+Exception type
+6. What is the output of this program?
+1.	    class exception_handling {
+2.	        public static void main(String args[]) {
+3.	            try {
+4.	                System.out.print("Hello" + " " + 1 / 0);
+5.	            }
+6.	            finally {
+7.	        	System.out.print("World");        	
+8.	            }
+9.	        }
+10.	    }
+a) Hello
+b) World
+c) Compilation Error
+d) First Exception then World
+
+7. What is the output of this program?
+1.	    class exception_handling {
+2.	        public static void main(String args[]) {
+3.	            try {
+4.	                int a, b;
+5.	                b = 0;
+6.	                a = 5 / b;
+7.	                System.out.print("A");
+8.	            }
+9.	            catch(ArithmeticException e) {
+10.	        	System.out.print("B");        	
+11.	            }
+12.	        }
+13.	    }
+a) A
+b) B
+c) Compilation Error
+d) Runtime Error
+
+8. What is the output of this program?
+1.	    class exception_handling {
+2.	        public static void main(String args[]) {
+3.	            try {
+4.	                int a[] = {1, 2,3 , 4, 5};
+5.	                for (int i = 0; i < 7; ++i) 
+6.	                    System.out.print(a[i]);
+7.	            }
+8.	            catch(ArrayIndexOutOfBoundsException e) {
+9.	        	System.out.print("0");        	
+10.	            }
+11.	        }
+12.	    }
+a) 12345
+b) 123450
+c) 1234500
+d) Compilation Erro
+
+9. What is the output of this program?
+1.	    class exception_handling {
+2.	        public static void main(String args[]) {
+3.	            try {
+4.	                int i, sum;
+5.	                sum = 10;
+6.	                for (i = -1; i < 3 ;++i)
+7.	                    sum = (sum / i);
+8.	            }
+9.	            catch(ArithmeticException e) {
+10.	        	System.out.print("0");        	
+11.	            } 
+12.	            System.out.print(sum);
+13.	        }
+14.	    }
+a) 0
+b) 05
+c) Compilation Error
+d) Runtime Error
+View Answer
+Answer: c
+Explanation: Since sum is declared inside try block and we are trying to access it outside the try block it results in error.
+
+10. What is the output of this program?
+1.	    class exception_handling {
+2.	        public static void main(String args[]) {
+3.	            try {
+4.	                int a[] = {1, 2,3 , 4, 5};
+5.	                for (int i = 0; i < 5; ++i) 
+6.	                    System.out.print(a[i]);
+7.	                int x = 1/0;
+8.	            }
+9.	            catch(ArrayIndexOutOfBoundsException e) {
+10.	        	System.out.print("A");        	
+11.	            }
+12.	            catch(ArithmeticException e) {     	
+13.	                System.out.print("B");
+14.	            }
+15.	        }
+16.	    }
+a) 12345
+b) 12345A
+c) 12345B
+d) Comiplation Error
+View Answer
+Answer: c
+Explanation: There can be more than one catch for a single try block. Here Arithmetic exception(/ by 0) occurs instead of Array index out of bound exception, so 2nd catch block is executed.
+
+Basics of Exception handling
+8. What is the output of this program?
+1.	    class exception_handling {
+2.	        public static void main(String args[]) {
+3.	            try {
+4.	                int a, b;
+5.	                b = 0;
+6.	                a = 5 / b;
+7.	                System.out.print("A");
+8.	            }
+9.	            catch(ArithmeticException e) {
+10.	        	System.out.print("B");        	
+11.	            }
+12.	            finally {
+13.	    	        System.out.print("C");
+14.	            }
+15.	        }
+16.	    }
+a) A
+b) B
+c) AC
+d) BC
+
+tjhrow throws nested try
+7. What is the output of this program?
+1.	    class exception_handling {
+2.	        public static void main(String args[]) {
+3.	            try {
+4.	                throw new NullPointerException ("Hello");
+5.	                System.out.print("A");
+6.	            }
+7.	            catch(ArithmeticException e) {
+8.	                System.out.print("B");        	
+9.	            }
+10.	        }
+11.	    }
+a) A
+b) B
+c) Hello
+d) Runtime Error
+
+9. What is the output of this program?
+1.	    class exception_handling {
+2.	        public static void main(String args[]) {
+3.	            try {
+4.	                int a = args.length;
+5.	                int b = 10 / a;
+6.	                System.out.print(a);
+7.	                try {
+8.	                    if (a == 1)
+9.	                        a = a / a - a;
+10.	                    if (a == 2) {
+11.	                        int c = {1};
+12.	                        c[8] = 9;
+13.	                    }
+14.	                }
+15.	                catch (ArrayIndexOutOfBoundException e) {
+16.	                    System.out.println("TypeA");
+17.	                }
+18.	                catch (ArithmeticException e) {
+19.	                    System.out.println("TypeB");
+20.	                }
+21.	            }
+22.	        }
+23.	    }
+a) TypeA
+b) TypeB
+c) 0TypeA
+d) 0TypeB
+Note : Execution commandline : $ java exception_handling one
+View Answer
+Answer: c
+Explanation: Execution command line is “$ java exception_handling one” hence there is only single string that is in args array, making its length 1, hence “a = a/ a – a” in second try block is executing which throws arithmeticexception which is caught by catch of firts try block as the nested try block does not have a catch block which can detect ArithmeticException. Hence 0TypeA is printed
+Output:
+$ javac exception_handling.java
+$ java exception_handling
+0TypeA
+
+
+10. What is the output of this program?
+1.	    class exception_handling {
+2.	        public static void main(String args[]) {
+3.	            try {
+4.	                int a = args.length;
+5.	                int b = 10 / a;
+6.	                System.out.print(a);
+7.	                try {
+8.	                    if (a == 1)
+9.	                        a = a / a - a;
+10.	                    if (a == 2) {
+11.	                        int c = {1};
+12.	                        c[8] = 9;
+13.	                    }
+14.	                }
+15.	                catch (ArrayIndexOutOfBoundException e) {
+16.	                    System.out.println("TypeA");
+17.	                }
+18.	                catch (ArithmeticException e) {
+19.	                    System.out.println("TypeB");
+20.	                }
+21.	            }
+22.	        }
+23.	    }
+a) TypeA
+b) TypeB
+c) 0TypeA
+d) 0TypeB
+Note: Execution command line: $ java exception_handling one two
+View Answer
+Answer: c
+Explanation: Execution command line is “$ java exception_ handling one two” hence there are tro input making args.length = 2, hence “c[8] = 9” in second try block is executing which throws ArrayIndexOutOfBoundException which is caught by catch of nested try block. Hence 0TypeB is printed
+Output:
+$ javac exception_handling.java
+$ java exception_handling
+0TypeB
+
+Answers:
+6. 6
+7. True
+9. d 
+6. Exception then world
+7. b
+8. b
+9. compilation error
+10. c
+8. d 
+7. c
+9. c
+10. c
+Collections: (First do all collections related programs)
+Observation: 1. Collection framework are present in java.util package.
+MultiThreading: http://www.sanfoundry.com/java-questions-answers-freshers-experienced/
+5. What will happen if two thread of same priority are called to be processed simultaneously?
+a) Any one will be executed first lexographically
+b) Both of them will be executed simultaneously
+c) None of them will be executed
+d) It is dependent on the operating system.
+View Answer
+Answer: d
+Explanation: In cases where two or more thread with same priority are competing for CPU cycles, different operating system handle this situation differently. Some execute them in time sliced manner some depending on the thread they call.
+
+7. What is the output of this program?
+1.	    class multithreaded_programing {
+2.	        public static void main(String args[]) {
+3.	            Thread t = Thread.currentThread();
+4.	            System.out.println(t);        
+5.	        }
+6.	    }
+a) Thread[5,main] b) Thread[main,5] c) Thread[main,0] d) Thread[main,5,main] View Answer
+Answer: d
+Explanation: None.
+Output:
+$ javac multithreaded_programing.java
+$ java multithreaded_programing
+Thread[main,5,main]
+
+ThreadClass: http://www.sanfoundry.com/java-mcqs-thread-class/
+All are good. 
+Implementing Runnable interface for threads: http://www.sanfoundry.com/java-mcqs-implementing-runnable-interface/
+
+5. Which of these statement is incorrect?
+a) A thread can be formed by implementing Runnable interface only.
+b) A thread can be formed by a class that extends Thread class.
+c) start() method is used to begin execution of the thread.
+d) run() method is used to begin execution of a thread before start() method in special cases.
+View Answer
+Answer: d
+Explanation: run() method is used to define the code that constitutes the new thread, it contains the code to be executed. start() method is used to begin execution of the thread that is execution of run(). run() itself is never used for starting execution of the thread.
+
+6. What is the output of this program?
+1.	    class newthread implements Runnable {
+2.		Thread t;
+3.		newthread() {
+4.		    t = new Thread(this,"My Thread");
+5.		    t.start();
+6.		}
+7.		public void run() {
+8.		    System.out.println(t.getName());
+9.		}
+10.	    }
+11.	    class multithreaded_programing {
+12.	        public static void main(String args[]) {
+13.	            new newthread();        
+14.	        }
+15.	    }
+a) My Thread
+b) Thread[My Thread,5,main] c) Compilation Error
+d) Runtime Error
+8. What is the output of this program?
+1.	    class newthread implements Runnable {
+2.		Thread t;
+3.		newthread() {
+4.		    t = new Thread(this,"My Thread");
+5.		    t.start();
+6.		}
+7.	    }
+8.	    class multithreaded_programing {
+9.	        public static void main(String args[]) {
+10.	            new newthread();        
+11.	        }
+12.	    }
+a) My Thread
+b) Thread[My Thread,5,main] c) Compilation Error
+d) Runtime Error
+9. What is the output of this program?
+1.	    class newthread implements Runnable {
+2.		Thread t;
+3.		newthread() {
+4.		    t = new Thread(this,"New Thread");
+5.		    t.start();
+6.		}
+7.		public void run() {
+8.		    t.setPriority(Thread.MAX_PRIORITY);	
+9.	            System.out.println(t);
+10.		}
+11.	    }
+12.	    class multithreaded_programing {
+13.	        public static void main(String args[]) {
+14.	            new newthread();        
+15.	        }
+16.	    
+a)	Thread[New Thread,0,main] b) Thread[New Thread,1,main] c) Thread[New Thread,5,main] d) Thread[New Thread,10,main]
+10. What is the output of this program?
+1.	    class newthread implements Runnable {
+2.		Thread t;
+3.		newthread() {
+4.		    t1 = new Thread(this,"Thread_1");
+5.		    t2 = new Thread(this,"Thread_2");
+6.		    t1.start();
+7.		    t2.start();
+8.		}
+9.		public void run() {
+10.		    t2.setPriority(Thread.MAX_PRIORITY);	
+11.		    System.out.print(t1.equals(t2));
+12.	        }    
+13.	    }
+14.	    class multithreaded_programing {
+15.	        public static void main(String args[]) {
+16.	            new newthread();        
+17.	        }
+18.	    }
+a) true
+b) false
+c) truetrue
+d) falsefalse
+
+Answers: 6,a; 8,c; 9,d; 10,d
+Creating Thread: http://www.sanfoundry.com/java-mcqs-creating-threads/
+2. Which of these method is used to avoid polling in Java?
+a) wait()
+b) notify()
+c) notifyAll()
+d) All of the mentioned
+View Answer
+Answer: d
+Explanation: Polling is a usually implemented by looping in CPU is wastes CPU’s time, one thread being executed depends on other thread output and the other thread depends on the response on the data given to the first thread. In such situation CPU’s time is wasted, in Java this is avoided by using methods wait(), notify() and notifyAll().
+
+3. Which of these method is used to tell the calling thread to give up monitor and go to sleep until some other thread enters the same monitor?
+a) wait()
+b) notify()
+c) notifyAll()
+d) sleep()
+View Answer
+Answer: a
+Explanation: wait() method is used to tell the calling thread to give up monitor and go to sleep until some other thread enters the same monitor. This helps in avoiding polling and minimizes CPU’s idle time.
+ 
+7. What is the output of this program?
+1.	    class newthread extends Thread {
+2.		Thread t;
+3.		String name;
+4.		newthread(String threadname) {
+5.		    name = threadname;
+6.		    t = new Thread(this,name);
+7.		    t.start();
+8.		}
+9.		public void run() {
+10.	        }
+11.	 
+12.	    }
+13.	    class multithreaded_programing {
+14.	        public static void main(String args[]) {
+15.		    newthread obj1 = 	 new newthread("one");
+16.		    newthread obj2 =	 new newthread("two");
+17.	            try {
+18.	                obj1.t.wait();	
+19.	                System.out.print(obj1.t.isAlive());
+20.	            }
+21.	            catch(Exception e) {
+22.		    System.out.print("Main thread interrupted");
+23.	            }
+24.	        }
+25.	    }
+a) true
+b) false
+c) Main thread interrupted
+d) None of the mentioned
+View Answer
+Answer: c
+Explanation: obj1.t.wait() causes main thread to go out of processing in sleep state hence causes exception and “Main thread interrupted” is printed.
+
+8. What is the output of this program?
+1.	    class newthread extends Thread {
+2.		Thread t;
+3.		String name;
+4.		newthread(String threadname) {
+5.		    name = threadname;
+6.		    t = new Thread(this,name);
+7.		    t.start();
+8.		}
+9.		public void run() {
+10.	        }
+11.	 
+12.	    }
+13.	    class multithreaded_programing {
+14.	        public static void main(String args[]) {
+15.		    newthread obj1 = 	 new newthread("one");
+16.		    newthread obj2 =	 new newthread("two");
+17.	            try {
+18.	                Thread.sleep(1000);	
+19.	                System.out.print(obj1.t.isAlive());
+20.	            }
+21.	            catch(InterruptedException e) {
+22.		    System.out.print("Main thread interrupted");
+23.	            }
+24.	        }
+25.	    }
+a) true
+b) false
+c) Main thread interrupted
+d) None of the mentioned
+View Answer
+Answer: b
+Explanation: Thread.sleep(1000) has caused all the threads to be suspended for some time, hence onj1.t.isAlive() returns false.
+Output:
+$ javac multithreaded_programing.java
+$ java multithreaded_programing
+false
+9. 
+9. What is the output of this program?
+1.	    class newthread extends Thread {
+2.		Thread t;
+3.		String name;
+4.		newthread(String threadname) {
+5.		    name = threadname;
+6.		    t = new Thread(this,name);
+7.		    t.start();
+8.		}
+9.		public void run() {
+10.	        }
+11.	 
+12.	    }
+13.	    class multithreaded_programing {
+14.	        public static void main(String args[]) {
+15.		    newthread obj1 = 	 new newthread("one");
+16.		    newthread obj2 =	 new newthread("two");
+17.	            try {
+18.	                 System.out.print(obj1.t.equals(obj2.t));
+19.	            }
+20.	            catch(Exception e) {
+21.		    System.out.print("Main thread interrupted");
+22.	            }
+23.	        }
+24.	    }
+a) true
+b) false
+c) Main thread interrupted
+d) None of the mentioned
+View Answer
+Answer: b
+
+Finally and build in Exception: http://www.sanfoundry.com/java-mcqs-finally-built-in-exceptions/
+
+7. What is the output of this program?
+1.	    class exception_handling {
+2.	        public static void main(String args[]) {
+3.	            try {
+4.	                throw new NullPointerException ("Hello");
+5.	                System.out.print("A");
+6.	            }
+7.	            catch(ArithmeticException e) {
+8.	        	System.out.print("B");        	
+9.	            }
+10.	        }
+11.	    }
+a) A
+b) B
+c) Compilation Error
+d) Runtime Error
+View Answer
+Answer: d
+Explanation: try block is throwing NullPointerException but the catch block is used to counter Arithmetic Exception. Hence NullPointerException occurs since no catch is there which can handle it, runtime error occurs.
+Out
+
+8. What is the output of this program?
+1.	    class exception_handling {
+2.	            static void throwexception() throws ArithmeticException {        
+3.	                System.out.print("0");
+4.	                throw new ArithmeticException ("Exception");
+5.	            }
+6.	            public static void main(String args[]) {
+7.	            try {
+8.	                throwexception();
+9.	            }
+10.	            catch (ArithmeticException e) {
+11.	                    System.out.println("A");
+12.	            }
+13.	        }
+14.	    }
+a) A
+b) 0
+c) 0A
+d) Exception
+View Answer
+Answer: c
+
+isAlive(), Join() & Thread Synchronization: http://www.sanfoundry.com/java-mcqs-isalive-join-thread-synchronization/
+1. Which of these method can be used to make the main thread to be executed last among all the threads?
+a) stop()
+b) sleep()
+c) join()
+d) call()
+View Answer
+Answer: b
+Explanation: By calling sleep() within main(), with long enough delay to ensure that all child threads terminate prior to the main thread.
+
+7. What is the output of this program?
+1.	    class newthread extends Thread {
+2.		newthread() {
+3.		    super("My Thread");
+4.		    start();
+5.		}
+6.		public void run() {
+7.		    System.out.println(this);
+8.		}
+9.	    }
+10.	    class multithreaded_programing {
+11.	        public static void main(String args[]) {
+12.	            new newthread();        
+13.	        }
+14.	    }
+a) My Thread
+b) Thread[My Thread,5,main] c) Compilation Error
+d) Runtime Error
+View Answer
+Answer: b
+Explanation: Although we have not created any object of thread class still we can make a thread pointing to main method, we can refer it by using this.
+Output:
+$ javac multithreaded_programing.java
+$ java multithreaded_programing
+Thread[My Thread,5,main]
+
+8. What is the output of this program?
+1.	    class newthread extends Thread {
+2.		Thread t;
+3.		newthread() {
+4.		    t = new Thread(this,"My Thread");
+5.		    t.start();
+6.		}
+7.		public void run() {
+8.	            try {
+9.	                t.join()   
+10.		        System.out.println(t.getName());
+11.	            }
+12.	            catch(Exception e) {
+13.	            System.out.print("Exception");
+14.	            }
+15.		}
+16.	    }
+17.	    class multithreaded_programing {
+18.	        public static void main(String args[]) {
+19.	            new newthread();        
+20.	        }
+21.	    }
+a) My Thread
+b) Thread[My Thread,5,main] c) Exception
+d) Runtime Error
+View Answer
+Answer: d
+Explanation: join() method of Thread class waits for thread being called to finish or terminate, but here we have no condition which can terminate the thread, hence code ‘t.join()’ leads to runtime error and nothing will be printed on the screen.
+Output:
+$ javac multithreaded_programing.java
+$ java multithreaded_programing
+
+Networking Basics: http://www.sanfoundry.com/java-mcqs-networking-basics/
+All Good. 
+Source 3: http://www.indiabix.com/java-programming/questions-and-answers/
+Many MCQ’s to practice in the above link. 
+Exception Handling
+
+1. 	What will be the output of the program?
+public class Foo 
+{  
+    public static void main(String[] args) 
+    {
+        try 
+        { 
+            return; 
+        } 
+        finally 
+        {
+            System.out.println( "Finally" ); 
+        } 
+    } 
+}
+	A.
+Finally
+B.
+Compilation fails.
+C.
+The code runs with no output.
+D.
+An exception is thrown at runtime.
+	
+
+2. 
+What will be the output of the program?
+try 
+{ 
+    int x = 0; 
+    int y = 5 / x; 
+} 
+catch (Exception e) 
+{
+    System.out.println("Exception"); 
+} 
+catch (ArithmeticException ae) 
+{
+    System.out.println(" Arithmetic Exception"); 
+} 
+System.out.println("finished");
+A.
+finished
+B.
+Exception
+C.
+Compilation fails.
+D.
+Arithmetic Exception
+3. 
+What will be the output of the program?
+public class X 
+{  
+    public static void main(String [] args) 
+    {
+        try 
+        {
+            badMethod();  
+            System.out.print("A"); 
+        }  
+        catch (Exception ex) 
+        {
+            System.out.print("B");  
+        } 
+        finally 
+        {
+            System.out.print("C"); 
+        } 
+        System.out.print("D"); 
+    }  
+    public static void badMethod() 
+    {
+        throw new Error(); /* Line 22 */
+    } 
+}
+A.
+ABCD
+B.
+Compilation fails.
+C.
+C is printed before exiting with an error message.
+D.
+BC is printed before exiting with an error message.
+4. 	What will be the output of the program?
+public class X 
+{  
+    public static void main(String [] args) 
+    {
+        try 
+        {
+            badMethod();  
+            System.out.print("A");  
+        } 
+        catch (RuntimeException ex) /* Line 10 */
+        { 
+            System.out.print("B"); 
+        } 
+        catch (Exception ex1) 
+        { 
+            System.out.print("C"); 
+        } 
+        finally 
+        {
+            System.out.print("D"); 
+        } 
+        System.out.print("E"); 
+    } 
+    public static void badMethod() 
+    { 
+        throw new RuntimeException(); 
+    } 
+}
+	A.
+BD
+B.
+BCD
+C.
+BDE
+D.
+BCDE
+
+5. 
+What will be the output of the program?
+public class RTExcept 
+{
+    public static void throwit () 
+    {
+        System.out.print("throwit ");
+        throw new RuntimeException();
+    }
+    public static void main(String [] args) 
+    {
+        try 
+        {
+            System.out.print("hello ");
+            throwit();
+        }
+        catch (Exception re ) 
+        {
+            System.out.print("caught ");
+        }
+        finally 
+        {
+            System.out.print("finally ");
+        }
+        System.out.println("after ");
+    }
+}
+A.
+hello throwit caught
+B.
+Compilation fails
+C.
+hello throwit RuntimeException caught after
+D.
+hello throwit caught finally after
+6. 
+What will be the output of the program?
+public class Test 
+{  
+    public static void aMethod() throws Exception 
+    {
+        try /* Line 5 */
+        {
+            throw new Exception(); /* Line 7 */
+        } 
+        finally /* Line 9 */
+        {
+            System.out.print("finally "); /* Line 11 */
+        } 
+    } 
+    public static void main(String args[]) 
+    {
+        try 
+        {
+            aMethod();  
+        } 
+        catch (Exception e) /* Line 20 */
+        {
+            System.out.print("exception "); 
+        } 
+        System.out.print("finished"); /* Line 24 */
+    } 
+}
+A.
+Finally
+B.
+exception finished
+C.
+finally exception finished
+D.
+Compilation fails
+8. 
+What will be the output of the program?
+public class X 
+{  
+    public static void main(String [] args) 
+    {
+        try 
+        {
+            badMethod(); /* Line 7 */
+            System.out.print("A"); 
+        } 
+        catch (Exception ex) /* Line 10 */
+        {
+            System.out.print("B"); /* Line 12 */
+        } 
+        finally /* Line 14 */
+        {
+            System.out.print("C"); /* Line 16 */
+        }  
+        System.out.print("D"); /* Line 18 */
+    } 
+    public static void badMethod() 
+    {
+        throw new RuntimeException(); 
+    } 
+}
+A.
+AB
+B.
+BC
+C.
+ABC
+D.
+BCD
+10. 	What will be the output of the program?
+class Exc0 extends Exception { } 
+class Exc1 extends Exc0 { } /* Line 2 */
+public class Test 
+{  
+    public static void main(String args[]) 
+    { 
+        try 
+        {  
+            throw new Exc1(); /* Line 9 */
+        } 
+        catch (Exc0 e0) /* Line 11 */
+        {
+            System.out.println("Ex0 caught"); 
+        } 
+        catch (Exception e) 
+        {
+            System.out.println("exception caught");  
+        } 
+    } 
+}
+	A.
+Ex0 caught
+B.
+exception caught
+C.
+Compilation fails because of an error at line 2.
+D.
+Compilation fails because of an error at line 9.
+
+
+
+
+Answers:
+1.	A
+2.	C
+3.	C Explanation: Error is thrown but not recognised line(22) because the only catch attempts to catch an Exception and Exception is not a superclass of Error. Therefore only the code in the finally statement can be run before exiting with a runtime error (Exception in thread "main" java.lang.Error)
+4.	C
+5.	D
+6.	C
+7.	(eight ka answer) D
+8.	(tenth ka answer) A
+
+Threads: http://www.indiabix.com/java-programming/threads/
+General Questions:
+5. 	Which cannot directly cause a thread to stop executing?
+	A.
+Calling the SetPriority() method on a Thread object.
+B.
+Calling the wait() method on an object.
+C.
+Calling notify() method on an object.
+D.
+Calling read() method on an InputStream object.
+Answer: Option C
+Explanation:
+Option C is correct. notify() - wakes up a single thread that is waiting on this object's monitor.
+
+11. 	Which method registers a thread in a thread scheduler?
+	A.
+run();
+B.
+construct();
+C.
+start();
+D.
+register();
+Answer: Option C
+Explanation:
+Option C is correct. The start() method causes this thread to begin execution; the Java Virtual Machine calls the run method of this thread.
+Option A is wrong. The run() method of a thread is like the main() method to an application. Starting the thread causes the object's run method to be called in that separately executing thread.
+Option B is wrong. There is no construct() method in the Thread class.
+Option D is wrong. There is no register() method in the Thread class.
+
+12. 	Assume the following method is properly synchronized and called from a thread A on an object B:
+wait(2000);
+After calling this method, when will the thread A become a candidate to get another turn at the CPU?
+	A.
+After thread A is notified, or after two seconds.
+B.
+After the lock on B is released, or after two seconds.
+C.
+Two seconds after thread A is notified.
+D.
+Two seconds after lock B is released.
+Answer: Option A
+
+Finding the output:
+
+1. 	What will be the output of the program?
+class MyThread extends Thread 
+{
+    MyThread() 
+    {
+        System.out.print(" MyThread");
+    }
+    public void run() 
+    {
+        System.out.print(" bar");
+    }
+    public void run(String s) 
+    {
+        System.out.println(" baz");
+    }
+}
+public class TestThreads 
+{
+    public static void main (String [] args) 
+    {
+        Thread t = new MyThread() 
+        {
+            public void run() 
+            {
+                System.out.println(" foo");
+            }
+        };
+        t.start();
+    }
+}
+	A.
+foo
+B.
+MyThread foo
+C.
+MyThread bar
+D.
+foo bar
+Answer: Option B
+Explanation:
+Option B is correct because in the first line of main we're constructing an instance of an anonymous inner class extending from MyThread. So the MyThread constructor runs and prints "MyThread". The next statement in main invokes start() on the new thread instance, which causes the overridden run() method (the run() method defined in the anonymous inner class) to be invoked, which prints "foo"
+
+2. 	What will be the output of the program?
+class MyThread extends Thread 
+{
+    public static void main(String [] args) 
+    {
+        MyThread t = new MyThread();
+        t.start();
+        System.out.print("one. ");
+        t.start();
+        System.out.print("two. ");
+    }
+    public void run() 
+    {
+        System.out.print("Thread ");
+    }
+}
+	A.
+Compilation fails
+B.
+An exception occurs at runtime.
+C.
+It prints "Thread one. Thread two."
+D.
+The output cannot be determined.
+Answer: Option B
+Explanation:
+When the start() method is attempted a second time on a single Thread object, the method will throw an IllegalThreadStateException (you will not need to know this exception name for the exam). Even if the thread has finished running, it is still illegal to call start() again.
+
+3. 	What will be the output of the program?
+class MyThread extends Thread 
+{ 
+    MyThread() {} 
+    MyThread(Runnable r) {super(r); } 
+    public void run() 
+    { 
+        System.out.print("Inside Thread ");
+    } 
+} 
+class MyRunnable implements Runnable 
+{ 
+    public void run() 
+    { 
+        System.out.print(" Inside Runnable"); 
+    } 
+} 
+class Test 
+{  
+    public static void main(String[] args) 
+    { 
+        new MyThread().start(); 
+        new MyThread(new MyRunnable()).start(); 
+    } 
+}
+	A.
+Prints "Inside Thread Inside Thread"
+B.
+Prints "Inside Thread Inside Runnable"
+C.
+Does not compile
+D.
+Throws exception at runtime
+Answer: Option A
+Explanation:
+If a Runnable object is passed to the Thread constructor, then the run method of the Thread class will invoke the run method of the Runnable object.
+In this case, however, the run method in the Thread class is overridden by the run method in MyThread class. Therefore the run() method in MyRunnable is never invoked.
+Both times, the run() method in MyThread is invoked instead.
+ 	
+
+4. 	What will be the output of the program?
+class s1 implements Runnable 
+{ 
+    int x = 0, y = 0; 
+    int addX() {x++; return x;} 
+    int addY() {y++; return y;} 
+    public void run() { 
+    for(int i = 0; i < 10; i++) 
+        System.out.println(addX() + " " + addY()); 
+} 
+    public static void main(String args[]) 
+    { 
+        s1 run1 = new s1(); 
+        s1 run2 = new s1(); 
+        Thread t1 = new Thread(run1); 
+        Thread t2 = new Thread(run2); 
+        t1.start(); 
+        t2.start(); 
+    } 
+}
+	A.
+Compile time Error: There is no start() method
+B.
+Will print in this order: 1 1 2 2 3 3 4 4 5 5...
+C.
+Will print but not exactly in an order (e.g: 1 1 2 2 1 1 3 3...)
+D.
+Will print in this order: 1 2 3 4 5 6... 1 2 3 4 5 6...
+Answer: Option C
+Explanation:
+Both threads are operating on different sets of instance variables. If you modify the code of the run() method to print the thread name it will help to clarify the output:
+public void run() 
+{ 
+for(int i = 0; i < 10; i++) 
+
+System.out.println(
+Thread.currentThread().getName() + ": " + addX() + " " + addY() 
+); 
+
+}
+________________________________________
+5. 	What will be the output of the program?
+public class Q126 implements Runnable 
+{ 
+    private int x; 
+    private int y; 
+
+    public static void main(String [] args) 
+    { 
+        Q126 that = new Q126(); 
+        (new Thread(that)).start( ); /* Line 8 */
+        (new Thread(that)).start( ); /* Line 9 */
+    } 
+    public synchronized void run( ) /* Line 11 */
+    { 
+        for (;;) /* Line 13 */
+        { 
+            x++; 
+            y++; 
+            System.out.println("x = " + x + "y = " + y); 
+        } 
+    } 
+}
+	A.
+An error at line 11 causes compilation to fail
+B.
+Errors at lines 8 and 9 cause compilation to fail.
+C.
+The program prints pairs of values for x and y that might not always be the same on the same line (for example, "x=2, y=1")
+D.
+The program prints pairs of values for x and y that are always the same on the same line (for example, "x=1, y=1". In addition, each value appears once (for example, "x=1, y=1" followed by "x=2, y=2")
+Answer: Option D
+Explanation:
+The synchronized code is the key to answering this question. Because x and y are both incremented inside the synchronized method they are always incremented together. Also keep in mind that the two threads share the same reference to the Q126 object.
+Also note that because of the infinite loop at line 13, only one thread ever gets to execute.
+6. 	What will be the output of the program?
+class s1 extends Thread
+{ 
+    public void run() 
+    { 
+        for(int i = 0; i < 3; i++) 
+        { 
+            System.out.println("A"); 
+            System.out.println("B"); 
+        } 
+    } 
+} 
+class Test120 extends Thread 
+{ 
+    public void run() 
+    { 
+        for(int i = 0; i < 3; i++) 
+        { 
+            System.out.println("C"); 
+            System.out.println("D"); 
+        } 
+    } 
+    public static void main(String args[]) 
+        { 
+        s1 t1 = new s1(); 
+        Test120 t2 = new Test120(); 
+        t1.start(); 
+        t2.start(); 
+    } 
+}
+	A.
+Compile time Error There is no start() method
+B.
+Will print in this order AB CD AB...
+C.
+Will print but not be able to predict the Order
+D.
+Will print in this order ABCD...ABCD...
+Answer: Option C
+Explanation:
+We cannot predict the order in which threads are going to run.
+7. 	What will be the output of the program?
+class s implements Runnable 
+{ 
+    int x, y; 
+    public void run() 
+    { 
+        for(int i = 0; i < 1000; i++) 
+            synchronized(this) 
+            { 
+                x = 12; 
+                y = 12; 
+            } 
+        System.out.print(x + " " + y + " "); 
+    } 
+    public static void main(String args[]) 
+    { 
+        s run = new s(); 
+        Thread t1 = new Thread(run); 
+        Thread t2 = new Thread(run); 
+        t1.start(); 
+        t2.start(); 
+    } 
+}
+	A.
+DeadLock
+B.
+It print 12 12 12 12
+C.
+Compilation Error
+D.
+Cannot determine output.
+Answer: Option B
+Explanation:
+The program will execute without any problems and print 12 12 12 12.
+8. 	What will be the output of the program?
+public class ThreadDemo 
+{ 
+    private int count = 1; 
+    public synchronized void doSomething() 
+    { 
+        for (int i = 0; i < 10; i++) 
+            System.out.println(count++); 
+    } 
+    public static void main(String[] args) 
+    { 
+        ThreadDemo demo = new ThreadDemo(); 
+        Thread a1 = new A(demo); 
+        Thread a2 = new A(demo); 
+        a1.start(); 
+        a2.start(); 
+    } 
+} 
+class A extends Thread 
+{ 
+    ThreadDemo demo; 
+    public A(ThreadDemo td) 
+    { 
+        demo = td; 
+    } 
+    public void run() 
+    { 
+        demo.doSomething(); 
+    } 
+}
+	A.
+It will print the numbers 0 to 19 sequentially
+B.
+It will print the numbers 1 to 20 sequentially
+C.
+It will print the numbers 1 to 20, but the order cannot be determined
+D.
+The code will not compile.
+Answer: Option B
+Explanation:
+You have two different threads that share one reference to a common object.
+The updating and output takes place inside synchronized code.
+One thread will run to completion printing the numbers 1-10.
+The second thread will then run to completion printing the numbers 11-20.
+9. 	What will be the output of the program?
+public class WaitTest 
+{
+    public static void main(String [] args) 
+    {
+        System.out.print("1 ");
+        synchronized(args)
+        {
+            System.out.print("2 ");
+            try 
+            {
+                    args.wait(); /* Line 11 */
+            }
+            catch(InterruptedException e){ }
+        }
+        System.out.print("3 ");
+    }
+}
+	A.
+It fails to compile because the IllegalMonitorStateException of wait() is not dealt with in line 11.
+B.
+1 2 3
+C.
+1 3
+D.
+1 2
+Answer: Option D
+Explanation:
+1 and 2 will be printed, but there will be no return from the wait call because no other thread will notify the main thread, so 3 will never be printed. The program is essentially frozen at line 11.
+A is incorrect; IllegalMonitorStateException is an unchecked exception so it doesn't have to be dealt with explicitly.
+B and C are incorrect; 3 will never be printed, since this program will never terminate because it will wait forever.
+________________________________________
+10. 	What will be the output of the program?
+public class SyncTest 
+{
+    public static void main (String [] args) 
+    {
+        Thread t = new Thread() 
+        {
+            Foo f = new Foo();
+            public void run() 
+            {
+                f.increase(20);
+            }
+        };
+    t.start();
+    }
+}
+class Foo 
+{
+    private int data = 23;
+    public void increase(int amt) 
+    {
+        int x = data;
+        data = x + amt;
+    }
+}
+and assuming that data must be protected from corruption, whatâ€”if anythingâ€”can you add to the preceding code to ensure the integrity of data?
+	A.
+Synchronize the run method.
+B.
+Wrap a synchronize(this) around the call to f.increase().
+C.
+The existing code will cause a runtime exception.
+D.
+Synchronize the increase() method
+Answer: Option D
+Explanation:
+Option D is correct because synchronizing the code that actually does the increase will protect the code from being accessed by more than one thread at a time.
+Option A is incorrect because synchronizing the run() method would stop other threads from running the run()method (a bad idea) but still would not prevent other threads with other runnables from accessing the increase()method.
+Option B is incorrect for virtually the same reason as Aâ€”synchronizing the code that calls the increase() method does not prevent other code from calling the increase() method.
+
+11. 	What will be the output of the program?
+class Happy extends Thread 
+{ 
+    final StringBuffer sb1 = new StringBuffer(); 
+    final StringBuffer sb2 = new StringBuffer(); 
+
+    public static void main(String args[]) 
+    { 
+        final Happy h = new Happy(); 
+
+        new Thread() 
+        { 
+            public void run() 
+            { 
+                synchronized(this) 
+                { 
+                    h.sb1.append("A"); 
+                    h.sb2.append("B"); 
+                    System.out.println(h.sb1); 
+                    System.out.println(h.sb2); 
+                } 
+            } 
+        }.start(); 
+
+        new Thread() 
+        { 
+            public void run() 
+            { 
+                synchronized(this) 
+                { 
+                    h.sb1.append("D"); 
+                    h.sb2.append("C"); 
+                    System.out.println(h.sb2); 
+                    System.out.println(h.sb1); 
+                } 
+            } 
+        }.start(); 
+    } 
+}
+	A.
+ABBCAD
+B.
+ABCBCAD
+C.
+CDADACB
+D.
+Output determined by the underlying platform.
+
+________________________________________
+12. 	class Test 
+{
+    public static void main(String [] args) 
+    {
+        printAll(args);
+    }
+
+    public static void printAll(String[] lines) 
+    {
+        for(int i = 0; i < lines.length; i++)
+        {
+            System.out.println(lines[i]);
+            Thread.currentThread().sleep(1000);
+        }
+    }
+}
+the static method Thread.currentThread() returns a reference to the currently executing Thread object. What is the result of this code?
+	A.
+Each String in the array lines will output, with a 1-second pause.
+B.
+Each String in the array lines will output, with no pause in between because this method is not executed in a Thread.
+C.
+Each String in the array lines will output, and there is no guarantee there will be a pause because currentThread() may not retrieve this thread.
+D.
+This code will not compile.
+Answer: Option D
+Explanation:
+D. The sleep() method must be enclosed in a try/catch block, or the method printAll() must declare it throws the InterruptedException.
+A is incorrect, but it would be correct if the InterruptedException was dealt with.
+B is incorrect, but it would still be incorrect if the InterruptedException was dealt with because all Java code, including the main() method, runs in threads.
+C is incorrect. The sleep() method is static, so even if it is called on an instance, it still always affects the currently executing thread.
+13. 	What will be the output of the program?
+class MyThread extends Thread 
+{
+    public static void main(String [] args) 
+    {
+        MyThread t = new MyThread(); /* Line 5 */
+        t.run();  /* Line 6 */
+    }
+
+    public void run() 
+    {
+        for(int i=1; i < 3; ++i) 
+        {
+            System.out.print(i + "..");
+        }
+    }
+}
+	A.
+This code will not compile due to line 5.
+B.
+This code will not compile due to line 6.
+C.
+1..2..
+D.
+1..2..3..
+Answer: Option C
+14. 	What will be the output of the program?
+class Test116 
+{ 
+static final StringBuffer sb1 = new StringBuffer(); 
+static final StringBuffer sb2 = new StringBuffer(); 
+public static void main(String args[]) 
+{ 
+    new Thread() 
+    { 
+        public void run() 
+        { 
+            synchronized(sb1) 
+            { 
+                sb1.append("A"); 
+                sb2.append("B"); 
+            } 
+        } 
+    }.start(); 
+
+    new Thread() 
+    { 
+        public void run() 
+        { 
+            synchronized(sb1) 
+            { 
+                sb1.append("C"); 
+                sb2.append("D"); 
+            } 
+        } 
+    }.start(); /* Line 28 */
+
+    System.out.println (sb1 + " " + sb2); 
+    } 
+}
+	A.
+main() will finish before starting threads.
+B.
+main() will finish in the middle of one thread.
+C.
+main() will finish after one thread.
+D.
+Cannot be determined.
+Answer: Option D
+Explanation:
+Can you guarantee the order in which threads are going to run? No you can't. So how do you know what the output will be? The output cannot be determined.
+add this code after line 28:
+try { Thread.sleep(5000); } catch(InterruptedException e) { }
+and you have some chance of predicting the outcome.
+15. 	What will be the output of the program?
+public class ThreadTest extends Thread 
+{ 
+    public void run() 
+    { 
+        System.out.println("In run"); 
+        yield(); 
+        System.out.println("Leaving run"); 
+    } 
+    public static void main(String []argv) 
+    { 
+        (new ThreadTest()).start(); 
+    } 
+}
+	A.
+The code fails to compile in the main() method
+B.
+The code fails to compile in the run() method
+C.
+Only the text "In run" will be displayed
+D.
+The text "In run" followed by "Leaving run" will be displayed
+Answer: Option D
+Explanation:
+No answer description available for this question. Let us discuss.
+
+
+16. 	What will be the output of the program?
+public class Test107 implements Runnable 
+{ 
+    private int x; 
+    private int y; 
+
+    public static void main(String args[]) 
+    {
+        Test107 that = new Test107(); 
+        (new Thread(that)).start(); 
+        (new Thread(that)).start(); 
+    } 
+    public synchronized void run() 
+    {
+        for(int i = 0; i < 10; i++) 
+        { 
+            x++; 
+            y++; 
+            System.out.println("x = " + x + ", y = " + y); /* Line 17 */
+        } 
+    } 
+} 
+	A.
+Compilation error.
+B.
+Will print in this order: x = 1 y = 1 x = 2 y = 2 x = 3 y = 3 x = 4 y = 4 x = 5 y = 5... but the output will be produced by both threads running simultaneously.
+C.
+Will print in this order: x = 1 y = 1 x = 2 y = 2 x = 3 y = 3 x = 4 y = 4 x = 5 y = 5... but the output will be produced by first one thread then the other. This is guaranteed by the synchronised code.
+D.
+Will print in this order x = 1 y = 2 x = 3 y = 4 x = 5 y = 6 x = 7 y = 8...
+Answer: Option C
+Explanation:
+Both threads are operating on the same instance variables. Because the code is synchronized the first thread will complete before the second thread begins. Modify line 17 to print the thread names:
+System.out.println(Thread.currentThread().getName() + " x = " + x + ", y = " + y);
+17. 	What will be the output of the program?
+public class Test 
+{
+    public static void main (String [] args) 
+    {
+        final Foo f = new Foo();
+        Thread t = new Thread(new Runnable() 
+        {
+            public void run() 
+            {
+                f.doStuff();
+            }
+        });
+        Thread g = new Thread() 
+        {
+            public void run() 
+            {
+                f.doStuff();
+            }
+        };
+        t.start();
+        g.start();
+    }
+}
+class Foo 
+{
+    int x = 5;
+    public void doStuff() 
+    {
+        if (x < 10) 
+        {
+            // nothing to do
+            try 
+            {
+                wait();
+                } catch(InterruptedException ex) { }
+        } 
+        else 
+        {
+            System.out.println("x is " + x++);
+            if (x >= 10) 
+            {
+                notify();
+            }
+        }
+    }
+}
+	A.
+The code will not compile because of an error on notify(); of class Foo.
+B.
+The code will not compile because of some other error in class Test.
+C.
+An exception occurs at runtime.
+D.
+It prints "x is 5 x is 6".
+Answer: Option C
+Explanation:
+C is correct because the thread does not own the lock of the object it invokes wait() on. If the method were synchronized, the code would run without exception.
+A, B are incorrect because the code compiles without errors.
+D is incorrect because the exception is thrown before there is any output.
+Pointing out the correct statement
+3. 	Which statement is true?
+	A.
+If only one thread is blocked in the wait method of an object, and another thread executes the modify on that same object, then the first thread immediately resumes execution.
+B.
+If a thread is blocked in the wait method of an object, and another thread executes the notify method on the same object, it is still possible that the first thread might never resume execution.
+C.
+If a thread is blocked in the wait method of an object, and another thread executes the notify method on the same object, then the first thread definitely resumes execution as a direct and sole consequence of the notify call.
+D.
+If two threads are blocked in the wait method of one object, and another thread executes the notify method on the same object, then the first thread that executed the wait call first definitely resumes execution as a direct and sole consequence of the notify call.
+Answer: Option B
+Explanation:
+Option B is correct - The notify method only wakes the thread. It does not guarantee that the thread will run.
+Option A is incorrect - just because another thread activates the modify method in A this does not mean that the thread will automatically resume execution
+Option C is incorrect - This is incorrect because as said in Answer B notify only wakes the thread but further to this once it is awake it goes back into the stack and awaits execution therefore it is not a "direct and sole consequence of the notify call"
+Option D is incorrect - The notify method wakes one waiting thread up. If there are more than one sleeping threads then the choice as to which thread to wake is made by the machine rather than you therefore you cannot guarantee that the notify'ed thread will be the first waiting thread.
+4. 	Which two statements are true?
+1.	Deadlock will not occur if wait()/notify() is used
+2.	A thread will resume execution as soon as its sleep duration expires.
+3.	Synchronization can prevent two objects from being accessed by the same thread.
+4.	The wait() method is overloaded to accept a duration.
+5.	The notify() method is overloaded to accept a duration.
+6.	Both wait() and notify() must be called from a synchronized context.
+	A.
+1 and 2
+B.
+3 and 5
+C.
+4 and 6
+D.
+1 and 3
+Answer: Option C
+Explanation:
+Statements (4) and (6) are correct. (4) is correct because the wait() method is overloaded to accept a wait duration in milliseconds. If the thread has not been notified by the time the wait duration has elapsed, then the thread will move back to runnable even without having been notified.
+(6) is correct because wait()/notify()/notifyAll() must all be called from within a synchronized, context. A thread must own the lock on the object its invoking wait()/notify()/notifyAll() on.
+(1) is incorrect because wait()/notify() will not prevent deadlock.
+(2) is incorrect because a sleeping thread will return to runnable when it wakes up, but it might not necessarily resume execution right away. To resume executing, the newly awakened thread must still be moved from runnable to running by the scheduler.
+(3) is incorrect because synchronization prevents two or more threads from accessing the same object.
+(5) is incorrect because notify() is not overloaded to accept a duration.
+6. 	Which statement is true?
+	A.
+The notifyAll() method must be called from a synchronized context.
+B.
+To call wait(), an object must own the lock on the thread.
+C.
+The notify() method is defined in class java.lang.Thread.
+D.
+The notify() method causes a thread to immediately release its locks.
+Answer: Option A
+Explanation:
+Option A is correct because the notifyAll() method (along with wait() and notify()) must always be called from within a synchronized context.
+Option B is incorrect because to call wait(), the thread must own the lock on the object that wait() is being invoked on, not the other way around.
+Option C is wrong because notify() is defined in java.lang.Object.
+Option D is wrong because notify() will not cause a thread to release its locks. The thread can only release its locks by exiting the synchronized code.
+
+Source 4: http://www.careerride.com/java-multiple-choice-questions.aspx
+Many MCQ’s to practice in the above link. 
+Exception Handling: with try-throw-catch-finally – very simple, not programs related and covered
+Threads: Quite theory level and basic so left.
+Source 5: http://www.allindiaexams.in/engineering/cse/java-questions-and-answers
+Many MCQ’s of basic level.
+Exception Handling - very simple, not programs related and covered
+MultiThreading: not done complete
+Source 6: http://www.siteforinfotech.com/2013/12/java-mcq-interview-questions-with.html
+Many MCQ’s to practice in the above link. 
+Extreamly Basic level. Not Recommended. 
+Source 7: http://www.siteforinfotech.com/p/java-mcq-sets.html
+Many MCQ’s to practice in the above link. 
+Extreamly Basic level and theoretical level. Not Recommended. 
+
+
+Source 8: http://www.javamadesoeasy.com/2015/10/collection-java-mcq-150-multiple-choice.html
+Important link for collections.
+Exception Handling: not mcqs for this. 
+Source 9: http://www.mastguru.com/all-collection-classes-are-available-in/253
+Another important link for collection.
+Exception Handling: nothing found
+Source 10: http://www.instanceofjava.com/p/frequently-asked-java-programs-in.html
+Mix of many topics.
+Really good side for different type of material. 
+Source 11: 
+Exception Handling: http://www.journaldev.com/2167/java-exception-interview-questions-and-answers
+Good. We should do it once. 
+1.	What is the problem with below program?
+2.	package com.journaldev.exceptions;
+3.	
+4.	import java.io.FileNotFoundException;
+5.	import java.io.IOException;
+6.	
+7.	public class TestException {
+8.	
+9.		public static void main(String[] args) {
+10.			try {
+11.				testExceptions();
+12.			} catch (FileNotFoundException | IOException e) {
+13.				e.printStackTrace();
+14.			}
+15.		}
+16.		
+17.		
+18.		
+19.		public static void testExceptions() throws IOException, FileNotFoundException{
+20.			
+21.		}
+}
+Above program won’t compile and you will get error message as “The exception FileNotFoundException is already caught by the alternative IOException”. This is because FileNotFoundException is subclass of IOException, there are two ways to solve this problem.
+First way is to use single catch block for both the exceptions.
+		try {
+			testExceptions();
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
+		}catch (IOException  e) {
+			e.printStackTrace();
+		}
+Another way is to remove the FileNotFoundException from multi-catch block.
+		try {
+			testExceptions();
+		}catch (IOException  e) {
+			e.printStackTrace();
+		}
+You can chose any of these approach based on your catch block code.
+22.	What is the problem with below program?
+23.	package com.journaldev.exceptions;
+24.	
+25.	import java.io.FileNotFoundException;
+26.	import java.io.IOException;
+27.	
+28.	import javax.xml.bind.JAXBException;
+29.	
+30.	public class TestException1 {
+31.	
+32.		public static void main(String[] args) {
+33.				try {
+34.					go();
+35.				} catch (IOException e) {
+36.					e.printStackTrace();
+37.				} catch (FileNotFoundException e) {
+38.					e.printStackTrace();
+39.				} catch (JAXBException e) {
+40.					e.printStackTrace();
+41.				}
+42.		}
+43.	
+44.		public static void go() throws IOException, JAXBException, FileNotFoundException{
+45.			
+46.		}
+}
+The program won’t compile because FileNotFoundException is subclass of IOException, so the catch block of FileNotFoundException is unreachable and you will get error message as “Unreachable catch block for FileNotFoundException. It is already handled by the catch block for IOException”.
+You need to fix the catch block order to solve this issue.
+			try {
+				go();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (JAXBException e) {
+				e.printStackTrace();
+			}
+Notice that JAXBException is not related to IOException or FileNotFoundException and can be put anywhere in above catch block hierarchy.
+47.	What is the problem with below program?
+48.	package com.journaldev.exceptions;
+49.	
+50.	import java.io.IOException;
+51.	
+52.	import javax.xml.bind.JAXBException;
+53.	
+54.	public class TestException2 {
+55.	
+56.		public static void main(String[] args) {
+57.			try {
+58.				foo();
+59.			} catch (IOException e) {
+60.				e.printStackTrace();
+61.			}catch(JAXBException e){
+62.				e.printStackTrace();
+63.			}catch(NullPointerException e){
+64.				e.printStackTrace();
+65.			}catch(Exception e){
+66.				e.printStackTrace();
+67.			}
+68.		}
+69.	
+70.		public static void foo() throws IOException{
+71.			
+72.		}
+}
+The program won’t compile because JAXBException is a checked exception and foo() method should throw this exception to catch in the calling method. You will get error message as “Unreachable catch block for JAXBException. This exception is never thrown from the try statement body”.
+To solve this issue, you will have to remove the catch block of JAXBException.
+Notice that catching NullPointerException is valid because it’s an unchecked exception.
+73.	What is the problem with below program?
+74.	package com.journaldev.exceptions;
+75.	
+76.	public class TestException3 {
+77.	
+78.		public static void main(String[] args) {
+79.			try{
+80.			bar();
+81.			}catch(NullPointerException e){
+82.				e.printStackTrace();
+83.			}catch(Exception e){
+84.				e.printStackTrace();
+85.			}
+86.			
+87.			foo();
+88.		}
+89.	
+90.		public static void bar(){
+91.			
+92.		}
+93.		
+94.		public static void foo() throws NullPointerException{
+95.			
+96.		}
+}
+This is a trick question, there is no problem with the code and it will compile successfully. We can always catch Exception or any unchecked exception even if it’s not in the throws clause of the method.
+Similarly if a method (foo) declares unchecked exception in throws clause, it is not mandatory to handle that in the program.
+97.	What is the problem with below program?
+98.	package com.journaldev.exceptions;
+99.	
+100.	import java.io.IOException;
+101.	
+102.	public class TestException4 {
+103.	
+104.		public void start() throws IOException{		
+105.		}
+106.		
+107.		public void foo() throws NullPointerException{
+108.			
+109.		}
+110.	}
+111.	
+112.	class TestException5 extends TestException4{
+113.		
+114.		public void start() throws Exception{
+115.		}
+116.		
+117.		public void foo() throws RuntimeException{
+118.			
+119.		}
+}
+The above program won’t compile because start() method signature is not same in subclass. To fix this issue, we can either change the method singnature in subclass to be exact same as superclass or we can remove throws clause from subclass method as shown below.
+@Override
+	public void start(){
+	}
+120.	What is the problem with below program?
+121.	package com.journaldev.exceptions;
+122.	
+123.	import java.io.IOException;
+124.	
+125.	import javax.xml.bind.JAXBException;
+126.	
+127.	public class TestException6 {
+128.	
+129.		public static void main(String[] args) {
+130.			try {
+131.				foo();
+132.			} catch (IOException | JAXBException e) {
+133.				e = new Exception("");
+134.				e.printStackTrace();
+135.			}catch(Exception e){
+136.				e = new Exception("");
+137.				e.printStackTrace();
+138.			}
+139.		}
+140.	
+141.		public static void foo() throws IOException, JAXBException{
+142.			
+143.		}
+}
+The above program won’t compile because exception object in multi-catch block is final and we can’t change it’s value. You will get compile time error as “The parameter e of a multi-catch block cannot be assigned”.
+Some Random on Exception Handling: 
+15) What is wrong with following Java Exception code:
+
+public static void start(){
+   System.out.println("Java Exception interivew question Answers for Programmers");
+}
+
+public static void main(String args[]) {
+   try{
+      start();
+   }catch(IOException ioe){
+      ioe.printStackTrace();
+   }
+}
+
+Answer: super class no exception, and child class checked excepton. 
+
+13) What is wrong with following code :
+
+ public static void start() throws IOException, RuntimeException{
+    throw new RuntimeException("Not able to Start");
+ }
+
+ public static void main(String args[]) {
+    try {
+          start();
+    } catch (Exception ex) {
+            ex.printStackTrace();
+    } catch (RuntimeException re) {
+            re.printStackTrace();
+    }
+ }
+
+
+This code will throw compiler error on line where RuntimeException  variable “re” is written on catch block. since Exception is super class of RuntimeException, all RuntimeException thrown by start() method will be captured by first catch block and code will never reach second catch block and that's the reason compiler will flag error as  “exception java.lang.RuntimeException has already been caught".
+
