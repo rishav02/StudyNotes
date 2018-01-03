@@ -1,0 +1,172 @@
+Java Script Tutorial (Source: W3 School)
+Java Script is a language that is used to define the behavior of a web page. It is used along with HTML and CSS. 
+Complete reference to JavaScript: http://www.w3schools.com/jsref/default.asp
+
+Java Script Tutorial
+Introduction
+Here we will look on the same very common scenarios where we can use Java Script. 
+1.	We can change the HTML content. The element whose content needs to be changed on some conditions is pointed by getElementById(“ID”) function. Also, we have used a button. If we do not want to use button we can use onclick attribute in the same element and use this keyword. Like: <elementNameonClick=”this.innerHTML=Date()”>. 
+2.	It can be used to change the value of the attribute. We can use this in different scenarios. Check example. 
+3.	We can also use it to change the style (CSS) of the HTML document. Try an example.
+4.	Java script can validate the data. This means as in the form, we can restrict the entry of some particular type of data and data entered other than that will not be taken. I have tried an example. We need to be care full with the syntax. 	
+Note(s):  
+1.	While using ID for pointing the element needs to be changed then we should use single quotes when d	ouble quotes are already used. We can use character or integer ID.
+2.	While using the ID for pointing the element needs to be changed then we must use quotes with the ID’s, no matter character or integer. 
+
+Where To
+•	Java script can be placed in either the head or body of the HTML document in the <script> tag. We can have multiple script tags in either head or body or both. Though putting all script tags together us a good habit. 
+•	We have functions in the script which are nothing but the block of code that is executed when an event occur like a button is clicked. 
+•	Also, we can have external .js file containing java script. This is helpful when we have to use same script multiple times. For using external file we have to use the src attribute in the script tag. 
+
+ Java Script Output
+We can display the output of the java script by below four ways
+1.	Using window.alert() – We can display the result of the java script in the form of an alert dialog box. So, whatever we want to display should be kept in alert(). Check more examples. 
+2.	Using Document.write() – This method is used only for testing purpose. When it is used, then it deletes all the HTML on the page and display only the java script result.
+3.	Using InnerHTML – The inner HTML is used to define or change the content of the HTML. We use this in most of the cases. 
+4.	Using Console.log – This is used to display data. We can activate the browser console through F12, and select console in the menu. It is equivalent to right click and then inspect. 
+
+JavaScript Syntax
+JavaScript syntax is quite similar to java. Each of its statement ends with semicolon. Each statement consist one or more of these: values, expressions, operators, keywords and comments. We have literals and variables. Literals are the fixed values while variable can vary. “var” keyword is used to declare the variables. Operators, expressions and comments are same as in Java. Identifiers are the name (like variable name). JavaScript is case sensitive like java. It also supports camel casing and Unicode character set. 
+
+JavaScript Statements
+The JavaScript statements together form the block/function and then the document. It is ended by semicolon. If a statement become longer than 80 characters, then it is advised to break it from an operator.  Some important keywords are break which terminates a switch or a loop, Continue is jumps the control out of a loop or at the beginning, debugger debugs the execution of the java script and calls the java debugger function. Check other important keywords as well. 
+
+JavaScript Comments
+These are the same as in java. Comments are meant for more readability and better understanding of the code. 
+
+JavaScript Variable
+JavaScript variables are for storing the data values using var keyword. We can store integer or text is the variables. Text is the character string. The names of the variable are unique and are called as identifiers. “=” is an assignment operator while “==” is an equal to operator. Declaring and assigning a var in JavaScript and again declaring it does not let the losses its value. 
+JavaScript Operator
+It has got all the operators of Java including typeOf operator which return the type of a variable. InstanceOf variable are those which returns the instance of an object type. When we add integer and string then integer before string are added while after the stringsare treated as string. 
+Note: “===” means equal without any coercion. In other words, “0==flase” is true but “0===flase” is flase. This is because 0 is an integer and false is Boolean.
+
+JavaScript Arithmetic
+A typical thing to do with number is arithmetic. Check all the arithmetic operators and their priorities. (+, -, /, *, %,++, --)
+
+JavaScript Assignment 
+Check all the assignment operators. (=, +=, -=, /=, *=, %=)
+
+JavaScript Data Types
+Java Script has String, Numbers, Boolean, Array, Object as the data types. For example, var x = {Name:”john”, sex:” Male”}. We can use string in single and double quotes. Also, var a = 123e3 means 123000 and var b = 123e-3 = .123. Boolean data types are var a = “true/false”. Here, arrays are special types of object so typeOf array returns an object.If we do this: var a = unidentified. This will empty the variable or the variable is declared but not assigned. Empty value has nothing to do with undefined but empty strings are different. Null means “nothing” in java script. This simply means that something does not exist.  
+
+JavaScript Functions
+•	JavaScript function is a block of code used with the function keyword. It is executed with something invokes it like some event occurs. Its syntax is “Function functionName(parameter1,parameter2,..){code to be executed}”. It is same as the method in java language.
+•	 The argument passed always behaves as local variable. It can also have return keyword which returns something. Unlike methods in java language, it does not write the return value type in the signature of the functions. The purpose of having function is to use the same code multiple times and by passing different parameters. “Function” refers to an object of the function while “Function()” refers to the result of the function. 
+•	We can use the function just like variables. Like, var text = the temperature is + toCelsius(77).  This is possible in java as well. 
+
+JavaScript Object
+Let’s see the Concept of objects, properties and methods. For example, a car is an object. It will have weight and color which are its properties and methods like start and stop. We can write an object in java script like this “var car = “{type:”fiat”, model:”500”, color:”white”}”;”. The values are written in name:value pairs. Object methods are the functions. So, basically you can have an object in java script which can have properties and methods. Properties will be in Name:value pair while methods will be the functions. Then, we can access the properties of the object by “object.propertyName”. 
+
+JavaScript scope
+JavaScript scope is the set of variables, objects and functions you have access to. We have local and global variables in java. Variables written inside any function are local variable which ends when the functions completes. Variable written outside any method is global variable which ends when a move to other page. All functions of the script can use the global variable once declared. Also, if do not declares a variable but directly assign it in any function then it becomes automatically global. How? Also, all the variables in java script belongs to window object. So, “window.LocalVariable” can be used globally. Check this.
+Note: 
+1.	When you create any object the you can create in a syntax “var car = {modal:”1947”, brand:”suzuki”} ;”. To access the object property’s value “document.getElementById(“id”).innerHTML = ‘the car modal is ‘car.modal”. Other way could be “car[modal]”
+2.	If we have to add a new property then we have to write all the previous properties again to add new ones. If we just write like “var car = {sale:yes};”. Then, only sale is yes property will be set while removing other properties. 
+
+JavaScript Events 
+Events are the thing happened to any HTML element. JavaScript takes care of how to reach to these events. The events belong to either browser or user like the pages stops loading or button is clicked. Event occurs on element of HTML which is taken care by JavaScript functions. So, how do we connect HTML and java script. It is done like this: <someElementsomeEvent=”someJavaScriptFunction”>. For example, <p onclick=”change()”>.  Some common event attributes are onclick, onchange, onmousover, onmouseout, onkeydown, onload. Check all later. 
+
+JavaScript Strings
+•	These are used for storing and manipulating the text. We can use single or double quotes while giving value to variable. Also, we can use different quote inside the quote that surrounds the String. Length keyword gives length of the variable. Backslash escape character is used to use same quote used to assign string. For example, “var s = ‘it\’s OK’”. We already know that we should break a long statement after any operator. Also, we can break a statement from a string text through a backslash.   
+•	String can also be object like this varfirstname = new String(“rishav”). Though, it is not suggested to create a string as object, it will slow down the execution.  
+
+JavaScript Methods
+The JavaScript properties and methods help work with the String. For example, “Length” is a property which returns the length of the String. It has some similar method as java String has like indexOf(), lastIndexOf() (it can have multiple parameters, try it), substring(start, end), replace(“Stringpart”, “replacement”) , toUpperCase(), toLowerCase(), concat(), charAt(), charCodeAt(), split() and etc. However, java script has got some special string methods as well. Search() is same as indexOf() but far more efficient. Slice(start, end) method extracts a part of a string and create a part as a separate string. If the parameters are negative values then the counting will be done from the end. Also, if we just give a starting value then it will extract rest of the string. Substr(start, length) also extract a part of string and create a new string. However, it takes different parameter. It takes starting index and the length. It can have first parameter as negative which signifies that the counting will be done from end. Accessing a String as an array is considered unsafe. If we have to read a string then we should properly convert it into array then read it like array. 
+
+JavaScript Number
+•	JavaScript has only one type of number. It can be with or without decimals (unlike java). JavaScript numbers are 64 bit floating point. This means 64 bit is the limit and floating point indicate that it can be made decimal as well. The precision is up to 15 digit number. While decimal number can be 17 digit long. 
+•	We have the facility to write the number in hexadecimal, octal and binary. “Var x = 0x12” is hexadecimal where ox shows hexadecimal. “Var x = 012” is octal since it start with zero that indicate a number being octal. Also, we can convert a number of base 10 to base 16, 8 or 2 through toString() method. 
+•	Infinity is also a number which will be return if the result goes outside the largest possible number (actually a largest number possible). Also, Infinity will be given when any number divided by zero. typeOf infinity returns number.  
+•	NaN (Not a Number) – NaN in javascript indicate that a value is not a number. For example, var x = 100/”apple”, then x is NaN. Also, we have isNaN() function to find out if a variable is number or not. Number can also be object if create like this: varnum = new Number(500);. We should not use this way of creating a number. 
+JavaScript Number Methods
+•	In this section, we will look at some important methods to process numbers. toString() method is used to convert a number into string. toExponential() method returns a string that round a number with exponential notation. It can take parameter to round off the number. toFixed() method is used to return a string with specified number of decimals. toPrecision() is used to return a number with specified length. valueOf() returns a number as a number. Now, we will look at converting the variables into numbers. First, Number() method which converts the variables like Boolean, date and etc into numbers. check the example. Second, parseInt() which parses a string and returns a whole number. It return only first number. Like parseInt(“10.20”/”10 20”) will return only 10. If the number cannot be converted then NaN is returned. Third, parseFlaot() which parses a string to find float. So, parseFloat(10.33) will return 10.33. 	
+•	Number Properties – Some properties of number are MAX_VALUE, MIN_VALUE, NEGATIVE_VALUE, NaN, POSITIVE INFINITY and etc. 
+
+JavaScript Math Object
+A math object allows you to perform mathematical operations on numbers. Math object has got lots of methods. One common use is to create a random number (greater than zero and lesser than one).  Method object does not have any constructor to it is supposed to create object. Another important function is min() and max() which returns the lowest and highest values among the argument passed. Another method is round() which is used to round off a number. Floor() method is also important that round off the number to the previous value. Like floor(4.7) will return 4, but not 5. While ciel() do it in opposite way. likeciel(4.4) will return 5, but not 4. JavaScript 8 also provides some number constants. For example, it has E (Euler’s number), SQRT2 (square root of 2) and etc. We have done some methods while are many other methods as well.
+
+JavaScript Dates
+The date object lets to work with dates (from year to milliseconds). The date format in java script is in string like this “Tue May03 2016 10:09:59 GMT+0530 (Indian Standard Time)”. Try displaying date with Date(). We can create a Date() object through new keyword. New Date(), new Date(millisecond), new Date(dateString), and new Date(year, month, day, hours, minutes, seconds, milliseonds). We have seen how to create a new date object. Date in java script is calculated from 1st January, 1970. When specifying the date part like month in number we have to be careful. For example, the months are from 0 to 11 where 0 is for January. We can use the toUTCString() for getting time in UTC standard. Also, we have toDateFormat() which is more readable format. Date objects are static not dynamic which means that once the object is created then will show that time. If we do not mention the time zone while displaying the date then the browsers time zone will be considered. 
+
+JavaScript Date Formats
+•	There are generally four types of formats. First, ISO dates, Long dates, Short dates and full format. The default format is full string format which we will look in the last.  
+•	ISO dates – These are in the format (YYYY-MM-DD). It can also lack day or month in the format told just now. Also, it can have format including time like this (YYYY-MM-DDTHH-MM-SS). UTC
+•	JavaScript long dates – These are in the format (MMM DD YYYY) where months are in character. we can switch the order of Month and Day. Also, month can be written in full. 
+•	JavaScript short dates – These are in the format (MM/DD/YYYY). Also, it can be in the format (YYYY/MM/DD). 
+•	Full format dates – This is the default format. 
+
+JavaScript Date Methods
+•	JavaScript has got many get and set date methods. We have getDate(), getDay(), getFullYear(), getHours(), getMilliseconds(), getMinutes(), getMonths(), getSeconds(), and getTime(). These function we can use to get some part of the particular date object and for other purposes.
+•	 We have corresponding set functions as well.Set() functions can be used to set the date of an object. Also, we can add days to an existing date object. 
+•	Date input/ parsing dates – We have parse() method to parse a valid date string into its corresponding milliseconds. 
+•	Compare Dates – Date can be compared using if condition with comparison operators. 
+
+JavaScript Arrays
+•	Arrays are used to store multiple values in a single variable. We should never put comma after last element since that will make the array inconsistent. We can create an array using “new” keyword but this is not appreciated. We can access and modify the element of an array using index. 
+•	Objects can have different type of objects in it. Also, we can have string and integer in it. Object in the form of Name:value pair can also be accessed using the name like ArrayName.Name. 
+•	JavaScript arrays do have inbuilt properties and methods. One of the properties of java script array is length which returns the length of an array. We can add a new element in an existing array by push() method or by length property. Push is easier. We can add a new element any index. We blanks will be shown when we print the array. It will add to the length as well.
+•	Associative array – Array in which the values are associated with named index. However, java script does not supports this. 
+•	Difference between Arrays and Objects is that the arrays only support numbered index while objects support named index. We already know that we should not create array with new keyword. We have got isArray() method which confirm that a variable is array or not. 
+Doubt: check the way to print an array in java script. 
+
+JavaScript Arrays Method 
+These methods are for working with Arrays.
+•	Converting arrays to string – toString() method is used to convert the values of array as string. Also, we have join() method which is similar to the toString() but has additional parameter which act as a separator. 
+•	Popping and pushing – Popping an element from an array is to take an element out of it while pushing means adding an element in the array. Try the example.
+•	Shifting elements – Shift() method of the array removes the first element of an array and shifts all the elements to lower index. It returns the removed element. Unshift() method is used to add an element at the beginning of an array and shifts all the element one index higher. It returns the new length of the array. 
+•	Changing and deleting the element – we can change an existing element of an array by simply putting something else at its position. For deleting an element we have delete keyword and syntax is “delete arrayName[index]”. If we use delete then it leaves a blank space thus pop or shift() is more recommended. 
+•	Splice() method – This method is used to insert an element at the same time in an array. The elements are inserted and other elements are shifted accordingly. Example, splice(2, 0, “lemon”, “kiwi”). This means that insert at index 2, remove zero existing elements and put lemon and kiwi in the array. We can use to remove the element as well by adding no new element and put parameter for removing an element. It will remove from beginning of the array. 
+•	Sort(), reverse(), sort() for numbers method – this method is used to sort an array. Reverse method is used to reverse the order of the element. Sorting an array with number is a bit different. We have to sort the difference of the elements of the array. 
+•	Compare function – The purpose of the compare function is to define an alternative for the sort method. The compare method is “function(a,b){returns a-b};”. We can find the highest and the lowest element by getting the first element of descending and ascending sort of the element.  
+•	Concate array – Concate() method is used to join two or more arrays. 
+•	Slice() array – this method slice out a part of an array. Syntax: “fruits.slice(2)”. This means that the element before index three will be sliced. It can also take two arguments like slice(1,3) which means slicing will be done from first parameter while excluding the second parameter. 
+•	Valueof() method – this method returns the primitive value of an object array.
+
+JavaScript Boolean
+JavaScript Boolean represent only two values true or false. We have Boolean() function as well which is used to check if an expression is true or false.  Boolean is the fundamental for the comparison operators and conditional statements. Also, Boolean values which are not real like zero, negative, null, unidentified, empty, NaN are false in Boolean.
+
+JavaScript Comparison and Logical operators 
+•	Comparison operator – These are meant for comparing different values which return either true or false. It has ==, ===, !=, !==, >, <, >=, and <=. Try them in examples.  
+•	Logical operator – These operators are used to defined the logic behind the variables and values. The logical operators are &&, ||, and !. We also have ternary conditional operators which involve three variables or values. Like “?” operator. 
+•	Comparing different type – this is mainly related to the comparison of integers and string. Remember two things for now, when you compare a number with string containing character then the result will always be false. Second, if we compare number with string containing numbers then comparison will take care between each number from the beginning. 
+•	Bit-wise operators – These operators work on 32-bit numbers. All its operands are converted to 32 bit numbers and then converted back to decimal base numbers. The bitwise operators are &, |, ~, ^, << and >>. 
+
+JavaScript If…Else Statements
+These are same as in Java language. 
+
+JavaScript Switch Statement
+The switch statements are also same as in java language. The syntax is “Switch(expression){case n: statements break; ….case m:statements break; default: default statements block}”. Break statement takes the control out of the switch statements. The default keyword indicates the default condition whose code will be executed if no case occurs. Also, the default case is not necessarily to be the last case but can come in between as well and thus we must provide break keyword to it. 
+
+JavaScript For Loops
+For loops are also same in java language as in java script. Also, in case of arrays we use “<br>” break tag. This is just to take the control to the next line. Try some example. 
+
+JavaScript While Loop
+While loop loops through the block as long as the condition specified is true. It has a lot of similarity with for loop. Whereas do while loops the block at least once and then continues until the condition is satisfied. 
+
+JavaScript Break and Continue
+Break statement is used to jump out of the loop. Continue statement is used to jump over one iteration in the loop. Labels are nothing but labeling some java statements. Continue works the same with or without label while break differs in functioning when used in label statements. Break in label statements jumps out of any code block. 
+
+JavaScript Type Conversion
+•	These are the data types in java script which are Number, String, Boolean, object (array, Date, User defined objects) contain data while the other Null and undefined do not contain data. We can use typeof operator for finding the data type. Remember the data type of NaN is number, for array, date and null is object and undefined for undefined variable. Also, the operator does not have any data type of typeof of operators does not return anything but typeof returns string. 
+•	The constructor property – value.constructor returns a constructor property which is data type function with native code. Check, what it is exactly. We can check object is array or date. Check this in detail. 
+•	Conversions – To convert number to string then we have to use string(number). Same thing can be done with toString(). To convert Boolean/Date to String, we still can use String() and toString(). To convert String to number, we have Number(). Empty String are converted to 0. 
+•	Convert variable to number – this can be done by unary + operator even it is not converted. Check the example. We can use Number() for Date/Boolean to number conversion. 
+•	Automatic conversion – Sometimes, java script itself tries to convert the type needed. Check this in detail. 
+
+
+JS Forms
+JS Forms
+HTML form validations are mostly handled through javascript in wide range of web applications. We can do validation for anything in javascript. For example, we need to prompt the user if any particular field is left blank then we can do this by javascript. We also have some suto validations in javascript like “required” written with the input tags for which we need the validation.
+Data Validation: this is about making sure that the data supplied by the user is clean and useful. Some examples are all required fields are filled, right range of data is provided and number or text is placed in the respective fields. 
+ Constraints in JS for HTML input fields: disable, max, min, pattern, required, type. Try for practice.  
+Note: JS auto validations does not work with IE9 or earlier.  
+
+Missing topics
+	
+
+
+
+Implementations
+I have created this section for the sole purpose to speak about the implementation of what we have learned in this tutorial. We must use as many practical examples as we can related to the real world.  
+
+
