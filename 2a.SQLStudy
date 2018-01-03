@@ -522,7 +522,9 @@ Outer Join is of three types which are shown below.
  
 Left Outer Join
 This is also called as Left join. In this join, the query returns all the rows of the selected column of the left table and common rows of the right table (Which means, left have value as 2 once and the column of right table has 2 three times. Then, overall it will be printed two imes). The table comes first while writing the join is the left table while the other table in right table. Syntax: “Select table1.col1, table2.col from Table 1 left join table 2 ON Join condition”. Join makes difference on the number of rows while the column printed will only be the selected columns. 
-Note: For inner join, when you check which all rows will be retrieved then first check the common rows. Then, the common rows might be repeating n number of time then those repeated rows will also come. 
+Note: 
+1. For inner join, when you check which all rows will be retrieved then first check the common rows. Then, the common rows might be repeating n number of time then those repeated rows will also come. 
+2. Left Join and Left Out join are same. 
 
 Right Outer Join
 This is also called as right join. In this join, the query returns all the rows of the selected column of right table and matched rows of the left table. Syntax: “Select table1.column1, table2.column2 from table1 right join table2 ON Join Condition”.
@@ -534,10 +536,11 @@ SQL Cross Join
 SQL cross join joins each row of first table with each row of the other table just like a Cartesian product. This is also called as Cartesian Join. Syntax: Select * from table1 cross join table2. Check example for better understanding. 
 
 SQL Self Join
-SQL self join means to join a table to itself. You can use self join when a table references its own data. Like in a tble where name, emp id and boss emp id is given and we want to show name of employee with boss then we can use self join. Syntax: “SELECT Name.employee, Manager.employee From employee e1 INNER JOIN employee e2 ON e1.commoncolumn = e2.commoncolumn” OR “Select Employee.name, Employee.name From Employee e1, Employee e2 where e1.commonfield=e2.commonfield”. We give different alias to the same table here.
-Note: The self join are also of inner, outer and cross types. We can imagine self join which is of all these types as joining table in different ways having both the table as same.  
-
-Note: Also check the equi join, natural join and theta join. 
+SQL self join means to join a table to itself. You can use self join when a table references its own data. Like in a tble where name, emp id and boss emp id is given and we want to show name of employee with name of his boss then we can use self join. Syntax: “SELECT Name.employee, Manager.employee From employee e1 INNER JOIN employee e2 ON e1.commoncolumn = e2.commoncolumn” OR “Select Employee.name, Employee.name From Employee e1, Employee e2 where e1.commonfield=e2.commonfield”. We give different alias to the same table here. For detailed explanation check: https://www.w3resource.com/sql/joins/perform-a-self-join.php
+Note: 
+1. I think in self join, we will have two column in a table where we are given same information. Like in the example, one column name is empid and other is supervisor id. However, supervisorid column gives us empid also. This is a little hint if we can apply self join or not. 
+2. The self join are also of inner, outer and cross types. We can imagine self join which is of all these types as joining table in different ways having both the table as same.  
+3. Also check the equi join, natural join and theta join. 
 
 
 SQL KEYs
@@ -653,7 +656,7 @@ Note:
 View
 A view is a virtual table created by simple select statement query which is given a name and stored in the database. That is why it is also called as named or stored query. This does not put load on the disk memory as the result of the view is not stored anywhere in the disk. The view is stored in the database but does not run until explicitly called. So, everytime we call a view, the updated data is taken from the actual tables. It is generally named as BaseTableName_view or v_BasetableName. A view can be made of one or multiple columns of the table or one or multiple tables. 
 Now, let’s see the syntax to create. Syntax: “create View viewName AS Select name from friends where id = 1”. Similar way, you can use the multiple columns or multiple tables. After the AS keyword, it is now on you to write a query you want to save. You can use joins, sub queries in that. Syntax to call a view is: “Select * from viewName”. We can also update and drop a view as well. Syntax: “CREATE/REPLACE VIEW ViewName AS ‘query’” and “DROP VIEW ViewName”.  
-Views with CHECK constraint – we can use the check constraint by the defining the view. For doing so, we can just add “WITH CHECK OPTION” while creating the view. This is for the same purpose as we use the check in the normal table. 
+Views with CHECK constraint – we can use the check constraint by defining the view. For doing so, we can just add “WITH CHECK OPTION” while creating the view. This is for the same purpose as we use the check in the normal table. 
 Updating a View
 We can update a view but there are certain set of rules that should be satisfied for doing so. These rules are
 1.	The view is defined based on one and only one table. 
@@ -768,7 +771,7 @@ Stored procedures are the SQL query which is made to avoid repetitively writing 
 Stored Procedure with parameter
 We can also stored procedure to have parameter so that the same query can be executed for different set of values. Syntax: CREATE PROCEDURE ProcedueName @ColeName Datatype @colName Datatype AS BEGIN SELECT * FROM EmployeeName WHERE ColName=@colName, colName=@colName END;. Here, these @colName are the declared parameters and act like a place holder in where condition. Also, the order of the parameters declared should be same as the order in the WHERE clause. If this is not taken care then we get an error.
 
-Changeand Dropping a Stored Procedure
+Change and Dropping a Stored Procedure
 This we cannot do simply by changing the definition. However, we use ALTER PRCEDURE statement. Syntax: ALTER PROCEDURE ProcedureName As BEGIN query END;. Now, to drop a procdure then syntax is “DROP PROCEDURE ProcedureName”.
 
 Stored Procedure with Output Parameter
@@ -788,6 +791,7 @@ Advantages of Stored Procedure
 5.	Avoid SQL injection attacks – To prevent getting user sql injection executed we can use Stored procedures. (what is sql injection attack and how to prevent it?).
 Note: Do not get confused in the purpose to views and stored procedure. Actually, views are the virtual table over which we can perform any query just like an original table while stored procedure are just a result of a query that we use to get the certain result we want frequently.
 
+Note: View and storedprocedures may look similar however they are quite different. View is based of select query and are seen as the virtual table. It can reference table from other db and its just like a snapshot of DB. StoredProcedure are not restricted to select queries. Its main advantage of is to have a single execution plan so that SP executes faster, less traffic and code reuseability. The the only thing we can say that common is that both are generally complex and thus better to be stored and used either as VIEW or SP depending on need. 
 
 Advantages of using SQL triggers
 •	SQL triggers provide an alternative way to check the integrity of data.
