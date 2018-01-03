@@ -1,0 +1,175 @@
+Hibernate Study (Source: JavaTPoint)
+Hibernate Tutorial
+Introduction
+Hibernate framework helps development of an application by making the interaction of application with the database smoother. Now, how it makes the interaction smoother will be seen soon. Hibernate is an open source software under LGPL license (Lesser General Public License) and is lightweight. It is an Object Relational Mapping tool that simplifies the data creation, manipulation and data access. We map the object to the data stored in the database. ORM tool by internally using the jdbc API interacts with the database. 
+Concept of HQL - Hibernate query language is similar to structured query language but instead of working on the tables and columns it works of object which are mapped to the data stored in the database. With the help of HQL, we do not need to write the database specific query. Think of a situation where want to change the database of an existing application. It is possible but will require massive efforts of changing the queries according to the new database. However, with hibernate framework (which has got HQL) the database can be changed with putting much effort for writing the database specific query. 
+To conclude – Hibernate framework makes the interaction of an application with its database a lot better by using HQL (similar to SQL) which work on the objects mapped to the data stored in the database. Mapping object is also done by hibernate since it is ORM as well. 
+
+Hibernate Architecture 
+Hibernate architecture has got many layers which work together to make application interaction with the database better. Check the architecture diagram. Mainly, it has got four layers which are the application layer, hibernate framework layer, backhand API layer and database layer. Hibernate has its own properties like configuration, session factory, session, transaction, query and criteria. Some are mandatory to be used while others are optional. Also, Hibernate uses some Java API like JDBC, JTA and JNDI.  
+Hibernate uses lots of objects as well. Let’s check all the objects. 
+1.	Configuration object – It is the first hibernate object that we will create in any hibernate application. It is created once for an application. It represent the configuration or property file which provide two key components. First, Database connection and second, class mapping setup. 
+2.	SessionFactory Object – Configuration object is used to create a sessionFactory object which configure hibernate for an application with the help of hibernate.properties and hibernate.cfg.xml file. This also created once when the application initiates. We need one sessionFactory for one database, so if we are using multiple databases in our application then we should have same number of sessionFactory object. 
+3.	Session object – Session object is used to get a physical connection with the database which means whenever we need to interact with the database, we require a session object. It is not thread safe (multiple threads working together on it can create problem), so should not be kept open for long time. 
+4.	Transaction object – A transaction represent a unit of work with the database. Using this object is optional since hibernate can use JDBC or JTA for handling transactions.
+5.	Query Object – Query object is to bind the query parameters, limit the numbers, executing the query and etc by using SQL or HQL.
+6.	 Criteria object – These objects are used to create and execute the criteria based queries to retrieve objects. 
+ 
+
+First Application with Hibernate without IDE
+We need to create multiple files for our first application so let us check this. 
+1.	Create persistent file – It is file for creating the persistent objects which are later mapped to the database table. We just need to create a simple .java file with having getters and setters of the declared private variables. It is suggested to use non argument constructor. Also, prefer having the non-final class. 
+2.	Create mapping file for persistent class – this is an XML file name as “className.hbm.xml”. It has got tags which are used to map the persistent object with the database tables. <hibernate-mapping> table is the root element. Then, we have <class> for mentioning the name of the persistent object class. <id> is the sub element of class which is used to specify the primary key attribute in the class. <generator> tag is used to generate the key like primary key and other. <property> defined the property of the persistent class. Check more the tags. 
+3.	Create a configuration file – This file has the information of the database and the mapping file. It has <session-factory> tag. Its name is hibernate.cfg.xml. 
+4.	Creating the class that retrieves and stores the object – This is simply a java file that contains the code which stores the object in the database table and can retrieve it. 
+5.	Load the jar files – These are the jar file that makes the basics of hibernate. Just like the jdk for java that is actually what java is. 
+6.	Executing first hibernate application – We need to use the command prompt to avoid using any IDP. We need to have oracle or any other database installed in the machine and jar file must be loaded. Then, we can simply run the file having code for actions we need to make in the database table through persistent object. 
+Note: we need internet connection as well. Why?
+
+Hibernate in Eclipse 	
+Try an example is eclipse to try hibernate. So this, we need to have hibernate jar files loaded. 
+Note: MyEclipse is advanced form of eclipse which makes certain tasks easier and add some more functionalities in the lot. 
+
+Hibernate Example
+Hibernate with annotation 
+Hibernate application can be created with annotations as well. The core advantage of using hibernate annotation is remove the effort of doing the mapping explicitly. The annotation provides the meta data. Annotations are based on JPA 2 (Java persistence API) specifications. All the annotation are defined in javax.persistence.* package.
+Check the steps to create a hibernate application with annotation
+1.	Load the jar files for hibernate including the jar files especially for annotation. 
+2.	Create the persistence class – create the class having the object which are to be mapped to the database table. These are fews entities which are generally used 
+a.	@Entity – This is used to mark the class as entity. So, it should not have constructor with argument(s) and must have protected scope.  
+b.	@Table – this annotation is used to specify a table name where the data entity is to be persisted. If we do not use the @Table annotation then the persistence class name will be considered as the table name. 
+c.	@Id –This is used with that field which is meant to be as the primary key. 
+d.	@Column – this annotation is used to specify the details of the column to a field or the property will be mapped. The details can be name, length, nullable, unique etc.  
+3.	Now, we do not need to create the ClassName.hbm.xml since we have already used annotations. We have to create the configuration file and have to add the class name which is mapped by the help of “<mapping class=”packageName.ClassName”/>”. 
+4.	Lastly, create a java class to store or retrieve the data from the database and run the application. 
+
+Web application with hibernate 
+In this section, we have seen how to create a simple web application with hibernate. Here, we have created the index.jsp and register.jsp. Index.jsp is used to create the take the input credential from the user and register.jsp is used to pass the input to the store class which we have created to store the data into the object of the user class which is already mapped with the database. The persistence object creation and mapping is done in the similar way as done before. 
+
+Generator classes 
+The <generator> sub-element of <id> tag is used to generate the unique identifier of the objects of persistent class. There are many identifier classes in the hibernate framework. All the generator classes implements the interface org.hibernate.id.IdenfierGenerator. We can create our own generator class by implementing this interface but hibernare framework does also have some inbuilt generators which are listed below. 
+1.	Assigned generator – This is the default generator which supports all the databases. If we do not use <generator> inside id tag even then the default generator considered will be assigned. This generator means that the programmer will assign the primary key value to the object. 
+2.	Increment generator – This generator supports all the databases and it assign id value as 1 for the first object and +1 of the max id in the database to a new object. If we try to manually give the id then hibernate does not consider the manually given value. 
+3.	Sequence generator – This generator is not supported by all the databases so we must check before using it with any database. It is supposed to be given a starting value of the sequence and the subsequent objects gets the next value from the sequence. Sequence name is to be passed otherwise hibernate creates its own sequence name.
+4.	Identity generator – This generator also not supports all the databases. In this case, the id value is generated by database but not by hibernate. It does not need any parameter to pass. The returned id is of type short, long or int. 
+5.	Hilo generator – it uses the high and low algorithms to generate the id of type short, int and long. 
+6.	Native generator – When this is used, it check if the database uses identity, sequence or hilo (in the same order). Whatever is used by the database will be selected.
+Note: check other type of generators as well, later when get time. 
+
+Dialects in hibernate 
+We have to mention details about the database using in the application inside the configuration file, this means specifying the SQL dialect. For example, Oracle will have dialect as “org.hibernate.dialect.OracleDialect”. 
+
+Hibernate Logging by Log4j using XML file
+Logging is a process of maintaining a log of the activities. From hibernate 4.0, we can use the hibernate logging via different options mainly classified as properties file and xml file. In this section, we will see the use of log4j.xml file for logging in the hibernate application. 
+There are two ways of using the log4j using xml file which are given below
+1.	Load the required jar files – By loading the self4j.jar and log4j.jar file, we can use logging in hibernate. 
+2.	Create log4j.xml file – check the example for creating the log4j.xml file parallel to the configuration file in the hibernate. 
+We can also enable logging in hibernate using the log4j.properties file. For this also, we need to load the required jar file and then create a log4j.properties file. check the example. 
+
+Inheritance Mapping
+Inheritance Mapping 
+Inheritance mapping is about mapping the classes under the inheritance hierarchy to the table(s) of the database. There are three inheritance mapping strategies which are described in detail below. 
+
+Table per Hierarchy using XML file
+In this mapping, the classes in the inheritance hierarchy are mapped to just one table. We have an extra column which is known as the discriminator column is created in the table. In the mapping XML file, we have mapped the parent class as the table and discriminator table is also defined. We also define the discriminator value for the sub classes to differentiate between the parent and child classes. In the nutshell, we have created a table where the parent class and all the child class has their properties as column and an additional column is made for discriminating between parent and child class. Check the example. 
+Table per Hierarchy using the annotation 
+In this mapping, the concept is same as all the classes are mapped into a single table. But here we make use of annotation and we do not have to make mapping file. We just need to write few lines in the configuration file. Check the example. 
+
+Table per concrete using the XML file
+In this mapping, the tables created will be the same as the number of classes in the inheritance hierarchy. These tables do not have any relationship between them. In the mapping file, <union-subclass> is the tag used to signify the sub class. This tag is used to add column of a parent table. In other words, it works in union. In the example, the id and name column of the parent table are added in each child table. Check the example in detail. 
+
+Table per concrete using the annotation
+In this mapping, the concept is same as creating the same number of table as the class and using the <union-subclass>tag signifying the sub classes. However, here we will use annotation @attribute override. We do not create the mapping file. Check the example for better understanding. 
+
+Table per Subclass using the XML file
+In this mapping, the table created will be same as the number of the classes in the inheritance hierarchy but the sub class will be related with the parent class with the help of primary key and foreign key. Here, we make use of <joined-subclass> tag. In the example, hb2ddl.auto is enabled which creates the tables automatically. We also use <key> sub-element of the <joined-subclass> element. 
+
+Table per Subclass using annotation
+The concept is same. However, we use @PrimaryKeyJoinColumn annotation. We do not use the mapping file here. Check example for detail. 
+
+Collection Mapping in Hibernate
+So far, we have seen that the classes hold the primitive data types which become the column of the table that we create. Now, what if the class has a collection variable? A class can have a collection variable. We have to map the collections variable in the class. A class can have List, Set, Map as the collection. In the coming sections, we will check the different mapping options of different collections. 
+
+Mapping List Collection 
+If the persistent class has List collection then we can map the list using the list element in the mapping file or by annotation. List is an indexed collection. We have sub-elements for the list element as key, index and element. The attribute for all the sub-elements is column. In the example, it is same as the normal case except we need some special mapping for the list collection. Check the example in detail. 
+
+Mapping List with One to many relationship
+If persistent class has a list which contains the object of the other class then this means that the list (a column) in the first class (first table) will have multiple objects (values) of the second class. So, this shows that the mapping has one to many relationships. Also, when we have one to many relationship mapping then we have replace the <element> with <one to many> in the mapping file. Try the example for better understanding. 
+
+OTM annotation 
+The entire concept is same as the previous point but only we use @OneToMany annotation along with many other annotations. So, we do not need to write the mapping file. 
+
+Mapping through Bag in Collection Mapping 
+If our persistent class has List object then we can map it through <list> element. Though, we have another option. We can use bag element as well. By using it, we are not supposed to write the sub-element index inside the <bag> element. This is the only difference else it is same as the list element. Try example for better understanding. 
+
+Mapping through Bag with one to many relationship
+This is same as the mapping done through list element in one to many relationship only the index sub-element is not used. Try example for better understanding. 
+
+Mapping Set 
+The persistent class can also have set object. Set does not have index and cannot contain the duplicate value as well. So, choose accordingly. The mapping is same as the mapping of the list except that we use <set> element and it does not have the index element.
+
+Mapping Set with One to Many relationship
+The persistent class can have the set which contain the object of the other class then it can also form the one to many relationship. In this case, it is mapped the same way as the list is mapped. The element tag gets replaced by the one to many tag. Check the example for better understanding. 
+
+Mapping Map
+The persistent class can also contain the map object. Maps are also like list which have the index. It contains the pair of key and value. For its mapping, we use the map element. The map tag has three sub-elements which are key, index and element. Column is the attribute for all the sub-element. Else the coding is same in case of set and list. 
+
+Mapping Map with Many to Many relationship 
+Persistent class can also have map which contain the object of the other class as the value. This will create a one to many relation with second table. Now, suppose if the second table do also have the same relation with the first table. This means the one to many relation is bi-directional which forms the many to many relation. How do we identify if the one to many relation is uni or bi directional? We can use set, bag map and other for many to many collection. The mapping is done in the same way as the mapping is usually done however the element used will be <many-to-many>. Check the example for better understanding. 
+
+Bidirectional 
+Lazy and Eager Collection fetching 
+Joins are the basics for the relational database as it allows the relation between to tables possible. Similarly, in hibernate we have mapping relationship like one to one, one to many, many to one and many to many. This means that one object is related with other object. Now, if one object is called then the objects related to it should be loaded or not? This is handled by fetching. If fetching is lazy, which is by default, then the associated object will not be loaded while if the fetching is eager then the associated object will be loaded and can be called. Try example for better understanding. 
+
+Component Mapping
+In this mapping, HAS-A relationship will be seen between the objects. In component mapping we will map the dependent object as a component with the objects (generally the primitive type but still called as objects) on which it depends. In the example, first class contains the string city, country and pin code and second class contains the Address address. So, the address object depends on the string of the first class. Here, we will map the address object inside the component element. We will use string city, county and pin code as the property name. Else everything is same. Try the example for better understanding. 
+
+Association Mapping 
+Many to one and one to one mapping comes under this category. We will look about both in a bit detail. 
+One to One Mapping –
+In this kind of mapping, one object of the persistent class is associated with only one object  of the other persistent class. To apply this one to one relationship, the primary key value is placed in the primary key of the other table. 
+Example: http://www.java4s.com/hibernate/hibernate-one-to-one-mapping-example/
+In the example shown in the above link, we create two mapping file i.e. one for each persistence class. We just use the <One-To-One> element in the mapping file of the first persistent class. Else everything is same. Try the example for better understanding.
+Many to One Mapping –
+Firstly, it is not same as one to many mapping. In one to many mapping, the relation is from parent object to child object while many to one mapping is from child to parent class. For getting this mapping, we need to create the mapping file for each class. Then we have to mention the many to one element in the child class. Else everything is same. Try the example for better understanding.
+
+Hibernate Transaction Management
+The transaction is the unit of work> if one step fails then the whole transaction fails. Hibernate has transaction interface that defines the unit of work. The transaction is associated with session and instantiated by 	called session.beginTransaction(). It has got many methods through which a transaction is maintained. Try an example for better understanding.  
+
+Hibernate Query Language
+It is abbreviated as HQL. Like SQL, it does not work with the tables of the database but with the object of the persistent class which in term affect the table. The advantage of HQL is that the application code becomes independent of any specific database, supports polymorphic property and easy to learn by the java programmer.  
+Query Interface – Hibernate has a query interface. It has got the createquery() which returns the object for creating a query. The important methods of this interface are executeUpdate(), public List list(), public query setFirstResult(), public query setMaxResult(), public query setParameter() and public query setParameter(). Understand the methods and try the examples for better understanding. 
+HQL with Aggregate functions() – the aggregate functions are avg(), min(), max() etc. try some examples with these aggregate functions.   
+
+Hibernate Criteria Query Language 
+Hibernate Criteria query Language is used to fetch the data based on some criteria like employee name whose salary is greater than 50000. Its advantage is simple as the programmer can retrieve criteria based records. Also, We can place multiple criteria in a single query. 
+Hibernate has got criteria interface which has many method to specify criteria in a query. We can create an object of criteria by the createCriteria() method of the session interface.
+Restriction Class – Restriction class provides method that can be used as criterion. Check the methods of this class. 
+Order Class – The order class represent an order. We can place ascending and descending order of the record fetch. Try the examples.   
+
+Named Query
+The hibernate query is about giving a name to a query and then use the name for accessing the query. We can understand this as the alias names. We can name a query through annotation and in mapping file. 
+By annotation – We can use the @NamedQueries or @NamedQuery annotation to defined the name of multiple query or single query respectively. Try the example.
+
+Caching in Hibernate 
+Hibernate caching improves the performance of the application by pooling the object in the cache. There are two levels of cache in hibernate i.e. first level and second level. 
+First Level Cache – The session object hold the first level cache and it is enable by default. This level cache is not available to the entire application. An application can use many session objects. 
+Second level Cache – SessionFactory object holds the second level cache. The data stored in the second level cache will be available to the entire application. However, we need to enable it explicitly. It is used when we have multiple sessions. We can have different implementation of second level cache which are read-only, nonstrict-read-only, read-write and transactional. We add the details of the second level cache in the configuration file. Try the example for better understanding.
+
+Hibernate and Struts2
+We can use hibernate with struts 2 application. Try the example for better understanding. 
+
+Hibernate and Spring
+We can simply integrate the hibernate application with the spring application. While using hibernate with spring application, we do not create the configuration file but we give all the configuration details to the applicationContext.xml file. Try the example for better understanding.
+
+
+Implementations
+I have created this section for the sole purpose to speak about the implementation of what we have learned in this tutorial. We must use as many practical examples as we can related to the real world. 
+
+From codingBout:
+1.	JPA is specification of linkup between data in the database and java object while hibernate is just an implementation of JPA.
+2.	@suppressWarnings(“serial”) – This annotation is used when we do not compiler to show errors/warning related to serialization. Check for more: http://stackoverflow.com/questions/4749207/suppresswarningsserial
+3.	@Id annotation shows that the specified variable is primary key of the entity. 
+4.	@GenerateValue shows that the specified variable is incrementally generated. 
+5.	Why serializable interface is implemented in model class?  
+6.	@Repository annotation is used with the class that is implementing the DAO interface. 
