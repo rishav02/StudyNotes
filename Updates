@@ -267,6 +267,9 @@ CBSI telephonic interview
 5. What is overhiding? 
 When child class writes the same method as a static method in parent class then this is called as overhiding. No error is received. 
 
+6. Difference in get and load method of hibernate?
+
+
 *************************************************************************************************************************************
 Java study
 Topics need to be revised:
@@ -296,5 +299,33 @@ Add implementation index 1 to downcasting in java study.
 **************************************************************************************************************************************
 JavaInterview Question File
 source1: 52, 123, 129, how to synchronize a collection like list, Source2: 24, 43, 51, 52, 92; Source3: 1, 7, 9, 11; Source4: what is the use of system class; Source5: Why String is popular as hashmap key?; Source6: 1(java related feature), What is unsupportedModifictaionexception, different view for Map(values, entryset and keyset), Source 7: 10. What is context switching, 11, 14, 15, 22, 23, 25; source 8: 
+**************************************************************************************************************************************
+SQL study File
+1. SET Operators, 
+2. Difference between union and union all,
+3. Temp table concept 
+4. Alter table (what all comes under it and check syntax too). 
+5. check With, like, top Clauses
+6. Check order by random and order by limit, how to get limited records in a select query.  
+7. Important keyword of slect
+8. Insert in one row, insert in multiple column, insert in from other table, insert in multiple rows, insert in multiple rows from other table.
+9. Update and update using join.
+10. SQL delete duplicate rows. We will use with clause and partition to do so. 
+11. Difference in Intersect and inner join. Check all kind of joins with example. 
+12. Check all 7 types of key with book table example and 4 types of integrities. 
+13. Check the example of 6 sql constraints. 
+14. Sub quries and how it is used in select, insert, update and delete. Check corelated and non-corelated queries. How exactly corelated query runs?
+15. Check view, materilized view and inline view. Purpose (all three reasons) and advantage of each. Disadvantages.
+16. Index. Do and dont, types. 
+17. sequence and like operator
+18. Data Control language: Grant, revoke, role, privilage. Check syntax as well. 
+19. Transaction control language: ACID Properties, Set transaction, Commit, Rollback and save.
+20. Stored procedure, syntax, advantages. Comparison with views. 
+21. Trigger (check in a little depth next time)
+22. Complete topics after triggers. 
+***************************************************************************************************************************************
+Hibernate Study file
+The difference between load and get method. These methods are there to returnt the persisted (saved in database) object of a given id. However, when we call load the it does not return the real object but return thw proxy for th real object however get gets use the real persisted object. Also, load return objectNotFoundException if object not found while get gives null if object not found. 
 
+The difference between persist and save method. Both are there to add an object in the database. Firstly, both works the same with persistent object but the difference comes in case of transient (which is not yet saved in db) object. Persist does not execute an insert statement outside the boudary of transaction while save method does that. Persist object not necessary that immediately persist the transient object while save will to it immediately.  
 hymn of weekend, perfect ed shareen, 
