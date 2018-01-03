@@ -1,0 +1,1550 @@
+Source: http://www.tutorialspoint.com/sql/sql_interview_questions.htm
+What is the difference between SQL and MySQL or SQL Server?What is the difference between SQL and PL/SQL?What are various DDL commands in SQL? Give brief description of their purposes.What are various DML commands in SQL? Give brief description of their purposes.What are various DCL commands in SQL? Give brief description of their purposes.Can you sort a column using a column alias?Is a NULL value same as zero or a blank space? If not then what is the difference?Say True or False. Give explanation if False.
+If a column value taking part in an arithmetic expression is NULL, then the result obtained would be NULLM.
+If a table contains duplicate rows, does a query result display the duplicate values by default? How can you eliminate duplicate rows from a query result?What is the purpose of the condition operators BETWEEN and IN?How do you search for a value in a database table when you don’t have the exact value to search for?What is the default ordering of data using the ORDER BY clause? How could it be changed?What are the specific uses of SQL functions?What are the case manipulation functions of SQL?Which function returns the remainder in a division operation?What is the purpose of the NVL function?What is the difference between the NVL and the NVL2 functions?What is the use of the NULLIF function?Discuss the syntax and use of the COALESCE function?Which expressions or functions allow you to implement conditional processing in a SQL statement?You want to display a result query from joining two tables with 20 and 10 rows respectively. Erroneously you forget to write the WHERE clause. What would be the result?What is the difference between cross joins and natural joins?What is the purpose of the group functions in SQL? Give some examples of group functions.Say True or False. Give explanation if False.
+By default the group functions consider only distinct values in the set.
+Say True or False. Give explanation if False.
+The DISTINCT keyword allows a function consider only non-duplicate values.
+Say True or False. Give explanation if False.
+All group functions ignore null values.
+Say True or False. Give explanation if False.
+COUNT(*) returns the number of columns in a table.
+What’s wrong in the following query?
+SELECT subject_code, count(name)  
+FROM students;
+What’s wrong in the following query?
+   SELECT subject_code, AVG (marks)
+   FROM students
+   WHERE AVG(marks) > 75
+   GROUP BY subject_code;
+Say True or False. Give explanation if False.
+Group functions cannot be nested.
+What do you understand by a subquery? When is it used?Say True or False. Give explanation if False.
+A single row subquery returns only one row from the outer SELECT statement
+Say True or False. Give explanation if False.
+A multiple row subquery returns more than one row from the inner SELECT statement.
+Say True or False. Give explanation if False.
+Multiple column subqueries return more than one column from the inner SELECT statement.
+What’s wrong in the following query?
+   SELECT student_code, name
+   FROM students
+   WHERE marks = 
+               (SELECT MAX(marks)
+                  FROM students
+                  GROUP BY subject_code);
+What are the various multiple row comparison operators in SQL?What is the pupose of DML statements in SQL?Which statement is used to add a new row in a database table?Say True or False. Give explanation if False.
+While inserting new rows in a table you must list values in the default order of the columns.
+How do you insert null values in a column while inserting data?Say True or False. Give explanation if False.
+INSERT statement does not allow copying rows from one table to another.
+How do you copy rows from one table to another?What happens if you omit the WHERE clause in the UPDATE statement?Can you modify the rows in a table based on values from another table? Explain.Say True or False. Give explanation if False.
+The DELETE statement is used to delete a table from the database.
+What happens if you omit the WHERE clause in a delete statement?Can you remove rows from a table based on values from another table? Explain.Say True or False. Give explanation if False.
+Attempting to delete a record with a value attached to an integrity constraint, returns an error.
+Say True or False. Give explanation if False.
+You can use a subquery in an INSERT statement.
+What is the purpose of the MERGE statement in SQL?Say True or False. Give explanation if False.
+A DDL statement or a DCL statement is automatically committed.
+What is the difference between VARCHAR2 AND CHAR datatypes?Say True or False. Give explanation if False.
+A DROP TABLE statement can be rolled back.
+Which SQL statement is used to add, modify or drop columns in a database table?What is a view? Why should you use a view?Say True or False. Give explanation if False.
+A view doesn’t have data of its own.
+
+
+Source: http://www.javatpoint.com/sql-interview-questions
+1) What is SQL?
+SQL stands for structured query language. It is a database language used for database creation, deletion, fetching rows and modifying rows etc. sometimes it is pronounced as se-qwell.
+________________________________________
+2) When SQL appeared?
+It appeared in 1974.
+________________________________________
+3) What are the usages of SQL?
+o	To execute queries against a database
+o	To retrieve data from a database
+o	To inserts records in a database
+o	To updates records in a database
+o	To delete records from a database
+o	To create new databases
+o	To create new tables in a database
+o	To create views in a database
+________________________________________
+4) Does SQL support programming? AAA
+No, SQL doesn't have loop or Conditional statement. It is used like commanding language to access databases.
+Not Sure about programming but we can have IF ELSE in Sql. Syntax: If(query as if condition)query that needs to executed ELSE IF(query as else if condition) query that needs to b executed when else if condition is true. 
+________________________________________
+5) What are the subsets of SQL?RRR
+1.	Data definition language (DDL)
+2.	Data manipulation language (DML)
+3.	Data control language (DCL)
+________________________________________
+6) What is data definition language?RRR
+Data definition language(DDL) allows you to CREATE, ALTER and DELETE database objects such as schema, tables, view, sequence etc.
+________________________________________
+7) What is data manipulation language?
+Data manipulation language makes user able to access and manipulate data. It is used to perform following operations.
+o	Insert data into database
+o	Retrieve data from the database
+o	Update data in the database
+o	Delete data from the database
+________________________________________
+8) What is data control language?
+Data control language allows you to control access to the database. It includes two commands GRANT and REVOKE.
+GRANT: to grant specific user to perform specific task.
+REVOKE: to cancel previously denied or granted permissions.
+________________________________________
+9) What are the type of operators available in SQL?RRR
+1.	Arithmetic operators
+2.	Logical operators
+3.	Comparison operator
+________________________________________
+10) What is the difference between clustered and non clustered index in SQL?AAA
+There are mainly two type of indexes in SQL, Clustered index and non clustered index. The differences between these two indexes is very important from SQL performance perspective.
+1) One table can have only one clustered index but it can have many non clustered index. (approximately 250).
+2) clustered index determines how data is stored physically in table. Actually clustered index stores data in cluster, related data is stored together so it makes simple to retrieve data.
+3) reading from a clustered index is much faster than reading from non clustered index from the same table.
+4) clustered index sort and store data rows in the table or view based on their key value, while non cluster have a structure separate from the data row.
+Index: indexes are used to make search faster. But the problem is how? Without indexes, all the rows will be scanned if a certain string is searched in the entire details. But when indexes are used in then the number of rows scanned gets very less. Remember that an index is an data structure like hash table. Hash table are used by many databases for implementing indexes.
+
+Clustered Index
+•	Only one per table
+•	Faster to read than non clustered as data is physically stored in index order
+Non Clustered Index
+•	Can be used many times per table
+•	Quicker for insert and update operations than a clustered index
+Both types of index will improve performance when select data with fields that use the index but will slow down update and insert operations.
+Because of the slower insert and update clustered indexes should be set on a field that is normally incremental ie Id or Timestamp.
+SQL Server will normally only use an index if its selectivity is above 95%.
+
+________________________________________
+11) What is the SQL query to display current date?RRR
+There is a built in function in SQL called GetDate() which is used to return current timestamp.
+________________________________________
+12) Which types of join is used in SQL widely?RRR
+The knowledge of JOIN is very necessary for an interviewee. Mostly used join is INNER JOIN and (left/right) OUTER JOIN.
+________________________________________
+13) What is "TRIGGER" in SQL?RRR
+Trigger allows you to execute a batch of SQL code when an insert, update or delete command is executed against a specific table.
+Actually triggers are special type of stored procedures that are defined to execute automatically in place or after data modifications.
+________________________________________
+14) What is self join and what is the requirement of self join?RRR
+Self join is often very useful to convert a hierarchical structure to a flat structure. It is used to join a table to itself as like if that is the second table.
+________________________________________
+15) What are set operators in SQL?RRR
+Union, intersect or minus operators are called set operators.
+________________________________________
+16) What is a constraint? Tell me about its various levels.RRR
+Constraints are representators of a column to enforce data entity and consistency. There are two levels :
+1.	column level constraint
+2.	table level constraint
+________________________________________
+17) Write an SQL query to find names of employee start with 'A'?RRR
+1.	SELECT * FROM Employees WHERE EmpName like 'A%'  
+________________________________________
+18) Write an SQL query to get third maximum salary of an employee from a table named employee_table.
+1.	SELECT TOP 1 salary   
+2.	FROM (  
+3.	SELECT TOP 3 salary  
+4.	FROM employee_table  
+5.	ORDER BY salary DESC ) AS emp  
+6.	ORDER BY salary ASC;      
+________________________________________
+19) What is the difference between DELETE and TRUNCATE statement in SQL?
+The main differences between SQL DELETE and TRUNCATE statements are given below:
+No.	DELETE	TRUNCATE
+1)	DELETE is a DML command.	TRUNCATE is a DDL command.
+2)	We can use WHERE clause in DELETE command.	We cannot use WHERE clause with TRUNCATE
+3)	DELETE statement is used to delete a row from a table	TRUNCATE statement is used to remove all the rows from a table.
+4)	DELETE is slower than TRUNCATE statement.	TRUNCATE statement is faster than DELETE statement.
+5)	You can rollback data after using DELETE statement.	It is not possible to rollback after using TRUNCATE statement.
+________________________________________
+20) What is ACID property in database?
+ACID property is used to ensure that the data transactions are processed reliably in a database system.
+A single logical operation of a data is called transaction.
+ACID is an acronym for Atomicity, Consistency, Isolation, Durability.
+Atomicity: it requires that each transaction is all or nothing. It means if one part of the transaction fails, the entire transaction fails and the database state is left unchanged.
+Consistency: the consistency property ensure that the data must meet all validation rules. In simple words you can say that your transaction never leaves your database without completing its state.
+Isolation: this property ensure that the concurrent property of execution should not be met. The main goal of providing isolation is concurrency control.
+Durability: durability simply means that once a transaction has been committed, it will remain so, come what may even power loss, crashes or errors.
+
+Source: https://www.toptal.com/sql/interview-questions
+What will be the result of the query below? Explain your answer and provide a version that behaves correctly.RRR
+select case when null = null then 'Yup' else 'Nope' end as Result;
+View the answer →
+Given the following tables:
+sql> SELECT * FROM runners;
++----+--------------+
+| id | name         |
++----+--------------+
+|  1 | John Doe     |
+|  2 | Jane Doe     |
+|  3 | Alice Jones  |
+|  4 | Bobby Louis  |
+|  5 | Lisa Romero  |
++----+--------------+
+
+sql> SELECT * FROM races;
++----+----------------+-----------+
+| id | event          | winner_id |
++----+----------------+-----------+
+|  1 | 100 meter dash |  2        |
+|  2 | 500 meter dash |  3        |
+|  3 | cross-country  |  2        |
+|  4 | triathalon     |  NULL     |
++----+----------------+-----------+
+What will be the result of the query below?
+SELECT * FROM runners WHERE id NOT IN (SELECT winner_id FROM races)
+Explain your answer and also provide an alternative version of this query that will avoid the issue that it exposes.RRR
+View the answer →
+Given two tables created and populated as follows:
+CREATE TABLE dbo.envelope(id int, user_id int);
+CREATE TABLE dbo.docs(idnum int, pageseq int, doctext varchar(100));
+
+INSERT INTO dbo.envelope VALUES
+  (1,1),
+  (2,2),
+  (3,3);
+
+INSERT INTO dbo.docs(idnum,pageseq) VALUES
+  (1,5),
+  (2,6),
+  (null,0);
+What will the result be from the following query:RRR
+UPDATE docs SET doctext=pageseq FROM docs INNER JOIN envelope ON envelope.id=docs.idnum
+WHERE EXISTS (
+  SELECT 1 FROM dbo.docs
+  WHERE id=envelope.id
+);
+Explain your answer.RRR
+View the answer →
+What is wrong with this SQL query? Correct it so it executes properly.RRR
+SELECT Id, YEAR(BillingDate) AS BillingYear 
+FROM Invoices
+WHERE BillingYear >= 2010;
+View the answer →
+Given these contents of the Customers table:
+Id	Name			ReferredBy
+1	John Doe		NULL
+2	Jane Smith		NULL
+3	Anne Jenkins		2
+4	Eric Branford		NULL
+5	Pat Richards		1
+6	Alice Barnes		2
+Here is a query written to return the list of customers not referred by Jane Smith:
+SELECT Name FROM Customers WHERE ReferredBy <> 2;
+What will be the result of the query? Why? What would be a better way to write it?
+View the answer →
+Considering the database schema displayed in the SQLServer-style diagram below, write a SQL query to return a list of all the invoices. For each invoice, show the Invoice ID, the billing date, the customer’s name, and the name of the customer who referred that customer (if any). The list should be ordered by billing date.
+ 
+View the answer →
+Assume a schema of Emp ( Id, Name, DeptId ) , Dept ( Id, Name).
+If there are 10 records in the Emp table and 5 records in the Dept table, how many rows will be displayed in the result of the following SQL query:
+Select * From Emp, Dept
+Explain your answer.
+View the answer →
+Given a table SALARIES, such as the one below, that has m = male and f = femalevalues. Swap all f and m values (i.e., change all f values to m and vice versa) with a single update query and no intermediate temp table.
+Id  Name  Sex  Salary
+1   A     m    2500
+2   B     f    1500
+3   C     m    5500
+4   D     f    500
+View the answer →
+Given two tables created as follows
+create table test_a(id numeric);
+
+create table test_b(id numeric);
+
+insert into test_a(id) values
+  (10),
+  (20),
+  (30),
+  (40),
+  (50);
+
+insert into test_b(id) values
+  (10),
+  (30),
+  (50);
+Write a query to fetch values in table test_a that are and not in test_b without using the NOT keyword.
+View the answer →
+Given a table TBL with a field Nmbr that has rows with the following values:
+1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1
+Write a query to add 2 where Nmbr is 0 and add 3 where Nmbr is 1.
+View the answer →
+Write a SQL query to find the 10th highest employee salary from an Employee table. Explain your answer.
+(Note: You may assume that there are at least 10 records in the Employee table.)
+View the answer →
+Write a SQL query using UNION ALL (not UNION) that uses the WHERE clause to eliminate duplicates. Why might you want to do this?
+View the answer →
+Given the following tables:
+SELECT * FROM users;
+
+user_id  username
+1        John Doe                                                                                            
+2        Jane Don                                                                                            
+3        Alice Jones                                                                                         
+4        Lisa Romero
+
+SELECT * FROM training_details;
+
+user_training_id  user_id  training_id  training_date
+1                 1        1            "2015-08-02"
+2                 2        1            "2015-08-03"
+3                 3        2            "2015-08-02"
+4                 4        2            "2015-08-04"
+5                 2        2            "2015-08-03"
+6                 1        1            "2015-08-02"
+7                 3        2            "2015-08-04"
+8                 4        3            "2015-08-03"
+9                 1        4            "2015-08-03"
+10                3        1            "2015-08-02"
+11                4        2            "2015-08-04"
+12                3        2            "2015-08-02"
+13                1        1            "2015-08-02"
+14                4        3            "2015-08-03"
+Write a query to to get the list of users who took the a training lesson more than once in the same day, grouped by user and training lesson, each ordered from the most recent lesson date to oldest date.
+View the answer →
+What is an execution plan? When would you use it? How would you view the execution plan?RRR
+View the answer →
+List and explain each of the ACID properties that collectively guarantee that database transactions are processed reliably.
+View the answer →
+What is a key difference between Truncate and Delete?
+View the answer →
+Given a table dbo.users where the column user_id is a unique identifier, how can you efficiently select the first 100 odd user_id values from the table?
+(Assume the table contains well over 100 records with odd user_id values.)
+View the answer →
+How can you select all the even number records from a table? All the odd number records?
+View the answer →
+What are the NVL and the NVL2 functions in SQL? How do they differ?RRR
+View the answer →
+What is the difference between the RANK() and DENSE_RANK() functions? Provide an example.AAA
+View the answer →
+We first have to understand what is partitioning. When we have complex data then we can divide it into smaller unit through partitioning and small parts will be called as partitions. 
+Example: 
+We collected data on a daily basis from a set of 124 grocery stores. Each days data was completely distinct from every other days. We partitioned the data on the date. This allowed us to have faster searches because oracle can use partitioned indexes and quickly eliminate all of the non-relevant days. This also allows for much easier backup operations because you can work in just the new partitions. Also after 5 years of data we needed to get rid of an entire days data. You can "drop" or eliminate an entire partition at a time instead of deleting rows. So getting rid of old data was a snap.
+So... They are good for large sets of data and very good for improving performance in some cases.
+Rank function retriuns a rank for each row. The return type is bitint. The rank for some of the rows can be same. But then few number will be skipped in rank. DENSE rank is the function that also returns the rank within the partition of the table with without giving gap in the rank. 
+What is the difference between the WHERE and HAVING clauses?
+View the answer →
+* There is more to interviewing than tricky technical questions, so these are intended merely as a guide. Not every “A” candidate worth hiring will be able to answer them all, nor does answering them all guarantee an “A” candidate. At the end of the day, hiring remains an art, a science — and a lot of work.
+
+Source: http://a4academics.com/interview-questions/53-database-and-sql/411-sql-interview-questions-and-answers-database?showall=&start=1
+
+9. What is a database transaction?
+Database transaction takes database from one consistent state to another. At the end of the transaction the system must be in the prior state if the transaction fails or the status of the system should reflect the successful completion if the transaction goes through.
+10. What are properties of a transaction?
+Expect this SQL Interview Questions as a part of an any interview, irrespective of your experience. Properties of the transaction can be summarized as ACID Properties.
+1. Atomicity
+A transaction consists of many steps. When all the steps in a transaction get completed, it will get reflected in DB or if any step fails, all the transactions are rolled back.
+
+2. Consistency
+The database will move from one consistent state to another, if the transaction succeeds and remain in the original state, if the transaction fails.
+
+3. Isolation
+Every transaction should operate as if it is the only transaction in the system.
+
+4. Durability
+Once a transaction has completed successfully, the updated rows/records must be available for all other transactions on a permanent basis.
+ 
+11. What is a Database Lock ?AAA
+Database lock tells a transaction, if the data item in questions is currently being used by other transactions.
+A Database can be used by multiple users and thus can become corrupt due to concurrency. Thus, database has got the read and write lock concept where it is necessary to have lock to either read or write into a database.It is same as the concept of lock in multithreading in java.  
+12. What are the type of locks ?AAA
+1. Shared Lock
+When a shared lock is applied on data item, other transactions can only read the item, but can't write into it.
+
+2. Exclusive Lock
+When an exclusive lock is applied on data item, other transactions can't read or write into the data item.
+The database locks are of following types
+1.	Shared lock – When shared lock is placed on any object then it allows reading of the object by multiple programs while the we cannot change the object if a shared lock is placed by some other program. More than one program can place shared lock on the object. 
+2.	Exclusive lock – exclusive lock reserves an object to be used by just one program which has placed the lock. Multiple programs cannot place exclusive lock on the same object at a time. 
+3.	Promotable/update lock – Promotable lock are placed on the object that already has shared locks. When the program want to change the object, then the promotable lock gets changed into exclusive lock. We cannot place a promotable lock on any program that already has promotable or exclusive lock. Also, we must drop the shared lock before updating the promotable lock to exclusive lock.  
+Database Normalization Interview Questions
+13. What are the different type of normalization?RRR
+In database design, we start with one single table, with all possible columns. A lot of redundant data would be present since it’s a single table. The process of removing the redundant data, by splitting up the table in a well defined fashion is called normalization.
+
+1. First Normal Form (1NF)
+A relation is said to be in first normal form if and only if all underlying domains contain atomic values only. After 1NF, we can still have redundant data.
+
+2. Second Normal Form (2NF)
+A relation is said to be in 2NF if and only if it is in 1NF and every non key attribute is fully dependent on the primary key. After 2NF, we can still have redundant data.
+
+3. Third Normal Form (3NF)
+A relation is said to be in 3NF, if and only if it is in 2NF and every non key attribute is non-transitively dependent on the primary key.
+Database Keys and Constraints SQL Interview Questions
+14. What is a primary key?
+A primary key is a column whose values uniquely identify every row in a table. Primary key values can never be reused. If a row is deleted from the table, its primary key may not be assigned to any new rows in the future. To define a field as primary key, following conditions had to be met :
+
+1. No two rows can have the same primary key value.
+2. Every row must have a primary key value.
+3. The primary key field cannot be null.
+4. Value in a primary key column can never be modified or updated, if any foreign key refers to that primary key.
+15. What is a Composite Key ?
+A Composite primary key is a type of candidate key, which represents a set of columns whose values uniquely identify every row in a table.
+
+For example -  if "Employee_ID" and "Employee Name" in a table is combined to uniquely identify a row its called a Composite Key.
+ 
+16. What is a Composite Primary Key ?
+A Composite primary key is a set of columns whose values uniquely identify every row in a table. What it means is that, a table which contains composite primary key will be indexed based on the columns specified in the primary key. This key will be referred in Foreign Key tables.
+
+For example - if the combined effect of columns, "Employee_ID" and "Employee Name" in a table is required to uniquely identify a row, its called a Composite Primary Key. In this case, both the columns will be represented as primary key.
+ 
+17. What is a Foreign Key ?
+When a "one" table's primary key field is added to a related "many" table in order to create the common field which relates the two tables, it is called a foreign key in the "many" table.
+
+For example, the salary of an employee is stored in salary table. The relation is established via foreign key column “Employee_ID_Ref” which refers “Employee_ID” field in the Employee table.
+18. What is a Unique Key ?
+Unique key is same as primary with the difference being the existence of null. Unique key field allows one value as NULL value.
+SQL Insert, Update and Delete Commands Interview Questions
+ 19. Define SQL Insert Statement ?RRR
+Check: 1. Insert one row, 2. Insert one row from other table, 3. Insert multiple rows
+SQL INSERT statement is used to add rows to a table. For a full row insert, SQL Query should start with “insert into “ statement followed by table name and values command, followed by the values that need to be inserted into the table. The insert can be used in several ways:
+
+1. To insert a single complete row.
+2. To insert a single partial row.
+
+20. Define SQL Update Statement ?RRR
+Check: 1. Update one/multiple columns, 2. Update one/multiple column with select statement in where condition 3. Update one/multiple column from other table data, 4. Update date.
+SQL Update is used to update data in a row or set of rows specified in the filter condition.
+
+The basic format of an SQL UPDATE statement is, Update command followed by table to be updated and SET command followed by column names and their new values followed by filter condition that determines which rows should be updated.
+
+21. Define SQL Delete Statement ?RRR
+1. Delete all rows and few rows, delete duplicate rows, Delete database, delete view, delete join
+SQL Delete is used to delete a row or set of rows specified in the filter condition.
+
+The basic format of an SQL DELETE statement is, DELETE FROM command followed by table name followed by filter condition that determines which rows should be updated.
+Page 3 of 5
+22. What are wild cards used in database for Pattern Matching ?RRR
+SQL Like operator is used for pattern matching. SQL 'Like' command takes more time to process. So before using "like" operator, consider suggestions given below on when and where to use wild card search. 
+
+1) Don't overuse wild cards. If another search operator will do, use it instead. 
+2) When you do use wild cards, try not to use them at the beginning of the search pattern, unless absolutely necessary. Search patterns that begin with wild cards are the slowest to process. 
+3) Pay careful attention to the placement of the wild card symbols. If they are misplaced, you might not return the data you intended.
+SQL Joins Interview Questions and answers
+ 23. Define Join and explain different type of joins?
+Another frequently asked SQL Interview Questions on Joins. In order to avoid data duplication, data is stored in related tables. Join keyword is used to fetch data from related tables. "Join" return rows when there is at least one match in both table. Type of joins are
+
+Right Join 
+Return all rows from the right table, even if there are no matches in the left table.
+
+Outer Join
+
+Left Join
+Return all rows from the left table, even if there are no matches in the right table.
+
+Full Join
+Return rows when there is a match in one of the tables.
+ 
+24. What is Self-Join?
+Self-join is query used to join a table to itself. Aliases should be used for the same table comparison.
+
+25. What is Cross Join?
+Cross Join will return all records where each row from the first table is combined with each row from the second table.
+Database Views Interview Questions
+ 26. What is a view?RRR
+The views are virtual tables. Unlike tables that contain data, views simply contain queries that dynamically retrieve data when used.
+
+27. What is a materialized view?
+Materialized views are also a view but are disk based. Materialized views get updates on specific duration, base upon the interval specified in the query definition. We can index materialized view.
+
+28. What are the advantages and disadvantages of views in a database?
+Advantages:
+1. Views don't store data in a physical location.
+2. The view can be used to hide some of the columns from the table.
+3. Views can provide Access Restriction, since data insertion, update and deletion is not possible with the view.
+
+Disadvantages:
+1. When a table is dropped, associated view become irrelevant.
+2. Since the view is created when a query requesting data from view is triggered, its a bit slow.
+3. When views are created for large tables, it occupies more memory.
+29. What is a stored procedure?
+Stored Procedure is a function which contains a collection of SQL Queries. The procedure can take inputs , process them and send back output.
+30. What are the advantages of a stored procedure?
+Stored Procedures are precomplied and stored in the database. This enables the database to execute the queries much faster. Since many queries can be included in a stored procedure, round trip time to execute multiple queries from source code to database and back is avoided.
+31. What is a trigger?
+Database triggers are sets of commands that get executed when an event(Before Insert, After Insert, On Update, On delete of a row) occurs on a table, views.
+
+32. Explain the difference between DELETE , TRUNCATE and DROP commands?
+Once delete operation is performed, Commit and Rollback can be performed to retrieve data.
+
+Once the truncate statement is executed, Commit and Rollback statement cannot be performed. Where condition can be used along with delete statement but it can't be used with truncate statement.
+
+Drop command is used to drop the table or keys like primary,foreign from a table.
+
+33. What is the difference between Cluster and Non cluster Index?
+A clustered index reorders the way records in the table are physically stored. There can be only one clustered index per table. It makes data retrieval faster.
+
+A non clustered index does not alter the way it was stored but creates a completely separate object within the table. As a result insert and update command will be faster.
+
+34. What is Union, minus and Interact commands?RRR
+MINUS operator is used to return rows from the first query but not from the second query. INTERSECT operator is used to return rows returned by both the queries.
+
+Source: http://www.programmerinterview.com/index.php/database-sql/advanced-sql-interview-questions-and-answers/
+Advanced SQL Interview Questions and Answers
+Here are some complex SQL interview problems that are for people who are looking for more advanced and challenging questions, along with the answers and complete explanations. Try to figure out the answer to the questions yourself before reading the answers.
+Suppose we have 2 tables called Orders and Salesperson shown below:
+Salesperson	Orders
+ID	Name	Age	Salary
+1	Abe	61	140000
+2	Bob	34	44000
+5	Chris	34	40000
+7	Dan	41	52000
+8	Ken	57	115000
+11	Joe	38	38000
+	Number	order_date	cust_id	salesperson_id	Amount
+10	8/2/96	4	2	540
+20	1/30/99	4	8	1800
+30	7/14/95	9	1	460
+40	1/29/98	7	2	2400
+50	2/3/98	6	7	600
+60	3/2/98	6	7	720
+70	5/6/98	9	7	150
+
+
+Now suppose that we want to write SQL that must conform to the SQL standard.
+
+We want to retrieve the names of all salespeople that have more than 1 order from the tables above. You can assume that each salesperson only has one ID.
+
+If that is the case, then what (if anything) is wrong with the following SQL?:
+SELECT Name
+FROM Orders, Salesperson
+WHERE Orders.salesperson_id = Salesperson.ID
+GROUP BY salesperson_id
+HAVING COUNT( salesperson_id ) >1
+The answer and explanation to advanced SQL question 1
+There is definitely something wrong with the SQL above, and it is probably something that most beginner SQL programmers may not notice. The problem is that the SQL Standard says that we can not select a column that is not part of the group by clause unless it is also contained within an aggregate function. If we try to run the SQL above in SQL Server, we would get an error that looks like this:
+Column 'Name' is invalid in the select list because it is 
+not contained in either an aggregate function or 
+the GROUP BY clause.
+
+
+
+You might be confused now, so let’s explain what that error means in plain English and through some simple examples. The most important thing you should take out of this discussion is understanding exactly why we get that error, and how to avoid it. There is a good reason for the error – read on to understand why.
+You can see in the bad SQL above that the “Name” column is clearlynot also a part of the group by statement, nor is it contained within an aggregate function (like SUM, MAX, etc).
+As the error above suggests, we can fix the error by either wrapping the Name column inside an aggregate function or adding it to the Group By clause.
+So if we want to write SQL that complies with the standard, then we could write something like this by adding the Name column to the Group By:
+SELECT Name
+FROM Orders, Salesperson
+WHERE Orders.salesperson_id = Salesperson.ID
+GROUP BY salesperson_id, Name                  
+-- we added the name column to the group by, and now it works!
+HAVING COUNT( salesperson_id ) >1
+The SQL above will run just fine without giving any error.
+We could also fix the problem by putting the Name column in any aggregate function, and then simply make that a part of our select statement. So, we could just write this SQL instead, and it would be perfectly legal according to the SQL standard. We chose to use the MAX aggregate function, but any other aggregate would work just fine as well:
+SELECT MAX(Name) --put name in an aggregate function
+FROM Orders, Salesperson
+WHERE Orders.salesperson_id = Salesperson.ID
+GROUP BY salesperson_id              
+HAVING COUNT( salesperson_id ) >1
+Adding the Name column to the group by, or wrapping the Name column in an aggregate will certainly fix the error – but it’s very important to note that both of those things will change the data that is returned to a state that you may not want.
+Why does the selected column have to be in the group by clause or part of an aggregate function?
+
+
+
+So, now you understand how to fix the error – but do you understand why it is a problem in the first place? Well, you should – because that is the most important thing to understand! So, let’s explain some more about why SQL gives that error shown above .
+First off, let’s talk a little bit more about aggregate functions. You probably know what aggregate functions in SQL are – we used one in the example above. In case you forgot, aggregate functions are used to perform a mathematical function on the values inside a given column, which is passed into the aggregate function. Here are some of the commonly used aggregate functions:
+AVG() - Returns the average value
+COUNT() - Returns the number of rows
+FIRST() - Returns the first value
+LAST() - Returns the last value
+MAX() - Returns the largest value
+MIN() - Returns the smallest value
+SUM() - Returns the sum
+To illustrate why the SQL standard says that a selected column has to be in the group by clause or part of an aggregate function, let’s use another example. Suppose we have some tables called Starbucks_Stores and Starbucks_Employees. In case you don’t already know, Starbucks is a popular coffee shop/cafe in the USA:
+Starbucks_Employees	Starbucks_Stores
+ID	Name	Age	HourlyRate	StoreID
+1	Abe	61	14	10
+2	Bob	34	10	30
+5	Chris	34	9	40
+7	Dan	41	11	50
+8	Ken	57	11	60
+11	Joe	38	13	70
+	store_id	city
+10	San Francisco
+20	Los Angeles
+30	San Francisco
+40	Los Angeles
+50	San Francisco
+60	New York
+70	San Francisco
+
+Now, given the tables above let’s say that we write some SQL like this:
+SELECT count(*) as num_employees, HourlyRate
+FROM Starbucks_Employees JOIN Starbucks_Stores
+ON Starbucks_Employees.StoreID = Starbucks_Stores.store_id
+GROUP BY city
+It looks like the SQL above would just return the number of Starbucks employees in each city, along with the HourlyRate – because it will group the employees based on whatever city they work in (thanks to the “group by city” statement).
+Subscribe to our newsletter for more free interview questions.
+The problem with selecting a non-aggregate column that is not in the group by
+But the real question here is what exactly would be returned for the HourlyRate in the SQL above? Would it return every employee’s hourly rate separated by commas? Since we group by city, will it return the highest hourly rate for each city? Will it return the hourly rate as a distinct list, so those 2 guys making 11 dollars an hour will have the 11 returned only once?
+The problem here is that we do not know what will be returned because we are notspecific enough with what we are asking for in the SQL! If what we are asking for is not specific enough, then the SQL processor will not know what to return.
+This is why almost all database implementations return an error when the SQL above is run (with the notable exception of MySQL) – and this is why the SQL does not conform to the Standard. In SQL Server running the SQL above will return the same error that we showed earlier.
+Let’s explain even further in case the problem with that SQL is not crystal clear. The order of operations in which things will happen with the SQL above is:
+1.  The 2 tables are joined on the condition that the 
+Starbucks_Employees.StoreID column value is equal to the
+ Starbucks_Stores.store_id column values.
+
+2.  Groups are then created for each city - which means that 
+each distinct city will have it's own "group".  So, there will 
+be a total of 3 groups one each for San Francisco, New York, 
+and Los Angeles.
+
+3.  The data we are interested in is selected from each group 
+that is created in step 2.
+Because we end up with different groups based on the city, when we select a count(*), that will find the total count of rows in each and every group. But, the problem is that when we select HourlyRate, there will be multiple values for the HourlyRate within each group. For example, for the group created by the city of San Francisco there will be 4 different values for the HourlyRate – 14, 10, 11, and 13.
+
+
+
+So the question is which value of the HourlyRate should be selected from each group? Well, it could be any one of those values – which is why that SQL results in an error. This is because what we are asking for is NOT specific enough – hopefully this is crystal clear now to you.
+If the same HourlyRate were part of an aggregate function like MAX then it would simply return the highest HourlyRate within each group. And that is why having an aggregate function would fix the SQL error – because only one value will be selected from any given group.
+So, this SQL is perfectly fine because we are more specific in what we ask for – but this SQL would only work for you if you actually want the highest HourlyRate for each city:
+SELECT count(*) as num_employees, MAX(HourlyRate)
+FROM Starbucks_Employees JOIN Starbucks_Stores
+ON Starbucks_Employees.StoreID = Starbucks_Stores.store_id
+GROUP BY city
+Fix the error by adding column to the group clause
+Another way to fix the error is to simply add the HourlyRate column to the group by clause. This also means that having the HourlyRate column wrapped in aggregate function is no longer necessary. So you could write some SQL like this and it would fix the error:
+SELECT count(*) as num_employees, HourlyRate
+FROM Starbucks_Employees JOIN Starbucks_Stores
+ON Starbucks_Employees.StoreID = Starbucks_Stores.store_id
+GROUP BY city, HourlyRate
+This would then create groups based on the unique combination of the values in the HourlyRate and City columns. This means that there will be a different group for each HourlyRate and City combination – so $11, San Francisco and $11, Los Angeles will be 2 different groups. If you need to read up more on this topic then you can go here: Group By With Multiple Columns
+With the SQL above, each group will only have one value for the HourlyRate, which also means that there will be no ambiguity or confusion when selecting the HourlyRate since there is only possible value to select. It is now very clear that one and only one HourlyRate value can be returned for each group.
+Adding the column to the group by clause fixes the error but will alter the data that is returned
+But, one very important thing to note is that even though adding the column to the group by will fix the error, it will also change the groups that are created. This means that the data returned will be completely different from what was returned before. So, the count(*) function will no longer return the count of employees in a given city, and will instead return the number of rows in each group created by the unique combination of the HourlyRate and city columns.
+MySQL – selecting non-aggregate columns not in the group by
+One very important thing that you should know is that MySQL actually allows you to have non-aggregated columns in the select list even if they are not a part of the group by clause (a quick side note: a non-aggregated column is simply a column that is notwrapped within an aggregate function). What this means is that you will not receive an error if you try to run any of the “bad” SQL above in MySQL. The reason it is allowed in MySQL is because MySQL assumes that you know what you are doing – and it does actually make sense in some scenarios. For instance, let’s refer back to the SQL that we started with:
+SELECT Name
+FROM Orders, Salesperson
+WHERE Orders.salesperson_id = Salesperson.ID
+GROUP BY salesperson_id
+HAVING COUNT( salesperson_id ) >1
+The reason the original SQL code (presented above) works just fine in MySQL is because there is a 1 to 1 mapping of salesperson name to ID – meaning that for every unique salesperson ID there is only one possible name. Another way of saying that is that each salesperson can only have one name. So when we create groups (which is done in the “GROUP BY salesperson_id”) based on the salesperson ID, each group will only have one and only one name.
+This SQL will also run just fine in MySQL without returning an error:
+SELECT count(*) as num_employees, HourlyRate
+FROM Starbucks_Employees JOIN Starbucks_Stores
+ON Starbucks_Employees.StoreID = Starbucks_Stores.store_id
+GROUP BY city
+But, even though the code above will not return an error, the HourlyRate that is returned by MySQL will be some arbitrary (random) value within each group. This is because when we create each group based on the city, each group can have different values for the HourlyRate.
+In other words, there is no one to one mapping between the HourlyRate and the city like we had before with the salesperson ID and the name. So, because we are not being specific as to which HourlyRate we want, MySQL will return an arbitrary value . For instance, in the group created by the city of San Francisco, MySQL could return the HourlyRate for any employee who works in San Francisco – whether it is 14, 10, 11, or 13 we don’t really know since it is arbitrary/random in MySQL.
+That concludes part 1 of our more difficult and complex SQL questions. Click on next to check out the next question that’s a part of our advanced SQL interview questions list.
+
+
+
+
+
+Source: http://career.guru99.com/top-50-sql-question-answers/
+1. What is DBMS?
+A Database Management System (DBMS) is a program that controls creation, maintenance and use of a database. DBMS can be termed as File Manager that manages data in a database rather than saving it in file systems.
+2. What is RDBMS?
+RDBMS stands for Relational Database Management System. RDBMS store the data into the collection of tables, which is related by common fields between the columns of the table. It also provides relational operators to manipulate the data stored into the tables.
+Example: SQL Server.
+ 3. What is SQL?
+SQL stands for Structured Query Language , and it is used to communicate with the Database. This is a standard language used to perform tasks such as retrieval, updation, insertion and deletion of data from a database.
+Standard SQL Commands are Select.
+4. What is a Database?
+Database is nothing but an organized form of data for easy access, storing, retrieval and managing of data. This is also known as structured form of data which can be accessed in many ways.
+Example: School Management Database, Bank Management Database.
+ 5. What are tables and Fields?
+A table is a set of data that are organized in a model with Columns and Rows. Columns can be categorized as vertical, and Rows are horizontal. A table has specified number of column called fields but can have any number of rows which is called record.
+Example:.
+Table: Employee.
+Field: Emp ID, Emp Name, Date of Birth.
+Data: 201456, David, 11/15/1960.
+ 
+6. What is a primary key?
+A primary key is a combination of fields which uniquely specify a row. This is a special kind of unique key, and it has implicit NOT NULL constraint. It means, Primary key values cannot be NULL.
+7. What is a unique key?
+A Unique key constraint uniquely identified each record in the database. This provides uniqueness for the column or set of columns.
+A Primary key constraint has automatic unique constraint defined on it. But not, in the case of Unique Key.
+There can be many unique constraint defined per table, but only one Primary key constraint defined per table.
+ 8. What is a foreign key?
+A foreign key is one table which can be related to the primary key of another table. Relationship needs to be created between two tables by referencing foreign key with the primary key of another table.
+9. What is a join?
+This is a keyword used to query data from more tables based on the relationship between the fields of the tables. Keys play a major role when JOINs are used.
+ 10. What are the types of join and explain each?
+There are various types of join which can be used to retrieve data and it depends on the relationship between tables.
+Inner join.
+Inner join return rows when there is at least one match of rows between the tables.
+Right Join.
+Right join return rows which are common between the tables and all rows of Right hand side table. Simply, it returns all the rows from the right hand side table even though there are no matches in the left hand side table.
+Left Join.
+Left join return rows which are common between the tables and all rows of Left hand side table. Simply, it returns all the rows from Left hand side table even though there are no matches in the Right hand side table.
+Full Join.
+Full join return rows when there are matching rows in any one of the tables. This means, it returns all the rows from the left hand side table and all the rows from the right hand side table.
+11. What is normalization?
+Normalization is the process of minimizing redundancy and dependency by organizing fields and table of a database. The main aim of Normalization is to add, delete or modify field that can be made in a single table.
+ 12. What is Denormalization.RRR
+DeNormalization is a technique used to access the data from higher to lower normal forms of database. It is also process of introducing redundancy into a table by incorporating data from the related tables.
+13. What are all the different normalizations?
+The normal forms can be divided into 5 forms, and they are explained below -.
+First Normal Form (1NF):.
+This should remove all the duplicate columns from the table. Creation of tables for the related data and identification of unique columns.
+Second Normal Form (2NF):.
+Meeting all requirements of the first normal form. Placing the subsets of data in separate tables and Creation of relationships between the tables using primary keys.
+Third Normal Form (3NF):.
+This should meet all requirements of 2NF. Removing the columns which are not dependent on primary key constraints.
+Fourth Normal Form (3NF):.
+Meeting all the requirements of third normal form and it should not have multi- valued dependencies.
+14. What is a View?
+A view is a virtual table which consists of a subset of data contained in a table. Views are not virtually present, and it takes less space to store. View can have data of one or more tables combined, and it is depending on the relationship.
+15. What is an Index?
+An index is performance tuning method of allowing faster retrieval of records from the table. An index creates an entry for each value and it will be faster to retrieve data.
+ 16. What are all the different types of indexes?
+There are three types of indexes -.
+Unique Index.
+This indexing does not allow the field to have duplicate values if the column is unique indexed. Unique index can be applied automatically when primary key is defined.
+Clustered Index.
+This type of index reorders the physical order of the table and search based on the key values. Each table can have only one clustered index.
+NonClustered Index.
+NonClustered Index does not alter the physical order of the table and maintains logical order of data. Each table can have 999 nonclustered indexes.
+17. What is a Cursor?RRR
+A database Cursor is a control which enables traversal over the rows or records in the table. This can be viewed as a pointer to one row in a set of rows. Cursor is very much useful for traversing such as retrieval, addition and removal of database records.
+ 18. What is a relationship and what are they?RRR
+Database Relationship is defined as the connection between the tables in a database. There are various data basing relationships, and they are as follows:.
+•	One to One Relationship.
+•	One to Many Relationship.
+•	Many to One Relationship.
+•	Self-Referencing Relationship.
+19. What is a query?
+A DB query is a code written in order to get the information back from the database. Query can be designed in such a way that it matched with our expectation of the result set. Simply, a question to the Database.
+ 20. What is subquery?
+A subquery is a query within another query. The outer query is called as main query, and inner query is called subquery. SubQuery is always executed first, and the result of subquery is passed on to the main query.
+21. What are the types of subquery?
+There are two types of subquery – Correlated and Non-Correlated.
+A correlated subquery cannot be considered as independent query, but it can refer the column in a table listed in the FROM the list of the main query.
+A Non-Correlated sub query can be considered as independent query and the output of subquery are substituted in the main query.
+ 22. What is a stored procedure?
+Stored Procedure is a function consists of many SQL statement to access the database system. Several SQL statements are consolidated into a stored procedure and execute them whenever and wherever required.
+
+
+23. What is a trigger?
+A DB trigger is a code or programs that automatically execute with response to some event on a table or view in a database. Mainly, trigger helps to maintain the integrity of the database.
+Example: When a new student is added to the student database, new records should be created in the related tables like Exam, Score and Attendance tables.
+24. What is the difference between DELETE and TRUNCATE commands?
+DELETE command is used to remove rows from the table, and WHERE clause can be used for conditional set of parameters. Commit and Rollback can be performed after delete statement.
+TRUNCATE removes all rows from the table. Truncate operation cannot be rolled back.
+25. What are local and global variables and their differences?RRR
+Local variables are the variables which can be used or exist inside the function. They are not known to the other functions and those variables cannot be referred or used. Variables can be created whenever that function is called.
+Global variables are the variables which can be used or exist throughout the program. Same variable declared in global cannot be used in functions. Global variables cannot be created whenever that function is called.
+ 26. What is a constraint?
+Constraint can be used to specify the limit on the data type of table. Constraint can be specified while creating or altering the table statement. Sample of constraint are.
+•	NOT NULL.
+•	CHECK.
+•	DEFAULT.
+•	UNIQUE.
+•	PRIMARY KEY.
+•	FOREIGN KEY.
+27. What is data Integrity?
+Data Integrity defines the accuracy and consistency of data stored in a database. It can also define integrity constraints to enforce business rules on the data when it is entered into the application or database.
+ 28. What is Auto Increment?RRR
+Auto increment keyword allows the user to create a unique number to be generated when a new record is inserted into the table. AUTO INCREMENT keyword can be used in Oracle and IDENTITY keyword can be used in SQL SERVER.
+Mostly this keyword can be used whenever PRIMARY KEY is used.
+ 29. What is the difference between Cluster and Non-Cluster Index?
+Clustered index is used for easy retrieval of data from the database by altering the way that the records are stored. Database sorts out rows by the column which is set to be clustered index.
+A nonclustered index does not alter the way it was stored but creates a complete separate object within the table. It point back to the original table rows after searching.
+30. What is Datawarehouse?RRR
+Datawarehouse is a central repository of data from multiple sources of information. Those data are consolidated, transformed and made available for the mining and online processing. Warehouse data have a subset of data called Data Marts.
+31. What is Self-Join?
+Self-join is set to be query used to compare to itself. This is used to compare values in a column with other values in the same column in the same table. ALIAS ES can be used for the same table comparison.
+ 32. What is Cross-Join?
+Cross join defines as Cartesian product where number of rows in the first table multiplied by number of rows in the second table. If suppose, WHERE clause is used in cross join then the query will work like an INNER JOIN.
+33. What is user defined functions?RRR
+User defined functions are the functions written to use that logic whenever required. It is not necessary to write the same logic several times. Instead, function can be called or executed whenever needed.
+ 34. What are all types of user defined functions?RRR
+Three types of user defined functions are.
+•	Scalar Functions.
+•	Inline Table valued functions.
+•	Multi statement valued functions.
+Scalar returns unit, variant defined the return clause. Other two types return table as a return.
+35. What is collation?RRR
+Collation is defined as set of rules that determine how character data can be sorted and compared. This can be used to compare A and, other language characters and also depends on the width of the characters.
+ASCII value can be used to compare these character data.
+ 
+36. What are all different types of collation sensitivity?RRR
+Following are different types of collation sensitivity -.
+•	Case Sensitivity – A and a and B and b.
+•	Accent Sensitivity.
+•	Kana Sensitivity – Japanese Kana characters.
+•	Width Sensitivity – Single byte character and double byte character.
+37. Advantages and Disadvantages of Stored Procedure?
+Stored procedure can be used as a modular programming – means create once, store and call for several times whenever required. This supports faster execution instead of executing multiple queries. This reduces network traffic and provides better security to the data.
+Disadvantage is that it can be executed only in the Database and utilizes more memory in the database server.
+38. What is Online Transaction Processing (OLTP)?RRR
+Online Transaction Processing or OLTP manages transaction based applications which can be used for data entry and easy retrieval processing of data. This processing makes like easier on simplicity and efficiency. It is faster, more accurate results and expenses with respect to OTLP.
+Example – Bank Transactions on a daily basis.
+ 39. What is CLAUSE?RRR
+SQL clause is defined to limit the result set by providing condition to the query. This usually filters some rows from the whole set of records.
+Example – Query that has WHERE condition
+Query that has HAVING condition.
+40. What is recursive stored procedure?RRR
+A stored procedure which calls by itself until it reaches some boundary condition. This recursive function or procedure helps programmers to use the same set of code any number of times.
+ 41. What is Union, minus and Interact commands?
+UNION operator is used to combine the results of two tables, and it eliminates duplicate rows from the tables.
+MINUS operator is used to return rows from the first query but not from the second query. Matching records of first and second query and other rows from the first query will be displayed as a result set.
+INTERSECT operator is used to return rows returned by both the queries.
+ 42. What is an ALIAS command?
+ALIAS name can be given to a table or column. This alias name can be referred in WHERE clause to identify the table or column.
+Example-.
+ 
+1	Select st.StudentID, Ex.Result from student st, Exam as Ex where st.studentID = Ex. StudentID
+ 
+Here, st refers to alias name for student table and Ex refers to alias name for exam table.
+43. What is the difference between TRUNCATE and DROP statements?
+TRUNCATE removes all the rows from the table, and it cannot be rolled back. DROP command removes a table from the database and operation cannot be rolled back.
+44. What are aggregate and scalar functions?AAA
+Aggregate functions are used to evaluate mathematical calculation and return single values. This can be calculated from the columns in a table. Scalar functions return a single value based on the input value.
+Example -.
+Aggregate – max(), count – Calculated with respect to numeric.
+Scalar – UCASE(), NOW() – Calculated with respect to strings.
+Scalar functions can be numeric scalar function or character string scalar function which we apply on numeric data and character data respectively. Examples are multiplication/division and substring/upperlowercase respectively. 
+
+45. How can you create an empty table from an existing table?AAA
+Example will be -.
+ 
+1	Select * into studentcopy from student where 1=2
+ 
+Here, we are copying student table to another table with the same structure with no rows copied
+Above answer is also correct but the same thing can also be done as “Create table NewTableName LIKE OldTableName”. 
+
+.
+ 46. How to fetch common records from two tables?RRR
+Common records result set can be achieved by -.
+ 
+1	Select studentID from student. <strong>INTERSECT </strong> Select StudentID from Exam
+ 
+47. How to fetch alternate records from a table?AAA
+Records can be fetched for both Odd and Even row numbers -.
+To display even numbers-.
+ 
+1	Select studentId from (Select rowno, studentId from student) where mod(rowno,2)=0
+ 
+To display odd numbers-.
+ 
+1	Select studentId from (Select rowno, studentId from student) where mod(rowno,2)=1
+ In the above query, we are selecting the column needed from the table (query) that we have written instead of table name. In that table we have rowno and studentID. But it suppose to have some rowno type of element which can be used to find out the odd or even table. Also, if you do not have a rownumber type column then we can use ROW_NUMBER() function. We can use it like below:
+“Select Name from (select name, ROW_NUMBER() Over (order by ID) As SrNo) where Mod(SrNo,2)=1;” 
+from (Select rowno, studentId from student) where mod(rowno,2)=1.[/sql]
+  48. How to select unique records from a table?
+Select unique records from a table by using DISTINCT keyword.
+ 
+1	Select DISTINCT StudentID, StudentName from Student.
+ 
+49. What is the command used to fetch first 5 characters of the string?RRR
+There are many ways to fetch first 5 characters of the string -.
+ 
+1	Select SUBSTRING(StudentName,1,5) as studentname from student
+ 
+1	Select RIGHT(Studentname,5) as studentname from student
+ 
+50. Which operator is used in query for pattern matching?
+LIKE operator is used for pattern matching, and it can be used as -.
+1.	% – Matches zero or more characters.
+2.	_(Underscore) – Matching exactly one character.
+Example -.
+ 
+1	Select * from Student where studentname like ‘a%’
+ 
+1	Select * from Student where studentname like ‘ami_’
+ 
+Source:  http://www.indiabix.com/technical/sql-server-common-questions/2
+1.	Which TCP/IP port does SQL Server run on? How can it be changed?RRR
+SQL Server runs on port 1433. It can be changed from the Network Utility TCP/IP properties.
+2.	What are the difference between clustered and a non-clustered index?
+1.	A clustered index is a special type of index that reorders the way records in the table are physically stored. Therefore table can have only one clustered index. The leaf nodes of a clustered index contain the data pages.
+2.	A non clustered index is a special type of index in which the logical order of the index does not match the physical stored order of the rows on disk. The leaf node of a non clustered index does not consist of the data pages. Instead, the leaf nodes contain index rows.
+3.	What are the different index configurations a table can have?RRR
+A table can have one of the following index configurations:
+1.	No indexes
+2.	A clustered index
+3.	A clustered index and many nonclustered indexes
+4.	A nonclustered index
+5.	Many nonclustered indexes
+4.	What are different types of Collation Sensitivity?LLL
+1.	Case sensitivity - A and a, B and b, etc.
+2.	Accent sensitivity
+3.	Kana Sensitivity - When Japanese kana characters Hiragana and Katakana are treated differently, it is called Kana sensitive.
+4.	Width sensitivity - A single-byte character (half-width) and the same character represented as a double-byte character (full-width) are treated differently than it is width sensitive.
+5.	What is OLTP (Online Transaction Processing)?LLL
+In OLTP - online transaction processing systems relational database design use the discipline of data modeling and generally follow the Codd rules of data normalization in order to ensure absolute data integrity. Using these rules complex information is broken down into its most simple structures (a table) where all of the individual atomic level elements relate to each other and satisfy the normalization rules.
+6.	What's the difference between a primary key and a unique key?RRR
+Both primary key and unique key enforces uniqueness of the column on which they are defined. But by default primary key creates a clustered index on the column, where are unique creates a nonclustered index by default. Another major difference is that, primary key doesn't allow NULLs, but unique key allows one NULL only.
+•  What is difference between DELETE and TRUNCATE commands?
+Delete command removes the rows from a table based on the condition that we provide with a WHERE clause. Truncate will actually remove all the rows from a table and there will be no data in the table after we run the truncate command.
+1.	TRUNCATE:
+1.	TRUNCATE is faster and uses fewer system and transaction log resources than DELETE.
+2.	TRUNCATE removes the data by deallocating the data pages used to store the table's data, and only the page deallocations are recorded in the transaction log.
+3.	TRUNCATE removes all rows from a table, but the table structure, its columns, constraints, indexes and so on, remains. The counter used by an identity for new rows is reset to the seed for the column.
+4.	You cannot use TRUNCATE TABLE on a table referenced by a FOREIGN KEY constraint. Because TRUNCATE TABLE is not logged, it cannot activate a trigger.
+5.	TRUNCATE cannot be rolled back.
+6.	TRUNCATE is DDL Command.
+7.	TRUNCATE Resets identity of the table
+2.	DELETE:
+1.	DELETE removes rows one at a time and records an entry in the transaction log for each deleted row.
+2.	If you want to retain the identity counter, use DELETE instead. If you want to remove table definition and its data, use the DROP TABLE statement.
+3.	DELETE Can be used with or without a WHERE clause
+4.	DELETE Activates Triggers.
+5.	DELETE can be rolled back.
+6.	DELETE is DML Command.
+7.	DELETE does not reset identity of the table.
+Note: DELETE and TRUNCATE both can be rolled back when surrounded by TRANSACTION if the current session is not closed. If TRUNCATE is written in Query Editor surrounded by TRANSACTION and if session is closed, it can not be rolled back but DELETE can be rolled back.
+•  When is the use of UPDATE_STATISTICS command?RRR
+This command is basically used when a large processing of data has occurred. If a large amount of deletions any modification or Bulk Copy into the tables has occurred, it has to update the indexes to take these changes into account. UPDATE_STATISTICS updates the indexes on these tables accordingly.
+•  What is the difference between a HAVING CLAUSE and a WHERE CLAUSE?RRR
+They specify a search condition for a group or an aggregate. But the difference is that HAVING can be used only with the SELECT statement. HAVING is typically used in a GROUP BY clause. When GROUP BY is not used, HAVING behaves like a WHERE clause. Having Clause is basically used only with the GROUP BY function in a query whereas WHERE Clause is applied to each row before they are part of the GROUP BY function in a query.
+•  What are the properties and different Types of Sub-Queries?RRR
+1.	Properties of Sub-Query
+1.	A sub-query must be enclosed in the parenthesis.
+2.	A sub-query must be put in the right hand of the comparison operator, and
+3.	A sub-query cannot contain an ORDER-BY clause.
+4.	A query can contain more than one sub-query.
+2.	Types of Sub-Query
+1.	Single-row sub-query, where the sub-query returns only one row.
+2.	Multiple-row sub-query, where the sub-query returns multiple rows,. and
+3.	Multiple column sub-query, where the sub-query returns multiple columns
+•  What is SQL Profiler?RRR
+SQL Profiler is a graphical tool that allows system administrators to monitor events in an instance of Microsoft SQL Server. You can capture and save data about each event to a file or SQL Server table to analyze later. For example, you can monitor a production environment to see which stored procedures are hampering performances by executing too slowly.
+Use SQL Profiler to monitor only the events in which you are interested. If traces are becoming too large, you can filter them based on the information you want, so that only a subset of the event data is collected. Monitoring too many events adds overhead to the server and the monitoring process and can cause the trace file or trace table to grow very large, especially when the monitoring process takes place over a long period of time.
+•  What are the authentication modes in SQL Server? How can it be changed?LLL
+Windows mode and Mixed Mode - SQL and Windows. To change authentication mode in SQL Server click Start, Programs, Microsoft SQL Server and click SQL Enterprise Manager to run SQL Enterprise Manager from the Microsoft SQL Server program group. Select the server then from the Tools menu select SQL Server Configuration Properties, and choose the Security page.
+13.	Which command using Query Analyzer will give you the version of SQL server and operating system?LLL
+SELECT SERVERPROPERTY ('productversion'), SERVERPROPERTY ('productlevel'), SERVERPROPERTY ('edition').
+14.	What is SQL Server Agent?LLL
+SQL Server agent plays an important role in the day-to-day tasks of a database administrator (DBA). It is often overlooked as one of the main tools for SQL Server management. Its purpose is to ease the implementation of tasks for the DBA, with its full- function scheduling engine, which allows you to schedule your own jobs and scripts.
+15.	Can a stored procedure call itself or recursive stored procedure? How much level SP nesting is possible?RRR
+Yes. Because Transact-SQL supports recursion, you can write stored procedures that call themselves. Recursion can be defined as a method of problem solving wherein the solution is arrived at by repetitively applying it to subsets of the problem. A common application of recursive logic is to perform numeric computations that lend themselves to repetitive evaluation by the same processing steps. Stored procedures are nested when one stored procedure calls another or executes managed code by referencing a CLR routine, type, or aggregate. You can nest stored procedures and managed code references up to 32 levels.
+16.	What is Log Shipping?RRR
+Log shipping is the process of automating the backup of database and transaction log files on a production SQL server, and then restoring them onto a standby server. Enterprise Editions only supports log shipping. In log shipping the transactional log file from one server is automatically updated into the backup database on the other server. If one server fails, the other server will have the same db and can be used this as the Disaster Recovery plan. The key feature of log shipping is that it will automatically backup transaction logs throughout the day and automatically restore them on the standby server at defined interval.
+17.	Name 3 ways to get an accurate count of the number of records in a table?RRR
+SELECT * FROM table1 
+SELECT COUNT(*) FROM table1 
+SELECT rows FROM sysindexes WHERE id = OBJECT_ID(table1) AND indid < 2
+18.	What does it mean to have QUOTED_IDENTIFIER ON? What are the implications of having it OFF?LLL
+When SET QUOTED_IDENTIFIER is ON, identifiers can be delimited by double quotation marks, and literals must be delimited by single quotation marks. When SET QUOTED_IDENTIFIER is OFF, identifiers cannot be quoted and must follow all Transact-SQL rules for identifiers.
+________________________________________
+19.	What is the difference between a Local and a Global temporary table?
+1.	A local temporary table exists only for the duration of a connection or, if defined inside a compound statement, for the duration of the compound statement.
+2.	A global temporary table remains in the database permanently, but the rows exist only within a given connection. When connection is closed, the data in the global temporary table disappears. However, the table definition remains with the database for access when database is opened next time.
+20.	What is the STUFF function and how does it differ from the REPLACE function?RRR
+STUFF function is used to overwrite existing characters. Using this syntax, STUFF (string_expression, start, length, replacement_characters), string_expression is the string that will have characters substituted, start is the starting position, length is the number of characters in the string that are substituted, and replacement_characters are the new characters interjected into the string. REPLACE function to replace existing characters of all occurrences. Using the syntax REPLACE (string_expression, search_string, replacement_string), where every incidence of search_string found in the string_expression will be replaced with replacement_string.
+21.	What is PRIMARY KEY?
+A PRIMARY KEY constraint is a unique identifier for a row within a database table. Every table should have a primary key constraint to uniquely identify each row and only one primary key constraint can be created for each table. The primary key constraints are used to enforce entity integrity.
+22.	What is UNIQUE KEY constraint?
+A UNIQUE constraint enforces the uniqueness of the values in a set of columns, so no duplicate values are entered. The unique key constraints are used to enforce entity integrity as the primary key constraints.
+23.	What is FOREIGN KEY?
+A FOREIGN KEY constraint prevents any actions that would destroy links between tables with the corresponding data values. A foreign key in one table points to a primary key in another table. Foreign keys prevent actions that would leave rows with foreign key values when there are no primary keys with that value. The foreign key constraints are used to enforce referential integrity.
+24.	What is CHECK Constraint?
+A CHECK constraint is used to limit the values that can be placed in a column. The check constraints are used to enforce domain integrity.
+________________________________________
+25.	What is NOT NULL Constraint?
+A NOT NULL constraint enforces that the column will not accept null values. The not null constraints are used to enforce domain integrity, as the check constraints.
+26.	How to get @@ERROR and @@ROWCOUNT at the same time?AAA
+If @@Rowcount is checked after Error checking statement then it will have 0 as the value of @@Recordcount as it would have been reset. And if @@Recordcount is checked before the error-checking statement then @@Error would get reset. To get @@error and @@rowcount at the same time do both in same statement and store them in local variable.
+SELECT @RC = @@ROWCOUNT, @ER = @@ERROR
+@@@error is a variable that is initialized as 0 and check after each execution of stored procedure and thus, the stored procedure fails then its value will be changed.
+@@@Rowcount returns the number of rows which are executed by the last statement. If the number of rows are greater than 2 billion then use RoWNUMBER_BIG.
+27.	What is a Scheduled Jobs or What is a Scheduled Tasks?RRR
+Scheduled tasks let user automate processes that run on regular or predictable cycles. User can schedule administrative tasks, such as cube processing, to run during times of slow business activity. User can also determine the order in which tasks run by creating job steps within a SQL Server Agent job. E.g. back up database, Update Stats of Tables. Job steps give user control over flow of execution. If one job fails, user can configure SQL Server Agent to continue to run the remaining tasks or to stop execution.
+28.	What are the advantages of using Stored Procedures?RRR
+1.	Stored procedure can reduced network traffic and latency, boosting application performance.
+2.	Stored procedure execution plans can be reused, staying cached in SQL Server's memory, reducing server overhead.
+3.	Stored procedures help promote code reuse.
+4.	Stored procedures can encapsulate logic. You can change stored procedure code without affecting clients.
+5.	Stored procedures provide better security to your data.
+29.	What is a table called, if it has neither Cluster nor Non-cluster Index? What is it used for?RRR
+Unindexed table or Heap. Microsoft Press Books and Book on Line (BOL) refers it as Heap. A heap is a table that does not have a clustered index and, therefore, the pages are not linked by pointers. The IAM pages are the only structures that link the pages in a table together. Unindexed tables are good for fast storing of data. Many times it is better to drop all indexes from table and then do bulk of inserts and to restore those indexes after that.
+30.	Can SQL Servers linked to other servers like Oracle?AAA
+SQL Server can be linked to any server provided it has OLE-DB provider from Microsoft to allow a link. E.g. Oracle has an OLE-DB provider for oracle that Microsoft provides to add it as linked server to SQL Server group.
+I believe every database has has feature through which they can connect to a different type of database. For example, SQL server can connect to a different database if they have OLE-DB provider. Oracle has it. 
+
+________________________________________
+31.	What is BCP? When does it used?RRR
+BulkCopy is a tool used to copy huge amount of data from tables and views. BCP does not copy the structures same as source to destination. BULK INSERT command helps to import a data file into a database table or view in a user-specified format.
+32.	How to implement one-to-one, one-to-many and many-to-many relationships while designing tables?
+One-to-One relationship can be implemented as a single table and rarely as two tables with primary and foreign key relationships. One-to-Many relationships are implemented by splitting the data into two tables with primary key and foreign key relationships. Many-to-Many relationships are implemented using a junction table with the keys from both the tables forming the composite primary key of the junction table.
+33.	What is an execution plan? When would you use it? How would you view the execution plan?
+An execution plan is basically a road map that graphically or textually shows the data retrieval methods chosen by the SQL Server query optimizer for a stored procedure or ad- hoc query and is a very useful tool for a developer to understand the performance characteristics of a query or stored procedure since the plan is the one that SQL Server will place in its cache and use to execute the stored procedure or query. From within Query Analyzer is an option called "Show Execution Plan" (located on the Query drop-down menu). If this option is turned on it will display query execution plan in separate window when query is ran again.
+________________________________________
+SOURCE: http://www.geekinterview.com/Interview-Questions/Database/SQL
+The above source is ver vast so let keep it for #RoundTwo.
+https://dwbi.org/database/sql/72-top-20-sql-interview-questions-with-answers
+•	What is the difference in Join and UNION. AAA 
+Both are very different as in JOIN conditions looks up the data in the other table according to the given condition while UNION is just to add the two given table if that have result that can be added. 
+•	How we transpose a table in SQL? AAA
+Firstly, transpose is about moving the data from row format to column and vice versa. We do it though CASE or DECODE statement. #RoundTwo
+•	Difference between ROWNUM, RANK and DENSE_RANK?AAA
+ROWNUM provides the numbers from 1 to N. RANK gives the rank to the rows according to the value. It assign same rank to the same number row values and skips the same number of ranks. DENSE_RANK is also like RANK but it does not skips the same number of ranks. *These are the functions of oracle*.
+GO TO THE ABOVE LINKS AND TRY TO SOLVE THE QUESTIONS. Paste all those you think you were not able to do. 
+
+What are the frequently asked basic and complex queries ( SQL) during a tech interview?
+11 Answers
+ 
+Javin Paul, Java Programmer and Blogger, blog @ http://javarevisited.blogspot.com
+28.1k Views
+Some of the most common SQL queries I have seen on interviews are:
+
+1) joining more than 3 tables (Solution)
+2) finding duplicate records from a table (Solution)
+3) second highest salary of employee using rownum (Solution)
+
+This article, 10 Frequently asked SQL Query Interview Questions, also contains lots of frequently asked SQL queries from interviews.
+If we have composite key with three columns and if we give value of two columns in the where clause then will the index be used? If the columns are secondary index column then it will not be invoked otherwise if they are primary columns then will be invoked. 
+Written Nov 4, 2015 • View Upvotes
+Related QuestionsMore Answers Below
+•	What are the basic sql concepts asked in interview for a fresher?
+•	What are the sql queries asked during testing interview?
+•	What are frequently asked interview questions for 5+ years experienced SQL Server developer?
+•	What industries typically have slow or complex SQL queries?
+•	What are the frequently asked database questions and queries in technical interviews?
+ 
+Greg Kemnitz, Postgres internals, embedded device db internals, MySQL user-level
+34.5k Views • Most Viewed Writer in SQL with 240+ answers
+I skip "pop quiz" style questions as they're not interesting.  Most people in my experience learned SQL by doing, and may have never encountered a lot of fancy vocabulary.  Also, most people can sensibly code joins, although asking them to spend 15 minutes doing it on a whiteboard is a waste of precious interview time.
+
+I try to get the candidate talking about their previous work, specifically as relates to databases, and ask them what data management projects they're most proud of and what they did on them.
+
+As for technical questions, I have one standard SQL interview question: what are the differences between a WHERE clause and a HAVING clause?  This is a good "divider" question as it determines whether the person's SQL knowledge is only "select * from foo" or at a somewhat higher level.
+
+If the person is a bit deeper in SQL, I'd ask them some other questions:
+•	How to go about picking a good PARTITION key for a big table, and what are some of the "gotchas" of a badly chosen PARTITION key. 
+•	Someone complains that their app is running slow because of what they think is a "database problem".  How do you go about investigating the slowness and helping them to improve their queries?
+If I'm interviewing someone who claims to know MySQL specifically, I have some additional ones:
+•	What are some differences between MyISAM and InnoDB storage engines?
+•	Specific to InnoDB, what are some differences between the storage of a primary key and a secondary index?
+•	When would you use one versus the other?
+•	What types of tables would you advise using the MEMORY storage engine?
+
+As a rule, I ask progressively more obscure questions until the candidate says "I don't know", as I want to see how they react in a situation where they don't know the answer: do they try to BS past the question (auto-fail), or do they honestly admit that they don't know (usually OK, especially if the question is super-obscure).
+Written Jun 10, 2015 • View Upvotes
+ 
+Manoj Pandey, DB & DW/BI (SQL Server) Lead at Microsoft , SQLwithManoj.com
+83.4k Views • Most Viewed Writer in SQL with 240+ answers
+I would start with 5 Complex Queries:
+1. Reverse a string without using REVERSE function. [reverse a string without using TSQL's REVERSE() function]
+2. Generate hierarchy of Manager & Employee in Employee table with EmpID, EmpName, MgrID columns.
+3. How do you sync rows in 2 tables, rows in first table being INSERTED/UPDATED/DELETED, and no modifications on the second table.
+4. Generate Running total (sum) for goods sold by a Sales Rep for every day month wise for a given year (SalesRepID, Year, Month, Day, TotalSale). [Calculating Running Totals]
+5. Get 5 Employees from every Department getting highest salary (EmpID, DeptID, Salary)
+
+Now 5 Basic Queries:
+1. Get Employee with 2nd or nth highest salary [SQL Trivia - Find second (or nth) Highest Salary or Marks]
+2. How to DELETE duplicate records from a table with a single SELECT stmt. [Identify & Delete Duplicate records from a table]
+3. Allocate position to Students of a class based upon their marks, if same marks same position should be applied. [RANKING FUNCTIONS | ROW_NUMBER, RANK, DENSE_RANK, NTILE]
+4. For these 2 tables: Product(ProductID, ProductName), Sales(SalesOrderID, ProductID, SaleDate)
+- Get the list of Products that were sold last year.
+- Get the list of Products that were NOT sold last year.
+5. For any given date, get the Last Date of: Previous Month & Current Month & Next Month.
+
+>> Some Questions on Database
+1. What are ACID properties of a Transaction in an RDBMS?
+2. What are Candidate, Primary, Composite & Super Keys and Difference between them?
+4. Integrity Constraints in a Database (SQL Server)
+5. What are DDL, DML, DCL and TCL commands & difference b/w them?
+6. DB Basics - Is SELECT a DML (Data Manipulation Language)?AAA
+A pure read select query would be placed outside DML while Select into would be placed inside DML. Also, we can understand it as DDL is abut definition of the table but with data to it is categorized as DML.	
+7. Database Normalization | 1NF, 2NF, 3NF
+8. SQL Server JOINS and Types
+9. SQL Logical Query Processing OrderAAA
+Order in which the clauses are processed. 
+10. What are Records, Pages, Extents, Heap in SQL Server?LLL
+
+For more SQL Interview Q&A check my blog: Interview Q | SQL with Manoj
+Check some of these YouTube videos on SQL Server basics.
+My blog: SQL with Manoj
+Updated Apr 16 • View Upvotes
+ 
+Andrew Hansen, I have been writing SQL since the 80's. I am comfortable with SQL at any level.
+24.2k Views • Most Viewed Writer in SQL with 150+ answers
+I hate interview questions.  All of them are almost certainly wrong or useless in trying to figure out if you should hire someone.  I interview and give interviews all the time and I do not believe there is a guaranteed set of questions that help the interviewer understand the interviewee.
+
+I know a few great developers who will never interview well.  I know many more developers who have passed very tough tech interviews and should never be allowed to check code into source control.  
+
+With the above rant out of the way, my particular flavor of wrong questions for SQL currently look something like:
+
+Not Platform Specific Questions #RoundTwo
+•	Give examples of when you last used analytic functions and why
+•	Give examples of when you last used recursive queries and why
+•	How do you use SQL to check for data quality?
+•	How do you know that your SQL performs well?
+•	How do you measure your SQL performance?
+•	When your SQL does not perform well what do you think about and what do you do to improve performance?
+•	How do you feel about joins in your SQL
+•	How often do you use sub queries
+•	When do you think your SQL has too many lines of code?
+•	What kinds of data models have you written SQL against
+•	How much does your SQL change across different data models
+
+There are no correct answers to the above questions  
+There are a few wrong answers.  
+
+The goal of these questions are to get the person talking in a way that I can try and "smell" if they will be a good fit or not.
+
+Note: I have platform specific SQL questions that I am leaving out.
+Written Jun 9, 2015 • View Upvotes • Answer requested by Mamatha Gopalappa
+ 
+Horia Radoi
+27.8k Views
+Usually, most of the things covered in a basic introductory SQL course/Database course are fair game (check this one out: SQL Tutorial), or some interview-specific subreddits (like CS Career Questions).
+
+You can also look at this community-driven article: Toptal SQL Interview Questions. Also, feel free to contribute or comment on some of the questions!
+Written Jul 17, 2014 • View Upvotes
+ 
+Arun Mohan, ERP developer
+13.2k Views
+I usually ask this question based on employees table in HR schema in Oracle database.
+
+Query to print employee name along with their manager name. If no manager(that employee at the top level of the organization. I guess its Steve in employees table )then print employee name, "no manager".
+
+This query looks simple at first place. But trust me most of the fresh graduates fail to answer it correctly.
+
+Self join, outer join and nvl to be used to get the desired result.
+From this simple query I get an insight into candidates understanding of join.
+Written Jun 13, 2015 • View Upvotes
+ 
+Toby Thain, Student of relational model.
+22.2k Views
+SQL questions don't seem to be popularly asked, but I can point to this list for suggestions on what to get familiar with. Toby Thain's answer to Which SQL interview questions effectively test depth of experience and knowledge?
+Written Mar 2, 2012
+ 
+Vinay Sharma, Blogger, Tech Evangelist, I Make and Fix Bugs for Living
+14k Views
+I often take SQL (Oracle) interviews. Here is the list of questions, I asked in recent interviews
+1.Delete duplicate rows using a single statement and no table creation.
+2.Identify the second highest salary from emp table having salary related data.
+3.Statement to determine the oracle version used .
+4.Query to accept a date and return the fist date of the quarter in which the date exists.
+5.Table A has 100 rows, Table B has Zero rows so number of rows returned from  below query
+select a.* from a, b;
+6. Set of statements executed in the below sequence.
+select count(*) from a;
+
+Count(*)
+-------
+100
+
+Then 1 row inserted in table a.
+
+rollback;
+again 3 rows inserted in the table a;
+select count(*) from a;
+count(*)
+--------
+103
+
+create table b using select * from a;
+
+rollback;
+
+so what would be the o/p of below select statement
+select count(*) from a; 
+?
+7.Statement to print numbers from 1 to 100 in sequence.
+8.Create a table with no rows structure similar to existing table using an SQL statement.
+9.Few queries related to analytical functions. lead, lag, rank, dense_rank
+10. Table Employees
+
+NAME  GENDER
+----  ------ 
+A    MALE
+B    FEMALE
+BB   FEMALE
+CC   FEMALE
+CD   MALE
+DD   MALE
+DE   FEMALE
+
+
+Write a query to give the o/p like below
+
+MALE  FEMALE
+----  ------
+3     4
+Written May 7, 2015 • View Upvotes
+ 
+Anonymous
+2.4k Views
+SQL. Structure Query Language(SQL) is a programming language used for storing and managing data in RDBMS. SQL was the first commercial language introduced for E.F Codd's Relational model. Today almost all RDBMS(MySql, Oracle, Infomix, Sybase, MS Access) uses SQL as the standard database language.
+SQL is a database computer language designed for the retrieval and management of data in relational database. SQL stands for Structured Query Language.
+and i have a best material for the interview question
+you can visit this link sql interview questions| Top & Most Asked | Intellipaat
+Written Jun 28
+ 
+Vikas Ahlawat
+13.1k Views
+SEE HERE 
+
+ALL INTERVIEW SQL QUERY AT ONE PLACE....
+COMPLEX JOINS : SQL SERVER JOINS QUERIES INTERVIEW QUESTIONS AND ANSWERS EXAMPLES FOR EXPERIENCED SET-7
+ 
+MS SQL QUERIES INTERVIEW QUESTIONS ANSWERS EXAMPLES 4 FRESHER AND EXPERIENCED PDF
+ 
+
+Written Dec 20, 2014 • View Upvotes
+ 
+Justin Fidler
+16.3k Views
+•	Explain (or write) a correlated subquery
+•	Write a query that will find all duplicates in table X
+Written Mar 7, 2012 • View Upvotes
+
+
+Top Answers to SQL Interview Questions	
+1.What is BCP? When is it used?
+It is a tool used to duplicate enormous quantity of information from tables and views. It does not facsimile the structures same as foundation to target. BULK INSERT command helps to bring in a data folder into a record, table or view in a user-specific arrangement.
+2.When is the UPDATE_STATISTICS command used?
+This command is used, ones the processing of large data is done.
+When we delete a large number of files, alteration or reproduction takes place in the tables, to be concerned of these changes we need to restructure the indexes This is done UPDATE_STATISTICS.
+3.Explain the steps needed to Create the scheduled job?LLL
+Steps to create a Scheduled Job:1.Connect to the database of SQL server in SQL Server Management Studio. On the SQL Server Agent, we will find a Jobs folder.
+2.Right click on jobs and choose Add New.
+3.A New Job window will come into view. Give an associated name for the same.
+4.Click next on the “Steps” in the left list of options. An SQL job can have multiple steps either in the form of SQL declaration or a stored practice call.
+5.Click on the “Schedules” in the left list of options. An SQL job can comprise of one or supplementary schedules. It is basically the instance at which SQL job will jog itself. We can spell out returning schedules also.
+4.When are we going to use truncate and delete?
+1.TRUNCATE is a DDL command, whereas DELETE is a DML command.2.We can’t execute a trigger in case of TRUNCATE whilst with DELETE, we can accomplish a trigger.3.TRUNCATE is quicker than DELETE, for the reason that when we use DELETE to delete the data, at that time it store the whole statistics in the rollback gap on or after where we can get the data back after removal. In case of TRUNCATE, it will not store data in rollback gap and will unswervingly rub it out. TRUNCATE do not recover the deleted data.
+4.We can use any condition in WHERE clause using DELETE but it is not possible with TRUNCATE.
+5.If a table is referenced by any foreign key constraints, then TRUNCATE won’t work.
+5.Explain correlated query work?RRR
+It’s most important to be attentive of the arrange of operations in an interrelated subquery. First, a row is processed in the outer doubt. Then, for that exacting row, the subquery is executed – as a result for each row processed by the outer query, the subquery will also be processed. In correlated subquery, each time a line is worked for Emp1, the subquery will also make a decision on the exacting row’s value for Emp1.Salary and run. And the outer query will move on to the next row, and the subquery will execute for that row’s value of Emp1.Salary. It will persist in anticipation of the “WHERE (1) = (… )” state is pleased.
+6.When is the Explicit Cursor Used?#RoundTwo 
+If the developer needs to perform the row by row operations for the result set containing more than one row, then he unambiguously declares a pointer with a name. They are managed by OPEN, FETCH and CLOSE.%FOUND, %NOFOUND, %ROWCOUNT and %ISOPEN characteristics are used in all types of pointers.
+7.Find What is Wrong in this Query?SELECT subject_code, AVG (marks)  RRR
+FROM students
+WHERE AVG(marks) > 75
+GROUP BY subject_code;
+The WHERE clause cannot be used to restrict groups. Instead, the HAVING clause should be used.SELECT subject_code, AVG (marks)
+FROM students
+HAVING AVG(marks) > 75
+GROUP BY subject_code;
+8.Write the Syntax for STUFF function in an SQL server?
+STUFF (String1, Position, Length, String2)
+String1 – String to be overwritten
+Position – Starting location for overwriting
+Length – Length of substitute string
+String2- String to overwrite.
+9. Name some commands that can be used to manipulate text in T-SQL code. For example, a command that obtains only a portion of the text or replace a text string, etc.
+• CHARINDEX( findTextData, textData, [startingPosition] ) – Returns the starting position of the specified expression in a character string. The starting position is optional.
+• LEFT( character_expression , integer_expression ) – Returns the left part of a character string with the specified number of characters.
+• LEN( textData ) – Returns integer value of the length of the string, excluding trailing blanks.
+• LOWER ( character_expression ) – Returns a character expression after converting uppercase character data to lowercase.
+• LTRIM( textData) – Removes leading blanks. PATINDEX( findTextData, textData ) – Returns integer value of the starting position of text found in the string.
+• REPLACE( textData, findTextData, replaceWithTextData ) – Replaces occurrences of text found in the string with a new value.
+• REPLICATE( character_expression , integer_expression ) – Repeats a character expression for a specified number of times.
+• REVERSE( character_expression ) – Returns the reverse of a character expression.
+• RTRIM( textData) – Removes trailing blanks. SPACE( numberOfSpaces ) – Repeats space value specified number of times.
+• STUFF( textData, start , length , insertTextData ) – Deletes a specified length of characters and inserts another set of characters at a specified starting point.
+• SUBSTRING( textData, startPosition, length ) – Returns portion of the string.
+• UPPER( character_expression ) – Returns a character expression with lowercase character data converted to uppercase.
+10.What are the three ways that Dynamic SQL can be executed?RRR
+• Writing a query with parameters.
+• Using EXEC.
+• Using sp_executesql.
+11.In what version of SQL Server were synonyms released? How do synonyms work and explain its use cases?
+Synonyms were released with SQL Server 2005.
+• Synonyms enable the reference of another object (View, Table, Stored Procedure or Function) potentially on a different server, database or schema in your environment. In simple words, the original object that is referenced in the whole code is using a completely different underlying object, but no coding changes are necessary. Think of this as an alias as a means to simplify migrations and application testing without the need to make any dependent coding changes.
+• Synonyms can offer a great deal of value when converting underlying database objects without breaking front end or middle tier code. This could be useful during a re-architecture or upgrade project.
+12.If you are a SQL Developer, how can you delete duplicate records in a table with no primary key?
+• Use the SET ROWCOUNT command. For instance, if you have 2 duplicate rows, you would SET ROWCOUNT 1, execute DELETE command and then SET ROWCOUNT 0.
+13.Is it possible to import data directly from T-SQL commands without using SQL Server Integration Services? If so, what are the commands?
+Yes, six commands are available to import data directly in the T-SQL language. These commands include:
+• BCP: The bulk copy (bcp) command of Microsoft SQL Server provides you with the ability to insert large numbers of records directly from the command line. In addition to being a great tool for command-line aficionados, bcp is a powerful tool for those seeking to insert data into a SQL Server database from within a batch file or other programmatic method.
+• Bulk Insert: The BULK INSERT statement was introduced in SQL Server 7 and allows you to interact with bcp (bulk copy program) via a script.
+• OpenRowSet: The OPENROWSET function can be referenced in the FROM clause of a query as if it were a table name. The OPENROWSET function can also be referenced as the target table of an INSERT, UPDATE, or DELETE statement, subject to the capabilities of the OLE DB provider. Although the query might return multiple result sets, OPENROWSET returns only the first one.
+• OPENDATASOURCE: Provides ad hoc connection information as part of a four-part object name without using a linked server name.
+• OPENQUERY: Executes the specified pass-through query on the specified linked server. This server is an OLE DB data source. OPENQUERY can be referenced in the FROM clause of a query as if it were a table name.
+• Linked Servers: Configure a linked server to enable the SQL Server Database Engine to execute commands against OLE DB data sources outside of the instance of SQL Server. Typically linked servers are configured to enable the Database Engine to execute a Transact-SQL statement that includes tables in another instance of SQL Server, or another database product such as Oracle.
+14.What is the native system stored procedure to execute a command against all databases?
+•The sp_MSforeachdb system stored procedure accepts the @Commandparameter which can be exetecuted against all databases. The ‘?’ is used as a placeholder for the database name to execute the same command.
+• The alternative is to use a cursor to process specific commands against each database.
+15.How can a SQL Developer prevent T-SQL code from running on a production SQL Server?
+• Use IF logic with the @@SERVERNAME function compared against a string with a RETURN command before any other logic.
+16.How do you maintain database integrity where deletions from one table will automatically cause deletions in another table?RRR
+You can create a trigger that will automatically delete elements in the second table when elements from the first table are removed.
+17.What port does SQL server run on?
+1433 is the standard port for SQL server.
+18.What is the SQL CASE statement used for? Explain with an example?RRR
+It allows you to embed an if-else like clause in the SELECT clause.
+SELECT Employee_Name, CASE Location
+WHEN 'alex' THEN Bonus * 2
+WHEN 'robin' THEN Bonus *, 5
+ELSE Bonus
+END
+"New Bonus"
+FROM  Intellipaat_employee;
+19.What are the risks of storing a hibernate-managed object in cache? How do you overcome the problems?#RoundTwo
+The primary problem here is that the object will outlive the session it came from. Lazily loaded properties won’t get loaded if needed later. To overcome the problem, perform cache on the object’s id and class and then retrieve the object in the current session context.
+20.When is the use of UPDATE_STATISTICS command ?
+Updating statistics ensures that queries compile with up-to-date statistics. However, updating statistics causes queries to recompile. We recommend not updating statistics too often because there is a performance tradeoff between improving query plans and the time it takes to recompile queries. The specific tradeoffs depend on your application. UPDATE STATISTICS can use tempdb to sort the sample of rows for building statistics.Syntax
+UPDATE STATISTICS table_or_indexed_view_name 
+    [ 
+        { 
+            { index_or_statistics__name }
+          | ( { index_or_statistics_name } [ ,...n ] ) 
+                }
+    ] 
+    [    WITH 
+        [ 
+            FULLSCAN 
+            | SAMPLE number { PERCENT | ROWS } 
+            | RESAMPLE 
+              [ ON PARTITIONS ( {  |  } [, …n] ) ]
+            |  [ ,...n ]
+        ] 
+        [ [ , ] [ ALL | COLUMNS | INDEX ] 
+        [ [ , ] NORECOMPUTE ] 
+        [ [ , ] INCREMENTAL = { ON | OFF } ]
+    ] ;
+
+ ::=
+    [ STATS_STREAM = stats_stream ]
+    [ ROWCOUNT = numeric_constant ]
+    [ PAGECOUNT = numeric_contant ]
+21.What is SQL Profiler?
+Microsoft SQL Server Profiler is a graphical user interface to SQL Trace for monitoring an instance of the Database Engine or Analysis Services. You can capture and save data about each event to a file or table to analyze later.
+Use SQL Profiler to monitor only the events in which you are interested.
+If traces are becoming too large, you can filter them based on the information you want, so that only a subset of the event data is collected. Monitoring too many events adds overhead to the server and the monitoring process and can cause the trace file or trace table to grow very large, especially when the monitoring process takes place over a long period of time.
+22.What command using Query Analyzer will give you the version of SQL server and operating system?
+SELECT SERVERPROPERTY (‘productversion’), SERVERPROPERTY (‘productlevel’), SERVERPROPERTY (‘edition’).
+23.What does it mean to have QUOTED_IDENTIFIER ON? What are the implications of having it OFF?
+When SET QUOTED_IDENTIFIER is ON, identifiers can be delimited by double quotation marks, and literals must be delimited by single quotation marks. When SET QUOTED_IDENTIFIER is OFF, identifiers cannot be quoted and must follow all Transact-SQL rules for identifiers.
+24.What is the STUFF function and how does it differ from the REPLACE function in SQL?
+• Stuff function: – This function is used to replace string from the given start position, passed as 2nd argument with string passed as last argument. In Stuff function, 3rd argument defines the number of characters which are going to be replaced.
+Syntax:-
+STUFF ( character_expression , start , length , replaceWith_expression )
+For example:-
+Select Stuff (‘Intellipaat’, 3, 3, ‘abc’)
+This query will return the string “Iabcllipaat”. In this example, Stuff function replaces the string “Intellipaat” onwards the 3rd position(‘nte’) with ‘abc’.
+• Replace Function:– Replace function is used to replace all occurrence of a specified with the string passed as last argument.
+Syntax:- 
+REPLACE ( string_expression , string_pattern , string_replacement )
+For example:-
+Select Replace (‘Abcabcabc’, ‘bc’, ‘xy’)
+This query will return the string Axyaxyaxy. In this example, Replace function replaces the occurrence of each ‘bc’ string with ‘xy’.
+25.How to get @@ERROR and @@ROWCOUNT at the same time?
+If @@Rowcount is checked after Error checking statement then it will have 0 as the value of @@Recordcount as it would have been reset. And if @@Recordcount is checked before the error-checking statement then @@Error would get reset. To get @@error and @@rowcount at the same time do both in same statement and store them in local variable.
+SELECT @RC = @@ROWCOUNT, @ER = @@ERROR
+26.What is de-normalization in SQL database administration? Give examples
+De-normalization is used to optimize the readability and performance of the database by adding redundant data. It covers the inefficiencies in the relational database software.
+De-normalization logical data design tend to improve the query responses by creating rules in the database which are called as constraints.
+Examples include the following:
+– Materialized views for implementation purpose such as:
+– Storing the count of “many” objects in one-to-many relationship
+– Linking attribute of one relation with other relations
+– To improve the performance and scalability of web applications.
+27.Can you explain about buffer cash and log Cache in SQL Server?
+• Buffer Cache: Buffer cache is a memory pool in which data pages are read. The ideal performance of the buffer cache is indicated as: 95% indicates that pages that were found in the memory are 95% of time. Another 5% is need physical disk access.
+If the value falls below 90%, it is the indication of more physical memory requirement on the server.
+• Log Caches: Log cache is a memory pool used to read and write the log pages. A set of cache pages are available in each log cache. The synchronization is reduced between log and data buffers by managing log cache separately from the buffer cache.
+28.Describe how to use Linked Server.
+MS SQL Server supports the connection to different OLE DB on an ad hoc basis. This persistent connection is referred as Linked Server.
+Following are the steps to use Linked Server for any OLE DB. You can refer this to use an MS-Excel workbook.
+1. Open SQL Server Management Studio in SQL Server
+2. Expand Server Objects in Object Explorer.
+3. Right-click on Linked Servers. Click on New Linked Server.
+4. Select General page in the left pane and
+i. Type any name for the linked server in the first text box
+ii. Select the Other Data Source option.
+iii. Click on Microsoft Jet 4.0 OLE DB Provider from the Provider list.
+iv. Type the Excel as the name of the OLE DB data source.
+v. Type the full path and file name of the Excel file in Data Source box.
+vi. Type the Excel version no. (7.0, 8.0 etc) in the Provider String. Use Excel 8.0 for Excel 2000, Excel 2002 or Excel 97.
+vii. To create a linked server click on OK.
+29.How to find second highest salary of an Employee
+There are many ways to find second highest salary of Employees in SQ. You can either use SQL Join or Subquery to solve this problem. Here is SQL query using Subquery:
+Select MAX(Salary) from Intellipaat_emplyee WHERE Salary NOT IN ( select MAX(Salary) from Intellipaat_employee.
+30.Explain how to send email from SQL database.
+SQL Server has a feature for sending mails. Stored procedures can also be used for sending mail on demand. With SQL Server 2005, MAPI client is not needed for sending mails.
+The following is the process for sending emails from database.
+• Make sure that the SQL Server Mail account is configured correctly and enable Database Mail.
+• Write a script to send an e-mail. The following is the script.
+USE [YourDB]
+EXEC msdb.dbo.sp_send_dbmail
+@recipients = 'xyz@intellipaat.com; abc@intellipaat.com;pqr@intellipaat.com’ 
+@body = ' A warm wish for your future endeavor',
+@subject = 'This mail was sent using Database Mail' ;
+GO
+31.How to make remote connection in database?
+The following is the process to make a remote connection in database:
+1. Use SQL Server Surface Area Configuration Tool for enabling the remote connection in database.
+2. Click on Surface Area Configuration for Services and Connections.
+3. Click on SQLEXPRESS/Database Engine/RemoteConnections
+4. Select the radio button: Local and Remote Connections and select ‘Using TCP/IP only’ under Local and Remote Connections.
+5. Click on OK button / Apply button
+32.What is the purpose of OPENXML clause SQL server stored procedure?
+OPENXML parses the XML data in SQL Server in an efficient manner. It’s primary ability is to insert XML data to the RDB. It is also possible to query the data by using OpenXML. The path of the XML element needs to be specified by using ‘xpath’.
+The following is a procedure for retrieving xml data:
+DECLARE @index int
+DECLARE @xmlString varchar(8000)
+SET @xmlString ='
+
+abc
+9343463943/PhoneNo>
+
+
+xyz
+9342673212
+
+'
+EXEC sp_xml_preparedocument @index OUTPUT, @xmlString
+SELECT * FROM OPENXML (@index, 'Persons/Person') WITH (id varchar(10), Name varchar(100) 'Name' , PhoneNo varchar(50) 'PhoneNo')
+EXEC sp_xml_removedocument @index
+The above code snippet results the following:
+15201 abc 9343463943 
+15202 xyz 9342673212
+33.How to store pdf file in SQL Server?RRR
+Create a column as type ‘blob’ in a table. Read the content of the file and save in ‘blob’ type column in a table.
+Or 
+Store them in a folder and establish the pointer to link them in the database.
+34.Explain the use of keyword WITH ENCRYPTION. Create a Store Procedure with EncryptionRRR.
+It is a way to convert the original text of the stored procedure into encrypted form. The stored procedure gets obfuscated and the output of this is not visible to
+CREATE PROCEDURE Abc
+WITH ENCRYPTION
+AS
+<< SELECT statement>>
+GO
+WITH ENCRYPTION indicates that SQL Server will convert the original text of CREATE PROCEDURE statement to an encrypted format. Users that do not have no access to system tables or database files cannot retrieve the encrypted text. However, the text will be available to privileged users.
+Example:
+CREATE PROCEDURE salary_sum
+WITH ENCRYTION
+AS
+SELECT sum(salary)
+FROM employee
+WHERE emp_dept LIKE Develop
+35.What is lock escalation?RRR
+Lock escalation is used to convert row locks and page locks into table locks thereby “escalating” the smaller or finer locks. This increases the system performance as each lock is nothing but a memory structure. Too many locks would mean more consumption of memory. Hence, escalation is used.
+Lock escalation from SQL Server 7.0 onwards is dynamically managed by SQL Server. It is the process of converting a lot of low level locks into higher level locks.
+36.What is Failover clustering overview?
+Failover clustering is mainly used for data availability. Typically, in a failover cluster, there are two machines.
+• One machine provides the basic services and the second is available to run the service when the primary system fails.
+• The primary system is monitored periodically to check if it works. This monitoring may be performed by the failover computer or an independent system also called as cluster controller. In an event of failure of primary computer, the failover system takes control.
+37.What is Builtin/Administrator?
+The Builtin/Administrator account is basically used during some setup to join some machine in the domain. It should be disabled immediately thereafter. For any disaster recovery, the account will be automatically enabled. It should not be used for normal operations.
+38.What XML support does the SQL server extend?
+SQL Server (server-side) supports 3 major elements:
+a. Creation of XML fragments: This is done from the relational data using FOR XML to the select query.
+b. Ability to shred xml data to be stored in the database.
+c. Finally, storing the xml data.
+Client-side XML support in SQL Server is in the form of SQLXML. It can be described in terms of:
+• XML Views: providing bidirectional mapping between XML schemas and relational tables.
+• Creation of XML Templates: allows creation of dynamic sections in XML.
+SQL server can return XML document using FOR XML clause. XML documents can be added to SQL Server database and you can use the OPENXML clause to display the data from the document as a relational result set. SQL Server 2000 supports XPath queries.
+
+Complex Queries in SQL ( Oracle )
+ 
+
+
+Observation after INdiaBix:
+1.	Check what is routine and how they are related with triggers?RRR
+2.	Check what is equi join and non equi join?RRR
+3.	Embedded sql are the sql statement written in java or any other language program.
+4.	Check UNION query and INTERSECT also. 
+5.	IS NULL operator checks for whether the table has the data or not.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQ: Queries asked in Interviews 
+These questions are the most frequently asked in interviews.
+1.	To fetch ALTERNATE records from a table. (EVEN NUMBERED)
+select * from emp where rowid in (select decode(mod(rownum,2),0,rowid, null) from emp);
+2.	To select ALTERNATE records from a table. (ODD NUMBERED)
+select * from emp where rowid in (select decode(mod(rownum,2),0,null ,rowid) from emp);
+3.	Find the 3rd MAX salary in the emp table.
+select distinct sal from emp e1 where 3 = (select count(distinct sal) from emp e2 where e1.sal <= e2.sal);
+4.	Find the 3rd MIN salary in the emp table.
+select distinct sal from emp e1 where 3 = (select count(distinct sal) from emp e2where e1.sal >= e2.sal);
+5.	Select FIRST n records from a table.
+select * from emp where rownum <= &n;
+6.	Select LAST n records from a table
+select * from emp minus select * from emp where rownum <= (select count(*) - &n from emp);
+7.	List dept no., Dept name for all the departments in which there are no employees in the department.
+select * from dept where deptno not in (select deptno from emp);  
+alternate solution:  select * from dept a where not exists (select * from emp b where a.deptno = b.deptno);
+altertnate solution:  select empno,ename,b.deptno,dname from emp a, dept b where a.deptno(+) = b.deptno and empno is null;
+8.	How to get 3 Max salaries ?
+select distinct sal from emp a where 3 >= (select count(distinct sal) from emp b where a.sal <= b.sal) order by a.sal desc;
+9.	How to get 3 Min salaries ?
+select distinct sal from emp a  where 3 >= (select count(distinct sal) from emp b  where a.sal >= b.sal);
+10.	How to get nth max salaries ?
+select distinct hiredate from emp a where &n =  (select count(distinct sal) from emp b where a.sal >= b.sal);
+11.	Select DISTINCT RECORDS from emp table.
+select * from emp a where  rowid = (select max(rowid) from emp b where  a.empno=b.empno);
+12.	How to delete duplicate rows in a table?
+delete from emp a where rowid != (select max(rowid) from emp b where  a.empno=b.empno);
+13.	Count of number of employees in  department  wise.
+select count(EMPNO), b.deptno, dname from emp a, dept b  where a.deptno(+)=b.deptno  group by b.deptno,dname;
+14.	 Suppose there is annual salary information provided by emp table. How to fetch monthly salary of each and every employee?
+select ename,sal/12 as monthlysal from emp;
+15.	Select all record from emp table where deptno =10 or 40.
+select * from emp where deptno=30 or deptno=10;
+16.	Select all record from emp table where deptno=30 and sal>1500.
+select * from emp where deptno=30 and sal>1500;
+17.	Select  all record  from emp where job not in SALESMAN  or CLERK.
+select * from emp where job not in ('SALESMAN','CLERK');
+18.	Select all record from emp where ename in 'BLAKE','SCOTT','KING'and'FORD'.
+select * from emp where ename in('JONES','BLAKE','SCOTT','KING','FORD');
+19.	Select all records where ename starts with ‘S’ and its lenth is 6 char.
+select * from emp where ename like'S____';
+20.	Select all records where ename may be any no of  character but it should end with ‘R’.
+select * from emp where ename like'%R';
+21.	Count  MGR and their salary in emp table.
+select count(MGR),count(sal) from emp;
+22.	In emp table add comm+sal as total sal  .
+select ename,(sal+nvl(comm,0)) as totalsal from emp;
+23.	Select  any salary <3000 from emp table. 
+select * from emp  where sal> any(select sal from emp where sal<3000);
+24.	Select  all salary <3000 from emp table. 
+select * from emp  where sal> all(select sal from emp where sal<3000);
+25.	Select all the employee  group by deptno and sal in descending order.
+select ename,deptno,sal from emp order by deptno,sal desc;
+26.	How can I create an empty table emp1 with same structure as emp?
+Create table emp1 as select * from emp where 1=2;
+27.	How to retrive record where sal between 1000 to 2000?
+Select * from emp where sal>=1000 And  sal<2000
+28.	Select all records where dept no of both emp and dept table matches.
+select * from emp where exists(select * from dept where emp.deptno=dept.deptno)
+29.	If there are two tables emp1 and emp2, and both have common record. How can I fetch all the recods but common records only once?
+(Select * from emp) Union (Select * from emp1)
+30.	How to fetch only common records from two tables emp and emp1?
+(Select * from emp) Intersect (Select * from emp1)
+31.	 How can I retrive all records of emp1 those should not present in emp2?
+(Select * from emp) Minus (Select * from emp1)
+32.	Count the totalsa  deptno wise where more than 2 employees exist.
+SELECT  deptno, sum(sal) As totalsal
+FROM emp
+GROUP BY deptno
+HAVING COUNT(empno) > 2
+
+Source: https://www.khanacademy.org/computing/computer-programming/sql/more-advanced-sql-queries/p/more-complex-queries-with-andor#
+http://www.interviewquestionspdf.com/2015/02/complex-difficult-sql-queries-examples.html
+
+
+
+
+
+
+
+
+
+
+
+Important questions related to SQL query
+ Some tips 
+1.	If we asked a column (middle name) and if there is no value in middle name, then print the last name in its place. How will you do this?  
