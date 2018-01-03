@@ -135,7 +135,7 @@ Note:
 a.	To use EXCEPT, INTERSECT and UNION, the number and order of the column must be same in both the queries. The columns involved in left and right query in EXCEPT and INTERSECT must not be of same datatype while should be comparable which means it can be implicitly converted into other. 
 b.	Also, remember that the data from the left query is returned while the right query is to compare only. 
 c.	EXCEPT is used in oracle while MINUS is used in SQL Server.
-
+d. The difference between union and unionall is that union will get the distinct rows of left, distinct rows of right and common rows of both the tables once while unionall will take all rows from left table and all rows from right table. 
 
 
 
@@ -196,10 +196,12 @@ Table contains data which is related to each other. A table has rows and columns
 SQL Table Variable 
 The SQL Table Variable is use to create, modify, rename, copy and delete a table. Table variable was introduced by Microsoft. It was alternative of tempropary table. The purpose of table variable is same as the temporary table i.e. to store the records and results. When a transaction is rolled back, the table variable is not rolled back. A table variable uses less resources than temporary table. Table variable cannot be used as input or output parameter.
 Syntax: CREATE TABLE “table name”(“column name” ”data type”, “2nd column name” ”Second datatype”). It is similar to create table syntax.
-Note: as we already know that the table variable is replacement of temp table and they serves the same purpose. But they have some difference in them as well. Research some if you want. 
+Note: 
+1. As we already know that the table variable is replacement of temp table and they serves the same purpose. But they have some difference in them as well. Research some if you want. 
+2. Oracle has the concept of temp table not of variable (need to confirm).  
 
 SQL CREATE TABLE 
-This command is use to create a table and we should define each column name, its data type and storing capacity in some cases. The data type may vary from one database to another. For example, NUMBER is used in oracle and INT is used in MySQL for integer.  While creating table, we can use of NOT NULL constraint which implies that the field cannot be kept blank. Also, we have to declare the primary key. Practice creating table. 
+This command is use to create a table and we should define each column n                                                                                                                                                                                                                                   ame, its data type and storing capacity in some cases. The data type may vary from one database to another. For example, NUMBER is used in oracle and INT is used in MySQL for integer.  While creating table, we can use of NOT NULL constraint which implies that the field cannot be kept blank. Also, we have to declare the primary key. Practice creating table. 
 Note:
 1.	Please confirm that if a column is not given not NULL while declaring a table then are they by default considered NULL?Yes, by default columns are Null and can contain the null values. Also, NULL is not being a zero value or an empty string.
 While creating a table, write name of column followed by datatype along with mentioning the size of the column. Mention whether the column is NOT NULL or not. Also, specify primary key column.  
@@ -316,6 +318,7 @@ b.	CONCATE – this is used to add two strings inside any sql commands.
 c.	Numeric – it’s a category of functions itself. These functions are too many so leaving now but I will do it later if required. 
 d.	String – it is also a category of functions in itself. These functions are too many so leaving it for now but I will do if required later. 
 Note: I am leaving it here because I see doing more functions now is out of scope. I will do it later if required.
+
 SQL Order By
 Order By Clause
 This clause is used to order the data retrieved. We can order the data in one or more columns in ascending or descending order and by default it is order the data in ascending order. Syntax: “Select columnName from tableName where condition order by expression ASC/DESC” where expression is column name. 
@@ -327,10 +330,10 @@ Order By DESC
 This is used to order the data in the descending order and DESC keyword is used with order by for this purpose. When we have multiple columns in order by clause then the result will be ordered first for the first column and then for other column.
 
 Order by random 
-Well, if you want to arrange the data in random order for any purpose then we have different syntax for different RDBMS. For example, the syntax in oracle is: Select column from (Select column from table order by dbms_random.value) where rownum = 1;. This is query where it will give one random row. In SQL server, for random order we have a function called NEWID(). We do not need to mention column name in that.
+The requirement is we need to select any 20 random rows. We can see this as we selected all the rows in random order and only selected 20 out of those all selected rows in random order. So, here is an example: "Select * from (select * from tableName order by RDMS_random.value) where rownum<21;". Here, DBMS_value is a random value generator in oracle and rownum is a keyword or clause to restrict the number of rows output just like limit in sql db. 
 
 Order by limit
-We can retrieve limited rows through limit keyword. This is also called as pagination. This is also done in different ways in different databases. We can simply write the number of rows we have to retrieve after LIMIT keyword. Remember, this keyword is not available in all databases. 
+We can retrieve limited rows through limit keyword. This is also called as pagination. This is also done in different ways in different databases. We can simply write the number of rows we have to retrieve after LIMIT keyword. Remember, this keyword is not available in all databases. SQL supports LIMIT while oracle supports rownum. Example: "Select * from tableName where Rownum<11 orderby columnName;".
 Note: 
 1.	Will the result be ordered first or limit will occur first? I result will always be ordered first and then from the ordered result it will fetch the limited result mentioned.
 2.	We do not have LIMIT in oracle as well as MS SQL. It is used in MySQL.  
@@ -401,7 +404,7 @@ Yes! It is possible to insert three rows in a table in a single statement. Infec
 2.	Select union insert – this is another way which reduces the previous query a bit. Syntax: insert into tableName (col1, col2…) value (value1, value2….) UNION ALL value (value1, value2…..)..continue. 
 3.	SQL server 2008 Row Construction – I guess this might only be for Microsoft SQL server. Insert into tableName (col1, col2,….) Value (value1, value2,..), (value1, value2…),…..
 
-Note: check these – 1. Insert record in one column, 2. Insert record in all the rows, 3. Insert record from another table using select statement, 4. Insert multiple record, 5 insert multiple records using other table. 	
+Note: check these – 1. Insert record in one column, 2. Insert record in all the columns, 3. Insert record from another table using select statement, 4. Insert multiple record, 5 insert multiple records using other table. 	
 
 SQL Update 
 Update statement
@@ -510,14 +513,15 @@ SQL Join
 Inner Join 
 The simplest join is called as inner join or simply join. For retrieving the column from multiple tables, we require join. Also, for joining two tables we need a common filed among them. Check the example for better understanding. Syntax: “Select table1.co1, table2.col2 from table1 alias1 = table2 alias2 where table1.samecolumn = table2.samecolumn”. Inner join represent the commons rows of the selected column from both the tables. 
 Note:
-1.	Whenever select * is given in select query then the column from both the tables will print over which join is made. 
-2.	For inner join, when you check which all rows will be retrieved then first check the common rows. Then, the common rows might be repeating n number of time then those repeated rows will also come. 
+1.	Inner Join gets us the common rows from both the tables but if a row of left table is repeated twice then in the joined tables it will come twice. 
+2.	Whenever select * is given in select query then the column from both the tables will print over which join is made.
+3. How inner join is different from Intersect? Intersect works on the same set of columns while join can work on different columns. Intesect works on copy of tables but not on real tables while join works on real tables. Intersect reteruns the common rows between left and right side while inner join will return common rows but if a row of is repewated multiple times in right then it will give that multiple times in the joined tbale. 
 
 Outer Join
 Outer Join is of three types which are shown below. 
  
 Left Outer Join
-This is also called as Left join. In this join, the query returns all the rows of the selected column of the left table and common rows of the right table (Which means, left have value as 2 once and the column of right table has 2 three times. Then, overall it will be printed three times). The table comes first while writing the join is the left table while the other table in right table. Syntax: “Select table1.col1, table2.col from Table 1 left join table 2 ON Join condition”. Join makes difference on the number of rows while the column printed will only be the selected columns. 
+This is also called as Left join. In this join, the query returns all the rows of the selected column of the left table and common rows of the right table (Which means, left have value as 2 once and the column of right table has 2 three times. Then, overall it will be printed two imes). The table comes first while writing the join is the left table while the other table in right table. Syntax: “Select table1.col1, table2.col from Table 1 left join table 2 ON Join condition”. Join makes difference on the number of rows while the column printed will only be the selected columns. 
 Note: For inner join, when you check which all rows will be retrieved then first check the common rows. Then, the common rows might be repeating n number of time then those repeated rows will also come. 
 
 Right Outer Join
