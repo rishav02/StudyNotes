@@ -1,0 +1,103 @@
+JavaServer Page Study
+JSP Introduction
+JavaServer Page is used to create server side pages in a web application. It focuses more on designing part. Servlets are also used to create the server side pages though it focus on business logic. It is better to say that in JSP HTML code contains the java code while in servlets java code contains the HTML code. We also have to remember that JSP is an extension of Servlets.  
+JSP converted into servlets in the end – The web container converts the JSP into servlet i.e. .jsp to .java file and then compiles the java servlets class.
+Advantages of JSP – 
+1.	Easy to maintain – Check How?
+2.	High performance and scalability – Check How?
+3.	Java is built on java technology so it is platform independent. 
+4.	We have to write less code in JSP than Servlet. 
+
+Life cycle of JSP
+As we already know that a JSP is converted into servlet at the end. This translation is nothing but the life cycle of JSP. The life cycle of JSP consist of the following steps.
+1.	Translation of JSP to servlets code i.e .jsp file to .java class
+2.	Compilation of servlet to bytecode i.e. .java to .class file.
+3.	Loading of .class file also called as classloading. 
+4.	Instantiation of .class file. 
+5.	Initialization by calling jspinit() method.
+6.	Processing the request _jspService() method. 
+7.	Destroying the called jsp by jspDestroy() method. 
+All these steps are controlled by web container. Check the image below which shows the example of lifecycle of JSP. 
+Also, check the directory structure of the JSP in a web application. This is applicable to all the web application. 
+ 
+a.	Showing example of JSP Life Cycle
+ 
+b.	Showing Directory Structure in Web Application
+Creating a JSP Page
+In eclipse, create a dynamic web project and create a JSP page, A JSP blank page will be created under web content folder. Then write a simple JSP code to print “Hello User” and run the page on the server. 
+
+Java Scripting Element
+Java scripting elements are written inside <% %> tag. The code inside this tag is used to process by the JSP engine during the translation of JSP page to Servlets. Any other text in the JSP page is considered as HTML code or plain text. For the ease if understand, JSP use scripting tags for inserting the business java code and rest is simple HTML. The scripting tags are of five types. 
+1.	JSP Comments - <%-- Comments --%>. It is used to add comments In JSP page and is not present in the source code after translation.
+2.	Directive Comments - <%@ directive %>. This tag is used to write some special instructions for the web container at the time of translation. These will be taken in detail later. 
+3.	Declaration - <%! Declaration %>. We declare variables and methods inside the declaration tag. This make sure that the declaration is made inside the servlet method class outside the service or any other method. We can declare any type of variables and method inside the declaration tag. Check an example.
+4.	Scriptlets - <% Scriptlets%>. This tag is used to write the java code inside the JSP page. Try example JavaTPoint.   
+5.	Expression - <%= expression %>. The code written inside this tag is written to the output stream of the response. So, we do not need to write the print.out statement in JSP. Though, remember that we do not use semicolon expression language.
+
+Implicit objects in JSP
+JSP provides the access to some objects which represent some commonly used objects for servlets that JSP developers might use. We generally use one or more objects to implement the desired functionality. Whenever any JSP request comes then the web container creates object for the JSP. For example, a form is submitted by the user with some information and we have to send the response by using the information in the form. In this situation, we can use the request object which has the data submitted in form by the user. 
+We will now study all the nine implicit objects of JSP.
+1.	Out Object – This object is used to for writing any data to the buffer. It is an object of JspWriter. So, by this we do not need to create the object of the jspWriter and can use its functionality through inbuilt object. 
+2.	JSP request Object – This is object of HttpServletRequest which is created by each JSP request by the servlet container. This object can be used to get the information that comes in HttpServletRequest object like parameter, header information, remote address, server name, server port, character type, character encoding etc. It can also set, get and remove the attribute from jsp request scope. Try the example for better understanding. 
+3.	JSP response Object – In JSP, response is implicit object of HttpServletResponse. It can be used to add or manipulate the response through send redirect response to another response, send error etc. Try the example for better understanding. 
+4.	JSP config object – This implicit object is of ServletConfig. This object is used to get the initialization parameter of any particular JSP page. Generally, it is used to get the initialization parameter from web.xml file. Try the example for better understanding. 
+5.	JSP application object – This implicit object is of ServletContext. This object is not created per request but it is one for entire container. So, it will not be created when a request comes but when the application is deployed. This object is also used to get, set or remove the attribute from the application scope. Try the example. 
+6.	 JSP session object – This implicit object is of HttpSession class. The developers can use this object to get, set or remove any attribute or for simply getting the information. Try example for better understanding. 
+7.	JSP pageContext Object – This implicit object is of PageContext class. This object is used to represent the entire JSP Page. This object is also used to get, set or remove attributes from page, request, session or application scope. Check more on this later. Try example for better understanding. 
+8.	JSP page Object – This object is just like this keyword in java language. It points the page it belongs to. This page object is Object class type. 
+9.	JSP exception Object – This object is an implicit object of type Throwable class. This object is used to print the exception. However, this can only be used in error page. Try example for better understanding.  
+Note:
+1.	Different scopes in JSP 
+a.	Page Scope – Whenever any request comes, we process it and create some data. In page scope, the data is valid only once the processing is happening at that page. Even when we process a page and send the response to other page for further processing then also the data is lost. This is called as page scope. 
+b.	Request Scope – In this scope, the container holds the data until a particular process is processed. So, when a page is processed and ends the response to some other page for further processing then also the data of the previous page is saved. 
+c.	Session Scope – In this scope, the data related to the session is kept safe by the web container until the session does not expire. Though, as soon as the session expires than data is released by the web container. 
+d.	Application scope – In this scope, the data is not release by the web container until the application is not un-deployed. 
+
+
+Directive Element 
+JSP directive elements tell the web container how to transalate the JSP page into servlets. The syntax of directive element is <%@ %>. There are three types of directives which are page directive, include directive and taglib directive. 
+Page Directive 
+The syntax of page directive element is <%@ page aatribute=”value” %>. In this, we make use of lot of attribute which we need to understand. We are describing the attributes in short below. 
+1.	Buffer – This is used to set the size of the buffer in which the output generated by JSP page. The value is set in kb’s and default value is 8 kb. 
+2.	Autoflush – This means the autoflush is 	controls the behavior of buffer. I guess its flushes it. 
+3.	ContentType – It define the character encoding scheme. 
+4.	errorPage – This will contain the URL of the JSP displaying the error message in case of unchecked exception. 
+5.	IsErrorPage – Used to indicate the current JSP page is an error page. 
+6.	Extends – It specifies the superclass that must be extended by the corresponding servlet of the JSP page.
+7.	Import – It is used to specify the list of classes or packages needs to be imported by the corresponding servlet of JSP.
+8.	Info – This contains info about the JSP and can be accessed by getServletInfo() method. 
+9.	isThreadSafe – Defines if the thread is thread safe. 
+10.	 Language – Programming language used in the JSP page and by default its java. 
+11.	Session – Specifies whether JSP page participate in session or not. 
+12.	IsELIgnored – It indicates whether Expression language is enabled or not and by default it is false. 
+13.	IsScriptingEnabled – Determines if the scripting element are allowed for use. 
+Include Directive 
+Include directive is very simple as it means to include the resource in the JSP. The resource included can be of any format. The major use of this directive element type is code reusability. Since the file is attached in this directive element thus the size of the page increases during runtime. The syntax of this directive is <%@ include file=”FileName”%>. Try the example. 
+Taglib Directive 
+JSP taglib directive is used to define a tag library that defines many tags. We will be studying this is much detail during the custom tag section. The syntax of this directive is <%@ taglib uri=”Somevalue” prefix=”somevalue”%>. Try the example. 
+
+
+Exception Handling in JSP
+As we already know that an exception is an abnormal condition which stops the normal flow of an application. Therefore, handling exception is very crucial part. In java, we do it through try and catch block but how do we do this in JSP? In JSP we do it in two ways which are by directive element along with errorpage attribute or by <error-page> tag in web.xml file. In second way, we can use either <exception-type> or <exception-code> inside <error-page>. 
+Try the example for handling exception through both the ways. I have  tried but it is not work. 
+
+JSP Action tags
+We have already seen the scripting tags (or elements) which are responsible for embedding the java code inside HTML in a JSP page. However, the action tags are for deciding the flow between the pages and to use java bean. We are having quite a many action tags which we are looking at one by one. 
+JSP Forward Tag
+This action tag is used to forward the request to another resource. The other resource could be JSP, HTML or any other type. The syntax of using forward element is <JSP:forward page=”relevant URL | <%= expression%>”>. If we have to use/send the parameter with the request then we can use this syntax <JSP:forward page=”relevant URL | <%= expression%>”> <JSP:param name=”relevant name” value=”parameter value | <%= expression%>”/></jsp:forward>. I tried the example and I am able to run them. Try the example. 
+Doubt: When I use this action tag then the URL of the page to which the previous page is redirected is not shown. 
+
+JSP Include Tag
+The JSP action tag is used to include the content of another resource it may be JSP, HTML or servlet. The other resource is added at the request time so it is better dynamic pages. Though, this can be used with static or dynamic page. Here, the static page is the one which has fixed content while dynamic’s content changes. 
+Advantage: code reusability is the primary advantage of include tag. Think of the situation where to want to add some particular content to every web page then we can include the content many times by writing just one time. 
+Difference between include directive and include action tag 
+1.	Include directive adds the resource during translation while include action tag is call the resource during request time. 
+2.	Include directive suits well with static page while include action tag suits well with dynamic pages. (Why?)
+3.	Include directive adds original content to the converted servlet while include action tag calls the include method. 
+Syntax: 
+<jsp:include page=”releventlink | <%= expression%>”/>
+ OR
+<jsp:include page=”releventlink | <%= expression%>”>
+<jsp:param name=”paramname” value=”paramvalue | <%= expression%>”/>
+</jsp:include>
+In the example, index page includes the printdate page. So, the content of printdate page get printed below the content of index page. 
