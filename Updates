@@ -323,6 +323,16 @@ SQL study File
 20. Stored procedure, syntax, advantages. Comparison with views. 
 21. Trigger (check in a little depth next time)
 22. Complete topics after triggers. 
+
+
+SQL quries
+1. how to show date column value including second
+2. how to show db date 
+3. escape character in oracle?
+4. get details from one table even a single row present in other table. (Means if other table is not empty).
+5. trick for name only numbers.
+6. Delete duplicate record:question 11, http://www.java67.com/2013/04/10-frequently-asked-sql-query-interview-questions-answers-database.html
+
 ***************************************************************************************************************************************
 Hibernate Study file
 The difference between load and get method. These methods are there to returnt the persisted (saved in database) object of a given id. However, when we call load the it does not return the real object but return thw proxy for th real object however get gets use the real persisted object. Also, load return objectNotFoundException if object not found while get gives null if object not found. 
