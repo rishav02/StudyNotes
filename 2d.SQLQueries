@@ -114,7 +114,7 @@ Select * from EMPLOYEE where Salary between 500000 and 800000
 
 29. Get employee details from employee table whose name is 'John' and 'Michael'
 Select * from EMPLOYEE where FIRST_NAME in ('John','Michael')
-30. Get employee details from employee table whose joining year is “2013”
+30. Get employee details from employee table whose joining year is “2013”RRR
 SQL Queries in Oracle, Select * from EMPLOYEE where to_char(joining_date,'YYYY')='2013'
 
 SQL Queries in SQL Server, Select * from EMPLOYEE where SUBSTRING(convert(varchar,joining_date,103),7,4)='2013'
@@ -136,13 +136,14 @@ SQL Queries in SQL Server (Format - “MM/DD/YYYY”), Select * from EMPLOYEE wh
 SQL Queries in MySQL (Format - “YYYY-DD-MM”), Select * from EMPLOYEE where joining_date <'2013-01-01'
 To compare a value of date with a date column in where clause we can create a string like ‘30/01/2015’ to date like this to_date(DD/MM/YYYY).
 
-33. Get employee details from employee table who joined after January 31st
+33. Get employee details from employee table who joined after January 31st AAA
 SQL Queries in Oracle, Select * from EMPLOYEE where JOINING_DATE >to_date('31/01/2013','dd/mm/yyyy')
 
 SQL Queries in SQL Server and MySQL (Format - “MM/DD/YYYY”), Select * from EMPLOYEE where joining_date >'01/31/2013'
 
 SQL Queries in MySQL (Format - “YYYY-DD-MM”), Select * from EMPLOYEE where joining_date >'2013-01-31'
- 
+
+Here, we are not asked 31st janurary, 2013 but just after 31st janurary is asked. So, i have written a query "Select * from employee where to_char(joining_date, 'MM')>01". This means those records where month of the date is greate than 01 so that will obviously be after january 31st.
 
 35. Get Joining Date and Time from employee tableRRR
 SQL Queries in Oracle, select to_char(JOINING_DATE,'dd/mm/yyyy hh:mi:ss') from EMPLOYEE
@@ -209,14 +210,20 @@ SQL Queries in Oracle, select to_char (JOINING_DATE,'YYYY') Join_Year,to_char (J
 SQL Queries in SQL Server, select datepart (YYYY,JOINING_DATE) Join_Year,datepart (MM,JOINING_DATE) Join_Month,count(*) Total_Emp from employee group by datepart(YYYY,JOINING_DATE), datepart(MM,JOINING_DATE)
 
 SQL Queries in MySQL, select year (JOINING_DATE) Join_Year,month (JOINING_DATE) Join_Month,count(*) Total_Emp from employee group by year(JOINING_DATE), month(JOINING_DATE)
-To convert the date to char we use to_char(date column name, format ex: ‘YYYY’ or ‘MM’). 
+
+To convert the date to char we use to_char(date column name, format ex: ‘YYYY’ or ‘MM’). Also, major thing to note here is that if we are asked to group by on the basis of two entities (years and month of a date) then we have used group by with two entities. So, we can use group by using two or more column separated by comma. 
 
 48. Select department,total salary with respect to a department from employee table where total salary greater than 800000 order by Total_Salary descendingRRR
 Select DEPARTMENT,sum(SALARY) Total_Salary from employee group by DEPARTMENT having sum(SALARY) >800000 order by Total_Salary desc
-If we have to filter the  records which are grouped thenwe have to use having. Do not use where clause. 
-49. Select employee details from employee table if data exists in incentive table ?RRR
+
+If we have to filter the  records which are grouped thenwe have to use having. Do not use where clause. But always remember that if we have to filter using the column which is not involved in group by then we have to use where cluase before group by.  
+
+49. Select employee details from employee table if data exists in incentive table ?AAA
 select * from EMPLOYEE where exists (select * from INCENTIVES)
 Explanation : Here "exists" statement helps us to do the job of If statement. Main query will get executed if the sub query returns at least one row. So we can consider the sub query as "If condition" and the main query as "code block" inside the If condition. We can use any SQL commands (Joins, Group By , having etc) in sub query. This command will be useful in queries which need to detect an event and do some activity.
+
+In this question, we are saying that get the details from employee if "data" exist in incentive. This mean any row present. 
+
 50. How to fetch data that are common in two query results ?RRR
 select * from EMPLOYEE where EMPLOYEE_ID INTERSECT select * from EMPLOYEE where EMPLOYEE_ID < 4
 Explanation : Here "INTERSECT" command is used to fetch data that are common in 2 queries. In this example, we had taken EMPLOYEE table in both the queries.We can apply INTERSECT command on different tables. The result of the above query will return employee details of "ROY" because, employee id of ROY is 3, and both query results have the information about ROY.
