@@ -274,7 +274,7 @@ When child class writes the same method as a static method in parent class then 
 
 8. How to print only unique number from an arrayList with mixed numbers? We can convert the list to set as set contains only unique values. 
 
-9. Printing an string from JSP? Print Writer object or expression element. 
+9. Printing an string from JSP? We can print string in three ways in JSP which are expression element, out.print() and <c:out value=${some exoression or string}>. 
 
 10. Three columns in a table: id, name and salary. Find out the top salary and name of the employee. "select name max(salary) as Max_salary from employee." and second highest salary as "select max(salary) from employee where salary NOT IN (select max(salary) from employee)".
 
@@ -348,4 +348,13 @@ Hibernate Study file
 The difference between load and get method. These methods are there to returnt the persisted (saved in database) object of a given id. However, when we call load the it does not return the real object but return thw proxy for th real object however get gets use the real persisted object. Also, load return objectNotFoundException if object not found while get gives null if object not found. 
 
 The difference between persist and save method. Both are there to add an object in the database. Firstly, both works the same with persistent object but the difference comes in case of transient (which is not yet saved in db) object. Persist does not execute an insert statement outside the boudary of transaction while save method does that. Persist object not necessary that immediately persist the transient object while save will to it immediately.  
+***************************************************************************************************************************************
+JSP Study File
+Topics for quick check
+1. Scripting Elements: All 5 categories
+2. Implicit Object: (request, response, session, application, config, page, pageContext, Exception and out)
+3. Action Tag: Used to control the flow of the jsp page and to use the bean. 
+4. Expression Element
+5. JSTL and Custom tags
+
 hymn of weekend, perfect ed shareen, 
