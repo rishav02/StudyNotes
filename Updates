@@ -268,17 +268,18 @@ CBSI telephonic interview
 5. What is overhiding? 
 When child class writes the same method as a static method in parent class then this is called as overhiding. No error is received. 
 
-6. Difference in get and load method of hibernate?
+6. Difference in get and load method of hibernate? 
 
 7. What was the last code change you have done? File upload for anti virus check. 
 
-8. How to print only unique number from an arrayList with mixed numbers?
+8. How to print only unique number from an arrayList with mixed numbers? We can convert the list to set as set contains only unique values. 
 
 9. Printing an string from JSP? Print Writer object or expression element. 
 
-10. Three columns in a table: id, name and salary. Find out the top salary and name of the employee. 
+10. Three columns in a table: id, name and salary. Find out the top salary and name of the employee. "select name max(salary) as Max_salary from employee." and second highest salary as "select max(salary) from employee where salary NOT IN (select max(salary) from employee)".
 
-11. Added another column in the above table department. 
+11. Added another column in the above table department. Asked to get max salary of each department. select name, max(salary) from employee group by department. 
+
 *************************************************************************************************************************************
 Java study
 Topics need to be revised:
