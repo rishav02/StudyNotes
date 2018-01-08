@@ -237,6 +237,7 @@ Another very important aspect of JSp is its Standard tag library. We can underst
 
 
 
+
 Some Important Questions:
 1. How to submit form using JavaScript? document.form[0].submit();. 
 2. How o read or write a file using JS? active X object or some JS extension. 
@@ -269,7 +270,15 @@ When child class writes the same method as a static method in parent class then 
 
 6. Difference in get and load method of hibernate?
 
+7. What was the last code change you have done? File upload for anti virus check. 
 
+8. How to print only unique number from an arrayList with mixed numbers?
+
+9. Printing an string from JSP? Print Writer object or expression element. 
+
+10. Three columns in a table: id, name and salary. Find out the top salary and name of the employee. 
+
+11. Added another column in the above table department. 
 *************************************************************************************************************************************
 Java study
 Topics need to be revised:
