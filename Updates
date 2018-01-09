@@ -360,5 +360,34 @@ Topics for quick check
 Web service Study
 1. Importance of web services
 2. UDDI, WSDL
-3. Layers of Web service protocol stack
+3. Layers of Web service protocol stack: It contains four layers contains four layers of protocols which are transport protocol which is HTTP in case of REST, messaging protocol which can be XML, JSON or any other type, description protocol is the WSDL in case of SOAP web services and lastly, discovery protocol layer which is nothing but UDDI which provides the platform for discovery a needed web service. 
+4. Addressing and resource means in RESt
+5. Key features of REST: http protocol, any messaging format, no wsdl, stateless, caching
+6. HTTP request and response components.
+HTTP request must be having the URL and the type of http method used to send the request. Also, it should contain the content type and accept header params in header of request. It can also contain an payload in case of post and put request. Response should contain the status code and resultant output of the request processed. Response should also contains header param like the response type and chache param or any other param, if any. 
+7. Statelessness of web services and its advantage. 
+Statelessness means that web services does not track any state(data) regarding the different calls made a client and therefore, each client request should contain sufficient data for making server capable of processing request. Restful web service should be stateless so as to be simpler and more scalable. It is a design based decision of REST architecture that is quite aligned with HTTP protocol which is stateless too.  
+8. Chaching in web service. How we do it and advantage. 
+Caching means storing servers response on the client side so that client do not need to send request for same resource again and again. Cache control header is send in the server resoonse to decide the properties of caching. The hear can be set public or private. If made public then any component can cache it while private make only destination client to cache the response. We can set the max age of the caching. It mean until what time a response can be cached. 
+9. Payload. It are the data that we send in a request while request param does not fall in this category. We cannot have payload in GET and DELETE request.  
+10. Different application integration styles?
+Here, Integeration styles means how different component of an application can be integrated or can interact. This can be done in multiple way which are messaging (example:JMS), batch files, Remote procedure calls and file transfer. 
+11. Annatation used when exchanging data in XML. @XMLRootElement, @XMLAttribute, @XMLElement.
+12. JAXB purpose in webservice:
+Jaxb is used to marshal and unmarshal the java object to xml and vice versa. 
+Code for marshalling:
+JAXBContext jcontext = JAXBContext.getInstance(Student.class);
+Marshaller marshaller = jcontext.createMarshaller();
+Marshaller.setProperty(Marshaller.JAXB_FORMATED_OUTPUT, true);
+Student s = new Strudent(1, “Rishav”);
+Marshaller.marshal(s, new FileOutputStream(“path of file”));
+Code for Unmarshalling
+JAXBContext jcontext = JAXBContext.getInstance(Student.class);
+Unmarshaller unmarshaller = jcontext.createUnmarshallar();
+File file = new File(“XML data file path”);
+Student student = (Student) unmarshalar.unmarshal(file);
+13. What HTTP basic authentication in web services and how do we implement it?
+HTTP basic authentication is a simple technique of providing authentication on accessing a web resource. For creating the basic autherization param we need to create a string. First create a simple string "username:password", then encode the string through encode Base64 and append the string "Basic " with the previous string. Finally, send the resultant string as a value of Authorization key param in header. On the client side, we can use header param through annotation @headerparam("Authentication") String authString. 
+14. How do we configure web service. 
+15. WADL: Web application description language which a machine readable xml format document to derscribe the http based web service. 
 hymn of weekend, perfect ed shareen, 
