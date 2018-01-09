@@ -390,4 +390,16 @@ Student student = (Student) unmarshalar.unmarshal(file);
 HTTP basic authentication is a simple technique of providing authentication on accessing a web resource. For creating the basic autherization param we need to create a string. First create a simple string "username:password", then encode the string through encode Base64 and append the string "Basic " with the previous string. Finally, send the resultant string as a value of Authorization key param in header. On the client side, we can use header param through annotation @headerparam("Authentication") String authString. 
 14. How do we configure web service. 
 15. WADL: Web application description language which a machine readable xml format document to derscribe the http based web service. 
+***************************************************************************************************************************************
+Hiebernate Quick Revise
+1. Spring ORM implementation using Hibernate ORM.
+2. Hibernate basic implementation for simple j2EE app. Check the client Specially.
+3. Different hibernate methods.
+a. difference in persist and save method(). First, persist method do not garuntee to assign value to transient object the value immediately, that may be assigned during flush time. Alsoo, it does not gaurntee to do insert outside the transaction boundry. Save can perform insert outside the transaction object. Another difference i recollect is that if we use incremental generator where primary id is given by hibernate then save return the primary key assigned while persist does not. 
+b. The difference between load and get method. These methods are there to returnt the persisted (saved in database) object of a given id. However, when we call load the it does not return the real object but return the proxy for th real object however get gets you the real persisted object. Also, load return objectNotFoundException if object not found while get gives null if object not found. 
+c. SaveOrUpdate(): This method will save the data if the data is not present in the table already, while update it if its present. Wwe can use this method outside the transaction boundry. 
+d. update(): method used only to update the existing resource. 
+4. Hibernate hirerarchy or inheritance mapping. 
+5. Hibernate object mapping types. 
+
 hymn of weekend, perfect ed shareen, 
