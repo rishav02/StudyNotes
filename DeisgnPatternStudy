@@ -1,0 +1,68 @@
+Design pattern is a general and reusable solution to a commonly experienced problem in software designing. Therefore, we can follow the guildlines of a design pattern to overcome a design related challenge. 
+Let's have a look on different kind of design patterns used. 
+1. Singleton Design Pattern
+This design pattern says that a class should be created in a way that only one object of it can be created per application (classloader) and should provide a global point of access. Therefore, any class that we think we do not need to create multiple objects throughout application can be made singleton. One good example is logging. We should need only one instance of logger to log the activities of an application. 
+There are three forms of singleton design pattern which are below:
+a) Eager Loading: Object is create when class loads.
+public class Class1{
+	//static member
+	static Class1 class1 = new Class1();
+	//private constructor with empty body
+	private Class1(){
+		
+	}
+	//factory method
+	public Class1 getInstance(){
+		return class1;
+	}
+}
+b) Lazy Loading: Object is create when demanded.
+public class Class1{
+	//static member
+	private static Class1 class1;
+	//private constructor with empty body
+	private Class1(){
+		
+	}
+	//factory method
+	public Class1 getInstance(){
+		if(class1==null){
+			class1=new Class1();
+		}
+		return class1;
+	}
+}
+c) Static Loading: This is similar to eager initialization but the object of the class is create in static block. 
+public class Class1{
+	//static member
+	private static Class1 class1;
+	//static block used to create class object
+	static{
+		try{
+			class1=new Class1();
+		}catch(Exception e){
+			throw new RuntimeException("Exception Occurred while creating singleton instance");
+		}
+	}
+	//private constructor with empty body
+	private Class1(){
+		
+	}
+	//factory method
+	public Class1 getInstance(){
+		return class1;
+	}
+}
+
+Serialization in singleton class
+If a singleton class is serializable, we can serialize the singleton class instance. Once it is serialized, you can deserialize it but it cannot return the object. For getting the object back, we need to override the readResolve() in singleton class. It returns a singleton object. 
+Note: 
+1. We should understand that Singleton class relates to the classloader. This means if you have a singleton class inside war file and deployed on multiple servers then each server will get its own singleton object. However, when we add that class to tomcat class path then we get one instance for multiple deployment.
+2. Why singleton design pattern is antipattern? 
+3. Let;s discuss in a little detail about the advantage we will receive if we go with singleton classes in a couple of scenarios. First, for logging class in our application if we create a normal class then everytime we will get a new instance which is definitely not needed. If we have a singleton class for logger then obviiuosly we will get single object for each request. This will suffice and will help save some memoery as multiple object will not get created in memoery area. Second, assume we have a class like jdbctemplate in our app which has all the methods of interacting with db which is generally the case. If we make this class as singleton then we will get just one instance for accessing the methods thus this will contribute in maintaining the stability of the data in db. In the second example, we just need to create the jdbc class containing a hell lot methods as singleton while keeping the methods same as in normal class.
+4. Some example of singleton classes from jdk are Runtime class, from awt package toolkit and desktop class. 
+5. For making singleton class thread safe, we need to use the synchronized keyword which is the standard way handling the thread safety. We also have the concept of double checking to prevent creation of new instance for a new thread. For implementing the double check we can
+
+
+
+Some Important Singleton design pattern:
