@@ -303,7 +303,34 @@ Catch of child will catch the exception. Also, the code written after the catch 
 
 18. Complete JaxB working. Explain with code.
 
-19. we have an array with numbers which are repeated. We need to find out the count of each numbers in the array. 
+19. we have an array with numbers which are repeated. We need to find out the count of each numbers in the array.
+public class Class1{
+	public static void main(String args []){
+		Class1 c = new Class1();
+		int[] numbers = {1,2,4,4,5,2,1,3,4,6,3,5,2,5,6};
+		c.checkCount(numbers);
+	}
+	public void checkCount(int[] numbers){
+		Map<Integer, Integer> numberCount = new HashMap<Integer, Integer>();
+		for(int i=0;i<numbers.length; i++){
+			int count=1;
+			for(int j=i+1; j<numbers.length; j++){
+				if(numbers[i]==numbers[j]){
+					count++;
+				}
+			}
+			if(!(numberCount.keySet().contains(numbers[i]))){
+				numberCount.put(numbers[i], count);
+			}
+		}
+		Set set = numberCount.entrySet();
+		Iterator<Entry> i = set.iterator();
+		while(i.hasNext()){
+			System.out.println(i.next());
+		}
+	}
+}
+
 
 20. Print the reverse of an int number without using String or array.
 
