@@ -297,6 +297,21 @@ Catch of child will catch the exception. Also, the code written after the catch 
 
 15. Where have i used inheritance in code or ever written a classes with inheritance relation?
 
+16. What design patterns have you worked on? Singleton, Factory pattern and MVC. Describe each with a real time example. 
+
+17. Difference in primary and unique key?
+
+18. Complete JaxB working. Explain with code.
+
+19. we have an array with numbers which are repeated. We need to find out the count of each numbers in the array. 
+
+20. Print the reverse of an int number without using String or array.
+
+21. How will you manage transaction in jdbc? How will you manage to commit one query while rollback the other query in jdbc if the exception comes in third query. 
+Here we can use savepoint. 
+
+
+
 *************************************************************************************************************************************
 Java study
 Topics need to be revised:
