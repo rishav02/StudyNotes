@@ -280,6 +280,23 @@ When child class writes the same method as a static method in parent class then 
 
 11. Added another column in the above table department. Asked to get max salary of each department. select name, max(salary) from employee group by department. 
 
+12. What is null pointer exception. How will we create a null pointer exception by changing second line of the below code.
+String s = null;
+System.out.println(s);
+A string created as null or got the default value of null does not throw null pointer exception while it prints the "null". In the above code, if no changes are done then it will print null. Yes, it will print null just like string. Also. if a string is created using new keyword and not given anything then will print nothing but not gives null pointer exception. Only when a string is created by using new keyword and given a reference which is null then it gives null pointer exception. This is because if a reference is null then it isnt pointing to a memory address. Therefore below code will give null pointer exception.
+String s;
+String s1 = new String(s);
+System.out.println(s1);
+The best way to handle null pointer exception is to do check if the object we are using is not a null before using it, esp the one that we are getting but we havent created. 
+
+13. What will happen if we override service method is servlet and write one print statement when a request comes? We also have doGet and doPost methods written in the same servlet.
+Only the print statement written in overriden service method will be printed and doGet or doPost will not be called. This is because we are not suppose to override the service method of parent class as its implementation is only responsible for calling either Get or Post method according to the request. 
+
+14. If called and calling methods has catch block catching the Exception and exception comes in try block of called mathod then which catch block will catch the exception and what will the flow of the program. 
+Catch of child will catch the exception. Also, the code written after the catch of the child will execute giving back the control to the called method. 
+
+15. Where have i used inheritance in code or ever written a classes with inheritance relation?
+
 *************************************************************************************************************************************
 Java study
 Topics need to be revised:
