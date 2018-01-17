@@ -19,8 +19,11 @@ isNan function returns true if the argument is not a number otherwise it is fals
 JavaScript is faster. JavaScript is a client-side language and thus it does not need the assistance of the web server to execute. On the other hand, ASP is a server-side language and hence is always slower than JavaScript.  Javascript now is also a server side language (nodejs).
  
 Javascript
-6. What is negative infinity?
-Negative Infinity is a number in JavaScript which can be derived by dividing negative number by zero.
+6. What is negative infinity?AAA
+Negative Infinity is a number in JavaScript which can be derived by dividing negative number by zero. 
+
+We can use it as Number.NEGATIVE_INFINITY.
+
 7. Is it possible to break JavaScript Code into several lines?RRR
 Breaking within a string statement can be done by the use of a backslash, ‘\’, at the end of the first line
 Example:
@@ -43,10 +46,10 @@ x+y;
 The above code is perfectly fine, though not advisable as it hampers debugging.
 8. Which company developed JavaScript?
 Netscape is the software company who developed JavaScript.
-9. What are undeclared and undefined variables?
+9. What are undeclared and undefined variables?RRR
 Undeclared variables are those that do not exist in a program and are not declared. If the program tries to read the value of an undeclared variable, then a runtime error is encountered.
 Undefined variables are those that are declared in the program but have not been given any value. If the program tries to read the value of an undefined variable, an undefined value is returned.
-10. Write the code for adding new elements dynamically?
+10. Write the code for adding new elements dynamically?RRR
  
 1
 2
@@ -69,8 +72,10 @@ newP.appendChild(textNode); document.getElementById("firstP").appendChild(newP);
 Global variables are those that are available throughout the length of the code, that is, these have no scope. The var keyword is used to declare a local variable or object. If the var keyword is omitted, a global variable is declared.
 Example:
 // Declare a global globalVariable = “Test”;
-The problems that are faced by using global variables are the clash of variable names of local and global scope. Also, it is difficult to debug and test the code that relies on global variables.
-Any variable declared outside a function is called a global variable. Also, if a variable is used inside a function without declaring is called as local variable.  
+
+Global Variables are those which are decalred outside any function inside a script. When we declare it outside a function then it gets added to window oject thus can be used in all the functions. Also, if we write like window.variableName = "VariableValue" inside a function then also the variable will be provided to all the functions. 
+Now, let's look at the problems related with global variables. Firstly, when we accidently creating two global variables with same name then the second global variable is overriding the value. So, this could be a big problem. Also, global varible takes more time for lookup than local varibles however the difference is negleible but exist. Lastly, it can create a namespacing problem. As global varibales are available everywhere then you might end up using a global variable instead of local variables with the same name. 
+
 12. What is a prompt box?RRR
 A prompt box is a box which allows the user to enter input by providing a text box.  Label and box will be provided to enter the text or number.
 13. What is ‘this’ keyword in JavaScript?
@@ -88,7 +93,7 @@ Comment
 16. What is the difference between ViewState and SessionState?RRR
 ‘ViewState’ is specific to a page in a session.
 ‘SessionState’ is specific to user specific data that can be accessed across all pages in the web application.
-17. What is === operator?
+17. What is === operator?RRR
 === is called as strict equality operator which returns true when the two operands are having the same value without any type conversion.
 18. Explain how can you submit a form using JavaScript?RRR
 To submit a form using JavaScript use document.form[0].submit();
