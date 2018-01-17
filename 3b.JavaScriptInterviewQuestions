@@ -743,12 +743,13 @@ The innerHTML property is used to write the HTML code using JavaScript dynamical
 More details...
 
 We know very well how to create element and add sub elements. But lets see how can we create an attribute and add it to an element. 
+var element1 = document.createElement("p");
 var attr = document.createAttribute("Class");
-attr.value = "Red";
-
+attr.value = "Color:Red";
+element1.setAttributeNode(attr);
 ___________________
 _____________________
-15) How to write normal text code using JavaScript dynamically?
+15) How to write normal text code using JavaScript dynamically?RRR
 The innerText property is used to write the simple text using JavaScript dynamically. Let's see a simple example:
 1.	document.getElementById('mylocation').innerText="This is text using JavaScript";   
 More details...
@@ -762,7 +763,7 @@ Let's see a simple code to create object using object literal.
 1.	emp={id:102,name:"Rahul Kumar",salary:50000}   
 More details...
 ________________________________________
-17) How to create array in JavaScript?
+17) How to create array in JavaScript?AAA
 There are 3 ways to create array in JavaScript.
 1.	By array literal
 2.	By creating instance of Array
@@ -770,6 +771,8 @@ There are 3 ways to create array in JavaScript.
 Let's see a simple code to create array using object literal.
 1.	var emp=["Shyam","Vimal","Ratan"];    
 More details...
+
+We use [] solid brackets while creating array while curly bracktes {} while creating object.
 ________________________________________
 18) What does the isNaN() function?
 The isNan() function returns true if the variable value is not a number.
@@ -784,7 +787,7 @@ ________________________________________
 Client side JavaScript comprises the basic language and predefined objects which are relevant to running java script in a browser. The client side JavaScript is embedded directly by in the HTML pages. This script is interpreted by the browser at run time.
 Server side JavaScript also resembles like client side java script. It has relevant java script which is to run in a server. The server side JavaScript are deployed only after compilation.
 ________________________________________
-22) In which location cookies are stored on the hard disk?
+22) In which location cookies are stored on the hard disk?RRR
 The storage of cookies on the hard disk depends on OS and the browser.
 The Netscape navigator on Windows uses cookies.txt file that contains all the cookies. The path is : c:\Program Files\Netscape\Users\username\cookies.txt
 The Internet Explorer stores the cookies on a file username@website.txt. The path is: c:\Windows\Cookies\username@Website.txt.
@@ -798,11 +801,13 @@ Undefined value: A value that is not defined and has no keyword is known as unde
 Null value: A value that is explicitly specified by the keyword "null" is known as null value. For example:
 1.	String str=null;//Here, str has a null value.  
 ________________________________________
-24) How to set the cursor to wait in JavaScript?RRR
+24) How to set the cursor to wait in JavaScript?AAA
 The cursor can be set to wait in JavaScript by using the property "cursor". The following example illustrates the usage:
 1.	<script>  
 2.	window.document.body.style.cursor = "wait";   
 3.	</script>  
+
+Firstly, cursor is a javascript property which we access just like any other property "document.getElementById().style.styleName". If we keep the value as wait then we can see the loading sign which we actually mean by waiting. 
 ________________________________________
 25) What is this?
 1.	var myArray = [[[]]];  
@@ -811,8 +816,10 @@ ________________________________________
 26) Are Java and JavaScript same?
 No, Java and JavaScript are the two different languages. Java is a robust, secured and object-oriented programming language whereas JavaScript is a client side scripting language with some limitations.
 ________________________________________
-27) What is negative infinity?RRR
+27) What is negative infinity?AAA
 Negative Infinity is a number in JavaScript which can be derived by dividing negative number by zero.
+
+Infinity and -Infinity are properties to java script which shows what their name means.
 ________________________________________
 28) What is difference between View state and Session state?RRR
 "View state" is specific to a page in a session whereas "Session state" is specific to a user or browser that can be accessed across all pages in the web application.
@@ -837,7 +844,7 @@ Let's see the JavaScript code to submit form on clicking the link.
 8.	  document.myform.submit();  
 9.	}  
 10.	</script>  
-
+          
 Well, this can simply be done by a normal submit button. Also, if we have to do something then we can do by getting events. 
 ________________________________________
 32) Is JavaScript faster than ASP script?
@@ -851,11 +858,18 @@ ________________________________________
 34) How to handle exceptions in JavaScript?
 By the help of try/catch block, we can handle exceptions in JavaScript. JavaScript supports try, catch, finally and throw keywords for exception handling.
 ________________________________________
-35) How to validate a form in JavaScript?
+35) How to validate a form in JavaScript?AAA
 Visit here: JavaScript form validation.
+Create a basic form with text field, buttons, checkboxes, dropdown and date masked field. The, write the basic validation for each category of field. 
 ________________________________________
-36) How to validate email in JavaScript?
+36) How to validate email in JavaScript?AAA
 Visit here: JavaScript Email validation.
+For validation email, we will use regex. Whenever we use regex in javascript then we need the test() method of object. Below is the sample code:
+var StringToTest = "I hope this is an email";
+var pattern = "regex pattern";
+if(pattern.test(StringToTest)){
+	do something if test passes;
+}
 
 Source 3: https://www.codementor.io/nihantanu/21-essential-javascript-tech-interview-practice-questions-answers-du107p62z
 
@@ -1283,7 +1297,9 @@ return count;
 }
 //Get the size of any object using
 console.log(Object.length(counterArray))
-Source: http://www.techbeamers.com/javascript-interview-questions-answers/
+
+
+Source 4: http://www.techbeamers.com/javascript-interview-questions-answers/
 
 Q.1- What’s An Object In JavaScrpt And How Do We Create Them?
 Answer.
