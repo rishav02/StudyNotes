@@ -370,7 +370,7 @@ window.onload = function load(){
 </script>
 Even after checking a lot, i did not find any 
 
-59. How will you explain closures in JavaScript? When are they used?RRR
+59. How will you explain closures in JavaScript? When are they used?AAA
 Closure is a locally declared variable related to a function which stays in memory when the function has returned.
 For example:
  
@@ -455,22 +455,21 @@ var JamesGreeter = greeter("James", 23);
 // Use the closure
  
 JamesGreeter();
+
+CLosures are the functions inside functions which can access the variable of the outer function along with its own variables and global variables. Closure can be used in the situation where neither local variable not global variable can be used without a trouble. Problem of counter is a good example to understand closures. Check this for more: https://www.youtube.com/watch?v=w1s9PgtEoJs.
+
 60. How can a value be appended to an array?
 A value can be appended to an array in the given manner –
 arr[arr.length] = value;
 61. Explain the for-in loop?RRR
 The for-in loop is used to loop through the properties of an object.
-The syntax for the for-in loop is –
- 
-1
-2
-3
-4
-5	for (variable name in object){
- 
-statement or block to execute
- 
-}
+var person = {fname:"John", lname:"Doe", age:25}; 
+
+var text = "";
+var x;
+for (x in person) {
+    text += person[x] + " ";
+} 
 In each repetition, one property from the object is associated to the variable name, and the loop is continued till all the properties of the object are depleted.
 62. Describe the properties of an anonymous function in JavaScript?
 A function that is declared without any named identifier is known as an anonymous function. In general, an anonymous function is inaccessible after its declaration.
@@ -491,31 +490,8 @@ alert('I am anonymous');
 anon();
 63. What is the difference between .call() and .apply()?RRR
 The function .call() and .apply() are very similar in their usage except a little difference. .call() is used when the number of the function’s arguments are known to the programmer, as they have to be mentioned as arguments in the call statement. On the other hand, .apply() is used when the number is not known. The function .apply() expects the argument to be an array.
-The basic difference between .call() and .apply() is in the way arguments are passed to the function. Their usage can be illustrated by the given example.
- 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23	var someObject = {
+The basic difference between .call() and .apply() is in the way arguments are passed to the function. Their usage can be illustrated by the given example
+var someObject = {
  
 myProperty : 'Foo',
  
@@ -536,19 +512,26 @@ myProperty : 'Bar'
 };
  
 someObject.myMethod.call(someOtherObject, '<', '>'); // alerts '<Bar>'
- 
 someObject.myMethod.apply(someOtherObject, ['<', '>']); // alerts '<Bar>'
-64. Define event bubbling?RRR
+Generally, we use this as the first argument.
+
+64. Define event bubbling?AAA
 JavaScript allows DOM elements to be nested inside each other. In such a case, if the handler of the child is clicked, the handler of parent will also work as if it were clicked too.
+
+By default, event bubbling is used. If at all that you want to change to event capturing then you have to pass true as the third argument for addEventListener() method. 
+
 65. Is JavaScript case sensitive? Give an example?RRR
 Yes, JavaScript is case sensitive. For example, a function parseInt is not same as the function Parseint.
-66. What boolean operators can be used in JavaScript?
+66. What boolean operators can be used in JavaScript?RRR
 The ‘And’ Operator (&&), ‘Or’  Operator (||) and the ‘Not’ Operator (!) can be used in JavaScript.
 *Operators are without the parenthesis.
-67. How can a particular frame be targeted, from a hyperlink, in JavaScript?RRR
+67. How can a particular frame be targeted, from a hyperlink, in JavaScript?AAA
 This can be done by including the name of the required frame in the hyperlink using the ‘target’ attribute.
  
-1	<a href=”newpage.htm”target=”newframe”>>New Page</a>
+<a href=”newpage.htm”target=”newframe”>>New Page</a>
+
+Firstly, this is more of HTML question. We have an attribute "Target" which used with anchor tag for creating hyperlink in a document. Now, when i create a hypelink that default opens in the same page which is equal to _Blank value. We can have values like _self, _Parent, _top and framename as the value for target attribute. 
+
 68. What is the role of break and continue statements?
 Break statement is used to come out of the current loop while the continue statement continues the current loop with a new recurrence.
 69. Write the point of difference between web-garden and a web-farm?
@@ -563,17 +546,24 @@ This can be done by Using JavaScript extensions (runs from JavaScript Editor), e
 DOM stands for Document Object Model and is responsible for how various objects in a document interact with each other. DOM is required for developing web pages, which includes objects like paragraph, links, etc. These objects can be operated to include actions like add or delete. DOM is also required to add extra capabilities to a web page. On top of that, the use of API gives an advantage over other existing models.
 73. How are event handlers utilized in JavaScript?
 Events are the actions that result from activities, such as clicking a link or filling a form, by the user. An event handler is required to manage proper execution of all these events. Event handlers are an extra attribute of the object. This attribute includes event’s name and the action taken if the event takes place.
-74. Explain the role of deferred scripts in JavaScript?RRR
+74. Explain the role of deferred scripts in JavaScript?AAA
 By default, the parsing of the HTML code, during page loading, is paused until the script has not stopped executing. It means, if the server is slow or the script is particularly heavy, then the webpage is displayed with a delay. While using Deferred, scripts delays execution of the script till the time HTML parser is running. This reduces the loading time of web pages and they get displayed faster.
+
+In any script that we want to defer, we can use defer keyword inside the script tag like below:
+<Script defer>Scripting code<>
+
 75. What are the various functional components in JavaScript?
 The different functional components in JavaScript are-
 First-class functions: Functions in JavaScript are utilized as first class objects. This usually means that these functions can be passed as arguments to other functions, returned as values from other functions, assigned to variables or can also be stored in data structures.
 Nested functions: The functions, which are defined inside other functions, are called Nested functions. They are called ‘everytime’ the main function is invoked.
-76. Write about the errors shown in JavaScript?
+76. Write about the errors shown in JavaScript?AAA
 JavaScript gives a message if it encounters an error. The recognized errors are –
 •	Load-time errors: The errors shown at the time of the page loading are counted under Load-time errors. These errors are encountered by the use of improper syntax, and thus are detected while the page is getting loaded.
 •	Run-time errors: This is the error that comes up while the program is running. It is caused by illegal operations, for example, division of a number by zero, or trying to access a non-existent area of the memory.
 •	Logic errors: It is caused by the use of syntactically correct code, which does not fulfill the required task. For example, an infinite loop.
+
+We debug the errors in javascript through developer console. red line is generally shown as the error in java script code. Under console tab, all the errors are loged.
+
 77. What are Screen objects?
 Screen objects are used to read the information from the client’s screen. The properties of screen objects are –
 •	AvailHeight: Gives the height of client’s screen
@@ -633,6 +623,7 @@ EncodeURl() is used to convert URL into their hex coding. And DecodeURI() is use
 1
 2
 3
+
 4
 5
 6
@@ -660,6 +651,20 @@ It declares a three dimensional array.
 ECMA Script are like rules and guideline while Javascript is a scripting language used for web development.
 84. What is namespacing in JavaScript and how is it used?
 Namespacing is used for grouping the desired functions, variables etc. under a unique name. It is a name that has been attached to the desired functions, objects and properties. This improves modularity in the coding and enables code reuse.
+
+var yourNamespace = {
+
+    foo: function() {
+    },
+
+    bar: function() {
+    }
+};
+
+...
+
+yourNamespace.foo();
+
 85. How can JavaScript codes be hidden from old browsers that don’t support JavaScript?RRR
 For hiding JavaScript codes from old browsers:
 Add “<!–” without the quotes in the code just after the <script> tag.
@@ -668,7 +673,7 @@ Old browsers will now treat this JavaScript code as a long HTML comment. While, 
 
 
 
-Source: https://www.javatpoint.com/javascript-interview-questions
+Source 2: https://www.javatpoint.com/javascript-interview-questions
 1) What is JavaScript?
 JavaScript is a scripting language. It is different from Java language. It is object-based, lightweight and cross platform. It is widely used for client side validation. More details...
 ________________________________________
@@ -682,7 +687,7 @@ A simple example of JavaScript hello world is given below. You need to place it 
 3.	</script>  
 More details...
 ________________________________________
-4) How to use external JavaScript file?
+4) How to use external JavaScript file?RRR
 I am assuming that js file name is message.js, place the following script tag inside the head tag.
 1.	<script type="text/javascript" src="message.js"></script>  
 More details...
@@ -690,7 +695,7 @@ ________________________________________
 5) Is JavaScript case sensitive language?
 Yes.
 ________________________________________
-6) What is BOM?
+6) What is BOM?RRR
 BOM stands for Browser Object Model. It provides interaction with the browser. The default object of browser is window.
 More Details: Browser Object Model
 ________________________________________
@@ -698,7 +703,7 @@ ________________________________________
 DOM stands for Document Object Model. A document object represent the html document. It can be used to access and change the content of html.
 More Details: Document Object Model
 ________________________________________
-8) What is the use of window object?
+8) What is the use of window object?RRR
 The window object is automatically created by the browser that represents a window of a browser.
 It is used to display the popup dialog box such as alert dialog box, confirm dialog box, input dialog box etc.
 More details...
@@ -732,11 +737,17 @@ ________________________________________
 13) What is the difference between == and ===?
 The == operator checks equality only whereas === checks equality and data type i.e. value must be of same type.
 ________________________________________
-14) How to write html code dynamically using JavaScript?
+14) How to write html code dynamically using JavaScript?AAA
 The innerHTML property is used to write the HTML code using JavaScript dynamically. Let's see a simple example:
 1.	document.getElementById('mylocation').innerHTML="<h2>This is heading using JavaScript</h2>";   
 More details...
-________________________________________
+
+We know very well how to create element and add sub elements. But lets see how can we create an attribute and add it to an element. 
+var attr = document.createAttribute("Class");
+attr.value = "Red";
+
+___________________
+_____________________
 15) How to write normal text code using JavaScript dynamically?
 The innerText property is used to write the simple text using JavaScript dynamically. Let's see a simple example:
 1.	document.getElementById('mylocation').innerText="This is text using JavaScript";   
@@ -846,7 +857,7 @@ ________________________________________
 36) How to validate email in JavaScript?
 Visit here: JavaScript Email validation.
 
-Source: https://www.codementor.io/nihantanu/21-essential-javascript-tech-interview-practice-questions-answers-du107p62z
+Source 3: https://www.codementor.io/nihantanu/21-essential-javascript-tech-interview-practice-questions-answers-du107p62z
 
 Question 1
 1. What is the difference between undefined and not definedin JavaScript?RRR
