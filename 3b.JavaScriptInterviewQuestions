@@ -129,11 +129,12 @@ If(fh!=-1){
 	Fclose(fh);
 }
 
- 22. What are all the looping structures in JavaScript?
+ 22. What are all the looping structures in JavaScript?AAA
 Following are looping structures in Javascript:
 •	For
 •	While
 •	do-while loops
+
 23. What is called Variable typing in Javascript?RRR
 Variable typing is used to assign a number to a variable and the same variable can be assigned to a string.
 Example
@@ -153,25 +154,33 @@ In order to convert 4F (of base 16) to integer, the code used will be –
 “==” checks only for equality in value whereas “===” is a stricter equality test and returns false if either the value or the type of the two variables are different.
 26. What would be the result of 3+2+”7″?
 Since 3 and 2 are integers, they will be added numerically. And since 7 is a string, its concatenation will be done. So the result would be 57.
-27. Explain how to detect the operating system on the client machine?
+27. Explain how to detect the operating system on the client machine?AAA
 In order to detect the operating system on the client machine, the navigator.appVersion string (property) should be used.
+
+For this, we should also mention that these are properties of navigator object which you have used: appName (application Name), navigator.product (browsers engine), navigator.appVersion (operating system), navigator.useragent to find the user agent header sent by browser to server and other. 
+
 28. What do mean by NULL in Javascript?
 The NULL value is used to represent no value or no object.  It implies no object or null string, no valid boolean value, no number and no array object.
-29. What is the function of delete operator?
+29. What is the function of delete operator?AAA
 The functionality of delete operator is used to delete all variables and objects in a program but it cannot delete variables declared with VAR keyword.
+
+Delete variables can delete the properties of an object however cannot delete the variables (not the object i mean). If we want to delete a variable, then the near equivalent is to make them undefined. 
+
 30. What is an undefined value in JavaScript?
-Undefined value means the
-•	Variable used in the code doesn’t exist
-•	Variable is not assigned to any value
-•	Property doesn’t exist
+Undefined value means the variable is declared but not yet assigned a value. 
+
 31. What are all the types of Pop up boxes available in JavaScript?
 •	Alert
 •	Confirm and
 •	Prompt
+
 32. What is the use of Void(0)?AAA
 Void(0) is used to prevent the page from refreshing and parameter “zero” is passed while calling.
 Void(0) is used to call another method without refreshing the page.
-An example of what phoenix is talking about is <a href="javascript: dosomething();">DO IT NOW! </a>. If dosomething returns false, then clicking the link will simply cause the browser to exit the page and display "false". However... <a href="javascript: dosomething(); void(0)">DO IT NOW! </a> avoids the problem. Go ahead and paste javascript: 1+1; into your browsers address bar. The browser should display "2"
+
+Void() actually evaluates an expression and return true or false. void(0) returns false. If we use it in any condition then that would prevent happening that condition. But why would be ever want to stop an event? We may find a situatio like this. Let's discuss one such situation. For double Click event we have attribute "ondblclick". when we use this then we need to control what will happen if the link in click once. For controlling the single click we will need onclick event attribute. There, if we can use void(0) as the value then onclick will actually not work and double click event will work. However, we have alternative of void(0). One alternative is event.preventDefault(). 
+For elaborated explaination: https://www.quackit.com/javascript/tutorial/javascript_void_0.cfm
+
 33. How can a page be forced to load another page in JavaScript?RRR
 The following code has to be inserted to achieve the desired effect:
  
@@ -204,13 +213,22 @@ cloths.pop();
 //Now cloth becomes Shirt,Pant
 39. Whether JavaScript has concept level scope?
 No. JavaScript does not have concept level scope. The variable declared inside the function has scope inside the function.
-40. Mention what is the disadvantage of using innerHTML in JavaScript?RRR
+40. Mention what is the disadvantage of using innerHTML in JavaScript?AAA
 If you use innerHTML in JavaScript the disadvantage is
 •	Content is replaced everywhere
 •	We cannot use like “appending to innerHTML”
 •	Even if you use +=like “innerHTML = innerHTML + ‘html’” still the old content is replaced by html
 •	The entire innerHTML content is re-parsed and build into elements, therefore its much slower
 •	The innerHTML does not provide validation and therefore we can potentially insert valid and broken HTML in the document and break it
+
+Check an exmaple of innerHTML:
+<div id="mydiv">
+</div>
+<script>
+var newHTML = "<p style=\"color:blue\">Hello World in blue</p>"
+document.getElementById("mydiv").innerHTML = newHTML;
+</script>
+
 41. What is break and continue statements?
 Break statement exits from the current loop.
 Continue statement continues with next statement of the loop.
@@ -219,52 +237,49 @@ They are as –
 •	Primitive
 •	Reference types.
 Primitive types are number and Boolean data types. Reference types are more complex types like strings and dates.
-43. How generic objects can be created?
+43. How generic objects can be created?RRR
 Generic objects can be created as:
  
 1	var I = new object();
-44. What is the use of type of operator?
+44. What is the use of type of operator?AAA
 ‘Typeof’ is an operator which is used to return a string description of the type of a variable.
-45. Which keywords are used to handle exceptions?RRR
+
+<script>
+var newHTML = "<p style=\"color:blue\">Hello World in blue</p>"
+document.write(typeof newHTML);
+</script>
+
+45. Which keywords are used to handle exceptions?AAA
 Try… Catch—finally is used to handle exceptions in the JavaScript
  
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17	Try{
- 
-Code
- 
+<script>
+try {
+    adddlert("Welcome guest!");
 }
- 
-Catch(exp){
- 
-Code to throw an exception
- 
+catch(err) {
+    document.getElementById("demo").innerHTML = err.message;
 }
- 
-Finally{
- 
-Code runs either it finishes successfully or after catch
- 
+finally{
+	alert("Finally block running");
 }
+</script>
+
 46. Which keyword is used to print the text in the screen?
 document.write(“Welcome”) is used to print the text – Welcome in the screen.
-47. What is the use of blur function?
+47. What is the use of blur function?AAA
 Blur function is used to remove the focus from the specified object.
+
+<script>
+function getfocus() {
+    document.getElementById("myAnchor").focus();
+}
+
+function losefocus() {
+    document.getElementById("myAnchor").blur();
+}
+</script>
+We need to pick the element and call blur() API. Blur() method effect will be visible only if focus is called.
+
 48. What is variable typing?
 Variable typing is used to assign a number to a variable and then assign string to the same variable. Example is as follows:
  
@@ -275,9 +290,10 @@ Variable typing is used to assign a number to a variable and then assign string 
 i=”john”;
 49. How to find operating system in the client machine using JavaScript?
 The ‘Navigator.appversion’ is used to find the name of the operating system in the client machine.
+
 50. What are the different types of errors in JavaScript?RRR
 There are three types of errors:
-•	Load time errors: Errors which come up when loading a web page like improper syntax errors are known as Load time errors and it generates the errors dynamically.
+•	Load time errors: Errors which come up when loading a   page like improper syntax errors are known as Load time errors and it generates the errors dynamically.
 •	Run time errors: Errors that come due to misuse of the command inside the HTML language.
 •	Logical Errors: These are the errors that occur due to the bad logic performed on a function which is having different operation.
 51. What is the use of Push method in JavaScript?RRR
@@ -316,17 +332,44 @@ var v = “This is a strict mode function";
  
 }
 
-Couple of example where strcit mode will cause a problem are when a user is used without declared or when we try to delete a variable. Both are not allowed under strict mode. 
+An example where strcit mode will cause a problem are when a variable is used without declared it. It is not allowed under strict mode. We can check the exception in dev console and document.write will not print it too.  
 
 56. What is the way to get the status of a CheckBox?
 The status can be acquired as follows –
 alert(document.getElementById(‘checkbox1’).checked);
 If the CheckBox will be checked, this alert will return TRUE.
+
+<form>
+<input id="ch1" type="checkbox" name="Option1" onchange="checkBoxStatus(this)">Option1</input>
+<input id="ch2" type="checkbox" name="Option2">Option2</input>
+<input id="ch3" type="checkbox" name="Option3">Option3</input>
+</form>
+
+<script>
+checkBoxStatus();
+document.getElementById("p1").innerHTML = "New text!";
+function checkBoxStatus(checkbox){
+    if(checkbox.checked){
+    	alert("Are you sure, you wanna opt ch1?");
+    }else{
+    	alert("Are you sure, you dont wanna opt ch1");
+    }
+}
+</script>  
+
 57. How can the OS of the client machine be detected?
 The navigator.appVersion string can be used to detect the operating system on the client machine.
-58. Explain window.onload and onDocumentReady?RRR
+58. Explain window.onload and onDocumentReady?AAA
 The onload function is not run until all the information on the page is loaded. This leads to a substantial delay before any code is executed.
 onDocumentReady loads the code just after the DOM is loaded. This allows early manipulation of the code.
+
+<script>
+window.onload = function load(){
+	alert("loaded");
+};
+</script>
+Even after checking a lot, i did not find any 
+
 59. How will you explain closures in JavaScript? When are they used?RRR
 Closure is a locally declared variable related to a function which stays in memory when the function has returned.
 For example:
