@@ -506,6 +506,10 @@ ng-app: This directive shows that the HTML page is an angularJS app and auto boo
 ng-init: This is to initialize a variable. But hold on, where have we declard a variable? We do not need to decalre a variable in angularJS. We can simply initialize it. Also, ng-init should not be used as it is not a good angular coding practice. Only place we should use it is inside loops which we will check later. 
 ng-if: This is just an if condition. If false is return then the element will not be added while works only re expression returns true. 
 
+Also, we need to understand that howcome a variable is initalized wtih ng-init can be used in ng-if? The moment a variable associate with an ng directive, it is added to the common space called as scope. Each ng directive under a specific ng-app root tag can access this scope. This way an ng-app has a scope. 
 
+Binding the variable to HTML element:
+Well, we have another directive ng-bind which helps in binding the variable in the scope of ng-app with the HTML element. Check the example below:
+<p> The hour of the day is: <span ng-bind="hourOfDay+1"></span></p>
 
 hymn of weekend, perfect ed shareen, 
