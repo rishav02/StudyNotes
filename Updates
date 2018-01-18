@@ -510,6 +510,12 @@ Also, we need to understand that howcome a variable is initalized wtih ng-init c
 
 Binding the variable to HTML element:
 Well, we have another directive ng-bind which helps in binding the variable in the scope of ng-app with the HTML element. Check the example below:
-<p> The hour of the day is: <span ng-bind="hourOfDay+1"></span></p>
+<p> The hour of the day is: <span ng-bind="hourOfDay+1"></span></p>. 
+OR
+<p> The hour of the day is: <span> {{hourOfDay+1}}</span></p>
+This was we can bind the processed data with HTML and display in our web page. Its all possible because all the variables resides in a common space that we call scope. 
+
+note: As we saw two ways of binding the data with HTML in Angular. With ng-bind directive, we had used the span tag and we havnt used ng-bind with paragraph tag because ng-bind values would have replaced all the value present currently in p. However, with curly brackts we can use it directly inside <p>. Thus, coding becomes simplified. Below is the easiest way:
+<p> The hour of the day is: {{hourOfDay+1}}</p>
 
 hymn of weekend, perfect ed shareen, 
