@@ -502,9 +502,9 @@ I am using visual studio, so i have added a local directory in visual studio whe
 <html>
 
 Here, below are the directives we have used. 
-ng-app: This directive shows that the HTML page is an angularJS app. This you need to write to get started with angular in an HTML page.
-ng-init: This is to initialize a variable. But hold on, where have we declard a variable? We do not need to decalre a variable in angularJS. We can simply initialize it.
-ng-if: This is please an if condition. If false is return then the element will not work while works only re expression returns true. 
+ng-app: This directive shows that the HTML page is an angularJS app and auto bootstrap the angular js appication. It acts as a root element of angular js. It is not necessary to write it in HTML tag. Also, auto bootstrap happens only when we just have one ng-app while for multiple ng-app we need to do manual bootstrap. This you need to write to get started with angular in an HTML page.
+ng-init: This is to initialize a variable. But hold on, where have we declard a variable? We do not need to decalre a variable in angularJS. We can simply initialize it. Also, ng-init should not be used as it is not a good angular coding practice. Only place we should use it is inside loops which we will check later. 
+ng-if: This is just an if condition. If false is return then the element will not be added while works only re expression returns true. 
 
 
 
