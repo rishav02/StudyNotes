@@ -462,4 +462,50 @@ d. update(): method used only to update the existing resource.
 4. Hibernate hirerarchy or inheritance mapping. 
 5. Hibernate object mapping types. 
 
+****************************************************************************************************************************************
+AngularJS2Study file
+
+Why do we have javascript frameworks like angularjs, amber, reactjs and other at the first place? Well, when we do client side scripting by using raw javascript code then it first uses DOM object to get the element, performs some logic to get the data and finally it modify the element.  This way the code looks messy. Also, the problem that server side developer for really long period about separating the concern is also looks the predominent in client side scripting. Therefore, to write more elegant code with proper separation of concern we should use client side frameworks esp in large enterprise aplications. 
+
+Now, we will see how angularjs solve the above purpose of client side framework. AngularJS is not like jquery which is just a framework of using javascript in a better way. However, it a whole different way to writting client side scripting. The tagline for AngularJS is enhanced HTML for web apps which means the it extends the current fuctionality of HTML. Let check an example to understand what it means to extends a functionality of HTML. 
+For showing the current date inside a div tag through javascript we will write code like below:
+<div id="dateDiv">
+/*show the date here through javascript*/
+</div>
+<script>
+function showDate(){
+	writing code to show date;
+}
+document.getElementById("dateDiv").innerText = showDate();
+</script>
+In the code above, we are using javascript for getting the element, running the logic and mofifying the HTML. What if HTML element itself had an attribute or an special element that is capable of showing date? Someting like below.
+<div currentDate>date shown here</div>
+Well, we do not have anything in HTML like this. This is what angularJS does. It extends the element of HTML to create custom tags. Also, this kind of programming is called declarative programming where something is declared once and used multiple times later which is indefferent of javascript which is imperative. We also need to understand that in declarative programming we write imperative programming the first time we create an element. 
+
+Let's get started with some stuff in angularJS. The custom element that we can create once and use mutlple times can either be created through directive or through component.  
+
+Creating an AngularJS application
+We can use visual studio code. For creating AngularJS app we must need to have angular.js file dowloaded. We can do this in couple of way. Firstly, we can download the latest stable version and use it. Second, we can use CDN (content distribution network) which is just link that we can use. We also have minified and uncompressed file. 
+I am using visual studio, so i have added a local directory in visual studio where we have stored angular.js. Thus, angular.js file will also we available in visual studio and we are good to start coding in angularJS. Below is first piece of code written which print good morining if hour of the day is less than 12, prints good afternoon if in between 12 to 17, if greater than 12 and less than 20 then good evening while if greater than 20 then prints good night. 
+
+<html ng-app>
+    <head>
+        <script src="angular.js"></script>
+    </head>
+    <body ng-init="hourOfDay=20">
+        <h1>Hello angular!</h1>
+        <p ng-if="hourOfDay<12">Good Morning</p>
+        <p ng-if="hourOfDay>=12 && hourOfDay<17">Good Afternoon</p>
+        <p ng-if="hourOfDay>=17 && hourOfDay<20">Good Evening</p>
+        <p ng-if="hourOfDay>=20">Good Night</p>
+    </body>
+<html>
+
+Here, below are the directives we have used. 
+ng-app: This directive shows that the HTML page is an angularJS app. This you need to write to get started with angular in an HTML page.
+ng-init: This is to initialize a variable. But hold on, where have we declard a variable? We do not need to decalre a variable in angularJS. We can simply initialize it.
+ng-if: This is please an if condition. If false is return then the element will not work while works only re expression returns true. 
+
+
+
 hymn of weekend, perfect ed shareen, 
