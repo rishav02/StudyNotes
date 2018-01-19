@@ -518,4 +518,199 @@ This was we can bind the processed data with HTML and display in our web page. I
 note: As we saw two ways of binding the data with HTML in Angular. With ng-bind directive, we had used the span tag and we havnt used ng-bind with paragraph tag because ng-bind values would have replaced all the value present currently in p. However, with curly brackts we can use it directly inside <p>. Thus, coding becomes simplified. Below is the easiest way:
 <p> The hour of the day is: {{hourOfDay+1}}</p>
 
+We have previously discussed that ng-init is not a good way to get the data and we should not use it. Then, how should we setup data for the view? We have to set up data for the view in controller in angular. 
+We will now look at how can we use controller. Angular is also an MVC framework where concerns are separated in the form of modal, view and controller. We will now have to learn the concept of creating controller in AngularJS. We have a directive in Angular called ng-controller through which we can use a controller. Ng-controller is used to call an angular controller which in term is bind with a function before an HTML element to which ng-controller is attached. Have a look at the code below:
+<html ng-app="MyappModule">
+    <head>
+        <script src="angular.js"></script>
+    </head>
+    <body>
+        <div ng-controller="MainCntl">
+            <h1>Hello angular!</h1>
+            <p ng-if="hourOfDay<12">Good Morning</p>
+            <p ng-if="hourOfDay>=12 && hourOfDay<17">Good Afternoon</p>
+        </div>
+        <script>
+            var module = angular.module("MyappModule", []);
+            module.controller("MainCntl", Main);
+            function Main($scope){
+                $scope.hourOfDay=2;
+                console.log("Some business logic is performed.");
+            }
+        </script>
+    </body>
+<html>
+ 
+Here, we have first created a module which you can consider like a phone book. To create a module, we have used module method of object angular. The object angular is provided by the argular.js file that we have imported in the HTML page. We pass two arguments in module method which are module name and an empty array. We will find out what is second argument is all about. So, we have created a module. Then, we can add controller to that module. This is just like adding a phone number entry in the phone book. So, to add a controller to the module we will use controller method of module object. We need to pass two arguments which are the controller name and function name. So far, we have created a module and added a controller to it. Now, we also need to add the module to ng-app. Check the code above see syntax. Now, the directive ng-controller will work if we call a particular module. 
+This way we have removed the ng-init for initializing the hourOfDay variable and using controller for the same. We should also notice that we are using $scope as the controller argument. When a controller is called which will call the function ultimately. Function needs $scope as the argument then who is providing the argument? Ofcourse angular is doing this for us. Then, we can use the same scope to add variable hourOfDay to it and use it as a binding with HTML element. 
+Clock App
+We have built an app called clock app which prints the current date. This is will cover all the concept of creating module, registering controller to module, adding module to ng-app, using ng-controller, using $scope for registering the variable in angular scope, data will be updated or setup in controller, and is bind using ng-bind or double curly brackets inside the HTML tag. We have also created a button which will refresh the time without reloading the page. To do so we need to have event based action in angular. On the click of the button time should refresh. To do so we need to use another directive called ng-click which is equivalent to onclick attribute of javascript. Now, we ng-click we have to bind a function. Since, we have controller as one function so it cannot call it directly. Thus, we will create a property of controller as a function which is a perfect example where variables are used as function. Actually, I was asked this question in one of the interview and I wasn’t too confident. Check the code below. 
+<html ng-app="ClockModule">
+    <head>
+        <script src="angular.js"></script>
+    </head>
+    <body>
+        <h1>
+            Clock App
+        </h1>
+        <div ng-controller="ClockController">
+            <p>{{timeString}}<p>
+            <button ng-click="updateTime()">refresh</button>
+        </div>
+        <script>
+            var module = angular.module("ClockModule", []);
+            module.controller("ClockController", clock);
+            function clock($scope){
+                var currentDate = new Date();
+                $scope.timeString = currentDate.toTimeString();
+                $scope.updateTime = function(){
+                    var currentDate = new Date();
+                    $scope.timeString = currentDate.toTimeString();
+                }
+            }
+        </script>
+    </body>   
+<html>
+
+Two Way Binding
+We have so far seen one way binding where the data is setup in the controller and either through ng-bind or double curly bracket and is presented in the HTML page. This happens as the data setup in the controller is added to the scope of angular and then utilized in HTML page. But how about anything that is provided as the input of HTML page and is added to the scope and there on can we used anywhere. This is called two ways binding. Below is the code which is quite self-explanatory. 
+<html ng-app>
+    <head>
+        <script src="angular.js"></script>
+    </head>
+    <body>
+        <input type ="text" ng-model="textfield"></input>
+        <input type="checkbox" ng-model="checkbox"></input>
+        <input type="date" ng-model="datefield"></input>
+        <input type="radio" ng-model="radiofield" value="opt1"></input>
+        <input type="radio" ng-model="radiofield" value="opt2"></input>
+        <input type="radio" ng-model="radiofield" value="opt3"></input>
+
+        <p>{{textfield}}</p>
+        <p>{{checkbox}}</p>
+        <p>{{datefield}}</p>
+        <p>{{radiofield}}</p>
+        <script>
+           
+        </script>
+    </body>   
+<html>
+
+Note: one important thing to mention. If we give ng-model value of one input field to other than the change of the original input field will be reflected in other input field too because the field gets changed then the values of it is updated in the scope at that very moment. So, the same updated value gets reflected in the other input field at the same moment. 
+ 
+Nested Controller and scope heirarchy
+We can also have controller inside a controller which has some problems to tackled. When we have multiple controller which are not nested then we can use them in individual div elements and everything works the same way we were working with just one controller. However, we need to be careful when we nest the controller like below. 
+<html ng-app="TestModule">
+    <head>
+        <script src="angular.js"></script>
+    </head>
+    <body>
+        <div ng-controller="cntl1">
+            <p>{{test}}</p>
+            <div ng-controller="cntl2">
+                <p>{{test}}</p>
+            </div>
+        </div>
+        
+        <script>
+           var module = angular.module("TestModule", []);
+           module.controller("cntl1", cntl1);
+           module.controller("cntl2", cntl2);
+           function cntl1($scope){
+                $scope.test="from cntl 1";
+           }
+           function cntl2($scope){
+                //$scope.test="from cntl 2";
+           }
+        </script>
+    </body>   
+<html>
+
+In the above code, we have created two controllers then we are using second controller with div which is nested in other div where first controller is used. we have a variable with the same name in both the controller. Notice that we get scope injected in the controller functions by angular. The scope object injected for a controller is different than the other controller. So, we now have variable with the same name in scope of both the controller. In the nested divs, if we try to use that variables then the variables of correct scope only get utilitzed and everything is fine until now. Assume we have now remove the variable from the inner controller then it should not use the variable since we just removed it. But, the variable with the same name in the outer controller gets used. This is because when we nest the controller then their scopes creates an heirarchy. If a vairbles is not found in main scope of the target controller then the same variable name is looked up in parent scope until it reaches root scope. This way the variables of parent scope get used even though we have removed the variable from child scope for some reason. This is a problem and we need to oversome this.
+
+The solution to the above described problem is very simple. We need to use controller as syntax which provides an alias to a controller and whenever we want to refer any property from the controller we should call it using the alias. So, it makes thing clear that which controller scope to use and if the property is not found then it does not look up. check the code below to see how actually we can do this. 
+<html ng-app="TestModule">
+    <head>
+        <script src="angular.js"></script>
+    </head>
+    <body>
+        <div ng-controller="cntl1 as c1">
+            <p>{{c1.test}}</p>
+            <div ng-controller="cntl2 as c2">
+                <p>{{c2.test}}</p>
+            </div>
+        </div>
+        
+        <script>
+           var module = angular.module("TestModule", []);
+           module.controller("cntl1", cntl1);
+           module.controller("cntl2", cntl2);
+           function cntl1(){
+                this.test="from cntl 1";
+           }
+           function cntl2(){
+                //this.test="from cntl 2";
+           }
+        </script>
+    </body>   
+<html>
+
+As you can see, we have used as and given an alias just next to ng-controller directive. We also have to mention the alias which using that controller. On the script side, we need to remove the scope object that we were writting as the argument because when we use as syntax then we have to use this keyword. Using this keyword we need to write the properties. This change is obviously govern and taken care by angular and we can assume a this keyword value is as the current scope whenever the controller is called. 
+Note: 
+1. Lastly, when we do not use as syntax then we have to use $scope object as argument. 
+2. Some advantage of using as syntax is that it obviously removing the change of getting the wrong value from parent scopes. Secondly, it is quite flexible since we can specify the value from any pther scope if we actually need it by specifying the alias of different controller. 
+
+Calculartor App
+Let create an app which can calculate basic operations like addition, substraction, multiplication and division. Below is the source code:
+app.js
+var module = angular.module("calcModule", []);
+module.controller("calcController", calcfunction);
+function calcfunction(){
+    this.calc = function(action){
+        this.selectedOperation=action;
+    }
+    this.compute = function(){
+        var opr1 = parseFloat(this.op1);
+        var opr2 = parseFloat(this.op2);
+        if(this.selectedOperation==='+'){
+            this.result = opr1 + opr2;
+        }
+        if(this.selectedOperation==='-'){
+            this.result = opr1 - opr2;
+        }
+        if(this.selectedOperation==='*'){
+            this.result = opr1 * opr2;
+        }
+        if(this.selectedOperation==='/'){
+            this.result = opr1 / opr2;
+        }
+    }
+}
+index.html
+<html ng-app="calcModule">
+    <head>
+        <script src="angular.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        </body>
+        <div ng-controller="calcController as cntl">
+            <h1>Calculator App</h1>
+            <input name="text1" ng-model="cntl.op1"></input>
+            <p>{{cntl.selectedOperation}}</p>
+            <input name="text2" ng-model="cntl.op2"></input>
+            <p><button ng-click="cntl.compute()">=</button><p>
+            <p>result: {{cntl.result}}</p>
+                <p>Choose Operator: </p>
+                <button ng-click="cntl.calc('+')" ng-model="action">+</button>
+                <button ng-click="cntl.calc('-')" ng-model="action">-</button>
+                <button ng-click="cntl.calc('*')" ng-model="action">*</button>
+                <button ng-click="cntl.calc('/')" ng-model="action">/</button>  
+        </div>
+    </body>   
+<html>
+
+Note: We could have done the same using controller as syntax as well.
+
+
 hymn of weekend, perfect ed shareen, 
