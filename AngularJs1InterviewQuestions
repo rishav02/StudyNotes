@@ -1,7 +1,7 @@
 Source 1: https://www.codementor.io/blog/angularjs-interview-questions-sample-answers-du1081n7p
 AngularJS Interview Question #1
 
-What are the basic steps to unit test an AngularJS filter?
+What are the basic steps to unit test an AngularJS filter?RRR
 (Question provided by Daniel Lamb)
 
 Inject the module that contains the filter.
@@ -40,7 +40,7 @@ Daniel has over 15 years experience specializing in large-scale front-end archit
 
 AngularJS Interview Question #3
 
-How do you share data between controllers?
+How do you share data between controllers?RRR
 (Question provided by Tome Pejoski)
 
 Create an AngularJS service that will hold the data and inject it inside of the controllers.
@@ -114,10 +114,15 @@ Changing .directive to .component to adapt to the new Angular 1.5 components.
 
 AngularJS Interview Question #9
 
-How would you specify that a scope variable should have one-time binding only?
+How would you specify that a scope variable should have one-time binding only?AAA
 (Question provided by Jad Salhani)
 
 By using “::” in front of it. This allows you to check if the candidate is aware of the available variable bindings in AngularJS.
+
+There three type of bindings:
+One way binding: when model can be used from controller to view through ng-bind or {{}}.
+Two way binding: When model from controller to view through ng-bind or {{}} and from view to controller can be used.
+One time binding: One time binding as the name suggest only bind the data one time to the view or to be precise only to one digest cycle. After the first digest cycle, it is not be bind anymore. So, indicate one time binding we can use :: before the expression. 
 
 AngularJS Interview Question #10
 
@@ -129,12 +134,15 @@ What is the difference between one-way binding and two-way binding?
 
 AngularJS Interview Question #11
 
-Explain how $scope.$apply() works
+Explain how $scope.$apply() worksAAA
 (Question provided by Jad Salhani)
 
 $scope.$apply re-evaluates all the declared ng-models and applies the change to any that have been altered (i.e. assigned to a new value) Explanation: scope.scope.apply() is one of the core angular functions that should never be used explicitly, it forces the angular engine to run on all the watched variables and all external variables and apply the changes on their values
 
 Source: https://docs.angularjs.org/api/ng/type/$rootScope.Scope
+
+$scope has got many different fucntions and three most important for good understanding of angular are $watch(), $digest() and $apply(). The moment you create a binding in angular application a watch (variable) is created on that binding through watch(). This means angular keeps watch on that watches for any changes. Now, angular calls digest() on key point of angular application that iterates to all the watches in your app to check the current state of each binding. If value of any watch variable is changed then its listener is called and does things to update it. Most of the time angular calls $watch and $digest for us but sometimes we need to call them ourselves. Therefore, we have $apply() for executing some portion of angular code and calls digest(). This way if any new watch new to be cerated gets created and digest cycles get run.
+For more details: http://tutorials.jenkov.com/angularjs/watch-digest-apply.html
 
 AngularJS Interview Question #12
 
