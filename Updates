@@ -712,5 +712,96 @@ index.html
 
 Note: We could have done the same using controller as syntax as well.
 
+Ng-show and ng-hide Directives
+Its time to see how can we show something HTML element based on boolean value. Well, previosly we have seen ng-if which based on what a consition return will show an element. Well, we have some other directives so doing the same which are ng-show and nh-hide. If ng-show gets boolean true then it shows the element while hides when it gets false. ng-hide is opposite of ng-show. Check the example below.
+<html ng-app="calcModule">
+    <head>
+        <script src="angular.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        </body>
+        <div ng-controller="calcController">
+            <input type="checkbox" ng-model="checkbox"></input>
+            <p ng-show="checkbox">Some text</p>
+        </div>
+    </body>   
+<html>
 
-hymn of weekend, perfect ed shareen, 
+Now, since we already have ng-if then why should we use ng-show and nh-hide? There is a difference in ng-if and ng-show/hide. If we use ng-if and it gets false then it permanently removes the HTML element while ng-show just adds a angular based css class that simply hides the element. Check more on source tab in dev console.
+
+Ng-repeat
+Now, its time to see how can we perform looping an angular. For this we have another directive called as ng-repeat. If we have an array then we can use ng-repeat just like we have used below to get the iterate through the values of array. Check the example below. 
+
+var module = angular.module("repeatModule", []);
+module.controller("repeatController", repeatCont);
+function repeatCont($scope){
+    /*Array of objects*/ 
+    $scope.array = [
+        {'name':"Rishav", 'age':'25'},
+        {'name':"Mishra", 'age':'26'}
+    ];
+}
+
+<html ng-app="repeatModule">
+    <head>
+        <script src="angular.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        <div ng-controller="repeatController">
+        <div ng-repeat="i in array">
+                <p>name: {{i.name}} and age: {{i.age}}</p>
+            </div>
+        </div>
+    </body>   
+<html>
+
+Now, as you can notice we are using syntax like "i in arrayName". Here, i gets the value of elements of array. If the elements are object then we can use the properties like i.property.
+
+Ng-repeat scope
+So far we have seen that ng-repat directive is used to create looping. We will now understand the scopes in ng-repeat. We have seen ng-controller having scopes. Similarly, we have ng-repeat which has scopes. For each iteration of ng-repeat a new scope is created. Right now its little confusing as to why do we have it. The justification i can offer is since i in array, i has different copy of value which are the values of array. We need to understand the each copy of i exist concurrently thus needs scope for each value. 
+We also get some default variables which are the part of scope that gets created in ng-app and these variables are $index which gets the index for the loop (just like counter), $first return true if its first element and likewise we also have $mid, $last, $even and $odd.
+
+Angular Module
+Now, as the complexity in growing in enterprise application, single module may not suffice. Therefore, we may have multiple modules. HOw can we have multiple modules in angular application. Beloware the steps and a sample code for having multiple module.
+Steps:
+1. Create a separate js file constaining the new module and controllers registered. 
+2. Add the new module in the module empty array which is registered with ng-app. 
+3. add the new module js file as a script in the HTML page. 
+4. use the controller of new module the same way we use main module. 
+
+Code:
+myModule.js
+var myModule = angular.module("myModule", []);
+myModule.controller("myController", myController);
+function myController(){
+    this.a="Rishav";
+}
+
+app.js
+var module = angular.module("repeatModule", ["myModule"]);
+module.controller("repeatController", repeatCont);
+function repeatCont($scope){
+    /*Array of objects*/ 
+    $scope.array = [
+        {'name':"Rishav", 'age':'25'},
+        {'name':"Mishra", 'age':'26'}
+    ];
+}
+
+index.html
+<html ng-app="repeatModule">
+    <head>
+        <script src="angular.js"></script>
+        <script src="app.js"></script>
+        <script src="myModule.js"></script>
+    </head>
+    <body>
+        <div ng-controller="myController as mycntl">
+            <p>{{mycntl.a}}</p>
+        </div>
+    </body>   
+<html>
+
+hymn of weekend, perfect ed shareen, happier, all the star song, HOw would you feel,,,,,,,, watch movie "The fault in out star", me before you, raocky
