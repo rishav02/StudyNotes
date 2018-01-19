@@ -464,8 +464,15 @@ d. update(): method used only to update the existing resource.
 
 ****************************************************************************************************************************************
 AngularJS2Study file
+Source 1: https://www.youtube.com/watch?v=7qq9VDO_28k&list=PLqq-6Pq4lTTbWLgk2YspgXA_xORzD0Ax6
+Source 2: https://www.w3schools.com/angular/default.asp
 
+||Before We begin with AngularJS||
+AngularJS is an javascript framework. Before we begin with angularJS, lets check why do we even need framework for javascipt? 
 Why do we have javascript frameworks like angularjs, amber, reactjs and other at the first place? Well, when we do client side scripting by using raw javascript code then it first uses DOM object to get the element, performs some logic to get the data and finally it modify the element.  This way the code looks messy. Also, the problem that server side developer for really long period about separating the concern is also looks the predominent in client side scripting. Therefore, to write more elegant code with proper separation of concern we should use client side frameworks esp in large enterprise aplications. 
+
+||Intro with AngularJS||
+AngularJS is a javascript framework that extends HTML attibute with directives and adds data to HTML views with expressions. AngularJS is a google project and thus most compatible with google chrome browser.
 
 Now, we will see how angularjs solve the above purpose of client side framework. AngularJS is not like jquery which is just a framework of using javascript in a better way. However, it a whole different way to writting client side scripting. The tagline for AngularJS is enhanced HTML for web apps which means the it extends the current fuctionality of HTML. Let check an example to understand what it means to extends a functionality of HTML. 
 For showing the current date inside a div tag through javascript we will write code like below:
@@ -482,9 +489,9 @@ In the code above, we are using javascript for getting the element, running the 
 <div currentDate>date shown here</div>
 Well, we do not have anything in HTML like this. This is what angularJS does. It extends the element of HTML to create custom tags. Also, this kind of programming is called declarative programming where something is declared once and used multiple times later which is indefferent of javascript which is imperative. We also need to understand that in declarative programming we write imperative programming the first time we create an element. 
 
-Let's get started with some stuff in angularJS. The custom element that we can create once and use mutlple times can either be created through directive or through component.  
+Angular has important component to understand which are directives, controller, modules, Expression, Services, filters and other. All these we will cover now.
 
-Creating an AngularJS application
+||Creating an AngularJS application||
 We can use visual studio code. For creating AngularJS app we must need to have angular.js file dowloaded. We can do this in couple of way. Firstly, we can download the latest stable version and use it. Second, we can use CDN (content distribution network) which is just link that we can use. We also have minified and uncompressed file. 
 I am using visual studio, so i have added a local directory in visual studio where we have stored angular.js. Thus, angular.js file will also we available in visual studio and we are good to start coding in angularJS. Below is first piece of code written which print good morining if hour of the day is less than 12, prints good afternoon if in between 12 to 17, if greater than 12 and less than 20 then good evening while if greater than 20 then prints good night. 
 
@@ -501,24 +508,129 @@ I am using visual studio, so i have added a local directory in visual studio whe
     </body>
 <html>
 
-Here, below are the directives we have used. 
+||Angular Expression||
+Angular Expression are nothing but the code written inside the double brackets or ng-bind. Expression may contains literal, variable or/and operators. The expression are evaluated and bind with HTML.
+AngularJS variables like number, string, arrays and object as same as we have in javascript. AngularJS expressions does not support looping while support filter which is opposite of jaascript. 
+
+||Angular Modules||
+AngularJS Module(s) defines an angular application while also define a part of angular app. Modules serves as a container for controllers, directives, filters and etc. We have a controller() method for adding controller to a particular module. Let check how can we add code to add these entities to a module.
+1. Adding controller to a module:
+moduleName.controller("controllerName", functionName);. Please note that we do not add () with function name. 
+2. Adding custom directives to a module:
+module.directive("directiveName", function(){
+	//code for defining the directive.
+})
+3. How to add filter? that we will check later
+
+note:
+1. We should avoid having the global function or variables as they are accisable across your app and thus can accidently may get changed. 
+2. Generally, javascript file are written in the bottom of body tag but in angular it is recommended to add them in header or start of body. This is because angular.module can only be loaded when libraries are loaded. 
+
+||Angular Directives||
+Angular directives are more like the magic by angul;ar to extend the properties of directives to a whole new level. Angular provides many builtin directives that we can use. Lets has a look on some of the most commonly used directives in angular. 
 ng-app: This directive shows that the HTML page is an angularJS app and auto bootstrap the angular js appication. It acts as a root element of angular js. It is not necessary to write it in HTML tag. Also, auto bootstrap happens only when we just have one ng-app while for multiple ng-app we need to do manual bootstrap. This you need to write to get started with angular in an HTML page.
 ng-init: This is to initialize a variable. But hold on, where have we declard a variable? We do not need to decalre a variable in angularJS. We can simply initialize it. Also, ng-init should not be used as it is not a good angular coding practice. Only place we should use it is inside loops which we will check later. 
 ng-if: This is just an if condition. If false is return then the element will not be added while works only re expression returns true. 
+ng-controller:
+ng-model:
+ng-show:
+ng-hide:
+ng-repeat:
 
-Also, we need to understand that howcome a variable is initalized wtih ng-init can be used in ng-if? The moment a variable associate with an ng directive, it is added to the common space called as scope. Each ng directive under a specific ng-app root tag can access this scope. This way an ng-app has a scope. 
+Note:
+1. Also, we need to understand that howcome a variable is initalized wtih ng-init can be used in ng-if? The moment a variable associate with an ng directive, it is added to the common space called as scope. Each ng directive under a specific ng-app root tag can access this scope. This way an ng-app has a scope. 
 
-Binding the variable to HTML element:
+Now, we will look at how can we create our own directive. The sole purpose of directives is to extebnd the properties of HTML. With custom directives, we can extends the properties of HTML the way we want. We can create the custom directive using the directive function of module. Angular provide support to create custom directive as Element Directive, attribute, CSS class and comment. 
+Below are steps to create a custom directive:
+1. Create a module and use directive() method of module object. Directive() method takes in two arguments, first being the name of your custom attribute and second being the function which will kind of implement the directive features and functionalities. 
+2. create a directive object which is empty like "var directive = {}". Then, define different properties of direcrtive object like template, restrict, scope, compile and other. Template will show to replace what HTML of the actual directive in HTML. I meam when we use directive in HTML, then that get replaced during bootstraping time by the HTML written inside the tempalte property of directive object. restrict will define the restrictions like E,A,C or M which stands for Element, Attribute, Class and Comment. Scope is used to distinguesh each directive type through a property. For example: directive.scope:"=name" says the student directive will be identified through name of the studnet. Likewise, there are other properties that we can set. Below is the sample code that shows a simple custom directive:
+var app = angular.module("myApp", []);
+app.directive("w3TestDirective", function() {
+    return {
+        restrict : "A",
+        template : "<h1>Made by a directive!</h1>"
+    };
+});
+
+||Angular Model||
+Well, the worth studing directive here is ng-model. We have already used in video tutorial. Their we have used it to get the data given by the user in the input field and added to the scope. Then, till data can be used. 
+Now, we will see how can we validate user supplied data using ng-model:
+<form ng-app="" name="myForm">
+    Email:
+    <input type="email" name="myAddress" ng-model="text">
+    <span ng-show="myForm.myAddress.$error.email">Not a valid e-mail address</span>
+</form>
+In the above code, input email is given by user that is bound with model text which is then used to validate data. In the span below, we have used ng-show to show the error if validation method returns true. 
+
+||Angular Data Binding||
+Here, we just need to understand that ng-bind and {{}} is used to bind data with HTML element. 
+
+||Angular Controller||
+Here, we should know that we creating scrioting functionality using controllers which are registered in the modules. We already know how to reguster it. 
+Remember we can use the controller in the other file as well until it is part of main module. If the controller is part of other module then we have to use the way we add any external module. 
+
+||Angular Scopes||
+We should know that ng-app="moduleName" brings a global scope. When different controllers are regustered in module and $scope is passed as argument then a child scope related to that controller is created. The properties of that controller belongs to the scope of controller. 
+We should know the scopes has heirarchy in angular. Outer controller scope comes under global scope that a module gets while the controller inside a controller gets a scope whi
+
+||Angular Filters||
+AngularJs provides filter to transform data. For example, angular has currency filter which is used to transform a normal number into currency format. Now, how do we use a filter? We can use a filter inside an expression separating the filter through pipe with the expression. 
+A simple piece of code is below:
+<div>
+            {{10000 | currency}}
+</div>
+O/P: $10,000
+Not onl to expression but we can add filter to directives as well and the syntax is similar. See the example below:
+<div ng-repeat="i in array | orderBy:'currency'">
+        {{i}}   
+</div>
+
+We have alot of built in angular filter which are below:
+1. Currency: Formats a numbers like a currency. Adds commas and $ sign.
+2. Date: Format a date into specified date format. 
+3. filter: filters the subset which matches a char or group of chars from an array.
+4. json: Format an object to a JSON string. This is just like marshalling. 
+5. lowercase and uppercase
+6. number: format number to a string
+7. orderBy: it order a for loop iteration of array element based on a particular property of object. 
+8. limitTo: limits an array/string into a specified numbers of elements. 
+
+We can also create our own custom filter which can be done just like we create a custom directive. We have filter() method in module object. 
+
+||Angular Services||
+Angular has another very important feature called as services. Angular has got around 30 in built services and just like directives and filters we can create our custom services. Let's understand what services are through an example $location. 
+var module = angular.module("mymodule", []);
+module.controller("ControllerName", functionName);
+function functionName($scope, $location){ /*here you can see we are using scope and location services passed as arugment of method*/
+	/*some business logic.*/
+}
+This is more like using some information across multiple controllers. We can relate this as window.location. Also, if anything that is not covered by buikltin services then we can create custom services and use then across different controllers. 
+Let's see some commonly used and important services:
+1. $http: This service lets your angular app to make a request to server and handle responses. 
+note: passing services as arguments in controller is also seens as dependency inject as we declare the dependencies of controller and this have been provided by angular. 
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    $http.get("welcome.htm").then(function (response) {
+        $scope.myWelcome = response.data;
+    });
+});
+2. $timeout: This service works equivalent to window.setInterval() in javascript. 
+3. $interval: This service works equivalent to window.interval() in javascript. 
+
+Data binding
 Well, we have another directive ng-bind which helps in binding the variable in the scope of ng-app with the HTML element. Check the example below:
 <p> The hour of the day is: <span ng-bind="hourOfDay+1"></span></p>. 
 OR
 <p> The hour of the day is: <span> {{hourOfDay+1}}</span></p>
 This was we can bind the processed data with HTML and display in our web page. Its all possible because all the variables resides in a common space that we call scope. 
 
+
+
+
 note: As we saw two ways of binding the data with HTML in Angular. With ng-bind directive, we had used the span tag and we havnt used ng-bind with paragraph tag because ng-bind values would have replaced all the value present currently in p. However, with curly brackts we can use it directly inside <p>. Thus, coding becomes simplified. Below is the easiest way:
 <p> The hour of the day is: {{hourOfDay+1}}</p>
 
-We have previously discussed that ng-init is not a good way to get the data and we should not use it. Then, how should we setup data for the view? We have to set up data for the view in controller in angular. 
+[note continues]We have previously discussed that ng-init is not a good way to get the data and we should not use it. Then, how should we setup data for the view? We have to set up data for the view in controller in angular. 
 We will now look at how can we use controller. Angular is also an MVC framework where concerns are separated in the form of modal, view and controller. We will now have to learn the concept of creating controller in AngularJS. We have a directive in Angular called ng-controller through which we can use a controller. Ng-controller is used to call an angular controller which in term is bind with a function before an HTML element to which ng-controller is attached. Have a look at the code below:
 <html ng-app="MyappModule">
     <head>
@@ -543,6 +655,8 @@ We will now look at how can we use controller. Angular is also an MVC framework 
  
 Here, we have first created a module which you can consider like a phone book. To create a module, we have used module method of object angular. The object angular is provided by the argular.js file that we have imported in the HTML page. We pass two arguments in module method which are module name and an empty array. We will find out what is second argument is all about. So, we have created a module. Then, we can add controller to that module. This is just like adding a phone number entry in the phone book. So, to add a controller to the module we will use controller method of module object. We need to pass two arguments which are the controller name and function name. So far, we have created a module and added a controller to it. Now, we also need to add the module to ng-app. Check the code above see syntax. Now, the directive ng-controller will work if we call a particular module. 
 This way we have removed the ng-init for initializing the hourOfDay variable and using controller for the same. We should also notice that we are using $scope as the controller argument. When a controller is called which will call the function ultimately. Function needs $scope as the argument then who is providing the argument? Ofcourse angular is doing this for us. Then, we can use the same scope to add variable hourOfDay to it and use it as a binding with HTML element. 
+
+
 Clock App
 We have built an app called clock app which prints the current date. This is will cover all the concept of creating module, registering controller to module, adding module to ng-app, using ng-controller, using $scope for registering the variable in angular scope, data will be updated or setup in controller, and is bind using ng-bind or double curly brackets inside the HTML tag. We have also created a button which will refresh the time without reloading the page. To do so we need to have event based action in angular. On the click of the button time should refresh. To do so we need to use another directive called ng-click which is equivalent to onclick attribute of javascript. Now, we ng-click we have to bind a function. Since, we have controller as one function so it cannot call it directly. Thus, we will create a property of controller as a function which is a perfect example where variables are used as function. Actually, I was asked this question in one of the interview and I wasn’t too confident. Check the code below. 
 <html ng-app="ClockModule">
