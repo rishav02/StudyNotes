@@ -337,6 +337,8 @@ public class Class1{
 21. How will you manage transaction in jdbc? How will you manage to commit one query while rollback the other query in jdbc if the exception comes in third query. 
 Here we can use savepoint. 
 
+22. WHats the difference between <%@ include file and <jsp:include page="">. First, gets the included resource at the tramslation to servlet time while the other gets it at the request time. 
+
 
 
 *************************************************************************************************************************************
@@ -447,7 +449,7 @@ Unmarshaller unmarshaller = jcontext.createUnmarshallar();
 File file = new File(“XML data file path”);
 Student student = (Student) unmarshalar.unmarshal(file);
 13. What HTTP basic authentication in web services and how do we implement it?
-HTTP basic authentication is a simple technique of providing authentication on accessing a web resource. For creating the basic autherization param we need to create a string. First create a simple string "username:password", then encode the string through encode Base64 and append the string "Basic " with the previous string. Finally, send the resultant string as a value of Authorization key param in header. On the client side, we can use header param through annotation @headerparam("Authentication") String authString. 
+HTTP basic authentication is a simple technique of providing authentication on accessing a web resource. For creating the basic autherization param we need to create a string. First create a simple string "username:password", then encode the string through encode Base64 and append the string "Basic " with the previous string. Finally, send the resultant string as a value of Authorization key param in header. On the client side, we can use header param through annotation @headerparam("Authentication") String authString. In servlet technology, we get the header value like "request.getHeader()".
 14. How do we configure web service. 
 15. WADL: Web application description language which a machine readable xml format document to derscribe the http based web service. 
 ***************************************************************************************************************************************
