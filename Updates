@@ -409,7 +409,7 @@ SQL quries
 Hibernate Study file
 The difference between load and get method. These methods are there to returnt the persisted (saved in database) object of a given id. However, when we call load the it does not return the real object but return thw proxy for th real object however get gets use the real persisted object. Also, load return objectNotFoundException if object not found while get gives null if object not found. 
 
-The difference between persist and save method. Both are there to add an object in the database. Firstly, both works the same with persistent object but the difference comes in case of transient (which is not yet saved in db) object. Persist does not execute an insert statement outside the boudary of transaction while save method does that. Persist object not necessary that immediately persist the transient object while save will to it immediately.  
+The difference between persist and save method. Both are there to add an object in the database. Firstly, both works the same with persistent object but the difference comes in case of transient (which is not yet saved in db) object. Persist does not execute an insert statement outside the boudary of transaction while save method does that. Persist object not necessary that immediately persist the transient object while save will to it immediately. Other differnce between persist and save is that persist is JPA specifixation method while save is the hibernate specifjc method. Persist returns rull while save returns the primary key of the inserted rexord. By the way, hibernate js an implementation of JPA.
 ***************************************************************************************************************************************
 JSP Study File
 Topics for quick check
