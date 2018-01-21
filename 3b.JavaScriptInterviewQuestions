@@ -2153,8 +2153,7 @@ functionmyfunc(){
     varin;
  
    // some code
- 
-    in="inside";
+     in="inside";
  
 }
  
@@ -2203,3 +2202,7 @@ str=str.replaceAll('test','');
 alert(str)
  
 
+Important Questions
+1. How to create and add attibue for an element through javascript? setAttribute
+2. problems with global variables
+3. each bom object uses
