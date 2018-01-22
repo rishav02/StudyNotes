@@ -1,10 +1,104 @@
+1a. Java Study File
+@@@Serialization
+
+
+
+Java Quick Revise
+1. Whats present inside jdk, practically and theorytically?
+2. Is java an interpreted language? No Java is not interpreted language. The recompilation of jvm byte code to jit machin code is considered as interpretation. WHile java involves compilation. 
+3. Copy constructor
+4. Can we have static class? We cannot have top level classes as static while nested classes can be static. 
+5. Can we use super keyword in main method? No. We cannot. Check its use.
+6. Be careful about initializer block and constructor invocation order. It is static initializer of parent, static initializer of child, instance initializer of parent, construtor of parent, instance initializer of child, constructor of child. 
+7. How interface involves loose coupling in java? Interface just not only allow a class to implement its method but it allows multiple classed to implement its method. Now, when we interact with the class using the interface then we can feed any class implementing the class without much modification. 
+8. Object Cloning. Deep Cloning and shallow cloning. Explain using: https://dzone.com/articles/currying-functions-in-scala-1
+9. Unboxing. we do it like int a = b.intValue();
+10. String are immutabe. String are inert concept. 
+11. Immutable Class
+12. Check the working example of string tokenizer. 
+13. Check all note point of Exception handling in java, Correct in note point 6 that after catch block runs the code outside the try block will execute. Also, add one more not point "If we write return only in eighter try or catch block then we will get error. We need to write one at the last as well."
+14. Thead lifecycle, note points of how to create a thread and other too. 
+15. What is the difference in wait and sleep or waiting or sleeping? Wait method is object class method and invoked on an object for synchronization while sleep method is of thread class and invoked on thread for intentionally sleeping the threads work for certain duration. Check Join() method of thread as well. 
+16. Order in sets: This is an eye opener. Let me just brief on the normal behavior of Sets. HashSet maintains no order, LinkedHashSet maintains order of insertion so while iterating it will print the values in the order of insertion and Treeset maintain ascending order which means the elements will be printed in increasing order. Also, hashset and linkedhashset can contain one null value while treeset cannot contain any null value. 
+17. Update in the internal working of HashMap: First the hashvalue of key is find out through hashfunction method. Then, hashvalue is devided by 16. Whatever remainder comes would be the index and that will be the bucket. That's why multiple entries many have same bucket. Eeach bucket is a list in itself. When we try to get a map entry then again the hashcode of key is findout followed by division with 16 which will provide the index. There are changes that the bucket will have multiple entries thus we compare the key of each entry with the key provided as the argument of get method. 
+18. Treemap cannot have any null key while can have one null value and it maintains the ascending order. WRT null values, hashtable works the same as treemap. Hashtable do support enumerator as well and is synchronized.
+19. Check example of comparable and comparator interfaces. 
+20. How do we do transaction management through normal JDBC? We have to create transaction management and need to use methods like rollBack(), commit() and save(). Generally, rollback() is written in catch block. 
+21. Signature of variables and methods in interface. 
+22. How to create a singleton class. CHeck carefully.
+23. Check all programs related to ArrayList, HashSet, TreeSet, HashMap and TreeMap. 
+Add implementation index 1 to downcasting in java study.
+**************************************************************************************************************************************
+2a. SQL Stydy file
+
+
+SQL quick Revise
+1. SET Operators, 
+2. Difference between union and union all,
+3. Temp table concept 
+4. Alter table (what all comes under it and check syntax too). 
+5. check With, like, top Clauses
+6. Check order by random and order by limit, how to get limited records in a select query.  
+7. Important keyword of slect
+8. Insert in one row, insert in multiple column, insert in from other table, insert in multiple rows, insert in multiple rows from other table.
+9. Update and update using join.
+10. SQL delete duplicate rows. We will use with clause and partition to do so. 
+11. Difference in Intersect and inner join. Check all kind of joins with example. 
+12. Check all 7 types of key with book table example and 4 types of integrities. 
+13. Check the example of 6 sql constraints. 
+14. Sub quries and how it is used in select, insert, update and delete. Check corelated and non-corelated queries. How exactly corelated query runs?
+15. Check view, materilized view and inline view. Purpose (all three reasons) and advantage of each. Disadvantages.
+16. Index. Do and dont, types. 
+17. sequence and like operator
+18. Data Control language: Grant, revoke, role, privilage. Check syntax as well. 
+19. Transaction control language: ACID Properties, Set transaction, Commit, Rollback and save.
+20. Stored procedure, syntax, advantages. Comparison with views. 
+21. Trigger (check in a little depth next time)
+22. Complete topics after triggers. 
+***************************************************************************************************************************************
+3a. Java Script Study
+
+
+***************************************************************************************************************************************
+4a. Spring Study File
+
+
+***************************************************************************************************************************************
+5a. Hibernate Study File
+Updates:
+1. The difference between load and get method. These methods are there to returnt the persisted (saved in database) object of a given id. However, when we call load the it does not return the real object but return thw proxy for th real object however get gets use the real persisted object. Also, load return objectNotFoundException if object not found while get gives null if object not found. 
+2. The difference between persist and save method. Both are there to add an object in the database. Firstly, both works the same with persistent object but the difference comes in case of transient (which is not yet saved in db) object. Persist does not execute an insert statement outside the boudary of transaction while save method does that. Persist object not necessary that immediately persist the transient object while save will to it immediately. Other differnce between persist and save is that persist is JPA specifixation method while save is the hibernate specifjc method. Persist returns rull while save returns the primary key of the inserted rexord. By the way, hibernate js an implementation of JPA.
+
+Hiebernate Quick Revise
+1. Spring ORM implementation using Hibernate ORM.
+2. Hibernate basic implementation for simple j2EE app. Check the client Specially.
+3. Different hibernate methods.
+a. difference in persist and save method(). First, persist method do not garuntee to assign value to transient object the value immediately, that may be assigned during flush time. Alsoo, it does not gaurntee to do insert outside the transaction boundry. Save can perform insert outside the transaction object. Another difference i recollect is that if we use incremental generator where primary id is given by hibernate then save return the primary key assigned while persist does not. 
+b. The difference between load and get method. These methods are there to returnt the persisted (saved in database) object of a given id. However, when we call load the it does not return the real object but return the proxy for th real object however get gets you the real persisted object. Also, load return objectNotFoundException if object not found while get gives null if object not found. 
+c. SaveOrUpdate(): This method will save the data if the data is not present in the table already, while update it if its present. Wwe can use this method outside the transaction boundry. 
+d. update(): method used only to update the existing resource. 
+4. Hibernate hirerarchy or inheritance mapping. 
+5. Hibernate object mapping types. 
+****************************************************************************************************************************************
+
+6a. JSP Study File
+
+
+JSP Quick Revise
+Topics for quick check
+1. Scripting Elements: All 5 categories
+2. Implicit Object: (request, response, session, application, config, page, pageContext, Exception and out)
+3. Action Tag: Used to control the flow of the jsp page and to use the bean. 
+4. Expression Element
+5. JSTL and Custom tags
+
 Important updates:
 1. Write detail functioning of HashMap.
 2. write below note in Set section:
 This is an eye opener. Let me just brief on the normal behavior of Sets. HashSet maintains no order, LinkedHashSet maintains order of insertion so while iterating it will print the values in the order of insertion and Treeset maintain ascending order which means the elements will be printed in increasing order. 
 3. Study about AtomicInteger Class. 
-
 ************************************************************************************************************************************
+
 ServletStudy file
 Difference between web server, web container and application server with examples. 
 Web server: Web server is a server capable of handling HTTP request and send back HTTP response. Web server performs different functons like transalating DNS name to IP address, load balancing is also taken care in case of pool servers or server farms. Examples are Apache HTTP server, 
@@ -342,59 +436,11 @@ Here we can use savepoint.
 
 
 *************************************************************************************************************************************
-Java study
-Topics need to be revised:
-1. Whats present inside jdk, practically and theorytically?
-2. Is java an interpreted language? No Java is not interpreted language. The recompilation of jvm byte code to jit machin code is considered as interpretation. WHile java involves compilation. 
-3. Copy constructor
-4. Can we have static class? We cannot have top level classes as static while nested classes can be static. 
-5. Can we use super keyword in main method? No. We cannot. Check its use.
-6. Be careful about initializer block and constructor invocation order. It is static initializer of parent, static initializer of child, instance initializer of parent, construtor of parent, instance initializer of child, constructor of child. 
-7. How interface involves loose coupling in java? Interface just not only allow a class to implement its method but it allows multiple classed to implement its method. Now, when we interact with the class using the interface then we can feed any class implementing the class without much modification. 
-8. Object Cloning. Deep Cloning and shallow cloning. Explain using: https://dzone.com/articles/currying-functions-in-scala-1
-9. Unboxing. we do it like int a = b.intValue();
-10. String are immutabe. String are inert concept. 
-11. Immutable Class
-12. Check the working example of string tokenizer. 
-13. Check all note point of Exception handling in java, Correct in note point 6 that after catch block runs the code outside the try block will execute. Also, add one more not point "If we write return only in eighter try or catch block then we will get error. We need to write one at the last as well."
-14. Thead lifecycle, note points of how to create a thread and other too. 
-15. What is the difference in wait and sleep or waiting or sleeping? Wait method is object class method and invoked on an object for synchronization while sleep method is of thread class and invoked on thread for intentionally sleeping the threads work for certain duration. Check Join() method of thread as well. 
-16. Order in sets: This is an eye opener. Let me just brief on the normal behavior of Sets. HashSet maintains no order, LinkedHashSet maintains order of insertion so while iterating it will print the values in the order of insertion and Treeset maintain ascending order which means the elements will be printed in increasing order. Also, hashset and linkedhashset can contain one null value while treeset cannot contain any null value. 
-17. Update in the internal working of HashMap: First the hashvalue of key is find out through hashfunction method. Then, hashvalue is devided by 16. Whatever remainder comes would be the index and that will be the bucket. That's why multiple entries many have same bucket. Eeach bucket is a list in itself. When we try to get a map entry then again the hashcode of key is findout followed by division with 16 which will provide the index. There are changes that the bucket will have multiple entries thus we compare the key of each entry with the key provided as the argument of get method. 
-18. Treemap cannot have any null key while can have one null value and it maintains the ascending order. WRT null values, hashtable works the same as treemap. Hashtable do support enumerator as well and is synchronized.
-19. Check example of comparable and comparator interfaces. 
-20. How do we do transaction management through normal JDBC? We have to create transaction management and need to use methods like rollBack(), commit() and save(). Generally, rollback() is written in catch block. 
-21. Signature of variables and methods in interface. 
-22. How to create a singleton class. CHeck carefully.
-23. Check all programs related to ArrayList, HashSet, TreeSet, HashMap and TreeMap. 
-Add implementation index 1 to downcasting in java study.
-**************************************************************************************************************************************
+
 JavaInterview Question File
 source1: 52, 123, 129, how to synchronize a collection like list, Source2: 24, 43, 51, 52, 92; Source3: 1, 7, 9, 11; Source4: what is the use of system class; Source5: Why String is popular as hashmap key?; Source6: 1(java related feature), What is unsupportedModifictaionexception, different view for Map(values, entryset and keyset), Source 7: 10. What is context switching, 11, 14, 15, 22, 23, 25; source 8: 
 **************************************************************************************************************************************
-SQL study File
-1. SET Operators, 
-2. Difference between union and union all,
-3. Temp table concept 
-4. Alter table (what all comes under it and check syntax too). 
-5. check With, like, top Clauses
-6. Check order by random and order by limit, how to get limited records in a select query.  
-7. Important keyword of slect
-8. Insert in one row, insert in multiple column, insert in from other table, insert in multiple rows, insert in multiple rows from other table.
-9. Update and update using join.
-10. SQL delete duplicate rows. We will use with clause and partition to do so. 
-11. Difference in Intersect and inner join. Check all kind of joins with example. 
-12. Check all 7 types of key with book table example and 4 types of integrities. 
-13. Check the example of 6 sql constraints. 
-14. Sub quries and how it is used in select, insert, update and delete. Check corelated and non-corelated queries. How exactly corelated query runs?
-15. Check view, materilized view and inline view. Purpose (all three reasons) and advantage of each. Disadvantages.
-16. Index. Do and dont, types. 
-17. sequence and like operator
-18. Data Control language: Grant, revoke, role, privilage. Check syntax as well. 
-19. Transaction control language: ACID Properties, Set transaction, Commit, Rollback and save.
-20. Stored procedure, syntax, advantages. Comparison with views. 
-21. Trigger (check in a little depth next time)
-22. Complete topics after triggers. 
+
 
 
 SQL quries
@@ -406,19 +452,8 @@ SQL quries
 6. Delete duplicate record:question 11, http://www.java67.com/2013/04/10-frequently-asked-sql-query-interview-questions-answers-database.html
 
 ***************************************************************************************************************************************
-Hibernate Study file
-The difference between load and get method. These methods are there to returnt the persisted (saved in database) object of a given id. However, when we call load the it does not return the real object but return thw proxy for th real object however get gets use the real persisted object. Also, load return objectNotFoundException if object not found while get gives null if object not found. 
 
-The difference between persist and save method. Both are there to add an object in the database. Firstly, both works the same with persistent object but the difference comes in case of transient (which is not yet saved in db) object. Persist does not execute an insert statement outside the boudary of transaction while save method does that. Persist object not necessary that immediately persist the transient object while save will to it immediately. Other differnce between persist and save is that persist is JPA specifixation method while save is the hibernate specifjc method. Persist returns rull while save returns the primary key of the inserted rexord. By the way, hibernate js an implementation of JPA.
-***************************************************************************************************************************************
-JSP Study File
-Topics for quick check
-1. Scripting Elements: All 5 categories
-2. Implicit Object: (request, response, session, application, config, page, pageContext, Exception and out)
-3. Action Tag: Used to control the flow of the jsp page and to use the bean. 
-4. Expression Element
-5. JSTL and Custom tags
-***************************************************************************************************************************************
+
 Web service Study
 1. Importance of web services
 2. UDDI, WSDL
@@ -453,18 +488,7 @@ HTTP basic authentication is a simple technique of providing authentication on a
 14. How do we configure web service. 
 15. WADL: Web application description language which a machine readable xml format document to derscribe the http based web service. 
 ***************************************************************************************************************************************
-Hiebernate Quick Revise
-1. Spring ORM implementation using Hibernate ORM.
-2. Hibernate basic implementation for simple j2EE app. Check the client Specially.
-3. Different hibernate methods.
-a. difference in persist and save method(). First, persist method do not garuntee to assign value to transient object the value immediately, that may be assigned during flush time. Alsoo, it does not gaurntee to do insert outside the transaction boundry. Save can perform insert outside the transaction object. Another difference i recollect is that if we use incremental generator where primary id is given by hibernate then save return the primary key assigned while persist does not. 
-b. The difference between load and get method. These methods are there to returnt the persisted (saved in database) object of a given id. However, when we call load the it does not return the real object but return the proxy for th real object however get gets you the real persisted object. Also, load return objectNotFoundException if object not found while get gives null if object not found. 
-c. SaveOrUpdate(): This method will save the data if the data is not present in the table already, while update it if its present. Wwe can use this method outside the transaction boundry. 
-d. update(): method used only to update the existing resource. 
-4. Hibernate hirerarchy or inheritance mapping. 
-5. Hibernate object mapping types. 
 
-****************************************************************************************************************************************
 AngularJS2Study file
 Source 1: https://www.youtube.com/watch?v=7qq9VDO_28k&list=PLqq-6Pq4lTTbWLgk2YspgXA_xORzD0Ax6
 Source 2: https://www.w3schools.com/angular/default.asp
