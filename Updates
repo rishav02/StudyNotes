@@ -58,7 +58,21 @@ SQL quick Revise
 ***************************************************************************************************************************************
 3a. Java Script Study
 
+JavaScript Quick Revise
 
+Some Important Questions:
+1. How to submit form using JavaScript? document.form[0].submit();. 
+2. How o read or write a file using JS? active X object or some JS extension. 
+3. Looping options in JS> Same as java. 
+4. void(0) is used to prevent the page from loading. 
+5. Handling exception is also done through try, catch and finally block only. 
+
+
+JAVASCRIPT COMBO INTERVIEW QUESTIONs
+source1:22, 27, 29. Delete operator is used to deleted the property of an object or the object itself. but it does not have any effect on var or on function, 31, 43, 56, 66, 73. Also tell the event you know, 74. also tell how to create deferred script, 75, 84.
+source2: 4, 8, 9, 15, 22, 24 here, cursor is the mouse cursor, put @@@A on 35 36.
+Source3: 3, 5, We will do it in hardcore requiorement of JS. 
+Source 4: 
 ***************************************************************************************************************************************
 4a. Spring Study File
 
@@ -133,218 +147,7 @@ RRR: Source1: 1, 11, 18, 20, 24, Source2: what is servlet config obkect?,
 AAA: Source1: 7: "The only difference between printwriter and ServletOutputStream is that first the char oriented used for creating char or string may be while other is used to create may be byte array." Source2: 2: Idempotent method are those which gives the same result even when called multiple times in a row while non idempotent are those which can have different result when same request is sent again. GET is idempotent while POST is non idempotent. Now, Safe methods are those which do not change the representation state of resource at server side. Do not mix up in idempotent and safe because they loop same. 
 *************************************************************************************************************************************
 
-JavaScriptStudy File
 
-JS JSON
-JSON is for JavaScript Object Notation. JSON is primaryly used for transferring and storing data which is light weighted as compared to other formats generally used for the same purpose like xml. Syntactically JSON is similar to JS and thus parsing for JSON to JS is easy.
-We typically write JSON like below
-"employees":[{"Firstname":"Rishav", "LastName":"Mishra"}, {"Firstname":"Satish", "LastName":"Mishra"}, {"Firstname":"Asha", "LastName":"Mishra"}]
-To convert JSON to JavaScript we can use method parse(). var obj = JSON.parse(Text).
-
-
-JS FORMS
-
-JS Forms
-The most important use of JS in HTML form is validation of the values entered by User. Check some basic validation implementation. 
-We also have some automatic Validation HTML keyword and attributes which are disabled, required, min, max and etc.  
-
-JS Form API
-We have some form validation API based on javascript. Couple of them are CheckValidity() which returns true if the data is valid after checking all the validation constraints in HTML is valid and setCustomValidity(). We also have some validation properties which are rangeOverflow, rangeunderflow, tooLong, typeMismatch and many other. We can use these validity properties as validity.propertyName. Try some examples. 
-
-JS OBJECT
-
-Object Definition
-We have some primitive data type in JS which are Number, String, Boolean, Null and undefined. However, Number, String and Boolean can be an object if created using new keyword. Arrays, Dates are always object. A simple example of an object in JS through leteral way is below:
-var employee = {firstName:"Rishav", LastName:"Mishra", id:"101"}; Currly braces are used to depict an object. 
-Creation of object in JS through new keyword is something like below:
-var employee = new employee(); 
-employee.firstName="Rishav";
-employee.secondName="Mishra";
-employee.id="101";
-JS objects are mutable which means that var x= person and x.age=10; will atually make change in the memory where person is stored and age will be 10. 
-
-Object Properties
-The name and value pairs associated with an object is known as its properties. Now, we will check how can we add, change, delete or play arond with the properties? 
-adding new property to an already existing object: employee.department = "IT".
-Changing a property: employee.department="ADMIN";
-deleting a property: delete employee.department;
-
-Object Methods
-Property of a method could be a pair of name and a function as well like below:
-employee.fullname = function(){return FirstName+LastName;}
-Also, to access the above function: employee.fullname();
-We also have some builtin method for all the object like toUpperCase() and other.
-
-Object Constructor
-It is same as the constructor in java to create an object. Below is an example of a constructor.
-function employee(fname, lname, age, department){
-  this.fname=fname;
-  this.lname=lname;
-  this.age=age;
-  this.department=department;
-}
-We can create a new employee object using this constructor like: employee rishav = new employee(rishav, mishra, 25, IT);
-JS gives some builtin constructors for creating string, array and other. JS also have this keyword and this() function this just works the same way as in java. 
-
-Object Prototype
-How will you add new properties and function to already existing object? Like if we have to add new properties or function to all the employees then we need to add new property to its constructor to make it visible to all. For this, we need to write the entire constructor again. This would be quite troublesome. So, we have prototype property which lets you do the same in shorter way like below:
-employee.prototype.Nationality="Indian"
-employee.prototype.changeName=function("changedName"){return this.name=changedName;}
-
-JS FUNCTIONS
-
-Function Definition
-Well functions are there to perform some tasks. Firstly, how do we create function in JS? We have to two ways.
-First(function expression or annonymous method): var functionName = function(){function body};
-Second(Function Declaration): function functionName(){function body};
-We do have a concept of function constructor but we will usually do not finds its use.
-JS has the concept of variable and function hoisting due to which we can use the varibale and function before declaring them. 
-We also have self invoking function means those functing are not needed to call. See the syntax below:
-(function(){function body})();
-Functions are also considered as object. If we do instanceOf on a function then it will return function as type. 
-
-Function Parameter
-JS does not have any check on the function parameters. So, need to check the where no. of arguments are less or more than the actual parameters needed. 
-In case the parameters are less then the missing parameters are taken undefined. However, we set them to default values before we actually procede with any actual logic inside our function. I am not sure what will happen if we intentionally send argument more than defined in the declaration. 
-We also have a default object in JS which is argument object. You can consider this as array of argument. so, we can it inside function. It is not necessary that we defined any parameter while defining the function. 
-Arguments in JS are passed by value, not by reference. Just like java. 
-
-Function Invocation
-function invocation is about calling a function. A functions runs not when its decalred but when its declaration is called. We can call a method through setting an event, or windows object or this keyword. We can also invoke a function through function constructor. 
-
-Function Call
-Functions in JS are method of object because if a function does not belong to any defiend object then it by default belongs to global object. We already know that a property of an object can be based on function. We can also use call() method to invoke any function. 
-
-Function Apply
-We can use apply() a built in function of JS to invoke functions in JS. The difference between call() and apply() is that apply takes the arguments of a method in the form of array. Each element of that is just like a set of arguments. 
-
-
-JS HTML DOM
-
-DOM intro
-DOM stands for document object model. Through document object we can access any element or field of an HTML document and thus helps in manipulating them as needed. In HTML DOM, we can imagine the entrie document and its elements creating a tree to traverse through it. 
-
-DOM Methods
-Document object has many methods and properties which we will see in coming headings while one example of each is getElementById() and innerHTML as property. 
-
-DOM Document
-Through JS, we can create HTML, traverse through HTML document and change the HTML as well. We will see some necessary methods for doing all this. 
-Methods for creating the HTML Document:
-1. document.createElement(). Ex: var f = document.createElement("form");
-2. document.appendChild(). Ex: f.appendChild("input");
-3. document.setAttribute(). Ex: f.setAttribute("id","nameInputField");
-4. document.replaceChild(). Ex: f.replaceChild("nameInputField", "a newly created element");
-5. document.removeChild(). Ex: f.removeChild("nameInputField");
-6. document.write(). Ex: document.write("anything"). This will print anything in the document. 
-
-Methods for Fidning the HTML element:
-1. document.getElementById("id"). This will get you the element with the specified id. 
-2. document.getElementByTagName("input"). This will get you all the tags of the specified type. 
-3. docuemt.getElementByClassName("customCSS"). This will get you all the tags with the 
-
-Methods for changing the captured HTML element:
-1. element.innerHTML = "new HTML content". This will replace the HTML content for the selected tag(s).
-2. element.attribute = "new attribute value". This will give new value to the selected attribute(s).
-3. element.attribute("attribute", "value");. This is just another way of changing attribute value.
-4. element.style.property = "new property". This will give new style to the older CSS. 
-
-We will get a lot more new properties and methods in the newer version of HTML DOM level 3. 
-
-DOM Elements
-We have already seen three ways with which we can select the DOM elements which are getElementById(), getElementByTagName() and getElementByClassName(). If we have to select the element just the way we select in CSS, then we have a dedicated method querySelectorAll("p.class"). Here, we can mention the combination of tag and class. 
-
-DOM HTML
-We have already seen the way for changing the HTML. Couple of most used properties are innerHTML and attribute="new value".
-
-DOM CSS
-We can change the CSS, through document.getElementById("id").style.name="new value".
-
-DOM Animation
-will do it later.
-
-DOM Events
-To make our web pages more responsive, JS is a big help. We can use JS functions and properties on the basis of different events. We write events in HTML as the attribute of element Let see what all events we have in JS. 
-1. onclick: If user click an element. 
-2. onload: on load of the document or web page. 
-3. onunload: on unloading page. This can happen when tag or window is closed. 
-4. onchange: on the state change of an element. Generally used with check boxes or input fields. 
-5. onmouseover: define the state of element when mouse is over.
-6. onmouseout: defines the state of element when mouse is out. 
-7. onmouseup: when mouse is kept unclicked. 
-8. onmousedown: when mouse is kept clicked. 
-
-DOM Listener
-We have already seen one way of adding event on diiferent condition on HTM: element by adding them as the attribure of HTML. We can do this by addEventListener(event, function). One example is below:
-document.getElementById(id).addEventListener("onclick", function());. This way we can add event listener in javascript. We can add multiple events to a partiular element. We can add event to window object by window.addEventHandler(). We also have another method called removeEventListener("event", "function").
-Event Bubbling and Event Capturing: Under event bubbing, event related to innermost element is triggered first while outermost will trigger last. In event capturing, event related to outermost element will be triggered first while last for the innermost element. 
-By default, event capturing is used in java while if we have to change this to event bubbling then we have to pass true as argument in addEventListener() method. 
-
-DOM Navigation
-DOM also has the concept of nodes. Here, we see document as a tree and everything as a node. A node will have parent node (except root node) and will have child node (except the bottom node). We have different methods and properties through which we can access every node of a document tree. These different node properties are below:
-1. parentNode: to access the parent node of a document.
-2. childNodes[number of nodes]
-3. firstChild
-4. lastChild
-5. nextSibling
-6. previousSibling
-To find the value, name or type of an node, first we need to reach that node and then use the peroperties nodeValue, nodeName or nodeType respectively. Here, type of node means whether element node, attribute node, Text node etc.
-
-DOM Node
-This explains nothing but how can we create nodes using methods like createElement(), appendChild(), replace/removeChild(). 
-
-DOM Collection
-When we do var x = document.getElementByTagName("div"). Then, x will hold all the div tag of that document. This means it has a collection of div tags. To access the secondTag we can use this collection just like an array in JS like y = x[1]. we can also find the number of certain tags by length property. 
-
-DOM NodeList
-NodeList is nothing but the list of nodes returned by method like getElementByClassName(), queryAllSeclector() and other. This is more like DOM HTML collection however, here we are returned the JS node list rather HTML elements. 
-
-JS BOM
-
-JS Window
-Window object is the top level object in BOM below which we have docuemnt, history, screen, navigation and location. With window object, we can use some of its default methods like close(), open(), moveTo(), resizeTo() and other. InnerWidth and InnerHeight are some important properties. 
-
-JS Screen
-Screen object has some important properties which are width, heigth, availWidth, availHeight, colorDepth, pixelDepth and other. 
-
-JS Location
-Location also has got some important properties related to the URL. SOme of them are location.url which gets the current url, location.hostname, location.post, location.protocol and other. We also have some methods like location.assign() and other. 
-
-JS History
-History has got method like back() and forward()
-
-JS Navigator
-Navigator is actually a very important object because we will be using it alot. A lot of important information can be found through navigator object. These information are appName, appCodeName, app.platform, product, appVersion, userAgent and other. 
-
-JS Popup Boxes
-There are three type of popup boxes in JS. These are Alert, confirm and Prompt. We can have create them like window.alert(), window.confirm() and window.prompt("SomeText", "UserText"); Check the exmaple of each. We can do a line break in alert through "\n". 
-
-JS Timer
-We can have event triggered or untriggered on the basis of time in JS as well. We can use it like window.setTimeout("myFunction", "3000"). With the timeout set, the fucntion will be called after three second of clikcing the button. To remove the set timeout, we can use the method clearTimeout(). We also have setTimeInterval(function(), n) method which is used to repeat a function after n time mentioned as the parameter. To remove the setInterval, we can use window.clearInterval(). 
-
-JS Cookies
-We can also creates cookies in JS. document.cookies="name:jhon". We will this later in more depth. 
-
-JSTL
-Another very important aspect of JSp is its Standard tag library. We can understand these tags as a small chunk of code that performs a certain task. However, we can create our own custom tags as well. To write view as well as modal part in same JSP, we should use JSTL and Custom tags. Some of the important standard tags are below:
-
-
-
-
-
-
-Some Important Questions:
-1. How to submit form using JavaScript? document.form[0].submit();. 
-2. How o read or write a file using JS? active X object or some JS extension. 
-3. Looping options in JS> Same as java. 
-4. void(0) is used to prevent the page from loading. 
-5. Handling exception is also done through try, catch and finally block only. 
-
-
-JAVASCRIPT COMBO INTERVIEW QUESTIONs
-source1:22, 27, 29. Delete operator is used to deleted the property of an object or the object itself. but it does not have any effect on var or on function, 31, 43, 56, 66, 73. Also tell the event you know, 74. also tell how to create deferred script, 75, 84.
-source2: 4, 8, 9, 15, 22, 24 here, cursor is the mouse cursor, put @@@A on 35 36.
-Source3: 3, 5, We will do it in hardcore requiorement of JS. 
-Source 4: 
 
 *************************************************************************************************************************************
 
