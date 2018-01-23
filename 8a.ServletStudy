@@ -1,0 +1,256 @@
+Servlet Study (Source: JavaTPoint)
+Servlet Introduction
+What is Servlet?
+Servlet as a technology used to create a dynamic web page. Servlet as an API has got many interfaces and classes. Also, it is a part of the web component which is deployed on the server to create dynamic web pages. It works on the request response model. 
+Web Application – A web application can be accessed from a web browser. A request is sent from the client (user) to the server. The request gets processed at the server side and response is sent to the client. The web application has Servlet, JSP, filters, HTML and more as its components. 
+CGI – Before Servlets, CGI was used as a sever side scripting language. In CGI, once a request comes it passes the request to an external program and returns the result. So, for each request it creates a process. Therefore, whenever more client sends request it takes more time because of the concurrent processes in progress. Also, web server has some limit to start the process. It uses the platform dependent languages like C, C++, perl. 
+Servlet Over CGI – Servlet has many advantages over CGI. Servlet uses threads which are much better than processes since they share common memory, lightweight etc. They have better performance over CGI. They are platform independent and thus portable. Servlet is managed by JVM so we do not need to worry about memory leaks and garbage collection and so it is robust (robust in the sense that it is used a lot). It is secure as well. 
+
+Servlet Terminology
+This section will explain the important terminologies related to Servlet Technology. 
+    1. HTTP – it is abbreviated as Hyper Text Transfer Protocol. For exchanging the data between client and server we need a protocol and HTTP is that protocol. It is a request response protocol. It uses TCP connection (network protocol or lower level protocol) at port 80. Each request sent to the server is new for it. Learn about the layers of networking like transport and application layer. Doubt: How can it be use HTTP protocol and TCP connection because TCP connection is also a type of protocols.Actually, TCP is also a protocol but of a smaller level. It is used to complement the Internet protocols like HTTP.
+    2. HTTP request method – As we know that HTTP protocols works on the request response model. But what are the requests used. Understand all these – Get, Post, Head, Trace, Put, Delete and Options.
+    a. Get–this request for a particular URL to get its resource (information). This means to show that page.
+    b. Post – to ask server to accept the info attached which is to be processed to a specified resource. 
+    c. Head – It is to the Get request except only header is returned as the response. 
+    d. Trace – This is to echo the input information given. This is used for debugging or testing. How?
+    e. Put -this method sends a body and a URL. It meant to put that body on the URL passed. If that URL already have some resource then it will be replaced by the new resource and if that URL does not have any resource then it will be created with the resource save in it. The difference in Post and Put is that PUT only affect a specific URL and Store file in it while Post sends a closed entity to a URL but it is not mandatory to be a store action. It could be any other action or could be for other URL (the specified URL might be a gateway). 
+    f. Delete – This requests to delete the resource of the specified URL.
+    g. Options – This ask for a list of the request that can be send for a particular URL and will be responded. 
+Difference between GET and POST
+    1. G can send a limited amount of data since it is in header while P can send much more data since it is in body. 
+    2. G is not secured as it is exposed in the URL bar while P is secured.
+    3. G can be bookmarked while P cannot be. 
+    4. G is idempotent which means the second request will ignored until first does not gets the response. P is not idempotent.
+    5. G is more efficient than P.
+Check the autonomies of the GET and POST methods which are shown to describe that message is sent in the header in GET and message is sent in body in POST method.  Also, GET request is the default request. 
+
+Server – it is a running program or software that provides service to the client. It is of two types which are web server and application server. 
+    1. Web Server – it can contain only the web container or servlet container. It can be used for servlet, JSP, struts, jsfetc but cannot be used for EJB. Examples are Tomcat and Resin.
+    2. Application server – It contains both web container as well as EJB container. The application servers are JBoss (JBoss community), Glassfish (Oracle), weblogic (Sun then Oracle), websphere (IBM) etc.
+Note – Both are same but different in size. 
+Container – It acts as a run time environment for J2EE applications. It performs many operations like Life Cycle Management, Multithreaded support, Object Pooling, Security etc.
+
+Note: What is the difference between Web container, application container and servlet container? Every server has a container has a container and other things. Now, application can we a web application or enterprise application and we have web server and application server for them respectively. The container of web server is called as web container and container of application server is called application. Servlet container is other name of the web container. It is no other thing. 
+Note: Let’s have a quick reference with few terms. 
+    1. Web Application Framework and architecture – It is used to for developing the web applications with the efforts of reducing the overheads. Also, different framework has got different types of libraries which make the task easier. Strut is one of many popular frameworks available. We also have architecture on which the frameworks are based. One of the most popular architectural frameworks is MVC. It separates the Data Model from Business logic. We can more understand it later.
+    2.  JSF – It is abbreviated JavaServer Faces. It is also a Web application framework to integrate the web based user interface. It gives a standard display of web application. 
+    3. EJB - It is abbreviated as Enterprise Java Beans. It is development architecture to build a robust or high scale application. This is also a Framework but for application server based application. They are bigger than the web server based application. 
+Content Type – It is a field in the header which is used to describe the type of the data contained in the header. Content type also known as MIME (Multipurpose internet Mail Extension). There can be different content types. It could be text/HTML, text/plain, application/jar, application/pdf etc.   
+
+Servlet API 
+Servlet as an API contains many interfaces and classes which together forms the basics of the servlet. Servlet API has two packages which are javax.servlet and javax.servlet.http. First, javax.servlet contains all the interfaces and classes which are used by a servlet or a web container which are not specific to any protocol. However, javax.servlet.http contains all the methods which are used by servlet using the http protocol only. 
+Note: Those packages which are introduced in the first release JRE are called as java while the later added packages were termed as javax. 
+Servlet Interface
+Servlet interface is used to provide certain common features to all the servlet class. It has got five methods. It has three methods related to life cycle which are public void init(ServletConfigconfig), public void service(ServletRequestreq, ServletResponse res) throws IOExceptionand public void destroy() method. Other two methods are to send the information of the config and servlet info. Public ServletConfiggetServletConfir() and public String getServletInfo(). Try example.
+
+GenericServlet Class
+This class implements the Servlet, ServletConfig and serializable interfaces. It provides the implementation of all the methods except service method. So, it is an abstract class since it does not implement the implementing interface method. This class is protocol independent. 
+I have seen in this example that only service method was used. This is because we have executed the same servlet in the servlet interface example and thus it can directly give service this time. A servlet is initialized only when it is called for the first time. It is in We can check this with example only.Try the example.
+Note: Serialization is a mechanism of representing an object as the sequence of bytes. This sequence includes the data of the object, object’s type and the information of data type. 
+
+HttpServlet Class
+This class extends the Generic servlet class and serializable interface. (Why is implement serializable interface if generic class already implements it?) This class provides the HTTP request related methods. Check its methods. 
+
+Life Cycle of a Servlet
+Life Cycle of a Servlet involves five stages. Web/Application Container is responsible for the life cycle management of a servlet. When the first request of a servlet is received then the classloader loads the servlet. Then, container creates an instance of the servlet which happens only once in its life cycle. Till here, the servlet is in new state. Then, the init() method is called to initialize a servlet. We know the syntax for init method. Here, creating an instance is kind of creating the object while initializing is to give an initial value to the object/instance. Once it is initialized then it comes in ready state. The web container calls the service method. This method is called when the servlet is initialized and when it is not initialized then first three steps occurs. Servlet initialization occurs only once. The final stage is when the servlet is destroyed by destroy() method. It then comes to end state. Also, after the destroy() method only the container remove the instance of the servlet from the service. 
+Note: Assume that the very first request comes to the server. Server sends it to the container. Then, container loads all the servlets and creates their instances. Then, it calls the init method and initialize the server to reach to ready state. Whatever request comes, a corresponding servlet service method will be called.
+Why is it necessary to initialize a servlet in its life cycle? Actually, we need to initialize a variable to avoid the unpredictable behavior. When you declare a value then some memory is allocated to it. However, that memory must be occupied by some other variable (or maybe by something else). So, if we do not know which type of value previously been stored at the given memory location. If without giving new values, the program starts using the variable then it may lead to unpredictable behavior. Thus, it is considered safe to initialize the value of a variable to some default value. Now, in case of servlets, init() method is used for initialization. First, do not compare it with the concept of initializing the variable since servlet is a class, not a variable. I do not understand its need much but found somewhere that it has the access to servlet config and context which has the servlet configuration (initialization about default values) details.  
+
+Steps to create a servlet example
+A servlet can be made by three ways which are by implementing servlet interface, by extending the genericServlet class or by extending the httpServlet class. However, generally HttpsServlet class methods are used so third way is most frequently used. Below are 6 steps.
+    1. Create a directory structure – it defines that where to put which file so that the web container can get the information and respond back to client. In eclipse, servlet was stored in java resource folder.
+    2. Write code of servlet – in this, we can even create basic servlet having one doGet() method. 
+    3. Compiling the servlet – For compiling a servlet, a jar file is need to be loaded. We can load a jar file (javaee.jar in case of JBoss) by command prompt or by pasting the folder. Put the java file in any folder. After compiling the java file, paste the class file of servlet in WEB-INF/classes directory.
+    4. Create deployment descriptor – deployment descriptor is an XML file through which container gets the information about the servlet to be invoked. Container use a parser to get the information and there are many parsers available which are SAX, DOM, Pull etc. Check the elements of DD in details later. 
+    5. Start the server and deploy the project – Check how to start the JBoss server and deploy the project. 
+Note – 
+    1. this section is mainly creating and running the project containing the servlet successfully. It includes every step required for this. You must do this.
+    2. What is the use of httpservlet package over generic package? Httpservlet is made dedicatedly for serving http protocol request and it gives somes additional feature like state management. 	
+
+How servlet Works?
+It is slightly related to the life cycle of a servlet. Request made by the client reaches to the server. If the request corresponds to a servlet that is to be invoked for the first time then first three steps of life cycle will be called followed by service method otherwise only service method will be called. Destroy() method is used when we have to destroy the instance of the server may be when a server is closed or few other situations. 
+Web container manages the servlet life cycle. So, let’s look at this from the perspective of the container. Requests are mapped with the servlet in the web.xml file and this is used to pick the servlet for the method. Container creates the request and response objects for the request arrived. A thread will call the servlet. Now, public service method will internally call the protected service method. Protected service method calls the request method depending on the type of the request. The method called creates the response and that will be sent to the client. Finally the object of response and request are deleted and thread also sent back to available thread pool.  
+The public service method calls the protected service method internally. Also, it converts the object of the request and response into the object of the httprequest and httpresponse. It is simply done through the class type casting and classcastingException is also handled. Check the note below to understand the concept of public and protected service method of HttopServlet class. 
+Note: HttpsServlet class is mostly used which has two service methods. First, it has public service method which is takes request and response objects. Second, it has protected service method which is dedicated to take the requests which are http request. Container calls the public service method. However, since almost every request comes as http request. Therefore, the public service method type cast the request and response objects and calls the protected service method which is dedicated for Http request and response. Then, protected service method internally checks the type of request i.e. get, post or other. Then, it processes the request and sends the response.  
+War File
+War is web archive file which contains files related to web application like html, servler, jsp, xml, css etc. It is like the Jar file for java. It is made by putting all the files of any web application. Then transferring that web application becomes easier since all the files are now a single unit. 
+Create a war file - To create a war file, we need a jar tool of JDK and create as the Jar file is created. Check the exact code for creating a war file. War file can be extracted manually by the jar tool with the help of the commands. 
+Deploy a war file – This means to put the war file in the server so that the application can be access from the browser. This can be done in two ways. It can be done through the console panel or by manually having the war file in the specified folder. 
+
+Welcome-file-list in Web.xml
+Welcome file list an element of web-app (web application) which contains a list of files that can be used as welcome file. A welcome file is that which gets invoked automatically if no file is specified. The container looks for the welcome file in the welcome file list in web xml first followed by index.html, index.htm and index.jsp. If nofile is found then server 404 error is shown. 
+
+Load on Startup in web.xml
+It is an element of web.xml and used to load the servlet at the time of deployment of project or the server starts. So, when servlet is loaded at the time of deployment or server start then it will take less time in responding. Also, we pass an integer value with each servlet load on startup. Servlet with the value 0 will be loaded first followed by ascending integer. When you pass negative value then servlet will be loaded when the first request corresponding to it will come. Check its methods. 
+
+
+
+
+
+
+
+
+
+
+Creating and Running servlet in IDE Eclipse
+Explain everything from installing the plugins of Jboss in Eclipse to viewing the result of the first servlet. 
+
+
+
+
+Findings 
+    1. When you create the servlet and it look like you do not have the servlet API. Then set the targeted runtime. Go into properties and look for this option. 
+
+
+
+
+ServletRequest Interface 
+We create servlet to process the request. But how can we be able to process the request if we do not have the information of the request. Actually, the request comes to the server so server has the information. Then, how the information is sent to the servlet? We have got ServletRequest interface included in the servlet API whose object is used to pass the information about the request to the servlet. It can contain information like the type of the content, length of the content, parameter names and values, header information etc. HttpServletRequest is another important interface to get the response object specific for the http request. HttpServeletRequest interface extends the ServletRequest interface.   
+I have checked the example. In this, we have to create a form using HTML which asks the user to insert the user name. We have to display a welcome message using the name of the user that we will get from the user’s input in the form. Actually, this process starts when the user goes to the web page that has a form. User enters his user name and password and press submit. This action reaches to the server as a request which contains the user name and password as the information in the request. The information is sent to the servlet and can be used through the methods of the servletRequest interface.  
+Check the example and practice them once the problem with eclipse and Jboss gets resolved. 
+
+Servlet Response
+Servlet API has interface for sending the response generated after the processing of the request. These interfaces are ServletResponse interface and HtppServletResponse interface. The object of these interfaces is returned by the servlet to the server and server sends it back to the client. (Check how exactly the response is sent back to the client) The HttpServletResponse interface extends the ServletResponse interface. 
+I have seen an example on beginners book website. The example is same as Javatpoint request example. I form is created in which a parameter “name” is used. A servlet is created extending the HttpServlet class. Primarily for using the request methods, here we are using doGet() method. We have to handle the Servlet exception and IO exception. Then, response content type is set using the setContentType() method of the request interface object. Then, object of printwriter is called through getWriter() method of the response class. We create a string to store the users input which we get through the getParameter object of the request class. This string we can use to print the users input or use it in any other way. 
+
+
+Servlet Collaboration
+RequestDispatcher Interface
+This interface is used to send the request for further processing to other web resources like JSP, Servlet, HTML, etc. This can also be used to include the content of other resource. It is one way of the servlet collaboration. It has two methods which are public void forward(ServletRequest request, ServletResponse response) and public void include(ServleteRequest request, ServletResponse response). Let’s check when to use which method. 
+    1. Forward – When we have to send the response without including the response of the first servlet, then we should forward method. Request comes to first servlet is passed to other resource which generates its response and that response is directly sent to the client. Check diagram if not clear.
+    2. Include – When we have to send the response by the including the reponse of the second servlet in the response of the first servlet then we have to use include method. Request comes of the first servlet creates some response which then transferred to second resource (request and response objects are passed). Second resource also creates some which sent back to first servlet. Both the response are added and sent back to client. Check diagram if not clear. 
+I have tried an example showing the forward method. First an index.html file is create which is a simple form asking for username and password which need to be submitted through submit button. Then, a servlet is made (extending interface, handling exception, setting the res content type, getting the object of response etc). If the password submitted by the user is “servlet” then it should be redirected to welcome page otherwise a error message should be printed. In the servlet we will create the requestDispatcher object and call forward method in if condition. Also, we have used the hardcoded password while we can use the database for this purpose as well. A welcome page servlet is also created where a simple welcome username is printed. Of course, we have to create a web.xml file as well. We have one XML file of the application which takes care of all the mapping needed. Check include example as well.
+Note: We create the object (of the class that is implementing the requestDispatcher interface) by “requestDispatcherrd = request.getRequestDispatcher()”. Since, requestDispatcher is an interface so does not have implementation of any method and hence we cannot create its object directly. So, we create the object of the class implementing the requestDispatcher indirectly. Now, why do we not have the facility of creating the object of the class directly like we have for sendredirect (response.sendredirect()). The answer is that this is how java is designed. 
+Note: Make a note of it. http://www.coderanch.com/t/347181/Servlets/java/class-implements-HttpServletRequest-interface-javax
+
+SendRedirect
+The sendRedirect method of the servletResponse interface is used to redirect the request to some other resource of the same application or may to other application.See the below diagram for understand. 
+
+Differences between Forward() and SendRedirect()
+    1. F only happens at the server side while SD happens at client (browser) as well as server side. 
+    2. F sends the same request and response object to other servlet while SD sends a new request to the other resource (make browser to do this). 
+    3. F belongs to requestDispatcher interface while SD belongs to HttpServletRequest interface. 
+Check the example when the problem gets resolved.
+Note: SendRedirect is the method of HttpServletRequest interface where they are just declared while they are implemented in some unknown class. That is why, while using these methods we use syntax: “response.sendRedirect()” where response object that is passed. Same is with 
+Note: both the method of requestdispatcher interface and sendredirect is used to send the response to other resource which may be another servlet, html, jsp or any other resource. Now, requestdispatcher forward method is used when want to just forward the response of servlet1 to servlet2. This also means that from the point where the response is forwarded from s1, the code below that in service method of s1 will not execute. On the other hand, response comes back from s2 to s1 in include() call and the code below the call of s1 in service method is executed. If this does not makes difference, then forward to be used as it is faster than include. Sendredirect is quite different. I think is primarily for sending the control to other server or other domain of the same server. In sendredirect, heard of the request is send back to the browser which has the URL to which browser has to send a new request. So, a new request call is made by the browser in case of sendredirect while forward sends the same request and response object to the resource in the same server.   
+Servlet Config Interface
+An object of ServetConfig is created by the web container for each servlet. This object gives the information about the configuration in the Web.Xml file. Also, if some configuration information is changed in the Web.Xml file then we do not need to change the Servlet. So, it is easier to manage the application. The configuration information from Web.Xml file (deployment descriptor) is taken at the time of initializing the servlet. An object of servlet config is passed from the initialization method. Also, each servlet has its own servlet config. 
+The int parameter is given in the web.xml file inside the tag <init-param></init-param>. We can create the object of the servlet config by public ServletConfiggetServletConfig() method in the servlet. Then, through the method getInitParameter() of the servletConfig interface, the parameter can be taken. Check other method as well. 
+In the first example, the parameter name and value is stored in the web.xml file is mentioned. Then, these are used by making the object of servlet config and using getinitParameter() where we have to mention the name of parameter we want. In second example, we will access all the parameters. We have to create an enumeration object of string type like this “enumeration<String> e = config.getallparameterName”.  By this, we can store the name of all the parameters of the web.xml file. Then, with the help of while loop we can print all the parameter values. Try example.
+Note: I am sure, now you must be looking as when to use it? Actually, at the time of initialization of the servlet, we send servlet config as a parameter to the init() method. We can get those information. Now, we are making use of the information through “servletConfig.getServletcongif(“paramname”)”. Now, we later changed the value is web.xml, then we do not need to change the servlet since we arenot hardcoding but we are fetching. Examples, jdbc details or validate as true. Config in web.xml is set under <init-param> tag. 
+Servlet Context Interface
+An object of the servlet context is created by the web container at the time of deploying the application. This object gives the information about the init parameters which are used in every resource of the web application but not by any specific resource. If some init information is changed in the web.xml file, then we do not need to change the servlet. This is its main advantage. Therefore it is easy to manage the application. A web application has only one servlet context which is associated to all the resources of web application. The servlet can get the get, set or removeattribute methods from the web.xml file which is not it servlet config. Check its methods.
+The configuration information in the servlet context is stored inside the tag <context-param><context-param>. These tags are also called as elements. Context paramelement are inside the web app element and its sub-elements. Also, param-name and pram-value are the sub elements of context-param element. The object of servlet context can be made by getServletContext() method. We can print one parameter or all the parameter in the same way we have done for servlet config.  
+
+Servlet Attribute
+The servlet attribute is an object that cab be get, set, or removed. These can be used to share information across the web application. They have scopes as well like request scope, session scope or application scope. Scope decide till when the set attribute be valid and used in the web resources. Request scope attribute remains valid until the request is not over. Session scope attributes are valid till session is active. Attributes with application scope remains valid until the application is not destroyed. It is used with servlet context only but not with servlet config. We are provided getAttribute, setAttribute and removeAttribute methods in the servletContext interface. 
+Difference in Parameter and Attributes
+Parameters can also be used to share information across the web resources. But they are very much different from attributes. Request parameters comes from the user’s input from the browser while attribute are explicitly mentioned at the server side. Parameters are read only while attribute are writable and removable as well. Parameter are always string while attribute can be any object. \
+In the example, we have used the object of ServletContext class to call the setAttribute method through which we can set the attribute and its value. In the second example, we are trying to get the value of the attribute we have just set. Again we will the context object. When we will store the value in any string then we have to do type casting to string. Why type casting is done? Is the attribute value is coming in some other format?  Answer: This is because the value of attribute is treated as Object type. By casting we are confirming that its of String type. Try the example when Jboss issue gets resolved. 
+
+Session Tracking
+Session Techniques 
+Session management means to identify a particular user up to a certain time. Servlet uses Http protocol which is stateless i.e. every request is a new request and does not hold any relation with the previous request. However, each time a same user request to the server, server treats it as new request. 	So, we need to maintain the state of a user. In the nutshell, to identify a specific user for a particular time is session management or session tracking. 
+This can be done in four ways which are Cookies, Hidden Form Fields, URL Rewriting and HttpSession. 
+
+Cookies
+A cookie is a small piece of information which is sent by the web sites that get stored in the user’s browser while the user is browsing. Cookie has a name, a single value and some optional information like maximum age, a version number, etc. Now, how cookies work to provide session management? Suppose one request is sent by the browser to the server. Then, request will be processed and response is sent back. But cookies are also sent along with the response. So, when the user sends another request then the cookies are also sent with the new request through which the user gets identified.
+Types of cookies:
+    1. Non-persistent cookies – These cookies are valid for the current session. This means these cookies will create a session which gets over once the user closes the browser. 
+    2. Persistent cookies – these cookies creates a session which gets over only when the user signs off. It does not get over when the user closes the browser. This means we need to sign out otherwise without sign out our session will start again when we try access the same application.  
+Pros and cons – Cookies are easy technique and maintained at client side so no extra load on server. However, the user can disable cookie which is biggest drawback. Also, only textual information can be sent by cookies. 
+Create, delete and get cookies
+    1. Create and Add cookie – create an object of cookies by new keyword and pass cookie name and value. Then, use the addCookie method and pass the object of cookie. Use this method with response object. 
+    2. Delete cookie (value) – create the object again whose cookie value needs to be deleted. Then, use setMaxAge() and pass 0. This means we are updating the age as 0. Then, add the cookie to response. 
+    3. Get cookies – Create a cookie type of array list and use request.getcookies(). So, getCookies() is of request method. Then, you can print the cookies as we print a normal array.
+In the example, a request is handled and response is send using the username parameter from the request. Also, a cookie is also added to the response. Now, We will create another servlet and try to get the cookie that we have sent through servlet one. If the user tries to get the cookie from different browser then the user will not get the same value of the cookies since it is exclusively to identify the user through that browser only. Check the example later. 
+Doubt: why and how the button is created in the first servlet.
+
+Servlet Login and Logout Example using Cookies
+I will do it once the Jboss issue gets resolved.
+
+Hidden Form Field
+Hidden form field uses the invisible text fields to maintain the state of a user. We create invisible text field which contain some information in the first servlet and which gets sent through the response. The same information we can get from the second servlet provided the user has sent the same request from the same browser. This approach is good when we have to submit forms in every page and do not want to depend on browser. It is mostly used in the comment form of the website, so that each page can be uniquely identified. Well, why do we want to uniquely identify the page? How does this make sense?
+Pros and cons: It will work even when the cookies are disabled. However, it is maintained at server side. Extra form submission is required at every page. Only textual information can be used. 
+Try example.
+
+URL Rewriting in Servlet
+We can also manage a user’s session by appending some information in the URL which is called URL rewriting. The parameter added in the URL is called as Token. We can use multiple tokens. Each token will have a parameter name and a value like usual parameters. Original URL is separated by the token by “?”. The token name and value is separated by “=” and two tokens are separated by “&”. Check the examples when Jboss issue is over. 
+Pros and cons – It will work even when the user has disabled cookies. We do not need to create extra forms. However, it can only work with links. It can send only textual information. Try example.
+Note: Once the user logs in the application. Then, with each user we send the session parameter. Like suppose when user logs in then to fetch welcome.jsp, we changed the url from “/welcome” to “/welcome?user=rishav”. Now, we can access the value of user which is a variable in welcome.jsp. If the value of user is rishav
+HttpSession Interface 
+In this case, the web container with the help of HttpSession interface creates a unique session id for identifying for each user. The user uses this session id to identify the user. An object of HttpSession can be used to bind object and to view and manipulate information of the session like session identifier (ID I guess), create time, last access time, etc. We can create a session with the help of public HttpSessiongetSession() method of the HttpSessioni class. We can check the time information related to the session by the methods of the HttpSession interface. Check the methods. 
+In the example, we are creating a servlet where we are explicitly creating the session through getsession method of the HttpSession interface. We can get the same session value in the next servlet called. Check the example when JBoxx issue gets resolved. Try example.
+
+Servlet HttpSession Login and Logout Example
+Do it later.
+
+Events and Listeners in Servlet
+The servlet specifications include a capability of tracking of key events in java through event listeners. Events occurs when the state of any object. Servlet API has different type of events for different types of events. The methods of the event listener take the event object as the input parameter and work according to the current state of the object. Events are the classes and listeners are the interfaces in the Servlet API. Let’s check the different event cases individually.
+ServletContextEvent and ServletContextListener
+SCE notifies SCL when the web application is deployed. We can perform some task in SCL after getting the notification that the web application is deployed. Look this way, if we want to perform some actions only after the web application is deployed then we can do this after getting the notification from the SCE. 
+SCE has just one constructor and method. Its only method returns the object of Servlet context. SCL interface has to methods which are to be definitely implemented in the class that implements this interface. Actually, a simple class extends SCL interface and implement both method. One method indicate the deployment of web application while indicates the undeployment. 
+In the example, I have found that a simple class is formed which extends the SCL interface and implements both of its methods. The action is performed in the first method which signifies that the web application is deployed. The attribute is set according to the action performed. Then, a servlet is created that uses the attribute just set. The advantage we received here is that this make sure that as the application is deployed then event notify the listener and listener automatically do an action like creating a connection. Then, we can use that attribute set of that action. Try the example.
+
+HttpSessionEvent and HttpSessionInterface
+HSE notifies the HSI when a session is created and made invalid by the container (when session object is created). The concept is same. As soon as the HSI is informed an action like maintaining login time and logout time will be performed in the class implementing HSI.  
+HSE just have one method that returns its own object. HSI has got two methods which are public void sessionCreated(HttpSessionEvent e) and public void sessionDestroyed (sessionContextEvent e). First and second method will be invoked when the session is invoked or made invalid respectively.   
+In the example, we are setting the attribute for counting the total login and current logged in user number. So, we will perform some code in the class which implements the HSI and can set the attribute that can be used in the servlets. This is what is done. Try the example. 
+
+HttpRequestEvent and HttpRequestInterface
+HRE gives the information to HRI about the lifecycle event of a servlet. So, once the event notification is received by HRI then it can perform some action. HRI have only one method to create its own object while HRI has got to method. First, public void requestInitialized(ServletRequestEvent e) which is invoked when the servlet comes in scope of web application i.e. when it is initialized. Second, public void requestDistroyed(ServletRequest) which is invoked when the request goes out of the scope of the web container. 
+
+ServletRequestAttributeEvent and ServletRequestAttributeListener
+SRAE class gives the notification of change in the attribute of servlet request made to the SRAL interface.  SRAL interface has three methods which get invoked whenever an attribute is added, deleted or replaced. These are attributes of the servlet context. We can perform some actions in the class implementing the SRAL interface containing these methods.
+
+Note: HttpSessionBindingEvent notifies its interface when a session attribute is bound, unbound or replaced. Bound and unbound are simply to set and remove any attribute. 
+
+Servlet Filter 
+What is filter?
+So far, we have studied that the request comes to the server goes directly to the servlet and response generated goes directly to the client. However, there can be situations where preprocessing and post-processing of the request and response can be required. For example, if the response contains very sensitive information then it should be encrypted first and then sent to the client. Also, we can have some additional features through processing of the request and response like maintaining log of request, logs of IP address etc. We can use Servlet filter for processing of request and response. 
+Features - Filter is not a servlet. They implement the filter interface. They are pluggable to any web application which means its entry is defined in the web.xml file. If we remove the entry of filter in the web.xml file then it will be removed automatically and we do not need to make changes in the servlet. Also, a filter is not dependent of other filters unlike servlets. In the nutshell, filters are pluggable so less maintenance and does not depend on other filters. 
+Filter API – Java has Filter API. Javax.servlet package has three interfaces of the Filter API which are filter, filterChain and FilterCongif. 
+    1. Filter Interface – Every filter implements a filter interface which provides the life cycle methods of the filter. 	It contains the methods for the initialization, service and destroy. 
+    2. FilterChain Interface – The object of one Filter is used to invoke the other Filter in the chain. The object passed as the parameter from the dofilter() method. 
+    3. FilterConfig – 
+We have to use <filter> and <Filter-Mapping> elements for making the filter as a part of application. In the filter mapping element, a filter is mapped to a servlet, jsp, html or any other resource. 
+In the example, a filter is created which do not do anything (here only). An html page is created with the hyperlink pointing to servlet1. Servlet1 is also created. Finally, a web.xml file a created where servlet mapping (create link of the servlet) and filter mapping is done. So, when the hyperlink is clicked for servlet1, the filter is first executed and then with the help of chain class doFilter method the request and response is to the servlet. Try the example.
+
+Authentication Filter 
+These filters do the authentication of the user trying to log in. If the password is admin (hardcoded, but could be verified in databsse) then user will be log in otherwise access denied page will be shown. 
+In the example, an html file is created which point to a welcome user servlet and that is also created. Filter is created which is mapped with this servlet. Web.xml is also created which have the mapping details. User clicks on the click button after typing in the user name and password. Then, the control goes to filter. The request parameter is used and compared to “admin”. If it comes true, then dofilter method of chain is used to pass the request and response objects to the servlet. Try example.
+
+FilterConfig
+So far, we have just mapped the filter in the web.xml file with some servlet. However, the web.xml file can have some initialization parameters can be set. This is done inside the element <inti-param>. These are also called as configuration details. If these are changed then it can create the difference in the behavior of the filter. FilterConfig class object is passed as the parameter in the init() method of the filter interface. So, that the init() takes the configuration details and work accordingly. 
+In the example, we have written a parameter construction and set its value as “no”. Then, the config comes in the init() method. In dofilter() method, the constructor (or any other parameter) is used to check if the construction of site is going on or not. It is set no, so the request response objects are sent to the servlet. This way the servletConfig object that passes the configuration to filter can be used. Try example.
+
+Useful Example of filters
+These are some useful examples. 
+    1. 
+
+
+Missing Topics
+D
+D
+
+Some fine tutorial: http://www.studytonight.com/servlet/servlet-request.php
+http://www.tutorialspoint.com/servlets/servlets-environment-setup.htm
+
+    1. Java Servlets
+    2. Servlet Overview
+    3. Servlet Life Cycle
+    4. Java Servlet Example
+    5. HttpServlet
+    6. HttpRequest
+    7. HttpResponse
+    8. HttpSession
+    9. RequestDispatcher
+    10. ServletContext
+    11. web.xml Servlet Configuration
+    12. Cookies and Servlets
+    13. Servlet Filters
+    14. GZip Servlet Filter
+    15. Servlet Concurrency
+Implementations
+I have created this section for the sole purpose to speak about the implementation of what we have learned in this tutorial. We must use as many practical examples as we can related to the real world.  
