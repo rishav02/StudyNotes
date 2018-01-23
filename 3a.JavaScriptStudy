@@ -343,8 +343,6 @@ We can have event triggered or untriggered on the basis of time in JS as well. W
 
 JS Cookies
 We can also creates cookies in JS. document.cookies="name:jhon". We will this later in more depth. 
-
-JSTL
 	
 
 
