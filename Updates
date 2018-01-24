@@ -303,9 +303,64 @@ public class Class1{
 25. A table has two columns which are emp_id and projectcode. An employee can be tagged with multiple project or 1 project as well. Write a query to find the count of employees with more than 1 project. 
 Example: 
 Emp_id and projectCode Columns: (1,a), (1,b), (1,c), (2,a), (2,b) and (3,a). 
-An Attempt: Select count(employee) from (Select emp_id as employees, count(emp_id) as count from employee groupby count having count>1))
+An Attempt: Select count(employee) from (Select emp_id as employees, count(emp_id) as emp_id from employee groupby count having count>1))
 
-26. QueryParam annotation in java 
+26. QueryParam annotation in web services. 
+
+27. Volatile Variable and trainsient variable.
+
+28. How will you perform caching and use it before making a call to db? We can use hashmap for caching and store data inside the hashmap. Next time if a call is made to the db we can check that first in the internal cache. 
+
+29. We have two string. Find that if both string are rotation of other string or not?
+Example: "hello" and "llohe". This will return true;
+public class Class1{
+	public static void main(String [] args){
+		Class1 c = new Class1();
+		String s = "abcd";
+		String s1 = "bcda";
+		System.out.println(c.isRotationString(s, s1));
+	}
+	public boolean isRotationString(String s1, String s2){
+		char first=s1.charAt(0);
+		char next = s1.charAt(1);
+		if(s1.length()!=s2.length()){
+			return false;
+		}else{ 
+			for(int i=0; i<s1.length()-1; i++){
+				if((s2.charAt(i)==first && s2.charAt(i+1)==next)&& i!=s1.length()-1){
+					return true;
+				}
+			}
+			if(s2.charAt(s2.length()-1)==first && s2.charAt(0)==next){
+				return true;
+			}
+		}
+		return false;
+	}
+}
+
+30. Implement your own hashset. Use it using HashMap. 
+
+31. Write a program to sort array containing 0 and 1 without using an API.
+public class Class1{
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		int[] numbers = {0,1,1,0,1,0};
+		int temp=0;
+		for(int i=0; i<numbers.length; i++){
+			for(int j=i+1; j<numbers.length; j++){
+				if(numbers[i]>numbers[j]){
+					temp=numbers[i];
+					numbers[i]=numbers[j];
+					numbers[j]=temp;
+				}
+			}
+		}
+		for(int k=0; k<numbers.length;k++){
+			System.out.println(numbers[k]);
+		}
+	}
+}
 
 *************************************************************************************************************************************
 
