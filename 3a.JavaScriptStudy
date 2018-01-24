@@ -367,7 +367,7 @@ JS Navigator
 Navigator is actually a very important object because we will be using it alot. A lot of important information can be found through navigator object. These information are appName, appCodeName, app.platform, product, appVersion, userAgent and other. 
 
 JS Popup Boxes
-There are three type of popup boxes in JS. These are Alert, confirm and Prompt. We can have create them like window.alert(), window.confirm() and window.prompt("SomeText", "UserText"); Check the exmaple of each. We can do a line break in alert through "\n". 
+There are three type of popup boxes in JS. These are Alert, confirm and Prompt. We can have create them like window.alert(), window.confirm() and window.prompt("TextField Caption", "Default Text in textfield"); Check the exmaple of each. We can do a line break in alert through "\n". 
 
 JS Timer
 We can have event triggered or untriggered on the basis of time in JS as well. We can use it like window.setTimeout("myFunction", "3000"). With the timeout set, the fucntion will be called after three second of clikcing the button. To remove the set timeout, we can use the method clearTimeout(). We also have setTimeInterval(function(), n) method which is used to repeat a function after n time mentioned as the parameter. To remove the setInterval, we can use window.clearInterval(). 
