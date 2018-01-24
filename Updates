@@ -1,5 +1,6 @@
 1a. Java Study File
 @@@Serialization
+@@@Date formate in java: SimpleDateFormat, DateFormat, Calendar class. 
 
 
 
@@ -62,11 +63,43 @@ JavaScript Quick Revise
 1. JS introduction
 2. JS different ways to print.
 3. JS SYntax, Statement, comments
-4. JS Variables and operator
+4. JS Variables, operator, airthmatic, assigment
 5. JS data types
-6. JS object
-7. 
-
+6. JS functions
+7. JS Object
+8. JS Scope [imp]
+9. JS Events
+10. JS String
+11. JS String properties and methods [imp]
+12. JS Number
+13. JS Number properties and methods [imp]
+14. JS Math object methods
+15. JS Dates, Dates Formats, Date Methods [imp]
+16. JS Array and Array Methods
+17. JS Boolean
+18. JS Comparison and Logical Operator
+19. JS if else conditions
+20. JS Switch Statement
+21. JS For loop
+22. JS Type Conversion
+23. JS Regular Expression
+24. JS Error
+25. JS Hoisting
+26. JS Scrict Mode
+27. JS Best Practices
+28. JS Performance
+29. JS JSON
+30. JS Object, Properties{delete property}, Methods{Built-in JS methods for any object}, Constructor{creating cosnstructor & adding new property or method}, Prototypes.
+31. JS Function {function as variable, self invoking function}, Parameter, Invocation, Call and Apply.
+32. JS DOM Intro, Creating HTML{all methods}, Element, HTML and CSS {methods for traversing DOM, how to change captured HTML element}. 
+33. JS DOM Events {all 8 events with uses}
+34. JS DOM Listener {adding or removing event through JS, event bubbling and capturing}
+35. JS DOM Naigation {navigating through nodes}
+36. JS DOM Node {creating HTML, insertBefore()}
+37. JS DOM Collection
+38. JS DOM nodeList {diff with DOM collection, querySelectorAll()}
+39. JS BOM window, screen, location, history, navigator objects.
+40. JS DOM pop up boxes, Timer and Cookies. 
 
 Some Important Questions:
 1. How to submit form using JavaScript? document.form[0].submit();. 
