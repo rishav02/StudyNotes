@@ -275,9 +275,37 @@ public class Class1{
 21. How will you manage transaction in jdbc? How will you manage to commit one query while rollback the other query in jdbc if the exception comes in third query. 
 Here we can use savepoint. 
 
-22. WHats the difference between <%@ include file and <jsp:include page="">. First, gets the included resource at the tramslation to servlet time while the other gets it at the request time. 
+22. Whats the difference between <%@ include file and <jsp:include page="">. First, gets the included resource at the tramslation to servlet time while the other gets it at the request time. 
 
+23. We have two arrays such that the second array has an odd number which is the only missing number in the second array. Example:
+a=[1,2,3,4] and b=[1,5,2,3,4]. The odd number is 5.
+public class Class1{
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		int[] a = {1,2,3,4};
+		int[] b = {1,5,2,3,4};
+		for(int i=0; i<b.length;i++){
+			int flag=0;
+			for(int j=0; j<a.length; j++){
+				if(b[i]==a[j]){
+					flag=1;
+				}
+			}
+			if(flag==0){
+				System.out.println(b[i]);
+			}
+		}
+	}
+}
 
+24. SQL injection?
+
+25. A table has two columns which are emp_id and projectcode. An employee can be tagged with multiple project or 1 project as well. Write a query to find the count of employees with more than 1 project. 
+Example: 
+Emp_id and projectCode Columns: (1,a), (1,b), (1,c), (2,a), (2,b) and (3,a). 
+An Attempt: Select count(employee) from (Select emp_id as employees, count(emp_id) as count from employee groupby count having count>1))
+
+26. QueryParam annotation in java 
 
 *************************************************************************************************************************************
 
