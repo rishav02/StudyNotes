@@ -163,6 +163,34 @@ We have got error object "err" which we can use to deal with errors in JS. Like 
 
 ||JS Hoisting||
 In JS, a variable can be used even before it is declared. But is this possibble? This is possible through Hoisting. Hoisting is JS default behaviour of moving all the declaration on the top of the script or function. Remember, JS hoists declaration but not initiaization. It is a good practice to declare all the variable at the beginning of its scope.
+Also, check that in the below code a developer can make mistake,
+var name = "Baggins";
+
+(function () {
+    // Outputs: "Original name was undefined"
+    console.log("Original name was " + name);
+
+    var name = "Underhill";
+
+    // Outputs: "New name is Underhill"
+    console.log("New name is " + name);
+})();
+In the above example, Original name is undefined because name as underhill is initializing the var which is not hoisted. Only the declaration is hoisted. 
+Now, lets undrstand function hoisting. the concept is same. The function declaration is kept at top so you can call a function before writing it. 
+definitionHoisted();
+
+// TypeError: undefined is not a function
+definitionNotHoisted();
+
+function definitionHoisted() {
+    console.log("Definition hoisted!");
+}
+
+var definitionNotHoisted = function () {
+    console.log("Definition not hoisted!");
+};
+In the above example, definition hoisted works fine. However, it is not applicable for function expression like definitionNotHoisted.
+
 note: With "use strict", JS does not allow variable if they are not declaration. 
 
 ||JS Strict mode||
@@ -401,6 +429,31 @@ We can also creates cookies in JS. document.cookies="name:jhon". We will this la
 	
 
 
+Some Important Topics:
+1. What is modular front end application development? 
+Modularity is breaking the application into smaller pieces on the basis of functionality gives us the power to reuse the code. 
+Well, this is not related to just JS but is more related to CSS and HTML. Creating application as different modules means separating the concerns and not let the code to get mixed up and become tightly coupled. I have not worked on it but ReactJs and webpack being helpful for achieving modularity. Webpack gives the feature of dependency injection. 
+
+2. JavaScript Prototype based inheritance
+Javascript does not have a concept of class. We create object through constructor. Below is one constructor created:
+var Person = function(name){
+	this.name=name;
+	this.getName=function(){
+		return this.name;
+	};
+}
+var person1 = new Person("Rishav");
+var person2 = new Person("Rishabh");
+Now, in the above code we have create a constructor and two object through it. In both the objects, a copy of getName() method will get created which is not good. With inheritance, we can reuse the function without creating a copy. For this, we have to use prototype keyword. 
+var Person = function(name){
+	this.name=name;
+}
+Person.prototype.getName=function(){
+		return this.name;
+};
+As you can in above, prototype keyword is used to add a function to the prototype person. Thus, all other object can use this method while copy for each will not be created. 
+
+3. Practically useful abstraction: http://www.yusufaytas.com/achieving-abstraction-in-javascript/
 
 Implementations
 I have created this section for the sole purpose to speak about the implementation of what we have learned in this tutorial. We must use as many practical examples as we can related to the real world.  
