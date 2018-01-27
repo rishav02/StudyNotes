@@ -1813,6 +1813,54 @@ Jdbc rowset
 Java New features
 RMI 
 
+
+||Serialization||
+
+||Java Date related classes||
+
+||Java 7 and 8 features||
+Java 7 Feature
+1.	String in Switch statements
+2.	Binary Literals – Can express any literals (int, long, short, byte) using binary code with a prefix 0b/0B.
+3.	Underscore in Literals – For better readability and grouping the digits in java.
+4.	Diamond Operator – This is for DRY coding. Removes the effort for repeating type. 
+5.	Multi-Catch Exception – Shorten the traditional coding practice. Writes from specific to generic exception.
+6.	Try-With-Resource – Resource should get closed after the cursor reaches to the last line. Closable resource should be kept as parameter for try block. 
+
+Java 8 Feature
+1.	ForEach() - Consumer and game class. We need to make a annonymous class by overriding the accept method. 
+Example: 
+import java.util.*;
+import java.util.function.Consumer;
+public class MyClass {
+    public static void main(String args[]) {
+        Set<Integer> s = new HashSet<Integer>();
+        s.add(1);
+        s.add(2);
+        s.forEach(new Consumer<Integer>(){
+           @Override
+           public void accept(Integer i){
+               System.out.println(i);
+           }
+        });
+    }
+}
+Note: all you need to care about is the type of th data need for the collection and iteration. 
+
+2. 
+
+
+||Java Oops concept explained again through an example||
+Inheritance: Inheritance is a concept of oops where child class extends a parent class and can access all the data members of the parent class giving the benifit of code reusability. Example: Employee class has id, name and designation of an employee and its getters and setter. We have a class Manager which extends the employee class and has a data member which is a list of subordinates. Notice that we are ont writting data members of manager class like id, name and designation again but still we can use them from its parent class employee and set the attribute id, name and designation for manager as well. https://howtodoinjava.com/object-oriented/java-inheritance/
+What if we do not have inheritance: Then, we might have to write the id, name and designation in sub class of employee like manager again. 
+Popymorphism: Poly means multiple and morphos means forms. Polymorphism is a concpet in java where methods with the same name can be given different forms. Its of two category which are compile time and runtime. Compile time is a intra class activity where method in a class having same name can be given different forms on the basis of number or type of arguments. The best example for this is the capability of different constructor of a class. Runtime polymorphism is inter class activity where child class can give a different implementation to any instance method of its parent class while keeping thje signature exactly same. One good example is, We have a class called bike which has method called start and this implements the procedure of a bike to start through a kick. We hvae another class called smart bike which extends class bike. BUt, since its a smart bike it gets started with a button. Thus, it need to override the start() method and has to give a different form. 
+What if we do not have Polymorphism: If we do not have polymorphism then we could not have multiple construcors of a class and we cannot have change the functionality of parent class and has to inherit everything as is.
+Abstraction: Abstraction is a concept in java to hide the complexity of the implementation of a method and provide a common interface through which a user can use differnt type of a particular thing. We can achieve 100% abstraction through interfaces while anything less than 100% through abstract classes. With abstract classes or interfaces, we are just abstract methods which implements the abstract methods. While we want to use the abstract classes/interface we can use through the object of implementation class. One good example from java jdk is list interface. Arraylist, linkedlist and vector provides the implementation of list. ONe real world example to iunderstand is assume we have a class called abstractVehical and it has methods like start and stop. WHile we have couple of classes twoWheeler and fourWheeler. Both the classes extends the AbstractVEhical class and implements start and stop methods. NOw, based on the different class object we can use the abstractVehical method named start and stop for different kind of vehical. Here, we hide the complexity of what kind of vehical but we are simply using start and stop. 
+What if we do not have abstraction: THen we would not be having a common interface and might have different sub classes having different names for work done and which might become inconsistent. 
+Encapsulation: Encapsulation in java is a concpet where we bind the data with the methods (getters and setters) to secure it from inadvertant changes. So, we can create a class with some private data members and only give getters (methods to access). This way we are only allowing the users to just get the data memeber while they cannnot change it. This will not let anybody to change the data members and access data through method which will ask for authentication first. A real time example is a wending machine where we have cans inside it. We can only get a can through the operatior of that wending machine (method) after poroviding money (authentication).  
+What if we do not have encapsulation? If we do not have encaposulation then anyone can access data of the class and set it as well. 
+
+
 Implementations
 I have created this section for the sole purpose to speak about the implementation of what we have learned in this tutorial. We must use as many practical examples as we can related to the real world.  
 
