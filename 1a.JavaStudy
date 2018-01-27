@@ -1,4 +1,5 @@
 JavaStudy (Source: JavaTPoint)
+
 Java Basics
 Java is a language and a platform as well.
 Now, what do you understand with java as a platform? See, java is a software platform which means that it is the software and specification that is used to develop applications (EE, SE or ME) using the java programming language. Java programming language is a language to develop different kind of application software (any kind means here is for mobile, enterprise, web sites and others). Now, java is computing platform independent where computing platform is the combination of hardware and software. Hardware the literally an intel chip and software is the operating system.  
@@ -25,25 +26,28 @@ However, as the complexity increases, working with command prompt get difficult.
 So, we use an IDE (Integrated Development Enviroment). Eclipse is an IDE which is mostly used. Other IDE available is the market are netbeans, android studio and etc. 
 Summary – so, for compiling the java code we need JDK which is java SDK. After compiling, we need JRE which is present in the JDK itself. Now, JDK can be of SE, EE or ME which are standard, enterprise, micro (mobile) kind of application. Until sometime, we had no option but to use command prompt to write, compile and run code. To escape the pain due to complexity of code, some great group of people invented IDE. So, IDE makes the programmer work easier. Famous IDE for java are eclipse, netbeans (oracle offers netbeans) etc.  
 
-Properties of java
+||Properties of java||
 1.	Java is platform independent
 Java is platform independent means that it can run on any platform (windows, OS, etc) without changing the code. A dependent language will require a change in code when the platform is changed. Now, how is this possible that java is platform independent? The credit goes to JVM i.e. Java virtual machine. As the name implies, it is virtual machine itself which in term means that the java code run on JVM and this JVM is installed on the platform used. Also, JVM is different for different platforms. Here platform isn’t just the operating system but the combination of hardware and software like mac OS with Intel processor. In short, unlike java, JVM is platform dependent. 
 Note: I have got a point that since .class file is given to different platform then all should be able to understand the code (actually byte code). Then, what is the need to have JVM. Actually, different platform will not be able to understand the byte code since they do not know about java and so won’t be able to recognize that what is meant by the byte code. So, platform dependent JVM is required. 
 2.	Java program are “write one, run anywhere” type code. That again portrays that it is platform independent but in a slightly different way. Let’s suppose you have written a java code on windows and want the same code to run on MAC OS. Then, that code will run smoothly but how? Actually, every machine needs JVM, so that is needless to say that OS will also have JVM installed. So, no matter of which platform written java code you are trying to run on some other platform, it will run because JVM is there to translate and run the code for the platform. 
 Note: We have major operation systems which are windows by Microsoft, Mac OS by Apple, LINUX by developer community and iOS platform for mobiles. Hardware (process like Intel, AMD or ARM) can differ by the architecture. So, the different combination of software and hardware makes a different platform.    
-Uses of java
+
+||Uses of java||
 1.	Creating web application – JSP (Java server pages with normal HTML can create dynamic web pages)
 2.	Applets – kind of java program used to add new feature to the Web browser. 
 3.	J2EE – use by enterprise to create big web applications to transfer XML structure documents. 
 4.	Javabeans – javabeans is mainstream java component model. It is similar to visual basics*. It is also use the number of javabean (a component of java program) to create something new. This is done by visual manipulation in a buildertool. Sun has named that builderbox as beanbox. 
 (*visual basics is created by Microsoft for using a GUI to buildsome new using a language BASIC which similar to beanbox.)
 5.	Mobiles – many games, service and operating system is based on Java. Most famous and successful java based operating system is android.
-Types of application java can build
+
+||Types of application java can build||
 1.	Standalone application – these are also called as desktop application. These are the applications which do not interact with any other application. Examples are media player, antivirus.
 2.	Web application – these are also called as server side applications or web site more commonly. These are actually gets stored in server and used by the end user through browser. 
 3.	Enterprise application – enterprise application are also web application but are more complex and have more feature. However, technical difference among them is that the enterprise application runs in a special container called enterprise container which have special features like transaction, JMS, etc (I have no clue about these special features). Example – IBM Webshere, oracle IAS, etc.  While the web application runs in a normal web container. Examples – tomcat, JavaWebServer.
 4.	Mobile application – these are better called as apps. But before this, java is responsible for the creation of many games, services, operating system (like android). 
-Facts about java
+
+||Facts about java||
 1.	Object oriented – Object oriented language is object centric. Now, an object is any physical or virtual entity (an object like car, boy, animal). So, every object has some properties and states. The property is defined by the data  
 Note: Though some people say that java is not completely object oriented language since it uses the primitive data types. How does primitive data type influence this?
 2.	Platform independence – ability to run the code on different set of hardware and software without changing the code. 
@@ -60,11 +64,12 @@ Note: Do more research on how exactly these properties of java make it secure?
 Different editions of java –
 SE, EE and ME are the editors types which we already know.  
 
-History
+||History||
 Well, I guess this much history is sufficient to know the James gosling with his team at sun microsystem invented java in 1992 (named Oak while invention but while patent it was named java). 
 Java SE versions – last version SE 8 released on 14th march, 2014. While the next release SE9 is supposed to release in 2016. 
 Java EE version – last version released is EE 7 in early 2013 while the next version can be released in 2016 or 2017. 
-Java Virtual Machine
+
+||Java Virtual Machine||
 Well we know about it already. Because of JVM, java is platform independent, architectural neutral, efficient and have many cutting edge advantages. JVM provides a run time environment. JVM receives the byte code after the compilation and then run the code by itself. But executing byte code is comparatively slower than executing machine language code. This leads the development of JIT compiler of JVM. Now, the byte code is given to JIT compiler at the run time and it converts the byte into machine language code during the runtime and then JVM can execute the code faster. Hence, the process become fast, as processor can run the code faster. 
 Java Installation 
 Well, if you are running the java program on command prompt then javac is the command for compiling the java program and java for running the program. 
@@ -85,7 +90,7 @@ Now, how to set the environment variable:
 This can be done on command prompt or going into computer properties. (jo direct property wala hai wo path set karne ka hai, class path set karne ka nahi).
 Note: what is the difference between PATH,javahome and CLASSPATH? PATH is to point location of the executable files of JDK while CLASSPATH is to point the path of the .class file. 
 
-Hello java program 
+||Hello java program||
 I have made the first java program hello world. There are few key words which I need to understand. 
 Public – it represent a access modifier which means visible to all. 
 Class – keyword to introduce class. 
@@ -100,27 +105,28 @@ Note:
 3.	Public static void all keyword should come while declaring main method.
 
 
-Program internal 
+||Program internal|| 
 Although, we know the process of how a code is compiled and executed. However, there are few things to add. Compilation byte code gets created. This is nothing but “.class” file.  Now, there are a few process happens during run which I feel is much of depth then the scope of the topic. But we should at least know that JVM then interpret the byte code and run the code. If not that, then JIT will compile the code again and machine itself will run the code. 
 Some questions:
 1.	Can we save a source file by other name than class name? Yes. If the class is not public and the compiled byte code will be at the class name anyway. 
 
-How to set path
+||How to set path||
 Again, we do know already how to set path variable and why is it important. 
 JVM, JRE and JDK 
 We already know all this.
 
-Internal details of JVM
+||Internal details of JVM||
 Well, JVM basics we already know that it provides run time environment. Also, it is platform dependent and that why java in platform independent. However, if we further simplify its function than we can say that it has to load, verify, execute and provide runtime environment. 
 It also deals with memory, garbage collection heap. Also describe about JIT. 
  
-Variable and Data Type
+||Variable and Data Type||
 Variable – Variable are nothing but the memory locations which can hold data. They are of three type local, instance and static. 
 Local Variable – well, these are written inside a method, constructor or a block. Local variable is only visible only within the declared method, constructor or block. They do not have any default value so they must to be initialized before accessedi.e. to be assigned an initial value.
 Instance Variable –these are written outside the method, constructor or a block. These are used when a certain variable we require in many methods in the class (local have scope only to one method). Whenever object is created, memory is allocated to instance variable as well. Same happens when the object is destroyed. Instance variable can be declared before and after use and have some default values. These can be made public or private.
 Static Variable – these are also declared inside the class but outside any method, constructor or block but uses static keyword. Now what is the need of static variable? Everything has its own purpose. An instance variable declare in one class cannot be used in the other class, but if we write static before the instance variable then it becomes static variable and can be used in other class without creating the instance. Static variable are not much used except they are made constant with the use of FINAL keyword. Static variables also hold the default values same as instance variable. Also, the static variable is one for the entire class so save memory. Static variable cannot access instance variable. Check static keyword section that has better explanation. 
 Note: local variable does not have the default value while instance and static variable have. Therefore, we must give some value to the local variable before using it. The purpose of giving default value is to avoid the program to go in an unstable situation. Because if no default value is set and no value given explicitly to the variable and if used then the program will go into unstable condition.  
-Data Type
+
+||Data Type||
 Data is basically of two types which are primitive and non-primitive. Primitive (boolean, char, byte short, int, long, float, double) are those which are predefined data type while the non-primitive (string, array, etc) are those which are derived by the primitive data type. The non-primitive data types are those which refer to an object which can contain some data. String, array, Integer (all wrapper data type), creating object of the classes and many more are the non-primitive data types which are highly used in java. 
 Java literals – they are represented directly as a constant value without any computation. Like, int a = 1;.
 Another important thing here is that the integers can be expressed as octal and hexa decimal. For example, int octa = 0114 (0 indicate base 8 i.e. octal) and hexa decimal ass int hexa = 0x1144 (0x indicates hexa dcimal). 
@@ -129,7 +135,7 @@ Also, learn the special escape sequence used in java - \n, \r,\f,\b, \s, \t, \�
 Unicode system
 Well, for the standardization of all languages, Unicode was created which is followed by all languages. Actually, there are many language standards like ASCII, KOI-8, ISO 8859-1 which are American, Russian and Europian language standards. So, according to the place the character code change and so we got Unicode which are used as standard everywhere. 
  
-Operators in Java
+||Operators in Java||
 Arithmetic operator – there are basically 7 arithmetic operators. Then, total of 6 relational operators. Until here everything looks fine. Then, bitwise operator comes in picture. They have &, |, ^, ~ and shift (left, right, fill zero right shift). Let’s have a close look at the shift bitwise operator. 
 1.       Left shift – operand is 5: 0101. Operation to be performed is operand << 2. This command means to shift the number of bits left side the number that you mentioned (2 is the number of shift in this case). The answer will be 10100.
 2.      Right shift – Simple right shift symbol is “>>”. It is different for positive and negative numbers. With positive number, it simply sift the bits the number of times it is asked. If we have to right shift a negative number then we shift the bits as the number of times mentioned and the places that become vacant on the left side will be filled by 1’s. Check examples through the link. 
@@ -166,7 +172,8 @@ These are some frequently asked java questions.
 
 
 Java OOPs Concept 
-Advantage of OOPs
+
+||Advantage of OOPs||
 The advantages of OOPs languages are its special features such as abstraction, encapsulation, inheritance and polymorphism. We have taken a glance at what these feature are all about and their advantages. There is something called as object based programming language (Javascript, VBscript) are different the OOPs only as do they not have inheritance feature. Else both are same. 
 Please answer DO YOU KNOW section.
 Do You Know ?
@@ -187,18 +194,18 @@ Do You Know ?
 •	How downcasting is possible in java ?
 •	What is the purpose of private constructor?
 •	What is object cloning ?
-Java Naming Conventions
+
+||Java Naming Conventions||
 These are not rules which mandatory to be followed but are conventions to make your code standardize and easy to understand. Now, just be a little careful with starting a name with upper case or lower case. Also, use camel casing. That’s it. 
  
-Objects and Classes in Java
+||Objects and Classes in Java||
 Object – An object has three properties which are state (data or variables), behavior (method) and identity (object identity is implemented by unique ID, infect as a class can have multiple object and but always every object is unique). To relate an object to a class, we can say that an object is an instance of a class.
 Class – A class is a group of objects having similar properties. For example, a student class can have object as S1. Here, student class can have n number of student but an object belongs to a unique student. A class has data member, methods, constructor, block, class and interface. (Here you can see that a class can be contains in another class which means that class nesting is possible. However, method nesting is not possible in java).
 So far the difference between a class and object is clear. (nahi hua to ek bar sunnle hindi mai, ek class agar student name ki hai to wo koi particular student k bar mai nahi hai balki group of student having same properties like name, roll name, college name. lekin jo object hai wo ek unique student k bare mai. Isiliye ek class mai multiple objects ho sakte hai). Practice the programs for declaring the object and simply displaying its values. Second, declaring object and first passing value to one method and displaying through other method. 
 Anonymous object – if we have to create only one object than use anonymous object. It’s like “new Student()”. It may be used as Class c = new class(new student(system.in)). Creating multiple object in one statement – “student obj1 = new student(), obj2 = new student();”
 Note: “An object can be physical or logical but a class can be logical only”. Firstly, many people do not accept these terms logical and physical in regard to classes and objects. But, others do. Classes can be understood logical because they just contain the logic of processing the data while object can be logical and physical because they actually contain the data in the memory. But there is another argument. Class also resides on the memory otherwise how they can exist. In the nutshell, it is quite ambiguous. 
 
- 
-Method Overloading 
+||Method Overloading||
 Method overloading is having multiple methods with the same name but with different parameters (here parameter is different in terms of number of arguments and types of arguments). There are two ways of overloading which are –
 1.	Through number of arguments 
 2.	Through type of arguments
@@ -211,17 +218,17 @@ Note:
 2.	What is operator overloading and why is it not possible in java? Operator overloading is having different meaning of a same operator. This is not possible in java. It is done to avaoid complexity and bring simple and clean implementations. 
 3.	Return type in overloaded method can be same or different. However, return type alone is not sufficient for compiler to identify the method of be called.  
 
-Constructor
+||Constructor||
 Constructor is the special type of method with the name same as class name and does not have a return type. They are of two types which are default and parameterized. 
-Default constructor–A constructor with no parameter is known as default constructor. The default constructor is used to create an object of the class. If we do not create any constructor by our own then the compiler creates a default constructor with empty body which then used to create objects. Constructors are also used to give initial value to an object. If your main method does not have an object created (through constructor), then you cannot call any non-static method or variable of the same class. So, constructor is very important in java.  
+Default constructor–A constructor with no parameter is known as default constructor. The default constructor is used to create an object of the class. If we do not create any constructor by our own then the compiler creates a default constructor with empty body which then used to create objects. Constructors are also used to give initial value to the data member of an object. If your main method does not have an object created (through constructor), then you cannot call any non-static method or variable of the same class. So, constructor is very important in java.  
 Parameterized Constructor – A constructor with one or more parameters is called as parameterized Constructor. We can pass values to the variables of the constructors. (Though, I found that that’s not the only way). When we declare constructor in class, default or parameterized, the compiler does not declares a constructor itself (that is because the constructor provided by the compiler is empty body while even if you write your own default constructor with body then compiler may get confuse). We can also use parameterized constructors for creating object.  
 Note: An advantage of constructor over a method is that we do not need to call it explicitly. Also, we can change the value of a final variable (with no value set) using a constructor (default or parameterized).
 Constructor Overloading – this also done the same way we do method overloading. Either the number of argument or the type of argument is different. 
 Copy constructor – Chaho to kya nahi hai assan! Well, I had spent around 2 hour to just understand a topic called copy constructor. At some point in time, I felt that I should leave it for now and move forward. But, I understood at last. In copy constructor, we create a simple parameterized constructor to invoke the instance variables. Then, we build a copy constructor which has the argument as the obj type (look at the example at javatpoint). Now, first constructorpasses the argument and first result is displayed. Then, we pass the first obj in the second obj that invokes the copy constructor and mystery solves here. The invoked copy constructor will pass the object one and display it again. 
 Also, check the way for copying the object without copy constructor.
-
 Note: constructors cannot be inherited nor final keyword can be used with them. 
-Static Keyword
+
+||Static Keyword||
 The Static keyword is used for memory management in java. It can be used with a variable, method, block or nested class. We cannot use it with the outer class.
 1.	Java static variable – Whichever variable stated static will have same value for all objects of a class but will be declared only once while loading the class. When its value is changed then all the objects will use the changed value (instance variable can have different values for different objects). To make the value of the static variable constant and does not allow it to change later, we require final keyword. Also, Static variable can be called in the main method of the same class in which they are declared without creating an object(object needed for instance variable) and in other class of same package without creating any object but with the class name. Instance variable cannot do this. Practice counter variable with and without static keyword. Another very important aspect of static variable is shown with these count programs. Static variable are associated to the class but not with the instance. So, they get the memory at the time of class loading and they retain their value even after the new object is called. 
 2.	Java static Method – Similar to a variable, a static method also belongs to class rather than object of class. A static method can be invoked without instance in its class and in the other class like this “ClassName.StaticMethodName”. Static method can access the static variable and change its value. We cannot use non-static value in the static methods including main method.
@@ -231,7 +238,7 @@ Note:
 2.	If you do not want to use the object rather just want to run the default constructor written by you then just write this “new Constructor()” instead of complete sentence.
 3.	A top level class cannot be declared static while an inner class can definitely be declared. 
 
-This() Java Keyword
+||This() Java Keyword||
 This keyword is a reference variable which refers to the current object. In tutorial, we have given 6 usage of this keyword but suggested to do only first two for the beginner. 
 1.	This keyword is used to refer to the current object instance variable when the argument (parameter) and the instance variable are named same. 	Check example for clarity. 
 2.	This keyword can be used to invoke any of the current class constructors. In simple words, to call one constructor from the other constructor using this() keyword. This is also called as constructor chaining. Well, if your understand the difference between this(something inside or not) and this.something then you will understand the trick. “This ()” means calling the constructor with no parameter. Similarly, this(int a) means calling a constructor with int a as an argument (Parameter). Now, “this.something = something” means some (ex-city) variable of the current constructor is equal to the something (city) variable. This() should be the first statement if used. 
@@ -241,7 +248,7 @@ This keyword is a reference variable which refers to the current object. In tuto
 6.	This keyword can be used to return an instance of class. Check the example.
 
 
-Inheritance 
+||Inheritance||
 Well, we already know about the basics of inheritance that a child class can use the methods and variables of the parent class. This offers code reusability. This is called attributed as IS-A relationship(sub class IS-A super class i.e. if programmer is extended by employee then, programmer is an employee shows the IS-A relationship). Along with code reusability benefit, we also get benefit of implementing the run time polymorphism called as overriding. Extend keyword is used to inherit the super class by the sub class. We can call the method of the super class directly by the object of sub class or by the super keyword in the non-static methods. 
 
 How to actually use members of parent class? Let’s say a class Father has one default constructor and two methods, method A, method B and static method C. Class Son extends the class Father. 
@@ -258,11 +265,11 @@ Note:
 3.	In multilevel inheritance, let suppose class b extends class a and class c extends class b. Now, class a and class b inheritance will be same. If class c can call the class a constructor by creating an object and can call the constructor of class b by creating an object or by using “super()” keyword. If class c wants to use the class b implementation of overridden method of class b then use super keyword otherwise create an object of class a for class a implementation of the same method. Class c can call the unique method of class a by creating its own object as well just like class b. Lastly, class c can call the static methods directly of any of the class a or b. 
 4.	In hierarchical inheritance, class a is extended by class b and class c. The relation between class a with class b and class c will be same as a single inheritance. 
 
-Aggregation in java 
+||Aggregation in java||
 I must say that aggregation is similar to inheritance. It is one directional association between two classes. They share HAS-A relationship. The need of aggregation is also for code reusability (like inheritance). For example, one class is a square of a number and other is for finding the area of the circle. So, the square class can give the square of the radius to help calculating the area of the circle. However, area class cannot help square class in anyway. So, they have one directional Has-A relation. Try an example.
 Note: Inheritance – “Car is an automobile” while “Car has an engine”. So, the other class in aggregate is a part of the original class and has no meaning individually. Sometimes, we can use both of them (inheritance and aggregation) then how to decide that which one to use. For this, if we want a polymorphic condition then choose inheritance and when you just want a class to give certain result the other class can use then use aggregation. However, inheritance is difficult to undo after lot of development is done in an application because it affect will be more than aggregation.  
 
-Method Overriding
+||Method Overriding||
 Method overriding is the runtime polymorphism. When sub class has a method with same name but with different implementation as the parent class, then it is called as method overriding in java. The parent and the child class must have a IS-A relation (Inheritance). 
 Now, let’s understand the need of method overriding. Suppose a class extends a class and overrides any of its method. Now, if the sub-class wants to give some specific functioning to the inherited method related to it (the sub class), then method overriding is the only way.
 Note: 
@@ -272,29 +279,30 @@ Question 3 – Difference between overloading and overriding?It is like comparin
 
 
 
-Covariant Return Type
+||Covariant Return Type||
 Before Java 5, the return type of two overridden methods must be same. However, we can override two methods with different return types after java 5 but the return type of parent class method implementation must be non-primitive type and sub class implementation must return its own type(Sub class type). Also, the covariant return type should be narrower to the original return type. Understood the concept but not able to confirm on eclipse. 
 
-Super Keyword 
+||Super Keyword||
 The super in keyword is a reference variable and is used to refer immediate parent class object. 
 Below are three usage of super class –
 1.	For referring the immediate parent class instance variable – let’s suppose that parent and child class has one instance variable with the same name. Now, when the same instance variable was printed then by default the instance variable of the child class will be printed. To print the parent class instance variable, we will need super keyword. Aur ha, “super” ka s capital nai hai.
 2.	To invoke parent class constructor – super() will invoke the parent class constructor in the child class. Though, even if you explicitly do not invoke parent class constructor, compiler will still invoke one, that too before the child class constructor. Parent class constructor using super() can be invoked in sub class constructor only, but not in any method (not even in main method). 
 3.	To invoke the parent class method – simple by “Super.MethodName”.Interesting hai kark dekh. Write super keyword as first statement in the method. 
 
-Instance Initializer Block 
+||Instance Initializer Block||
 We already know what a block is. Instance initializer block is something special and used to initialize the data members of the instance once any object is created. This block gets invoked as soon as the object is created. Also, if you have any column written even before the block, the block will be called first. This is because the block gets called once the object created and then other methods are called. In case if the class extends other class then super() method will be calling the parent class constructor first followed by instance initializer block and then rest of the methods called explicitly. Also, see the example for the better understanding of the topic. Remember all the rules.
-Note: they are called before main method so that all the variables must be initialized before they are used. 
-Note: what is the difference between static and non-static initialize block? Static block are used to initialized static variables and is loaded only once the class is loaded. They are different from instance initializer block. 
+Note:
+1. they are called before main method so that all the variables must be initialized before they are used. 
+2. what is the difference between static and non-static initialize block? Static block are used to initialized static variables and is loaded only once the class is loaded. They are different from instance initializer block. 
 
-Final Keyword
+||Final Keyword||
 We will take two cases where a variable is declared final and initialized final. Whenever a variable is declared final (I mean declare but not initialized. Alright?), then its value is finalized as 0 (default value for intiger). But we can change its value through parameterized constructor. Now, if a variable is initialized by making it final then there is no way of changing its value. Also, if the variable is static then static initialize block does the same thing as parameterized constructor.   
 Final method –We cannot override a method when Final keyword is used with it. It is written in the signature after public or static and before void. Try it. It is pretty simple. 
 Final class – If a class is made final then it cannot be extended by any other class.
 Extra information – Arguments can also be made final. Then, these argument values cannot be changed. 
 Note – Can we declare a constructor final? No, we cannot use final keyword with constructor.
 
-Runtime Polymorphism
+||Runtime Polymorphism||
 Before understanding about runtime polymorphism, we should know what is polymorphism? The most general meaning of polymorphism in java is that the methods with the same name can have different actions or forms. It is possible only through polymorphism. Polymorphism is of two types which are Compile-time polymorphism (Overloading) and Run-Time polymorphism (Overriding). 
 1.	Compile-Time Polymorphism – The compile time polymorphism allow methods with the same name having different internal structure and perform same/different actions in the same class. The difference in the same name method here is of the number and type of parameters they have. It includes constructors as well. The same name methods that have different versions are called as polymorphic methods. Also, the compiler got to know that which version of the polymorphic methods to call during the compile time only and thus it is known as compile time polymorphism. Check example.
 2.	Run-Time Polymorphism – The Run-Time Polymorphism allows a method to have different actions in the classes extending the class in which they are defined. This way a class can have some implementations of its own while adding some generic behavior of the class extended or the interface implemented. Compiler gets to know which version of polymorphic method to call during run time only. Thus, it is called as run time polymorphism. Check an example.
@@ -324,15 +332,15 @@ Note –
 4.	Java is static and strong typed language.
 5.	Suppose, we have created the object of child class with child class reference. Now, we can call any method of parent or child class (overridden or unique). Now, if we have created object of parent class with the reference of parent class. Then, we can call all parent class method and overridden methods. But we cannot call unique methods of child class with this object. To do this, do downcasting.
 
-Static and dynamic binding 
+||Static and dynamic binding||
 Connecting a method call to the method body is called as binding. They are of two types, namely, static and dynamic. In static binding, the type of object is checked at the compile time (whether object is of parent or child class). In dynamic binding, the object types get to know at the runtime only. Check examples for better understanding. Both static and dynamic binding can be seen in java.
 Note: In the example of static binding, the class does not even extending any class. So, only one type of object of object is available. So, it is known at compile time only. 
 
-Instanceof Operator
+||Instanceof Operator||
 Java instanceof is used to test to which class an object belongs to. It is also called as comparison operator the instance with type. It is very simple yet interesting. Please try it. If we apply instanceof operator for null object (parent obj = null), then test will always come false. We already know how to do downcast. But we can downcasting involving the instanceof operator. This is done by create an object of child class in the main method. Then do upcasting. In any method, pass the upcast object as parameter. Finally, apply if condition and downcast it back. It is best to check the example. I have done an example and it was downcasting pretty well. Also, the instanceof works with object data types and wrapper classes. 
 
 
-Abstract Class in Java
+||Abstract Class in Java||
 A class that is declared with a key word abstract is called as abstract class. It can have abstract and/or non-abstract methods (Concrete method). Abstract methods are those that do not have body. Also, we put semicolon after declaring an abstract class. 
 
 Abstraction – Abstraction used to hide the implementation and only showing the functionality. Abstraction can be achieved by abstract classes and interfaces. 
