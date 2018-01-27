@@ -1815,9 +1815,55 @@ RMI
 
 
 ||Serialization||
+In simple words, Serialization is a process of converting the state of an object into a byte stream. The reverse process of getting back the object state from the byte stream is called as deserialization. The byte stream created will be platform independent thus serialization and deserialization of an object can be on different platforms. We generally use serialization of object for sending the data to other terminal over network or to persist an object. 
+Now, we will se how can we actually serialize and deserialize programmatically. We have serializable marker interface which need to be implementated by the class whose object need to be serialized. To actually serialize an object we can use writeObject method of ObjectOutputStream implementation class. For getting back the state of the object we can use readObject() api of ObjectInputStream implementation class. 
+Concept of SerialVersionUID: During serialization, an id is assigned to a class whose object is getting serialized and this id is used to verify if the correct object deserialized through the same version id. By default this is provided my JVM however we can give custom SerialVersionUID using "static final long serialVersionUID=42L". We can have any access moduifiers while we must ahve long data, static and final. Private access modifier is more recommended as it is definitely not useful for child classes. As we know that if we do not give our own serialVersionUID then JDK has a tool serialver which create the serialVersionUID. 
+Just a sample piece of code:
+FileOutputStream file = new FileOutputStream(filename);
+ObjectOutputStream out = new ObjectOutputStream(file);
+// Method for serialization of object
+out.writeObject(object);
+Note: 
+1. Since, serializable interface is a marker interface that is used to mark that class to be able to serialized. Other marker interface example are clonable or remote. 
+2. If parent class has implemented the seriabizable interface then child does not need to repeat. 
+3. Only instance data members can be saved using serialize process. While it does not work for static data members.
+4. Transient keyword is used with those instance data members which we do not want to serialize. 
+5. Constructor of object is never involved or called during deserialization. 
+
 
 ||Java Date related classes||
-
+We will discuss some important classed and packages to deal with date and time in java. The basic class that we have the date class which is in java.util package. Below is the code to print the data and time in simplest way in java.
+Date date = new Date();
+System.out.println(date);
+Output: Sat Jan 27 17:13:20 IST 2018
+The output shown above is the standard format for showing date object. We have different API in date class like getDate(), getTime() etc. Now, we will see how can we format the date. 
+1. Formatting using SimpleDateFormate Class and format() APi that returns date in string format. Below is the code:
+Date date = new Date();
+SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+String stringDate = sdf.format(date);
+System.out.println(stringDate);
+2. Formatting using the DateFormat class.
+DateFormat class has different static final datamembers like LONG, MEDIUM and SHORT which can be used to format the string instead of giving a format ourselves. Below is the code sample:
+Date date = new Date();
+String formattedDate = DateFormat.getDateInstance(DateFormat.LONG).format(date);
+System.out.println(formattedDate);
+3. Calendar class of java.util package is used to play around with date and time.
+Code to use Calendar class to manipulat the date is:
+		Calendar calendar = Calendar.getInstance();
+		//print the current time
+		System.out.println(calendar.getTime());
+		//print the time 15 days back
+		calendar.add(Calendar.DATE, -15);
+		System.out.println(calendar.getTime());
+		//print the time 4 months back
+		calendar.add(Calendar.MONTH, -4);
+		System.out.println(calendar.getTime());
+		//print the time 2 years back
+		calendar.add(Calendar.YEAR, -2);
+		System.out.println(calendar.getTime());
+Note:
+1. SimpleDateFormat and DateFormat are the part of java.text package while Date is of java.util package.
+2. DateFormat seems to be a singleton class as we get its instance using getInstance() method. 
 ||Java 7 and 8 features||
 Java 7 Feature
 1.	String in Switch statements: Before java7, we could use int, short, char and byte. We could have used wrapper class version of these as well. With java 7, we can now also use String in the switch case statement. 
@@ -1835,9 +1881,20 @@ try{
 6.	Try-With-Resource – we used to place the code related to resource opening in try block (file, db connection, socket connection) and close them in finally block. HOwever, if we forget to close then in finally then it will cause memory leak. THus, java 7 can with a better coding practice. We can use try with resouce. Here, we will open the resource in as an argument in try block. Thus, we do not need to write additonal finally block just for closing the resources and resource closing will automatically be handled. 
 
 Java 8 Feature
-1. Lambdas Expression	
+1. Lambdas Expression
+Lambdas expression is one of the exciting feature of java 8 which lets you implement the method of a fucntional interface. Function interface are those which has just one method. Before lambdas expression, we generally implement method of the functional interface using annonymous class. With lambdas, we do this in a very conzise method. 
+There are some special cases generally we can use the lambdas expression. Below are these scenarios:
+1. Comparator and camparable interface which has just one method each. 
+2. To implement event listener classes
+3. To iterate, filter and sort the collection
+Iteration of collection:
+list.forEach(i->System.out.println(i));
+Now, we have forEach method of Iterable interface introduced in Java 8 which takes the argument of accpet method of consumer functoinial interface. Therefore, we are providing the implementation as the argument of forEach method. accept method takes the argument of list data type. 
+Sort the Element:
+Collections.sort(list, (i1, i2)->return i1.compareTo(i2));
+4. Creation of thread
 
-ForEach() - Consumer and game class. We need to make a annonymous class by overriding the accept method. 
+2. ForEach() - Consumer and game class. We need to make a annonymous class by overriding the accept method. 
 Example: 
 import java.util.*;
 import java.util.function.Consumer;
@@ -1856,7 +1913,14 @@ public class MyClass {
 }
 Note: all you need to care about is the type of th data need for the collection and iteration. 
 
-2. 
+3. Default and Static methods in Interface
+From java 8, We can have interfaces with method implementation by using default and static keyword with its signature. One good example of this feature is forEach() method of Iterator class. Also, the previous abstract methods are kept as is to provide backward compatibility. Now, if interfaces have implementation of the methods then they can also cause diamond case problem. The solution is that if diamond case problem occuers then an exception should be thrown and that method should need to be implemented in the child class. 
+
+4. Java Stream Package. 
+In Jaba 8, a new package java.util.stream is added altogether which contains a lot of classes, interfaces and methods. We basically can do a lot of things using the API inside this package. However, one simple example is to filter the elements of a collection on some codition. The main purpose for this package is for working with bulk data operations with a little ease. 
+To use this package, we can first create a stream object "Stream<Integer> stream = myList.Stream();" where myList is list containing Integer. Once we have the stream object then we can use different APi like filter() like "stream.filter(i>i<3000)". 
+
+5. We have another new package in java 8 which is java.time package which has a lot of different sub packages like java.time.format and java.time.zone. 
 
 
 ||Java Oops concept explained again through an example||
