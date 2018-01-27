@@ -31,6 +31,15 @@ Java Quick Revise
 22. How to create a singleton class. CHeck carefully.
 23. Check all programs related to ArrayList, HashSet, TreeSet, HashMap and TreeMap. 
 Add implementation index 1 to downcasting in java study.
+24. Call the child data members in parent class through downcasting. 
+25. Coding example to show inheritance, polymorphism, Abstraction and Encapsulation. 
+26. HOw many type of inheritance allowed in java. Single, multilevel and hierarchical. Hybrid and multiple are not allowed.
+27. Static and dynamic binding in java
+
+Java Interview Questions:
+Source 1: 
+
+
 **************************************************************************************************************************************
 2a. SQL Stydy file
 
@@ -368,6 +377,26 @@ public class Class1{
 	}
 }
 
+32. If we have employee class and we have three objects e1, e2 and e3 by giving same values to the data member. We tried inserting these tp hashset then what will be the length of hashSet? 
+In ordinary situation, duplicate hashset values will be inserted in the hashSet. For avoiding this situation, user defined class needs to implement hashcode() and equals() method.
+ public int hashCode(){
+        System.out.println("In hashcode");
+        int hashcode = 0;
+        hashcode = price*20;
+        hashcode += item.hashCode();
+        return hashcode;
+    }
+     
+    public boolean equals(Object obj){
+        System.out.println("In equals");
+        if (obj instanceof Price) {
+            Price pp = (Price) obj;
+            return (pp.item.equals(this.item) && pp.price == this.price);
+        } else {
+            return false;
+        }
+    }
+Above is the hashcode and equals method.
 *************************************************************************************************************************************
 
 JavaInterview Question File
