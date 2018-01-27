@@ -1777,7 +1777,7 @@ Storing the image in the Database
 We can store an image in the database with the help of preparedStatement interface method called setBinaryStream(). This method is used to set the binary information into the parameterized index. In its example, the driver was registered and connection was made. Then, we have connected a prepared statement and passed an sql query which updates an images with its name in the name column with string data type and photo column with BLOB data type. BLOB (Binary Large Object) is used as the data type in the database to store an image. Then, we have to use the setString() of prepared statement to set the name and SetBinaryStream() method for setting the image in the photo column after creating a fileInputStream which refer an image. Then, we have to execute the update query and get the result set. Try an example.
 
 Retrieving image from the Oracle Database
-Even after storing the image in the database, when the table is seen all the data will be shown except the image. To show the image, we have to retrieve the image from the database. To do so, we use getblob() method of the prepared statement which is used to get the binary information and getbytes() method which is called on the blob object  to get the array of the bytes of the binary information that can be written into the image file. In the example, we create the prepared statement. Then, if statement we get the blob object (which means blob is data type as well as a class like string) that gets the binary information of the image through getblob() method. Then we create an array of byte on the object of blob. Then, we write the array of byte on the image using the FileOutputStream. Check the example for better understanding. Check why retrieving an image is important in Database.
+Even after storing the image in the database, when the table is seen all the data will be shown except the image. To show the image, : Before java7, we could use int, short, char and byte. We could have used wrapper class version of these as well. With java 7, we can now also use String in the switch case statement. we have to retrieve the image from the database. To do so, we use getblob() method of the prepared statement which is used to get the binary information and getbytes() method which is called on the blob object  to get the array of the bytes of the binary information that can be written into the image file. In the example, we create the prepared statement. Then, if statement we get the blob object (which means blob is data type as well as a class like string) that gets the binary information of the image through getblob() method. Then we create an array of byte on the object of blob. Then, we write the array of byte on the image using the FileOutputStream. Check the example for better understanding. Check why retrieving an image is important in Database.
 
 Store file in Database
 This is same as storing an image in a database, though the data type of a file for database is CLOB (character Large Object). We make use of the setBinaryStream() method to store the file. Check the example. 
@@ -1820,15 +1820,24 @@ RMI
 
 ||Java 7 and 8 features||
 Java 7 Feature
-1.	String in Switch statements
+1.	String in Switch statements: Before java7, we could use int, short, char and byte. We could have used wrapper class version of these as well. With java 7, we can now also use String in the switch case statement. 
 2.	Binary Literals – Can express any literals (int, long, short, byte) using binary code with a prefix 0b/0B.
 3.	Underscore in Literals – For better readability and grouping the digits in java.
 4.	Diamond Operator – This is for DRY coding. Removes the effort for repeating type. 
+List<String> list = new ArrayList<String>();// usual way
+List<String> list1 = new ArrayList<>(); //java 7 way to promote DRY coding practice. 
 5.	Multi-Catch Exception – Shorten the traditional coding practice. Writes from specific to generic exception.
-6.	Try-With-Resource – Resource should get closed after the cursor reaches to the last line. Closable resource should be kept as parameter for try block. 
+try{
+	//code suspected for exception
+}catch(SqlException | IoException | Exception e){
+	//code to handle the exception
+}
+6.	Try-With-Resource – we used to place the code related to resource opening in try block (file, db connection, socket connection) and close them in finally block. HOwever, if we forget to close then in finally then it will cause memory leak. THus, java 7 can with a better coding practice. We can use try with resouce. Here, we will open the resource in as an argument in try block. Thus, we do not need to write additonal finally block just for closing the resources and resource closing will automatically be handled. 
 
 Java 8 Feature
-1.	ForEach() - Consumer and game class. We need to make a annonymous class by overriding the accept method. 
+1. Lambdas Expression	
+
+ForEach() - Consumer and game class. We need to make a annonymous class by overriding the accept method. 
 Example: 
 import java.util.*;
 import java.util.function.Consumer;
