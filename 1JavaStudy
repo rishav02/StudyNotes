@@ -1864,6 +1864,7 @@ Code to use Calendar class to manipulat the date is:
 Note:
 1. SimpleDateFormat and DateFormat are the part of java.text package while Date is of java.util package.
 2. DateFormat seems to be a singleton class as we get its instance using getInstance() method. 
+
 ||Java 7 and 8 features||
 Java 7 Feature
 1.	String in Switch statements: Before java7, we could use int, short, char and byte. We could have used wrapper class version of these as well. With java 7, we can now also use String in the switch case statement. 
