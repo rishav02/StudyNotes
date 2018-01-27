@@ -1933,6 +1933,50 @@ What if we do not have abstraction: THen we would not be having a common interfa
 Encapsulation: Encapsulation in java is a concpet where we bind the data with the methods (getters and setters) to secure it from inadvertant changes. So, we can create a class with some private data members and only give getters (methods to access). This way we are only allowing the users to just get the data memeber while they cannnot change it. This will not let anybody to change the data members and access data through method which will ask for authentication first. A real time example is a wending machine where we have cans inside it. We can only get a can through the operatior of that wending machine (method) after poroviding money (authentication).  
 What if we do not have encapsulation? If we do not have encaposulation then anyone can access data of the class and set it as well. 
 
+||Enumeration or Enum||
+Enumeration in java is a group of named constants which came as a part of java 5 changes. Examples of enums could be planets, days of week etc. Enums can be written inside or outside a class but not inside a method. The members of an enum are suggested to writtem in upper caps. Enum is treated as the data type in itself.  Below is the code for using enum:
+enum choices{
+	FIRST, SECOND, THIRD, FOURTH;
+}
+public class Class1{
+	public static void main(String[] args){
+		choices c1 = choices.FIRST;
+		System.out.println(c1 instanceof choices);
+	}
+}
+In the above example, output comes as true. 
+Note:
+1. Internally, every enum is just like a class which has private static final members which are mentioned in enum like below.
+/* internally above enum Color is converted to
+class Color
+{
+     public static final Color RED = new Color();
+     public static final Color BLUE = new Color();
+     public static final Color GREEN = new Color();
+}*/
+2. Every enum type represents an object of enum type. Thus, we get true in the above example. 
+3. We can use Enum type in switch statements. 
+4. We can write main method inside enum and thus can invoke enum from cmd. 
+5. Every enum extends java.lang.enum class and thus cannot extend any other class. Though can implement any number of interfaces. 
+6. java.lang.enum class overrides toString() method which returns enum name.
+7. Values(), ValueOf() and ordinal() methods of enum class can be used. 
+public class Class1{
+	enum choices{
+		FIRST, SECOND, THIRD, FOURTH;
+	}
+	public static void main(String[] args){
+		choices c1 = choices.FIRST;
+		//using values() for getting al the values of enum
+		choices[] choiceArray = choices.values();
+		
+		//using ordinal() for showing index of an element
+		for(choices c: choiceArray){
+			System.out.println(c+ "is at index "+c.ordinal());
+		}
+		
+		System.out.println(choices.valueOf("FIRST"));
+	}
+}
 
 Implementations
 I have created this section for the sole purpose to speak about the implementation of what we have learned in this tutorial. We must use as many practical examples as we can related to the real world.  
