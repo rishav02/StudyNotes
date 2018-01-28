@@ -49,6 +49,7 @@ Check all the assignment operators. (=, +=, -=, /=, *=, %=)
 
 ||JavaScript Data Types||
 Java Script has String, Numbers, Boolean, Array, Object, null, undefined as the data types. For example, var x = {Name:”john”, sex:” Male”}. We can use string in single and double quotes. Also, var a = 123e3 means 123000 and var b = 123e-3 = .123. Boolean data types are var a = “true/false”. Here, arrays are special types of object so typeOf array returns an object.If we do this: var a = unidentified. This will empty the variable or the variable is declared but not assigned. Empty value has nothing to do with undefined but empty strings are different. Null means “nothing” in java script. This simply means that something does not exist.  
+Note: Notice that undefined and null cannot contain value but still counted as data type. If we do typeof with a variable which is not declared then we will get data type as undefined. 
 
 ||JavaScript Functions||
 •	JavaScript function is a block of code used with the function keyword. It is executed with something invokes it like some event occurs. Its syntax is “Function functionName(parameter1,parameter2,..){code to be executed}”. It is same as the method in java language.
@@ -79,7 +80,8 @@ function showAlert(){
 •	String can also be object like this varfirstname = new String(“rishav”). Though, it is not suggested to create a string as object, it will slow down the execution.  
 
 ||JavaScript String Methods||
-The JavaScript properties and methods help work with the String. For example, “Length” is a property which returns the length of the String. It has some similar method as java String has like indexOf(), lastIndexOf() (it can have multiple parameters, try it), substring(start, end), replace(“Stringpart”, “replacement”) , toUpperCase(), toLowerCase(), concat(), charAt(), charCodeAt(), split() and etc. However, java script has got some special string methods as well. Search() is same as indexOf() but far more efficient. Slice(start, end) method extracts a part of a string and create a part as a separate string. If the parameters are negative values then the counting will be done from the end. Also, if we just give a starting value then it will extract rest of the string. Substr(start, length) also extract a part of string and create a new string. However, it takes different parameter. It takes starting index and the length. It can have first parameter as negative which signifies that the counting will be done from end. Accessing a String as an array is considered unsafe. If we have to read a string then we should properly convert it into array then read it like array. 
+The JavaScript properties and methods help work with the String. For example, “Length” is a property which returns the length of the String. It has some similar method as java String has like indexOf(), lastIndexOf() (it can have multiple parameters, try it), substring(start, end), replace(“Stringpart”, “replacement”) , toUpperCase(), toLowerCase(), concat(), charAt(), charCodeAt(), split() and etc. However, java script has got some special string methods as well. Search() is same as indexOf() but far more efficient. Slice(start, end) method extracts a part of a string and create a part as a separate string. If the parameters are negative values then the counting will be done from the end. Also, if we just give a starting value then it will extract rest of the string. Substr(start, length) also extract a part of string and create a new string. However, it takes different parameter. It takes starting index and the length. It can have first parameter as negative which signifies that the counting will be done from end. Accessing a String as an array is considered unsafe. If we have to read a string then we should properly convert it into array then read it like array.
+Note: Substruing and slice looks very similar as they gets us a substring of an string as a new string. But they have some distinctions which are 1) if start > stop then substirng will swap the number while slice will not, 2) If either arguments are negative or undefined then changhe it with 0 in substring but in slice, if start is negative then it starts the count from end of the string. 
 
 ||JavaScript Number||
 •	JavaScript has only one type of number. It can be with or without decimals (unlike java). JavaScript numbers are 64 bit floating point. This means 64 bit is the limit and floating point indicate that it can be made decimal as well. The precision is up to 15 digit number. While decimal number can be 17 digit long. Also, Number.INFINITY and Number.NEGATIVE_INFINITY.
@@ -142,9 +144,37 @@ JavaScript Boolean represent only two values true or false. We have Boolean() fu
 
 ||JavaScript If…Else Statements||
 These are same as in Java language. 
+Example:
+var numberArray = [1,2,3,4,5,6,7,8];
+function changeArray(){
+	//numberArray.pop();
+	if(numberArray.length%2==0){
+		alert("length is even");
+	}else{
+    	alert("length is odd");
+    }
+}
 
 ||JavaScript Switch Statement||
-The switch statements are also same as in java language. The syntax is “Switch(expression){case n: statements break; ….case m:statements break; default: default statements block}”. Break statement takes the control out of the switch statements. The default keyword indicates the default condition whose code will be executed if no case occurs. Also, the default case is not necessarily to be the last case but can come in between as well and thus we must provide break keyword to it. 
+The switch statements are also same as in java language. The syntax is “Switch(expression){case n: statements break; ….case m:statements break; default: default statements block}”. Break statement takes the control out of the switch statements. The default keyword indicates the default condition whose code will be executed if no case occurs. Also, the default case is not necessarily to be the last case but can come in between as well and thus we must provide break keyword to it.
+<script>
+var numberArray = [1,2,3,4,5,6,7,8];
+function changeArray(){
+	//numberArray.unshift(10);numberArray.unshift(10);
+	switch(numberArray.length){
+    	case 8:
+        document.getElementById("result").innerText="the length is 8"
+        break;
+        
+        case 9:
+        alert("length is 9");
+        break;
+        
+        default:
+        alert("Do not know the length");
+    }
+}
+</script>
 
 ||JavaScript For Loops||
 For loops are also same in java language as in java script. Also, in case of arrays we use “<br>” break tag. This is just to take the control to the next line. Try some example. 
@@ -161,15 +191,17 @@ Break statement is used to jump out of the loop. Continue statement is used to j
 •	Conversions – To convert number to string then we have to use string(number). Same thing can be done with toString(). To convert Boolean/Date to String, we still can use String() and toString(). To convert String to number, we have Number(). Empty String are converted to 0. 
 •	Convert variable to number – this can be done by unary + operator even it is not converted. Check the example. We can use Number() for Date/Boolean to number conversion. 
 •	Automatic conversion – Sometimes, java script itself tries to convert the type needed. Check this in detail. 
+Note: Type conbersion happends in two ways in JS. First, by using the methods like toString() and other. Seocnd, autmatically by JS.  
 
-||Javascript Regular Expression||
-We already know regular expression deals with creating a pattern and searching text through that pattern. Now, how do we use regular exxpression in JS? The basic syntax for using regex is "pattern.test(text)". We also have exce() method which works like test but returns arrays instead of boolean. 
+||Javascript Regular Expression|| 
+We already know regular expression deals with creating a pattern and searching text through that pattern. Now, how do we use regular exxpression in JS? We basically has two methods in which are test and exec. The basic syntax for using regex is "pattern.test(text)". We also have exce() method which works like test but returns arrays instead of boolean.
+Also, couple of JS strign method search() and replace also works with regex. 
 
 ||Javascript Error||
 We have got error object "err" which we can use to deal with errors in JS. Like java, we can use try, catch, finally blocks for working with code suspected for error. We can also use throw keyword as well. Some commn JS errors are type (try to convert a number to upperCase), reference (when a ref or var is not declared), range (when using precesion upto 500 decimal places), syntax error. 
 
 ||JS Hoisting||
-In JS, a variable can be used even before it is declared. But is this possibble? This is possible through Hoisting. Hoisting is JS default behaviour of moving all the declaration on the top of the script or function. Remember, JS hoists declaration but not initiaization. It is a good practice to declare all the variable at the beginning of its scope.
+In JS, a variable can be used even before it is declared. But is this possibble? This is possible through Hoisting. Hoisting is JS default behaviour of moving all the declaration on the top of the script (if gloabl variable) or function (if local variable). Remember, JS hoists declaration but not initiaization. It is a good practice to declare all the variable at the beginning of its scope.
 Also, check that in the below code a developer can make mistake,
 var name = "Baggins";
 
@@ -198,7 +230,91 @@ var definitionNotHoisted = function () {
 };
 In the above example, definition hoisted works fine. However, it is not applicable for function expression like definitionNotHoisted.
 
-note: With "use strict", JS does not allow variable if they are not declaration. 
+note: 
+1. With "use strict", JS does not allow variable if they are not declaration first.
+2. If we have method and varibles names are same. Then both will be moved at the top of the scope and method declaration will override the variable declaration. Let see below case I, II, III, IV and V.
+CASE I:
+function a(){
+//some logic
+};
+var a;
+document.getElementById("show").innerText = typeof a  //function since both hoisted and functions overrides variable declzration
+CASE II:
+function a(){
+//some logic
+};
+var a=10;
+document.getElementById("show").innerText = typeof a //number, since variables initialization does not got hoisted and later a =10 we made.
+CASE III:
+var a = function(){
+}
+var a;
+document.getElementById("show").innerText = typeof a //function, since var got hoisted and fucntion does not. 
+CASE IV:
+var a = function(){
+}
+var a=10;
+document.getElementById("show").innerText = typeof a //number, since none got hoisted.
+CASE V:
+var a=10;
+var a = function(){
+}
+document.getElementById("show").innerText = typeof a //fucntion, since none got hoisted.
+
+Some Hoisting Related tricky questions:
+Question 1
+var a = 1;
+function b() {
+  a = 10;
+  return;
+  function a() {}
+}
+b();
+console.log(a);
+Output: 1
+Question 2
+function foo(){
+    function bar() {
+        return 3;
+    }
+    return bar();
+    function bar() {
+        return 8;
+    }
+}
+alert(foo());
+Output: 8
+Both the bar() functions are function declarations and will therefore be hoisted to the top of foo() local scope. However, the bar() returning 8 will be hoisted after the one returning 3. Therefore, the one returning 8 will be executed.
+Question 3
+function parent() {
+    var hoisted = "I'm a variable";
+    function hoisted() {
+        return "I'm a function";
+    }
+    return hoisted(); 
+}
+console.log(parent());
+Output: “TypeError: hoisted is not a function”
+Question 4
+alert(foo());
+function foo() {
+  var bar = function() {
+    return 3;
+  };
+  return bar();
+  var bar = function() {
+    return 8;
+  };
+}
+Output: 3
+Question 5
+var myVar = 'foo';
+(function() {
+  console.log('Original value was: ' + myVar);
+  var myVar = 'bar';
+  console.log('New value is: ' + myVar);
+})();
+Output: “Original value was: undefined”, “New value is: bar”
 
 ||JS Strict mode||
 JS strict mode is to disallow the bad syntax that works fine normally like a variable not declared and used, a function is deleted using delete keyword or parameter for function tried giving name. We can enable strict mode using "use strict" string at the beginning of an script.
@@ -208,10 +324,10 @@ Below are some of the best practices listed which should be kept in mind while w
 1. Avoid Global Variables
 2. Always declare local variable (otherwise they will belong to global scope).
 3. Declaration at the top.
-4. Initialize variable when you declare them. 
+4. Initialize variable when you declare them (since default value is undefined in java). 
 5. Do not create variables using new keyword.
-6. Beware of automatic type conversion.
-7. Should use "===" for comparison.
+6. Beware of mistaken type conversion as JS is loosely typed language. var a = 10; a="string"; will not give any compilation error as we get in java.
+7. Should use "===" for comparison rather than ==.
 
 ||JS Performance||
 What should we do improve the performance of a page by writting better scripting? Below are some useful tips.
@@ -228,7 +344,21 @@ JSON is a format of storing and transporting data. JSON stands for Javascript Ob
 JS FORMS
 
 JS Forms
-The most important use of JS in HTML form is validation of the values entered by User. Check some basic validation implementation. 
+The most important use of JS in HTML form is validation of the values entered by User. Check some basic validation implementation.
+Example:
+<form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
+Name: <input type="text" name="fname">
+<input type="submit" value="Submit">
+</form>
+<Script>
+function validateForm() {
+    var x = document.forms["myForm"]["fname"].value;
+    if (x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+}
+</script>
 We also have some automatic Validation HTML keyword and attributes which are disabled, required, min, max and etc.  
 
 JS Form API
