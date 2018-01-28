@@ -1,6 +1,6 @@
 Java Study File
 @@@correct a not that thread class has two constructor. WHile thread class has around 8 construtors. 
-@@@Runnable class is a functional interface which has a method run. That's when a class implements the run interface works fine.
+@@@Runnable interface is a functional interface which has a method run. That's when a class implements the run interface works fine.
 @@@add a note point: Why do we have to call run method through start method? Run method is a normal method which is just overriden in your class. While Start() method has its implementation in thread class which provides the functionality of multithreading in java. Start method will ask JVM to call to create the new thread and call the run method through the new thread. 
 @@@Add a short note on Thread vs Runnable: In java, we can create thread in two ways which are through thread class or through Runnable interface. Let's discuss which one to pick and why. Runnable interface way should be preferred for creating thread for these reasons. Firstly, since multiple inheritance through classes in not allowed in java thus when we extends Thread class then we loose the chance of extending any other thread. Second, Extending a class is generally to use specialize the behaviour of the parent class while here we want to just use the start method which we can do by creating an instance only. 
 @@@Note on how to create a thread pool
@@ -20,11 +20,18 @@ Risk with Thread Pool:
 Note: we must make sure we close the thread pool explicitly by calling shutdown() method of the thread. 
 @@@Little insight on Thread Schedular: Thread Schedular is a for of java which is used to schedule or manage which thread should run at what time? Thread schedular under the hood has some algorithms like preemptive, time sclicing or other. The thread schedular take few things in consideration like priority of thread, waiting time of thread and nature of thread. Whenever main methods executes, its thread schedular that provides the main thread for execution. Not only main thread but other thread like thread for garbage collection, thread for event handler or thread for timer to take care of sleep.  
 @@@Note on why wait, notify and notifyAll methods are in object class but not in thread class. 
+Wait, notify and notify method is called on Object since monitor belongs to the object not to the thread. Wait method is called on the object to tell the current monitor accuring thread to release the monitor. So, its objects action to tell thread to release the lock and hence wait is implemented in Object class. Likewaise wait method, notify and notifyAll methods are also called on object not on threads. Notify and NotifyAll method notify one or all thread waiting for thread. 
+@@@Producer and Consumer Problem
+Assume we have two threads t1 and t2. T1 fills the data in from front of the queue while t2 takes the data out from the back of the queue. T1 is called as producer thread and T2 is called as consumer thread. Now, the producer problem statement says the if the queue gets full then producer do not try to add element and when the queue gets empty then consumer should not try to remove item. Well, we can implement this in java. On a very high level, what we have to do is we need to call wait method on producer thream once queue gets full. When consumer removes an element from queue then we should call notify method for producer. When queue gets empty then wait method is called for consumer thread. When producer placed an element in queue then notify method should be called for consumer. 
+@@@Some insight on Volatile Keyword
+In multithreading environment, thread safety is very important. Thread safety involves two things manily which are mutual exclusion and visibility. Mutual exclusion means one thread or process will work on a piece of code at a time and visibility means change done by one thread on shared resource is visible to all other threads. Sometime we just needs only visibility. For example, threads of different processecors will get their own local copy of shared object. Thus, we really do not need to manage the mutual exclusion but changes done by one thread may not reach to thread 2 copy and can lead to inconsistency. Therefore, we just need to manage visibility. Volatile comes to rescue here. Volatile only takes care of visibility which means if a vairble is defined volatile then change related to it will done only in the main memory but not in cache or copy of that var and thus available to all threads.  
+@@@Thread dump is a way of finding out what all threads in your application is doing including the services threads. The thread dump becomes really important when your application getting hang or becomming slow. 
+
 
 Updates
 1. Java Inner classes revision: Heirarchy, Advantage of inner classes, Describe the basics of each type.
 2. Understand the core advantage of multithreading(4){simultaneous, same memory, fast cotext switching, one thread does not interrupt flow of other}, Life cycle of thread, 
-3.
+3. 
 
 
 
