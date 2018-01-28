@@ -54,18 +54,25 @@ Java Script has String, Numbers, Boolean, Array, Object, null, undefined as the 
 •	JavaScript function is a block of code used with the function keyword. It is executed with something invokes it like some event occurs. Its syntax is “Function functionName(parameter1,parameter2,..){code to be executed}”. It is same as the method in java language.
 •	 The argument passed always behaves as local variable. It can also have return keyword which returns something. Unlike methods in java language, it does not write the return value type in the signature of the functions. The purpose of having function is to use the same code multiple times and by passing different parameters. “Function” refers to an object of the function while “Function()” refers to the result of the function. 
 •	We can use the function just like variables. Like, var text = the temperature is + toCelsius(77).  This is possible in java as well. 
+Javascript does not check the number and type of the argument check while calling the function. Thus, if the number of argument is not sent properly then also function runs considering missing values as undefined. Also, it is good practice to check the null and provide a default values to your parameters. 
+Self invoking function are those which are written or implemented in such a way that are not required to be called whereas they are slef invoked right after it is written. One possible purpose of writting the self invoking fucntion is to write the initialization work.
 
 ||JavaScript Object||
 Let’s see the Concept of objects, properties and methods. For example, a car is an object. It will have weight and color which are its properties and methods like start and stop. We can write an object in java script like this “var car = “{type:”fiat”, model:”500”, color:”white”}”;”. The values are written in name:value pairs. Object methods are the functions. So, basically you can have an object in java script which can have properties and methods. Properties will be in Name:value pair while methods will be the functions. Then, we can access the properties of the object by “object.propertyName”. 
 
 ||JavaScript scope||
-JavaScript scope is the set of variables, objects and functions you have access to. We have local and global variables in java. Variables written inside any function are local variable which ends when the functions completes. Variable written outside any method is global variable which ends when we move to other page. All functions of the script can use the global variable once declared. Also, if do not declares a variable but directly assign it in any function then it becomes automatically global. How? Also, all the variables in java script belongs to window object. So, “window.LocalVariable” can be used globally. Check this.
+JavaScript scope is the set of variables, objects and functions you have access to. We have local and global variables in javascript. Variables written inside any function are local variable which ends when the functions completes. Variable written outside any method is global variable which ends when we move to other page. All functions of the script can use the global variable once declared. Also, if do not declares a variable but directly assign it in any function then it becomes automatically global. How? Also, all the variables in java script belongs to window object. So, “window.LocalVariable” can be used globally. Check this.
 Note: 
 1.	When you create any object the you can create in a syntax “var car = {modal:”1947”, brand:”suzuki”} ;”. To access the object property’s value “document.getElementById(“id”).innerHTML = ‘the car modal is ‘car.modal”. Other way could be “car[modal]”
 2.	If we have to add a new property then we have to write all the previous properties again to add new ones. If we just write like “var car = {sale:yes};”. Then, only sale is yes property will be set while removing other properties. 
 
 ||JavaScript Events||
 Events are the thing happened to any HTML element. JavaScript takes care of how to reach to these events. The events belong to either browser or user like the pages stops loading or button is clicked. Event occurs on element of HTML which is taken care by JavaScript functions. So, how do we connect HTML and java script. It is done like this: <someElementsomeEvent=”someJavaScriptFunction”>. For example, <p onclick=”change()”>.  Some common event attributes are onclick, onchange, onmousover, onmouseout, onkeydown, onload. Check all later. 
+Note: The above you see shows adding event through HTML attribute but we can add through JS too. We have method like addEventLsitener(0 which we will study in detail. 
+document.getElementById("myButton").addEventListener("click", showAlert);
+function showAlert(){
+	alert("Event based alert");
+}
 
 ||JavaScript Strings||
 •	These are used for storing and manipulating the text. We can use single or double quotes while giving value to variable. Also, we can use different quote inside the quote that surrounds the String. Length keyword gives length of the variable. Backslash escape character is used to use same quote used to assign string. For example, “var s = ‘it\’s OK’”. We already know that we should break a long statement after any operator. Also, we can break a statement from a string text through a backslash.   
