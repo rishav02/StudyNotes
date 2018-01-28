@@ -352,10 +352,9 @@ Note(s):
 3.	What is virtual class? Virtual classes may be the one that has virtual method. Virtual method can be overridden inside the class inheriting the virtual class. There is not keyword “virtual” in java language. However, all the methods except static or final which can be overridden are virtual method by default in java. In the nutshell, all the classes which have methods that can be overridden are classed virtual classes. 
 
 
-Interfaces
+||Interfaces||
 Interface - Interfaces are the blueprint of the class. An interface contains only abstract methods unlike abstract classes and hence, gives 100% abstraction. Interfaces also support the multiple inheritance and loose coupling. The variables in the interface are public, static and final and methods are made public and abstract by default.The variable of interface is made static because they cannot be instantiated so it should be made static to be used without instance and final because the programmer cannot change the value of variable of interface. An interface can extend other interface. You already know about abstraction through interfaces. 
 Let’s study multiple inheritance (which tells you the need of interfaces and advantage over abstract classes) and loose coupling.
-
 Multiple inheritances –Multiple inheritance means one class extending or implementing (inheriting) more than one class or interface. Multiple inheritance with abstract class is not possible because a method which is implemented in both the classes which are extended and if that method is called by the extending class then it will be ambiguous to call which class method. Still confused? Check this: http://beginnersbook.com/2013/05/java-multiple-inheritance/
 Now, what makes interfaces allow multiple inheritance. Every method in an interface is abstract. If a class implement multiple interface and suppose all interfaces have a common method A. When this common method is called in the sub class it will not create a situation of ambiguity as in abstract class because no interface implements the method. Every method is implemented by the class implementing the interfaces.
 Marker or tagged interface – These interfaces do not have any member (neither data nor method). These are very few and we do not create them. Infect, the recent versions of jdk not required to use these marker interfaces. But for knowledge perspective, these are used just to give some information to the compiler. For ex – serialization marker interface gives an idea about the implementing class. 
@@ -372,7 +371,7 @@ Abstract Class and Interface
 2.	Abstract class can have private, non-static and non-final variable unlike interface. 
 3.	Abstract class can implement an interface but interface cannot extend/implement an abstract class. 
 
-Packages 
+||Packages|| 
 A package is formed when similar type of classes, interfaces, and sub-packages. Packages can be built-in or user defined. Packages are provided to better manage the classes, to provide access protection and removes naming collision. Check the method to run a package in cmd, if needed. 
 Now, how to access a package from other package? There are three ways actually. 
 1.	Import package.*;
@@ -384,7 +383,7 @@ To save the file temporarily, either save setting classpath in cmd or switch cla
 Static import (Java 5 fetaure) – The static import feature of java 5 facilitates java programmer to access any static member of a class directly. This happens because the package.class.variable gets import. This is similar to importing the package.class to avoid lengthy codes. 
 
 
-Access Modifiers
+||Access Modifiers||
 Access modifier defines the scope of data member, method, constructor and class. There are four types of access modifiers and these are of the following types.
 1.	Private access modifier – these modifiers are accessible within the class which means that the method or variable made private will give compile time error if tried using outside the class. If you make constructor private, then you cannot create instance outside the class. 
 2.	Default access modifiers (No Access Modifier) – if you do not use any access modifier then they come use the default category and can be used within the package. 
@@ -392,20 +391,23 @@ Access modifier defines the scope of data member, method, constructor and class.
 4.	Public access modifier – this modifier make its members to be accessible everywhere.
 Note: In case of overriding, the method in the sub class should not be more restrictive than the method in the parent class. 
 
-Encapsulation
+||Encapsulation||
 Encapsulation is a process of uniting the data and code. By this, we can make our class read only or write only. It provides more control over the data. Encapsulation is implemented by making all the variable private and using getter and setter methods to get and set data respectively. Practice one example. If you do not set a value through setter and try to print the getter then “null” will be printed.
 Advantages of Encapsulation 
 1.	Classes use getters and setters to get and set the encapsulated member of a class. Sometimes the requirement changes and we can then change the getter and setter method implementation without breaking the code that uses it. Also, we can change the data of the encapsulated method if needed. Therefore, we can maintain a code easily through encapsulation. 
 2.	We can make the fields of a class either read only or write only as and when required.
 Note: Encapsulation is used to bind the functionality (method) and data (variable).
 
-Object Class 
+||Object Class|| 
 The object class is the parent of all the classes in java. Coming straight to the point, we can refer any object of unknown type. This is because a parent class can refer to any object of its child class. getObject() is the key function for this functionality. Syntax: “Object obj = getObject();”. There are a lot of methods of object class. The object class gives lots of behaviors to all the objects exist in java like object cloning.
 
-Object Cloning 
-Trust me its simple! Object cloning is used to create an exact copy of an object. We can do it through new keyword but cloning method uses less processing. For using the cloning method of the object class, we have to implement java.lang.cloneable interface and also handle an exception CloneNotSupportedException. Its syntax is like this: “className obj2 = (Classname) obj1.clone();”. This looks to be similar to copy constructor. 
+||Object Cloning||
+Trust me its simple! Object cloning is used to create an exact copy of an object. We can do it through new keyword but cloning method uses less processing. For using the cloning method of the object class, we have to implement java.lang.cloneable interface and override the clone method. Also handle an exception CloneNotSupportedException. Its syntax is like this: “className obj2 = (Classname) obj1.clone();”. This looks to be similar to copy constructor. 
 Note: what is the difference between shallow and deep cloning and which type is supported in java?
-Java Array
+Default cloning in java is shallow cloning where user deinfed data of class does not gets a different copy. While in deep cloning we get the different copy of user deinfed data member. We can do this by cloning th user defined data type in override clone method.
+For more details: https://howtodoinjava.com/core-java/cloning/a-guide-to-object-cloning-in-java/
+
+||Java Array||
 •	Array is a kind of data structure which is used to store one type of data. They have fixed memory size and that does not increase during the runtime. Code optimization and random access are its advantages. Code optimization means we can retrieve and sort the values easily and it allows random access of the values due to indexes. Arrays in java are index based and first element has the index zero.
 •	They are of two types. 
 1.	Single dimensional array – the syntax to declare an array in java is “int[] arrayName” or “int []arrName” or “int arrName[]”.Declaring and instantiation happens like int[] arrName = new  arrName[size]. Declaration, instantiation and initialization happens like “int[] arrName = new arrName[1,2,3]”. Following are the combinations allowed. 
@@ -418,13 +420,13 @@ I tried to run a method to print an array. I figured out that, we can pass an ar
 •	Copy of one array into other is also possible. First, declare and initiate first array. Then, declare and instantiate the second array. Then, use this syntax: “System.arraycopy(firstarray, copyfromindex, secondarray, indexcopystart, indexcopylength)”. 
 •	Addition of two matrixes in java – First declare and initialize the arrays. Then, instantiate the third array. Then, with the help of two for loops, put the addition of first two arrays in the third and print it.
 
-Wrapper Class
+||Wrapper Class||
 •	Firstly, we have to understand what is wrapper class? Everything is java is an object like a file, image, a URL etc. So, to convert the primitive data type to an object, we have wrapper class. These wrapper classes wrap a data type to make it an object. Wrapper classes also have the method of unwrapping the object get the primitive data type. Sometime, we want to store data and that can be stored in object form only. Then wrapper class becomes savior. 
 •	Wrapper class provides the mechanism to convert the primitive to object type (Wrapper class) and vice versa. We can convert the primitive type to wrapper class explicitly and it can be automatically done for us by compiler as well. The automatic conversion of primitive to object types is called as autoboxing. The conversion of wrapper to primitive is called as unboxing. Check the wrapper class for the primitive type. 
 •	Check the bidirectional conversion. For converting primitive to object use valueOf() and from object to primitive use intValue()
 Note: I guess there is a problem with autoboxing in eclipse while boxing and unboxing is working fine. 
 
-Call by Value and Call by reference 
+||Call by Value and Call by reference|| 
 Formal and actual parameters (Parameter and argument)
 We have to pass radius of the circle to calculate the area of a circle. Currently, a variable int a has the value of the radius. Its value is 5 that we know (somehow). Then, if we pass int a then it is appropriate to say that we have passed a formal parameter. Formal parameter acts as an identifier to stand for the value that is to be passed in the method. Example, methodName(int a). If we pass 5 (literally value), then it is appropriate to say that we have passed actual parameter. Example, methodName(5). Also, the formal parameter is called as parameter and actual parameter is called as argument. 	
 
@@ -442,16 +444,16 @@ Now, if we talk about the pass by value and pass by reference then the concept i
 Pass by Reference
 Now, we will see what would have happened if java has pass by the reference. When we will try to send the primitive data like the same variable a holding a int 2 then the original copy will be sent so the changes can be seen in the sender method as well which was not the case in call by value. If we send a reference of a class like reference “s” of student class through pass by reference then the value itself of the sent reference “s” can be changed and this also means that “s” will not be pointing to the same memory location anymore. In the nutshell, if we sent a primitive value through PBR then value would be changed in the sender method too and if a reference is sent then that reference itself could be changed and will be other memory location. 
 
-Java Strictfp Keyword
+||Java Strictfp Keyword||
 This keyword is used to provide a better arithmetic of the floating point data on different platforms. Since, different platform may have different precision so to overcome this difference we can use strictfp keyword. It can be used with class, interface and concrete method i.e. written in the signature of class, interface and concrete method. This can also give error when used at wrong places like using it with abstract classes, with variables or with constructors. 
 
-Creating API document by javadoc tool	
+||Creating API document by javadoc tool||	
 API document is the document contains the information about the API and project. It is needed to help the other programmer to know about the code. Javadoc tool is available for creating the API document in the HTML format from comments in the code. 
 
-Java Command Line Argument
+||Java Command Line Argument||
 Command line argument are the argument that user can pass during the runtime. It can be taken as user input. This is only done through command prompt. 
 
-Object VS Class
+||Object VS Class||
 Class does not get memory when created but object gets the memory when created (well, I doubt on that). There are many ways of creating an object but only one way for creating the class. 
 Doubt: Class does not get its memory when it is created while object gets. Is it true or false and why?
 Take complete understanding of Heap and Stack.
@@ -460,7 +462,7 @@ Heap – Heap memory is used by Java Runtime to allocate memory to java objects 
 
 Stack – This memory is comparably very smaller than heap. Stack memory used for the execution of the thread. They contain the value related to the methods which are short lived. Whenever a method is invoked then a new memory block in the stack is created to hold the local primitive values and references of other objects in the method. As the execution of the method gets over then that block of the memory gets destroyed. Also, every thread starts a new call stack.
 
-Overloading VS Overriding
+||Overloading VS Overriding||
 Overloading aims to provide more readable code and Overriding aims to provide a specific implementation. Overloading is a compile time polymorphism while Overriding is runtime polymorphism. Overloading cannot be performed by changing the return type while overriding can be done by changing the return type. 
 
 
