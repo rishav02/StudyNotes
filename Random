@@ -46,31 +46,31 @@ JavaScript Quick Revise
 2. JS different ways to print.
 3. JS SYntax, Statement, comments
 4. JS Variables, operator, airthmatic, assigment
-5. JS data types
+5. JS data types: mention that undefined and null cannot contain value but still counted as data type. 
 6. JS functions: Self Invoking Function and its purpose, argument concept. 
 7. JS Object  
 8. JS Scope [imp]: Non declaring a var in function?, Access object property in js, how to add new property to object.
 9. JS Events: Check the syntax for adding event in js, difference in HTML event and JS event names. 
 10. JS String
-11. JS String properties and methods [imp]: length(), 
-12. JS Number
-13. JS Number properties and methods [imp]
-14. JS Math object methods
-15. JS Dates, Dates Formats, Date Methods [imp]
-16. JS Array and Array Methods
+11. JS String properties and methods [imp]: length(), substring(index), charAt(), substr(start, length), slice(). diff in slice and substring. 
+12. JS Number: Infinity, NaN.
+13. JS Number properties and methods [imp]: parseInt(), toString(), toExponential(), MAX_VALUE, NEGATIVE VALUE.
+14. JS Math object methods: pow(), min(array of numbers), floor(), ciel(). 
+15. JS Dates, Dates Formats, Date Methods [imp]: var date = new Date(), getDate(), getTime(), getMonth().
+16. JS Array and Array Methods: pop(), push(), shift(), unshift(), slice(). 
 17. JS Boolean
 18. JS Comparison and Logical Operator
-19. JS if else conditions
-20. JS Switch Statement
-21. JS For loop
-22. JS Type Conversion
-23. JS Regular Expression
-24. JS Error
-25. JS Hoisting
+19. JS if else conditions: Example
+20. JS Switch Statement: Example
+21. JS For loop: for, while, dowhile.
+22. JS Type Conversion: notr point.
+23. JS Regular Expression: test(), exec(), search(), replace().
+24. JS Error: Example.
+25. JS Hoisting: define and check all cases and tricky questions.
 26. JS Scrict Mode
-27. JS Best Practices
-28. JS Performance
-29. JS JSON
+27. JS Best Practices: all 6.
+28. JS JSON
+29. JS Form: CHeck the overview of validation using JS. 
 30. JS Object, Properties{delete property}, Methods{Built-in JS methods for any object}, Constructor{creating cosnstructor & adding new property or method}, Prototypes.
 31. JS Function {function as variable, self invoking function}, Parameter, Invocation, Call and Apply.
 32. JS DOM Intro, Creating HTML{all methods}, Element, HTML and CSS {methods for traversing DOM, how to change captured HTML element}. 
@@ -89,6 +89,7 @@ Some Important Questions:
 3. Looping options in JS> Same as java. 
 4. void(0) is used to prevent the page from loading. 
 5. Handling exception is also done through try, catch and finally block only. 
+6. Thorough with how to parse different element?
 
 
 JAVASCRIPT COMBO INTERVIEW QUESTIONs
