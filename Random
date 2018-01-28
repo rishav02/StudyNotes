@@ -1,125 +1,32 @@
-Date 15th January, 2018
-Ye mai 17th ko office mai baith kar likh rha hu github mai. Ghar par jake dairy ki file mai paste karunga. 15th ko monday tha and mai first time morning shift kar rha tha. Maine 4 hours padhai kar li thi. Uss din maine bahut sari companies mai bhi apply kiya. Ek do calls ane ki sambhawna lagi bhi hai. Sunday ko ek walkin bhi mil gya hai. Shikha di mumbai mai hi hai. Maine uss din padosan k sath mil kar toda ghuma aur thodi masti bhi ki. Lekin maine galh hi kiya. Mai spcial nahi banna chahiye tha. 
-Things to do -
-  1. Family se bat 3 3
-  2. Work Ethics+Focus+NoThinking 5 0
-  3. gym 3 0
-  4. Diet 5 1
-  5. Subha utho time par 0 0
-  6. Nahana b4 breakfast n CPC practice 2 0
-  7. no thinking + video 2 0
-  8. Padhai 60 39
-  9. All checks 1 1
-  10. Office work 2 2
-  11. Chadi Baniyan n all 2 0
-  12. One hour wale kam 15 13
-    a. Intellect all document send 
-    b. Naukri all companies talk
-    c. Advocate se bat Valsad + Gwl
-    d. Muma bhopal ticket 
-    e. Padosan se pd lelo
-    f. Mobile storage khali 
-    g. Muma paa ko kya facility deni hai
-  13. Kal ka prerequisite 2 0
-  14. Sisters Life:  Dono se bat 1 1
-  15. Dairy n EOD 12 3 2
-Total - 62/106 efficiency - 58.49%
+Java Study File
+@@@correct a not that thread class has two constructor. WHile thread class has around 8 construtors. 
+@@@Runnable class is a functional interface which has a method run. That's when a class implements the run interface works fine.
+@@@add a note point: Why do we have to call run method through start method? Run method is a normal method which is just overriden in your class. While Start() method has its implementation in thread class which provides the functionality of multithreading in java. Start method will ask JVM to call to create the new thread and call the run method through the new thread. 
+@@@Add a short note on Thread vs Runnable: In java, we can create thread in two ways which are through thread class or through Runnable interface. Let's discuss which one to pick and why. Runnable interface way should be preferred for creating thread for these reasons. Firstly, since multiple inheritance through classes in not allowed in java thus when we extends Thread class then we loose the chance of extending any other thread. Second, Extending a class is generally to use specialize the behaviour of the parent class while here we want to just use the start method which we can do by creating an instance only. 
+@@@Note on how to create a thread pool
+Threadpool is group of fixed number of thread which are created and waiting in runnable state to be used for processing any task. Thread schedular picks the thread for processing a task and once task is done then the thread goes back in the thread pool in runnable state. We can improve the performce of an application with threadpool as it saves time in new thread because we already have threads in pool created and in runnable state. One real time usage of Thread pool is in web containers managing JSP and servlets. 
+In web container, if for every new request we give a new thread by creating on the spot then it will be a lot of overhead in managing the life cycle of the thread only. Therefore, thread pool seems to be a good idea where a set of threads are already created in the thread pool in runnable state. These will save alot of time as skips creating and termination of a thread. Infect, the same set of threads can be used multiple times for handling new request.
+In java, we have executor framework consisting of executor interface, ExecutorService sub interface and Executor class. Below is the code for crearting the thread pool. 
+ExecutorService pool = Executors.newFixedThreadPool(MAX_T);
+So, as we can see we have used newFixedThreadPool() api of Executors class to get pool. Now, we will process a task using the thread from a pool. 
+//creating a task
+Runnable task1 = new Task("Task1");
+pool.execute(task1);
+In above code, we have created a task through a class called Task which implements Runnable interface and override the run method. Then, we pass this task object to execute method of pool. Likewise, we can create many task and execute through pool. Once all the threads in the pool is in running state then all other received task goes in queue. 
+Risk with Thread Pool:
+1. DeadLock: Deadlock can occur in any multithreaded environment while thread pool is another case of deadlock. One possible situation of deadlock in thread pool could be when all the running threads are waiting the response of a blocked thread due to unavailability of thread. There could be other scenarios which can cause deadlock. 
+2. Thread Leakage: In some scenarios, running thread does not return back to the pool which causes reduction in the size of the thread. One such scenario could be when thread is running an exception occurs and thread class does not handles the exception then that thread goes out of thread pool. 
+3. Resouce Threashing: We need to be carefull regarding the numbers of threads in threadpool. If we avhe threads more than the optimal number then a lot of time will get wasted in context switching. 
+Note: we must make sure we close the thread pool explicitly by calling shutdown() method of the thread. 
+@@@Little insight on Thread Schedular: Thread Schedular is a for of java which is used to schedule or manage which thread should run at what time? Thread schedular under the hood has some algorithms like preemptive, time sclicing or other. The thread schedular take few things in consideration like priority of thread, waiting time of thread and nature of thread. Whenever main methods executes, its thread schedular that provides the main thread for execution. Not only main thread but other thread like thread for garbage collection, thread for event handler or thread for timer to take care of sleep.  
+@@@Note on why wait, notify and notifyAll methods are in object class but not in thread class. 
 
-Date 16th January, 2018
-Ye mai next day morning mai office mai github mai likh rha hu. Kal maine resgination al diya hai infosys mai aur meri last working date infi mai 15th Feb hai. Kal maine iske chakkar mai kafi time invest kiya. Kal mai office late bhi pahucha tha. Kal lipi ko maine phone par spring padhaya. Kal padosan ki gadi kharab padh gayi thi to mai uske sath thik karwane gaya tha. Fir maine uss bahut der tak bat ki. Thjoda depression mai chala gya tha kuki wo bol rahi thi ki mghe lipi ko nahi bulaya chahiye apne pass. Uske bad muma ka call aya aur wo shikha di leke bahut tensed thi. Fir maiene muma se kafi der tak bat ki. Shikha di se bat ki aur popy se bhi. Bahut thaka hua feel ho rha tha to mai so gya tha fir. 
-Things to do -
-  1. Family se bat 5 5
-  2. Work Ethics+Focus+NoThinking 5 0
-  3. gym 3 0
-  4. Diet 5 2
-  5. Subha utho time par 0 0
-  6. Nahana b4 breakfast n CPC practice 2 0
-  7. no thinking + video 2 0
-  8. Padhai 70 17
-  9. All checks 1 1
-  10. Office work 2 2
-  11. Chadi Baniyan n all 2 0
-  12. One hour wale kam 10 8
-    a. Apna Resignation Dalo 
-    b. Naukri all companies talk
-    c. Advocate se bat Valsad + Gwl
-    d. Muma bhopal ticket 
-    e. Padosan se pd lelo
-    f. Mobile storage khali 
-    g. Muma paa ko kya facility deni hai
-  13. Kal ka prerequisite 2 0
-  14. Sisters Life:  Shikha di se bat 2 2
-  15. Dairy n EOD 12 3 2
-Total - 39/114 efficiency - 34.21%
+Updates
+1. Java Inner classes revision: Heirarchy, Advantage of inner classes, Describe the basics of each type.
+2. Understand the core advantage of multithreading(4){simultaneous, same memory, fast cotext switching, one thread does not interrupt flow of other}, Life cycle of thread, 
+3.
 
-Date 17th January, 2018
-Ye mai agle din likh rha hu,. Kal maine bahut socha ki maine jo introvert bana chah rha tha wo to mai kuch din tak koshish ki aur fir mai nahi kar paya. Well, koi bat nahi mai fir se try karunga aur iss bar aur better try hogi. Kal thodi tabniyat sahi nahi thi meri sham k bad se. May be nneend puri nahi ho paa rahi hai. Kal mghe wissen technology se call aya tha jo ki morgen stanly k liye hire kar rahe the. unki requirement to vaise datastructurw and algorithms hai. Mere jo inetrview lined uo hai mai pehle unki teyari kar rha hu. Fir mai bad m,ai dekhunga ki iska mghe kya karna hai. 
-Things to do -
-  1. Family se bat 3 3
-  2. WorkEthics+Focus+NoThinking 5 3
-  3. gym 0 0
-  4. Diet 5 2
-  5. Subha utho time par 0
-  6. Nahana b4 breakfast n CPC practice 2 0
-  7. No thinking + Video 2 0
-  8. Padhai 65 42
-  9. All checks 1 1
-  10. Office work 2 2
-  11. Chadi baniyan n all 2 2
-  12. One hour wale kam 10 0
-     a. Interviews checks 
-     b. muma rticket book today
-     c. Advocate se bat 
-     d. Mobile storage khhali
-     e. Muma paa ko lya facility deni hai
-   13. Kal ka prerequiste 2 0
-   14. Sister's life: Dono se bat 1 1
-   15. Dairy n EOD 12 2 2
- Total - 58/100 efficiency - 58%
- 
- Date 18th January, 2018
- Things to do -
-  1. Family se bat 3 3
-  2. WorkEthics+Focus+NoThinking 5 5
-  3. gym 0 0
-  4. Diet 5 2
-  5. Subha utho time par 0 0
-  6. Nahana b4 breakfast n CPC practice 2 2
-  7. No thinking + Video 2 0
-  8. Padhai 60 39
-  9. All checks 1 1
-  10. Office work 10 10
-  11. Chadi baniyan n all 2 2
-  12. One hour wale kam 10 5
-     a. Interviews checks 
-     b. muma rticket book today
-     c. Advocate se bat 
-     d. Mobile storage khhali
-     e. Muma paa ko lya facility deni hai
-   13. Kal ka prerequiste 2 2
-   14. Sister's life: Dono se bat 1 1
-   15. Dairy n EOD 12 0 0
-   Total - 72/103 efficiency - 69.90%
-   
- Date 19th January, 2018
- Things to do -
-  1. Family se bat 3
-  2. WorkEthics+Focus+NoThinking 5
-  3. gym 0
-  4. Diet 5 
-  5. Subha utho time par
-  6. Nahana b4 breakfast n CPC practice 2
-  7. No thinking + Video 2
-  8. Padhai 80
-  9. All checks 1
-  10. Office work 10
-  11. Chadi baniyan n all 2
-  12. One hour wale kam 10
-     a. Interviews checks 
-     b. muma rticket book today
-     c. Advocate se bat 
-     d. Mobile storage khhali
-     e. Muma paa ko lya facility deni hai
-   13. Kal ka prerequiste 2
-   14. Sister's life: Dono se bat 1
-   15. Dairy n EOD 12 3
+
+
+Change in interview asked questions
+1. Can we create a thread by extending Thread class and Runnable interface both. Yes! We can do this. However, we must make sure we extend thread first and then implements runnable interface. The order if reversed will give compilation error. We can create thread in either ways if both thread class and runnable interface is used. 
