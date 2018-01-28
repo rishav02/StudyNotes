@@ -1,3 +1,4 @@
+
 1a. Java Study File
 @@@Serialization
 @@@Date formate in java: SimpleDateFormat, DateFormat, Calendar class. 
@@ -35,6 +36,8 @@ Add implementation index 1 to downcasting in java study.
 25. Coding example to show inheritance, polymorphism, Abstraction and Encapsulation. 
 26. HOw many type of inheritance allowed in java. Single, multilevel and hierarchical. Hybrid and multiple are not allowed.
 27. Static and dynamic binding in java
+28. Deep CLoning and SHALLOW cloning.
+29. Heap and Stack. How instance and static types gets the value. 
 
 Java Interview Questions:
 Source 1: 
