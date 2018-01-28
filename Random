@@ -30,9 +30,74 @@ In multithreading environment, thread safety is very important. Thread safety in
 
 
 Updates
+Java quick Revise
 1. Java Inner classes revision: Heirarchy, Advantage of inner classes, Describe the basics of each type.
 2. Understand the core advantage of multithreading(4){simultaneous, same memory, fast cotext switching, one thread does not interrupt flow of other}, Life cycle of thread, 
-3. 
+
+***************************************************************************************************************************************
+3a. Java Script Study
+updates:
+@@@What is modular front end application? 
+@@@avaScript Prototype based inheritance
+@@@Practically useful abstraction
+
+JavaScript Quick Revise
+1. JS introduction
+2. JS different ways to print.
+3. JS SYntax, Statement, comments
+4. JS Variables, operator, airthmatic, assigment
+5. JS data types
+6. JS functions: Self Invoking Function and its purpose, argument concept. 
+7. JS Object  
+8. JS Scope [imp]: Non declaring a var in function?, Access object property in js, how to add new property to object.
+9. JS Events: Check the syntax for adding event in js, difference in HTML event and JS event names. 
+10. JS String
+11. JS String properties and methods [imp]: length(), 
+12. JS Number
+13. JS Number properties and methods [imp]
+14. JS Math object methods
+15. JS Dates, Dates Formats, Date Methods [imp]
+16. JS Array and Array Methods
+17. JS Boolean
+18. JS Comparison and Logical Operator
+19. JS if else conditions
+20. JS Switch Statement
+21. JS For loop
+22. JS Type Conversion
+23. JS Regular Expression
+24. JS Error
+25. JS Hoisting
+26. JS Scrict Mode
+27. JS Best Practices
+28. JS Performance
+29. JS JSON
+30. JS Object, Properties{delete property}, Methods{Built-in JS methods for any object}, Constructor{creating cosnstructor & adding new property or method}, Prototypes.
+31. JS Function {function as variable, self invoking function}, Parameter, Invocation, Call and Apply.
+32. JS DOM Intro, Creating HTML{all methods}, Element, HTML and CSS {methods for traversing DOM, how to change captured HTML element}. 
+33. JS DOM Events {all 8 events with uses}
+34. JS DOM Listener {adding or removing event through JS, event bubbling and capturing}
+35. JS DOM Naigation {navigating through nodes}
+36. JS DOM Node {creating HTML, insertBefore()}
+37. JS DOM Collection
+38. JS DOM nodeList {diff with DOM collection, querySelectorAll()}
+39. JS BOM window, screen, location, history, navigator objects.
+40. JS DOM pop up boxes, Timer and Cookies. 
+
+Some Important Questions:
+1. How to submit form using JavaScript? document.form[0].submit();. 
+2. How o read or write a file using JS? active X object or some JS extension. 
+3. Looping options in JS> Same as java. 
+4. void(0) is used to prevent the page from loading. 
+5. Handling exception is also done through try, catch and finally block only. 
+
+
+JAVASCRIPT COMBO INTERVIEW QUESTIONs
+source1:22, 27, 29. Delete operator is used to deleted the property of an object or the object itself. but it does not have any effect on var or on function, 31, 43, 56, 66, 73. Also tell the event you know, 74. also tell how to create deferred script, 75, 84.
+source2: 4, 8, 9, 15, 22, 24 here, cursor is the mouse cursor, put @@@A on 35 36.
+Source3: 3, 5, We will do it in hardcore requiorement of JS. 
+Source 4:  
+****************************************************************************************************************************************
+
 
 
 
