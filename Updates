@@ -910,5 +910,43 @@ index.html
 <html>
 
 Note: check many modules available in ngmodule.org. To use any external module from this source the procedure is same. Try some time.
+***************************************************************************************************************************************
+
+HTML5 Features
+1. Multimedia support in HTML5: Before HTML5 we can embed a video in a web page through a plugin. HTML5 introduces a new element <video> element to give a HTML way of embedding a video to your web page. 
+<video width="400" controls>
+	<source src="video1.mp4" type="video/mp4">
+	<source src="video2.mp4" type="video/mp4">
+Text if you video does not loads comes here
+</video>
+controls attribute gives the controls like play, pause and other. while we can have another attribute called autoplay for playing the vdeo on the page load and controls to play and pause will not appear. 
+
+2. HTML5 has given many new cool values for element type attributes. Before HTML5 we has input elements type attribute values which are text, password, radio, submit, button, checkbox, reset and may be a few other. Now, lets see what new value have we got. These are below mentioned:
+1. email: Input for entering email. Will give you suggestion of the cached email id you recently typed. 
+2. date: Input for selecting date from the calendar that will open after you click. We have input specifically for week, month or year.
+3. url: Input for entering a url. It gives to default support of validation.
+4. color: Input for selecting color.
+Note: For certain type it gives basic validation too like for email and url. 
+
+3. HTML5 canvas
+This is more related to graphics. HTML5 introduces <canvas> tag which can be used through javascript and its object has many API and properties. Below is the code example:
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.font = "30px Arial";
+ctx.strokeText("Hello World",10,50);
+</script>
+
+4. Content Editable atribute
+This is so far my fevorite feature of HTML5. HTML 5 has introduced an attribute which is contenteditable helps to create editable paragraphs. Below is the code:
+<p contenteditable="true">This is a paragraph. It is editable. Try to change this text.</p>
+
+5. 
+
+Note: HTML5 is backword compatible. 
+
 
 hymn of weekend, perfect ed shareen, happier, all the star song, HOw would you feel,,,,,,,, watch movie "The fault in out star", me before you, raocky
