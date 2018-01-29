@@ -69,55 +69,59 @@ SQL quick Revise
 19. Transaction control language: ACID Properties, Set transaction, Commit, Rollback and save.
 20. Stored procedure, syntax, advantages. Comparison with views. 
 21. Trigger (check in a little depth next time)
-22. Complete topics after triggers. 
-***************************************************************************************************************************************
+22. Complete topics after triggers. **************************************************************************************************************************************
+
 3a. Java Script Study
 updates:
 @@@What is modular front end application? 
 @@@avaScript Prototype based inheritance
 @@@Practically useful abstraction
+Also do:
+@@@different form fields and events and changing them accorsding to the form field.
+@@@Closure complete.
 
 JavaScript Quick Revise
 1. JS introduction
 2. JS different ways to print.
 3. JS SYntax, Statement, comments
 4. JS Variables, operator, airthmatic, assigment
-5. JS data types
-6. JS functions
-7. JS Object
-8. JS Scope [imp]
-9. JS Events
+5. JS data types: mention that undefined and null cannot contain value but still counted as data type. 
+6. JS functions: Self Invoking Function and its purpose, argument concept. 
+7. JS Object  
+8. JS Scope [imp]: Non declaring a var in function?, Access object property in js, how to add new property to object.
+9. JS Events: Check the syntax for adding event in js, difference in HTML event and JS event names. 
 10. JS String
-11. JS String properties and methods [imp]
-12. JS Number
-13. JS Number properties and methods [imp]
-14. JS Math object methods
-15. JS Dates, Dates Formats, Date Methods [imp]
-16. JS Array and Array Methods
+11. JS String properties and methods [imp]: length(), substring(index), charAt(), substr(start, length), slice(). diff in slice and substring. 
+12. JS Number: Infinity, NaN.
+13. JS Number properties and methods [imp]: parseInt(), toString(), toExponential(), MAX_VALUE, NEGATIVE VALUE.
+14. JS Math object methods: pow(), min(array of numbers), floor(), ciel(). 
+15. JS Dates, Dates Formats, Date Methods [imp]: var date = new Date(), getDate(), getTime(), getMonth().
+16. JS Array and Array Methods: pop(), push(), shift(), unshift(), slice(). 
 17. JS Boolean
 18. JS Comparison and Logical Operator
-19. JS if else conditions
-20. JS Switch Statement
-21. JS For loop
-22. JS Type Conversion
-23. JS Regular Expression
-24. JS Error
-25. JS Hoisting
+19. JS if else conditions: Example
+20. JS Switch Statement: Example
+21. JS For loop: for, while, dowhile.
+22. JS Type Conversion: notr point.
+23. JS Regular Expression: test(), exec(), search(), replace().
+24. JS Error: Example.
+25. JS Hoisting: define and check all cases and tricky questions.
 26. JS Scrict Mode
-27. JS Best Practices
-28. JS Performance
-29. JS JSON
+27. JS Best Practices: all 6.
+28. JS JSON
+29. JS Form: CHeck the overview of validation using JS. 
 30. JS Object, Properties{delete property}, Methods{Built-in JS methods for any object}, Constructor{creating cosnstructor & adding new property or method}, Prototypes.
 31. JS Function {function as variable, self invoking function}, Parameter, Invocation, Call and Apply.
 32. JS DOM Intro, Creating HTML{all methods}, Element, HTML and CSS {methods for traversing DOM, how to change captured HTML element}. 
-33. JS DOM Events {all 8 events with uses}
+33. JS DOM Events {all 8 events with uses}\
 34. JS DOM Listener {adding or removing event through JS, event bubbling and capturing}
 35. JS DOM Naigation {navigating through nodes}
 36. JS DOM Node {creating HTML, insertBefore()}
 37. JS DOM Collection
 38. JS DOM nodeList {diff with DOM collection, querySelectorAll()}
 39. JS BOM window, screen, location, history, navigator objects.
-40. JS DOM pop up boxes, Timer and Cookies. 
+9+40. JS DOM pop up boxes, Timer and Cookies. 
+
 
 Some Important Questions:
 1. How to submit form using JavaScript? document.form[0].submit();. 
@@ -125,13 +129,14 @@ Some Important Questions:
 3. Looping options in JS> Same as java. 
 4. void(0) is used to prevent the page from loading. 
 5. Handling exception is also done through try, catch and finally block only. 
+6. Thorough with how to parse different element?
 
 
 JAVASCRIPT COMBO INTERVIEW QUESTIONs
 source1:22, 27, 29. Delete operator is used to deleted the property of an object or the object itself. but it does not have any effect on var or on function, 31, 43, 56, 66, 73. Also tell the event you know, 74. also tell how to create deferred script, 75, 84.
 source2: 4, 8, 9, 15, 22, 24 here, cursor is the mouse cursor, put @@@A on 35 36.
 Source3: 3, 5, We will do it in hardcore requiorement of JS. 
-Source 4: 
+Source 4:  
 ***************************************************************************************************************************************
 4a. Spring Study File
 
@@ -871,8 +876,7 @@ We also get some default variables which are the part of scope that gets created
 Angular Module
 Now, as the complexity in growing in enterprise application, single module may not suffice. Therefore, we may have multiple modules. HOw can we have multiple modules in angular application. Beloware the steps and a sample code for having multiple module.
 Steps:
-1. Create a separate js file constaining the new module and controllers registered. 
-2. Add the new module in the module empty array which is registered with ng-app. 
+1. Create a separate js file constaining the new module and controllers registered. 2. Add the new module in the module empty array which is registered with ng-app. 
 3. add the new module js file as a script in the HTML page. 
 4. use the controller of new module the same way we use main module. 
 
@@ -944,9 +948,19 @@ ctx.strokeText("Hello World",10,50);
 This is so far my fevorite feature of HTML5. HTML 5 has introduced an attribute which is contenteditable helps to create editable paragraphs. Below is the code:
 <p contenteditable="true">This is a paragraph. It is editable. Try to change this text.</p>
 
-5. 
+5. HTML5 Web Storage
+Before HTML5, cookies were generally the best way to store the application data that help track the preferences and characteristics of the user. With HTML5, we have got the concept of web storage which is more secured and can store way more data the cookies (5MB). We have two object in window object which are localstorage and sessionStorage. LocalStorage does not has any expiry while sessionStorage data gets expired right after the browser is closed. We can use these object's getItem and setItem api for setting and getting the data in it liek below:
+// Store
+localStorage.setItem("lastname", "Smith");
+// Retrieve
+document.getElementById("result").innerHTML = localStorage.getItem("lastname"); 
+Other way of doing the same could be:
 
-Note: HTML5 is backword compatible. 
+Note: 
+1. HTML5 is backword compatible.
+2. Difference in Cookies and Cache: Although cookie and cache stores data of the web page server different purposes. Cookie is used to store data to track the characterstics related to the user while Cache is used to store data so that the same page gets loaded earlier next time the user opens. Cookies are used to store preferences of the user while cache is used to store the files like text, audio or video etc. Cookies get deleted after some specified time while cache gets stored in the client machine until user does not delete in manually. 
+***************************************************************************************************************************************
+
 
 
 hymn of weekend, perfect ed shareen, happier, all the star song, HOw would you feel,,,,,,,, watch movie "The fault in out star", me before you, raocky
