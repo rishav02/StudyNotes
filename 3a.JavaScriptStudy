@@ -581,16 +581,89 @@ var Person = function(name){
 }
 var person1 = new Person("Rishav");
 var person2 = new Person("Rishabh");
-Now, in the above code we have create a constructor and two object through it. In both the objects, a copy of getName() method will get created which is not good. With inheritance, we can reuse the function without creating a copy. For this, we have to use prototype keyword. 
+Now, in the above code we have created a constructor and two object through it. In both the objects, a copy of getName() method will get created which is not good. With inheritance, we can reuse the function without creating a copy. For this, we have to use prototype keyword. 
 var Person = function(name){
 	this.name=name;
 }
 Person.prototype.getName=function(){
 		return this.name;
 };
-As you can in above, prototype keyword is used to add a function to the prototype person. Thus, all other object can use this method while copy for each will not be created. 
+As you can see above, prototype keyword is used to add a function to the prototype person. Thus, all other object can use this method while copy for each will not be created. 
 
 3. Practically useful abstraction: http://www.yusufaytas.com/achieving-abstraction-in-javascript/
+
+4. Here, we will have a look on a form containing the most commonly seens field and we will also look on the JS code for accessing these elements through dom and perfomrning action related to it. 
+Below is the code of the HTML page we have just created and using JS for dynamic and event based change.
+<html>
+	<body>
+		<form name="myform" action="www.google.com" onsubmit="formValidation()">
+			<h1>Front End Development three days training</h1>
+			Name: <input type="text" name="employeeName"></input></br>
+			How many days would you need food?</br>
+			<input type="checkbox" id="ch1" onclick="whichHalf()">Day 1</input></br>
+			<input type="checkbox" id="ch2" onclick="whichHalf()">Day 2</input></br>
+			<input type="checkbox" id="ch3" onclick="whichHalf()">Day 3</input></br>
+			<div id="radioDiv" style="display:none;">	
+				Full Day:<input type="radio"></input>
+				Full Day:<input type="radio"></input>
+			</div>	
+			Please pick your food preference:</br>
+			<input type="radio" id="rdVeg" /*name="radioGroup1"*/ onclick="radioCheck()">Veg</input></br>
+			<input type="radio" id="rdNonVeg" /*name="radioGroup1"*/ onclick="radioCheck()">Non Veg</input></br>
+			Email:<input type="email" name="email"></input></br>
+			Select your City:
+			<select id="city" onchange="printCity()">
+				<option value="Delhi">Delhi</option></br>
+				<option value="Mumbai">Mumbai</option></br>
+				<option value="Hydrabad">Hydrabad</option></br>
+				<option value="Bangalore">Bangalore</option></br>
+			</select></br>
+			upload your photograph:<input type="file"></input></br>
+			<button type="submit">Register</submit>
+		</form>
+		<script>
+			//onclcik, onchange, onmouseover, onmouseout, onmouseup, onmousedown
+		/*showing simple blank text field validation*/
+			function formValidation(){
+				var name = document.myform.employeeName.value;
+				if(name==""){
+					alert("please provide your name");
+					document.myform.employeeName.focus();
+				}
+			}
+		/*if user opts for all the days then we will ask which half*/
+			function whichHalf(){
+				var day1=document.getElementById("ch1");
+				var day2=document.getElementById("ch2");
+				var day3=document.getElementById("ch3");
+				if(day1.checked==true && day2.checked==true && day3.checked==true){
+					document.getElementById("radioDiv").style.display="block";
+				}
+			}
+		/*If both radio buttons are checked then place alert.
+		 However the best way it to give same name to all radio to make only one which check at a time*/
+			function radioCheck(){
+				var rd1 = document.getElementById("rdVeg");			
+				var rd2 = document.getElementById("rdNonVeg");
+				if(rd1.checked==true && rd2.checked==true){
+					alert("you cannot opt for veg and non veg both");
+				}
+			}
+		/*Confirming the city name through confirm box*/
+			function printCity(){
+				var cityName = document.getElementById("city").value;	
+				confirm("Are you are you want to do "+cityName);
+			}
+		</script>
+	</body>
+</html>
+Take Away:
+1. For form validation: place form name and onsubmit="function()" in HTML and document.myform.name for capturing elements.
+2. For checkboxes (util we do not find a better way): use id="ch1" in HTML and use document.getELementByID("ch1").checked=="true" in JS. 
+3. For radio button: We do exactly same as checked boxed. Also, how can we make sure that only one radio button should be checked at a time? We need to give same value to the name attribute of all the radio buttons. 
+4. For menu (select and option): We can specify the name or id attribute and can use document.myform.city.value or document.getElementById("cty").value to get the value.
+Note: For traversing the dom to capture the elment value we can use either name attibute values of element like document.name.subname.subname.... so on or we can use document.getElementById("uniqueID").  
+
 
 Implementations
 I have created this section for the sole purpose to speak about the implementation of what we have learned in this tutorial. We must use as many practical examples as we can related to the real world.  
