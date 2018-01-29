@@ -76,16 +76,17 @@ updates:
 @@@What is modular front end application? 
 @@@avaScript Prototype based inheritance
 @@@Practically useful abstraction
-Also do:
 @@@different form fields and events and changing them accorsding to the form field.
 @@@Closure complete.
+@@@typeof operator in javascript
+@@@Is JavaScript an object oriented language? When i checkn on this, i really do not see any authentic resource telling if javascript is obeject oriented language or not except the debates. On what i researched, i found javascript is an object oriented language but not on the basis class but it is prototype based OO language. We cannot create classes in javascript but we can create constructors and use prototype for creating object with same properties and functions.  
 
 JavaScript Quick Revise
 1. JS introduction
 2. JS different ways to print.
 3. JS SYntax, Statement, comments
 4. JS Variables, operator, airthmatic, assigment
-5. JS data types: mention that undefined and null cannot contain value but still counted as data type. 
+5. JS data types[imp]: mention that undefined and null cannot contain value but still counted as data type. 
 6. JS functions: Self Invoking Function and its purpose, argument concept. 
 7. JS Object  
 8. JS Scope [imp]: Non declaring a var in function?, Access object property in js, how to add new property to object.
@@ -120,7 +121,7 @@ JavaScript Quick Revise
 37. JS DOM Collection
 38. JS DOM nodeList {diff with DOM collection, querySelectorAll()}
 39. JS BOM window, screen, location, history, navigator objects.
-9+40. JS DOM pop up boxes, Timer and Cookies. 
+40. JS DOM pop up boxes, Timer and Cookies. 
 
 
 Some Important Questions:
