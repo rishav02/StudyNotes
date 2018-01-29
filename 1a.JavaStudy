@@ -513,24 +513,24 @@ Immutable String
 Note: String can be created in two ways which are String s “Rishav” which is called as string literals and other is String s = new String(“Rishav”) which is through new keyword.  
 
 
-Java String Compare
+||Java String Compare||
 We can compare the string on the basis of content and reference. String compare is used in authentication, sorting and reference matching etc. There are three ways of comparing the string. 
 •	String compare by equals() method – It compare the original content (values) of the strings. It also has two types. First, public Boolean equals(s.equals(s1)); this compare without ignoring the case. Second, public Boolean equals(s.equalsIgnoreCase(s1)); this compare ignoring the case. Also, we can pass the any other string like s1, s2 or directly write in the method as this: s1.equals(“ayushi”). 
 •	String compare by == operator – the operator == compare reference but not values. This means that it will be checked whether to two string object point on the same memory block or not. This has nothing to do with the value. 
 •	String compare by CampareTo() method – this method compare the two strings lexicographically which also mean to compare the values with their unicodes. If the strings differ through this method then either they have different character at an indexed position or they are may be have different length. The result of this method comes in integer form. 0 indicates that the strings are equal, positive indicates that the first string is greater and negative indicates that the second string is greater. This also has the option for ignore case i.e. compareToIgnoreCase(). 
 Note: compareTo() method is showing negative vlue even if the first string is greater. Why? This may be happening because it checks the first element and gives the result if found the difference in the first element itself.
 
-String Concatenation
+||String Concatenation||
 The string concatenation is used to create a new string from connecting multiple strings. There are two ways to doing it. 
 •	By + operator – It is very simple method. Try it. However, its compiler transformation is quite interesting. The concatenation becomes possible because of String builder or String buffer class and its append methods. + operator can also concatenate the primitive data type too. All the primitives are added when used prior to the Strings and considered String when used after them. For example, “String s = 50+30+”Rishav”+40+40” results 80Rishav4040.
 •	By concat() method – This is also simple. Try it. 
 Note: when + operator is used for concatenation, then there is a little code transformation by the compiler happen which is like this – “String s = (new StringBuilder()).append(“String1”).append(“String2”).toString();”. This is because concatenation is denied in the Stringbuilder class. 
 
-Sub-String
+||Sub-String||
 The sub-string is nothing but the part of a string. We can make a new string object from an already existing string. This can be done by using the startindex and endindex. While creating a substring, we need to mention the start index and end index. Start index is inclusive and end index is exclusive. 
 Note: “subsquence()” is a method which is similar to substring with two arguments. 
 
-Java String Class Methods
+||Java String Class Methods||
 Java.lang.String is the class that contains all the methods which are used to perform operation on String for concatenation, comparison, converting, trimming and replacing them. Well, without doubts, String is very important topics since almost all the web application, mobile application, and window based application treat everything as a string. So, here are a few important string methods. 
 •	Java String toUpperCase() and toLowerCase() – these are used to convert the lower case values of a string to upper case and vice versa. Also, if few value out of all values in a string are already upper case and toUpperCase() is applied. Then, uppercase values will remain the same and rest will covert to uppercase too which means every value will be upper case. Also, it has got the same method with the additional parameter “locale” and its for the language which is not necessary to use as the system will pick up the default language (English in our case).
 •	Java String trim() method – trim removes the white spaces  (Simple spaces/blanks) are removes before and after the string. Try it. However, it does not remove the white space between the String values. For ex – “Rishav Mishra”, will not remove the white space between rishav and Mishra. 
@@ -543,7 +543,7 @@ Note: In simplest words, it just creates the string version of any primitive dat
 •	Java replace Method() -  this method replaces the whole string data or some part of string data with a new data. 
 Note: It has different version which are related to regex. Do it later when get time. 
 
-Java StringBuffer Class
+||Java StringBuffer Class||
 The java StringBuffer class is used to create mutable string which is synchronous as well (Synchronous means multiple thread use the StringBuffer without making program inconsistent). They are same in every other manner to a normal string. This class is thread safe (multiple threads can use StringBuffer without making program inconsistent, due to synchronization). It has three important constructors. 
 •	First, StringBuffer() constructor creates an empty string buffer with initial capacity of 16 indexes. Second, StringBuffer(String str) which creates a string buffer with the specific string. Lastly, StringBuffer(int n) creates a string buffer with specific capacity at length. Please check the important string buffer methods.
 •	As we know, mutable strings can be created by the help of stringbuffer and stringbuilder classes. Below are some important methods. 
@@ -556,7 +556,7 @@ The java StringBuffer class is used to create mutable string which is synchronou
 7.	StringBuffer ensureCapacity() method – this method is used to ensure the minimum capacity of the string buffer. Check tutorial if not remember. Little complicated to undertand through words. We do not print the “ensurecapacity”. The formula mentioned in the string buffer works in ensuring the String. 
 Note: See! This is not easy to clarify but I am trying my best. If it’s only about capacity method, then anything written in its description is correct. But when ensure capacity is used then there are two cases. First, if we try to ensure the capacity more than the current capacity of the stringBuffer. Then, {(2*c)+2} will be applicable where c is the current capacity. Second, if the ensuring capacity is equal or lesser than the current efficiency of the stringBuffer then the ensured capacity will be same. I hope this observation is correct. 
 
-Java StringBuilder Class
+||Java StringBuilder Class||
 StringBuilder also use to create mutable string but they are non-synchronous. It also has three constructors which are StringBuilder(), StringBuilder(String str) and StringBuilder(int a). They are same as in StringBuffer. Please check the important buffer method. Some of the methods of the StringBuilder class are below. 
 1.	StringBuilder append() Method – it is the same as the append method of the StringBuffer. 
 2.	StringBuilder insert() Method – It is same as the insert method of the StringBuffer.  
@@ -598,16 +598,17 @@ If you follow few rule then can create your own immutable class. These are the f
 3.	Do not give setter method. 
 Immutable classes can be made to make few things unchangeable in the project which may be used sometimes. 
 
-Java ToString() Method
+||Java ToString() Method||
 This method comes in existence when we think of representing an object as a string. The sole purpose of thinking about this is to print the value of the object by writing less code. 
 The best way to understand this is to first make a program which prints the value passed while creating an instance. For that you need to create a constructor and use the display method (or you can also write print statement in constructor itself). In the same program, literally print the object of the class then it will print the hascode. Now, instead of representing the object with hashcode, we can represent the object as string. This is done by overriding the toString() method whose return type is String. Also, that will be involving less code to represent the clause of the object that the usual way which is its second advantage. In the nutshell, to literally print an object as string and write less code to print the values, we can use toString() method. IT’S NOT ABOUT CONVERTING THE ARRAY TO STRING. 
 
-StringTokenizer Class in Java
+||StringTokenizer Class in Java||
 •	Java.util.StringTokenizer is a class that allows you to break a string into tokens. Though it does not provide a facility to differentiate between numbers, quoted strings, identifiers and etc, but it is simple way for breaking string into tokens. Example of quoted string is “Hello”. 
 •	StringTokenizer has three constructors which are StringTokennizer(String str) i.e. string tokenizer with specified string, StringTokenizer(String str, String delim) i.e. string tokenizer with specified string and delimiter and StringTokenizerI(String str, delime, return boolean) which has got additional Boolean return type which if true then the delimiter is taken as a token to be printed otherwise not. 
 •	Now, to use this we have to make the instance and pass the string which we want to break. Then, use its method “hasmoretokens()” in the while loop  and nextToken() inside the print statement. Check example for further clarification.
 Note: you can check more methods later if want to learn more on this. 
-Java String Methods(left out)
+
+||Java String Methods(left out)||
 1.	String contain() Method – This method search the sequence of char in a string i.e one string into other. If found then returns true otherwise false. We can even search any other string in the other. If the sequence is null then it will throw the NullPointerException. 
 Note: we call character sequence to this: String s = “Rishav”;. 
 2.	String Format() Method –this method is used to format the string in java by giving locale, format and argument. It can throw NullpointerException if format in null and illigalFormatException if format is illegal or impossible. Also, we have different formatting style for int, float, char etc which is out of scope right now. 
@@ -620,9 +621,16 @@ Note: I am not able to run this method on eclipse kepler. Also, in oracle docs i
 7.	Java String replaceAll() Method – this method is use to replace a regular expression wherever found in a string with a sequence of chars. Both are passed as the parameter. Note: this  \\s is a single white space and \\s+ more than one white spaces.   
 8.	String split() method – This method is used to split a string against given regular expression and return a char array. It takes two parameters which are regex which is the expression makes basis of split and int limit which is limits the number of string in an array. If it is zero than no string, one than as it is one part and 2 then in two parts. Also, we have to create an string array and put all the parts in that and print it with the help of for loop.
 Note: This method returns string array and thus we cannot simply print it but we have to print it like we print an array.
-9.	String toCharArray() Method – it is a method used to convert a string to char array. To implement it, create a string and convert it into tocharArray() method and then print it through a for loop.  
+9.	String toCharArray() Method – it is a method used to convert a string to char array. To implement it, create a string and convert it into tocharArray() method and then print it through a for loop. 
 
-Java Regex
+Note:
+1. string, string buffer and string builder are final.
+2. 9) Why StringBuffer and StringBuilder classes are introduced in java when there already exist String class to represent the set of characters?
+The objects of String class are immutable in nature. i.e you can’t modify them once they are created. If you try to modify them, a new object will be created with modified content. This may cause memory and performance issues if you are performing lots of string modifications in your code. To overcome these issues, StingBuffer and StringBuilder classes are introduced in java.
+3. Write a java program to reverse a given string with preserving the position of spaces?
+4. Write a code to prove that strings are immutable in java? solution: http://javaconceptoftheday.com/example-to-prove-strings-are-immutable/
+
+||Java Regex||
 (Over to java oracle docs: https://docs.oracle.com/javase/tutorial/essential/regex/)
 Java regular expression (Regex) is used to define String Pattern that can be used for searching and manipulating a text. Java provides java.util.regex package for pattern matching with regular expression. It is very useful in defining constraint on password and email verification. This java.util.regex has mainly got one interface MatchResult interface and three classes which are Matcher, Pattern and PatternSyntaxEception class. 
 1.	Matcher Class – This implement MatchResult interface. This is basically used to perform the match operation between the pattern and expression. Check all of its methods while Boolean Matches() being mostly used and solves the purpose of matching the regular expression with the pattern. 
@@ -689,7 +697,7 @@ http://www.tutorialspoint.com/javaexamples/java_regular_exp.htm
 
 Exception Handling
 
-Exception Handling in Java
+||Exception Handling in Java||
 •	The exception handling is a powerful mechanism to handle the run time errors and to maintain the normal flow of the application. Firstly, what is exception? Dictionary meaning of it is an abnormal situation while in java it is an event that disrupts the normal flow of the program. It is an object thrown at run time.  
 •	The core advantage of exception handling is to maintain the normal flow of the application. In an application, code stop running from where an exception occurs. 
 Do You Know? 
@@ -719,21 +727,22 @@ Note:
 10.	If the exception comes in the called method then that can be caught inside the catch block of the try block from which it is called.      
 11.	Class not found exception occurs when class is not found when classloader tries to load it.
 12.	Init() cause method is used to find out chained exception code which actually caused the exception.  
-Java Try Catch 
+
+||Java Try Catch||
 •	The code which is prone to give exceptions is written in try block which must be followed by catch or final block. These blocks are within the method. Check the syntax. Catch block is used to handle the exception and it must be used after the try block. We can use multiple catch block. Check the example for better understanding. 
 •	Internal working of try catch block – It is pretty simple. When the exception is created, an object will be thrown. Now, either that will be handled or not handled. If handled, then rest of the code will execute otherwise JVM prints the exception description and will terminates.
 
-Multiple Catch Bloc`k 
+||Multiple Catch Block|| 
 If you suspect multiple exceptions in the code written in the try block then you can use multiple catch blocks. But one exception comes at a time and handled at a time. Also, the catch blocks should be written from most specific to general. 
 
-Nested Try Block
+||Nested Try Block||
 The concept of one try block into other is nested try block. The need arises when one part of a block may cause one exception while the entire block causes a different exception. Check the syntax. Try a program for better understanding. 
 
-Finally block 
+||Finally block||
 This block is used to write the cleanup code. Now, what is cleanup code? cleanup code are the code written to properly close any file, database connection  or anything else that was used for running the program but not required anymore. For example, this closes the database connection so that other users can easily make connection. For a user to make connection a sufficient number of open database connection should be closed. Finally block is always written even if the exceptions are handled or not which means if catch block is present or not. The only condition is to have a try block before a finally block. Another point of view to understand finally block is that it will definitely be executed if the try block in called. We cannot handle the exception in finally block and we cannot write it before the catch block as well. 
 Note: we already know that whatever happens except system.exit or JVM crash, finally block will always be executed. Also, when we have return statement in try and catch block then also finally block will be called and then return statement of try and catch will be executed. But, if finally block also have return statement then also finally block will be executed and try catch will not be executed. Though, writing return statement in finally is considered as very bad habit. 
 
-Java Throw Keyword
+||Java Throw Keyword||
 At first glance, it did not make any sense to me. But yeah it did later. I was not able to understand it before because why we want to create an exception? It is abnormal condition that stops the program’s execution. Then, why do we need it? Exceptions are needed for implementing some business need related to the program. From the example given, suppose we have to build software for machine that allows or stops a person to vote according to their age. So, when you have the age below 18 then an exception should be thrown. The facility of throwing our own exception (custom exception) helps us to maintain some business requirements like age of the voter should be more than 18. If age is less than 18 then we can take some alternative actions in the catch block. In the nutshell, to implement some business requirement we need to throw self-made exception. 
 Now, Throw is a keyword use to explicitly throw an exception in java program which we will catch also. It is mainly to throw our own created exception called custom exception but it can also throw the predefined exceptions.
 Note:
@@ -742,26 +751,26 @@ Note:
 3.	We can rethrow an exception by using throw keyword inside catch block. 
 4.	Even after knowing that an exception must be catched, If we do not. Then, that’s called Ducking the exception. 
 
-Exception Propagation
+||Exception Propagation||
 Exception Propagation is simple process where once an exception is thrown then the runtime system looks for a block containing exception handling code. The search starts from the block throws the exception to the block next (below) in the calling stack. For example, if a calls b, b calls c and c calls d. If d throws an exception then the compiler will look in the order d to c to b to a. Check for deep explanation: http://stackoverflow.com/questions/10633664/what-is-exception-propagation.
 Note: 
 1.	If sub classes of exception is catched after super classed then unreachable catch block error will be shown. 
 2.	We can chain the exception by throwing one exception on another exception is already thrown. 
 
-Throws Keyword
+||Throws Keyword||
 We have just studied throw keyword which is mainly used for throwing the custom exceptions. Though, we cannot throw the custom exceptions with “throw” keyword alone. We need to use throws keyword as well while declaring a method (not while declaring a class) which use throw keyword to throw a custom exception. Since, custom exceptions are not known by java that is why we need to use throws keyword for a custom Exception. If we throw a predefined exception by using throw keyword then throws is not required.
 Sometimes, throws keyword is also used to indicate that the code in the method might throw certain exceptions. Therefore, if anyone use those methods can properly catch those exceptions. This is another view point for throws keyword. 
 Note: Also, try to understand the difference between try and catch and throw and throws. Try and catch is used to handle the exceptions with or without throw and throws. With throw and throws keyword, try and catch block will be used in the method that calls the method that throws the exception.  @@@Practice Example. 
 
-Difference between throw and throws 
+||Difference between throw and throws|| 
 Below are some difference between throw and throws keyword. 
 •	Throw is used to throw an exception while throws is used to declare an exception in any method. 
 •	Checked exception cannot be propagated with throw only and it can be propagated with throws. 
 •	Throw is followed by an instance and throws is followed by a class. (look at the syntax literally)
 •	Throw is used within a method while throws is used as a signature in declaring a method. 
 •	You cannot throw multiple exceptions with throw but we can declare multiple exceptions with throws keyword. 
-
-Difference between Final, Finally and Finalize
+0
+||Difference between Final, Finally and Finalize||
 Below is the description exploiting the difference between each of them.
 •	Final – it is a keyword. Final is used to restrict a class, method or variable. Final class cannot be inherited, final method cannot be overridden and final variable cannot be changed.
 •	Finally – Finally is a block. It is used to write code to terminate the connection and file used to run a program. 
