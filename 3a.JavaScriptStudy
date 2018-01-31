@@ -194,11 +194,11 @@ Break statement is used to jump out of the loop. Continue statement is used to j
 Note: Type conbersion happends in two ways in JS. First, by using the methods like toString() and other. Seocnd, autmatically by JS.  
 
 ||Javascript Regular Expression|| 
-We already know regular expression deals with creating a pattern and searching text through that pattern. Now, how do we use regular exxpression in JS? We basically has two methods in which are test and exec. The basic syntax for using regex is "pattern.test(text)". We also have exce() method which works like test but returns arrays instead of boolean.
-Also, couple of JS strign method search() and replace also works with regex. 
+We already know regular expression deals with creating a pattern and searching text through that pattern. Now, how do we use regular exxpression in JS? We basically has two methods which are test and exec. The basic syntax for using regex is "pattern.test(text)". We also have exce() method which works like test but returns what it found instead of boolean.
+Also, couple of JS strign method search() and replace also works with regex. The syntax for using search is "string.search(pattern)". It will return the index of first match begin. Syntax for using replace is "String.reaplce(pattrn, reaplcement)". 
 
 ||Javascript Error||
-We have got error object "err" which we can use to deal with errors in JS. Like java, we can use try, catch, finally blocks for working with code suspected for error. We can also use throw keyword as well. Some commn JS errors are type (try to convert a number to upperCase), reference (when a ref or var is not declared), range (when using precesion upto 500 decimal places), syntax error. 
+We have got error object "err" which we can use to deal with errors in JS. Like java, we can use try, catch, finally blocks for working with code suspected for error. We can also use throw keyword as well. Some commn JS errors are type (try to convert a number to upperCase), reference (when a ref or var is not declared), range (when using precesion upto 500 decimal places), syntax error. Fir printing the error in catch we have e.description method. 
 
 ||JS Hoisting||
 In JS, a variable can be used even before it is declared. But is this possibble? This is possible through Hoisting. Hoisting is JS default behaviour of moving all the declaration on the top of the script (if gloabl variable) or function (if local variable). Remember, JS hoists declaration but not initiaization. It is a good practice to declare all the variable at the beginning of its scope.
@@ -417,12 +417,24 @@ JS has the concept of variable and function hoisting due to which we can use the
 We also have self invoking function means those functing are not needed to call. See the syntax below:
 (function(){function body})();
 Functions are also considered as object. If we do instanceOf on a function then it will return function as type. 
+Note: Call() and apply() methods can be used maintly to call functions of other object. Because normal object can be called simply. 
 
 Function Parameter
 JS does not have any check on the function parameters. So, need to check the where no. of arguments are less or more than the actual parameters needed. 
 In case the parameters are less then the missing parameters are taken undefined. However, we set them to default values before we actually procede with any actual logic inside our function. I am not sure what will happen if we intentionally send argument more than defined in the declaration. 
-We also have a default object in JS which is argument object. You can consider this as array of argument. so, we can use it inside function. It is not necessary that we defined any parameter while defining the function. 
-Arguments in JS are passed by value, not by reference. Just like java.
+We also have a default object in JS which is argument object. You can consider this as array of argument. so, we can use it inside function. It is not necessary that we defined any parameter while defining the function. Arguments in JS are passed by value, not by reference. Just like java. Below is one exaple of argument object:
+x = findMax(1, 123, 500, 115, 44, 88);
+function findMax() {
+    var i;
+    var max = -Infinity;
+    for (i = 0; i < arguments.length; i++) {
+        if (arguments[i] > max) {
+            max = arguments[i];
+        }
+    }
+    return max;
+}
+Note: While implementing the functon its does not seems necesary to even define arguments. One example of this is above.
 
 Function Invocation
 function invocation is about calling a function. A functions runs not when its decalred but when its declaration is called. We can call a method through setting an event, or windows object or this keyword. We can also invoke a function through function constructor. 
@@ -504,9 +516,9 @@ will do it later.
 ||DOM Events||
 To make our web pages more responsive, JS is a big help. We can use JS functions and properties on the basis of different events. We write events in HTML as the attribute of element Let see what all events we have in JS. 
 1. onclick: If user click an element. 
-2. onload: on load of the document or web page. 
+2. onload: on load of the document or web page finishes. Can be used with body tag to do something immediately after page loads. 
 3. onunload: on unloading page. This can happen when tag or window is closed. 
-4. onchange: on the state change of an element. Generally used with check boxes or input fields. 
+4. onchange: on the state change of an element. Generally used with check boxes, radio and other input fields. 
 5. onmouseover: define the state of element when mouse is over.
 6. onmouseout: defines the state of element when mouse is out. 
 7. onmouseup: when mouse is kept unclicked. 
@@ -514,7 +526,7 @@ To make our web pages more responsive, JS is a big help. We can use JS functions
 
 ||DOM Listener||
 We have already seen one way of adding event on diiferent condition on HTM: element by adding them as the attribure of HTML. We can do this by addEventListener(event, function). One example is below:
-document.getElementById(id).addEventListener("onclick", function());. This way we can add event listener in javascript. We can add multiple events to a partiular element. We can add event to window object by window.addEventHandler(). We also have another method called removeEventListener("event", "function").
+document.getElementById(id).addEventListener("onclick", function());. This way we can add event listener in javascript. We can add multiple events to a partiular element. We can add event to window object by window.addEventListner(). We also have another method called removeEventListener("event", "function").
 Event Bubbling and Event Capturing: Under event bubbing, event related to innermost element is triggered first while outermost will trigger last. In event capturing, event related to outermost element will be triggered first while last for the innermost element. 
 By default, event capturing is used in java while if we have to change this to event bubbling then we have to pass true as argument in addEventListener() method. 
 
