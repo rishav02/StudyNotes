@@ -38,6 +38,9 @@ Add implementation index 1 to downcasting in java study.
 27. Static and dynamic binding in java
 28. Deep CLoning and SHALLOW cloning.
 29. Heap and Stack. How instance and static types gets the value. 
+30. Java Inner classes revision: Heirarchy, Advantage of inner classes, Describe the basics of each type.
+31. Understand the core advantage of multithreading(4){simultaneous, same memory, fast cotext switching, one thread does not interrupt flow of other}, Life cycle of thread, 
+
 
 Java Interview Questions:
 Source 1: 
@@ -77,9 +80,7 @@ updates:
 @@@avaScript Prototype based inheritance
 @@@Practically useful abstraction
 @@@different form fields and events and changing them accorsding to the form field.
-@@@Closure complete.
-@@@typeof operator in javascript
-@@@Is JavaScript an object oriented language? When i checkn on this, i really do not see any authentic resource telling if javascript is obeject oriented language or not except the debates. On what i researched, i found javascript is an object oriented language but not on the basis class but it is prototype based OO language. We cannot create classes in javascript but we can create constructors and use prototype for creating object with same properties and functions.  
+@@@typeof operator in javascript  
 
 JavaScript Quick Revise
 1. JS introduction
@@ -87,7 +88,7 @@ JavaScript Quick Revise
 3. JS SYntax, Statement, comments
 4. JS Variables, operator, airthmatic, assigment
 5. JS data types[imp]: mention that undefined and null cannot contain value but still counted as data type. 
-6. JS functions: Self Invoking Function and its purpose, argument concept. 
+6. JS functions[imp]: Self Invoking Function and its purpose, argument concept, Must check the note point.
 7. JS Object  
 8. JS Scope [imp]: Non declaring a var in function?, Access object property in js, how to add new property to object.
 9. JS Events: Check the syntax for adding event in js, difference in HTML event and JS event names. 
@@ -134,10 +135,10 @@ Some Important Questions:
 
 
 JAVASCRIPT COMBO INTERVIEW QUESTIONs
-source1:22, 27, 29. Delete operator is used to deleted the property of an object or the object itself. but it does not have any effect on var or on function, 31, 43, 56, 66, 73. Also tell the event you know, 74. also tell how to create deferred script, 75, 84.
+source1: 11, 18, 21, 29, 32, 36, 43, 47, 56, 58, 60, 66, 73, 74. Also tell the event you know, 74. also tell how to create deferred script, 75, 84.
 source2: 4, 8, 9, 15, 22, 24 here, cursor is the mouse cursor, put @@@A on 35 36.
 Source3: 3, 5, We will do it in hardcore requiorement of JS. 
-Source 4:  
+Source 4: 3, 6, 11, 12, 19, 21.
 ***************************************************************************************************************************************
 4a. Spring Study File
 
@@ -406,6 +407,9 @@ In ordinary situation, duplicate hashset values will be inserted in the hashSet.
         }
     }
 Above is the hashcode and equals method.
+
+33. Can we create a thread by extending Thread class and Runnable interface both. Yes! We can do this. However, we must make sure we extend thread first and then implements runnable interface. The order if reversed will give compilation error. We can create thread in either ways if both thread class and runnable interface is used. 
+
 *************************************************************************************************************************************
 
 JavaInterview Question File
@@ -917,49 +921,6 @@ index.html
 Note: check many modules available in ngmodule.org. To use any external module from this source the procedure is same. Try some time.
 ***************************************************************************************************************************************
 
-HTML5 Features
-1. Multimedia support in HTML5: Before HTML5 we can embed a video in a web page through a plugin. HTML5 introduces a new element <video> element to give a HTML way of embedding a video to your web page. 
-<video width="400" controls>
-	<source src="video1.mp4" type="video/mp4">
-	<source src="video2.mp4" type="video/mp4">
-Text if you video does not loads comes here
-</video>
-controls attribute gives the controls like play, pause and other. while we can have another attribute called autoplay for playing the vdeo on the page load and controls to play and pause will not appear. 
-
-2. HTML5 has given many new cool values for element type attributes. Before HTML5 we has input elements type attribute values which are text, password, radio, submit, button, checkbox, reset and may be a few other. Now, lets see what new value have we got. These are below mentioned:
-1. email: Input for entering email. Will give you suggestion of the cached email id you recently typed. 
-2. date: Input for selecting date from the calendar that will open after you click. We have input specifically for week, month or year.
-3. url: Input for entering a url. It gives to default support of validation.
-4. color: Input for selecting color.
-Note: For certain type it gives basic validation too like for email and url. 
-
-3. HTML5 canvas
-This is more related to graphics. HTML5 introduces <canvas> tag which can be used through javascript and its object has many API and properties. Below is the code example:
-<canvas id="myCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
-Your browser does not support the HTML5 canvas tag.</canvas>
-
-<script>
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
-ctx.font = "30px Arial";
-ctx.strokeText("Hello World",10,50);
-</script>
-
-4. Content Editable atribute
-This is so far my fevorite feature of HTML5. HTML 5 has introduced an attribute which is contenteditable helps to create editable paragraphs. Below is the code:
-<p contenteditable="true">This is a paragraph. It is editable. Try to change this text.</p>
-
-5. HTML5 Web Storage
-Before HTML5, cookies were generally the best way to store the application data that help track the preferences and characteristics of the user. With HTML5, we have got the concept of web storage which is more secured and can store way more data the cookies (5MB). We have two object in window object which are localstorage and sessionStorage. LocalStorage does not has any expiry while sessionStorage data gets expired right after the browser is closed. We can use these object's getItem and setItem api for setting and getting the data in it liek below:
-// Store
-localStorage.setItem("lastname", "Smith");
-// Retrieve
-document.getElementById("result").innerHTML = localStorage.getItem("lastname"); 
-Other way of doing the same could be:
-
-Note: 
-1. HTML5 is backword compatible.
-2. Difference in Cookies and Cache: Although cookie and cache stores data of the web page server different purposes. Cookie is used to store data to track the characterstics related to the user while Cache is used to store data so that the same page gets loaded earlier next time the user opens. Cookies are used to store preferences of the user while cache is used to store the files like text, audio or video etc. Cookies get deleted after some specified time while cache gets stored in the client machine until user does not delete in manually. 
 ***************************************************************************************************************************************
 
 
