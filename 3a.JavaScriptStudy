@@ -58,6 +58,18 @@ Note: Notice that undefined and null cannot contain value but still counted as d
 Javascript does not check the number and type of the argument check while calling the function. Thus, if the number of argument is not sent properly then also function runs considering missing values as undefined. Also, it is good practice to check the null and provide a default values to your parameters. 
 Self invoking function are those which are written or implemented in such a way that are not required to be called whereas they are slef invoked right after it is written. One possible purpose of writting the self invoking fucntion is to write the initialization work.
 
+Note: There are three way to create a function according to the ECMA script:
+1. Function Constructor: 
+var functionName = new function("parameter1", "parameter2", "body");
+2. Function Declaration: 
+function functionName(parameter1, parameter2){body};
+3. Function Expression:
+var VarName = function(parameter1, parameter2){body};
+The third is called as annonymous function in javascript. HOwever, we can also have named function expression which are not annonynous function. 
+Now, the main question why do we have function expressions? However, are making difference? Well, one major difference between declaration and expression is they functoni declaration is hoisted while function expression aren't. So, we if we can find a special case where we do not want functoin to get called before its declared then we should use function expression. ,=
+
+
+
 ||JavaScript Object||
 Let’s see the Concept of objects, properties and methods. For example, a car is an object. It will have weight and color which are its properties and methods like start and stop. We can write an object in java script like this “var car = “{type:”fiat”, model:”500”, color:”white”}”;”. The values are written in name:value pairs. Object methods are the functions. So, basically you can have an object in java script which can have properties and methods. Properties will be in Name:value pair while methods will be the functions. Then, we can access the properties of the object by “object.propertyName”. 
 
@@ -445,6 +457,15 @@ Functions in JS are method of object because if a function does not belong to an
 Function Apply
 We can use apply() a built in function of JS to invoke functions in JS. The difference between call() and apply() is that apply takes the arguments of a method in the form of array. Each element of that is just like a set of arguments. 
 
+Function Closures
+Well, I tried understandin closure from various resouces over internet and still did not found a single statement easy definition of closure that touches the boudary of its need. I am going to give a attempt. Closure is the technique of using scope from other scope in such a way it only belong to it only. We have global scope and local scope but nothing in between. Closure gets you somhting in between. If a variable belongs to global scope then it is accessible inside a function but its not exclusively available to that function. But with closure we will get a varible for a function which is in higher scope and is exclusively for that function. Letcheck the code below:
+function outer(p1, p2){
+	var outerVar="result is";
+	function(){
+		return outerVar + (p1+p2);
+	}
+}
+In the above code, for innner function outerVar is variable from outer scope but still is exclusive for it. Other functions cannot use. NOw, are you thinking when will you get usecase for using closure. In all those scenarios where we want a variable exclusively for a function but need it outside. An actual example for such scenario is counter problem defined in w3scool.  
 
 JS HTML DOM
 
@@ -670,11 +691,15 @@ Below is the code of the HTML page we have just created and using JS for dynamic
 	</body>
 </html>
 Take Away:
-1. For form validation: place form name and onsubmit="function()" in HTML and document.myform.name for capturing elements.
-2. For checkboxes (util we do not find a better way): use id="ch1" in HTML and use document.getELementByID("ch1").checked=="true" in JS. 
-3. For radio button: We do exactly same as checked boxed. Also, how can we make sure that only one radio button should be checked at a time? We need to give same value to the name attribute of all the radio buttons. 
-4. For menu (select and option): We can specify the name or id attribute and can use document.myform.city.value or document.getElementById("cty").value to get the value.
+a. For form validation: place form name and onsubmit="function()" in HTML and document.myform.name for capturing elements.
+b. For checkboxes (util we do not find a better way): use id="ch1" in HTML and use document.getELementByID("ch1").checked=="true" in JS. 
+c. For radio button: We do exactly same as checked boxed. Also, how can we make sure that only one radio button should be checked at a time? We need to give same value to the name attribute of all the radio buttons. 
+d. For menu (select and option): We can specify the name or id attribute and can use document.myform.city.value or document.getElementById("cty").value to get the value.
 Note: For traversing the dom to capture the elment value we can use either name attibute values of element like document.name.subname.subname.... so on or we can use document.getElementById("uniqueID").  
+
+
+4. Is JavaScript an object oriented language? 
+When i checked on this, i really did not find any authentic resource telling if javascript is obeject oriented language or not except the debates. On what i researched, i found javascript is an object oriented language but not on the basis class but it is prototype based OO language. We cannot create classes in javascript but we can create constructors and use prototype for creating object with same properties and functions.
 
 
 Implementations
