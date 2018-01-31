@@ -1,0 +1,5 @@
+Since we cannot cover bootstrap complete study as of now thus we are writing an article on how can we use bootstrap. 
+
+What is bootStrap?
+Bootstrap is an open source framework of HTML, CSS and JS for developing responsive front end of a web application. With responsive i mean UI meats for different screen sizes like desktop, mobile or anything in between.
+Bootstrap mainly consist of bootstrap.css, bootstrap.js and glyphicons. We can include bootstrap files either through CDN or by manually downloading the files and placing them in web resouce folder of the project.  
