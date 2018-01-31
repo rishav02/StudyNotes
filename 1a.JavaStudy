@@ -888,7 +888,9 @@ Note:
 5.	If a thread is printed like this “System.out.println(Thread);”, then we get output like Thread[ThreadName, Priority, TypeOfThread]. 
 6.	If run method is not present while start method is called then compilation error will come provided thread is created by implementing the runnable interface.
 7.	When a thread calls wait then its on sleep by giving its lock as well. Now, at this point in time, if we try to check if that thread is alive through isAlive() method then we will get exception. I guess this is because the thread is neither running nor terminated.
-
+8. Runnable interface is a functional interface which has a method run. That's when a class implements the run interface works fine.
+9. Why do we have to call run method through start method? Run method is a normal method which is just overriden in your class. While Start() method has its implementation in thread class which provides the functionality of multithreading in java. Start method will ask JVM to call to create the new thread and call the run method through the new thread.
+10. Thread vs Runnable: In java, we can create thread in two ways which are through thread class or through Runnable interface. Let's discuss which one to pick and why. Runnable interface way should be preferred for creating thread for these reasons. Firstly, since multiple inheritance through classes in not allowed in java thus when we extends Thread class then we loose the chance of extending any other thread. Second, Extending a class is generally to use specialize the behaviour of the parent class while here we want to just use the start method which we can do by creating an instance only.
 
 Thread Scheduler in Java
 Thread scheduler as the name suggest schedules that when to run which thread. It is a part of JVM and selects a runnable thread to run. Only one thread can run in a process (while multiple threads can run of different process). The thread scheduler mainly uses preemptive and scheduling or time slicing. In preemptive scheduling, the thread with the highest priority is executed first until it enters the waiting or dead state or even higher priority thread becomes runnable. In time slicing, a task executes for a certain time slice and then again another thread is selected for a slice of time on the basis of priority and other factors.    
@@ -903,6 +905,7 @@ Note:
 yield() method pauses the currently executing thread temporarily for giving a chance to the remaining waiting threads of the same priority to execute. If there is no waiting thread or all the waiting threads have a lower priority then the same thread will continue its execution. The yielded thread when it will get the chance for execution is decided by the thread scheduler whose behavior is vendor dependent.
 join() If any executing thread t1 calls join() on t2 i.e; t2.join() immediately t1 will enter into waiting state until t2 completes its execution.
 sleep() Based on our requirement we can make a thread to be in sleeping state for a specified period of time (hope not much explanation required for our favorite method).
+
 Start a thread twice?
 No! We cannot start a thread once it is started. If we try to do so then we will receive an illegalThreadStateException. The thread will run for the first time but will throw the exception on the second time. Though, we have to understand that the class extending the thread class and having the run() method will be one thread for one particular object created while if other object is created for the same extending class then it will considered as another thread. This can be checked by running one object twice and running two different object of an extending class. 
 Note: This happens because the thread once started comes in running state and cannot be started again because it is not be runnable state. 
@@ -953,6 +956,32 @@ This class is used to communicate with the java runtime environment. This class 
 Note:
 1.	ThreadLocal is a keyword we can use with thread so the each thread accesing the resource should have their own copy of the variable. Thus, giving synchronization at variable level. 
 2.	Thread leak happens when an application does not releases the reference of a thread and those thread were not garbage collected. 
+3. how to create a thread pool
+Threadpool is group of fixed number of thread which are created and waiting in runnable state to be used for processing any task. Thread schedular picks the thread for processing a task and once task is done then the thread goes back in the thread pool in runnable state. We can improve the performce of an application with threadpool as it saves time in new thread because we already have threads in pool created and in runnable state. One real time usage of Thread pool is in web containers managing JSP and servlets. 
+In web container, if for every new request we give a new thread by creating on the spot then it will be a lot of overhead in managing the life cycle of the thread only. Therefore, thread pool seems to be a good idea where a set of threads are already created in the thread pool in runnable state. These will save alot of time as skips creating and termination of a thread. Infect, the same set of threads can be used multiple times for handling new request.
+In java, we have executor framework consisting of executor interface, ExecutorService sub interface and Executor class. Below is the code for crearting the thread pool. 
+ExecutorService pool = Executors.newFixedThreadPool(MAX_T);
+So, as we can see we have used newFixedThreadPool() api of Executors class to get pool. Now, we will process a task using the thread from a pool. 
+//creating a task
+Runnable task1 = new Task("Task1");
+pool.execute(task1);
+In above code, we have created a task through a class called Task which implements Runnable interface and override the run method. Then, we pass this task object to execute method of pool. Likewise, we can create many task and execute through pool. Once all the threads in the pool is in running state then all other received task goes in queue. 
+Risk with Thread Pool:
+a. DeadLock: Deadlock can occur in any multithreaded environment while thread pool is another case of deadlock. One possible situation of deadlock in thread pool could be when all the running threads are waiting the response of a blocked thread due to unavailability of thread. There could be other scenarios which can cause deadlock. 
+b. Thread Leakage: In some scenarios, running thread does not return back to the pool which causes reduction in the size of the thread. One such scenario could be when thread is running an exception occurs and thread class does not handles the exception then that thread goes out of thread pool. 
+c. Resouce Threashing: We need to be carefull regarding the numbers of threads in threadpool. If we avhe threads more than the optimal number then a lot of time will get wasted in context switching. 
+Note: we must make sure we close the thread pool explicitly by calling shutdown() method of the thread.
+
+4.Little insight on Thread Schedular: Thread Schedular is a for of java which is used to schedule or manage which thread should run at what time? Thread schedular under the hood has some algorithms like preemptive, time sclicing or other. The thread schedular take few things in consideration like priority of thread, waiting time of thread and nature of thread. Whenever main methods executes, its thread schedular that provides the main thread for execution. Not only main thread but other thread like thread for garbage collection, thread for event handler or thread for timer to take care of sleep.  
+5. why wait, notify and notifyAll methods are in object class but not in thread class. 
+Wait, notify and notify method is called on Object since monitor belongs to the object not to the thread. Wait method is called on the object to tell the current monitor accuring thread to release the monitor. So, its objects action to tell thread to release the lock and hence wait is implemented in Object class. Likewaise wait method, notify and notifyAll methods are also called on object not on threads. Notify and NotifyAll method notify one or all thread waiting for thread.
+6. Producer and Consumer Problem
+Assume we have two threads t1 and t2. T1 fills the data in from front of the queue while t2 takes the data out from the back of the queue. T1 is called as producer thread and T2 is called as consumer thread. Now, the producer problem statement says the if the queue gets full then producer do not try to add element and when the queue gets empty then consumer should not try to remove item. Well, we can implement this in java. On a very high level, what we have to do is we need to call wait method on producer thream once queue gets full. When consumer removes an element from queue then we should call notify method for producer. When queue gets empty then wait method is called for consumer thread. When producer placed an element in queue then notify method should be called for consumer. 
+7. Some insight on Volatile Keyword
+In multithreading environment, thread safety is very important. Thread safety involves two things manily which are mutual exclusion and visibility. Mutual exclusion means one thread or process will work on a piece of code at a time and visibility means change done by one thread on shared resource is visible to all other threads. Sometime we just needs only visibility. For example, threads of different processecors will get their own local copy of shared object. Thus, we really do not need to manage the mutual exclusion but changes done by one thread may not reach to thread 2 copy and can lead to inconsistency. Therefore, we just need to manage visibility. Volatile comes to rescue here. Volatile only takes care of visibility which means if a vairble is defined volatile then change related to it will done only in the main memory but not in cache or copy of that var and thus available to all threads.
+8. Thread dump is a way of finding out what all threads in your application is doing including the services threads. The thread dump becomes really important when your application getting hang or becomming slow.
+
+
 Java Synchronization 
 Synchronization in Java
 Synchronization in java is capability to control the access of multiple threads to any shared resource. Actually, when multiple threads try to access a shared resource then the problem of thread interference and inconsistency occurs. So, we have thread safety which is done through synchronization and letting only one thread to use the shared resource at a time. Synchronization is of two types which are process sync and thread sync. We will discuss thread sync here. Thread sync is further classified into Mutual Exclusive and Cooperation. In examples, we have given an idea when multiple threads works on a single object (object of task) then the inconsistency occurs. So, we have used the keyword Synchronized in the method signature with the class whose object was worked by threads. Except this, everything else looks same as the normal program. Check the examples in details later when have time. 
@@ -964,6 +993,7 @@ Mutual Exclusive - This helps to prevent the thread interference when multiple t
 Synchronization Method – Suppose you have a class which performs some task. Now, you have created an object of that class. Then, you have created multiple threads which try to access the same object. So, for maintaining the consistency we will use the keyword Synchronized with the method whose object is shared as the shared resource.  @@@Try Example
 
 Note: The synchronization done through putting synchronyzed keyword with method signature, actually behind the scene capture the monitor of a particular resource. Now, when other multiple method of a class is using synchronization then the monitor used will be same. The basis is same in all the synchronized method of a class, so if a thread occupies the lock of one monitor then other thread cannot even access the other synchronized method of the same class. Obviously, non synchronized method can be called by any number of threads any time.  
+
 Synchronized Block
 This is similar to synchronized method. If you want synchronization for some part of the code in the class then you can create a block like this “Synchronized(this) { code to be synchronized}”. It will work same as synchronized method. Can we have a block inside a method? Yes. Infect, in the example itself the block is inside the method. Synchronized keyword was used with block instead. There is some difference in rules for static and non static block. Why not try and check. @@@Try Example
 Note: the synchronization block is syntax is synchronization(this){code}. This can be any object while generally this keyword.
@@ -971,6 +1001,7 @@ Static Synchronization
 Lets say we have two classes, class A and class B. Now, class a has a method named methodA and class B has a method named methodB. We have two threads, T1 and T2, of class A which try to access methodA and threads T3 and T4 which try to access method. Now, thread safety among T1 and T2 for method and T3 and T4 for method can be done through using synchronized eyword with method signature of methodA and methodB. Imagine a situation, methodB class method. Then, either of thread T3 or T4 will try to access methodA. In this scenario, we do have thread safety for methodA. Now, for this if we do static synchronization then we can thread safe this situation as well and thread T3 or T4 has to wait for T1 or T2 to finish. The lock in static synchronization is on class level, not on object level. The syntax of static synchronization: public static synchronized void add(int value){method body}.
      
 Note: How actually synchronization makes a piece of code thread safe? Actually, when a thread tries to access any ynchornized block then it checks in the heap to give the most updated code to the currently accessing thread. This is one aspect. 
+
 Deadlock in Java
 It is a situation where we have two threads A and B. A is waiting for the object which is acquired by B and B is waiting for the object acquired by A. This situation is called as Deadlock. Check the example. 
 Note: 
@@ -1831,7 +1862,7 @@ Missing topics
 Jdbc rowset
 Java New features
 RMI 
-
+***************************************************************************************************************************************
 
 ||Serialization||
 In simple words, Serialization is a process of converting the state of an object into a byte stream. The reverse process of getting back the object state from the byte stream is called as deserialization. The byte stream created will be platform independent thus serialization and deserialization of an object can be on different platforms. We generally use serialization of object for sending the data to other terminal over network or to persist an object. 
@@ -1997,6 +2028,9 @@ public class Class1{
 		System.out.println(choices.valueOf("FIRST"));
 	}
 }
+
+||||
+
 
 Implementations
 I have created this section for the sole purpose to speak about the implementation of what we have learned in this tutorial. We must use as many practical examples as we can related to the real world.  
