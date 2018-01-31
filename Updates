@@ -40,6 +40,10 @@ Add implementation index 1 to downcasting in java study.
 29. Heap and Stack. How instance and static types gets the value. 
 30. Java Inner classes revision: Heirarchy, Advantage of inner classes, Describe the basics of each type.
 31. Understand the core advantage of multithreading(4){simultaneous, same memory, fast cotext switching, one thread does not interrupt flow of other}, Life cycle of thread, 
+32. All note points of Multithreading and synchronization Section. 
+33. Garbage collection: exact use of finalize(), How can we request GC?
+34. What all we can do with runtime class. 
+35. Interruption of the thread, Reenterant lock in java and benefits. 
 
 
 Java Interview Questions:
