@@ -872,7 +872,7 @@ if(pattern.test(StringToTest)){
 }
 
 Source 3: https://www.codementor.io/nihantanu/21-essential-javascript-tech-interview-practice-questions-answers-du107p62z
-
+0
 Question 1
 1. What is the difference between undefined and not definedin JavaScript?RRR
 In JavaScript, if you try to use a variable that doesn't exist and has not been declared, then JavaScript will throw an error var name is not defined and script will stop executing. However, if you use typeof undeclared_variable, then it will return undefined.
@@ -935,7 +935,34 @@ var emp2 = new Employee("Merry","Pluto",2000);
 var emp3 = new Employee("Ren","Pluto",2500);
 Here each instance variable emp1, emp2, emp3 has its own copy of the increaseSalaryprivate method.
 So, as a recommendation, don’t use private methods unless it’s necessary.
-Question 4
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Private methods created like below:
+function Restaurant()
+{
+    var myPrivateVar;
+
+    var private_stuff = function()   // Only visible inside Restaurant()
+    {
+        myPrivateVar = "I can set this here!";
+    }
+
+    this.use_restroom = function()   // use_restroom is visible to all
+    {
+        private_stuff();
+    }
+
+    this.buy_food = function()    // buy_food is visible to all
+    {
+        private_stuff();
+    }
+}
+
+With private functions, each instance gets its own copy of private method. It is not a part of prototype.
+
+
+
+0Question 4
 What is a “closure” in JavaScript? Provide an exampleRRR
 A closure is a function defined inside another function (called the parent function), and has access to variables that are declared and defined in the parent function scope.
 The closure has access to variables in three scopes:
@@ -968,6 +995,7 @@ outerFuncVar = x
 innerArg = 5
 innerFuncVar = y
 globalVar = abc
+
 Question 5
 Write a mul function which will produce the following outputs when invoked:
 console.log(mul(2)(3)(4)); // output : 24 
@@ -2201,8 +2229,3 @@ str=str.replaceAll('test','');
  
 alert(str)
  
-
-Important Questions
-1. How to create and add attibue for an element through javascript? setAttribute
-2. problems with global variables
-3. each bom object uses
