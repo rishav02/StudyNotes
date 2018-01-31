@@ -162,7 +162,7 @@ For this, we should also mention that these are properties of navigator object w
 28. What do mean by NULL in Javascript?
 The NULL value is used to represent no value or no object.  It implies no object or null string, no valid boolean value, no number and no array object.
 29. What is the function of delete operator?AAA
-The functionality of delete operator is used to delete all variables and objects in a program but it cannot delete variables declared with VAR keyword.
+The functionality of delete operator is used to delete all variables of objects in a program but it cannot delete variables declared with VAR keyword.
 
 Delete variables can delete the properties of an object however cannot delete the variables (not the object i mean). If we want to delete a variable, then the near equivalent is to make them undefined. 
 
@@ -241,7 +241,7 @@ Primitive types are number and Boolean data types. Reference types are more comp
 Generic objects can be created as:
  
 1	var I = new object();
-44. What is the use of type of operator?AAA
+44. What is the use of typeof operator?AAA
 ‘Typeof’ is an operator which is used to return a string description of the type of a variable.
 
 <script>
