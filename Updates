@@ -103,22 +103,22 @@ JavaScript Quick Revise
 19. JS if else conditions: Example
 20. JS Switch Statement: Example
 21. JS For loop: for, while, dowhile.
-22. JS Type Conversion: notr point.
-23. JS Regular Expression: test(), exec(), search(), replace().
+22. JS Type Conversion: note point.
+23. JS Regular Expression[imp]: test(), exec(), search(), replace().
 24. JS Error: Example.
-25. JS Hoisting: define and check all cases and tricky questions.
-26. JS Scrict Mode
-27. JS Best Practices: all 6.
+25. JS Hoisting[imp][imp]: define and check all cases and tricky questions.
+26. JS Scrict Model
+27. JS Best Practices: all 7.
 28. JS JSON
-29. JS Form: CHeck the overview of validation using JS. 
-30. JS Object, Properties{delete property}, Methods{Built-in JS methods for any object}, Constructor{creating cosnstructor & adding new property or method}, Prototypes.
-31. JS Function {function as variable, self invoking function}, Parameter, Invocation, Call and Apply.
-32. JS DOM Intro, Creating HTML{all methods}, Element, HTML and CSS {methods for traversing DOM, how to change captured HTML element}. 
-33. JS DOM Events {all 8 events with uses}\
+29. JS Form[imp]: CHeck the overview of validation using JS. 
+30. JS Object[imp]: Properties{delete property}, Methods{Built-in JS methods for any object}, Constructor{creating cosnstructor & adding new property or method}, Prototypes.
+31. JS Function {function as variable, self invoking function}, Parameter, argument object Invocation, Call and Apply.
+32. JS DOM: Intro, Creating HTML{all methods}, Element, HTML and CSS {methods for traversing DOM, how to change captured HTML element}. 
+33. JS DOM Events {all 8 events with uses}
 34. JS DOM Listener {adding or removing event through JS, event bubbling and capturing}
-35. JS DOM Naigation {navigating through nodes}
+35. JS DOM Navigation {navigating through nodes: parentnode, chldnodes[number], firstnode, lastnode, nextsibling, previoussibling}
 36. JS DOM Node {creating HTML, insertBefore()}
-37. JS DOM Collection
+37. JS DOM Collection: get elementByTagName(), all new browsers like elementByClassName().
 38. JS DOM nodeList {diff with DOM collection, querySelectorAll()}
 39. JS BOM window, screen, location, history, navigator objects.
 40. JS DOM pop up boxes, Timer and Cookies. 
