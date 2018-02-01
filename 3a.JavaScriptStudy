@@ -66,7 +66,7 @@ function functionName(parameter1, parameter2){body};
 3. Function Expression:
 var VarName = function(parameter1, parameter2){body};
 The third is called as annonymous function in javascript. HOwever, we can also have named function expression which are not annonynous function. 
-Now, the main question why do we have function expressions? However, are making difference? Well, one major difference between declaration and expression is they functoni declaration is hoisted while function expression aren't. So, we if we can find a special case where we do not want functoin to get called before its declared then we should use function expression. ,=
+Now, the main question why do we have function expressions? However, are making difference? Well, one major difference between declaration and expression is they functoni declaration is hoisted while function expression aren't. So, we if we can find a special case where we do not want functoin to get called before its declared then we should use function expression. We can call inner function like outer.inner(). 
 
 
 
@@ -692,7 +692,7 @@ Below is the code of the HTML page we have just created and using JS for dynamic
 </html>
 Take Away:
 a. For form validation: place form name and onsubmit="function()" in HTML and document.myform.name for capturing elements.
-b. For checkboxes (util we do not find a better way): use id="ch1" in HTML and use document.getELementByID("ch1").checked=="true" in JS. 
+b. For checkboxes: use id="ch1" in HTML and use document.getELementByID("ch1").checked=="true" in JS. 
 c. For radio button: We do exactly same as checked boxed. Also, how can we make sure that only one radio button should be checked at a time? We need to give same value to the name attribute of all the radio buttons. 
 d. For menu (select and option): We can specify the name or id attribute and can use document.myform.city.value or document.getElementById("cty").value to get the value.
 Note: For traversing the dom to capture the elment value we can use either name attibute values of element like document.name.subname.subname.... so on or we can use document.getElementById("uniqueID").  
