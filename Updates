@@ -44,7 +44,14 @@ Add implementation index 1 to downcasting in java study.
 33. Garbage collection: exact use of finalize(), How can we request GC?
 34. What all we can do with runtime class. 
 35. Interruption of the thread, Reenterant lock in java and benefits. 
-
+36. Default capacity of arraylist. How will you create your own arraylist. Arraylist based questions.
+37. Check sorting the of all collection type: List{Integer, ObjectType}, Set{Integer, ObjectType} and Map{Integer, ObjectType}. Map{Integer, ObjectType}. Using Conparable and Comparator in case of object type. 
+a) List with Integer: simple Sort method
+b) List with Object type: either comparable on Object class, Comparator as annonymous class or can have multiple comparator. 
+c) Set with Interger or Object type: Since, set does not maintain order we cannot ganuntee the sorting permanently. WHile if we need it just once then we can convert it into Arraylist and sort it like we sort a normal arraylist. 
+d) HashMap with Integer and Interger: SetView to arraylist to Comparator. Can compare on the basis of key or value. 
+e) HashMap with Object Type: 
+Check 79 page number for more...! All the best with java buddy.
 
 Java Interview Questions:
 Source 1: 
