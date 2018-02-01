@@ -15,9 +15,9 @@ Java Quick Revise
 5. Can we use super keyword in main method? No. We cannot. Check its use.
 6. Be careful about initializer block and constructor invocation order. It is static initializer of parent, static initializer of child, instance initializer of parent, construtor of parent, instance initializer of child, constructor of child. 
 7. How interface involves loose coupling in java? Interface just not only allow a class to implement its method but it allows multiple classed to implement its method. Now, when we interact with the class using the interface then we can feed any class implementing the class without much modification. 
-8. Object Cloning. Deep Cloning and shallow cloning. Explain using: https://dzone.com/articles/currying-functions-in-scala-1
+**8**. Object Cloning. Deep Cloning and shallow cloning. Explain using: https://dzone.com/articles/currying-functions-in-scala-1
 9. Unboxing. we do it like int a = b.intValue();
-10. String are immutabe. String are inert concept. 
+10. String are immutabe. String are inert concept. Doubt: Why two objects are created when string is created using new keyword. 
 11. Immutable Class
 12. Check the working example of string tokenizer. 
 13. Check all note point of Exception handling in java, Correct in note point 6 that after catch block runs the code outside the try block will execute. Also, add one more not point "If we write return only in eighter try or catch block then we will get error. We need to write one at the last as well."
@@ -45,12 +45,8 @@ Add implementation index 1 to downcasting in java study.
 34. What all we can do with runtime class. 
 35. Interruption of the thread, Reenterant lock in java and benefits. 
 36. Default capacity of arraylist. How will you create your own arraylist. Arraylist based questions.
-37. Check sorting the of all collection type: List{Integer, ObjectType}, Set{Integer, ObjectType} and Map{Integer, ObjectType}. Map{Integer, ObjectType}. Using Conparable and Comparator in case of object type. 
-a) List with Integer: simple Sort method
-b) List with Object type: either comparable on Object class, Comparator as annonymous class or can have multiple comparator. 
-c) Set with Interger or Object type: Since, set does not maintain order we cannot ganuntee the sorting permanently. WHile if we need it just once then we can convert it into Arraylist and sort it like we sort a normal arraylist. 
-d) HashMap with Integer and Interger: SetView to arraylist to Comparator. Can compare on the basis of key or value. 
-e) HashMap with Object Type: 
+37. Check sorting of all collection
+38. joining two list, difference in clear() and removeAll(), Shuffel and swap elements of array, check if list is empty, add element at a particular index, how to remove duplicate?. 
 Check 79 page number for more...! All the best with java buddy.
 
 Java Interview Questions:
@@ -90,8 +86,8 @@ updates:
 @@@What is modular front end application? 
 @@@avaScript Prototype based inheritance
 @@@Practically useful abstraction
-@@@different form fields and events and changing them accorsding to the form field.
-@@@typeof operator in javascript  
+@@@**different form fields and events and changing them accorsding to the form field.**
+@@@Is JavaScript an object oriented language? 
 
 JavaScript Quick Revise
 1. JS introduction
@@ -104,7 +100,7 @@ JavaScript Quick Revise
 8. JS Scope [imp]: Non declaring a var in function?, Access object property in js, how to add new property to object.
 9. JS Events: Check the syntax for adding event in js, difference in HTML event and JS event names. 
 10. JS String
-11. JS String properties and methods [imp]: length(), substring(index), charAt(), substr(start, length), slice(). diff in slice and substring. 
+11. JS String properties and methods [imp]: length(), substring(index), charAt(), substr(start, length), **slice(). diff in slice and substring**. 
 12. JS Number: Infinity, NaN.
 13. JS Number properties and methods [imp]: parseInt(), toString(), toExponential(), MAX_VALUE, NEGATIVE VALUE.
 14. JS Math object methods: pow(), min(array of numbers), floor(), ciel(). 
@@ -116,24 +112,24 @@ JavaScript Quick Revise
 20. JS Switch Statement: Example
 21. JS For loop: for, while, dowhile.
 22. JS Type Conversion: note point.
-23. JS Regular Expression[imp]: test(), exec(), search(), replace().
+23. **JS Regular Expression[imp]**: test(), exec(), search(), replace().
 24. JS Error: Example.
-25. JS Hoisting[imp][imp]: define and check all cases and tricky questions.
+25. **JS Hoisting[imp][imp]**: define and check all cases and tricky questions.
 26. JS Scrict Model
-27. JS Best Practices: all 7.
+27. **JS Best Practices**: all 7.
 28. JS JSON
-29. JS Form[imp]: CHeck the overview of validation using JS. 
-30. JS Object[imp]: Properties{delete property}, Methods{Built-in JS methods for any object}, Constructor{creating cosnstructor & adding new property or method}, Prototypes.
-31. JS Function {function as variable, self invoking function}, Parameter, argument object Invocation, Call and Apply.
+29. **JS Form[imp]**: CHeck the overview of validation using JS. 
+30. JS Object[imp]: Properties{delete property}, **Methods{Built-in JS methods for any object}**, **Constructor{creating cosnstructor & adding new property or method}**, Prototypes.
+31. JS Function {function as variable, self invoking function}, Parameter, **argument object Invocation**, Call and Apply.
 32. JS DOM: Intro, Creating HTML{all methods}, Element, HTML and CSS {methods for traversing DOM, how to change captured HTML element}. 
 33. JS DOM Events {all 8 events with uses}
 34. JS DOM Listener {adding or removing event through JS, event bubbling and capturing}
 35. JS DOM Navigation {navigating through nodes: parentnode, chldnodes[number], firstnode, lastnode, nextsibling, previoussibling}
-36. JS DOM Node {creating HTML, insertBefore()}
+36. JS DOM Node {creating HTML, **insertBefore()**}
 37. JS DOM Collection: get elementByTagName(), all new browsers like elementByClassName().
 38. JS DOM nodeList {diff with DOM collection, querySelectorAll()}
-39. JS BOM window, screen, location, history, navigator objects.
-40. JS DOM pop up boxes, Timer and Cookies. 
+39. **JS BOM**: window, screen, location, history, navigator objects{appVersion, userAgent, appName}. 
+40. **JS BOM**: pop up boxes, Timer and Cookies. 
 
 
 Some Important Questions:
