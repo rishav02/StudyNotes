@@ -1613,14 +1613,15 @@ Collection is simply an object that groups multiple elements in a group. A colle
 2.	Implementation (classes) – It is the implementation of the methods in the interfaces i.e. the implementation of the method that a collection interfaces have. In essence, they are reusable data structures (quoted in oracle docs).This means that these classes will have the methods which will in accordance with the data structure of collection.
 3.	Algorithms – These are the static methods that perform useful implementations such as searching and sorting on the objects implementing the collection interfaces. Algorithms are known to be polymorphic as the same method can be used on many different implementations of the appropriate collection interfaces. In essence, algorithms are reusable functionality. This means that these functions are simple called from the collection classes whenever required instead of reinventing the wheel again. 
 Check the hierarchy of the Collection Framework
- 
-Note: the above shown hierarchy missed the iterator interface which is extended by Collection interface. 
+ Note: the above shown hierarchy missed the iterator interface which is extended by Collection interface. 
+
 Iterator Interface – This interface provide the facility to iterate the elements of a collection. It can iterate only in one direction and once the iteration is complete in one direction then new iterator needs to be created for further iteration. It has three methods which are Public boolean hasnext(), public object next() and public void remove(). Once the iterator method is created for collection, an exception is thrown if the collection is modified. Iterator object is not created by “new” keyword. It is created specific to any collection.
+
 Collection interface – This interface extends the iterator interface and extended and implemented by the all other classes and interfaces in the collection framework hierarchy. Check its methods later, if get time. 
 Begginners Book link to collection tutorials: http://beginnersbook.com/java-collections-tutorials/
 Note: Collection allows only object to store (String, Wrapper classes and user defined objects). Wrapper classes are actually the replacement for every primitive type data. For example, int can be stored through the wrapper class Integer. Boxing is done to convert the primitive to wrapper class type and vice versa. Some think that it is design fault in java as allowing the primitive data type indirectly through wrapper classes puts an unnecessary load for boxing. But this is how java is designed.
 
-ArrayList Class
+||ArrayList Class||
 List Interface- List interface is an ordered collection (sometimes called as sequence). Lists may contain duplicate elements. Since, it is ordered collection then the position of elements matters. Its elements can be inserted or accessed by their position in the list i.e. index. Index starts from zero. 
 ArrayList class implements the List interface, so it must be ordered collection and can contain duplicate values. It can contain null elements as well. It is non-synchronous. Here, manipulation is slow as any element is removed then lot of shifting needs to be done. Mostly, arrayList is used in place of array mainly because array is fixed size and arraylist is resizable. Also, if any element is removed from array then memory consumption would be the same as it does not shrinks. Moreover, we can use predefined methods in arraylist that make our task easy. 
 I have practiced the example. We need to create an object of arraylist first and then we can use the methods of class arraylist to add, add to a specific index position, remove, removing element from specified index position. When we add element at any index where other element is already present then the arraylist expands and shrinks if an element is removed. So far we have just checked the way to create, add and remove element from an arraylist. However, check all the tabs to of the below mentioned links and practice them. 
@@ -1636,8 +1637,31 @@ How arraylist works internally? How add() method works internally?
 The basic data structure used by arraylist is nothing but array. Now, array list has given three constructors. First, we can create an arraylist like this  “List<String> l = new ArrayList<String>”. This uses the default constructor of array list and results in the creation of a arraylist with default size of 10. Second, we can also create an arraylist like this “List<String> l = new arrayList<String>(5)”. This uses the parameterized constructor of arraylist class which results in creation of arraylist with a sixe of 5. Third constructor is little strange so lets leave it now which actually is used to create an array from some other collection.
 Now, when an element is needs to be added in an arraylist then we make use of arraylist() method. We a check mechanism in add mehtjod of array list. It first check the capacity of the arraylist and how much an array currently occupied. If arraylist has the scope to add an element then it simply adds but if the array is already full then it will increase the capacity by 50%. for a current capacity of 10, new capacity will be of 15. But how the size of arraylist increases dynamically? It actually creates a whole new arraylist with the new capacity and transfers all the data from old arraylist to new arraylist. 
 How to implement a list? http://www.java2novice.com/java-interview-programs/arraylist-implementation/
+Note: 
+1. The default size of arrayList is 10. Load factor is 1. This means by size become twice after (10*1) 10 elements are filled in array. 
+2. If we try to modiy the arraylist while iterating through iterator or for each (no matter how), then we will receive ConcurrentModificationException(). We can use CopyOnWriteArrayList(). The below example will let you modify arraylist while iteration:
+public class Class1{
+	public static void main(String args []){
+		Class1 c = new Class1();
+		List<Integer> list = new CopyOnWriteArrayList<Integer>();
+		list.add(10);
+		list.add(9);
+		Iterator<Integer> i = list.iterator();
+		for(int element: list){
+			if(element==10){
+				list.add(11);
+			}
+			System.out.println(element);
+		}
+		System.out.println(list);
+	}
+}
+If we would have used normal ArrayList then we would have received concurrentModificationException.  
+4. If we want ArrayList in threadSafe enviroment then we can use Collections.synchronyzedArrayList(originalList). 
+5. We have maployee e1 = new Employee(1, "Rishav") and Employee e2 = Employee(1, "Rishav"). If we compare e1 and e2 then they will not be the same. This can checked using hashset. 
+6. CopyOnArrayList is not a part of collection class while 
 
-LinkedList Class
+||LinkedList Class||
 LinkedList Class is doubly linked list which implements the List interface and Deque interface. Since it implements List interface so it is ordered and can contain duplicate elements. It can contain null values as well. It is non-synchronous like ArrayList class. Manipulation is faster in LinkedList because no shifting is needed. The concept of doubly linked list is that the elements of the linkedList are treated as nodes and connected by double linked with preceding and succeeding element. That is why named as doubly named, not because it implements two interfaces. 
 Detail on Doubly Linked list, check: http://java2novice.com/data-structures-in-java/linked-list/doubly-linked-list/
 I have tried creating the object of the LinkedList. Then, I tried adding, printing and removing the elements from the linked list. It is very much similar to the ArrayList. Many of its methods are same as methods of arrayList. Check other all the tabs of the below mentioned link.
@@ -1651,16 +1675,17 @@ Comparison between ArrayList and LinkedList
 4.	Both are non-synchronous and can be synchronized explicitly.
 Note: Doubly linked list is a kind of data structure which is followed by linkedList. Similarly, we have other data structures. 
 
-Vector Class
+||Vector Class||
 Vector implements the List interface and it is similar to arraylist collection as it also an ordered collection which stores data on the basis on index. It is synchronized. Since, it is synchronized, it is thread safe as well. It can contain null values as any as user wants.
 I have practiced an example. It is similar to arrayList and linkedList in creating, adding, removing and printing the elements. 
 Where to use – It should be used in the multithread environment as it is synchronous. We must avoid using it in single thread case because it has less efficiency and arraylist should be used in single thread cases. 
 
-ListIterator Interface
+||ListIterator Interface||
 List interface extends the collection interface and declares methods to insert and delete the element in the List. It is also a factory of ListIterator interface. We have studied the Iterator interface which is extended by collection interface and use to iterate the elements of collection. listIterator interface is specific to List collection. It has few methods like hasnext(), next(), hasPrevious() and Previous(). First two are same as the methods of Iterator interface but other two are to provide the iteration in opposite (backward) direction.
 I have checked the example. We have to create a list collection (any type). Then, create an object of listIterator interface for list collection object. Carefully, check the syntax for do this. Then, apply the iteration using listIterator method. 
 Note: There are mainly three ways to iterate a list. First, to iterate with the simple for loop where we make use of list.size method. Second, we use advance for loop which is only possible with generics where we know the type of the list element. Third, we can make use of iterator where we first make iterator object and then make use of its methods. 
-HashSet Class
+
+||HashSet Class||
 Set interface – Set is a collection that cannot contain the duplicate elements. Some of the Set implementations are ordered and some are not. Set allows only one null element. There is no such thing as listIterator for Set but we use Iterator for it as well. It extends the collection interface.
 HashSet class implements the Set interface and so it cannot hold duplicate elements and can have only one null element. It is not ordered so can iterate elements in any order. It is non-synchronous. It stores its element in hashTable. (Hashtable is also a data structure which accommodates the value by mapping it to a key. It is also called as associative array.) 
 I have tried an example and found that it is similar to List interface. First we need to create its object and then with the help of methods like add(), remove() we can add and remove the elements. Iterator is used for iteration of the elementsCheck all the tabs of the link below. Also, if two null values were inserted then only one will be printed and no exception or error will be given. Same with duplicate values, it will print one value without giving any exception. 
@@ -1668,18 +1693,28 @@ Note(s):
 1.	How to insert null value? The correct way of inserting the null value is to write “null” with double quotes. When we write nothing in the double quotes then it is means inserting the empty String.
 2.	Hashset is based internally on Hashmap by keeping element of hashset as key with null as value.
 3.	SortedSet class implements navigableSet interface.
+4. We do not have any implementation of concurrentHashSet just like CopyOnWriteArrayList or ConcurrentHasHMap on concurrent package. its because hashset uses hashMAP under the hood.Prior to java 8, we could get concurrent hashset from collections.newSetFromMap(Map); whie from java 8 we can get concurrent hashset as ConcurrentHashMao.newKeySet(). 
+5. We can get synchronized set using collections class like collections.synchronizedSet(HashSet). 
+6. HashSet implements clone() method and can create shallow copy of it. 
+7. why hashset does not have get(object) method? niether we have the concept of key nor we have the concept of index in hashset and its values are placed random inside it. Thus, we on what basis will be find a value. With hashSet we can just find out if an element is present or not which we can do through contains(element).
+8. emptySet() returns empty and immutable set. For immutability we can get it. Can do more research on this. 
+9. Initial capacity of HashSet is 16 and load factor is .75. The product of (initialCapacity*loadFactor) is when hashset with double capacity gets created. 
 Must to read: http://beginnersbook.com/2013/12/hashset-class-in-java-with-example/
 How Hashset works internally?
 Hashset uses Hashmap internally. Whenever we try to add any value into a hashset then the hashcode of the element is found out using the hashfunction. Then, that element is treated as the key for the hashmap on which hashset is based. A bucket in the hashmap is filled based on the hashcode with element inserted in hashset as the key and value is by default “PRESENT”. Likewise, when we try to remove the value from hashset, the key with the same hashcode is searched and removed from the hashmap. 
-LinkedHashSet
+
+||LinkedHashSet||
 LinkedHashSet implements the Set interface and so it cannot contain duplicate elements and can contain only one null element. LinkedHashSet maintains the order of insertion i.e. it will iterate the elements in the order it is inserted. I have found nothing on whether they are synchronous or not. I feel that they are also non-synchronous. It is same as HashSet except the order of the elements iteration.
-I have checked an example and everything is same. Though check all the tabs of the link given below. 
+I have checked an example and everything is same. Though check all the tabs of the link given below.
 Must to read: http://beginnersbook.com/2013/12/linkedhashset-class-in-java-with-example/
 
-TreeSet Class
-TreeSet class implements the Set interface and so it cannot contain the duplicate value. Unlike other sets, treeSet cannot contain any null value and if tried then nullPointerExcetion will generate. Actually, adding null element in treeSet was possible until java 6 but later it declared as bug. TreeSet maintains the element iteration in ascending order which means from latest inserted to the older. It is non-synchronized. It is similar to hashSet except the order of element iteration.  
+||TreeSet Class||
+TreeSet class implements the Set interface and so it cannot contain the duplicate value. Unlike other sets, treeSet cannot contain any null value and if tried then nullPointerExcetion will generate. Actually, adding null element in treeSet was possible until java 6 but later it declared as bug. TreeSet maintains the element iteration in ascending order which means from latest inserted to the older. It is non-synchronized. It is similar to hashSet except the order of element iteration. 
 I have checked the example and everything is fine. Just check the tab in the link below. 
 Must to read: http://beginnersbook.com/2013/12/treeset-class-in-java-with-example/
+Note:
+1. TreeSet stores the elements in ascending order. But how this happens? I think behind the scene it uses comparable interface. Because elements types like String, Integer implements comparable interface and thus we gets it. However, in case of user defiend iobjects we need to explicitly implement comparable interface other the order of object will be natural.
+
 Note - We will do a deep analysis of where these are taken in use but I would like to make one point here. The selection of collection for use is decided on the requirements and we have to see as which collection completes our requirement. 
 Note: check time complexity and try to relate them with the different type of collections. 
 
@@ -1698,16 +1733,12 @@ Map interface – It extends the collection interface. It takes the element with
 HashMap is a class that implements the Map interface and hence it contains a pair of key and value and cannot contain duplicate key. Elements are not ordered in this class. It permits onenull keys and multiple null values. It is not synchronized. The difference between HashSet and HeshMap is that heshSet contains only values while HeshMap contains keys and values both.
 I have tried an example. Firstly, I create an object where we need to specify the key and value types. Then, to add the values to a Map, we have used put() method instead of add() method. We can print the object of Map. Now, if we have to iterate the entries (pair of keys and values) then we have to create an object of iterator as usual. However, to create object of iterator we have to first create a Set view of a Map. For doing so, the syntax is: “Set obj = MapObj.entrySet()”. But why do we need to create the set view? Check note point below. Then, we can iterate the keys and values using Set view object. Though I have understood the basic methods still check all the tabs and methods of the below link.
 Must to read: http://beginnersbook.com/2014/08/java-hashmap-class/
-Note: We can understand the requirement of the set view as the HashMap class does not have the iterator method while set interface have. So, we create the object of set class. Since it is an interface thus we cannot create its object directly and hence we do it through the entrys	et class that returns an instance of the set interface. I am not sure about this by the reasoning looks fine.
+Note: We can understand the requirement of the set view as the HashMap class does not have the iterator method while set interface have. So, we create the object of set class. Since it is an interface thus we cannot create its object directly and hence we do it through the entryset class that returns an instance of the set interface. I am not sure about this by the reasoning looks fine.
 How Hash Map works internally or how they are implemented? Also, how put() and get() method works?
 Before getting into how an hash map works, we must understand certain things in the below mentioned points. 
 1.	HashCode function – This function is used to get the hash code for a given value. It takes a key as an input and returns its hashcode which is an integer value. The hash code is also called as hash value. 
 2.	The entry of a key and value pair is stored in bucket. These buckets are actually implemented as linked list. So, we have multiple buckets in a hashmap and each bucket is nothing but a linked list. Though, from java 8, hash map has started using balanced tree set after a certain threshold is reached for values in linked list. 
 3.	Equals method is used to compare objects. So, in a situation where a bucket (linked list) stores multiple entries then equals method is used to find the entry actually referred.
-4. ConcurrentHashMap are hashmap which are threadsafe as put and remove methods are made synchronized while get method isnt. NEW
-5. Index access is when we can get element at nth index directly by moving the cursor directly to nth index while iterator access is when we iterator from 1st index through nth index to get to the element at nth index. NEW
-Now, let’s see how actually a hashmap works. When we try to add an entry to a map then we make use of put(key, value) method then hashcode method is used to implement to get the hash code of the key. On the basis of the hash code (hash value) of the key, the bucket in which the entry needs to be stored is decided. Similarly, when an entry is retrieved from a hash map then get(key) is used. This also calls the hashcode method to get the hash value of the key which then be used to find the bucket where the value is stored.
- 
 Now, since the entry is stored in bucket on the basis of the hash value of the key. Then what will hapeen in a situation where two different keys has the same hash value? There multiple entries will be stored in a single bucket. Now, while retrieving the value from the hashmap will keys with the same hashvalue, how will be resolve that key entry is called. Then, we make use of equal method to identify which entry is exactly called. 
 Note: In the hashmap of length 8, a maximum of 8 buckets are possible. Each bucket is an instance of a hash map.
 LinkedHashMap Class
@@ -1715,6 +1746,24 @@ LinkedHashMap implements Map interface and extends the HadhMap class. It has all
 I have tried an example and it is the same as hashMap and seen the iteration in the order of insertion. Check the below link carefully. 
 Must to read: http://beginnersbook.com/2013/12/linkedhashmap-in-java/
 Note: Map implementations have the same order of iteration of elements as SET implementations have. 
+
+Note:
+1. We have concurrentHashMap to avoid concurrentModificationException when some thread tries to modify a map while it is iterating and sunchronizedMap gives a synchronized version of map which is basically thread safe.
+2. Whats the difference in concurrent collection type and Synchronized Collection? Concurrent collections like CopyOnWriteArrayList, ConcurrentHashMap are present inside concurrent package of JDK and are normal classes. By concurrency we avoid having concurrent modification exception when collection is modified while its under iteration. With concurrent collection, we divide collection into different segments and thread safety is provided on the basis of each segment. By default, a collection object is divided in 16 segments and thus 16 threads can work simultaneously on a collection object but each at different segment. On the other hand, we have synchronization which is for getting thread safe collection. Here, the lock is provided on the entire object (not on the segments of an object). Thus, synchronization may give concurrent modification object and hence we should use concurrenct version of collection while when we need a typical thread safe collection then we should use synchrinized collection. 
+3. Index access is when we can get element at nth index directly by moving the cursor directly to nth index while iterator access is when we iterator from 1st index through nth index to get to the element at nth index. NEW
+Now, let’s see how actually a hashmap works. When we try to add an entry to a map then we make use of put(key, value) method then hashcode method is used to implement to get the hash code of the key. On the basis of the hash code (hash value) of the key, the bucket in which the entry needs to be stored is decided. Similarly, when an entry is retrieved from a hash map then get(key) is used. This also calls the hashcode method to get the hash value of the key which then be used to find the bucket where the value is stored.
+4. Sample of hashcode function override:
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + age;
+        result = 31 * result + passport.hashCode();
+        return result;
+    }
+5. What will happen if we try to store an entry with key thats already present in the Hashmap? Then the value will get overriden. 
+6. Array is the pure datastructure used to created buckets while linkedlist stored all the mappings which maps to same bucket. Lettle confusing it is. 
+7. Difference between size() and capacity. Capacity will literally give the capacity while size will give the entries present in hashmap. 
 
 TreeMap Class 
 TreeMap implements the Navigational Map interface and extends AbstractMap methods class. It also contains value with a key. It also cannot contain duplicate elements. It can have null values but cannot have null keys. It is same as HashMap but it has the ordering of the elements in ascending order. TreeMap is Red Black Tree based Navigational interface implementation.  
@@ -1758,7 +1807,7 @@ Doubts:
 3.	It has equals() method then why is it using the compareTo() method for comparing string. Infect, compareTo() can just compare the object  location but not the content. 
 
 Differences between Comparable and Comparator interface
-1.	Comparable provides single sequence sorting (on the basis of single datamember) while comparator can provide for multiple.
+1.	Comparable provides single sequence sorting (on the basis of single datamember) while comparator can provide for multiple data member.
 2.	Comparable affects the original class while comparator does not. 
 3.	Comparable has one method compareTo() while Comparator has two methods which are compare() and equals(). 
 4.	1st has lang package and 2nd has util package. 
