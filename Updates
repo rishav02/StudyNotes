@@ -152,8 +152,43 @@ Source 4: 3, 6, 11, 12, 19, 21.
 2. Spring MVC
 a. Basic flow of spring MVC framework.
 b. Code of following: Web.xml, applicationContext.xml, Controller.java
-All annotations used in spring MVC: Controller(to mark the controller), RequestMapping(map the request iwth url), Autowired, MOdelAttribute(It maps the request parameters with the cooresponding bean properties. It can be used on a method or as an argument. With argument type, the request params are added to tha particular method modelandView object but with method level it adds that object to all the method of that cntroller modelAndViewController), Service, Repository, Component, Bean, Qualifier, ResponseBody, PathVariable, Service, Scope, Configuration, ComponentScan, Aspect, before, after, around, pointcut, requestParam.
+c. Spring mvc validation support.
+d. What is context load listener
+e. <import resource> add multiple config files. 
 
+3. Spring IOC
+a. Spring IOC and DI concept
+b. What is IOC container and its type. Difference in them
+c. Constructor Injection and Setter Injection. Diff in constructor and setter injection
+d. Code related to IOC container.
+e. Spring Bean lifeCycle:
+"Spring bean life cycle starts from bean instanciation and completes when bean is destroyed. ONce the object of IOC container is created then a lot steos happens like calling the methods of different aware interfaces like setBeanName and Other. WHile we can define init and destroy method in bean class which will define what will happen immediately after instanciation or before destruction."
+
+4. Spring ORM 
+a. How can we configure basic app. 
+b. Methods of hibernate. 
+
+5. Spring JDBCTemplate 
+a. Concept of JDBCTemplate
+b. Different classes of JDBC temp.
+c. Different methods of jdbc template.
+d. write code for basic update method. 
+
+
+All annotations used in spring MVC: 
+1. Controller(to mark the controller), 
+2. RequestMapping(map the request iwth url), 
+3. Autowired, MOdelAttribute(It maps the request parameters with the cooresponding bean properties. It can be used on a method or as an argument. With argument type, the request params are added to tha particular method modelandView object but with method level it adds that object to all the method of that cntroller modelAndViewController), 
+4. Service(mark the service class), 
+5. Repository(mark a dao class), 
+6. Component(marks a class to be eligible of making bean. COntroller, repository and services comes as secialization of compoenet annatation), 
+7. Bean(marking a class as bean), 
+8. Qualifier, 
+9. ResponseBody, 
+10. PathVariable((Path varibale in a variable and use it. We ahve pathparam as quivalent annotation in rest), Service(kind of a component and mark a class as service), 
+11. AOP relat: Scope, Aspect, before, after, around, pointcut, 
+12. requestParam(maps the request params with bean properties. We have queryparam is quivalent annotatiob in rest).
+Java based configuration annotation: @Configuration, @ComponentScan and @bean.
 HOw the data processed in the controller goes to view. 
 
 ***************************************************************************************************************************************
@@ -163,8 +198,8 @@ Updates:
 2. The difference between persist and save method. Both are there to add an object in the database. Firstly, both works the same with persistent object but the difference comes in case of transient (which is not yet saved in db) object. Persist does not execute an insert statement outside the boudary of transaction while save method does that. Persist object not necessary that immediately persist the transient object while save will to it immediately. Other differnce between persist and save is that persist is JPA specifixation method while save is the hibernate specifjc method. Persist returns rull while save returns the primary key of the inserted rexord. By the way, hibernate js an implementation of JPA.
 
 Hiebernate Quick Revise
-1. Spring ORM implementation using Hibernate ORM.
-2. Hibernate basic implementation for simple j2EE app. Check the client Specially.
+1. Spring ORM implementation using Hibernate ORM. {emp.hbm.xml code, AP.xml beans concept}
+2. Hibernate basic implementation for simple j2EE app. Check the client Specially. {hibernate.cfg.xml, javatest class}
 3. Different hibernate methods.
 a. difference in persist and save method(). First, persist method do not garuntee to assign value to transient object the value immediately, that may be assigned during flush time. Alsoo, it does not gaurntee to do insert outside the transaction boundry. Save can perform insert outside the transaction object. Another difference i recollect is that if we use incremental generator where primary id is given by hibernate then save return the primary key assigned while persist does not. 
 b. The difference between load and get method. These methods are there to returnt the persisted (saved in database) object of a given id. However, when we call load the it does not return the real object but return the proxy for th real object however get gets you the real persisted object. Also, load return objectNotFoundException if object not found while get gives null if object not found. 
