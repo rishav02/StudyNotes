@@ -148,7 +148,13 @@ Source3: 3, 5, We will do it in hardcore requiorement of JS.
 Source 4: 3, 6, 11, 12, 19, 21.
 ***************************************************************************************************************************************
 4a. Spring Study File
+1. What is spring framework?
+2. Spring MVC
+a. Basic flow of spring MVC framework.
+b. Code of following: Web.xml, applicationContext.xml, Controller.java
+All annotations used in spring MVC: Controller(to mark the controller), RequestMapping(map the request iwth url), Autowired, MOdelAttribute(It maps the request parameters with the cooresponding bean properties. It can be used on a method or as an argument. With argument type, the request params are added to tha particular method modelandView object but with method level it adds that object to all the method of that cntroller modelAndViewController), Service, Repository, Component, Bean, Qualifier, ResponseBody, PathVariable, Service, Scope, Configuration, ComponentScan, Aspect, before, after, around, pointcut, requestParam.
 
+HOw the data processed in the controller goes to view. 
 
 ***************************************************************************************************************************************
 5a. Hibernate Study File
