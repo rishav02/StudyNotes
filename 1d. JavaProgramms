@@ -1,5 +1,3166 @@
+Java Programs List main
 Source 1: http://www.geeksforgeeks.org/commonly-asked-java-programming-interview-questions-set-1/
 It has so many different topics for programming like networking, Garbage collection, file handling, multithreading, 	Exception Handling and other. Do check this. 
+
 Source 2: http://www.java2novice.com/java-interview-programs/
-1. How to reverse Singly Linked List?
-2. Find out duplicate number between 1 to N continuous numbers.
+List Of All Interview Programs:
+1.	How to reverse Singly Linked List?
+Related to algorithms so will do it later. 
+2.	Find out duplicate number between 1 to N numbers.
+Here the complete question is that we are given a range of number from 1 to N but one of the number is duplicate. We need to find the duplicate number. My strategy is to check the number that is not plus one of the previous number. Considering that numbers are in sequence except the repeated one. 
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+		list.add(3);
+		list.add(5);
+		c.findRepeated(list);
+	}
+	public void findRepeated(List numbers){
+		Collections.sort(numbers);
+		for(int i=0; i<numbers.size(); i++){
+			if(((int)numbers.get(i))!=((int)numbers.get(i+1))-1){
+				System.out.println("The repeated number is "+numbers.get(i));
+				break;
+			}
+		}
+	}
+}
+Now, if the number given are not if sequence then we can find out in couple of ways given below  
+A)Through two loops for checking each value and the moment we find the repeat we can break the loop. 
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		list.add(4);
+		list.add(5);
+		list.add(4);
+		list.add(3);
+		list.add(2);
+		c.findRepeated(list);
+	}
+	public void findRepeated(List numbers){
+		int flag=0;
+		for(int i=0; i<numbers.size(); i++){
+			for(int j=i+1; j<numbers.size(); i++){
+				if((int)numbers.get(i)==(int)numbers.get(j)){
+					System.out.println((int)numbers.get(i));
+					flag=1;
+					break;
+				}
+			}
+			if(flag==1){
+				break;
+			}
+		}
+	}
+}
+B) The other way could be by finding the sum of the numbers. The sum of first six numbers is 21 but if we see the output then the sum comes as 19. This means the difference between the sum subtracted by count of the number. This would also take two loops. 
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		list.add(4);
+		list.add(5);
+		list.add(4);
+		list.add(3);
+		list.add(2);
+		c.findRepeated(list);
+	}
+	public void findRepeated(List numbers){
+		int SumofNumbers=0, sum=0, counter=1;
+		int highestNumber = numbers.size();
+		for(int i=0; i<numbers.size(); i++){
+			SumofNumbers=SumofNumbers+(int)numbers.get(i);
+		}
+		for(int j=1; j<=numbers.size(); j++){
+			sum=sum+counter++;
+		}
+		int duplicateNumber = highestNumber - (sum-SumofNumbers);
+		System.out.println(duplicateNumber);
+	}
+}
+3.	Find out middle index where sum of both ends are equal. [level 4]
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		int[] numbers = {2,4,4,1,5,4,1};
+		c.findMiddleIndex( numbers);
+	}
+	public void findMiddleIndex(int[] numbers){
+		int i=0, j=numbers.length-1;
+		int fsum=0, bsum=0;
+		while(true){
+			if(fsum<bsum){
+				fsum=fsum+numbers[i++];  //0,0 2,1 6,2 10,3 11,4
+			}else{
+				bsum=bsum+numbers[j--];  //1,3 5,4 10,3 11,2 
+			}
+			/*System.out.println(fsum+","+i+" "+bsum+","+j);*/
+			if(i>j){
+				if(bsum==fsum){
+					System.out.println("the breaking index is "+j+"*"+i);
+					break;
+				}else{
+					new Exception("Please provide a valid array");
+				}
+			}
+		}
+	}
+} 
+Another way:
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		int[] numbers = {2,4,4,1,5,4,1};
+		String result = c.middleIndex(numbers);
+		System.out.println(result);
+	}
+	public String middleIndex(int[] numbers){
+		int i=1, j=numbers.length-1;
+		int fsum=numbers[0], bsum=0, index=0, flag=0;
+		while(i<=j){
+			if(fsum<bsum && flag==0){
+				fsum = fsum + numbers[i++];
+			}
+			else if(fsum==bsum){
+				index=i-1;
+				flag=1;
+				break;
+			}
+			else{
+				bsum = bsum + numbers[j--];
+			}
+			/*System.out.println(i+" "+j+" "+fsum+" "+bsum);*/
+		}
+		if(flag==1){
+			return "Numbers added from index 0 to "+(index-1)+
+					"will be same as the from "+index+" till ends";
+		}
+		else{
+			return "please input the valid array";
+		}
+	}
+}
+4.	Write a singleton class.
+In singleton class, class will be a simple class. Class reference will be private and static and getInstance method will be public static.  Most importantly, we are making constructor as private so that it will not be visible. 
+public final class Class2{
+	private static Class2 class2object;
+	
+	private Class2(){
+		
+	}
+	public static Class2 getInstance(){
+		if(class2object==null){
+			return new Class2();
+		}
+		return null;
+	}
+}
+5.	Write a program to create deadlock between two threads.
+Done. But Solution missed
+6.	Write a program to reverse a string using recursive algorithm.
+Same as above 
+7.	Write a program to reverse a number.
+8.	Write a program to convert decimal number to binary format.
+9.	Write a program to find perfect number or not.
+10.	Write a program to implement ArrayList.
+public class MyArrayList {
+    Object[] array;
+    int actualSize=0;
+    public MyArrayList(){
+        array = new Object[10];
+    }
+    public static void main(String args[]) {
+        MyArrayList arrayList = new MyArrayList();
+        arrayList.add("Rishav");
+        arrayList.add("Mishra");
+        arrayList.add("Mishra");
+        arrayList.add("Mishra");
+        arrayList.add("Mishra");
+        arrayList.add("Mishra");
+        arrayList.add("Mishra");
+        arrayList.add("Mishra");
+        arrayList.add("Mishra");
+        arrayList.add("Mishra");
+        arrayList.add("Mishra");
+        arrayList.add("Mishra");
+        System.out.println((String)arrayList.get(10));
+        arrayList.remove(10);
+        System.out.println((String)arrayList.get(10));
+    }
+    public void add(Object obj){
+        if(array.length-actualSize==0){
+            /*System.out.println("Increse Size Called");*/
+            increaseLength();
+            add(obj);
+        }
+        else{
+            /*System.out.println("Element added at index "+actualSize);*/
+            array[actualSize++] = obj;
+        }
+    }
+    
+    public void increaseLength(){
+        Object[] temp = array;
+        array = new Object[(array.length)*2];    
+        for(int i=0; i<temp.length; i++){
+            array[i]=temp[i];
+        }
+    }
+    
+    public Object get(int index){
+        return array[index];
+    }
+    
+    public void remove(int index){
+        if(index<actualSize){
+            for(int i=0; i<actualSize-1; i++){
+                if(array[index]==array[i]){
+                    array[index]=null;
+                    break;
+                }
+            }
+        }
+        else{
+            System.out.println("Invalid index");
+        }
+    }
+}
+11.	Write a program to find maximum repeated words from a file.
+Done. But wasn’t able to perform the sorting of map. 
+12.	Wrie a program to find out duplicate characters in a string.
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        String input = "AMan";
+        mc.repeatCheck(input);
+    }
+    public void repeatCheck(String input){
+        Map<String, Integer> repeatMap = new HashMap<String, Integer>();
+        for(int i=0; i<input.length(); i++){
+            for(int j=i+1; j<input.length(); j++){
+                String onCheck=input.substring(i,i+1);
+                String checkedWith=input.substring(j, j+1); 
+                if(onCheck.equalsIgnoreCase(checkedWith)){
+                    if(repeatMap.containsKey(onCheck)){
+                        repeatMap.put(onCheck, repeatMap.get(onCheck)+1);
+                    }
+                    else{
+                        repeatMap.put(onCheck, 1);
+                    }
+                }
+            }
+        }
+        Set setview = repeatMap.entrySet();
+        Iterator i = setview.iterator();
+        while(i.hasNext()){
+            System.out.println(i.next());
+        }
+    }
+}
+13.	Write a program to find top two maximum numbers in a array.
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        int[] numbers = {1,2,3,4,5,6};
+        mc.repeatCheck(numbers);
+    }
+    public void repeatCheck(int[] numbers){
+        int max1, max2;
+        if(numbers[0]>numbers[1]){
+                max1=numbers[0];
+                max2=numbers[1];
+            }
+            else{
+                max2=numbers[0];
+                max1=numbers[1];
+            }
+        for(int i=2; i<numbers.length; i++){
+            if(numbers[i]>max1){
+                max2=max1;
+                max1=numbers[i];
+            }
+            else if(numbers[i]>max2){
+                max2=numbers[i];
+            }
+        }
+        System.out.println(max1+" "+max2);
+    }
+}
+14.	Write a program to sort a map by value.
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put("Rishav", 2);
+        map.put("Mishra", 1);
+        map.put("Satish", 3);
+        
+        Set set = map.entrySet();
+        List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(set);
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>(){
+            @Override
+                public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2){
+                    return (o2.getValue()).compareTo(o1.getValue());
+                }
+            }
+        );
+        /*Iterator i = set.iterator();
+        while(i.hasNext()){
+            System.out.println(i.next());
+        }*/
+        for(Map.Entry<String, Integer> entry:list){
+            System.out.println(entry.getKey()+" ==== "+entry.getValue());
+        }
+    }
+}
+15.	Write a program to find common elements between two arrays.
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        int[] input1 = {8,2,3,4,5,7};
+        int[] input2 = {7,8,3,4};
+        mc.commonElement(input1, input2);
+    }
+    public void commonElement(int[] input1, int[] input2){
+        List<Integer> elementsInCommon = new ArrayList<Integer>(); 
+        int flag=0;
+        for(int i=0; i<input1.length; i++){
+            for(int j=0; j<input2.length; j++){
+                if(input1[i]==input2[j]){
+                    elementsInCommon.add(input1[i]);
+                }
+            }
+        }
+        Iterator i = elementsInCommon.iterator();
+        while(i.hasNext()){
+            System.out.println(i.next());
+        }
+    }
+}
+16.	How to swap two numbers without using temporary variable?
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        int input1=1, input2=2;
+        mc.swapNumbers(input1, input2);
+    }
+    public void swapNumbers(int input1, int input2){
+        input1=input1+input2;
+        input2=input1-input2;
+        input1=input1-input2;
+        System.out.println("input1 = "+input1+" and input2 "+input2);
+    }
+}
+17.	Write a program to print fibonacci series.
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        int feboUntil = 15;
+        mc.printFebo(feboUntil);
+    }
+    public void printFebo(int feboUntil){
+        int secondLast=0, last=1, nextItem=0;
+        System.out.println(secondLast+" \n"+last);
+        for(int i=0; i<feboUntil-2; i++){
+            nextItem=secondLast+last;
+            System.out.println(nextItem);
+            secondLast=last;
+            last=nextItem;
+        }
+    }
+}
+18.	Write a program to find sum of each digit in the given number using recursion.
+import java.util.*;
+public class MyClass {
+    int sum;
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        int number = 456852;
+        int Digitsum = mc.digitsSum(number);
+        System.out.println(Digitsum);
+    }
+    public int digitsSum(int number){
+        int lastDigit=0;
+        lastDigit = number%10;
+        if(number/10>1){
+            number=number/10;
+            sum=sum+lastDigit;
+            digitsSum(number);
+        }   
+        else{
+            sum=sum+number;
+        }
+        return sum;
+    }
+}
+19.	Write a program to check the given number is a prime number or not?
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        int number = 6;
+        mc.primeCheck(number);
+    }
+    public void primeCheck(int number){
+        int flag=0;
+        for(int i=2; i<=number/2; i++){
+            if(number%i==0){
+                System.out.println("Number is not prime");
+                flag=1;
+                break;
+            }
+        }
+        if(flag==0){
+            System.out.println("Number is prime");
+        }
+        }
+}
+20.	Write a program to find the given number is Armstrong number or not?
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        int number = 371;
+        mc.armstrongCheck(number);
+    }
+    public void armstrongCheck(int input){
+        int number = input;
+        int lastDigit=0, cube=0, sum=0;
+        while(number>1){
+            lastDigit = number%10;
+            cube=lastDigit*lastDigit*lastDigit;
+            sum=sum+cube;
+            number=number/10;
+        }
+        if(sum==input){
+            System.out.println("Number is armstrong");
+        }
+        else{
+            System.out.println("Number is not armstrong");
+        }
+    }
+}
+21.	Write a program to convert binary to decimal number.
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        int[] number = {1,1,1};
+        mc.binaryToDecimal(number);
+    }
+    public void binaryToDecimal(int[] input){
+        int decimalNumber=0, power=0;
+        for(int i=input.length-1; i>=0; i--){
+            decimalNumber = decimalNumber+input[i]*((int)Math.pow(2, power));
+            power++;
+        }
+        System.out.println("The decimal number is "+decimalNumber);
+    }
+}
+22.	Write a program to check the given number is binary number or not?
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        int[] number = {1,1,2};
+        mc.binaryCheck(number);
+    }
+    public void binaryCheck(int[] input){
+        int flag=0;
+        for(int i=0; i<input.length; i++){
+            if(input[i]!=1 && input[i]!=0){
+                System.out.println("Number is not binary");
+                flag=1;
+                break;
+            }
+        }
+        if(flag==0){
+            System.out.println("Number is binary");
+        }
+    }
+}
+23.	Write a program for Bubble Sort in java.
+Note: check the logic again. 
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        int[] number = {1,1,2};
+        mc.bubbleSort(number);
+        for(int k=0; k<number.length; k++){
+            System.out.println(number[k]);
+        }
+    }
+    public void bubbleSort(int[] input){
+        int temp=0;
+        for(int i=0; i<input.length; i++){
+            for(int j=1; j<input.length-i; j++){
+                if(input[i]>input[j]){
+                    temp=input[j];
+                    input[j]=input[i];
+                    input[i]=temp;
+                }
+            }
+        }
+    }
+}
+24.	Write a program for Insertion Sort in java.
+Program related to algorithms.
+25.	Write a program to implement hashcode and equals. 
+Multiple classes.
+26.	How to get distinct elements from an array by avoiding duplicate elements?
+a) int array is given and we only have to print those int which are not repeated. Like  {1,1,2,4,5,6,7,6,6,4}; should give result 2,5,7. 
+	import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        int[] number = {1,1,2,4,5,6,7,6,6,4};
+        mc.distinctElements(number);
+    }
+    public void distinctElements(int[] input){
+        List<Integer> indexes = new ArrayList<Integer>();
+        for(int i=0; i<input.length-1; i++){
+            int flag=0;
+            for(int j=i+1; j<input.length; j++){
+                if(input[i]==input[j]){
+                    indexes.add(i);
+                    indexes.add(j);
+                    flag=1;
+                    break;
+                }
+            }
+        }
+        for(int k=0; k<input.length; k++){
+            if(!(indexes.contains(k))){
+                System.out.println(input[k]);
+            }
+        }
+    }
+}
+b) Other version says it print all the ints except the duplicate once but one occurance of repeated should be printed. Like {5,2,7,2,4,7,8,2,3} result 5 2 7 4 8 3 
+ 
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();	
+        int[] number = {1,1,2,4,5,6,7,6,6,4}; //result: 1,2,4,5,6,7
+        mc.distinctElements(number);
+    }
+    public void distinctElements(int[] input){
+        List<Integer> indexes = new ArrayList<Integer>();
+        for(int i=0; i<input.length-1; i++){
+            int flag=0;
+            for(int j=i+1; j<input.length; j++){
+                if(input[i]==input[j]){
+                    indexes.add(j);
+                    flag=1;
+                    break;
+                }
+            }
+        }
+        for(int k=0; k<input.length; k++){
+            if(!(indexes.contains(k))){
+                System.out.println(input[k]);
+            }
+        }
+    }
+}
+27.	Write a program to get distinct word list from the given file.
+Solutions: Since replication involves files as well. So, I as of now only writing the steps of solve.
+1.	first connect with the file and get the content of file in a line. 
+2.	Then use string tokenizer with delimiter as “ ”. So, we will get each word. 
+3.	Sort each new word in map with key as the same word and value as 1 wjhile any repeated word increasing the value by 1. 
+4.	Do this for all the word we reach the end of line. 
+5.	Print all those words which has value equals 1. 
+28.	Write a program to get a line with max word count from the given file.
+We have assumed a map which has the words of the file and their respective frequency. 
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        Map<String, Integer> wordFrequency = new HashMap<String, Integer>();
+        wordFrequency.put("Rishav", 1);
+        wordFrequency.put("Satish", 2);
+        wordFrequency.put("Mishra", 3);
+        wordFrequency.put("Mishra", 3);
+        wordFrequency.put("ChoteBhai", 6);
+        wordFrequency.put("Harisevak", 6);
+        List words = mc.mostRepeated(wordFrequency);
+        Iterator i = words.iterator();
+        while(i.hasNext()){
+            System.out.println(i.next());
+        }
+    }
+    public List mostRepeated(Map<String, Integer> wordFrequency){
+        List<String> mostRepeatedWords = new ArrayList<String>();
+        Set<Map.Entry<String, Integer>> set = wordFrequency.entrySet();
+        List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>
+        (set);
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>(){
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2){
+                return (o2.getValue()).compareTo(o1.getValue());  
+            }
+        }
+        );
+        Map.Entry<String, Integer> entry1 = list.get(0);
+        Integer maxValue = entry1.getValue();
+        for(Map.Entry<String, Integer> entry: list){
+            if(entry.getValue()==maxValue){
+                mostRepeatedWords.add(entry.getKey());
+            }
+        }
+        return mostRepeatedWords;
+}
+}
+29.	Write a program to convert string to number without using Integer.parseInt() method.
+Note: We can do this through Ascii values. Also, remember that ascii of character 0 to 9 are consequent. 
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        String input = "13456";
+        System.out.println(mc.StringToNumber(input));
+    }
+    public int StringToNumber(String input){
+        char[] charArray = input.toCharArray();
+        int zeroAscii = (int) '0';
+        int sum=0;
+        for(char c: charArray){
+            int digitAscii = (int) c;
+            sum=sum*10+digitAscii-zeroAscii;
+        }
+        return sum;
+    }
+}
+30.	Write a program to find two lines with max characters in descending order.
+Related to file. 
+31.	Write a program to find the sum of the first 1000 prime numbers.
+A) print the number sum prime numbers inside 1 to 1000 (inclusive).
+import java.util.*;
+public class MyClass {
+    public static void amain(String args[]) {
+        MyClass mc = new MyClass();
+        int input=100;  //1, 2,3,5,7
+        System.out.println(mc.nPrimeSum(input));
+    }
+    public int nPrimeSum(int number){
+        int sum=1;
+        for(int i=2; i<=number; i++){
+            int flag=0;
+            for(int j=2; j<=i; j++){
+                if(i%j==0 && i!=j){
+                    flag=1;
+                    break;
+                }
+            }
+            if(flag==0){
+                sum=sum+i;
+            }
+        }
+        return sum;
+    }
+}
+B) print the sum of top 1000 prime numbers. 
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        mc.top10Prime();
+    }
+    public void top10Prime(){
+        int count=0, integer=1, sum=0;
+        while(count<=1000){
+            if(checkPrime(integer)){
+                count++;
+                sum=sum+integer;
+            }
+            integer++;
+        }
+        System.out.println(sum);
+    }
+    public boolean checkPrime(int integer){
+        for(int i=1; i<integer/2; i++){
+            if(integer%i==0 && i!=1){
+                return false;
+            }
+        }
+        return true;
+    }
+} 
+Note: this is including 1 as prime number. But we should not count 1 as prime number because definition of prime says it should have two distinct positive divisors 
+32.	Find longest substring without repeating characters.
+A) if only the length of the string to be sent.
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        String input = "abcaecbb";
+        System.out.println(mc.logestSubstring(input));
+    }
+    public int logestSubstring(String input){
+        int result=0, begin=0;
+        Map<Character, Integer> charsList = new HashMap<Character, Integer>();
+        for(int i=0; i<input.length(); i++){
+            if(charsList.containsKey(input.charAt(i))){
+                begin=Math.max(begin, charsList.get(input.charAt(i))+1);
+            }
+            charsList.put(input.charAt(i), i);
+            result=Math.max(result, i+1-begin);
+        }
+        return result;
+    }
+}
+b) need to return the longest Substring possible. 
+Little hard. So, I will do it a little later.
+
+33.	Write a program to remove duplicates from sorted array.
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        int[] numbersSorted = {1,2,2,3,4,4,5,5,5,6,6,6,6,6,6,6,6,6};
+        mc.removeDuplicates(numbersSorted);
+    }
+    public void removeDuplicates(int[] numbersSorted){
+        List<Integer> withoutDuplicates = new ArrayList<Integer>();
+        for(int i=0; i<numbersSorted.length-1; i++){
+            if(numbersSorted[i+1]==numbersSorted[i]+1){
+                withoutDuplicates.add(numbersSorted[i]);
+            }
+        }
+        withoutDuplicates.add(numbersSorted[numbersSorted.length-1]);
+        Iterator i = withoutDuplicates.iterator();
+        while(i.hasNext()){
+            System.out.println(i.next());
+        }
+    }
+}
+34.	How to sort a Stack using a temporary Stack?
+Related to algorithms
+
+Source 3: http://www.java67.com/2012/08/10-java-coding-interview-questions-and.html
+It list down the top 10 asked ava programming interview questions. Do check it. 
+
+Source 4: http://javahungry.blogspot.com/2013/09/core-java-coding-programming-questions-answers-technical-interview-java.html
+
+This has so many programs and asking for the result after execution.
+
+Source 5: http://www.instanceofjava.com/2016/03/core-java-interview-programs-freshers.html
+Posted by: InstanceOfJava Posted date: Mar 22, 2016 / comment : 1
+1.	Print prime numbers? (May be first 100)
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        mc.top10Prime();
+    }
+    public void top10Prime(){
+        int count=0, integer=1;
+        while(count<=10){
+            if(checkPrime(integer)){
+                count++;
+                System.out.println(integer);
+            }
+            integer++;
+        }
+    }
+    public boolean checkPrime(int integer){
+        for(int i=1; i<integer/2; i++){
+            if(integer%i==0 && i!=1){
+                return false;
+            }
+        }
+        return true;
+    }
+} 
+2.	Basic Java program to find area and perimeter of circle (The radius is given.)
+Solution: (pie).r*r, 2(pie)r. pie=3.14. Quite simple. 
+3.	Print 1 to 10 without using loops  
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        int integer=1;
+        mc.printtop10(integer);
+    }
+    public void printtop10(int integer){
+        if(integer<=10){
+            System.out.println(integer);
+            printtop10(integer+1);
+        }
+    }
+}
+Note: we can directly write 10 print statements too. ;-)
+4.	Print numbers in pyramid shape?  
+Pyramids has many shapes to will do it separately. 
+5.	Add 2 Matrices
+Matrix will be a two dimensional array. How will you add them, that’s the question.	
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        MyClass mc = new MyClass();
+        int[][] matrix1 = {{1,2}, {3,4}};
+        int[][] matrix2 = {{5,6}, {7,8}};
+        int[][] sum = mc.addMatrices(matrix1, matrix2);
+    }
+    public int[][] addMatrices(int[][] matrix1, int[][] matrix2){
+        
+        int[][] sum = new int[2][2];
+        for(int i=0; i<2; i++){
+            for(int j=0; j<2; j++){/*
+                sum[i][j]=matrix1[i][j]+matrix2[i][j];*/
+                System.out.println(matrix1[i][j]+matrix2[i][j]);
+            }
+        }
+        return sum;
+    }
+}
+6.	Basic Java Example Program to check even or add (without %).
+public class EvenOddWithoutOperator {
+      
+       public static void main(String [] args)
+       {
+              int a = 2;
+              int b = 3;
+              if((a & 1)==0)
+              {
+                     System.out.println("Even");
+              }
+              else
+              {
+                     System.out.println("odd");
+              }
+       }
+      
+       /*
+       * below is for without conditional statement
+       * int number = 10;
+       * String[] trick = {"Even", "odd"};
+       * System.out.println("The number is "trick[number%2]);
+       * */
+}
+
+7.	What happens if we place return statement in try catch blocks 
+If we write the return statement only in either try or catch block then we will get compilation error because we need to keep one at last of the method. We must not have any statement after the last return statement because that statement will not be reachable. 
+8.	Write a java program to convert binary to decimal 
+import java.util.*;
+
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		int binaryNumber = 111;
+		c.BinaryToInt(binaryNumber);
+	}
+	public void BinaryToInt(int binaryNumber){
+		int digit = 0, power=0;
+		while(binaryNumber>=1){
+			digit = digit + (int)((binaryNumber%10)*(Math.pow(2, power)));
+			binaryNumber = binaryNumber/10;
+			power++;
+		}
+		System.out.println(digit);
+	}
+}
+
+Note: We can simple use Java API for converting binary to int like “Integer.parseInt(“binaryString”, base)”. 
+9.	Java Program to convert Decimal to Binary
+import java.util.*;
+
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		int intNumber = 4;
+		c.inttoBinary(intNumber);
+	}
+	public void inttoBinary(int intNumber){
+		List l = new ArrayList();
+		while(intNumber>=1){
+			l.add(intNumber%2);
+			intNumber = intNumber/2;
+		}
+		ListIterator li = l.listIterator(l.size());
+		while(li.hasPrevious()){
+			System.out.println(li.previous());
+		}
+	}
+}
+10.	Interfaces allows constructors? 
+Interface cannot have interface. We do not need to instantiate them. 
+11.	Can we create private constructor in java
+Yes, a class can have private constructors. Also, we cannot have a same arguments public or private constructor. 
+12.	Java interview Questions on main() method  
+We can make main method as final and we can synchronized it too. 
+13.	Explain java data types with example programs 
+Some difficult java date related programs: http://www.guideforschool.com/category/date-related-programs/
+Program to print date and time in java. 
+public class Class1 {
+	public static void main(String[] args){
+		Date date = new Date();
+		System.out.println(date.toString());
+	}	
+}
+Program to format date in common format.
+import java.text.DateFormat;
+import java.util.*;
+
+public class Class1 {
+	public static void main(String[] args){
+		Date date = new Date();
+		DateFormat df = DateFormat.getDateInstance();
+		DateFormat df1 = DateFormat.getDateInstance(DateFormat.SHORT);
+		DateFormat df2 = DateFormat.getDateInstance(DateFormat.LONG);
+		DateFormat df3 = DateFormat.getDateInstance(DateFormat.MEDIUM);
+		DateFormat df4 = DateFormat.getDateInstance(DateFormat.FULL);
+		String StringDate = df4.format(date);
+		System.out.println(StringDate);
+	}	
+}
+14.	Swap two numbers without using third variable in java – Already Done
+15.	Find sum of digits in java 
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		int number = 115;
+		c.SumDigits(number);
+	}	
+	public void SumDigits(int number){
+		int digit, sum=0;
+		while(number>=1){
+			digit=number%10;
+			sum = sum + digit;
+			number=number/10;
+		}
+		System.out.println(sum);
+	}
+}
+16.	Check Even or Odd without using modulus and division  
+We can use the bitwise operator. 
+if((number & 1)==0){
+			System.out.println("Even");
+		}
+		else{
+			System.out.println("False");
+		}
+17.	String Reverse Without using String API 
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		String input = "Rishav";
+		c.reverseString(input);
+	}	
+	public void reverseString(String input){
+		int inputLength = input.length();
+		String reverseString="";
+		for(int i=inputLength-1; i>=0; i--){
+			reverseString = reverseString + input.substring(i, i+1);
+		}
+		System.out.println(reverseString);
+	}
+}
+18.	Check string is palindrome or not?
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		String input = "ababtbaba";
+		c.PlaindromeCheck(input);
+	}	
+	public void PlaindromeCheck(String input){
+		int inputLength = input.length(), flag=0;
+		for(int i=0; i<input.length(); i++){
+			if(!(input.substring(i, i+1).equals(
+					input.substring(inputLength-1, inputLength)))){
+				flag=1;
+				break;
+			}
+			inputLength--;
+		}
+		if(flag==0){
+			System.out.println("Number is palindrome");
+		}
+		else{
+			System.out.println("Number is not palidrome");
+		}
+	}
+}
+
+19.	Reverse a number in java?
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		int input = 10023;
+		c.reverseInt(input);
+	}	
+	public void reverseInt(int input){
+		int reversedNumber=0, digit, count=0;
+		while(input>=1){
+			digit = input%10;
+			reversedNumber =  digit + (reversedNumber*10);
+			input=input/10;
+		}
+		System.out.println(reversedNumber);
+	}
+}	
+20.	Fibonacci series with Recursive?
+Already Done. 
+21.	Fibonacci series without using Recursive?
+import java.awt.SecondaryLoop;
+import java.util.TreeSet;
+
+public class Class1 {
+	int secondLast=0, last=1;
+	public static void main(String args []){
+		Class1 c = new Class1();
+		int input = 10;
+		System.out.println(0);
+		System.out.println(1);
+		c.findFacto(input-2);
+	}
+	public void findFacto(int input){
+		if(input>=1){
+			int next = secondLast+last;
+			System.out.println(next);
+			secondLast = last;
+			last = next;
+			findFacto(--input);
+		}
+	}
+}
+22.	Sort the String using string API?
+There is not inbuilt API in string to sort the string thus we need to convert Sting into Array then we can use the method sort of Arrays class.
+String input = "rishav";
+		char[] inputArray = input.toCharArray();
+		Arrays.sort(inputArray);
+		String sortedString = new String(inputArray);
+		System.out.println(sortedString);
+23.	Sort the String without using String API?
+There are multiple ways for sorting String without using API and couple of them are below.
+a>> Using custom code. But this does not work for mixed String.
+public class Class2{
+	public static void main(String [] args){
+		String name = "Rishav";
+		char[] nameArray = name.toCharArray();
+		char temp;
+		for(int i=0; i<nameArray.length; i++){
+			for(int j=i; j<nameArray.length; j++){
+				if(nameArray[i]<nameArray[j]){
+					temp = nameArray[i];
+					nameArray[i] = nameArray[j];
+					nameArray[j] = temp;
+				}
+			}
+		}
+		
+		String sortedString = new String(nameArray);
+		System.out.println(sortedString);
+	}
+}
+
+b>> Using Comparator and Arrays.sort(). This works for mixed string as well. 
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class Class1 {
+	int secondLast=0, last=1;
+	public static void main(String args []){
+		Class1 c = new Class1();
+		String input = "rRrishav";
+		c.sortString(input);
+	}
+	public void sortString(String input){
+		Character[] charArray = new Character[input.length()];
+		for(int i=0; i<input.length(); i++){
+			charArray[i] = input.charAt(i);
+		}
+		
+		Arrays.sort(charArray, new Comparator<Character>(){
+			@Override
+			public int compare(Character c1, Character c2){
+				/*converting character to lower case does the trick for sorting mixed string*/
+				return Character.compare(Character.toLowerCase(c1), Character.toLowerCase(c2));
+			}
+		});
+		for(int j=0; j<charArray.length; j++){
+			System.out.println(charArray[j]);
+		}
+	}
+}
+
+c>> Using custom code. This does not uses any API and works for mixed strings. 
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class Class1 {
+	int secondLast=0, last=1;
+	public static void main(String args []){
+		Class1 c = new Class1();
+		String input = "rRrishav";
+		c.sortString(input);
+	}
+	public void sortString(String input){
+		Character[] inputArray = new Character[input.length()];
+		for(int k=0; k<input.length(); k++){
+			inputArray[k] = input.charAt(k);
+		}
+		char temp = 'a';
+		for(int i=0; i<inputArray.length; i++){
+			for(int j=i; j<inputArray.length; j++){
+				if(Character.toLowerCase(inputArray[i])<Character.toLowerCase(inputArray[j])){
+					temp = inputArray[i];
+					inputArray[i] = inputArray[j];
+					inputArray[j] = temp;
+				}
+			}
+		}
+		for(int l=0; l<inputArray.length; l++){
+			System.out.println(inputArray[l]);
+		}
+	}
+}
+Note: First solution converts the string to an array and compares two chars using “>” operator. This sorts the unmixed string only. For mixed string, we can use the same solution but instead of making char array, we can make Character array and compare two characters array items only after converting them to lower case with “>” operator. Here the output for the string “rRrishav” will be “aihrrRsv”. In the third solution, we are using the comparator, but this uses the Arrays.sort() method. We use compare method of character class for comparing two chars after converting each to lower case. The output of the string “rRrishav” is “aihrRrsv”. 
+24.	How to find largest element in an array with index and value ?
+public class Class1 {
+	int secondLast=0, last=1;
+	public static void main(String args []){
+		Class1 c = new Class1();
+		char[] elementArray = {'s', 'b', 'v', 'c'};
+		c.largestElement(elementArray);
+	}
+	public void largestElement(char[] input){
+		char result = input[0];
+			for(int j=1; j<input.length; j++){
+				if(result<input[j]){
+					result = input[j];
+				}
+			}
+		System.out.println(result);
+	}
+}
+
+25.	Sort integer array using bubble sort in java?
+Related to collection so will do it later. 
+26.	Check armstrong number or not?
+Already done.
+27.	Multiply 2 Matrices 
+public class Class1 {
+	int secondLast=0, last=1;
+	public static void main(String args []){
+		Class1 c = new Class1();
+		int[][] m1 = {{1,2},{3,4}};
+		int[][] m2 = {{5,6},{7,8}};
+		c.multiplyMatrix(m1, m2);
+	}
+	public void multiplyMatrix(int[][] m1, int[][] m2){
+		int length = m1.length;
+		int[][] result = new int[length][length];
+		for(int i=0; i<length; i++){
+			for(int j=0; j<length; j++){
+				result[i][j] = m1[i][j]*m2[i][j];
+				System.out.println(result[i][j]);
+			}
+		}
+	}
+}
+28.	Explain return type in java – Theory Based.
+29.	Can we call Sub class methods using super class object? 
+In child class, using the super class method implementation is possible only through downcasting. We cannot even do the same by providing the super class reference the object of child class. 
+30.	Can we Override private methods? No. It will not be visible in the child class at the first place. 
+
+Source 6:  http://www.instanceofjava.com/p/frequently-asked-java-programs-in.html
+
+List of c programs for practice : problems with solutions  
+  
+
+1.	Print prime numbers? – Already Done.
+2.	How to Subtract Hours from java date time. 
+public static void main(String args []){
+		Calendar c = Calendar.getInstance();
+		Date currenttime = new Date();
+		c.setTime(currenttime);
+		c.add(Calendar.HOUR, -1);
+		Date oneHourBack = c.getTime();
+		System.out.println(oneHourBack);
+	}
+3.	How to subtract minutes from current time in java  
+Needs to be done the same way as above program. Do and paste it the next time you see it. 
+4.	Print semicolon without using semicolon in java 
+Ascii of “;” is 59. We can do it as: System.out.println((char)59);
+5.	Remove whitespace from string javascript  
+To remove white spaces from the beginning or ending, we can use the method trim(). 
+6.	Java xor operator with example programs 
+First of all, “^” is XOR operator. XOR in bits works as 1 for unlike bits and 0 for like bits. Exp: 1 and 1 will give 0. XOR in java only accept either integer or Boolean operands. We can also put XOR operation in String of bits with same length through for loop comparing each bit.
+7.	Benefits of arraylist in java over arrays – theory based. 
+8.	Format text using printf() method in java
+Through printf() and %f, %s, %d and others we can make certain formats of output. 
+Let’s take this in separately some other day using: https://dzone.com/articles/java-string-format-examples
+9.	How to Sort list of objects by multiple fields in java  
+Below is all the code for sorting list using multiple data members.
+public class Student {
+	String name;
+	Integer rollNo;
+	/*getters and setters*/
+	/*constructor with all fields*/
+}
+public class NameComparator implements Comparator<Student> {
+	@Override
+	public int compare(Student s1, Student s2){
+		return s1.getName().compareTo(s2.getName());
+	}
+}
+public class RollNoComparator implements Comparator<Student>{
+	@Override
+	public int compare(Student s1, Student s2){
+		return s1.getRollNo().compareTo(s2.getRollNo());
+	}
+}
+public class ChainedComparator implements Comparator<Student>{
+	List<Comparator<Student>> comparatorList;
+	
+	public ChainedComparator(Comparator<Student>...comparators){
+		this.comparatorList = Arrays.asList(comparators);
+	}
+	
+	@Override
+	public int compare(Student s1, Student s2){
+		for(Comparator<Student> comparator: comparatorList){
+			int result = comparator.compare(s1, s2);
+			if(result!=0){
+				return result;
+			}
+		}
+		return 0;
+	}
+}
+public class TestClass {
+		public static void main(String args []){
+		List<Student> students = new ArrayList<Student>();
+		Student s1 = new Student("Rishav", 1);
+		Student s2 = new Student("Heena", 2);
+		Student s3 = new Student("Anish", 3);
+		Student s4 = new Student("Anish", 2);
+		students.add(s1);
+		students.add(s2);
+		students.add(s3);
+		students.add(s4);
+		
+		Collections.sort(students, new ChainedComparator(new NameComparator(), new RollNoComparator()));
+		
+		for(Student s: students){
+			System.out.println(s.getName()+" "+s.getRollNo());
+		}
+	}
+} 
+10.	Java example program to round double to 2 decimal places  
+We can make use of decimal format class.
+double d = 2.344455;
+		DecimalFormat df = new DecimalFormat("#.##");
+		System.out.printf(df.format(d)); 
+11.	Java program to Convert arraylist to array 
+We can convert an arraylist using toArray() method of list. We can create an array of Objects. 
+12.	Finalize() method in java with example program. 
+public class Class1 {
+	@Override
+	protected void finalize() throws Throwable{
+		try{
+			System.out.println("Inside finalize method of child class Class1");
+		}
+		catch(Throwable t){
+			throw t;
+		}
+		finally{
+			System.out.println("Calling finally method");
+			super.finalize();
+		}
+	}
+	public static void main(String args []) throws Throwable{
+		Class1 s = new Class1();
+		String s1 = new String("This is a string");
+		s1=null;
+		s.finalize();
+	}
+}
+
+In the above example, we created a string which we intentionally made null. Since, it is s1 reference got null thus we can to garbage collect it. For this, we called the finalize method overridden in the same class. Check the signature of finalize method carefully. It is throwing throwable. In the finally block, we have called the finalize of object class using super keyword. 
+13.	5 Different ways to print arrays in java  
+a)  Using simple for loop, b) using advanced for loop or for each loop, 3) using the Arrays.toString(array) method, 4) Another method called Arrays.deepToString(array), 5) Arrays.asList(array) and then simply print or iterate it.  
+14.	Hibernate Criteria Query Language (HCQL) – Not relevant.
+15.	How to format text using printf() method in java – Already done.
+16.	Final method in java with example program
+We cannot override a final method. We can use it in child class as they already are.  
+17.	Java mutliple choice questions with answers on constructors – Check the link individually.  
+18.	What are the advantages and disadvantages of Hibernate over JDBC – Not relevant. 
+19.	How to generate unique random numbers in java.
+We can generate random number in java using two classes. 
+A)	using Random class. Below is the implementation.
+public class Class2{
+	public static void main(String [] args){
+		Scanner s = new Scanner(System.in);
+		int max = s.nextInt();
+		int min = s.nextInt();
+		Class2 c = new Class2();
+		c.random(max, min);
+	}
+	public void random(int a, int b){
+		Random rm = new Random();
+		int range = a-b+1;
+		int random=rm.nextInt(range)+b;
+		System.out.println(random);
+	}
+}
+b)	using Random class. Below is the implementation.
+int random=a+(int)(Math.random()*b);
+20.	Java mcq with answers on this keyword  -  Check this individually.
+21.	Quicksort algorithm in java with example program  - Related to algorithms so will do it later. 
+22.	Implementation of selection sort algorithm in java with Example program – Related to algorithms so will do it later. 
+23.	Tower of hanoi recursive solution using Java – Related to algorithms so will do it later.   
+24.	Creating array of objects in java example program 
+Array can contain any kind of data. In fact, the user defined objects can also be stored in array.
+25.	Finding Factorial of a Number in Java  
+public class Class2{
+	public static void main(String [] args){
+		Class2 c = new Class2();
+		int factorial = c.findFacto(10);
+		System.out.println(factorial);
+	}
+	public int findFacto(int a){
+		int facto=1;
+		for(int i=a; i>0; i--){
+			facto = facto * i;
+		}
+		return facto;
+	}
+}
+26.	Print Pascals triangle in java program  
+public class Class2{
+	public static void main(String [] args){
+		Class2 c = new Class2();
+		c.pascalTriangle(5);
+	}
+	public void pascalTriangle(int a){
+		for(int i=0; i<a; i++){
+			for(int j=a; j>i; j--){
+				System.out.print(" ");
+			}
+			int number=1;
+			for(int k=0; k<=i; k++){
+				System.out.print(number+" ");
+				number = (number*(i-k))/(k+1);
+			}
+			System.out.println();
+		}
+	}
+}
+In the above code, we have used three for loops. First decides the number of rows, second decides the number of space initially and third loop prints the appropriate value. The formula “(number*(i-j))/j+1” should be remembered I guess because for a fresh start it will be quite hard of think of.  
+27.	Deep copy   vs  Shallow copy – Theory question.
+28.	8 different ways to convert int to String in java 
+Lets just see three types which are Integer.toString, String.valueOf(), 10+””;.
+29.	Find top two maximum numbers in a array java  
+public class Class2{
+	public static void main(String [] args){
+		Class2 c = new Class2();
+		int[] numbers = {1,2,3,4,7,5,8};
+		c.maxTwo(numbers);
+	}
+	public void maxTwo(int[] numbers){
+		int max=0, secondMax=0;
+		for(int i=0; i<numbers.length; i++){
+			if(numbers[i]>max){
+				secondMax = max;
+				max = numbers[i];
+			}
+			if(numbers[i]>secondMax && numbers[i]!=max){
+				secondMax=numbers[i];
+			}
+		}
+		System.out.println(max+" "+secondMax);
+	}
+}
+30.	Exception handling in method overriding.
+a) if parent method does not throw any exception then child overridden implementation of that method can only send unchecked exception. If checked exception is thrown then we get compile time error. 
+31.	How to run jsp program in eclipse using tomcat.
+Once we create a JSP file then we need to place it in some directory path under WEB-INF. Lets say we have a folder called jsp in web.inf. Also, we can see that file after deployment under apache>>webapps>>jsp>ourJspFile. To run that particular JSP file we can use the URL http://localhost:7001/jsp/ourJspFile.
+32.	Java interface programming questions  - Check this individually.
+33.	Java program to remove vowels from string java  
+public class Class2{
+	public static void main(String [] args){
+		Class2 c = new Class2();
+		String input = "Rishav";
+		c.removeVowel(input);
+	}
+	public void removeVowel(String input){
+		String result="";
+		for(int i=0; i<input.length(); i++){
+			if(!(input.charAt(i)=='a'||input.charAt(i)=='e'||input.charAt(i)=='i'||
+					input.charAt(i)=='o'||input.charAt(i)=='u'||input.charAt(i)=='A'||
+					input.charAt(i)=='E'||input.charAt(i)=='I'||input.charAt(i)=='O'||
+					input.charAt(i)=='U')){
+				result=result+input.substring(i,i+1);
+			}
+		}
+		System.out.println(result);
+	}
+}
+34.	Java programming interview questions and answers for experienced  - Check this separately.
+35.	Java Program to reverse vowels in a string 
+We can program the above requirement in two ways. 
+a)	First we will collect all the vowels present in the input string and then iterate through the string again and replace the first vowel found with the last vowel of the vowel store. 
+public class Class2{
+	public static void main(String [] args){
+		Class2 c = new Class2();
+		String input = "aeiou";
+		c.reverseVowel(input);
+	}
+	public void reverseVowel(String input){
+		String result="";
+		String presentVowels="";
+		for(int i=0; i<input.length(); i++){
+			if(aVowel(input.charAt(i))){
+				presentVowels=presentVowels+input.substring(i, i+1);
+			}
+		}
+		int counter=presentVowels.length()-1;
+		for(int j=0; j<input.length(); j++){
+			if(aVowel(input.charAt(j))){
+				result = result+presentVowels.substring(counter, counter+1);
+				counter--;
+			}
+			else{
+				result = result+input.substring(j, j+1);
+			}
+		}
+		System.out.println(result);
+
+	}
+	public boolean aVowel(char input){
+			if(input=='a'||input=='e'||input=='i'||input=='o'||input=='u'||
+					input=='A'||input=='E'||input=='I'||input=='O'||input=='U'){
+				return true;
+			}
+		return false;
+	}
+}
+b)	The other way of programming the same thing is that we keep two pointers at the beginning and ending of the string and first check the vowel from the front and the moment we found then we should check from the end. Once we finds from both the end then we need to swap those two. We need to make good use of continue keyword here. 
+public class Class2{
+	public static void main(String [] args){
+		Class2 c = new Class2();
+		String input = "aeiou";
+		c.reverseVowel(input);
+	}
+	public void reverseVowel(String input){
+		int i=0, j=input.length()-1;
+		char[] inputArray = input.toCharArray();
+		while(i<j){
+			if(!(aVowel(input.charAt(i)))){
+				i++;
+				continue;
+			}
+			if(!(aVowel(input.charAt(j)))){
+				j--;
+				continue;
+			}
+			char temp=inputArray[i];
+			inputArray[i]=inputArray[j];
+			inputArray[j]=temp;
+			i++; j--;
+		}
+		System.out.println(new String(inputArray));
+	}
+	public boolean aVowel(char input){
+			if(input=='a'||input=='e'||input=='i'||input=='o'||input=='u'||
+					input=='A'||input=='E'||input=='I'||input=='O'||input=='U'){
+				return true;
+			}
+		return false;
+	}
+}
+
+36.	Super keyword java programs for interview for freshers and experienced  - Check this individually.
+37.	Java programming interview questions on this keyword part 1 – Check this individually.
+38.	Super keyword in java inheritance – Check this individually.
+39.	Java programming interview questions on this keyword part 2 - Check this individually.
+40.	Java programs on this keyword part 3 - Check this individually.
+41.	Servlets interview questions - Check this individually.
+42.	Find shortest palindrome string. 
+This one is tricky. So, on a high level I want to give an overview. Firstly, we need to cover the scenarios like a string already a palindrome (bob) then we need to return the same string, a string which is making palindrome but incomplete (abobc, adoba and others) then we need to find the minimum change needed and finally the strings which are normal like rishav. 
+To solve this, the most important thing is to identify what palindrome is already present in the input string. we need to first check the first element of the input string which actually not making palindrome with the same position element from the end. If we do not find any then the same string will be returned however if we finds it then that element will be the mid element and substring after that element will be suffix. We find the prefix by reversing the suffix. However, while programming it’s a little more complex. 
+Note: 
+1.	if we should not that to reverse a string we should use StringBuilder class reverse method. 
+2.	I have made changes from the answer given in instanceofjava according to my logic. However, I have not run all possible test cases for shortest palindrome. So, if face difficulty with any particular test case then look back the answer on instanceofjava. 
+public class Class2{
+	public static void main(String [] args){
+		Class2 c = new Class2();
+		String input = "efeacocbobe";
+		System.out.println(c.shortestPalindrome(input));
+	}
+	public String shortestPalindrome(String input){
+		int x=0, y=input.length()-1;
+		while(y>=0){
+			if(input.charAt(x)==input.charAt(y)){
+				x++;
+			}else{
+				break;
+			}
+			y--;
+		}
+		if(x==input.length()){
+			return input;
+		}
+		String suffix = input.substring(x+1);
+		String prefix = new StringBuilder(suffix).reverse().toString();
+		String mid = input.substring(x, x+1);
+		return prefix+mid+suffix;
+	}
+}
+Note: Well, its almost like a algorithm in itself. So, we can be stronger on this later. 
+43.	Validate email using javascript – Java Script question. 
+44.	Java XML parsing using  DOM Parser – XML related question.
+45.	Dynamic polymorphism in Java – This is overriding. 
+46.	Find missing numbers in an array. 
+public class Class2{
+	public static void main(String [] args){
+		Class2 c = new Class2();
+		int[] numbers = {3,4,5,6,8};
+		c.missingNumbers(numbers);
+	}
+	public void missingNumbers(int[] input){
+		int[] missingNumbers = new int[input.length];
+		int count=1, index=0;
+		for(int i=0; i<input.length; i++){
+			if(input[i]>count){
+				missingNumbers[index] = count;
+				System.out.println(missingNumbers[index]);
+				index++;
+				i--;
+			}
+			count++;
+		}
+	}
+}
+47.	Collection vs Collections – theory based question. 
+48.	Custom iterator in java 
+Here, Custom iterator is nothing but nothing but the for each loop only. 
+49.	Unreachable Blocks in java
+Few of the examples are when the return statement is written before some part of the code or when the generalized exception catch block is written before the one more specific. 
+50.	Get table cell data using JavaScript – Related to java script. 
+51.	Enum in java – Theory based. 
+52.	3 different ways to print exception message in java -  theory based. 
+53.	Can we have try without catch block in java  - Yes. Theory based. 
+54.	toString() method in java with example program 
+The use of toString method is to convert any non primitive data type into string like all wrapper classes to string or user defined objects to string. For this, we need to override toString methods. Wrapper classes already implements the toString method. Thus, below code word just perfect by printing 0 and null. 
+public class ParentClass {
+	int a;
+	String b;
+	public String toString(){
+		return a+" "+b;
+	}
+	public static void main(String args[]){
+		ParentClass pc = new ParentClass();
+		System.out.println(pc.toString());
+	}
+}
+55.	Remove duplicates from arraylist without using collections
+public class Class1 {
+	public static void main(String args []){
+		Class1 c = new Class1();
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		list.add(2);
+		list.add(2);
+		list.add(3);
+		c.removeDuplicate(list);
+	}
+	public void removeDuplicate(List<Integer> list){
+		List<Integer> withoutDuplicate = new ArrayList<>();
+		Integer previousItem = null;
+		Iterator<Integer> i = list.iterator();
+		while(i.hasNext()){
+			Integer item = i.next();
+			if(!(item==previousItem)){
+				withoutDuplicate.add(item);
+				previousItem=item;
+			}
+		}
+		for(Integer j: withoutDuplicate){
+			System.out.println(j);
+		}
+	}
+}
+56.	Explain Hibernate Configuration file – Related to hibernate
+57.	What happens if we place return statement in try catch blocks. 
+This is something new. If we have the return statement only in try block then we will get compile time error that “this method must return a int type”. Similarly, we cannot just have a return statement in catch block only. 
+58.	Write a java program to convert binary to decimal – Already Done.
+59.	Java interview questions on exception handling – Do it separately. 
+60.	Java Program to convert Decimal to Binary – Already Done.
+61.	Is it possible to print message without using System.out.println()
+Yes. In fact, there are multiple ways. System.out.write(Byte[]), System.out.format(“Format like %s”, “James”), FileOutputStream(FileDescriptor.out),  system.err.print(), System.console.write.print().  
+62.	Java program to restrict a class from creating not more than three objects.
+public class Class1 {
+	private static Class1 c;
+	public static int count=0;
+	public static Class1 getInstance(){
+		if(count<3){
+			c=new Class1();
+			count++;
+			return c;
+		}
+		return c;
+	}
+}
+63.	Java basic interview programs on this keyword – Do this individually.
+64.	Java Program to Sort elements of Java ArrayList Example. – Will do it in collection section. 
+65.	Interfaces allows constructors? No. Interface cannot have interface.
+66.	Can we create static constructor in java. No. Constructor cannot be static. 
+67.	Super keyword interview questions java. – Do it individually.
+68.	Java interview questions on final keyword – Do it individually.
+69.	Can we create private constructor in java – Yes. Public, private and protected modifiers are legal.
+70.	Java Program Find Second highest number in an integer array. 
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		int[] numbers = {1,3,4,2,5};
+		int secondMax = c.secondMax(numbers);
+		System.out.println(secondMax);
+	}
+	public int secondMax(int[] numbers){
+		int max=0, secondMax=0;
+		for(int i=0; i<numbers.length; i++){
+			if(numbers[i]>max){
+				secondMax=max;
+				max=numbers[i];
+			}
+		}
+		return secondMax;
+	}
+} 
+71.	Java interview programming questions on interfaces – Do it individually. 
+72.	Top 15 abstract class interview questions  - Do it individually. 
+73.	Java interview Questions on main() method  - Do it individually.
+74.	Sort employee object by id in descending order using comparable and TreesSet
+This is an eye opener. Let me just brief on the normal behavior of Sets. HashSet maintains no order, LinkedHashSet maintains order of insertion so while iterating it will print the values in the order of insertion and Treeset maintain ascending order which means the elements will be printed in increasing order. 
+We can do this making the condition of compareTo method of comparable as opposite. 
+Now, the program expect us to sort items in descending order in treeset using user defined object element and wrapper class element. 
+public class Employee implements Comparable<Employee>{
+	Integer Id;
+	String Name;
+	/*constructor*/
+	/*getters and setters*/
+	/*toString method*/
+	@Override
+	public int compareTo(Employee e){
+		if(Id>e.Id){
+			return -1;
+		}else if(Id<e.Id){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+}
+public class EmployeeCompare {
+	public static void main(String[] args){
+		Set<Employee> treeset = new TreeSet<Employee>();
+		treeset.add(new Employee(4,"Rishav"));
+		treeset.add(new Employee(5,"Risha"));
+		treeset.add(new Employee(2,"Rish"));
+		treeset.add(new Employee(1,"Ris"));
+		
+		System.out.println(treeset);
+	}
+}
+For Wrapper class Integer which already have compareTo() method implemented. For this, we need to use below code, 
+Set<Integer> treeset = new TreeSet<Integer>(Collections.reverseOrder());
+75.	Top 20 collection framework interview Questions – Check this individually. 
+76.	Java Interview Program to find smallest and second smallest number in an array 
+We have made two solutions. First is not so efficient as it is a bit lengthier. However, second seems to be the most efficient. 
+1) identify the smaller between the first two numbers of int then checks for the rest. 
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		int[] numbers = {7,2,4,1,5,9};
+		c.secondMax(numbers);
+	}
+	public void secondMax(int[] numbers){
+		int min, secmin;
+		if(numbers[0]<numbers[1]){
+			min=numbers[0];
+			secmin=numbers[1];
+		}else{
+			min=numbers[1];
+			secmin=numbers[0];
+		}
+		for(int i=2; i<numbers.length; i++){
+			if(numbers[i]<min){
+				secmin=min;
+				min=numbers[i];
+				break;
+			}
+			if(numbers[i]<secmin){
+				secmin=numbers[i];
+			}
+		}
+		System.out.println(min+" "+secmin);
+	}
+}
+
+2) set the first and second min to INT_MAX value. Then, creates a loops to find the max in the numbers array. 
+
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		int[] numbers = {7,2,4,1,5,9};
+		c.secondMax(numbers);
+	}
+	public void secondMax(int[] numbers){
+		int min=Integer.MAX_VALUE, secmin=Integer.MAX_VALUE; 
+		for(int i=0; i<numbers.length; i++){
+			if(numbers[i]<min){
+				secmin=min;
+				min=numbers[i];
+				continue;
+			}
+			if(numbers[i]<secmin){
+				secmin=numbers[i];
+			}
+		}
+		System.out.println(min+" "+secmin);
+	}
+}
+ 
+77.	Java Coding Interview programming Questions : Java Test on HashMap  - Do it individually. 
+78.	Explain java data types with example programs – Do it individually. 
+79.	How to check internet connection using java
+There could be couple of ways to check if we have internet connection in our system or not.
+A) First is through java.net classes URL and URLConnection.
+public class Class1 {
+	public static void main(String[] args){
+		try{
+			URL url = new URL("https://www.google.co.in");
+			URLConnection connection = url.openConnection();
+			connection.connect();
+			System.out.println("Internet connected.");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+}
+B)	Second is through the runtime class. Output 0 is for internet open and 1 for closed.  
+public class Class1 {
+	public static void main(String[] args){
+		try{
+		Process process = java.lang.Runtime.getRuntime().exec("ping www.google.com");
+		System.out.println(process.waitFor());
+		}catch(Exception e){
+			System.out.println("IO exception caught");
+		}
+	}
+}
+80.	Constructor chaining in java with example programs 
+Here, we bind the call on one constructor from other and to do so we make use of this keyword.
+public class ChaingingClassA {
+	int a,b;
+	public ChaingingClassA(){
+		this(1);
+		System.out.println("Inside no parameter constructor");
+	}
+	public ChaingingClassA(int a){
+		this(1,2);
+		System.out.println("Inside one parameter constructor");
+	}
+	public ChaingingClassA(int a, int b){
+		this.a=a;
+		this.b=b;
+		System.out.println("Inside two parameter constructor");
+	}
+	public static void main(String args[]){
+		ChaingingClassA c = new ChaingingClassA();
+		System.out.println(c.a+" "+c.b);
+	}
+}
+
+81.	Top 10 Interview Programs and questions on method overriding in java – Do it individually. 
+82.	Swap two numbers without using third variable in java – Already Done.
+83.	Find sum of digits in java 
+public class Class2{public static void main(String[] args){
+	Class2 c = new Class2();
+	int number = 123;
+	c.digitSum(number);
+}
+	public void digitSum(int number){
+		int sum=0, digit=0;
+		int n = (number+"").length();
+		while(number>=1){
+			digit=number%10;
+			sum=sum+digit;
+			number=number/10;
+		}
+		System.out.println(sum);
+	}
+}
+84.	How to create immutable class in java 
+/*final class, so we no other class can extend it.*/
+public final class Class2{
+	/*final variable so its value cannot be changed.*/
+	final int a;
+	public Class2(int a){
+		this.a=a;
+	}
+	/*only getter method, no setter method. Its value cannot be set externally.*/
+	public int getA() {
+		return a;
+	}
+}
+
+85.	AtomicInteger in java – Theory first. However, just an overview this is a class which can create integer and has some method which can really speed up the int related task in general programming.
+86.	Check Even or Odd without using modulus and division - Already Done.
+87.	String Reverse Without using String API – Already Done. 
+88.	Find Biggest substring in between specified character
+public class Class2{
+	public static void main(String args []){
+		Class2 c = new Class2();
+		String input = "I am rajesh kumar ravi";
+		char delim = 'a';
+		System.out.println(c.longestString(input, delim));
+	}
+	public String longestString(String input, char delim){
+		int maxlength=0, index=0;
+		String[] substr = input.split(delim+"");
+		for(int i=0; i<substr.length; i++){
+			if(substr[i].length()>maxlength){
+				maxlength=substr[i].length();
+				index=i;
+			}
+		}
+		return substr[index];
+	}
+}
+89.	Check string is palindrome or not?
+Iterative way already done. 
+Recursive way to find palindrome: 
+public class Class2{
+	public static void main(String args []){
+		Class2 c = new Class2();
+		String input = "eacbbbcae";
+		System.out.println(c.recursivePalindromeCheck(input));
+	}
+	public boolean recursivePalindromeCheck(String input){
+		int x=0, y=input.length()-1;
+		if(input.charAt(x)==input.charAt(y)){
+			if(x!=y){
+				recursivePalindromeCheck(input.substring(x+1, y));
+			}
+		}else{
+			return false;
+		}
+		return true;
+	}
+}
+90.	Reverse a number in java? – Already Done.
+91.	Fibonacci series with Recursive? – already Done.
+92.	Fibonacci series without using Recursive? – Already Done.
+93.	Sort the String using string API? – Already Done.
+94.	Sort the String without using String API? -  Already Done.
+95.	what is the difference between method overloading and method overriding? – Java theory question. 
+96.	How to find largest element in an array with index and value?
+public class Class2{
+	public static void main(String args []){
+		Class2 c = new Class2();
+		int[] numbers = {12, 57, 93, 42};
+		c.highestElement(numbers);
+	}
+	public void highestElement(int[] numbers){
+		int max=0, index=0;
+		for(int i=0; i<numbers.length; i++){
+			if(numbers[i]>max){
+				max=numbers[i];
+				index=i;
+			}
+		}
+		System.out.println("The highest number is "+max+" and found at index "+index);
+	}
+}
+97.	Sort integer array using bubble sort in java? -  Algorithm related question. Will do it later. 
+98.	Object Cloning in java example? – 
+For cloning an object, we need to implement cloneable interface and override clone method that throws CloneNotSupportedException and return Object type. The below example depicts that the value of a data member because the same of the cloned object. 
+public class Class2 implements Cloneable{
+	int a;
+	public Class2(int a){
+		this.a=a;
+	}
+	public void displayA(){
+		System.out.println(a);
+	}
+	public static void main(String args []){
+		Class2 c = new Class2(10);
+		try{
+			Class2 c1 = (Class2)c.clone();
+			c1.displayA();
+		}catch(CloneNotSupportedException e){
+			System.out.println("Clone not supported exception");
+		}
+	}
+	public Object clone() throws CloneNotSupportedException{
+		return super.clone();
+	}
+}
+99.	Method Overriding in java? – Theory based. 
+100.	Program for create Singleton class? Already Done.
+101.	Print numbers in pyramid shape? – Already Done.
+102.	Check armstrong number or not? – Already Done.
+103.	Producer Consumer Problem? – Also like a algorithm so will do it later. 
+104.	Remove duplicate elements from an array. 
+If of all the the input array can contain int, char or string. We can compare each in an appropriate way but the basic structure of the program remains the same. 
+public final class Class2{
+	public static void main(String args []){
+		Class2 c = new Class2();
+		String[] input = {"hi", "bye", "hi again", "bye", "hi"};
+		c.removeDuplicate(input);
+	}
+	public void removeDuplicate(String[] input){
+		List<String> withoutDuplicate = new ArrayList<String>();
+		for(int i=0; i<input.length; i++){
+			int flag=1;
+			for(int j=i+1; j<input.length; j++){
+				if(input[i].equals(input[j])){
+					flag=0;
+					break;
+				}
+			}
+			if(flag==1){
+				System.out.println();
+				withoutDuplicate.add(input[i]);
+			}
+		}
+		System.out.println(withoutDuplicate);
+	}
+}
+105.	Convert Byte Array to String (Also the other way around)
+First of all, byte data is just like the ascii number for a character that way we have. Also, byte is primitive type data while Byte is the respective wrapper class for it. 
+public final class Class2{
+	public static void main(String args []){
+		Class2 c = new Class2();
+		/*Conversion of string to array*/
+		String s = "Rishav";
+		byte[] ba = s.getBytes();
+		/*conversion from byte to array*/
+		byte[] byteArray = {78,79,80,81};
+		String chars = new String(byteArray);
+	}
+}
+106.	Print 1 to 10 without using loops – Already Done. 
+107.	Add 2 Matrices - Already Done. 
+108.	Multiply 2 Matrices – Already Done.
+109.	How to Add elements to hash map and Display – 
+public final class Class2{
+	public static void main(String args []){	
+		Map<Integer, String> map = new HashMap<>();
+		map.put(1, "Rishav");
+		map.put(2, "Mishra");
+		
+		Iterator i = map.entrySet().iterator();
+		while(i.hasNext()){
+			Map.Entry<Integer, String> item= (Entry) i.next();
+			System.out.println(item.getKey()+" "+item.getValue());
+		}
+		
+	}
+}
+110.	Sort ArrayList in descending order
+public final class Class2{
+	public static void main(String args []){	
+		List<String> list = new ArrayList<>();
+		list.add("Rishav");
+		list.add("Mishra");
+		list.add("Satish");
+		Collections.sort(list, Collections.reverseOrder());
+		Iterator i = list.iterator();
+		while(i.hasNext()){
+			System.out.println(i.next());
+		}
+	}
+}
+111.	Sort Object Using Comparator – Will do this in the collections section. 
+112.	Count Number of Occurrences of character in a String
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		String input = "Risahvishjkdbaddwiiiugyuis";
+		c.charOccurances(input, 'i');
+	}
+	public void charOccurances(String input, char delim){
+		int count=0;
+		for(int i=0; i<input.length(); i++){
+			if(input.charAt(i)==delim){
+				count++;
+			}
+		}
+		System.out.println(count);
+	}
+}
+113.	Can we Overload static methods in java - Yes
+114.	Can we Override static methods in java - No
+115.	Can we call super class static methods from sub class. Yes 
+116.	Explain return type in java – Theory based.
+117.	Can we call Sub class methods using super class object?  Yes Down Casting needed. 
+public class ParentClass {
+	public static void main(String[] args){
+		ParentClass pc = new ParentClass();
+		/*below comment statement will give compilation error*/
+		//pc.childMethod();
+		((ChildClass)pc).childMethod(); 
+		/*above statement shows downcasting which enables the parent class to use child class method.*/
+	}
+}
+public class ChildClass extends ParentClass{
+	public void childMethod(){
+		System.out.println("Child method");
+	}
+}
+
+118.	Can we Override private methods ? – No. They will not be visible at the first place.
+119.	Basic Programming Questions to Practice : Test your Skill – Do it individually.
+120.	Java programming interview questions on collections – Do it individually.
+Source 7: http://www.instanceofjava.com/2016/03/java-collections-interview-questions.html
+
+Collection set interface: 
+
+Hashset Class in Collection framework: (Java programming questions)
+1.	Hashset class in java  - No duplicate, no order, one null value, not synchronized. 
+2.	Get Size of Java HashSet Example  - System.out.println(set.size());
+3.	Remove specified element from Java HashSet example
+set.remove(1);
+4.	Check if a particular element exists in Java HashSet Example 
+set.contains(1)
+5.	Java program to Copy all elements of Java HashSet to an Object Array 
+Iterator<Integer> i = set.iterator();
+		while(i.hasNext()){
+			objArray[index++]=i.next();
+		}
+
+LinkedHashSet Class in Collection framework: (Java programming questions)
+1.	Check if a particular element exists in Java LinkedHashSet Example
+Contains() method.
+2.	Remove specified element from Java LinkedHashSet example
+Remove() method. 
+3.	Remove all elements LinkedHashSet example
+removeAll() method.
+
+Treeset Class in Collection framework: (Java programming questions)  
+1.	Java Program to convert Treeset to an interger array  
+Treeset.toArray(). This method is used for converting from hashset and linkedhashset as well. 
+2.	Get Size of Java TreeSet Example – size().
+3.	Get lowest and highest value stored in Java TreeSet example – first() and last().
+This method is only for TreeSet while not available for HashSet and LinkedHashSet. We cannot use it through the reference of Set interface. 
+4.	Sort employee object in descending order using comparable and TreesSet 
+For primitive type of data we can use the below code. However, if we try to do the same thing for user defined data then we will get runtime exception saying that the user defined class does not implements the compareTo() method of comparable interface. 
+TreeSet<Integer> set = new TreeSet<Integer>(Collections.reverseOrder());
+For user defined object, we have to override the compareTo() method in the user defined class which is employee here. 
+@Override
+	public int compareTo(Employee e){
+		if(Id>e.Id){
+			return 1;
+		}else if(Id<e.Id){
+			return -1;
+		}else{
+			return 0;
+		}
+	}
+5.	Basic Java program to Remove specified element from TreeSet example – remove()
+
+
+
+ Collection List Interface: 
+
+ArrayList Class in Collection framework: (Java programming questions) 
+1.	 How to Iterate ArrayList using Java ListIterator Example  
+In list iterator, iteration in forward direction works fine but for backward iteration we need to take the cursor to the back by iterating in forward direction once. 
+public class Class1{
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		List<Integer> l = new ArrayList<Integer>();
+		l.add(1);
+		l.add(2);
+		l.add(3);
+		l.add(4);
+		l.add(5);
+		ListIterator<Integer> li = l.listIterator();
+		
+		while(li.hasNext()){
+			System.out.println(li.next());
+		}
+		/*Iterating in backward direction.*/
+	}
+}
+
+2.	Arraylist add element at specific index 
+To add an element in arraylist at any given index we have another form of add() method that takes the index as the first argument while the value as the second argument. But we need to take care that we can either add it to the last or can add in place of any existing element. If placed as existing element placed at any existing element place, then that element will shift at the next index. 
+3.	Sort ArrayList in descending order
+We can do this by Collections.reverseOrder() method. 
+4.	Java program to insert an element to ArrayList using ListIterator Example  
+We can add the element in list through listIterator using method li.add() but we need to have the either next() or previous() method before it. The new element will be added after the element returned by add() method or before the element returned by the pervious() method. Below if the code:
+ListIterator<Integer> i = l.listIterator();
+		i.next();
+		i.add(7);
+		System.out.println(l);
+5.	How to sort arraylist of strings alphabetically java 
+We can sort the arraylist element using Collections.sort(0 method but which is case sensitive. So, “R, a, B” will be sorted as “R,B,a”. If we have to do case insensitive sorting of elements then we have to override the compare method of comparator and use compareIgnoreCase() method. Below is the code:
+public class Class1 implements Comparator<String>{
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		List<String> l = new ArrayList<String>();
+		l.add("Rishav");
+		l.add("fisha");
+		l.add("gish");
+		l.add("rashav");
+		l.add("Rashav");
+		Collections.sort(l);
+		System.out.println(l);
+		
+		Collections.sort(l, new Comparator<String>(){
+			@Override
+			public int compare(String s1, String s2){
+				return s1.compareToIgnoreCase(s2);
+			}
+		});
+		System.out.println(l);
+	}
+}
+O/P:
+[Rashav, Rishav, fisha, gish, rashav]
+[fisha, gish, Rashav, rashav, Rishav]
+
+6.	Java Program to Sort elements of Java ArrayList Example 
+Here, we can simply use Collections.sort() method. 
+7.	Basic Java example program to replace an element at specified index arraylist
+We have set() method. 
+8.	Search an element of Java ArrayList Example
+We can use contains() method. 
+9.	Java Example Program to Remove element from specified index ArrayList 
+We can use remove() method. 
+10.	Remove duplicates from arraylist without using collections 
+We do not have any API for directly doing so but below can do it for us:
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		List<String> l = new ArrayList<String>();
+		l.add("Rishav");
+		l.add("fisha");
+		l.add("Rishav");
+		l.add("Rishav");
+		l.add("Rishav");
+		
+		for(int i=0; i<l.size(); i++){
+			for(int j=i+1; j<l.size(); j++){
+				if(l.get(i).equals(l.get(j))){
+					l.remove(j);
+					j--;
+				}
+			}
+		}
+		System.out.println(l);
+	}
+}
+
+Note: As we remove the element, the size also gets updated. So, the loop does not throw null pointer exception. 
+11.	Top 100 Java Programs asked in Interviews – Do it individually. 
+
+Map Interface in java 
+HashMap Class in Collection framework: (Java programming questions) 
+1.	Basic Java Example program Check if a particular key exists HashMap
+map.containsKey(1);
+map.containsValue("Rishav"); 
+2.	Check if a particular key exists in Java Hashtable example  
+We can use the same methods as above. 
+3.	Java Basic example program to check particular value exists in hashmap
+We can use the same methods as above. 
+4.	Java program to remove key value from hashmap
+We can use remove method but we need to take care that it only accept key as the argument. 
+5.	Convert keys of a map to List 
+We have map.keySets() method for this.
+6.	Convert Values of a map to List 
+We can use map.values() method. 
+7.	Java Coding Interview programming Questions : Java Test on HashMap – Do it individually.
+
+ Hashtable Class in Collection framework: (Java interview programming questions) 
+1.	Check particular value exist in hashtable
+Hashtabe.containsValue();
+2.	Iterate through keys of hashtable java
+Set<Entry<Integer, String>> setview = map.entrySet(); 
+		Iterator i = setview.iterator();
+		while(i.hasNext()){
+			Entry<Integer, String> e = (Entry) i.next();
+			System.out.println(e.getKey());
+		}
+3.	Iterate through values of hashtable java 
+We can replace the e.getKey() with e.getValue() in the above code. 
+4.	Remove key value pair from hashtable java example
+Remove(obj, obj)
+5.	Remove all elements from hashtable java example 
+Clear()
+6.	Java Collections example program Get Set view of Keys from Hashtable example 
+We can create the set view like below:
+Set<Integer> setview = map.keySet();
+7.	Get collection values from hashtable example
+Very important to know, that for entry and key view we can use set on left side however for values we need to use collection object as shown below. 
+Collection values = map.values();
+		Iterator i = values.iterator();
+		while(i.hasNext()){
+			System.out.println(i.next());
+		}
+8.	How to iterate hashtable using enumerator. 
+We can use element() for creating enumerator for values whole keys() method of getting keys enumerator. We can use keys to get values. 
+Enumeration e = map.keys();
+		while(e.hasMoreElements()){
+			System.out.println(e.nextElement());
+		}  
+
+Java collections programming interview questions 
+
+
+1.	Top 20 collection framework interview questions for freshers and experienced  - Do it individually. 
+2.	Collection vs Collections – Theory Based.
+3.	Difference between enumeration and iterator and list iterator? Theory Based. 
+4.	Difference between arraylist and vector – Synchronization. 
+5.	Differences between HashMap and Hash-table –Theory based.  
+6.	Comparable vs Comparator – Theory based. 
+7.	Custom iterator in java  - Already Done.
+8.	Remove duplicates from arraylist without using collections – Already Done.
+9.	Top 100 Java Programs asked in Interviews  - Do it individually.
+
+Source 8: http://www.instanceofjava.com/2016/02/java-basic-programming-for-freshers-interview.html
+This has lot of programs asking for the result after execution of the program. 
+
+Source 9: http://www.instanceofjava.com/2015/09/pattern-program-in-java-displays-pyramid-rhombus-stars.html
+
+#1 Java Program To print Numbers in Below pattern: (Below is the triangle shaped.)
+
+              1 
+             2 3 
+            4 5 6 
+           7 8 9 10 
+         11 12 13 14 15	
+Solution: 
+public class Class1 {
+
+	public static void main(String[] args){
+		Class1 c =new Class1();
+		int rows = 5;
+		c.printTriangle(rows);
+	}
+	public void printTriangle(int rows){
+		int count=1, spaces=rows;
+		for(int i=0; i<rows; i++){
+			for(int j=spaces; j>0; j--){
+				System.out.print(" ");
+			}
+			spaces--;
+			for(int k=0; k<i+1; k++){
+				System.out.print(count+" ");
+				count++;
+			}
+			System.out.println("");
+		}
+	}
+}
+Note: beware of println() method. Do you print() method which is quite needed here.
+
+# Java Program to print Numbers in Below Format:
+
+1 
+1 2 
+1 2 3 
+1 2 3 4 
+1 2 3 4 5 
+1 2 3 4 5 6 
+1 2 3 4 5 6 7 
+1 2 3 4 5 6 7 8 
+1 2 3 4 5 6 7 8 9 
+1 2 3 4 5 6 7 8 9 10
+Solution:
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c =new Class1();
+		int rows = 10;
+		c.printTriangle(rows);
+	}
+	public void printTriangle(int rows){
+		int count=1;
+		for(int i=0; i<rows; i++){
+			for(int j=0; j<i+1; j++){
+				System.out.print(count+" ");
+				count++;
+			}
+			System.out.println("");
+			count=1;
+		}
+		
+	}
+}
+
+#3 Java Program to print numbers in below format
+
+1 2 3 4 5 6 7 8 9 
+1 2 3 4 5 6 7 8 
+1 2 3 4 5 6 7 
+1 2 3 4 5 6 
+1 2 3 4 5 
+1 2 3 4 
+1 2 3 
+1 2 
+1 	
+Solution:
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c =new Class1();
+		int rows = 9;
+		c.printTriangle(rows);
+	}
+	public void printTriangle(int rows){
+		int count=1;
+		for(int i=0; i<rows; i++){
+			for(int j=rows-i; j>0; j--){
+				System.out.print(count+" ");
+				count++;
+			}
+			System.out.println("");
+			count=1;
+		}
+		
+	}
+}
+#4 Java Program to print Numbers in Below pattern
+
+1 2 3 4 5 6 7 8 9 
+ 1 2 3 4 5 6 7 8 
+  1 2 3 4 5 6 7 
+   1 2 3 4 5 6 
+    1 2 3 4 5 
+     1 2 3 4 
+      1 2 3 
+       1 2 
+        1 
+Solution:
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c =new Class1();
+		int rows = 9;
+		c.printTriangle(rows);
+	}
+	public void printTriangle(int rows){
+		int count=1;
+		for(int i=0; i<rows; i++){
+			for(int k=0; k<i; k++){
+				System.out.print(" ");
+			}
+			for(int j=rows-i; j>0; j--){
+				System.out.print(count+" ");
+				count++;
+			}
+			System.out.println("");
+			count=1;
+		}
+	}
+}
+#5 Java Program to Print Numbers in Below pattern:
+
+        1 
+       1 2 
+      1 2 3 
+     1 2 3 4 
+    1 2 3 4 5 
+   1 2 3 4 5 6 
+  1 2 3 4 5 6 7 
+ 1 2 3 4 5 6 7 8 
+1 2 3 4 5 6 7 8 9 
+1 2 3 4 5 6 7 8 9 10 
+Solution:
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c =new Class1();
+		int rows = 10;
+		c.printTriangle(rows);
+	}
+	public void printTriangle(int rows){
+		int count=1;
+		for(int i=1; i<=rows; i++){
+			for(int k=rows-i; k>0; k--){
+				System.out.print(" ");
+			}
+			for(int j=0; j<i; j++){
+				System.out.print(count+" ");
+				count++;
+			}
+			System.out.println("");
+			count=1;
+		}
+		
+	}
+}
+ Program #1:  java program to print pyramid of stars using for loop in below format
+
+*
+**
+***
+****
+*****
+******
+*******
+********
+*********
+**********
+Solution: same as above only number is replaced in place of star. Still any doubt? Check below program.
+Program #2: java program to print pyramid of stars using for loop in below format
+
+
+**********
+*********
+********
+*******
+******
+*****
+****
+***
+**
+*
+Solution;
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c =new Class1();
+		int rows = 10;
+		c.printTriangle(rows);
+	}
+	public void printTriangle(int rows){
+		for(int i=0; i<rows; i++){
+			for(int j=rows-i; j>0; j--){
+				System.out.print("*");
+			}
+			System.out.println("");
+		}
+	}
+}
+Program #3 java program to print pyramid of stars using for loop in below format
+
+*
+**
+***
+****
+*****
+******
+*******
+********
+*********
+**********
+**********
+*********
+********
+*******
+******
+*****
+****
+***
+**
+*
+
+Source 10: http://www.bullraider.com/java/core-java/33-interview-questions
+So many programming question. Just check out.
+
+Source 11: http://javarevisited.blogspot.in/2017/07/top-50-java-programs-from-coding-Interviews.html
+
+Top 50 Java Programs from Coding Interviews
+Here is a big list of Java programs for Job Interviews. As I said it includes questions from problem-solving, linked list, array, string, matrix, bitwise operators and other miscellaneous parts of programming. Once you gone through these questions, you can handle a good number of questions on real Job interviews.
+
+1. Fibonacci series (solution) – Already Done. 
+Write a simple Java program which will print Fibonacci series e.g. 1 1 2 3 5 8 13 ... . up to a given number. Be prepare for cross questions like using iteration over recursion and how to optimize the solution using caching and memoization.
+
+2. Prime number (solution) – Already Done.
+Write a Java program to check if a given number is prime or not. Remember, a prime number is a number which is not divisible by any other number e.g. 3, 5, 7, 11, 13, 17 etc. Be prepared for cross e.g. checking till the square root of a number etc.
+
+3. String Palindrome (solution) – Already Done
+You need to write a simple Java program to check if a given String is palindrome or not. A Palindrome is a String which is equal to the reverse of itself e.g. "Bob" is a palindrome because of the reverse of "Bob" is also "Bob".  Though be prepared with both recursive and iterative solution of this problem. The interviewer may ask you to solve without using any library method e.g. indexOf() or subString() so be prepared for that. 
+
+
+4. Integer Palindrome (solution) 
+This is generally asked as follow-up or alternative of the previous program. This time you need to check if given Integer is palindrome or not. An integer is called palindrome if its equal to its reverse e.g. 1001 is a palindrome but 1234 is not because the reverse of 1234 is 4321 which is not equal to 1234. You can use divide by 10 to reduce the number and modulus 10 to get the last digit. This trick is used to solve this problem.
+
+5. Armstrong number (solution) – Already Done.
+A number is called an Armstrong number if it is equal to the cube of its each digit. for example, 153 is an Armstrong number because 153= 1+ 125+27 which is equal to 1^3+5^3+3^3. You need to write a program to check if given number is Armstrong number or not.
+
+
+6. Avoiding deadlock in Java (solution)
+This is one of the interesting programs from Java Interviews, mostly asked to 2 to 3 years of experienced programmers or higher. Interviewer simply asked you to write code where a resource is accessed by multiple threads. You need to write code in such a way that no deadlock should occur. The trick to solving this problem is acquiring resources in an order and release them in reverse order e.g. first acquire resource R1 and only if you have got R1 go for R2. This way you can avoid deadlock.
+
+
+7. Factorial (solution) – Already Done
+This is one of the simplest programs you can expect on interviews. It is generally asked to see if you can code or not. Sometimes interviewer may also ask about changing a recursive solution to iterative one or vice-versa.
+
+8. Reverse a String (solution) – Already Done.
+This problem is similar to the String Palindrome problem we have discussed above. If you can solve that problem you can solve this as well. You can use indexOf() or substring() to reverse a String or alternatively, convert the problem to reverse an array by operating on character array instead of String.
+
+9. Remove duplicates from array (solution)
+Write a program to remove duplicates from an array in Java without using the Java Collection API. The array can be an array of String, Integer or Character, your solution should be independent of the type of array. If you want to practice more array based questions then see this list of top 30 array interview questions from Java interviews.
+
+10. Printing patterns (solutions) – Already Done.
+
+11. Print repeated characters of String? (solution)
+
+12. GCD of two numbers (solution)
+
+13. Square root of number (solution)
+You need to write a program to calculate the square root of a number without using the Math.sqrt() function of JDK. You need to write your logic and method to calculate the square root. You can though use popular algorithm e.g. Newton's method.
+
+14. Reverse array in place (solution) [String array]
+
+15. Reverse words of sentence (solution) 
+
+16. Leap year (solution)
+
+17. Binary search (solution) – Algorithm based.
+
+18. String Anagram (solution)
+Write a program to check if two given String is Anagram of each other. Your function should return true if two Strings are Anagram, false otherwise. A string is said to be an anagram if it contains same characters and same length but in different order e.g. army and Mary are anagrams. You can ignore cases for this problem but you should clarify that from your interview.
+
+
+
+19. Design a Vending Machine (solution) 
+This one of the popular OOAD (object oriented analysis and design) question from Java Interviews. You will be given 3 hours to design and code a vending machine satisfying some of the business requirements. You also need to write unit tests to prove your code satisfy those requirements. You can see this article for more object oriented analysis questions.
+
+20. Reverse a number (solution) – Already Done. 
+
+21. The first non-repeated character of String (solution) 
+
+22. Finding Middle element of linked list in one pass (solution) – Linked list data structure based.
+
+23. Pre-order traversal (solution) - Algorithm based.
+
+24. Pre-order traversal without recursion (solution) - Algorithm based.
+
+25. In order traversal (solution) - Algorithm based.
+
+26. In order traversal without recursion (solution) - Algorithm based.
+
+27. Post-order traversal (solution) - Algorithm based.
+
+28. Post order traversal without recursion (solution) - Algorithm based.
+
+29. Print all leaves of binary tree (solution)- Algorithm based.
+
+
+30. Sort array using quicksort (solution) - Algorithm based.
+You need to write a Java program to sort an array of integers using quick sort algorithm. You cannot use any library method e.g. JDK or a third party library, which means, you need to first implement the quicksort algorithm and then sort the array.
+
+
+31. Insertion sort (solution) - Algorithm based.
+Write a program to implement the insertion sort algorithm in Java. The program should take an unsorted array and sort it using insertion sort algorithm Also explain the best case and worst case time and space complexity of Insertion sort algorithm.
+
+32. Bubble sort (solution) - Algorithm based.
+Write a program to implement the bubble sort algorithm in Java. You can use basic operators and functions but sorting functions from Java API is not allowed.
+
+33. Transpose a matrix (solution) – Algorithm based.
+
+34. Print all permutations of String (solution) – Algorithm based (we need to know backtracking algorithm.)
+Write a Java program to print all permutations of a given String. For example, if given String is "GOD" then your program should print all 6 permutations of this string e.g. "GOD", "OGD", "DOG", "GDO", "ODG", and "DGO".
+ 
+
+
+35. Reverse a String in place (solution)
+public class Class1{
+	public static void main(String [] args){
+		Class1 c = new Class1();
+		String input = "1234";
+		System.out.println(c.reverseString(input));
+	}
+	public String reverseString(String input){
+		String stringReversed = ""; 
+		for(int i=input.length()-1; i>=0; i--){
+			stringReversed = stringReversed + input.substring(i,i+1);
+		}
+		return stringReversed;
+	}
+}
+
+36. Adding two matrices in Java (solution) – Already Done.
+
+37. Matrix multiplication (solution) – Already Done. 
+
+38. Removal all white space from String (solution) 
+String s  = "  i am rishav mishra";
+		System.out.println(s.replaceAll("\\s", ""));
+
+39. Reverse a linked list (solution) [here, they are referring singly linekd list] – Algorithm based.
+Write a program to reverse a singly linked list in Java. You can use iteration and recursion to solve this problem but you should reverse linked list in place.
+ 
+
+
+40. Find the length of linked list (solution) [here, they are referring singly linekd list] – Algorithm based.
+Just write a program in Java to find the length of a singly linked list in one pass i.e. in just one iteration of singly linked list.
+
+
+41. Check if linked list has loop (solution) [here, they are referring singly linekd list] – Algorithm based.
+Write a program to check if given linked list has a loop or not. Sometimes a linked list get corrupt and two nodes point to the same node, which forms the loop or cycle in the linked list.
+
+42. Find the start of loop in linked list (solution) [here, they are referring singly linekd list] – Algorithm based.
+
+43. Find middle element of linked list (solution) [here, they are referring singly linekd list] – Algorithm based.
+
+44. Find the 3rd element from the tail linked list (solution) [here, they are referring singly linekd list] – Algorithm based.
+You need to write a program to find the 3rd element from the tail of a singly linked list. You need to solve this problem without iterating twice. If you want more linked list questions you can see the article about frequently asked linked list interview questions.
+ 
+
+
+
+44. Convert a linked list to a binary tree (solution) - Algorithm based.
+It's possible to convert a doubly linked list to a binary tree, you need to write a Java program which takes a doubly linked list and returns a binary tree.
+
+
+45. Sort a linked list (solution)
+You need to given an unsorted linked list and you need to write a program in Java to sort them in ascending order of the values in each node.
+
+
+46. Iterative Quicksort (solution) - Algorithm based.
+You need to write a Java program to implement quicksort sorting algorithm without recursion. You can use essential JDK classes and programming constructs, but recursion is not allowed.
+
+
+46. Bucket sort (solution) - Algorithm based.
+This program is increasingly getting popular on Java interview because it sorts a given array in linear time. Though there are a lot of prerequisite e.g. you must know the maximum value present in the array, it is a very interesting problem from interview point of view. You need to write a program to implement bucket sort algorithm in Java. If you are not familiar with Bucket sort or any other linear sorting algorithm, I suggest you to first read a good on algorithms e.g. Introduction to Algorithms by Thomas H. Cormen.
+ 
+
+
+
+47. Counting sort (solution) - Algorithm based.
+This is another problem which is similar to the previous one because counting sort is also a linear sorting algorithm. Just remember that bucket sort and counting sort are different algorithms, so it's also good to state how they are different.
+
+
+48. Check if two string rotation of each other
+Write a program which accepts two given String and checks if they are the rotation of each. If they then return true otherwise return false. A String is said to be a rotation of other string if they contain same characters and the sequence is rotated across any character e.g "dabc" is a rotation of "abcd" but "dbac" is not.  If you want to practice more string based questions, you can also see my list of 20 String based algorithm questions from Java interviews.
+public class Class1{
+	public static void main(String [] args){
+		Class1 c = new Class1();
+		String s = "abcd";
+		String s1 = "bcda";
+		System.out.println(c.isRotationString(s, s1));
+	}
+	public boolean isRotationString(String s1, String s2){
+		char first=s1.charAt(0);
+		char next = s1.charAt(1);
+		if(s1.length()!=s2.length()){
+			return false;
+		}else{ 
+			for(int i=0; i<s1.length()-1; i++){
+				if((s2.charAt(i)==first && s2.charAt(i+1)==next)&& i!=s1.length()-1){
+					return true;
+				}
+			}
+			if(s2.charAt(s2.length()-1)==first && s2.charAt(0)==next){
+				return true;
+			}
+		}
+		return false;
+	}
+}
+
+49. LRU cache in Java (solution) – Algorith Related.
+Write a program to implement an LRU cache in Java.  An LRU cache means Least Recently Used Cache which removes the least recently used element if the cache is full. You can use LinkedHashMap to implement LRU cache in Java.
+ 
+
+
+
+50. Merge sort - Algorithm based.
+Implement the merge sort algorithm in Java. You can write a recursive or iterative solution, whichever you like. You also need to explain the time and space complexity for the best, worst, and average case.
+ 
+
+Source 12: 
+Codementor
+
+Extras:
+1.	Find the unique number count in the int array. For example int[] numbers = {1,2,3,1,2,1};. This should give the o/p as 1,3;2,2;3,1 meaning 1 is repeated thrice likewise. 
+public class Class1{
+	public static void main(String args []){
+		Class1 c = new Class1();
+		int[] numbers = {1,2,4,4,5,2,1,3,4,6,3,5,2,5,6};
+		c.checkCount(numbers);
+	}
+	public void checkCount(int[] numbers){
+		Map<Integer, Integer> numberCount = new HashMap<Integer, Integer>();
+		for(int i=0;i<numbers.length; i++){
+			int count=1;
+			for(int j=i+1; j<numbers.length; j++){
+				if(numbers[i]==numbers[j]){
+					count++;
+				}
+			}
+			if(!(numberCount.keySet().contains(numbers[i]))){
+				numberCount.put(numbers[i], count);
+			}
+		}
+		Set set = numberCount.entrySet();
+		Iterator<Entry> i = set.iterator();
+		while(i.hasNext()){
+			System.out.println(i.next());
+		}
+	}
+}
+2.	Find the count of the unique char from a given string just like the above program. 
+public class Class1{
+	public static void main(String args []){
+		Class1 c = new Class1();
+		String string = "kasbkasbck";
+		c.checkCount(string);
+	}
+	public void checkCount(String string){
+		Map<Character, Integer> numberCount = new HashMap<Character, Integer>();
+		for(int i=0;i<string.length(); i++){
+			int count=1;
+			for(int j=i+1; j<string.length(); j++){
+				if(string.charAt(i)==string.charAt(j)){
+					count++;
+				}
+			}
+			if(!(numberCount.keySet().contains(string.charAt(i)))){
+				numberCount.put(string.charAt(i), count);
+			}
+		}
+		Set set = numberCount.entrySet();
+		Iterator<Entry> i = set.iterator();
+		while(i.hasNext()){
+			System.out.println(i.next());
+		}
+	}
+} 
+
+
+
+
+
+
+
+
+
+
+
+Java Study Based Programs
+1.	Downcasting 
+public class ParentClass {
+	int parentInstVarible;
+	static int parentStaticVariable;
+	public ParentClass(){
+		System.out.println("This is parent constructor");
+	}
+	public void ParentInstMethod(){
+		System.out.println("This is parent instance method");
+	}
+	public static void ParentStaticMethod(){
+		System.out.println("This is parent static method");
+	}
+	public static void main(String[] args){
+		/*if we do downcasting using p1, then we will get classcastexception during
+		 * runtime while using p will do valid downcasting*/
+		ParentClass p1 = new ParentClass();
+		ParentClass p = new ChildClass();
+		((ChildClass)p).childInstVarible=10;
+		((ChildClass)p).childStaticVariable=10;
+		((ChildClass)p).childInstMethod();
+		((ChildClass)p).childStaticMethod();
+	}
+}
+
+public class ChildClass extends ParentClass{
+	int childInstVarible;
+	static int childStaticVariable;
+	public ChildClass(){
+		super();  /*calling parent constructor.*/
+		System.out.println("This is child constructor");
+	}
+	public void childInstMethod(){
+		System.out.println("This is child instance method");
+	}
+	public static void childStaticMethod(){
+		System.out.println("This is child static method");
+	}
+	@Override
+	public void ParentInstMethod(){
+		super.ParentInstMethod();  /*Calling Parent inst method.*/
+		System.out.println("Overriden implementation of child");
+	}
+	public static void main(String []args){
+		ChildClass c = new ChildClass();
+		c.ParentInstMethod(); /*Will call child implementation*/
+		ParentStaticMethod();
+		c.parentInstVarible=10;
+		parentStaticVariable=10;
+		ParentClass p = new ParentClass();
+		p.ParentInstMethod(); /*for calling parent's implementation*/
+	}
+}
+
+2.	Programs related to ArrayList
+a>> Basic Arraylist operations like adding, getting, removing, removing all, check if contains, creating, iterating the list, sublist, sorting, size of arraylist, copy of arraylist, finding position of an element, how to find the last appereance of an element. 
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		List<Integer> l = new ArrayList<>();
+		l.add(10); /*Adding an element*/
+		l.add(11); /*Adding an element*/
+		l.add(9); /*Adding an element*/
+		System.out.println(l.get(0)); /*Gettin an element based in index*/
+		System.out.println(l.contains(10)); /*Checking if an element is present*/
+		
+		/*Sorting the arraylist in decreasing order*/
+		Collections.sort(l, Collections.reverseOrder());
+		
+		/*Iterating the list*/
+		Iterator i = l.iterator();
+		while(i.hasNext()){
+			System.out.println(i.next());
+		}
+		
+		/*Creating a sub list of already existing list*/
+		List<Integer> sublist = l.subList(0, 1);
+		System.out.println(sublist);
+		
+		/*size of arraylist*/
+		System.out.println(l.size());
+		
+		/*Copy of arraylist*/
+		List<Integer> lcopy = new ArrayList<Integer>(l);
+		
+		/*finding position of an element*/
+		int position = l.indexOf(9);
+		
+		/*Reversing the Arraylist*/
+		Collections.reverse(l);
+		
+		/*l.removeAll(l);*/ /*remove all the elements*/
+		/*l.remove(index)*/ /*removes the element at specified index*/
+		l.clear(); /*removes all the elements*/
+	}
+}
+b>> How to join two arraylists.
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		List<Integer> list1 = new ArrayList<>();
+		list1.add(1);
+		list1.add(2);
+		List<Integer> list2 = new ArrayList<>();
+		list2.add(4);
+		list2.add(5);
+		
+		/*Adding two arraylist*/
+		list1.addAll(list2);
+		System.out.println(list1);
+	}
+}
+Note: 
+1.	we have another constructor of addAll(index, list). This will add the another list from the specified index of the original list. 
+2.	Clear returns void and is faster while removeAll returns oolean and is slow. 
+c>> How to shuffle an arraylist item. We have an API shuffle() in collections class. 
+d>> How to swap  two elements in Arraylist. We have an API swap() in collections class. 
+e>> How to change the initial capacity of arraylist of 10. One way definitely while declaring the arraylist. Other way is to use ensureCapacity() of arraylist. However, this may be of no use as arraylist increases its size automatically if elements more than its capacity is added. 
+f>>How to decrease the capacity to current size. We can use API trimToSize(). 
+g>> How to find out if the arraylist is empty? We have arrayList method isEmpty(). 
+h>> How to replace an element in arraylist? Set() API. 
+i>> How to add an element at a given position in arraylist? We have another constructor of add(index, element). This will not replace the element but move each element after the specified index to the next index. 
+j>>how to remove duplicate from ArrayList. 
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		List<Integer> list1 = new ArrayList<>();
+		list1.add(1);
+		list1.add(2);
+		list1.add(2);
+		list1.add(1);
+		list1.add(4);
+		Set<Integer> s = new TreeSet<>(list1);
+		System.out.println(s);
+	}
+}
+k>>How to create and initialize an arraylist in one line. We can do Arrays.asList();
+l>>Can we remove any element while iterating the arraylist? If we try through normal arraylist then it will be give concurrentmodification exception thus we should use CopyToWriteArrayList. Below is the program shows it:
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		List<Integer> l = new ArrayList<Integer>();
+		/*if we use l, then we will get concurrent modification exception, 
+		 * thus, we are using CopyOnWriteArrayList().*/
+		List<Integer> concurrentList = new CopyOnWriteArrayList<>(l);
+		concurrentList.add(10);
+		concurrentList.add(11);
+		concurrentList.add(12);
+		concurrentList.add(13);
+		concurrentList.add(14);
+		Iterator i = concurrentList.iterator();
+		while(i.hasNext()){
+			int item = (Integer)i.next();
+			if(item==11){
+				concurrentList.remove(1);
+			}else{
+				System.out.println(item);
+			}
+		}
+	}
+}
+M>> How can we sort a list of strings case insensitive bases. By default the sorting is case sensitive. To have case insensitive sorting, we can use like below:
+	List<String> l = new ArrayList<String>();
+	l.add("B");
+	l.add("a");
+	l.add("A");
+	l.add("b");
+	Collections.sort(l, String.CASE_INSENSITIVE_ORDER);
+	System.out.println(l);
+N>> How to make a read only list. 
+To get an unmodifiable list, we can use collection class API unmodifiable(list). Check the code below:
+	List<String> l = new ArrayList<String>();
+	l.add("B");
+	l.add("a");
+	l.add("A");
+	l.add("b");
+	List<String> unmodifiableList = Collections.unmodifiableList(l);
+	unmodifiableList.add("String");
+	System.out.println(unmodifiableList);
+Note: We will get unsupportedAction exception at second last line of the code above.
+O>> Sorting the arraylist with object type element. 
+a.	Sorting of arraylist when it contains elements of non user defined objects. 
+b.	Sorting of arraylist when it contain elemenrts of user defined object .
+Using Comparator:
+public class Class1{
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		List<Employee> employeeList = new ArrayList<>();
+		employeeList.add(new Employee(1, "Rishav"));
+		employeeList.add(new Employee(2, "Amit"));
+		employeeList.add(new Employee(2, "Ashraf"));
+		
+		Collections.sort(employeeList, new Comparator<Employee>(){
+			@Override
+			public int compare(Employee e1, Employee e2){
+				return e1.name.compareTo(e2.name);
+			}
+		});
+	}
+}
+Note: we need to implement comparable interface. 	 
+Using Comparable:
+Using Comparable we need to implement the comparable interface in the object class whose we are making list and override compareTo method. Check the code below:
+	@Override
+	public int compareTo(Employee e){
+		if(this.id-e.id>0){
+			return 1;
+		}
+		else if(this.id-e.id<0){
+			return -1;
+		}
+		else{
+			return 0;
+		}
+	}
+a.	Sorting on multiple data member bases of the user defined employee.
+That we will do later.  For this me may need multiple 
+
+
+3.	Programs Related to HashSet
+a>> Basic Hashset operations like adding, getting, removing, removing all, check if contains, creating, iterating the Hashset, sublist, sorting, size of Hashset, copy of Hashset, finding position of an element, how to find the last appereance of an element. 
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		Set<Integer> l = new HashSet<>();
+		l.add(10); /*Adding an element*/
+		l.add(11); /*Adding an element*/
+		l.add(9); /*Adding an element*/
+		/*get method is not available for Hashset, since we do have any order.*/
+		System.out.println(l.contains(10)); /*Checking if an element is present*/
+		
+		/*Sorting the hashset in decreasing order*/
+		/*since does not have any order in list, we have to create an list with its 
+		 * elements and sort it.*/
+		
+		/*Iterating the list*/
+		Iterator i = l.iterator();
+		while(i.hasNext()){
+			System.out.println(i.next());
+		}
+		
+		/*Creating a sub list of already existing list*/
+		/*We do not have API in hashset for creating a set.*/
+		
+		/*size of HashSet*/
+		System.out.println(l.size());
+		
+		/*Copy of HashSet*/
+		Set<Integer> lcopy = new HashSet<Integer>(l);
+		
+		/*finding position of an element*/
+		/*We cannot find the position of an element since its random.*/
+		
+		/*Reversing the Arraylist*/
+		/*We cannot reverse a Hashset since we cannot predict the original order.*/
+		
+		/*l.removeAll(l);*/ /*remove all the elements*/
+		/*l.remove(index)*/ /*removes the element at specified index*/
+		l.clear(); /*removes all the elements*/
+	}
+}
+b>> how to add content of one set to another. We have addAll() API just like ArrayList.
+c>> What is the use of emptySet() method in HashSet? These are just empty immutable set which are created while declaring while they can give objects later and used like normal hashSet just like below.
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		Set<Integer> l = Collections.emptySet();
+		l = new HashSet<Integer>();
+		l.add(10);
+	}
+}
+d>>How can we have concurrent hashSet, since we do not have concurrentHashMap API just like concurrentHashMap? 
+We can have concurrent HashSet backed by concurrent HashMap like in the code below:
+public class Class1 {
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		
+		Set<Integer> set1 = new ConcurrentHashMap().newKeySet();
+		set1.add(10);
+		set1.add(11);
+		set1.add(12);
+		set1.add(13);
+		Iterator<Integer> i = set1.iterator();
+		while(i.hasNext()){
+			Integer item = (Integer) i.next();
+			if(item==11){
+				set1.remove(1);
+			}
+			else{
+				System.out.println(item);
+			}
+		}
+
+	}
+}
+Here, weakHashMap is the concurrent HashMap passed as the argument.  
+This is done to reduce complexity and reuse the code. 
+	 
+e>> 
+
+4.	Map related programming questions
+a>> Basic operations related to map. 
+public class Class1{
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		Map<String, String> map = new HashMap<>();
+		map.put("a", "Rishav"); /*Adding an element*/
+		map.put("c", "Amit"); /*Adding an element*/
+		map.put("b", "Ashraf"); /*Adding an element*/
+		System.out.println(map.get(1)); /*Gettin an element based on key*/
+		
+		/*Checking if an key or value is present. Contain is case sensitive*/
+		System.out.println(map.containsKey(1));
+		System.out.println(map.containsValue("Rishav"));
+		
+		/*sorting the map on the basis of key when key is primitive type*/
+		Map<String, String> treemap = new TreeMap<>(map);
+		System.out.println(treemap);
+		
+		
+		/*Iterating the map: we need to create a set View*/
+		Set<Entry<String, String>> setView = map.entrySet();
+		Iterator i = setView.iterator();
+		while(i.hasNext()){
+			Entry<String, String> e = (Entry) i.next();
+			System.out.println(e.getKey()+" "+e.getValue());
+		}
+		
+		/*Iterating the map through for loop*/
+		for(Entry<String, String> e:setView){
+			System.out.println(e.getKey()+" "+e.getValue());
+		}
+		
+		/*Create a subset map*/
+		
+		
+		/*size of Map*/
+		System.out.println(map.size());
+		
+		/*Copy of a Map*/
+		Map<String, String> mapCopy = new HashMap<>(map);
+		System.out.println(mapCopy);
+		
+		/*finding position of an element*/
+		
+		
+		/*Reversing a Map*/
+		
+		
+		/*map.removeAll(l);*/ /*remove all the elements*/
+		/*map.remove(index)*/ /*removes the element at specified index*/
+		 map.clear();/*removes all the elements*/
+	}
+}
+b>> How to get Concurrent Hashmap. 
+public class Class1 {
+	public static void main(String[] args){
+		Map<Integer, Integer> map = new ConcurrentHashMap<>();
+		map.put(2, 1);
+		map.put(1, 1);
+		map.put(1, 1);
+		map.put(1, 1);
+		
+		Set<Entry<Integer, Integer>> set = map.entrySet();
+		Iterator i = set.iterator();
+		while(i.hasNext()){
+			Entry<Integer, Integer> e = (Entry) i.next();
+			if(e.getKey()==1){
+				set.remove(e);
+			}
+			else{
+				System.out.println(e.getKey()+" "+e.getValue());
+			}
+		}
+	}
+}
+c>> Programs related HashMap sorting in different situations.
+b.	If non-user defined data is stored in the map. 
+public class Class1{
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		Map<Integer, String> map = new HashMap<>();
+		map.put(1, "Rishav");
+		map.put(2, "Anish");
+		map.put(3, "Yadwin");
+		Set<Entry<Integer, String>> set = map.entrySet();
+		List<Entry<Integer, String>> mapList = new ArrayList<Entry<Integer, String>>(set);
+		Collections.sort(mapList, new Comparator<Map.Entry<Integer, String>>(){
+			@Override
+			public int compare(Map.Entry<Integer, String> e1, Map.Entry<Integer, String> e2){
+				return e1.getValue().compareTo(e2.getValue());
+			}
+		});
+	}
+}
+
+c.	Sorting the Map with user defined data type. 
+Using Comparator:
+public class Class1{
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		Map<Integer, Employee> map = new HashMap<>();
+		map.put(1, new Employee(1, "Rishav"));
+		map.put(2, new Employee(3, "Yadwin"));
+		map.put(3, new Employee(2, "Rishav"));
+		Set<Entry<Integer, Employee>> set = map.entrySet();
+		List<Entry<Integer, Employee>> mapList = new ArrayList<Entry<Integer, Employee>>(set);
+		Collections.sort(mapList, new Comparator<Map.Entry<Integer, Employee>>(){
+			@Override
+			public int compare(Map.Entry<Integer, Employee> e1, Map.Entry<Integer, Employee> e2){
+				return e1.getValue().compareTo(e2.getValue());
+			}
+		});
+		System.out.println(mapList);
+	}
+}
+d.	Sorting on multiple data member bases of the user defined employee.
+That we will do later.  
+
