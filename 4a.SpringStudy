@@ -1,1 +1,469 @@
-Must be taken from office computer. 
+Spring Study
+Spring Basics
+What is Spring?
+Spring Framework was developed by Rod Johnson in 2003. Java Framework makes the development of java application easier and faster. Spring has many modules which are IOC, AOP, DAO, Context, ORM, WEB MVC, etc. Though, IOC and its main feature dependency injection is its many advantage. We will see IOC and dependency injection later in detail. 
+Advantage of Spring
+1.	Predefined Template – Spring has templates for JDBC, Java Persistent API, Hibernate etc. This saves lot of time and effort for writing code which is already written in the template. 
+2.	Loose Coupling – This is the main feature of dependency injection as it lessen the dependency of one class one the other and hence the coupling is loose.
+3.	Easy to test – Since, the classes are loosely coupled and can be isolated easily. So, the unit testing becomes easier. 
+4.	Lightweight –To overcome the problem of heavyweight frameworks (like EJB), the concept of lightweight came in picture. Spring has POJO implementation and so it is lightweight. POJO implementation means the class is not forced to extend, implement or contain any other class. 
+5.	Faster Development – Since it has key feature like dependency injection and it can take other framework to work along with it makes the development faster. 
+6.	Powerful Abstraction – It provides powerful abstraction by JMS, JDBC, JPA and JTA. But how?
+7.	Declarative Support – It provide support for caching, validation, transactions and formatting. But How?
+
+Spring Modules
+Check the image below which shows the different modules of spring. Check the importance of each module later.
+ 
+
+Spring Application 
+This section gives an idea about how we can create a simple spring application. Let’s say we have created a class which is the only class of the application and it must be a bean class.
+•	A bean class is that which has the property name and its getters and setters. 
+•	Once the bean class is created, we will create an xml file name as “applicationContext.xml”. This xml file has a bean element which has an id and class attribute. Id attribute is used while calling the bean and class attribute specifies the class name the bean tag is referring (application with multiple classes). We have property element as well which has name and value attribute. Name attribute is name of the property and value is the value to be passed to the property. For multiple properties, we can have multiple property elements under bean element.
+•	 Then, we have to basically load the jar files need to enable spring in the machine. 
+•	After this much is done, we have to create a test class which has the main method and calls the main display method of the bean class. In spring, resource interface is present which is implemented in classPathresource class. We will create an object of resource which will contain the information of the applicationContext.xml fabnile. Now, we have to take the information of the resource object. So, for this we have to create a BeanFactor interface object which has its implementation in XmlBeanFactory class. Then, we can create the object of the bean class and can use the BeanFactory class methods like getBean(“ID in the bean”). Try example.
+Note: 
+1.	We can execute the application in IDE or through command prompt.
+2.	What is the difference between bean, POJO and not normal class?
+
+Spring in IDE
+Spring in Myeclipse
+We have to create a simple project. Then, we have to go to menu>>project Capabilities>> “Add spring Capabilities”>>finish. Else, we have to create the bean class, xml file and test class to run a sample application.
+
+Spring in Eclipse	
+We have to add the spring jar file in eclipse. For doing so, right click on your project>>Build path>>Add external archive>> select all the required jar files>>finish. 
+
+Dependency Injection
+IoC container 
+•	It is responsible for instantiating the application class, configuring the objects and to assemble the dependencies between the objects. The IOC gets the information from the xml file and works accordingly. We have two types of IoC container which are BeanFactory and ApplicationContext. 
+•	Org.springframework.beans.factory.BeanFactory interface and org.springframework.context.ApplicationContext interface are the two IoC containers. ApplicationContext is built on the top of BeanFactory which means the ApplicationContext has some additional feature than BeanFactory like simple integration, message resource handling, event propagation, application layer specific context for web application (check all these). So, it is better to use ApplicationContextIoC container. 
+•	XmlBeanFactory class has the implementation of BeanFactory interface. To use the BeanFactory interface (its methods), we need to create an instance of XmlBeanFactory interface. ClassPathApplicationContext class has the implementation of Application context interface and thus we have to create an instance of ClassPathApplicationContext class. Try an example. 
+
+Dependency Injection in spring
+•	Dependency Injection is a design pattern that removes the dependency from the programming code so that it can be easily managed and tested. Dependency Injection makes our programming loosely coupled which means one class is does not depend too much on other class. In dependency injection, we provide the information needed by any method or class from an external source as XML file. 
+•	The two advantages we get from dependency injection is that the code is more maintainable as any change can be done without much change in other parts of the code. Secondly, unit testing of the code becomes easier as the code can be easily isolated from the rest of the code.  
+•	There are two ways of implementing dependency injection. First is through constructor and other is through setter method.
+
+DI through Constructor
+When injecting the dependencies through constructor, then <bean> element gets a sub-element called <constructor-args> which holds different attributes depending on the type of the dependency injected. Dependency injected can be of three types which are primitive data type or spring, Dependent object or Collection values. 
+CI for primitive or string
+Suppose, you have to set a dependency for any class which is nothing but a primitive type value like int, char etc or string. Then we have to use two attributes which are value and type. Value will hold the actually value that we want to set and type will indicate the type of the data. Also, since we use the bean for the bean class but not for any specific constructor of the bean class. So, when the bean class has multiple constructors with different arguments then it will be automatically identified by the type and number of dependency(s) set. 
+Note: if we do not specify the type of the dependency value the even if you set an integer value, the string will get the value first. Check the example. 
+
+CI with Dependent Object 
+We can also set the dependency for a dependent object as well. So, we should first understand that what is dependent object? When Has-A relation exist between classes then the smaller entity will be the dependent object. For example, Employee Has A Address. This means that address object is the dependent object. Now, come back to dependency. We have to set the dependency of Employee. For that, we have to first set the dependency of address first and use that dependency while setting dependency for Employee through <ref> element. Check the example, where the <ref> element is used inside the <constructor-args> element. 
+
+CI with Collection 1
+We can also inject collection as well just like we inject primitive, string and dependent objects. This part is termed 1 for collection because here we will consider collection that will only contain the string inside it as element. While in the next part, we will take objects inside the collection. So, let’s begin understanding this. 
+We are creating a question paper with question that can have multiple answers. So, for containing the multiple answers we have taken answer as a collection. In the example, we have taken list that can have duplicate elements while we can take other collections as well (choice is completely on requirement). Now, we have to use <list> element as the sub-element for <Contructor-args> element. Then, we can write all the answers inside <value> tag. 
+
+CI with Collection 2
+In this section, we will consider a list that has objects of some class. Here, we have to set the dependency for each object inside the list. Setting dependency for each object means to set the value of all the properties of the class. Once, we have set dependency for all the objects then we can use these dependency injections inside the <list> element through <ref> element. Check an example for better understanding. 
+
+CI with Map 
+In this section, we are using the trying to inject the dependencies for a class having Map as a variable. In this, we have two cases. First, Map contains the String elements. Second, the Map contains object of some other class. We will cover map containing only string elements in this section. We have to use <map> element as the sub-element of the <constructor-args> element. We have to use the key and value attribute inside the <entry>which is sub-element of <map>. Else everything is same. 
+
+CI with Map 2
+Now, we will consider the case where Map contains key and value as object. The value is an object here so we need to inject the dependencies for it first then we can use the same in the entry element through “key-ref” and “value-ref” attributes. Else everything is same.  
+
+CI with Inheriting Bean
+We can show the inheritance relationship between the beans by using the attribute parent in the bean element. So, once this keyword is used then the parent bean value will be inherited in the other bean. Check the example for better understanding. 
+Dependency Injection using Setter Method
+We can inject the dependencies using the setter method as well. We have to use the <property> as the sub element of <bean> element (instead of <constructor-args> element). Setter method can also inject the dependencies for primitive or string, Dependent objects and Collections. Bean element contains the id and class as the attribute. We use the <property> element with name attribute for the name of the variable. We also use the value sub element in the property element. In contrary, constructor method uses <constructor-args> element with attribute value. Check the example for better understanding. 
+
+SI with Dependent Object
+In this section, we are injecting dependencies for the classes having the Has-A relation. It is same as the CI with dependent object. In this case, the bean element is same as having the id and class attribute. But, property sub element contains name and value attribute. So, what is have figured out is that we can have value as attribute or as sub-element in the property element. Also, ref is taken as the attribute in the property element. Though, we can ref as sub element of property as well. Check example for better understanding. 
+
+SI with collection 1
+In this section, we can inject dependencies for the class having collection. In this case, we are taking list. It is same as CI except we use <property> element with name attribute instead of <constructor-args> with value attribute. Though, we can take value as attribute or as sub-element. Else everything is same. Check the example for better understanding. 
+
+SI with collection 2
+It is same as CI with collection 2 except the uses <property> element with name and value attribute. Check example for better understanding. 
+
+SI with Map 1
+It is same as CI with Map 1 except the uses <property> element with name and value attribute. Check example for better understanding.
+
+SI with Map 2
+It is same as CI with Map 2 except the uses <property> element with name and value attribute. Check example for better understanding.
+
+CI v/s SI
+These are the differences between CI and SI. 
+1.	Partial dependency – This is possible with SI but not with CI. Suppose we have 3 argument constructor and setter method. Then, we can set the dependency for one argument only in setter method but not with constructor.
+2.	Overriding – Setter injection overrides the constructor injection. If we have both CI and SI then IoC will consider SI. 
+3.	Changes – We can easily change the value of the setter injection. It does not create a new bean instance always like constructor. So SI is more flexible than CI. 
+4.	CI uses <constructor-args> element with value attribute and SI uses <property> element with name and value attributes. 
+
+Autowiring in spring
+Until now, we have seen to skip the dependency code in the application we have written the dependencies explicitly in an XML file. However, we can use a feature of spring framework which is called as “autowiring”. This can be used for automatically managing the wiring (dependency). However, it can handle dependency for reference type only, but not for primitive type.
+Autowiring has different modes which are explained below.
+1.	No – It is default mode which means no autowiring. 
+2.	byname – In this mode, object dependency inject according to the name of the bean. Therefore, the name of the property in the class whose dependency needs to be injected and the bean name (bean id) must be same. We can understand this as if we have two classes A and B. A needs an object of B. We have already created a reference of B as b1 inside A class. Then, we need to create a bean of class B with id b1 only and use autowire attribute with property byname in the bean of class A. 
+3.	byType – Here, the bean id and name of the property may be different because the mode byType does not look for this. However, it will look for the type of the bean. We can understand this as if class A needs an object of B and class A bean is autowired by type then while fetching the dependency the bean of class B will be called. Therefore, we should have only one bean of class B otherwise autowiring by type will not work and will give an exception.  
+4.	Constructor mode – Here, the name of the bean must be same as the name of the constructor. Also, the class needs to make bean for different parameterized constructors. In this case, the bean will be created for the constructor with highest number of arguments. This means if class A need an object of class B and autowired by constructor then the object of class B will be given of the bean (or constructor) which has the highest number of argument. 
+Note: check out wiring example from youtube and write the description along with the link of the video.
+Note: the key difference between portlet and servlet is that servlet only perform one type of action that is response while portlet is for two type of action which are rendering and responding. Also, portlet is just a part of an hTML page while servlet is like complete HTML page.
+Note:
+1.	What is proxy? The literal meaning of proxy is anything that is kept in place of the real thing. Like, we sign the attendance in absence of our friend then it is proxy attendance. Similarly, we have the concept of proxy in computer science. Proxy servers are the servers for the client to pass the request to the actual servers. Now, Spring has AOP module that uses proxy and so far this does not make sense to me. So, let dig inside for understanding it. Spring has certain interfaces like methodBeforeAdvice whose implementation is given in some method which are used in the implementing AOP. Now, when we make use of these interfaces then JDK dynamic proxy is used to route the call of the interfaces to its implementation. However, in case of implementing the AOP module through annotation, we do not use any interface. So, CGLIB proxy is used to create the classes of implementation at runtime that incorporate the aspect functionality. This is concept of proxy and use of proxies in AOP spring.
+2.	 FireWall? The term firewall is taken from firefighters and fire prevention where the firewall is the barrier established to prevent access to the resources in a network through positive control model which only allows the traffic onto the network defined in the firewall policy and simply denies the other traffic. The firewall concept emerged in 1992 when the server client model more frequently started to be in use and the security attack became more sophisticated.
+There is still a lot for this topic. But a nice idea about firewall is that they are for controlling for network resource access for avoiding security threats at the first place.
+3.	Javascript is most commonly used for client side validation while we can use spring for server side validation of user supplied data. There is a process of creating validation in spring which can achieve by following some steps. 
+
+Dependency injection with Factory method
+Firstly, we have to understand what is a factory method? A method that returns the object of some class (its own or object of other class). In factory design pattern, factory methods are used to return the object of the classes. We have seen injecting the dependencies for methods having arguments (constructors and setters). Here, we have to inject the dependencies for the method returning the object. We can do it by using two attributes which are below. 
+1.	Factory-method: This method represents the factory method that will be invoked to inject the dependency. Actually, it will be invoked to create an object. 
+2.	Factory-bean: This method represents the reference of the bean by which the factory method will be invoked. It is used along with factory-method attribute when the method in non-static.
+We can have different types of factory methods whose dependencies need to be injected. These are the different types of the factory methods. 
+1.	A static factory method which returns the its own instance. It is used in singleton design pattern. Only Factory-method attribute will be used in this case. Syntax: <bean id=”testref” name=”packageClass” factory-method=”NameFactoryMethod”>
+2.	A static factory method that returns object of some different class. This instance is known at the runtime. Only factory-method attribute will be used in this case. Same 
+3.	A non-static factory method that returns the object of some other class. Here, factory-bean attribute will be used along with factory-method attribute. Since, non-static method needs the object that is why this extra attribute needs to be used.
+Note: I have tried understanding it much. But, it will become much clearer by practicing some examples. 
+
+Spring AOP module 
+AOP concepts 
+AOP is abbreviated for Aspect Oriented Programming and is an important part of spring. AOP compliments OOPs as this also provide modularity in the form of aspects (like class in OPPs). Also, AOP breaks the program logic into distinct parts which are called as concerns (compared to objects in OPPs @wiki). 
+Why we need AOP? – It is explained in the tutorial with a very simple example of logging. In this example, we have given some methodswhose log we need to maintain each time they invoke. So, without AOP, we will write code in each method whose log needs to be mentioned. This way we have to write the code multiple times which is not a good practice. Also, if any change comes then making the change in the code will be hectic and difficult. With AOP, we can make a separate aspect class (class with special privileges) which will hold the code for managing the log in the form of concerns like maintaining log, sending notification. Now, the code for logging is in aspect class but if you want to use them then you have to make a call from the methods where it is need. This means you are still writing code for the logging feature in the class holding the business logic. These features are supporting feature and we ideally should not code them in the business logic classes. This is why a separate aspect configuration is done through XML file and no code is written to call the methods for logging feature. Also, if any changes are required then the changes need to be done in the XML file.
+Where to use? – AOP can be used generally to provide the declarative enterprise services or for implementing the custom aspect for client. Declarative enterprise services means the services which are implemented by using the configuration xml file with annotation for separating it from the business logic and removing the dependencies. 
+Important terminologies in AOP
+1.	Join Point – Join point is any point in your program such as method execution, exception handling and other where an aspect can be plugged in. However, spring supports only method execution Join Point. 
+2.	Advice – Advice is the action taken by an aspect at any join point (method). There are different advices. 
+a.	Before Advice – Action taken before the join point. 
+b.	After Returning Advice – Action taken after a join point completes normally. 
+c.	After Throwing Advice – Action taken if method exits by throwing an exception. 
+d.	After (finally) advice – Action taken after a join point no matter that join point completes normally or by giving the exception. 
+e.	Around Advice – Action taken before and after the join point. 
+3.	Pointcut – A pointcut defines at what joinpoints, the associated advice should be applied. It is an expression language which is matched with the join point to decide if the advice needs to be executed or not. Spring framework uses AspectJpointcut expression language. 
+4.	Introduction – It means introduction of an additional method or a field for a class. It allows you to introduce the new interface to any advice object. 
+5.	Target Object – They are the object on which advices are applied. Spring AOP is implemented using runtime proxies so this object is also known as proxied object. It is related to dynamic implementation at runtime. Check more on this. 
+6.	Aspect – It is class that contains the advices, joinpoint etc. 
+7.	Interceptor – It is an advice which contains only one advice. 
+8.	AOP Proxy – It is used to implement the Aspect contracts created in AOP framework. It will be either JDK dynamic proxy or CDLIB proxy for spring. #RoundTwo
+9.	Weaving – It is a process of linking an aspect with other application types or objects to create advice object. Weaving can be done at run time, load time or run time. Spring AOP performs weaving at run time. #RoundTwo
+10.	Advice argument? We can give argument of the advice methods. We can also these argument in the pointcut but them we have to make sure that we use them wisely as the argument type needs to be clarified.
+Note: Log4j is a logging framework which is written in java. 
+AOP implementation
+AOP implementations are provided by AspectJ, Spring AOP or Jboss AOP. What does this mean?
+Spring AOP
+Spring AOP can be used in three ways. These are listed below. 
+1.	By spring1.2 Old style 
+2.	AspectJ annotation-style
+3.	By spring XML configuration-style
+AspectJ annotation style is most commonly used. 
+
+Spring1.2 Old Style
+Though it is recommended to use AspectJ annotation to use AOP but we will still understand this spring1.2 Old Style.
+In this implementation, 4 types of advices supported which is Before Advice, After Advice, Around Advice and Throws Advice. I know about all of them. Advice interface has hierarchy which is shown in the figure below. 
+ 
+Different types of advice 
+1.	Before Advice – we need to use the MethodBeforeAdvice interface for this advice. In the example, we have created a sample java class having a method with the business logic implemented. Then, we need to create another java class which implements the interface MethodBeforeAdvice. This class has a method (advice) with the parameter as in the syntax “public void before(Method method, Object[] args, Object Target)”.  Now, we will create a configuration XML file. In this file, we first created the bean for the class containing the business logic which has id and class attribute. Then second bean will be created for the aspect class having the advice. It also has id and class attribute. Third bean will be created for ProxyFactoryBean class which just has a private object target (object of class having the business logic) and List interceptorNames (list of instances of different inceptors for the target) and its getters and setters. The bean of ProxyFactoryBean will have sub elements <property> for setters of both the fields. The <property> element for target will have name and ref attribute. Name attribute will have the name Target (property name) and ref attribute will have the id of the bean for the class having the business logic. The property element of the List interceptorNames will not have any attribute but a sub element <list>containting<value> sub element which has the bean id of the bean for the advisor classes. Finally, we will create a test class which calls the method which call the method that has business logic. #RoundTwo: how do we override the before method.
+Note:
+a.	We can also print some additional information written in the print statement of the advisory class. The additional information can be method name, method argument, target object etc.
+b.	In the advisory class method, the method throws throwable. What is that?
+2.	After Advice (returning) - It is same as the above example except we need to make couple of changes. First, we need to implement the AfterRunningAdvice interface. Second, we need to change the name of the class in the class signature and in the configuration file as well. Doing this much, the advisory method will be executed after the method containing business logic. Also, the advisory class method adds one extra parameter as “Object ReturnValue” which gives the value returned by business logic after running. 
+3.	 Around Advice (MethodInterceptor) – Here, we have to implement the MethodInterceptor interface. The method signature of the advisory class method will be “public object invoke(MethodInvoke mi) throws throwable” returns an object. #RpundTwoCheck the signature and implementation of this advisory method. The configuration file will we similar only the name of the class will be changed. 
+4.	Throw Advice – This advisory method will be called only if the business logic throws an exception. Therefore, the class containing the business logic is about the voting age logic which throws arithmetic exception. The advisory class implements the ThrowAdvice interface. It takes the input as the exception. Else it is same as other. 
+Note: Check differences between session and global session. Also, differences in servlets and portlet?
+Note: check the link http://stackoverflow.com/questions/20539842/the-difference-between-web-xml-beans-xml-applicationcontext-xml-etc for understanding different XML file an application can possibly have.
+Note: Cross cutting concerns are used throughout the application and their affects can be seen in the entire application.
+Note: Generally, DispatcherServlet is named as appServlet in the configuration file.
+Note: JNDI stands for java Naming and directory interfaces which is an API of java for providing directory service for the clients using the java software. Directory service means to provide the facility of look up for an object or data through its name.   
+Spring AspectJ annotation
+This method is mostly recommended because it provides more control and easy to use. The AspectJ implementation can be done through annotation or XML file. We have different annotations used it its implementation which are described below. 
+1.	@Aspect – Declare the class as Aspect (instead of implementing the interface). 
+2.	@pointcut – Declares the pointcut expression. This means where we have to use the advisory method. 
+3.	@Before, @After, @Afterreturning, @Around and @AfterThrowing – Declares that the advice is before type. So, advice will be applied accordingly. 
+Understanding the Pointcut Language
+1.	@Pointcut(“execution(public**(..))”) – It will be applied on all public methods. 
+2.	@Pointcut(“execution(public operation.*)”) – It will be applicable to all the public method od operation class.
+3.	@Pointcut(“execution(* Employee.set)”) – It will be applicable to employee setter method. 
+4.	@pointcut(“execution(int operation.*)”) – It will be applicable to all the methods of operation class returning int. 
+Note: Use the below tip for writing the pointcut.
+ “execution(access modifier className.MethodName(arguments))”. 
+Let’s see the type of advisory implementation. 
+1.	@Before – Since it applied before the business logic so we can perform some operations like authentication before business logic. We will first create a class containing the business logic. Then, we will create the advisory class. We have to use @Aspect annotation before the class signature to indicate that the class is aspect class which will have advisory methods. Then, we will use the @Pointcut annotation which will use the pointcut expression language and the point name which is the method of the business logic class for which the advisory is applicable. Then, we will use the annotation to show the type of the advisory. In this example, we have shown the @before annotation followed by the advisory method. The method takes a parameter of JoinPoint type. Then we have to create the configuration file which will contain the bean. First, we have to create bean of the class containing the business logic followed by the class containing the advisory method. Lastly, we will make the bean of the class that aware the system about annotation. Check this as well. Then, we have to create the test class which will call all the method that the business logic class will have. In the output, we will find that the concern is applied to all the method. Though we have only added the Joinpoint at k method but since the pointcut expression language says that it should be application to all the method so this happened. We need to make necessary changes in the pointcut expression language. Check the example for better understanding. 
+2.	@After – This is same as the @before but the advisory method change slightly and the annotation changes. 
+3.	@AfterReturning - This is same as the @before but the advisory method change slightly and the annotation changes.
+4.	@Around - this is same as the @before but the advisory method change slightly and the annotation changes.
+
+Spring AOP AspectJ XML Configuration 
+In this approach, we will use XML file for configuration of aspect, advice and pointcut. In the provious approach, we have used annotation with AspectJ expression language. Though, we do not use annotation here. We use some elements for defining the aspect, advice and pointcut in the XML file. Let’s take some examples for different types of advices. 
+1.	Before Advice – Here, we firstly write the target java class containing the business logic. Then, we will write the aspect class containing the advisory method. We do not use the annotation or we do not implement any interface. Then, we will create XML file which will have an element called <aop:aspect-autoproxy>. This element will have bean tag for target class and aspect class. Then, we will create <aop:config> element which will have <aop:aspect> element with id and ref attribute, <aop:pointcut> with id and expression attribute and <aop:before> with method and pointcut-ref attribute. Then, finally create a test class that calls the methods of the target class. 
+2.	After advice – This is similar to the before advice example. Only, we have to make some minor changes while replacing before to after. 
+3.	After-returning advice – This is also same as the previous ones. Check the changes while implementing one example. 
+4.	Around advice – Note the changes while implementing an example.
+Note: This Aspect xml configuration is similar to Aspect annotation. We just stop using the annotation and start using the element for each annotation in the configuration xml file. 
+
+Spring JdbcTemplate
+JdbcTemplate Example
+Jdbc API of java is used to connect the java application and execute queries. We already know that spring framework helps any application in different areas. This is one of them. Through Spring JdbcTemplate we have eliminated the problems that normal jdbc API has.
+Problems with Jdbc API
+1.	We need to write a lot of code before and after executing a query such as creating connection, statement, closing connection etc. 
+2.	We need to handle exception in the database logic code. 
+3.	We need to handle the transaction. So, whats the problem in transaction?
+4.	Repetition of all these code from one database logic to other is time consuming. 
+Spring JdbcTemplate eliminates all the above mentioned problems. We can write the queries directly, so it saves a lot of time. 
+Spring Jdbc Approaches
+Spring has four approaches for Jdbc Database access. 
+1.	JdbcTemplate
+2.	NameParameterJdbcTemplate
+3.	SimpleJdbcTemplate
+4.	SimpleJdbcInsert and SimpleJdbcCall
+JdbcTemplate class
+It is a central class in the Spring Jdbc support classes. It takes care of creation and release of resources such as connection, statement, resultset, closing these resources etc. We do not need to handle this so this saves a lot of time. It also handles the exception and gives an informative exception messages by the exception classes defined in the org.springframework.dao package. We can perform all the database operation like select, update, delete and insert. Main methods of jdbcTemplate class are below.
+A.	For insert, update and delete: update(String Query), update(String Query, Object… args)
+B.	For DDL: execute(String query)
+C.	For getting result set: query(String query, ResultSetExtractor rse), query(String query, RowMapper rm).  
+D.	Prepared Statements: execute(String query, PreparedStatementCallBack<>())
+Example of JdbcTemplate
+1.	Database equivalent java class (Modal Class): we have created a table in the database. Then, we will create an equivalent java class for the table we have created. This class has got private variable for the columns, with constructors and getters and setters for all the variables. 
+2.	Creating DAO class: we have to create a dao class for the same table. This class generally called by the service class. This class contains JdbcTemplate type private variable, a method getting the object of JdbcTemplate class and three methods to save, update and delete employee (may be different method based on what kind of query needs to performed). All these three methods takes the object of the employee, contains the query and pass the query string to the methods of jdbcTemplate. So, DAO is the class where we write the queries and actually hits the database. Below is the sample code different kind of queries to be executed. The other environment remains the same. 
+ public class EmployeeDao {
+	private JdbcTemplate jdbcTemplate;
+	
+	public EmployeeDao(JdbcTemplate jdbcTemplate){
+		this.jdbcTemplate = jdbcTemplate;
+	}
+	
+	/*insert*/
+	public int saveEmployee(Employee e){
+		String query = "insert into employee values("e.getName()+","+e.getId()+")";
+		return jdbcTemplate.update(query);
+	}
+	/*update*/
+	public int updateEmployee (Employee e){
+		String query = "update employee set name"+e.getName()+" where id="+e.getId()+""";";
+		return jdbcTemplate.update(query);
+	}
+	/*delete*/
+	public int deleteEmployee(Employee e){
+		String query = "delete from employee where id="e.getId()+";";
+		return jdbcTemplate.update(query);
+	}
+	/*DDL: create, alter, drop, truncate, rename*/
+	public void createEmployee(Employee e){
+		String query = "Drop table employee";
+		jdbcTemplate.execute(query);
+	}
+}
+3.	Basic configuration and dependency injection: Where are we giving configuration of database to connect with? For this, we will create a bean of DriverManagerDataSource class in applicationcontext.xml of spring. This will have the properties like driver namer, url, username and password. This bean object need to be passe din jdbcTemplate class. Thus, we will create the object of jdbcTemplate class and give reference of data source bean. We also need to create the bean for dao class which needs the object of jdbcTemplate class. We will give reference of jdbcTemplate bean to it. 
+Prepared Statement in Spring JdbcTemplate
+We can execute the parameterized queries which are also called as prepared statements. This is done by execute method of the JdbcTemplate class. We have to pass the instance of PreparedStatementCallback in the execute method. PreparedStatementCallBack is an interface which processes the input parameters and output results. We do not need to care about double and single quotes. 
+Example of prepared statement
+This is exactly same as we have to execute a simple query except the changes we need to make in the employeedao class. The employeedao class will have JdbcTemplate type property and a method taking an instance of JdbcTemplate class. Then, we will create a save method which will accept instance of employee which is made final so that it cannot be changed. We will create a string containing a parameterized query statement. Then, we will return the execute method result containing query statement and instance of preparedStatementCallBack as the parameter. Then, an inner class is used where we override the method doInPreparedStatement of preparedStatements. This is for handling the quotes used for the parameterized query. Below is code for the example:
+public class EmployeeDao {
+	private JdbcTemplate jdbcTemplate;
+	
+	public EmployeeDao(JdbcTemplate jdbcTemplate){
+		this.jdbcTemplate = jdbcTemplate;
+	}
+	
+	public int saveEmployee(Employee e){
+		String query = "insert into employee values(?,?,?)";
+		return jdbcTemplate.execute(query, new PreparedStatementCallBack(boolean){
+			@Override
+			public boolean doInPreparedStatement(PreparesStatement ps)
+			throws SQLException, DataAccessException{
+				ps.setInt(1, e.getId());
+				ps.setString(2, e.getName);
+				ps.setFloat(3, e.getSalary());
+				
+				ps.execute();
+			}
+		});
+	}
+} 
+Note:
+1.	DAO is abbreviated as Data Access Object.
+2.	Difference in POJO, java bean and java normal class. POJO – It is basically a class that has some attributes with its getters and setters. Apart from this, no restriction is placed on them other than general language specifications. Bean – In bean, we have all the properties as private, a public non argument constructor and implements serialization interface.
+
+ResultSetExtractor
+Until now, we were dealing with the queries for making changes in the database. Thus, we were not getting any output that we need to handle. We have ResultSetExtractor interface which is used to store the fetched records from the database. It accepts the resultset and returns the list. ResultSetExtractor has a method extractData(ResultSetrs) which is used in fetching data from the database. 
+Example
+As of now, what I have understood is that the only change came in this example as compared to the examples for save, update or delete queries (simple and parameter) is in Dao class and test class. Whereas the JdbcTemplare, DriverManagerDataSource class and XML file is same. In dao class, we will create a method of fetch the results through a select query. Then, we will create a query string and pass it to the method query which has two arguments which are query string and ResultSetExtractor object. Then, we will override the method extractData of ResultSetExtractor class. We will give resultset class object as parameter to extractData method. We will create a while loop and create the employee object and set the data fields. Then, finally we will return the list of employees. 
+
+RowMapper Class
+Just like we use ResultSetExtractor interface, we can also use RowMapper interface. It is same as the ResultSetExtractor. So, the changes will be in the dao class except that it is same as the example of ResultSetExtractor. 
+Example:
+In the example, it is exactly same as ResultSetExtractor except we do not create the while loop as it does in internally. Also, the method we overrides here is mapRow which accept resultSet and int rowNumber as arguments. 
+Note: ResultSetExtractor interfaceis mainly used with JDBC framework. Rowmapper interface is simpler option than a ResultSetExtractor which provide one result object to each row instead of one result object with the entire result containing multiple row records. In a bit more depth, rowmapper interface creates the object of user defined results and adds them to a map object thus giving us result set as a map containing result of multiple rows.
+public class EmployeeDao {
+	private JdbcTemplate jdbcTemplate;
+	
+	public EmployeeDao(JdbcTemplate jdbcTemplate){
+		this.jdbcTemplate = jdbcTemplate;
+	}
+	
+	public List<Employee> selectEmployees(){
+		String query = "Select * from employee";
+		jdbcTemplate.query(query, new ResultSetExtractor<List<Employee>>(){
+			@Override
+			public List<Employee> extractData(ResultSet rs)throws SQLException, DataAccessException{
+				List<Employee> list = new ArrayList<>();
+				while(rs.next()){
+					Employee e = new Employee();
+					e.setInt(1, rs.getId(1));
+					e.setString(2, rs.getName(2));
+					list.add(e);
+				}
+				return list;
+			}
+		});
+	}
+}
+
+NamedParameterJdbcTemplate
+NamedParameterJdbcTemplate is another class under Spring JDBC template module. It has one method that advocates the use of named parameters rather than just question marks. Therefore, we can write prepared statements and use them with named parameters instead of question marks. The method it has is execute method which accept three parameters which are string query, a map and preparestatementCallBack object.
+Example:
+In the example, it is same as the jdbcTemplate execute method. However, here in the query statement we use named parameters. Then, while override doInpreparedStataments method which takes the object of prepared statement. Then, we just call the executeUpdate of the preparedStatement interface. 
+
+SimpleJdbcTemplate
+Varargs – It is new feature included in java 5. Through this feature, we can send multiple parameters in an object. It was earlier possible by creating an array and sending the array as parameter. However, in varargs we can simple send any number of parameters without creating array. 
+SimpleJdbcTemplate: It is nothing but upgrade of JdbcTemplate which support Java 5 as well. It is ideally used where we do not have to use all the features of JdbcTemplate. It is used to support new features of java, varargs and autoboxing. In JdbcTemplate approach, while fetching the record, we have to wrap the argument in an array. However, in SimpleJdbcTemplate, we use varargs and autoboxing. 
+Example: I have understood that we use varargs and autoboxing feature instead of wrapping the parameters in an array. But, we can even better understand it by doing some example. I will update it once I will practice any example.
+Quick Note(s):
+JDBC, JNDI, Datasource, Connection Pooling
+We need to understand the difference between JDBC, JNDI, connection pool and datasource. Java has Java database connection API which we know as JDBC which is originally there to connection java application with database. JDBC internally uses driver manager which uses some implementation of datasource (org.apache.derby.jdbc.clientdatasource) to connect to database. When we can create multiple connection and can use them after recycling is what we know as connection pooling. So, JDBC helps connect to database with the help of some datasource implementation. One connection object is like a request is send and is in process until them we cannot have another request sent to the database. While in connection pooling we get many such connection connections and are use in the perspective of java enterprise application. Now, what’s JNDI? It’s Java Naming and Directory interface which is used to lookup for the registered resources. So, out of many use cases of JNDI, connection to database is one in the list. We can store the JDBC setting as a resource with a name which we can latter use through JNDI to create a connection. So, under the hood, JDNI uses JDBC only but we a name. JNDI concept is mostly used in app servers.  
+Transaction Management
+First of all, transaction management is needed in any application which interacts with database in order to keep the data consistent. Programmatic transaction management is all about writing the code. This means with code we make sure the proper commits and rollback.
+The conventional way of maintaining transaction is java apis like transaction.begin(), transaction.commit() and transaction.rollback() in the catch statement. The advantage of such transactional management is that the scope of the transaction looks very clear. However, there are many problems with it like the code is repetitive and quite error prone. Any error could be a major impact.
+In Spring, transaction management is supported in programmatic and Declarative way. programmatic transaction management is quite flexible however quite complex to manage. Declarative transaction management means to separate the transaction from business logic. We use either annotation or XML based configuration to manage transaction.
+Programmatic transaction management can also be done is two ways in spring. First is by using TransactionalTemplate class which is recommended by spring developers while the other way is through PlatformTransactionManager implementation. In transactiotemplate method, we have to do certain configuration in applicationContext.xml. We need to create the beans for datasource, transactionManager and Service Class. Then, we need to override the doInTransaction(TransactionStatus status) of transactionCallBack class and can perform certain operation inside it. This method returns an object while if we do not have anything to return then transactionCallBackWithoutResultSet class. We are leaving platformtransactiontemplate as of now. 
+Let see how do we do declarative transaction management. First, we need to create a bean for datasourceTransactionManager class and pass it as the reference in <tx: annotation-driven transaction-manager=”id”>. Then, we can make use of @EnableTransactionManagement annotation in the app config class. Then we can make use of @Transactional annotation in classes and in interfaces. We can use @transactional annotation on the top of interface or class refinition however we can use it again on methods just to override the default attributes. Few important attributes are timeout, rollbackfor which could be runtimeexception or exception. 
+
+This is all about transactions in spring as for now however we can dive deeper if needed. 
+
+JMSTemplate
+JMS stands for Java Messaging services. It is used when one application wants to send the message to another application. The key advantages of using JMS is that it is asynchronous and gives assurance about the message delivery.  We have got JMSTemplate in spring framework which is used to remove the boilerplate code and provide ease in implementing JMS.
+
+Spring ORM
+Spring with ORM
+In this section, we will look at how well spring integrates Object Relational Mapping (ORM) Frameworks like hibernate, Java Persistence API (JPA) etc. However, we should first understand that what these ORM frameworks are all about? Through ORM frameworks we wrap our tables and stored procedures in classes in your programming language (not necessary to be java). Therefore, we can do all the operation on database by using the methods and properties of the class written instead of writing queries. 
+
+Spring with Hibernate 
+It is very simple to integrate hibernate application and spring application. In hibernate, we provide all the database information in hibernate.cfg.xml file. After integrating, hibernate with spring, we will write all the database information in applicationContext.xml file. We need to write lots of code if we are just using hibernate. Here, I am talking about the code like creating configuration, sessionFactory, session, transaction objects and other tasks like closing the session and transaction. However, just like the way we remove boilerplate code of JDBC through jdbcTemplate, we have hibernateTemplate in spring. So, you can directly use the method of hibernate template class. 
+Example:
+For creating a simple example of hibernate with spring, we first need to create a table in the database and then its persistence class. Then, we will create a mapping file to map the database table and the persistence class, just the way we do in hibernate. Until here, everything is same as we do it hibernate alone. Now, we will create applicationConrtext.xml file which contains the information about database. In jdbcTemplate, we get the information from object of DriverManagerDataSource class, but here we get the same information from object BasicDataSource class. This object is passed to LocalSessonactoryBean class which contains the data source object, mappingResource list and hibernate properties. The object of LocalSessionFactoryBean class is passed to hibernateTemplate class. Now, all these transaction is done through dependency injection rather than making a call with new keyword. Also, the reference of HibernateTemplate class is passed to persistence class bean. Then, create a test class for any type of query. For better understanding check example. 
+Hibernate Properties – We can enable hibernate properties like auto creation of a table. Check example.
+Different Methods available in HibernateTemplate are: (Complete them in depth once hibernate is done)
+The methods are save, persist, update, delete, get, load, loadAll. 
+Spring with JPA
+JPA is java persistence API which is a sun specification for processing the data between application and relational database model. Also, we have many implementations of JPA in which are hibernate, Toplink, OpenJPA etc. It is no different than Hibernate.  
+
+
+Spring Expression Language
+Spring expression language supports feature of querying and manipulating an object graph at runtime. There are many other expression languages available like JSP EL, JBoss EL, etc. Now, where do we exactly use it? For this, we have to understand java reflection. Reflection is the ability to inspect classes and dynamically call classes, methods, attributes etc. Java is a static language where until and unless a type of an object is not known, we cannot look on it. However, it is possible with java reflection. The use cases of java refection are potential use cases of SpEL (though not so authentic). Check the methods and interfaces of SpEL. 
+Practice the examples of SpEL.
+
+Operators in SpEL
+We can generally use all the operators in java like arithmetic, relational, logical etc. Practice example for better understanding.
+Note: Spring expression language came in existence in the 3rd release of Spring framework in 2009. However, we can use Spring expression language without making use of Spring Framework.
+Variables in SpEL
+Looked strange! Check while doing some example. 
+Spring MVC (youtube:www.gontu.org)
+Introduction
+What is MVC?
+MVC stands for Model View and Controller. MVC is just a guideline for how to write code to develop an application having user interface. Generally, an application with user interface is created using servlet or JSP where URL mapping is done to send result which is the combination of HTML page and data. HTML code is embedded inside Java code in a servlet while java code is embedded inside HTML code in JSP. In both the situations, it becomes a bit difficult to work with the HTML code and the java code together in the same file.  Also, changes needed to be made later in the application will be very difficult. The primary goal of MVC design is to separate application logic (java code) from the rest of the user interface (HTML code) and give the guidelines on how to do the same. It does this by dividing the application in three parts which are Model, View and Controller. Model is represents the data, View represent the UI part of the application and Controller represents logic by managing the flow of the application like making the call to some of the model and then passing it to the view. 
+	MVC is a concept which is implemented by different framework (like spring, struts 2 etc.) in distinct ways. Therefore, sometimes the definition of MVC slightly differs by Framework. But, since we are studying Spring so we will now focus of Spring MVC which is taken in detail in coming sections. 
+
+Spring MVC – In this section, we will understand how we can use MVC in spring framework. This is mainly done through DispatcherServlet class. DispatcherServelet is also called as front controller which is responsible for managing the flow of an MVC application with the help of its helpers. Refer the diagram file while reading the explanation for flow of spring MVC application. 
+ 
+As we can see in the diagram above, except front controller all the other blocks are helper. First the request comes to a dispatcher Servlet which it passes to its first helper called Handler Mapper. The handler mapper simply scans the URL and sends the information regarding which controller can generate the data for this particular request.  When the controller gets the request, it calls the appropriate service methods which prepares the data and sends the object of model back to the front controller. The data (model as java object containing data) can be retrieved either by applying some business logic or directly from database. Then, dispatcher servlet has the data for the request but needs HTML content (view). Dispatcher servlet takes helps from viewResolver to pickup the defined view or HTML page for the request. Once the view is finalized then dispatcher servlet passes the data to the view which builds the complete response. The built response sent to the client browser as well. 
+Note: The components like handler mapper, controller and view resolver are parts of WebApplicationContext are extension of ApplicationContext.    
+Required Configuration – 
+Let’s write the configuration normally needed in spring mvc application. 
+1.	Configuration needed in Web.xml (Deployment Descriptor)
+We configure dispatcher servlet in deployment descriptor which first receive all requests. Since, it has all the information about all the controller through the configuration in ApplicationContext.xml. Below is the code to configure dispatcher servlet in DD. 
+<servlet>
+	<servlet-name>SpringFrontController</servlet-name>servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>SpringFrontController</servlet-name>
+	<url-pattern>/</url-pattern>
+</servlet-mapping>
+2.	Configuration needed in ApplicationContext.xml
+a.	Spring View Resolver:
+Theoretically, we already know the role of view resolver. It finds out the jsp file to be used for constructing view. Therefore it is very essential and its bean needs to be created. Below is the code snippet for creating bean for view resolver. We are using InternalResourceViewResolver implementation of it.  
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEB_INF/jsp/"/>
+	<Property name="suffix" value=".jsp"/>
+</bean>
+We need to create two necessary xml file. First, we create a web.xml file which contains the mapping of the dispatcher servlet mapping done with the different urls. We have got <load-on-startup> tag which indicates that the mapped url should be loaded while server loading. Also, the number mentioned between the tags defines the order in which different files to be loaded. Second, We have to create an xml file which is named like “DispatcherServletName-servlet.xml”. It uses <context: component-scan> tag to activate the annotations like @controller and @RequestMapping etc. This file should also be placed inside the Web-INF directory. Check more on this later in detail.  
+Above is pending for completion.
+Try example of Spring MVC and Explain. 
+Check the separate notes for Spring MVC which is in lot of detail.
+
+
+Spring MVC Validation Support
+With Spring MVC module, we can create web application. Therefore, it’s quite likely that client interacts with the app with some of her data. So, we need to validate the data before taking in use for proper function of app and for security view point. Spring also provide support to validation of client’s data. Spring support JSR 303 specification so we can use its default annotations alongside creating our own custom validations.  We also need to understand at the first place that spring validation support is a server side validation and thus, we really need to ponder on whether we actually need server side validation? If yes, then follow along the below implementation details for spring validation. 
+JSR 303 spec is for java API bean validation. Since, it’s a specification thus has few implementations but the most used ones are Hibernate validator and Apache bean validation (agimatec).  Before JSR 303, we need to write custom if else condition to achieve even basic validations. In the example from the source https://www.journaldev.com/2668/spring-validation-example-mvc-validator, we will be using hibernate validator. So let’s begin. 
+1.	We need to place the dependencies of hibernate validator JSP 303 spec implementation in POM.xml. 
+2.	Web.xml i.e. the deployment descriptor will have the mapping of dispatcher servlet as usual. No special change here. 
+3.	In applicationContext.xml, we need to create the bean for out custom form validation class and message source bean for a class of spring library used to read the message from the resource bundles. What the is exact use of message source bean class? Apart from this everything looks general spring configuration.
+4.	In the modal classes, we will be using the annotations on the declaration of the variables. Some of the common JSR annotations are @Size(min=, max=), @NotNull, @Null. In addition of JSR annotations, we also have annotations given by hibernate validator which are @Email, @NotEmpty, @DateTimeFormat etc. To identify from code that whether annotation belongs to JSR or hibernate validator we can check the import statement on top of modal class. 
+5.	Bean class will be as is. 
+6.	We will not look into the custom validation implementation. Our target is to create a custom validation @phone. For this we need to create two classes which are phone.java and phoneValidator.java. Phone.java will be getting the data while phoneValidator.java will be used for actual validation. Phone.java will have typically the boilerplate code according to the JSR specification while phoneValidator.java will be implementing constraintValidator interface. It needs to override the isValid method of it. In the override implementation, we can use if else conditions with regex for sending validation response as Boolean. After doing this much we will be able to use @Phone annotation.
+7.	We can also simply use the validation implementation just like any other class. For this we need to implement validation interface. Here, we need to override support and Validate methods. Through support method we get to know the object type on which the validation is to be done. With validator method we can actually validate the data and also generate the errors.  I think, here we can just log the error or throw exception as this returns void. 
+8.	Now, how do we actually use it in controller classes where action happens? For annotations, be it our own or predefined, we need to first use @Valid annotation with modal object used in controller class. We have something called as BindingResult object. Then, we just place an if condition which checks if the bindingResult object has an error or not. If it has then it redirects to error jsp page or to previous page otherwise to success page. Spring takes care of populating the page with error. For using the custom implementation, we need to inject the implementation in the controller class first and we need to have an argument which takes the object of WebDataBinder as an argument to set custom validator to be used. Then, we have to use @InitBinder annotation. 
+Well, this is an attempt to understand the validation is spring framework however this can dealt in much depth. 
+Note: In Spring application, we can use spring form tags to get the errors and set the form bean and variable name. The spring form tags are like <SpringForm: form>, <springform: input>, <springForm error>.
+Spring MVC Tiles
+What is Apache Tiles Framework?
+It is a framework that allows developer to define an HTML page fragment which can be assembled into a complete page at runtime. By putting together the common fragments of an HTML page, the template is created. By doing so, the effort of creating a same HTML fragment for all the pages of an application is reduced as we can use the common HTML fragments for every page of the application. This also gives the complete and consistent look to an application. It is very much used with struts and spring frameworks.  
+Spring MVC tiles modules provides the facility to integrate the apache tiles framework. This feature helps a developer to create layout to be used with every page of an application. The created layout can be used multiple times that increases reusability and can be control centrally. We can change the layout once and the same change will be reflected in the everywhere in an application. 
+Try the example.
+
+Remoting in Spring Framework
+Remoting with Spring
+Before starting this section, we must understand that what is a distributed service? Distributed Service is an application that has different component distributed over different servers (different computers). For example, we may have presentation layer and middle tier (business logic) in separate servers.
+What is Remoting? Extending the above example, these layers on different server are interrelated and need (call) other to complete working of the application. Now, one class that exists in a computer calls another class existing in the same machine by simply creating an object of the second class. Though, in case when the second class does not even exist in the same machine then creating object will not work to call the object. In this case, we need to use some technique to call the code present in other computer. This technique is called remoting techniques which are RMI, Spring HTTP’s Worker, Hessain, Burlap, and other. 
+Remoting in Spring – Spring has different options though which it implements remoting to support distributed services. IN this section, we will understand these different ways of implementation. So, what to wait for? Let’s get started.
+ Note: HTTP invoker is spring specific remoting option that enables Remote Procedure Calls over HTTP.
+Spring RMI
+This section contains mainly that RMI is used with the help of RmiProxyFactoryBean and RmiServiceExporter classes present in the org.springframework.remoting.rmi package. Check more on this. 
+Also, try the example and explain. 
+Spring with HTTP Invoker
+Spring also provides its own implementation for achieving remoting for distributed services using HTTP Invoker. It becomes possible by taking help from HttpInvokerServiceExporter and HttpInvokerProxyFactoryBean classes. 
+Check the example and then understand the difference in RMI and HTTP Invoker techniques. Also, compare HTTP Inovker with Hessian and Burlap.
+
+Spring with Hessian 
+ Hessian works well across firewall. Hessian is portable and can integrate with other languages like PHP and .Net.
+Check the example and example.  
+
+Spring with Burlap
+Both Hessian and Burlap are provided by Coucho. Burlap is an XML based alternative of hessian. Check the example and explain.
+
+Spring with JMS
+To integrate Spring with JMS, we have create two applications which are Receiver and Sender Application. For JMS application, we have to use Active MQ Server of Apache to create the Queue. I know this must be looking as alien talk but will not be same for long. 
+Check the example and explain it.
+
+Spring OXM
+Spring with JAXB
+OXM stands for Object XML Mappers and it is a module present in spring to ease the mapping between java objects and XML documents (means XML representation). We can use different different framework to integrate with spring like JAXB, XmlBeans and XStream. In this particular module, we will look how spring integrates with JAXB. JAXB is an OXM framework provided by Sun. The core advantage of JAXB is we do not need to create SAX or DOM parser. It is used to marshal the java object to XML and un-marshal the XML back to java object. 
+Check the example and explain it.
+Spring with XStream
+
+Spring with Castor
+
+Spring Java Mail
+
+
+Spring Web
+
+ 
+
+
+
+Implementations
+I have created this section for the sole purpose to speak about the implementation of what we have learned in this tutorial. We must use as many practical examples as we can related to the real world.  
+
+
+
+
+What is use of Spring or why do we use spring framework to develop any application?
+Spring framework makes the development of an application easier. This means we can obviously create a similar application without using spring but the same goal achieved with difficulty of writing more code. Infect, the testing of the code also becomes a bit difficult without spring. However, so far we have not actually found that how exactly spring make our task easier. This can be found out by studying all the modules of spring. 
+Spring IOC means inverting the control from application code to spring container by making spring container to inject the dependencies rather than we ourselves providing the dependencies in the source code. IOC in spring is achieved by Dependency Injection, but it is not the only way to achieve IOC. Now, what is dependency injection? This means to inject the dependencies into different objects through an XML file. All the dependencies of different objects of an application are configured in that XML file. For example, when an object of class A (dependent on class B object) needs to be created. Then its dependencies will be checked first by the spring container and fulfilled before creating the object of class A. By achieving IOC through DI, we make the application loosely coupled, easy to maintain and test.
+  
+In single line, AOP spring module helps in maintaining the supporting declarative services like transaction management outside the business logic.AOP, Aspect oriented programming, is not just a part of spring but it is a complete language in itself. In spring, it is very helpful in implementing some declarative services like transaction management. It is said that they are just supporting services like logging. So, we should not keep them together with the business logic. Also, these create a repetitive code in entire application and change later in the application will need to be made everywhere the code is written or affecting. Hence, it is suggested to maintain these services away from business logic. For this purpose AOP is used. AOP has some component like Aspect (class), Advice (method), concern (object), pointcut, Target etc. AOP breaks the logic in the form of concern like Oops break in the form of object. We use AOP aspect (special java classes) that contains the advisory methods which has the advice. We configure the aspect to the targets. This way supporting features are implemented using the AOP. 
+Spring JdbcTemplate helps eliminate the problems with using java jdbc API. Java API involves writing lot of redundant code for opening and closing resources, exception handling and other stuff. While Spring JdbcTemplate allows you to simply use the JdbcTemplate class containing the code common for executing queries along with handling the exception. In normal situation, if we have to use the members of a class then we have to make a call. Since we are using spring API, we will use configuration file to set the dependencies of class that needs the JdbcTemplate. This way JdbcTemplate make the code really short to connect and execute the database queries. 
+Spring ORM modules deals with integrating ORM (object relational Mapping) framework with spring. Infect, the code written is less when ORM framework are integrated with spring. So, with the help of this module, spring became flexible of being used with application using ORM framework for data access.
+
+ 
