@@ -1,23 +1,23 @@
-Date 2nd Feb, 2018
-Things to do -
-  1. Family se bat 3
-  2. Work Ethics+Focus+NoTHinking 5
-  3. gym 3
-  4. diet 5
-  5. Subha utho time par 5
-  6. Nahana b4 reakfast n CPC practice 
-  7. No Thinking n Video 0
-  8. Padhai 90
-  9. All checks 1
-  10. Office work 2
-  11. Chadi baniyan n kapde 2
-  12. One hour wale kam 5
-      a. Wakil conference
-      b. Pack n all
-      c. Diary Complete
-      d. Infosys PC data
-      e. Lotne ka reservation
-  13. Kal ka prerequisite 0
-  14. Sister's Life: 0
-  15. Dairy n EOD 12 3
+Garbage collection:
 
+Let's have a look on a simple command for getting GC information. The command is jstat -gc $<vmid> 1000 10. Here, jstat is the command name and -gc is the argument. Vmid is the virtual machine id however if java app is running on local machine then we need to know the lmvid i.e. local vmid. We can get to know lmvid througg ps command but using jps for the same confidered safe as pid shown by ps command is not always the same as lvmid. 1000 denotes the time which is equivalent to 1 second while 10 denotes the number of times we want to show the GC infomation.  
+As we have seen the -gc is the argument that we have pass will show information like current size of each area of heap, current usage of each heap area, number of GC cycle performed and accumulated time for all GC cycle. We can have other different arguments like gccapacity, gcnew, gcnewcapacity and others. The bottomline is that with different arguments we gets different columns with GC information. Let's look at the columns we see with gc argument. 
+1. S0C, S1C: Current size of first and second survivor.
+2. S0U, S1U: Current usage of first and second survivor. 
+3. EC, EU: Current size and usage of Eden.
+4. OC, OU: Current size and usage of Old generation. 
+5. PC, PU: Current size and usage of Permanent generation. 
+6. YGC: no. of garbage collection happened for young gen. 
+7. YGCT: Accumulated time of garbage collection cycle performed. 
+8. FGC: no. of full garbage collection.
+9. FGCT: Accmulated time of full garbage collections.
+10. GCT: Accumulated time of all types of garbage collection.
+Similarly, we may have different columns appearing as information of GC according to the argument passed. 
+
+With jstat -gc argument we gets to know the accumulated time for different types of GC while we still do not know time taken for an individual garbage collection. To solve this problem, we have another command which is -verbosegc. With -verbosegc we need to mention it as an JVM starting option from the begining while jstat we do not need to have any option passed from the begining. with -verbosegc we can monitor each GC individually. We can have different options passed along with -verbosegc. Below is the format of information shown with verbosegc option:
+Information shown in case of minor GC - 
+[GC [<collectortype>: <initial occupency1> -> <ending occupency1>, pausetime1 in sec], <initial occupency3> -> <ending occupency3>, pausetime3 in sec]
+Information shown in case of full GC - 
+[Full GC [<collectortype>: <initialoccupency1> -> <ending occupency>, pausetime1 in sec], ..perm related information..<>]. (this is incomplete format). 
+
+For GUI based garbage collection monitoring, we can use Java VisualVM + VisualGC tool. Actually with VisualGc tool or plugin present in VisualVM is used to check jstat equivalent information. Likewise, for -verbosegc equivalent information we can use HPJMeter. HPJMeter is a tool created by HP. Garbage collectiom monitoring is just one task out of many for HPJMeter.   
