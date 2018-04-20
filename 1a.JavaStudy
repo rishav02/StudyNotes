@@ -692,7 +692,7 @@ Important link for practicing some of its examples:
 http://www.tutorialspoint.com/javaexamples/java_regular_exp.htm
 
 
-Garbage Collection
+Garbage Collection[NNN]
 
 In languages like C or C++, programmers are not just solely responsible for creating an object only but for destroying the object (variable) as well. However, it is done automatically in java. Isn’t this cool? We are not bothered about destruction of objects that we do not need anymore. But, how actually does java manages the destruction of object itself? Well, java has a concept of Garbage Collector which is like a daemon thread that is running in background and destroying the object which are no more needed or are eligible for garbage collection. 
 Now, we come to a crucial point, which is, how does GC will identify if an object is eligible for garbage collection? In simplest term, when all the references of an object are discarded or no more referencing to that object is valid then that object will be called as unreachable. We can have several scenarios where an object becomes unreachable. Let’s look at each of them.
@@ -928,7 +928,8 @@ Do You Know?
 •	What is exception propagation?
 •	What is the difference between throw and throws keyword?
 •	What are the 4 rules for using exception handling with method overriding?
-•	Well, exception has got hierarchy as well. But, this goes really out the scope as it is more for learning. Now, let’s look at different types of exceptions. The exceptions are basically of two types which are Checked and Unchecked Exceptions. The Unchecked Exception is also divided in two types which are Runtime Exception and Error.
+
+Well, exception has got hierarchy as well. But, this goes really out the scope as it is more for learning. Now, let’s look at different types of exceptions. The exceptions are basically of two types which are Checked and Unchecked Exceptions. The Unchecked Exception is also divided in two types which are Runtime Exception and Error.
 •	Checked exception – These exceptions are found at the compile time i.e. the compiler will found then while compiling the program. The super class of all checked exception is IOException. Some examples of checked exceptions are SQLException, DataAccessException, ClassNotFoundException etc. 
 •	Unchecked exception – These are exception which are not found at compile time but will be found at runtime. These are of two categories, which are described below. All the Unchecked exceptions are the sub classes of the Runtime Exception.
 a.	Runtime Exception – These are due the mistake of programmer. It may be because the programmer trying to access an element which does not exist or any other mistake that looks fine at compile time but will create an abnormal situation. All the runtime exception has a super class called as Runtime Exception class.
@@ -937,7 +938,7 @@ b.	Error – These are the exceptions that an application cannot deal with. It h
 Note:
 1.	Errors are of two type which are syntax error (compile time error) and runtime error (unchecked exception). The syntax error is because of typo error that we make while writing the program and hence we encounter them while compiling the program. The runtime errors are nothing but the unchecked exceptions that happens while program is running.  
 2.	If an arithmetic Exception occurs, then we catch it by the print statement printing the “exception is caught” message. Well, this does not happen in actual application. We do write some remedial code in the catch block. So, do not think that what is the advantage we are just printing and the calculation is still not performed. This happens only in the sample program just to make us understand that the control goes over from try to catch block if exception occurs. 
-3.	We can print exception message in three ways in java. First, by printing the “e” of exception e. Second, e.printStackTrace(). Also, do not put it inside print statement. Third, e.getMessage() can be used inside the print statement. 
+3.	We can print exception message in three ways in java. First, by printing the “e” of exception e. Second, e.printStackTrace(). Also, do not put it inside print statement. Third, e.getMessage() can be used inside the print statement. [NNN] e.getmessage still println method and only gets you the exception message while e.printstacktrack does not need println method and also gets you the line of the exception along with the message.
 4.	Parent class of exception and error is throwable class.
 5.	It is not possible to catch Errors by catch block. Error example can be OutOfMemory error or written like new Error()..
 6.	When exception comes then the info of exceotion then after exceptiob is occurred then finally block will be executed. Then, flow of program will stop. 
@@ -947,10 +948,16 @@ Note:
 10.	If the exception comes in the called method then that can be caught inside the catch block of the try block from which it is called.      
 11.	Class not found exception occurs when class is not found when classloader tries to load it.
 12.	Init() cause method is used to find out chained exception code which actually caused the exception.  
+13. [NNN] Parent class of check exception is IOexception while sub classes are fileNotFoundException, ClassNotFOundException, SQLException. Parent class for unchecked exception is RuntimeException class while sub classes are AirthmaticException, NullpointerException,ArrayOutOfBoundException.
 
+||Studying different Exception||[NNN]
+1. IOException: IOException occurs when you are dealing with input or output stream and something abnormal happens. Few examples are, when you try to read a file locally and file is not available, trying to write into a file while disk space is full, trying to read a network file and lost the connection mean while. 
+2. FileNotFoundException: Object, throwable, exception, IOException and then fileNotFoundException. When you try to read or write a file and gives a wrong path by mistake. Also, we a file is not found and any of IO activity havnt started then filenotfoundexception is given but if IO activity starts and file becomes unavailable for some reason then IOexceotion is thrown. 
+3. ClassNotFoundException: WHen classloader does not find a particular class in classpath for JVM. THen, this error is thrown. Also, NoClassDefFound exception comes when class is present at compile time but not at runtime. Be clear on this. 
+4. SqlException: 
 ||Java Try Catch||
 •	The code which is prone to give exceptions is written in try block which must be followed by catch or final block. These blocks are within the method. Check the syntax. Catch block is used to handle the exception and it must be used after the try block. We can use multiple catch block. Check the example for better understanding. 
-•	Internal working of try catch block – It is pretty simple. When the exception is created, an object will be thrown. Now, either that will be handled or not handled. If handled, then rest of the code will execute otherwise JVM prints the exception description and will terminates.
+•	Internal working of try catch block – It is pretty simple. When the exception occurs, an object will be thrown. Now, either that will be handled or not handled. If handled, then rest of the code will execute otherwise JVM prints the exception description and will terminates.
 
 ||Multiple Catch Block|| 
 If you suspect multiple exceptions in the code written in the try block then you can use multiple catch blocks. But one exception comes at a time and handled at a time. Also, the catch blocks should be written from most specific to general. 
@@ -966,7 +973,7 @@ Note: we already know that whatever happens except system.exit or JVM crash, fin
 At first glance, it did not make any sense to me. But yeah it did later. I was not able to understand it before because why we want to create an exception? It is abnormal condition that stops the program’s execution. Then, why do we need it? Exceptions are needed for implementing some business need related to the program. From the example given, suppose we have to build software for machine that allows or stops a person to vote according to their age. So, when you have the age below 18 then an exception should be thrown. The facility of throwing our own exception (custom exception) helps us to maintain some business requirements like age of the voter should be more than 18. If age is less than 18 then we can take some alternative actions in the catch block. In the nutshell, to implement some business requirement we need to throw self-made exception. 
 Now, Throw is a keyword use to explicitly throw an exception in java program which we will catch also. It is mainly to throw our own created exception called custom exception but it can also throw the predefined exceptions.
 Note:
-1.	How to create your own exception? Well, for this, create a class giving the name you want to give to your exception. Then, extend the exception class. Then create a constructor and pass a string as parameter with the message (or any random short string). Lastly, make use of Super() function and pass the massage. @@@Practice Example.
+1.	How to create your own exception? Well, for this, create a class giving the name you want to give to your exception. Then, extend the exception class. Then create a constructor and pass a string as parameter with the message (or any random short string). Lastly, make use of Super() function and pass the massage.
 2.	Syntax for Throw keyword: “throw new AirthmaticException(“myMessage”)” or “throw new CustomExceptionName(“MyMessage”)”. 
 3.	We can rethrow an exception by using throw keyword inside catch block. 
 4.	Even after knowing that an exception must be catched, If we do not. Then, that’s called Ducking the exception. 
@@ -989,7 +996,7 @@ Below are some difference between throw and throws keyword.
 •	Throw is followed by an instance and throws is followed by a class. (look at the syntax literally)
 •	Throw is used within a method while throws is used as a signature in declaring a method. 
 •	You cannot throw multiple exceptions with throw but we can declare multiple exceptions with throws keyword. 
-0
+
 ||Difference between Final, Finally and Finalize||
 Below is the description exploiting the difference between each of them.
 •	Final – it is a keyword. Final is used to restrict a class, method or variable. Final class cannot be inherited, final method cannot be overridden and final variable cannot be changed.
