@@ -692,7 +692,227 @@ Important link for practicing some of its examples:
 http://www.tutorialspoint.com/javaexamples/java_regular_exp.htm
 
 
+Garbage Collection
 
+In languages like C or C++, programmers are not just solely responsible for creating an object only but for destroying the object (variable) as well. However, it is done automatically in java. Isn’t this cool? We are not bothered about destruction of objects that we do not need anymore. But, how actually does java manages the destruction of object itself? Well, java has a concept of Garbage Collector which is like a daemon thread that is running in background and destroying the object which are no more needed or are eligible for garbage collection. 
+Now, we come to a crucial point, which is, how does GC will identify if an object is eligible for garbage collection? In simplest term, when all the references of an object are discarded or no more referencing to that object is valid then that object will be called as unreachable. We can have several scenarios where an object becomes unreachable. Let’s look at each of them.
+1.	When an object is created inside a method: When a method is called then it goes inside the stack frame. Once its execution is done then it goes out of the stack frame and its members dies. Therefore, if any object is created in a method then it becomes eligible for GC when execution of that method gets over. 
+2.	Island of isolation: When a group of object reference to each other and are not referenced by any other reference then they create an island of isolation. Practically, even single object create an island of isolation. Below is the example for showing island of isolation where when an object which is placed null is not garbage collected until all its member references are not null. 
+publicclass Test{
+	String name;
+	Test t;
+	publicstaticvoid main(String args[]){
+		Test t1 = newTest();
+		Test t2 = newTest();
+		Test t3 = newTest();
+		t1.name="t1";
+		t2.name="t2";
+		t1.t=t2;
+		t2.t=t1;
+		t1=null;
+		t2=null;
+		System.gc();
+	}
+	@Override
+	protectedvoid finalize() throwsThrowable{
+		System.out.println("Garbage Collected: "+this.name);
+	}
+}
+Note:
+1.	Object is used every time its reference is used. Like i.someVariable, allows the use of someVariable of the object through the reference thus we must have all possible reference to be discarded for an object to become unreachable. Below is a program displaying object garbage collected. Also, we will see that t2 object will be collection first because its execution will end first. 
+Also, if a method returns an object created inside it and we store this object as reference type variable then it is not eligible by the GC. 
+publicclass Test{
+	String myVar;
+	public Test(String myVar){
+		this.myVar=myVar;
+	}
+	publicstaticvoid show(){
+		Test t1= newTest("t1");
+		System.out.println("myVar value from object in show:" +t1.myVar);
+		display();
+	}
+	publicstaticvoid display(){
+		Test t2 = newTest("t2");
+		System.out.println("myVar value from object in display:" +t2.myVar);
+	}
+	publicstaticvoid main(String args[]){
+		show();
+		System.gc();
+	}
+	@Override
+	protectedvoid finalize() throwsThrowable{
+		System.out.println("Garbage Collected: "+this.myVar);
+	}
+}
+2.	Reassigning of reference variable: When reference variable of one object references of reference variable of some other object then the previous object does not have any longer reference to it and hence become unreachable. 
+publicclassTest{
+	String myVar;
+	public Test(String myVar){
+		this.myVar=myVar;
+	}
+	publicstaticvoid main(String args[]){
+		Testt1 = newTest("t1");
+		Testt2 = newTest("t2");
+		t1=t2;
+		System.gc();
+	}
+	@Override
+	protectedvoid finalize() throwsThrowable{
+		System.out.println("Garbage Collected: "+this.myVar);
+	}
+}
+3.	Nullifying the reference: When the reference is made null then the object gets eligible for garbage collection. 
+publicclass Test{
+	String myVar;
+	public Test(String myVar){
+		this.myVar=myVar;
+	}
+	publicstaticvoid main(String args[]){
+		Test t1 = newTest("t1");
+		t1 = null;
+		System.gc();
+	}
+	@Override
+	protectedvoid finalize() throwsThrowable{
+		System.out.println("Garbage Collected: "+this.myVar);
+	}
+}
+4.	Anonymous Object: When an anonymous object is created then it is not referenced by any reference thus if we call the garbage collector then it should be garbage collected. 
+publicclass Test{
+	String myVar;
+	public Test(String myVar){
+		this.myVar=myVar;
+	}
+	publicstaticvoid main(String args[]){
+		new Test("t1");
+		System.gc();
+	}
+	@Override
+	protectedvoid finalize() throwsThrowable{
+		System.out.println("Garbage Collected: "+this.myVar);
+	}
+}
+So far we have seen different scenarios where object will get garbage collected. However, there can be other such scenarios as well.
+Garbage collection happens automatically in java and is not controlled by programmer. We are not sure when exactly JVM will run GC. So, we can request JVM to run garbage collector for GC. There are couple of ways for request JVM for running GC. 
+1.	We can do it through static GC() method of System class. Below is a code example:
+publicclass Test{
+	String myVar;
+	public Test(String myVar){
+		this.myVar=myVar;
+	}
+	publicstaticvoid main(String args[]){
+		Test t1 = newTest("t1");
+		t1 = null;
+		System.gc();
+	}
+	@Override
+	protectedvoid finalize() throwsThrowable{
+		System.out.println("Garbage Collected: "+this.myVar);
+	}
+}
+2.	We can also use gc() method of Runtime class. We have to create its instance and then we can use gc() of runtime since it’s an instance method.  
+packagearrayrotation;
+publicclass Test{
+	String myVar;
+	public Test(String myVar){
+		this.myVar=myVar;
+	}
+	publicstaticvoid main(String args[]){
+		Test t1 = newTest("t1");
+		t1 = null;
+		Runtime.getRuntime().gc();
+	}
+	@Override
+	protectedvoid finalize() throwsThrowable{
+		System.out.println("Garbage Collected: "+this.myVar);
+	}
+}
+Both the way are equivalent for requesting JVM for running GC, however any of it does not guarantee when JVM will process the request. 
+Finalization
+Now, we will move to another important topic of GC which is finalization. Finalization is an activity that happens before GC destroys an object. This clean-up can happens through a method called as finalize() present in Object class with signature “protected void finalize() throws throwable”. Importance of this method for a programmer is that it can override it to perform something before JVM destroys any object. 
+
+Garbage Collection Logs
+To diagnose any memory related problems, 	
+
+Note: 
+1.	Garbage Collector is just one module of JVM. Finalize method is called by JVM. 
+2.	Finalize method is with empty implementation and thus recommend to be overridden in a class needed. 
+3.	Finalize method is never invoked more than once for any object.
+4.	Old generation is also called as tenured gen. 
+5.	If finalize methods throws any uncaught exception then it is ignored and the execution of finalize method get stopped there itself. Below is the request shows how if exception occurs in finalize method than further lines of code does not execute. 
+publicclass Test{
+	String myVar;
+	public Test(String myVar){
+		this.myVar=myVar;
+	}
+	publicstaticvoid main(String args[]){
+		Test t1 = newTest("t1");
+		t1 = null;
+		Runtime.getRuntime().gc();
+	}
+	@Override
+	protectedvoid finalize() throwsThrowable{
+		inta = 10/0;
+		System.out.println(a);
+		System.out.println("Garbage Collected: "+this.myVar);
+	}
+}
+Talking of memory:
+For a computer, ROM, RAM and Hard drive are main memory block. ROM is Real Only Memory which is non volatile (contains data even when device is powered off) in nature used to store firmware. Firmware is a software that is closely tied to any hardware. ROM is a memory which is very hard to change the data and therefore most suitable for firmware since hardware related software is very rare to be upgraded. RAM is Random Access Memory which is volatile memory (memory losses data after power off) used to store currently running program and its related data. Ram allows read and write of the data is same amount of time irrespective of the physical location of data in memory. Lastly, we have Hard drives, CD drives etc which are direct access memory category. These are non volatile and used to store the data permanently. Hard drives are better to be called as storage space.
+In programming view point, we are most concerned about Stack and Heap which resides on RAM. Stack is for execution of threads. When a function is called, a block of stack is reserved. When the function returns then that block is memory gets free. The stack always works in LIFO. Imagine a situation where four functions A, B,C and D calling in a order of A,B,C and D. Then the first block in stack memory will be reserved for A then B, then C and finally for D. The stack blocks will get free in the order of D, C, B and A. Stack traces of program execution is a classical example of stack memory real time experience. 
+Heap is a portion of memory where dynamically allocated data resides i.e. memory allocated via malloc. When I say that allocation is dynamic then I mean that there is not pattern of allocation memory and freeing it. Any block of memory can be allocated or freed in any order. Memory allocated in heap will remain allocated until memory is freed (garbage collected in case of java) or program terminates.	
+Also, language runtime controls the allocation of memory rather than OS. Heap is comparatively much larger memory area than Stack. Each thread gets a stack while heap is same for an application. Stack is reclaimed when the thread exist while heap can be reclaimed when program/application terminates. Stack is faster then heap majorly because of the easier allocation and deallocation of memory area.
+Extending discussion of memory with respect to Garbage Collection:
+Garbage Collection happens only for Heap while ignored for Stack. GC does scan the stack just to know what is being used or pointed in heap. Everything in the stack is considered to be useful and subject to discard only when the program terminates. It is really that simple and thus we do not even need garbage collection in stack. On the other side, its definitely not necessary if everything on heap is useful and considered for garbage collection. 
+Heap is also divided into multiple spaces which are represented in the below image:
+When the program execution begins, the objects start to be created in Eden. At some point in time, when eden started to getting full then first minor garbage collection runs. The object in eden which are not referenced are garbage collected while other gets transferred to survivor. Heap has survivor 0 and servivor 1. Thus, the object which are not garbage collected in servivor 0 will move to survivor 1. By the way, most of the object die young. After certain number of GC cycles, the object in survivor are moved to tenured or old generation, if not collected from survivor itself. This is also called as tenuring threshold. Then major collection happens where object in old generation are checked for collection. Heap does have perm gen which stores the data related to the class and other metadata.  
+Memory Fragmentation:
+Once an object is removed from memory then it leaves that memory as empty. Such empty memory block gets appeared across the heap area which is called as fragmentation of memory. For faster memory allocation the defragmentation of memory is quite necessary. How the memory gets defragmented is subject to the type of garbage collector. 
+Different type of collectors
+Java has 4 types of garbage collectors. All the collectors has their own advantages and disadvantages. We can select the garbage collector to be used by JVM by passing an appropriate argument to JVM. Let’s discuss each of them. 
+1.	Serial Garbage Collector: It is a single threaded garbage collector which pauses the application threads while garbage collection. This is primarily designed for single threaded environment. We can pass argument –XX: +UseSerialGC. 
+2.	Parallel Garbage Collector: It is a multithreaded garbage collector which uses multiple threads for garbage collection however this also stops the application threads while garbage collection. This is the default collector of JVM and is also called as throughput garbage collector. We can pass argument –XX: +UseParallelGC.
+3.	Concurrent Mark and Sweep Collector: This collector uses multiple threads to scan the memory for marking the block of memory for eviction and to sweep the marked memory blocks. CMS collection pauses application threads in only two cases which are while marking the referenced objects in tenured generation and if there is a change in heap memory during the garbage collection. CMS uses more CPU as compared to parallel thus if we can compromise of CPU allocation then we should choose CMS over parallel. We can use the argument: -XX: +UseParNewGC.
+4.	G1 Collector: It is the latest garbage collector which divided the heap area and does prioritise the garbage collection of the part which has the most garbage. It also compacts the memory area on the go unlike of any other collector. Other collector put stops the world is such case. We can use argument: -XX: +UseG1GC. 
+Note: In java 8, we can use an argument –XX: +UseStringDuplication while using G1 garbage collector. This optimizes the heap by moving the duplicate string to an array of string.
+
+Garbage Collection Monitoring
+Garbage Collection Monitoring is all about figuring out how does the JVM is running. Based on the information received by monitoring the garbage collection, we can decide if garbage collector tuning is needed or not. JVM are of different type, oracle uses HotSpot JVM. GC monitoring is possible through CUI or GUI. 
+In java, we have a tool called jstat in Hotspot JVM for GC monitoring. We will now see a basic command that we can run on CMD for getting some basic information regarding the garbage collection activities. 
+The command is jstat -gc $<vmid> 1000 10. Here, jstat is the command name and -gc is the argument. Vmid is the virtual machine id however if java app is running on local machine then we need to know the lmvid i.e. local vmid. We can get to know lmvidthrouggps command but using jps for the same confidered safe as pid shown by ps command is not always the same as lvmid. 1000 denotes the time which is equivalent to 1 second while 10 denotes the number of times we want to show the GC infomation.  
+As we have seen the -gc is the argument that we have passed and that will show information like current size of each area of heap, current usage of each heap area, number of GC cycle performed and accumulated time for all GC cycle. We can have other different arguments like gccapacity, gcnew, gcnewcapacity and others. The bottomline is that with different arguments we gets different columns with GC information. Let's look at the columns we see with gc argument. 
+1.	S0C, S1C: Current size of first and second survivor.
+2.	S0U, S1U: Current usage of first and second survivor. 
+3.	EC, EU: Current size and usage of Eden.
+4.	OC, OU: Current size and usage of Old generation. 
+5.	PC, PU: Current size and usage of Permanent generation. 
+6.	YGC: no. of garbage collection happened for young gen. 
+7.	YGCT: Accumulated time of garbage collection cycle performed. 
+8.	FGC: no. of full garbage collection.
+9.	FGCT: Accmulated time of full garbage collections.
+10.	GCT: Accumulated time of all types of garbage collection.
+Similarly, we may have different columns appearing as information of GC according to the argument passed. 
+With jstat -gc argument we gets to know the accumulated time for different types of GC while we still do not know time taken for an individual garbage collection. To solve this problem, we have another command which is -verbosegc. With -verbosegc we need to mention it as an JVM starting option from the beginning while jstat we do not need to have any option passed from the beginning. with -verbosegc we can monitor each GC individually. We can have different options passed along with -verbosegc. Below is the format of information shown with verbosegcoption:
+Information shown in case of minor GC - 
+[GC [<collectortype>:<initial occupency1> -><ending occupency1>, pausetime1 in sec], <initial occupency3> -><ending occupency3>, pausetime3 in sec]
+Information shown in case of full GC - 
+[Full GC [<collectortype>:<initialoccupency1> -><ending occupency>, pausetime1 in sec], ..perm related information..<>]. (this is incomplete format). 
+For GUI based garbage collection monitoring, we can use Java VisualVM + VisualGC tool. Actually with VisualGc tool or plugin present in VisualVM is used to check jstat equivalent information. Likewise, for -verbosegc equivalent information we can use HPJMeter. HPJMeter is a tool created by HP. Garbage collectiom monitoring is just one task out of many for HPJMeter.
+Garbage Collection Tuning
+So far, we have understood few ways to monitor garbage collection. Now, we need to understand the factors crucial to decide if we need GC tuning or not. We will try to keep it simple. Below are the factor we can check upon to take decision for GC tuning.
+1.	Minor GC should be processed within 50ms. 
+2.	Minor GC should not be frequent than once per 10 seconds. 
+3.	Full GC should be processed within 1 second. 
+4.	Full GC should not be frequent than once per 10 minutes.
+If all the pointers above get satisfied then we ideally do not need GC tuning. However, exception can be possible. 
+Once we decide to tune GC then how should be go about it? Mainly we can tune the GC by using appropriate garbage and set the memory size of different generation of heap. We can try giving different memory size of heap parts and analysing the result. Also, we need to keep in mind that if we decrease the size of old gen for bringing full GC time down then we might encounter OutofMemoryError. On the other hand, if we try to increase the old gen space for less number of full GC (frequency) cycles then we might face longer time of full GC processing. Therefore, we need to try with different value of memory and find out the appropriate one. Check the note point for the options available for adjusting the GC type and memory of heap. We should try different values of heap and deploy the code in different environment. In 24 hours, we can check the result and if we find the result as optimized then we can finalize the same options on all server. This way we can tune the GC. 
+Below are the commands we can use to tune the GC.
+a.	We can use –XX: +UseG1GC for selecting different garbage collector. 
+b.	–Xms: Heap area size when starting JVM. 
+c.	–Xmx: 	Maximum heap area size
+d.	–XX: NewRatio: Ratio of the new area and old area. 
+e.	–XX: SurvivorRatio: ratio of eden area and survivor area. 
+We can definitely use different other options but the above listed are basics. 
 
 
 Exception Handling
