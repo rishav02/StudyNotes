@@ -1,3 +1,19 @@
+Topic: String
+Source: https://www.journaldev.com/1321/java-string-interview-questions-and-answers
+
+1. Is String a data type?
+2. what is string sub sequence method?
+3. how to convert String to char and vice versa. 
+4. why char array is preffered over string for storing password?
+5. Why string is popular HAshmap key in java?
+
+Source: http://javarevisited.blogspot.in/2012/10/10-java-string-interview-question-answers-top.html
+1. How does substring method works in Java?
+2. Is string thread safe? Careful!
+
+
+
+
 Topic: Garbage Collection
 
 Source 1: javarevisited
