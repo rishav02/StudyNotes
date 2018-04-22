@@ -629,6 +629,9 @@ Note:
 The objects of String class are immutable in nature. i.e you can’t modify them once they are created. If you try to modify them, a new object will be created with modified content. This may cause memory and performance issues if you are performing lots of string modifications in your code. To overcome these issues, StingBuffer and StringBuilder classes are introduced in java.
 3. Write a java program to reverse a given string with preserving the position of spaces?
 4. Write a code to prove that strings are immutable in java? solution: http://javaconceptoftheday.com/example-to-prove-strings-are-immutable/
+5. [NNN] JVM creates special memory area for string in Heap which is String Constant Pool. Thus, string can be created without using new keyword as well. 
+6. [NNN] String comes in lang package. Thus, we do not need to import it as well. 
+7. 
 
 ||Java Regex||
 (Over to java oracle docs: https://docs.oracle.com/javase/tutorial/essential/regex/)
