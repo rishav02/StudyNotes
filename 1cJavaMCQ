@@ -1935,3 +1935,8 @@ Answer: super class no exception, and child class checked excepton.
 
 This code will throw compiler error on line where RuntimeException  variable “re” is written on catch block. since Exception is super class of RuntimeException, all RuntimeException thrown by start() method will be captured by first catch block and code will never reach second catch block and that's the reason compiler will flag error as  “exception java.lang.RuntimeException has already been caught".
 
+Java Topicwise MCQ
+1. String 
+
+
+
