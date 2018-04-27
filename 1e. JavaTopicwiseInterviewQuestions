@@ -10,9 +10,284 @@ Source: https://www.journaldev.com/1321/java-string-interview-questions-and-answ
 Source: http://javarevisited.blogspot.in/2012/10/10-java-string-interview-question-answers-top.html
 1. How does substring method works in Java?
 2. Is string thread safe? Careful!
+3. Verify how many objects get created in different scenarios.
+4. what is psecia about String object compaed to other objects in java? 
+One special thing about string objects is that you can create string objects without using new operator i.e using string literals. This is not possible with other derived types (except wrapper classes). One more special thing about strings is that you can concatenate two string objects using ‘+’. This is the relaxation java gives to string objects as they will be used most of the time while coding. And also java provides string constant pool to store the string objects.
+5. Check why StringBuffer and StringBuilder classes ar also final like String class? Also,what is the need of creating these two if we already has String?
+The objects of String class are immutable in nature. i.e you can’t modify them once they are created. If you try to modify them, a new object will be created with modified content. This may cause memory and performance issues if you are performing lots of string modifications in your code. To overcome these issues, StingBuffer and StringBuilder classes are introduced in java.
+6. What is the main difference between String of C and C++ vs String in Java?
+In C and C++, strings are terminated with null character. But in java, strings are not terminated with null character. Strings are treated as objects in java.
+7. Check the reasons why String is kept immutable in java?
+a) Immutable strings increase security. As they can’t be modified once they are created, so we can use them to store sensitive data like username, password etc.
+b) Immutable strings are thread safe. So, we can use them in a multi threaded code without synchronization.
+c) String objects are used in class loading. If strings are mutable, it is possible that wrong class is being loaded as mutable objects are modifiable.
+8.check importwnt methods of string: split
+9. check if sgring lies in util or lang?
 
+10. learn the basic aiisc to int and char rel.
 
+String Quiz:
+1. Question
+What will be the output of below code snippet?
 
+String s1 = new String("pankaj");
+String s2 = new String("PANKAJ");
+
+System.out.println(s1 = s2);
+  pankaj
+  PANKAJ
+  true
+  false
+  
+2. Question
+How many String objects created in below statements?
+
+String s = "abc"; // line 1
+String s1 = new String("abcd"); // line 2
+  2
+  3
+  1
+  4
+  
+3. Question
+What will be the output of below code snippet?
+
+String s1 = "abc";
+String s2 = new String("abc");
+
+s2.intern();
+System.out.println(s1==s2);
+  true
+  null
+  false
+  
+4. Question
+What will be output of below statements?
+
+String s1 = "Cat";
+String s2 = "Cat";
+String s3 = new String("Cat");
+        
+System.out.println(s1==s2);
+System.out.println(s1==s3);
+  true false
+  true true
+  false true
+  false false
+
+5. Question
+Which of the following statements are True for StringBuffer and StringBuilder?
+
+  StringBuffer is thread safe because it's methods are synchronized.
+  StringBuilder is not thread-safe.
+  StringBuffer and StringBuilder are immutable.
+  StringBuilder was introduced in Java 1.4
+  
+6. Question
+Select all the interfaces implemented by String class.
+
+  CharSequence
+  Comparable
+  Serializable
+  Cloneable
+  
+7. Question
+What will be the output of below statements?
+
+String s1 = "abc";
+String s2 = "def";
+		
+System.out.println(s1.compareTo(s2));
+  -3
+  true
+  0
+  false
+
+8. Question
+What will be output of below statements?
+
+String s = "Java String Quiz";
+System.out.println(s.charAt(s.toUpperCase().length()));
+  Runtime Exception
+  Prints "z"
+  Prints "Z"
+  Convert "Z" to int 90 and prints "90"
+
+9. Question
+What will be the output of below statements?
+
+String s1 = "abc";
+StringBuffer s2 = new StringBuffer(s1);
+System.out.println(s1.equals(s2));
+  ClassCastException at runtime
+  true
+  Compile time error
+  false
+
+10. Question
+What will be the output of below program?
+
+public class Test {
+
+	public static void main(String[] args) {
+		String s1 = "abc";
+		String s2 = "abc";
+		System.out.println("s1 == s2 is:" + s1 == s2);
+	}
+}
+  false
+  s1 == s2 is:false
+  s1 == s2 is:true
+  true
+  
+11. Question
+What will be the output of below statements?
+
+String s = "Java"+1+2+"Quiz"+""+(3+4); 
+		
+System.out.println(s);
+  Java3Quiz7
+  Java12Quiz34
+  Java3Quiz34
+  Java12Quiz7
+  
+12. Question
+What will be the output of below statements?
+
+String s1 = null;
+System.out.println(s1); //line 2
+System.out.println(s1.toString()); //line 3
+  null NullPointerException
+  NullPointerException NullPointerException
+  null null
+  
+13. Question
+What will be output of below statements?
+
+String s = "Java String Quiz";
+System.out.println(s.substring(5,3));
+  Compile time error
+  Runtime Exception StringIndexOutOfBoundsException
+  Prints "Str"
+  Runtime Exception IndexOutOfBoundsException
+
+14. Question
+Which of the following statements are true about String in java?
+
+  We can extend String class like StringBuffer does it.
+  String is thread-safe in java.
+  String is immutable in java.
+  String class is defined in java.util package.
+  String is case sensitive in java.
+  
+15. Question
+What will be the output of below program?
+
+public class Test {
+
+	public static void main(String[] args) {
+		String x = "abc";
+		String y = "abc";
+		x.concat(y);
+		System.out.print(x);
+	}
+}
+  abcabc
+  null
+  abc
+  
+16. Question
+Select all valid methods of String class.
+
+  intern()
+  toLower()
+  split()
+  trim()
+  
+17. Question
+What will be the output of below statements?
+
+String s1 = "abc";
+String s2 = new String("abc");
+		
+System.out.print(s1==s2);
+System.out.println(s1==s2.intern());
+  falsefalse
+  truetrue
+  falsetrue
+  truefalse
+  
+18. Question
+String implementation follows which of the below design pattern?
+
+  Flyweight Design Pattern
+  Factory pattern
+  None of the above
+  Singleton pattern
+  
+19. Question
+Select all the classes that extend String class.
+
+  None
+  StringBuffer
+  StringWriter
+  StringBuilder
+  
+20. Question
+Select all the reasons that make String perfect candidate for Map key?
+
+  String is final
+  String is immutable
+  String properly implements hashcode() and equals() method
+  String hashcode is cached
+  
+21. Question
+Which of the following statements are true for string in switch case?
+
+  String is allowed in switch case for Java 1.7 or higher versions.
+  equals() method is used by switch-case implementation, so add null check to avoid NullPointerException.
+  String is allowed in switch case for Java 1.5 or higher versions.
+  
+Some more Questions:
+5. Question 10 points
+What does the following instruction suppose to do?
+str.replaceAll(Character.toString(‘c’), “”);
+
+1.   It'll replace all the char 'c' characters with empty String.
+2.   It'll replace first occurrence of the char 'c' with empty String.
+3.   None of these.
+4.   It'll replace last occurrence of the char 'c' with empty String.
+
+14. Question 10 points
+What is the result of the below lines of code?
+
+String Str1 = " Java ";
+String Str2 = " is ";
+String Str3 = " awesome .";
+String StrResult  = Str1.trim() + Str2 + Str3.trim();
+System.out.println(StrResult);
+1.   Java is awesome.
+2.   Javaisawesome
+3.   Java is awesome
+4.   Java is awesome .   correct ans
+
+24. Question 10 points
+Which of the following is the outcome of the below Java program?
+
+public class JavaQuiz{
+	private int i = j;
+	private int j = 10;
+	public static void main(String args[]){
+		System.out.println((new JavaQuiz()).i);
+	}
+}
+1.   Compile time error related to illegal forward reference.   correct ans
+2.   Compile time error related to access restriction of private variables of JavaQuiz.
+3.   No error - the output is 0.
+4.   No error - the output is 10.
+  
+  
+  
 
 Topic: Garbage Collection
 
