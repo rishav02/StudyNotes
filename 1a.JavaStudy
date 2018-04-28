@@ -631,7 +631,8 @@ The objects of String class are immutable in nature. i.e you can’t modify them
 4. Write a code to prove that strings are immutable in java? solution: http://javaconceptoftheday.com/example-to-prove-strings-are-immutable/
 5. [NNN] JVM creates special memory area for string in Heap which is String Constant Pool. Thus, string can be created without using new keyword as well. 
 6. [NNN] String comes in lang package. Thus, we do not need to import it as well. 
-7. 
+7. [NNN] Char Sequence is an  interface in java. Subsequence method of string returns the part of the string in charsequence format. Charsequence interface is implemented by many classes like string, stringbuffer, charbuffer and other. charsequence is hardly been made in use. 
+8. [NNN] Well, i am gussing that intern method is maninly used while creating a string with new keyword which are not interned by default like string literal. 
 
 ||Java Regex||
 (Over to java oracle docs: https://docs.oracle.com/javase/tutorial/essential/regex/)
