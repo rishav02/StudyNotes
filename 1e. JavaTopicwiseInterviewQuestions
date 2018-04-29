@@ -1,17 +1,34 @@
+Topic: Java Oops Concepts
+
+
+
+
+
 Topic: String
 Source: https://www.journaldev.com/1321/java-string-interview-questions-and-answers
 
 1. Is String a data type?
+String is a class in java and a reference data type. 
 2. what is string sub sequence method?
-3. how to convert String to char and vice versa. 
+This method give a part of the original string but not in string format but in charSequence format. 
+3. How to convert String to char and vice versa, with int, with charArray. 
+String to char using charAt() and Char to String using toString() or valueOf().
+String to int using Integer.parseInt() and int to String Integer.toString() and valueOf().
+String to int array using toCharArray() and int array to String using String.valueOf(). 
+I think valueof is the best method of converting anything to String. 
 4. why char array is preffered over string for storing password?
+Weel, the mai reason of Char array picked over string for dealing with password in an java application is that String is immutable. So, if you store your password in through string then it will get stored in heap until garbage collection do not run. If somebody gets access to thread dump then they might get the password. However, with char array they are mutable and can me made null from memory once used. Secondly, a side reason, if we print string containing password then it will print the password but in case of char array we will get some code but not the actual password. Lastly, even java team recomends it. they changed method in swing repo.
 5. Why string is popular HAshmap key in java?
+We should remeber that hashmap works on the concept of hashing. Therefore, it is key through which we place a value in hashmap and uses the same key for getting the value back. Since, string is immutable then its hashcode does not need to be generated again while getting the value back. We have wrapper classes too which are immutable and equally suitable for being a hashmap key. We can also use user defined object as key of hashmap provided we implements hashcode and equals method. 
 
 Source: http://javarevisited.blogspot.in/2012/10/10-java-string-interview-question-answers-top.html
 1. How does substring method works in Java?
+On slightly high level substring method is a overloaded method which is overloaded in two forms which are with one argument which take begin index and second si with two argument that takes begin and end index. It return a new string every time as strings are immutable in java. But how does substring method works internally? It calls String(int offset, int count, char[] array). Now, when we create a sub string then an array of the same content is created from the original string. Thus, the string memory object is retained in the memory for the same reason. This way it creates a memory leakage in java. 
 2. Is string thread safe? Careful!
 3. Verify how many objects get created in different scenarios.
-4. what is psecia about String object compaed to other objects in java? 
+Lets check the below cases to understand how many objects gets created in each case:
+
+4. what is speecia about String object compaed to other objects in java? 
 One special thing about string objects is that you can create string objects without using new operator i.e using string literals. This is not possible with other derived types (except wrapper classes). One more special thing about strings is that you can concatenate two string objects using ‘+’. This is the relaxation java gives to string objects as they will be used most of the time while coding. And also java provides string constant pool to store the string objects.
 5. Check why StringBuffer and StringBuilder classes ar also final like String class? Also,what is the need of creating these two if we already has String?
 The objects of String class are immutable in nature. i.e you can’t modify them once they are created. If you try to modify them, a new object will be created with modified content. This may cause memory and performance issues if you are performing lots of string modifications in your code. To overcome these issues, StingBuffer and StringBuilder classes are introduced in java.
@@ -757,4 +774,168 @@ tasks.peek().execute();
 We’re never clearing the reference after we’ve finished with it! If we change this to use poll() then the memory leak is fixed.
  
 Whilst clearly this is a very contrived example, going through the steps will refresh your memory for if you are asked to explain how you would identify memory leaks in an application.  Look for memory continuing to increase despite GCs happening, take memory snapshot and compare them to see which Objects may be candidates for not being released, and use a heap dump to analyze what is holding references to them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topic: Exception Handling
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topic: Inner Class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topic: Multithreading
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topic: Synchronization
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topic: Java I/O
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topic: Java Collection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topic: Java Serialization
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
