@@ -5,7 +5,752 @@ Topic: Java Oops Concepts
 
 
 Topic: String
+Source: https://www.journaldev.com/1321/java-string-interview-Topic: Java Oops Concepts
+
+
+
+
+
+Topic: String
 Source: https://www.journaldev.com/1321/java-string-interview-questions-and-answers
+
+1. Is String a data type?
+String is a class in java and a reference data type. 
+2. What is string sub sequence method?
+This method give a part of the original string but not in string format but in charSequence format. 
+3. How to convert String to char and vice versa, with int, with charArray. 
+String to char using charAt() and Char to String using toString() or valueOf().
+String to int using Integer.parseInt() and int to String Integer.toString() and valueOf().
+String to int array using toCharArray() and int array to String using String.valueOf(). 
+I think valueof is the best method of converting anything to String. 
+4. why char array is preffered over string for storing password?
+Well, the main reason of Char array picked over string for dealing with password in a java application is that String is immutable. So, if you store your password through string then it will get stored in heap until garbage collection do not run. If somebody gets access to thread dump then they might get the password. However, with char array they are mutable and can me made null from memory once used. Secondly, a side reason, if we print string containing password then it will print the password but in case of char array we will get some code but not the actual password. Lastly, even java team recommends it. they changed method in swing repo.
+5. Why string is popular Hashmap key in java?
+We should remember that hashmap works on the concept of hashing. Therefore, it is key through which we place a value in hashmap and uses the same key for getting the value back. Since, string is immutable then its hashcode does not need to be generated again while getting the value back. We have wrapper classes too which are immutable and equally suitable for being a hashmap key. We can also use user defined object as key of hashmap provided we implements hashcode and equals method. 
+
+Source: http://javarevisited.blogspot.in/2012/10/10-java-string-interview-question-answers-top.html
+1. How does substring method works in Java or how does it considered as memory leakage?
+On slightly high level substring method is a overloaded method which is overloaded in two forms which are with one argument which take begin index and second is with two argument that takes begin and end index. It return a new string every time as strings are immutable in java. But how does substring method works internally? It calls String(int offset, int count, char[] array). Now, when we create a sub string then an array of the same content is created from the original string. Thus, the string memory object is retained in the memory for the same reason. This way it creates a memory leakage in java. 
+2. Is string thread safe? Careful!
+Yes, String are thread safe as they are immutable. 
+3. Verify how many objects get created in different scenarios.
+Check note point 11. 
+
+4. What is special about String object compared to other objects in java? 
+One special thing about string objects is that you can create string objects without using new operator i.e using string literals. This is not possible with other derived types (except wrapper classes). One more special thing about strings is that you can concatenate two string objects using ‘+’. This is the relaxation java gives to string objects as they will be used most of the time while coding. And also java provides string constant pool to store the string objects.
+5. Why Stringbuilder and StringBuffer classes are introduced if we already has String class? Also, Why they are kept final just like String class?
+The objects of String class are immutable in nature. i.e you can’t modify them once they are created. If you try to modify them (like through concatenation), a new object will be created with modified content. This may cause memory and performance issues if you are performing lots of string modifications in your code. To overcome these issues, StingBuffer and StringBuilder classes are introduced in java. 
+We should not mix a class creating immutable object and class being final. String class does not have method to make its object mutable while StringBUffer and StringBuilder class has. However, making them final just to not allow any other class to extend them by giving those methods. By design, it must have been decided to finalize both the classes as final to avoid having any sub classes which is a good practice. 
+6. What is the main difference between String of C and C++ vs String in Java?
+In C and C++, strings are terminated with null character. But in java, strings are not terminated with null character. Strings are treated as objects in java and backed by char array. You can get the char array from method toCharArray() of string class. 
+7. Check the reasons why String is kept immutable in java? What benefits are we getting of it. 
+a) Better security is one of the benefit we receive with string in java being immutable. We can use string for storing file path, passing host and port details, db connection url and other lot of stuff. While using string to read a file. After authentication, if a file path is changed then unauthorized file can read through access of different file. There could be a lot more such scenarios. Overall, change in the value of string could seriously pose security issues for an application. 
+b) Java is multi-threaded language. Thus, immutable string very much suitable for it. 
+c) String objects are used in class loading. If strings are mutable, it is possible that wrong class is being loaded as mutable objects are modifiable.
+d) Efficient use of memory as string object can be shared for multiple references. 
+8. Check important methods of string: split, trim, replace. 
+1. Split method returns array. Thus, we can iterate its part. 
+2. Trim method returns a string with removing spaces from front and end, but not in between. 
+3. Replace method replaces char by char, string by string, or string chosen by regex with something. 
+9. Check if string lies in util or lang package?
+Sting is a part of java.lang package. This package contains all the basic or core java design related classes. All wrapper classes also a part of this package. Util package in java relates to utility classes contains collection framework, date classes, string tokenizer classes and other. 
+10. Learn the basic aiisc to int and char rel.
+A-Z: 65-90
+a-z: 91-122
+
+
+Topic: Garbage Collection
+
+Source 1: javarevisited
+Question 1 - What is structure of Java Heap ? What is Perm Gen space in Heap ?
+Answer : In order to better perform in Garbage collection questions in any Java interview, It’s important to have basic understanding of  Java Heap space. To learn more about heap, see my post 10 points on Java heap space. By the way Heap is divided into different generation e.g. new generation, old generation and PermGen space.PermGen space is used to store class’s metadata and filling of PermGen space can causejava.lang.OutOfMemory:PermGen space. Its also worth noting to remember JVM option to configure PermGen space in Java.
+Question 2 - How do you identify minor and major garbage collection in Java?
+
+Answer: Minor collection prints “GC” if garbage collectionlogging is enable using –verbose:gc or -XX:PrintGCDetails, while Major collection prints “Full GC”. This Garbage collection interview question is based on understanding of Garbage collection output. As more and more Interviewer are asking question to ch 	 eck candidate’s ability to understand GC output, this topic become even more important.
+
+Question 3 - What is difference between ParNew and DefNewYoung Generation Garbage collector?
+Answer : This Garbage Collection interview questions is recently asked to one of my friend. It require more than average knowledge on GC to answer this question. By the way ParNewand DefNew is two young generation garbage collector.ParNew is a multi-threaded GC used along with concurrent Mark Sweep while DefNew is single threaded GC used along with Serial Garbage Collector.
+
+Question 4 - How do you find GC resulted due to callingSystem.gc()?
+Answer : Another GC interview question which is based on GC output. Similar to major and minor collection, there will be a word “System” included in Garbage collection output.
+
+Question 5 - What is difference between Serial and Throughput Garbage collector?
+Answer : Serial Garbage collector is a stop the world GC which stops application thread from running during both minor and major collection. Serial Garbage collector can be enabled using JVM option -XX:UseSerialGC and it's designed for Java application which doesn't have pause time requirement and have client configuration. Serial Garbage collector was also default GC in JDK 1.4 before ergonomics was introduced in JDK 1.5. Serial GC is most suited for small application with less number of thread while throughput GG is more suited for large applications. On the other hand Throughput garbage collector is parallel collector where minor and major collection happens in parallel taking full advantage of all the system resources available like multiple processor. Though both major and minor collection runs on stop-the-world fashion and introduced pause in application. Throughput Garbage collector can be enable using -XX:UseParallelGC or -XX:UseOldParallelGC. It increases overall throughput of application my minimizing time spent in Garbage collection but still has long pauses during full GC.This is a kind of Garbage collection interview questionswhich gives you an opportunity to show your knowledge in detail while answering. I always suggest to answer these kind of questions in detail.  See Java Performance The Definitive Guide for more details on this topic.
+ 
+
+
+Question 6 – When does an Object becomes eligible for Garbage collection in Java ?
+Answer : An object becomes eligible for garbage collectionwhen there is no live reference for that object or it can not be reached by any live thread. Cyclic reference doesn’t count as live reference and if two objects are pointing to each other and there is no live reference for any of them, than both are eligible for GC. Also Garbage collection thread is a daemon threadwhich will run by JVM based upon GC algorithm and when runs it collects all objects which are eligible for GC.
+
+Question 7 - What is finalize method in Java ? When does Garbage collector calls finalize method in Java ?
+Answer : Finalize method in Java also called finalizer is a method defined in java.lang.Object and called by Garbage collector before collecting any object which is eligible for GC.Finalize() method provides last chance to object to do cleanup and free any remaining resource, to learn more about finalizers, read What is finalize method in Java.
+
+Question 8 - If Object A has reference to Object B and Object B refer to Object A, apart from that there is no live reference to either object A or B, Does they are eligible to Garbage collection ?
+This Garbage collection interview questions is related question 5 “When object become eligible for Garbage collection”. An object becomes eligible for Garbage collection if there is no live reference for it. It can not be accessible from any Thread and cyclic dependency doesn’t prevent Object from being Garbage collected. Which means in this case both Object A and Object B are eligible of Garbage collection. See How Garbage collection works in Java for more details.
+
+Question 9 -Can we force Garbage collector to run at any time ?
+Answer : No, you can not force Garbage collection in Java. Though you can request it by calling Sytem.gc() or its cousinRuntime.getRuntime().gc(). It’s not guaranteed that GC will run immediately as result of calling these method.
+
+Question 10 - Does Garbage collection occur in permanent generation space in JVM?
+Answer : This  is a tricky Garbage collection interview question as many programmers are not sure whether PermGen space is part of Java heap space or not and since it maintains class Meta data and String pool, whether its eligible for garbage collection or not. By the way Garbage Collection does occur inPermGen space and if PermGen space is full or cross a threshold, it can trigger Full GC. If you look at output of GC you will find that PermGen space is also garbage collected. This is why correct sizing of PermGen space is important to avoid frequent full GC. You can control size of PermGen space byJVM options -XX:PermGenSize and -XX:MaxPermGenSize.
+ 
+
+
+Question 11 : How to you monitor garbage collection activities?
+Answer : One of my favorite interview questions on Garbage collection, just to check whether candidate has ever monitored GC activities or not. You can monitor garbage collection activities either offline or real-time. You can use tools likeJConsole and VisualVM VM with its Visual GC plug-in to monitor real time garbage collection activities and memory status of JVM or you can redirect Garbage collection output to a log file for offline analysis by using -XlogGC=&lt;PATH&gt; JVM parameter. Anyway you should always enable GC options like -XX:PrintGCDetails -X:verboseGC and -XX:PrintGCTimeStamps as it doesn't impact application performance much but provide useful states for performance monitoring.
+
+Question 12: Look at below Garbage collection output and answer following question :
+[GC
+       [ParNew: 1512K->64K(1512K), 0.0635032 secs]
+       15604K->13569K(600345K), 0.0636056 secs]
+       [Times: user=0.03 sys=0.00, real=0.06 secs]
+
+ 1. Is this output of Major Collection or Minor Collection ?
+ 2. Which young Generation Garbage collector is used ?
+ 3. What is size of Young Generation, Old Generation and total Heap Size?
+ 4. How much memory is freed from Garbage collection ?
+ 5. How much time is taken for Garbage collection ?
+ 6. What is current Occupancy of Young Generation ?
+
+This Garbage collection Interview questions is completely based on GC output. Following are answers of above GC questions which will not only help you to answer these question but also help you to understand and interpret GC output.
+
+Answer 1:  It's Minor collection because of "GC" word, In case of Major collection, you would see "Full GC".
+
+Answer 2: This output is of multi-threaded Young Generation Garbage collector "ParNew", which is used along with CMS concurrent Garbage collector.
+
+Answer 3: [1512K] which is written in bracket is total size of Young Generation, which include Eden and two survivor space. 1512K on left of arrow is occupancy of Yong Generation before GC and 64K is occupancy after GC. On the next line value if bracket is total heap size which is (600345K). If we subtract size of young generation to total heap size we can calculate size of Old Generation. This line also shows occupancy of heap before and after Garbage collection.
+
+Answer 4: As answered in previous garbage collection interview question, second line shows heap occupancy before and after Garbage collection. If we subtract value of right side 13569K, to value on left side 15604K, we can get total memory freed by GC.
+
+Answer 5: 0.0636056 secs on second line denotes total time it took to collect dead objects during Garbage collection. It also include time taken to GC young generation which is shown in first line (0635032 secs).
+
+Answer 6: 64K 
+
+Here are few more interesting Garbage collection Interview question for your practice, I haven’t provided answers of all garbage collection interview questions. If you know the answer than you can  post via comments.
+
+Question -  What is difference between -XX:ParallelGC and-XX:ParallelOldGC?
+Question - When do you ConcurrentMarkSweep Garbage collector and Throughput GC?
+Question -  What is difference betweenConcurrentMarkSweep and G1 garbage collector?
+Question -  Have you done any garbage collection tuning? What was your approach?
+
+
+Source 2: greasy 
+What are different regions in JVM memory?
+There are 5 regions.
+1.	Eden
+2.	Survivor 1
+3.	Survivor 2
+4.	Old (or Tenured) Generation
+5.	Perm Generation (until Java 7). From Java 8 Perm Generation has been replaced with Metaspace.
+Note: Eden, Survivor 1 and Survivor 2 are collectively called as Young Generation.
+Can you explain the purpose of each region in Java Memory?
+Eden Generation: When an object is newly constructed it’s created in Young Generation. In most of the applications, many of the objects are short-lived objects. i.e., they will die soon. Thus they will get garbage collected within the Young Generation itself
+Survivor: Objects that survive Minor GC are not directly promoted to the Old Generation. They are kept in the Survivor region for a certain number of Minor GC collections. Only if they survive a certain number of Minor GC collections, then they are promoted to Old Generation.
+Old (or Tenured) Generation: Certain objects tend to be long lived. Example: Application Context, HTTP Sessions, Caches, Connection Pools,… Those long-lived objects are promoted to the old generation.
+Perm Generation: This is the location where JVM objects such as Classes, Methods, String Interns…. are created.
+Metaspace: Starting from Java 8 Perm generation has been replaced with Metaspace for performance reasons.
+What are the different types of GCs?
+There are 3 types of GCs:
+1.	Minor GC
+2.	Major GC
+3.	Full GC
+Minor GC: It’s also called as Scavenge GC. This is the GC, which collects garbage from the Young Generation.
+Major GC: This GC collects garbage from the Old Generation
+Full GC: This GC collects garbage from all regions i.e. Young, Old, Perm, Metaspace.
+When Major or Full GC run all application threads are paused. It’s called as stop-the-world events. In Minor GCs also stop-the-world event occurs but momentarily.
+What are different types of GC algorithms?
+1.	Serial
+2.	Parallel
+3.	CMS
+4.	G1
+Serial: The serial collector uses a single thread to perform all garbage collection work. It is best-suited to single processor machines because it cannot take advantage of multiprocessor hardware. It’s enabled with the option -XX:+UseSerialGC.
+Parallel: The parallel collector (also known as the throughput collector) performs minor collections in parallel, which can significantly reduce garbage collection overhead. It is intended for applications with medium-sized to large-sized data sets that are run on multiprocessor or multithreaded hardware. It’s enabled with the option -XX:+UseParallelGC.
+CMS: The mostly concurrent collector performs most of its work concurrently (for example, while the application is still running) to keep garbage collection pauses short. It is designed for applications with medium-sized to large-sized data sets in which response time is more important than overall throughput because the techniques used to minimize pauses can reduce application performance. It’s enabled with the option -XX:+UseConcMarkSweepGC
+G1: G1 is the latest garbage collector, targeted for multi-processor machines with large memories. It meets garbage collection (GC) pause time goals with high probability while achieving high throughput. Whole-heap operations, such as global marking, are performed concurrently with the application threads. It’s enabled with the option -XX:+UseG1GC
+What are the merits and demerits of each GC algorithm?
+To see the Pros and Cons of each algorithm refer – https://blog.gceasy.io/2015/11/27/which-gc-to-use/
+What tools are used for analyzing Garbage Collection logs?
+1.	http://gceasy.io
+2.	IBM Pattern Modeling and Analysis Tool for Java Garbage Collector
+3.	Oracle’s Visual GC, Java Mission Control
+
+Source 3: Javatpoint
+117) What is Garbage Collection?
+Garbage collection is a process of reclaiming the runtime unused objects.It is performed for memory management.
+more details...
+118) What is gc()?
+gc() is a daemon thread.gc() method is defined in System class that is used to send request to JVM to perform garbage collection.
+119) What is the purpose of finalize() method?
+finalize() method is invoked just before the object is garbage collected.It is used to perform cleanup processing.
+
+120) Can an unrefrenced objects be refrenced again?
+Yes.
+121)What kind of thread is the Garbage collector thread?
+Daemon thread.
+121)What kind of thread is the Garbage collector thread?
+Daemon thread.
+122)What is difference between final, finally and finalize?
+final: final is a keyword, final can be variable, method or class.You, can't change the value of final variable, can't override final method, can't inherit final class.
+finally: finally block is used in exception handling. finally block is always executed.
+finalize():finalize() method is used in garbage collection.finalize() method is invoked just before the object is garbage collected.The finalize() method can be used to perform any cleanup processing.
+ 
+123)What is the purpose of the Runtime class?
+The purpose of the Runtime class is to provide access to the Java runtime system.
+124)How will you invoke any external process in Java?
+By Runtime.getRuntime().exec(?) method.
+
+Source 4: java-questions
+Java Garbage Collections Interview Questions
+Q1) Which part of the memory is involved in Garbage Collection? Stack or Heap?
+Ans) Heap
+Q2)What is responsiblity of Garbage Collector?
+Ans) Garbage collector frees the memory occupied by the unreachable objects during the java program by deleting these unreachable objects.
+It ensures that the available memory will be used efficiently, but does not guarantee that there will be sufficient memory for the program to run.
+Q3) Is garbage collector a daemon thread?
+Ans) Yes GC is a daemon thread. A daemon thread runs behind the application. It is started by JVM. The thread stops when all non-daemon threads stop.
+Q4)How is Garbage Collection managed?
+Ans)The JVM controls the Garbage Collector; it decides when to run the Garbage Collector. JVM runs the Garbage Collector when it realizes that the memory is running low. The behavior of GC can be tuned by passing parameters to JVM. One can request the Garbage Collection to happen from within the java program but there is no guarantee that this request will be taken care of by jvm.
+Q5) When does an object become eligible for garbage collection?
+Ans) An object becomes eligible for Garbage Collection when no live thread can access it.
+Q6) What are the different ways to make an object eligible for Garbage Collection when it is no longer needed?
+Ans)
+•	Set all available object references to null once the purpose of creating the object is served :
+•	publicclassGarbageCollnTest1{
+•	publicstaticvoid main (String [] args){
+•	      String str ="Set the object ref to null";
+•	//String object referenced by variable str is not eligible for GC yet
+•	        str = null;
+•	/*String object referenced by variable str becomes eligible for GC */
+•	}
+}
+•	Make the reference variable to refer to another object : Decouple the reference variable from the object and set it refer to another object, so the object which it was referring to before reassigning is eligible for Garbage Collection.
+•	publc classGarbageCollnTest2{
+•	publicstaticvoidmain(String [] args){
+•	  String str1 ="Garbage collected after use";
+•	  String str2 ="Another String";
+•	  System.out.println(str1);
+•	//String object referred by str1 is not eligible for GC yet
+•	  str1 = str2;
+•	/* Now the str1 variable referes to the String object "Another String" and the object "Garbage collected after use" is not referred by any variable and hence is eligible for GC */
+•	}
+}
+•	Creating Islands of Isolation : If you have two instance reference variables which are referring to the instances of the same class, and these two reference variables refer to each other and the objects referred by these reference variables do not have any other valid reference then these two objects are said to form an Island of Isolation and are eligible for Garbage Collection.
+•	publicclassGCTest3{
+•	    GCTest3 g;
+•	publicstaticvoidmain(String [] str){
+•	        GCTest3 gc1 =newGCTest3();
+•	        GCTest3 gc2 =newGCTest3();
+•	        gc1.g = gc2;//gc1 refers to gc2
+•	        gc2.g = gc1;//gc2 refers to gc1
+•	        gc1 = null;
+•	        gc2 = null;
+•	//gc1 and gc2 refer to each other and have no other valid //references
+•	//gc1 and gc2 form Island of Isolation
+•	//gc1 and gc2 are eligible for Garbage collection here 
+•	}
+}
+Q7) Can the Garbage Collection be forced by any means?
+Ans)No. The Garbage Collection can not be forced, though there are few ways by which it can be requested there is no guarantee that these requests will be taken care of by JVM.
+Q8) How can the Garbage Collection be requested?
+Ans) There are two ways in which we can request the jvm to execute the Garbage Collection.
+•	The methods to perform the garbage collections are present in the Runtime class provided by java. The Runtime class is a Singleton for each java main program. The method getRuntime() returns a singleton instance of the Runtime class. The method gc() can be invoked using this instance of Runtime to request the garbage collection.
+•	Call the System class System.gc() method which will request the jvm to perform GC.
+Q9) What is the purpose of overriding finalize() method?
+Ans) The finalize() method should be overridden for an object to include the clean up code or to dispose of the system resources that should to be done before the object is garbage collected.
+Q11) How many times does the garbage collector calls the finalize() method for an object?
+Ans) Only once.
+Q12) What happens if an uncaught exception is thrown from during the execution of the finalize() method of an object?
+Ans) The exception will be ignored and the garbage collection (finalization) of that object terminates.
+Q13) What are different ways to call garbage collector?
+Ans) Garbage collection can be invoked using System.gc() or Runtime.getRuntime().gc().
+Q14) How to enable/disable call of finalize() method of exit of the application
+Ans) Runtime.getRuntime().runFinalizersOnExit(boolean value) . Passing the boolean value will either disable or enable the finalize() call.
+
+Source 5: Instance of Java
+.What is Garbage Collection in Java?
+•	Garbage Collection is an automatic memory management feature.
+•	The process of destroying unreferenced objects is called Garbage Collection.
+•	Once object is unreferenced it is considered as unused object, hence JVM automatically destroys that object.
+•	In java developers responsibility is only to creating objects and unreferencing those objects after usage.
+2.How JVM can destroy unreferenced object?
+•	JVM internally uses a daemon thread called "garbage collector" to destroy all unreferenced objects.
+•	A daemon thread is a service thread. Garbage Collector thread is called daemon thread because it provides services to JVM to destroy unreferenced objects.
+•	This thread is low priority thread. Since it is a low priority thread we can not guarantee this execution.
+
+
+
+ 3.So can you guarantee objects destruction?
+•	 No, we can not guarantee objects destruction even though it is unreferenced, because we can not guarantee garbage collector execution.
+•	So, we can confirm whether object is eligible for garbage collection or not.
+4.Can we force garbage collector?
+•	No, we can not force garbage collector to destroy objects , but we can request it.
+5.How can we request JVM to start garbage collection process?
+•	We have a method called gc() in system class as static method and also in Runtime class as non static method to request JVM to start garbage collector execution.
+•	System.gc();
+•	Runtime.getRuntime().gc();
+6.What is the algorithm JVM internally uses for destroying objects?
+•	"mark and swap" is the algorithm JVM internally uses.
+7.Which part of the memory is involved in Garbage Collection?
+•	Heap.
+8.What is responsibility of Garbage Collector?
+•	Garbage Collector frees the memory occupied by the unreachable objects during the java program by deleting these unreachable objects.
+•	It ensures that the available memory will be used efficiently, but does not guarantee that there will be sufficient memory for the program to run.
+
+
+9. When does an object become eligible for garbage collection?
+•	An object becomes eligible for garbage collection when no live thread can access it.
+10. What are the different ways to make an object eligible for garbage collection when it is no longer needed?
+•	Set all available object references to "null" once the purpose of creating object is served.
+
+
+1.	package com.instanceofjava;
+2.	  
+3.	class GarbageCollectionTest1{
+4.	  
+5.	public static void main(String [] args){
+6.	 
+7.	String str="garbage collection interview questions";
+8.	// String object referenced by variable str and is not eligible for GC yet.
+9.	 
+10.	str=null;
+11.	//String object referenced by variable str is eligible for GC
+12.	}
+13.	}
+
+
+•	Make the reference variable to refer to another object. Decouple the reference variable from the object and set it refer to another object, so the object which was referring to before reassigning is eligible for Garbage Collection
+
+1.	package com.instanceofjava;
+2.	  
+3.	class GarbageCollectionTest2{
+4.	  
+5.	public static void main(String [] args){
+6.	 
+7.	String str1="garbage collection interview questions";
+8.	String str2="Top 15 garbage collection interview questions";
+9.	// String object referenced by variable str1 and str2 and is not eligible for GC yet.
+10.	 
+11.	str1=str2;
+12.	//String object referenced by variable str1 is eligible for GC
+13.	 
+14.	}
+15.	}
+
+
+
+11.What is purpose of overriding finalize() method?
+•	The finalize() method should be overridden for an object to include the clean up code or to dispose of the system resources that should to be done before the object is garbage collected.
+12.How many times does the garbage collector calls the finalize() method for an object? 
+•	Only once.
+13.What happens if an uncaught exception is thrown from during the execution of finalize() method of  an object?
+•	 The exception will be ignored and the garbage collection (finalization) of that object terminates
+14.What are the different ways to call garbage collector?
+•	System.gc();
+•	Runtime.getRuntime().gc();
+15. How to enable /disable call of finalize() method of exit of application?
+•	Runtime.getRuntime().runFinalizersOnExit(boolean value). passing the boolean value  true and false will enable or disable the finalize() call.
+
+Source 6: dzone
+ 
+•	REFCARDZ
+ 
+•	GUIDES
+ 
+•	ZONES
+ 
+•	JOBS
+ 
+•	|
+ 
+•	AGILE
+•	AI
+ 
+•	BIG DATA
+ 
+•	CLOUD
+ 
+•	DATABASE
+ 
+•	DEVOPS
+•	INTEGRATION
+ 
+•	IOT
+ 
+•	JAVA
+ 
+•	MICROSERVICES
+•	MOBILE
+ 
+•	PERFORMANCE
+ 
+•	SECURITY
+ 
+•	WEB DEV
+Potential Java Garbage Collection Interview Questions
+  by 
+Ram Lakshmanan
+ •
+ Apr. 01, 16 • Java Zone •
+Like (14)
+ 
+ Comment (1)
+ 
+Save
+ 
+ Tweet
+Download Microservices for Java Developers: A hands-on introduction to frameworks and containers. Brought to you in partnership with Red Hat.
+ 
+Fig: Java Heap sizes generated from http://gceasy.io
+What are the Different Regions in JVM Memory?
+There are 5 regions:
+1.	Eden
+2.	Survivor 1
+3.	Survivor 2
+4.	Old (or Tenured) Generation
+5.	Perm Generation (until Java 7). Since Java 8, Perm Generation has been replaced with Metaspace.
+Note: Eden, Survivor 1 and Survivor 2 are collectively called the Young Generation.
+Can You Explain the Purpose of Each Region in Java Memory?
+Eden Generation: When an object is newly constructed it’s created in the Young Generation. In most of the applications, most of the objects are short-lived objects. i.e. they will die soon. Thus they will be collected as garbage within the Young Generation itself.
+Survivor: Objects that survive Minor GC are not directly promoted to the Old Generation. They are kept in the Survivor region for a certain number of Minor GC collections. Only if they survive certain number of Minor GC collections can they be promoted to the Old Generation.
+Old (or Tenured) Generation: Certain objects tend to be long-lived. Example: Application Context, HTTP Sessions, Caches, Connection Pools, etc. Those long-lived objects are promoted to old generation.
+Perm Generation: This is the location where JVM objects such as Classes, Methods, String Interns, etc. are created.
+Metaspace: Starting with Java 8, the perm generation has been replaced with Metaspace for performance reasons.
+What are the Different Types of GC?
+There are 3 types of garbage collection:
+1.	Minor GC
+2.	Major GC
+3.	Full GC
+Minor GC: It’s also called as Scavenge GC. This is the GC which collects garbage from the Young Generation.
+Major GC: This GC collects garbage from the Old Generation
+Full GC: This GC collects garbage from all regions i.e. Young, Old, Perm, Metaspace.
+When Major or Full GC run all application threads are paused. It’s called a stop-the-world event. In Minor GCs, stop-the-world events occurs, but only momentarily.
+What are the Different Types of GC Algorithms?
+1.	Serial
+2.	Parallel
+3.	CMS
+4.	G1
+Serial: The serial collector uses a single thread to perform all garbage collection work. It is best-suited to single processor machines, because it cannot take advantage of multiprocessor hardware. It’s enabled with the option -XX:+UseSerialGC.
+Parallel: The parallel collector (also known as the throughput collector) performs minor collections in parallel, which can significantly reduce garbage collection overhead. It is intended for applications with medium-sized to large-sized data sets that are run on multiprocessors or multithreaded hardware. It’s enabled with the option -XX:+UseParallelGC.
+CMS: The mostly concurrent collector performs most of its work concurrently (for example, while the application is still running) to keep garbage collection pauses short. It is designed for applications with medium-sized to large-sized data sets in which response time is more important than overall throughput because the techniques used to minimize pauses can reduce application performance. It’s enabled with the option -XX:+UseConcMarkSweepGC.
+G1: G1 is the latest garbage collector, targeted for multi-processor machines with large memories. It meets garbage collection (GC) pause time goals with high probability, while achieving high throughput. Whole-heap operations, such as global marking, are performed concurrently with the application threads. It’s enabled with the option -XX:+UseG1GC.
+What are the Pros and Cons of Each GC Algorithm?
+To see the Pros and Cons of each algorithm, refer to http://blog.tier1app.com/2015/04/19/which-gc-to-use/
+What Tools are Used for Analyzing Garbage Collection Logs?
+1.	http://gceasy.io
+2.	IBM Pattern Modeling and Analysis Tool for Java Garbage Collector
+3.	Oracle’s Visual GC, Java Mission Control
+
+Source 7: core Java interview questions
+Tuning
+Java Interview Question: What flags can I use to tune the JVM and GC?
+There are textbooks available on tuning the JVM for optimal Garbage Collection.  Nonetheless it’s good to know a few for the purpose of interview.
+-XX:-UseConcMarkSweepGC: Use the CMS collector for the old gen.
+-XX:-UseParallelGC: Use Parallel GC for New Gen
+-XX:-UseParallelOldGC: Use Parallel GC for Old and New Gen.
+-XX:-HeapDumpOnOutOfMemoryError:Create a thread dump when the application runs out of memory. Very useful for diagnostics.
+-XX:-PrintGCDetails: Log out details of Garbage Collection.
+-Xms512m: Sets the initial heap size to 512m
+-Xmx1024m: Sets the maximum heap size to 1024m
+-XX:NewSize and -XX:MaxNewSize: Specifically set the default and max size of the New Generation
+– XX:NewRatio=3: Set the size of the Young Generation as a ratio of the size of the Old Generation.
+-XX:SurvivorRatio=10: Set the size of Eden space relative to the size of a survivor space.
+Diagnosis
+Whilst all of the questions above are very good to know to show you have a basic understanding of how the JVM works, one of the most standard questions during an interview is this: “Have you ever experience a memory leak? How did you diagnose it?”.  This is a difficult question to answer for most people as although they may have done it, chances are it was a long time ago and isn’t something you’ve done recently. The best way to prepare is to actually try and write an application with a memory leak and attempt to diagnosis it.  Below I have created a ridiculous example of a memory leak which will allow us to go step by step through the process of identifying the problem.  I strongly advise you download the code and follow through this process.  It is much more likely to be committed to your memory if you actually do this process.
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+public class Main {
+    public static void main(String[] args) {
+        TaskList taskList = new TaskList();
+        final TaskCreator taskCreator = new TaskCreator(taskList);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 100000; i++) {
+                    taskCreator.createTask();
+                }
+            }
+        }).start();
+    }
+
+    private static class TaskCreator {
+        private TaskList taskList;
+
+        public TaskCreator(TaskList taskList) {
+            this.taskList = taskList;
+        }
+
+        public void createTask() {
+            taskList.addTask(new Task());
+        }
+    }
+
+
+    private static class TaskList {
+        private Deque<Task> tasks = new ArrayDeque<Task>();
+
+        public void addTask(Task task) {
+            tasks.add(task);
+            tasks.peek().execute();//Memory leak!
+        }
+    }
+
+    private static class Task {
+        private Object[] array = new Object[1000];
+
+        public void execute() {
+           //dostuff
+        }
+    }
+}
+In the above very contrived example, the application executes tasks put onto a Deque.  However when we run this we get an out of memory! What could it possibly be?
+ 
+To find out we need to use a profiler. A profiler allows us to look at exactly what is going on the VM.  There are a number of options available. VisualVM (https://visualvm.java.net/download.html) is free and allows basic profiling.  For a more complete tool suite there are a number of options but my personal favourite is Yourkit.  It has an amazing array of tools to help you with diagnosis and analysis. However the principles used are generally the same.
+I started running my application locally, then fired up VisualVM and selected the process.  You can then watch exactly what’s going on in the heap, permgen etc.
+ 
+You can see on the heap (top right) the tell tail signs of a memory leak.  The application sawtooths, which is not a problem per se, but the memory is consistently going up and not returning to a base level. This smells like a memory leak.  But how can we tell what’s going on?  If we head over to the Sampler tab we can get a clear indication of what is sitting on our heap.
+ 
+Those Object arrays look a bit odd. But how do we know if that’s the problem?  Visual VM allows us to take snapshots, like a photograph of the memory at that time.  The above screenshot is a snapshot from after the application had only been running for a little bit.  The next snapshot a couple of minutes later confirms this:
+ 
+We can actually compare these directly by selecting both in the menu and selecting compare.
+ 
+ 
+There’s definitely something funky going on with the array of objects.  How can we figure out the leak though? By using the profile tab.  If I go to profile, and in settings enable “record allocations stack traces”  we can then find out where the leak has come from.
+ 
+By now taking snapshot and showing allocation traces we can see where the object arrays are being instantiated.
+ 
+Looks like there are thousands of Task objects holding references to Object arrays! But what is holding onto these Task items?
+If we go back to the “Monitor” tab we can create a heap dump.  If we double click on the Object[] in the heap dump it will show us all instances in the application, and in the bottom right panel we can identify where the reference is.
+ 
+It looks like TaskList is the culprit!  If we take a look at the code we can see what the problem is.
+tasks.peek().execute();
+We’re never clearing the reference after we’ve finished with it! If we change this to use poll() then the memory leak is fixed.
+ 
+Whilst clearly this is a very contrived example, going through the steps will refresh your memory for if you are asked to explain how you would identify memory leaks in an application.  Look for memory continuing to increase despite GCs happening, take memory snapshot and compare them to see which Objects may be candidates for not being released, and use a heap dump to analyze what is holding references to them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topic: Exception Handling
+1.	What is difference between exception and error?
+Exception is an abnormal situation that occurs in an application majorly due to programmers fault and that has be handled. However, errors are not the errors by programmer. Errors are also runtime exceptions like OutOfMemory (JVM runs out of memory), StackOverFlow (Stack size got fully exhausted) and other. We can handle errors (runtime exception) through try catch but is not a good practice. Errors are generally more serious and holds less chances to be dealt then exception.
+2.	What is exception chaining? 
+Whenever an exception is thrown in response of an exception then that’s called as exception chaining. 
+3.	Why would you want to subclass an exception?
+Exception classification is generally to clarify what exactly went wrong. Similarly, if we finds an scope to clarify an already existing exception, then could sub class it. This will result in better understanding of the exception occurred in an application. 	
+4.	Can you thrown an exception inside lamba expression body?
+Will do it later.
+5.	Will the below line of code gets executed? throw new RuntimeException(new Exception(new RuntimeException()));  
+Yes. Below is the output. 
+Exception in thread "main" java.lang.RuntimeException: java.lang.Exception: java.lang.RuntimeException
+	at Test3.main(Test3.java:5)
+Caused by: java.lang.Exception: java.lang.RuntimeException
+	... 1 more
+Caused by: java.lang.RuntimeException
+	... 1 more
+6.	What are main methods of exception class?
+The method of exception class is mainly related to showing exception messages like printStackTrace, getMessage(), toString(). 
+7.	Can we have try block, catch block or finally block alone? NO
+8.	What are the good practices for exception handling
+We should try to use more specific exception for better debugging. 
+We need to throw an exception as early as possible (for best knowledge of the root cause) and to catch as late as possible (for evaluating the best possible fallback). Check example for this https://softwareengineering.stackexchange.com/questions/231057/exceptions-why-throw-early-why-catch-late.  
+Proper logging of the exception messages. 
+9.	What are scenarios where exception in main thread?
+a.	UnsupportedClassVersionError: When class is compiled using different JDK. 
+b.	NoCLassDefFoundError: When the class is not found on runtime. 
+c.	NoSuchMethodError: When do not finds appropriate main method. 
+10.	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topic: Inner Class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topic: Multithreading
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topic: Synchronization
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topic: Java I/O
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topic: Java Collection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topic: Java Serialization
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date 1st May, 2018
+Things to do –
+1.	Family se bat 3
+2.	Work Ethics + Focus 5
+3.	Gym 5
+4.	Diet 10
+5.	Subha utho time par 5
+6.	Nahana b4 breakfast n CPC practice 2
+7.	All checks 1
+8.	Padhai 90
+9.	All checks 1
+10.	Office work 0
+11.	Chadi baniyan n all 2
+12.	One hour wale kam 5
+a.	APne Mumbai k ticket
+b.	Billad ka final pratima ka satuday fix karo
+c.	Weight update
+13.	Kal ka prerequisite 2
+14.	Sisters life: nothing
+15.	Dairy n EOD 12 3
+questions-and-answers
 
 1. Is String a data type?
 String is a class in java and a reference data type. 
