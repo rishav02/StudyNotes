@@ -507,7 +507,7 @@ b.	When converting string to array then we have to use toCharArray() method. It 
 Immutable String
 •	In Java, Strings are immutable which means not modifiable. But we can create a new String. In the example given, it shows that string remains the same. 
 •	How strings are immutable in java? Once a string is created and later if it is changed then actually it does not get changed but a new string is created at a new memory location while the older string will remain at the same address. The older string gets garbage collected when no reference points to it. Lets understand the same thing with an example. String a = ‘’rishav’’ code will create an string with content “rishav” in an address in memory address in string consten pool. If we do a+” mishra” then a new string ”rishav mishra” will be created in the string constant pool at a new memory location and referece a will point to that address. While the noticable thing is that “rishav” will still exist at the older memory address. Therefore, it is said that strings are immutable in java. 
-•	Concept of interning in java: Intering is a concept of computer science which advocates the creation of only one object of anything in the memory. String in java can be created as string literals or through new keyword. String literals are kept interned by default. This means once a string literal is created then that object is created in string constant pool and if any other string literal is created with the same content then it will point to the same memory location where the string with same content already exist. Lets understand the same with an example. If string a = “rishav” is created then an object with “rishav” will be created in string constant pool. If another literal String b = “rishav” is created then b will also be pointing to the same memory address where a is pointing already. Now, the string created through new key word is not interned automatically. When we create an string through new keyword then an object is created in normal heap area. When we explicitly intern a string then an object with the same string content will look of the an address in string constant pool with same content. If it finds it then it will point to the same location and if not then a string with that content will be created at a new address in string constant pool. If another string is created through new keyword with the same content then its new object will be created in the normal heap. It is not interned yet. If we call intern method on it then it will look for the address with same content. As a string already present with the same content then it will point the same memory location. Lets understand it with an example. String a = new String(“RIshav”) is not interned. For calling intern method on it we have to create do String a = new String(Rishav).intern(). A.intern() will not give compilation error but will not intern as well.  If another string like string b = new String(“Rishav” ) is created then its object will be created in normal heap. If it is also interned like string b = new String(“Rishav”).intern() then it will point to the already existing string with same content in String constant pool. 
+•	Concept of interning in java: Intering is a concept of computer science which advocates the creation of only one object of anything in the memory. String in java can be created as string literals or through new keyword. String literals are kept interned by default. This means once a string literal is created then that object is created in string constant pool and if any other string literal is created with the same content then it will point to the same memory location where the string with same content already exist. Lets understand the same with an example. If string a = “rishav” is created then an object with “rishav” will be created in string constant pool. If another literal String b = “rishav” is created then b will also be pointing to the same memory address where a is pointing already. Now, the string created through new key word is not interned automatically. When we create an string through new keyword then an object is created in normal heap area. When we explicitly intern a string created in string constant pool then an object with the same string content will look for an address in string constant pool with same content. If it finds it then it will point to the same location and if not then a string with that content will be created at a new address in string constant pool. If another string is created through new keyword with the same content then its new object will be created in the normal heap. It is not interned yet. If we call intern method on it then it will look for the address with same content. As a string already present with the same content then it will point the same memory location. Lets understand it with an example. String a = new String(“RIshav”) is not interned. For calling intern method on it we have to create do String a = new String(Rishav).intern(). A.intern() will not give compilation error but will not intern as well.  If another string like string b = new String(“Rishav” ) is created then its object will be created in normal heap. If it is also interned like string b = new String(“Rishav”).intern() then it will point to the already existing string with same content in String constant pool. 
 •	Also, if a string created like string a = b; then it a will be a string literals getting the content from the address where b will be pointing. If b is interned (which means already in constant pool) then it will point to same memory location otherwise an object will be created in string constant pool. 
 •	Now, why strings are not mutable? Well, there are multiple reasons for it. First, when a string is made whose value already exist in the string constant pool, then the new string is referred to the old string location. If the string is not immutable then change in a string made can do similar changes in the other string too. Second, Strings are widely used as parameter in java class. So, if strings are not immutable then the parameter could be change and could cause serious security threats. There are other reasons as well. For more jigyasa: http://www.programcreek.com/2013/04/why-string-is-immutable-in-java/.
 Note: String can be created in two ways which are String s “Rishav” which is called as string literals and other is String s = new String(“Rishav”) which is through new keyword.  
@@ -584,12 +584,7 @@ Note: When to use String, StringBuffer and StringBuilder
 1.	String – it is immutable. So, you should use it in a program where the values of the string are not required to change. 
 2.	StringBuilder – It is mutable but it is not thread safe and synchronous. So, it should be used in a program where the values of the string are changing because of program logic or any other reason but only be used by a single thread. This is because synchronous adds extra overhead and if not used will decrease the efficiency unnecessarily.
 3.	StringBuffer – It is mutable, thread safe and synchronous. So, it should be used in a program where the value of the string is changing because of program logic or any other reason and used by multiple threads. Since, its being synchronized ensures that the threads will use the stringBuffer in a consistent way. 
-
-Note: What is thread safe. All its aspect.
-Multithreading is the concept where multiple threads are executed simultaneously. Then, it may also be possible that the threads running simultaneously may access the same resource (class, method, object, or field). Now, let’s assume that we have a method A() and two threads T1 and T2. T1 and T2 tries to access the method A() and will create some problem which make the program inconsistent (Check the example given below to understand how exactly can this make program inconsistent). So, we understand that multiple threads accessing a resource simultaneously can create a problem. Now, we have to solve the problem by making the program thread safe. When we make a program thread safe then multiple threads uses a resource simultaneously (not simultaneously literally) without making the program inconsistent. This actually happens by letting one thread to use a resource at a time while letting others to wait. This is the only way of avoiding the problem that is occurring. Thread safety is implemented by synchronization. 
-
-Example - Suppose we have a file and one thread opens a file, other thread is writing in the file and another thread closing the file. This all happening simultaneously will corrupt the data of the file.
-
+4. [NNN] We should use StringBuffer or stringBuilder when we are dealing with a lot string concatenation (or manipulation in any other way). StringBuffer object is a general object and resides in normal heap area. 
 
 How to create an immutable class?
 If you follow few rule then can create your own immutable class. These are the few rules. 
@@ -633,6 +628,17 @@ The objects of String class are immutable in nature. i.e you can’t modify them
 6. [NNN] String comes in lang package. Thus, we do not need to import it as well. 
 7. [NNN] Char Sequence is an  interface in java. Subsequence method of string returns the part of the string in charsequence format. Charsequence interface is implemented by many classes like string, stringbuffer, charbuffer and other. charsequence is hardly been made in use. 
 8. [NNN] Well, i am gussing that intern method is maninly used while creating a string with new keyword which are not interned by default like string literal. 
+9. [NNN] String concatenation and substring method causes creation of a new object. 
+10. [NNN] Well, I have read a lot of argument presenting both the standpoints that String s = new String(“ABC”) creates one object or it creates two objects. First standpoint that it creates two objects argues that this is a constructor of String which needs a string as argument thus we must have a literal created in CP and passed in this constructor as argument. Also, we can check the memory before and after the created of object with new keyword. With new keyword, the reference though points to the object created in heap but results in creation of string literal in CP too (obviously, if it does not exist already). Also, to note string internally uses char[] which could too be considered another but object we hopefully not when we are speaking about object of string. I am actually inclined towards first reasoning that with new keywords two objects gets created. 
+11. [NNN]Check the below for the clearest understanding on string object creation with the below examples
+a. String s1 = “Rishav”; Object created in string constant pool and s1 point the same object. 
+b. String s2 = new “Mishra”; Object (“mishra”) created in String constant pool first, if not exist already and passed as argument in string constructor. Another object will be created in Heap. S2 will points to object created on Heap.
+c. String s3 = new “Mishra”; Object “mishra” already exist in Constant pool and thus same object will be passed as argument in string constructor and one object will be created in Heap. S3 will be pointing to new object created in Heap. 
+d. String s4 = new “Mishra”.intern(); Here, no new object will be created if an object “mishra” exist in constant pool. S4 will point towards object with “Mishra” already in CP.
+ e. String s5 = “a”+”b”+”c”; Total 5 object will get create which will be a, b, c, ab and abc.
+12. [NNN] String constant pool from java 7 onwards lies in heap area. Garbage collection in constant pool happens in the same way as in other part of heap. However, String literal inside string constant pool generally be needed by your program. Also, not all strings are interned in java, but the interned are always be needed for your program execution. One good scenario where string literal be garbage collected when the class loaded through custom class loader gets unloaded. Garbage collection of string with new keyword or un-interned and stringbuffer and Stringbuilder happens in the usual way. 	
+
+ 
 
 ||Java Regex||
 (Over to java oracle docs: https://docs.oracle.com/javase/tutorial/essential/regex/)
@@ -953,12 +959,42 @@ Note:
 11.	Class not found exception occurs when class is not found when classloader tries to load it.
 12.	Init() cause method is used to find out chained exception code which actually caused the exception.  
 13. [NNN] Parent class of check exception is IOexception while sub classes are fileNotFoundException, ClassNotFOundException, SQLException. Parent class for unchecked exception is RuntimeException class while sub classes are AirthmaticException, NullpointerException,ArrayOutOfBoundException.
+14. [NNN] Important piece of code to understand what happens if an exception occurs:
+public class Test3 {
+	public static void main(String args []) {
+		Test3 t = new Test3();
+		t.A();
+		/*o/p: 1,2,4,excp caught, 6*/
+	}
+	public void A() {
+		try {
+			System.out.println(1);
+			B();
+			System.out.println(5);
+		}catch(Exception e) {
+			System.out.println(4);
+			System.out.println("Exception is caught");
+		}
+		System.out.println(6);
+	}
+	
+	public void B() {
+		System.out.println(2);
+		int a = 10/0;
+		System.out.println(3);
+	}
+}
 
 ||Studying different Exception||[NNN]
 1. IOException: IOException occurs when you are dealing with input or output stream and something abnormal happens. Few examples are, when you try to read a file locally and file is not available, trying to write into a file while disk space is full, trying to read a network file and lost the connection mean while. 
-2. FileNotFoundException: Object, throwable, exception, IOException and then fileNotFoundException. When you try to read or write a file and gives a wrong path by mistake. Also, we a file is not found and any of IO activity havnt started then filenotfoundexception is given but if IO activity starts and file becomes unavailable for some reason then IOexceotion is thrown. 
+2. FileNotFoundException: Object, throwable, exception, IOException and then fileNotFoundException. When you try to read or write a file and gives a wrong path by mistake. Also, if a file is not found and any of IO activity havnt started then filenotfoundexception is given but if IO activity starts and file becomes unavailable for some reason then IOexceotion is thrown. 
 3. ClassNotFoundException: WHen classloader does not find a particular class in classpath for JVM. THen, this error is thrown. Also, NoClassDefFound exception comes when class is present at compile time but not at runtime. Be clear on this. 
-4. SqlException: 
+4. SqlException: Whenever we have difficulty in accessing data or any possible issue related to database then sqlException is throw. A simple example, when wrong table name is hard coded by mistake and table could not be identified. Then, we will be receiving SQL exception. 
+5. Runtime Excpetion: Any exception that is not checked during compile time is runtime exception. It is sub class of Exception. You can typically use this in catch block then either you do not want to exact about the exact runtime error you are suspecting or you are not aware at all.
+6. NullPointerException: Null pointer exception occurs when a reference pointing to nothing or is null tried to be used. It only when we try to use a reference which is null, we get null pointer exception. Remember, printing a null reference prints null, we only gets a null pointer exception when that null referenced is used. The fundamental way of avoiding this exception is to null check every object before using. Especially, try to check all the arguments of a method for null check first. We can use ternary operator as well returning default value in case of null and placing value only when value not null.
+7. Airthmatic Exception: Whenever bad arithmetic logic is written by a programmer then arithmetic exception is thrown. The classic example is anything divided by 0. 
+8. ArrayOutOfBoundException: When a negative index or greater or equal to the length of Array 	is called then we get this array. Similar error for String is StringOutofBoundException. 
+Note: [NNN] Some important errors are OutOfMemoryError (Heap out of memory), StackOverFlowError (stack out of memory). We can resolve OutofMemoryError by providing JVM more heap through the arguments like –XMS, -XMX, -XX:Permsize and etc. 
 ||Java Try Catch||
 •	The code which is prone to give exceptions is written in try block which must be followed by catch or final block. These blocks are within the method. Check the syntax. Catch block is used to handle the exception and it must be used after the try block. We can use multiple catch block. Check the example for better understanding. 
 •	Internal working of try catch block – It is pretty simple. When the exception occurs, an object will be thrown. Now, either that will be handled or not handled. If handled, then rest of the code will execute otherwise JVM prints the exception description and will terminates.
@@ -981,6 +1017,7 @@ Note:
 2.	Syntax for Throw keyword: “throw new AirthmaticException(“myMessage”)” or “throw new CustomExceptionName(“MyMessage”)”. 
 3.	We can rethrow an exception by using throw keyword inside catch block. 
 4.	Even after knowing that an exception must be catched, If we do not. Then, that’s called Ducking the exception. 
+5.  [NNN] While throwing runtime exception we do not need to use throws (but we can). While throwing unchecked exception we must have to mention in signature of method through throws. Same goes with custom exception. Now, understand it this way. Any compilation error get notified to programmer during compilation and it is mandatory to handle it. We can handle it through try catch or throws. Thus, if we are explicitly throwing a checked exception (mostly for implementing certain business logic), we must have to mention in signature through throws keyword. 
 
 ||Exception Propagation||
 Exception Propagation is simple process where once an exception is thrown then the runtime system looks for a block containing exception handling code. The search starts from the block throws the exception to the block next (below) in the calling stack. For example, if a calls b, b calls c and c calls d. If d throws an exception then the compiler will look in the order d to c to b to a. Check for deep explanation: http://stackoverflow.com/questions/10633664/what-is-exception-propagation.
