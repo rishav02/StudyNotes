@@ -549,11 +549,11 @@ Exception is an abnormal situation that occurs in an application majorly due to 
 2.	What is exception chaining? 
 Whenever an exception is thrown in response of an exception then that’s called as exception chaining. 
 3.	Why would you want to subclass an exception?
-Exception classification is generally to clarify what exactly went wrong. Similarly, if we finds an scope to clarify an already existing exception, then could sub class it. This will result in better understanding of the exception occurred in an application. 	
+Exception classification is generally to clarify what exactly went wrong. Similarly, if we finds an scope to clarify an already existing exception, then could sub class it. This will result in better understanding of the exception occurred in an application.
 4.	Can you thrown an exception inside lamba expression body?
 Will do it later.
 5.	Will the below line of code gets executed? throw new RuntimeException(new Exception(new RuntimeException()));  
-Yes. Below is the output. 
+Yes. This is a kind of exception chaining. Below is the output. 
 Exception in thread "main" java.lang.RuntimeException: java.lang.Exception: java.lang.RuntimeException
 	at Test3.main(Test3.java:5)
 Caused by: java.lang.Exception: java.lang.RuntimeException
@@ -561,17 +561,33 @@ Caused by: java.lang.Exception: java.lang.RuntimeException
 Caused by: java.lang.RuntimeException
 	... 1 more
 6.	What are main methods of exception class?
-The method of exception class is mainly related to showing exception messages like printStackTrace, getMessage(), toString(). 
+The method of exception class is mainly related to showing exception messages like getCause(), printStackTrace, getMessage(), toString(). 
 7.	Can we have try block, catch block or finally block alone? NO
 8.	What are the good practices for exception handling
 We should try to use more specific exception for better debugging. 
 We need to throw an exception as early as possible (for best knowledge of the root cause) and to catch as late as possible (for evaluating the best possible fallback). Check example for this https://softwareengineering.stackexchange.com/questions/231057/exceptions-why-throw-early-why-catch-late.  
 Proper logging of the exception messages. 
 9.	What are scenarios where exception in main thread?
-a.	UnsupportedClassVersionError: When class is compiled using different JDK. 
-b.	NoCLassDefFoundError: When the class is not found on runtime. 
-c.	NoSuchMethodError: When do not finds appropriate main method. 
-10.	
+a. UnsupportedClassVersionError: When class is compiled using different JDK. 
+b. NoCLassDefFoundError: When the class is not found on runtime. 
+c. NoSuchMethodError: When do not finds appropriate main method. 
+10. Why we have classification of exception into checked and unchecked exception. Basically, the difference of purpose of checked and unchecked exception. 
+11. What is the need of exception chaining? Why would we want to do it and how?
+12. How to fix OutOfMemoryError and Stackoverflow error (in depth solution)?
+13. Check the problem with the code below:
+public static void start(){
+   System.out.println("Java Exception interivew question Answers for Programmers");
+}
+
+public static void main(String args[]) {
+   try{
+      start();
+   }catch(IOException ioe){
+      ioe.printStackTrace();
+   }
+}
+In this Java Exception example code, compiler will complain on line where we are handling IOException, since IOException is a checked Exception and start() method doesn't throw IOException, so compiler will flag error as "exception java.io.IOException is never thrown in body of corresponding try statement", but if you change IOException to Exception compiler error will disappear because Exception can be used to catch all RuntimeException which doesn't require declaration in throws clause. I like this little tricky Java Exception interview question because its not easy to figure out result by chaining IOException to Exception. You can also check Java Puzzlers by Joshua Bloch and Neil Gafter for some tricky questions based on Java Errors and Exceptions.
+
 
 
 
@@ -730,26 +746,6 @@ Topic: Java Serialization
 
 
 
-Date 1st May, 2018
-Things to do –
-1.	Family se bat 3
-2.	Work Ethics + Focus 5
-3.	Gym 5
-4.	Diet 10
-5.	Subha utho time par 5
-6.	Nahana b4 breakfast n CPC practice 2
-7.	All checks 1
-8.	Padhai 90
-9.	All checks 1
-10.	Office work 0
-11.	Chadi baniyan n all 2
-12.	One hour wale kam 5
-a.	APne Mumbai k ticket
-b.	Billad ka final pratima ka satuday fix karo
-c.	Weight update
-13.	Kal ka prerequisite 2
-14.	Sisters life: nothing
-15.	Dairy n EOD 12 3
 questions-and-answers
 
 1. Is String a data type?
