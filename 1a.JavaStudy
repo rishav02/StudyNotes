@@ -928,6 +928,7 @@ We can definitely use different other options but the above listed are basics.
 Exception Handling
 
 ||Exception Handling in Java||
+[NNN] When also exception occurs in a program an exception object gets created. The exception object has alot of important information about where the excetion occured (class, method and line number), which exception has occured and other details. The process of creation of exception object and passing it to runtime exvironment is called as throwing an exception. Then JVM will look for the exception handler block. Once the exception handler block is found then the exception object is passed to it. This process of passing the object is excetion handler is called as catching the exception. This is most basic flow when an exception occur in a program.
 •	The exception handling is a powerful mechanism to handle the run time errors and to maintain the normal flow of the application. Firstly, what is exception? Dictionary meaning of it is an abnormal situation while in java it is an event that disrupts the normal flow of the program. It is an object thrown at run time.  
 •	The core advantage of exception handling is to maintain the normal flow of the application. In an application, code stop running from where an exception occurs. 
 Do You Know? 
@@ -984,6 +985,7 @@ public class Test3 {
 		System.out.println(3);
 	}
 }
+15. We can only throw exception which is a subclass of throwable class. Also, we can throw an exception which is a subclass of custom exception. This is because that class will also come in the throwable class tree.
 
 ||Studying different Exception||[NNN]
 1. IOException: IOException occurs when you are dealing with input or output stream and something abnormal happens. Few examples are, when you try to read a file locally and file is not available, trying to write into a file while disk space is full, trying to read a network file and lost the connection mean while. 
@@ -1050,11 +1052,12 @@ There are few rules for exception handling in case method overriding which are d
 •	Rule 1 – if the parent class does not declare an exception, subclass overridden method cannot declare a checked exception but can throw unchecked exception. I have checked it myself. It only let you throw unchecked exception. 
 •	Rule 2 – If the superclass throws an exception (checked/unchecked) then overridden method of subclass can declare same(checked/unchecked respectively), subclass exception but cannot declare parent exception. Here parent exception is simple “exception e”. It is very simple. Try it. 
 
-Java custom Exception 
+||Java custom Exception||
 Exception created by user itself is called Custom Exception. It is very simple to create your own exception. Try it. Then you can use that exception in the same way we use the predefined exception. Throws and throw are for declaring and throwing the exceptions but we can handle them as well. Also, when we handle the exception then look at what is printed on the console. It is interesting. 
 Note: If we need to create a checked exception, then we need to extend Exception class while runtime class is extended to create a unchecked exception.
 
-
+[NNN] ||Java Exception Classes brain storming||
+Throwable class is the parent class of all the exception classes. We can only throw an exception which is a sub class of throwable class. A throwable object contains a snapshot of the execution stack of its thread at the time it was created. It is classified into Errors and Exception. Errors are something more serious which can cause application crash and should/cannot be handled by better coding. Errors like OutOfMemoryError and StackOverFlow error has the potential to crash your application and just cannot be handled in by your code. On the other hand, Exceptions are the abnormal situation that you application which can stop the execution of program and which should or can be handled. Exception is classified into checked and unchecked excetion. Checked exception are those which are checked or found by the compiler during compilation and must be handled by programmer for successful compilation. Now, how does a compiler finds out checked exception during compilation? Simple! it looks for all the methods called in the program if they throws any exception or not. If they found any then they check checked exception out of them (since the exception in throws can be unchecked). For example, getCanonicalPath() of file class in java explicitly throws securityException and IOexception and a class using this API will be forced to handle IOException but not the securityExcetion. Because IOexception is checked exception while security exception is runtime exception. Unchecked exception are those which are not checked during compilation by compiler. Also, we should understand that every exception occurs in runtime be it checked or unchecked. We should not get confused with checked (also called as compile time) exception that it occurs in compile time. It is called as compile time since they are checked by the compiler during compile time.   
 
 
 
