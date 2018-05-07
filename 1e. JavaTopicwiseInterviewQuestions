@@ -597,7 +597,7 @@ In this Java Exception example code, compiler will complain on line where we are
 14. Why do we need to handle exception or why java has provision of handling exception? 
 In a situation, where we do not have provision of handling exception then we (or user) will receive system generated error message and information related to error in the way that it has been pre designed. However, with provision of handling exception we can handle the exception in the way that we want. We can better present the error to the end user which could be more understandable. Not only for the end user, we also gets great easy in debugging and remediating occurred exception. Most importantly, we can maintain the normal flow of our application.  
 15. Why do we have exception classes divided into checked and unchecked exception?
-
+The classification between checked and uchecked exception was the decision of the designers of java to have a set of exceptions that must be checked during compile time and if found then force the programmer to handle that exception in the form of checked exceltion. While the other set of exception were ignored during the compilation check. They are made optional to be handled by programmer. 
 
 
 
@@ -638,7 +638,8 @@ Topic: Inner Class
 
 
 Topic: Multithreading
-
+1. Why is it necessary to call Thread t = new Thread(classObject) constructor for creating thread rather then just calling new thread()?
+2. 
 
 
 
@@ -738,6 +739,10 @@ Topic: Java Serialization
 
 
 
+other topics:
+java 7 and 8 features
+java reflection
+java generics
 
 
 
