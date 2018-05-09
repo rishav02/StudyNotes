@@ -57,9 +57,9 @@ Sting is a part of java.lang package. This package contains all the basic or cor
 10. Learn the basic aiisc to int and char rel.
 A-Z: 65-90
 a-z: 91-122
-  
-  
-  
+
+
+
 
 
 
@@ -71,7 +71,7 @@ Question 1 - What is structure of Java Heap ? What is Perm Gen space in Heap ?
 Answer : In order to better perform in Garbage collection questions in any Java interview, It’s important to have basic understanding of  Java Heap space. To learn more about heap, see my post 10 points on Java heap space. By the way Heap is divided into different generation e.g. new generation, old generation and PermGen space.PermGen space is used to store class’s metadata and filling of PermGen space can causejava.lang.OutOfMemory:PermGen space. Its also worth noting to remember JVM option to configure PermGen space in Java.
 Question 2 - How do you identify minor and major garbage collection in Java?
 
-Answer: Minor collection prints “GC” if garbage collectionlogging is enable using –verbose:gc or -XX:PrintGCDetails, while Major collection prints “Full GC”. This Garbage collection interview question is based on understanding of Garbage collection output. As more and more Interviewer are asking question to ch 	 eck candidate’s ability to understand GC output, this topic become even more important.
+Answer: Minor collection prints “GC” if garbage collectionlogging is enable using –verbose:gc or -XX:PrintGCDetails, while Major collection prints “Full GC”. This Garbage collection interview question is based on understanding of Garbage collection output. As more and more Interviewer are asking question to ch 	eck candidate’s ability to understand GC output, this topic become even more important.
 
 Question 3 - What is difference between ParNew and DefNewYoung Generation Garbage collector?
 Answer : This Garbage Collection interview questions is recently asked to one of my friend. It require more than average knowledge on GC to answer this question. By the way ParNewand DefNew is two young generation garbage collector.ParNew is a multi-threaded GC used along with concurrent Mark Sweep while DefNew is single threaded GC used along with Serial Garbage Collector.
@@ -81,7 +81,7 @@ Answer : Another GC interview question which is based on GC output. Similar to m
 
 Question 5 - What is difference between Serial and Throughput Garbage collector?
 Answer : Serial Garbage collector is a stop the world GC which stops application thread from running during both minor and major collection. Serial Garbage collector can be enabled using JVM option -XX:UseSerialGC and it's designed for Java application which doesn't have pause time requirement and have client configuration. Serial Garbage collector was also default GC in JDK 1.4 before ergonomics was introduced in JDK 1.5. Serial GC is most suited for small application with less number of thread while throughput GG is more suited for large applications. On the other hand Throughput garbage collector is parallel collector where minor and major collection happens in parallel taking full advantage of all the system resources available like multiple processor. Though both major and minor collection runs on stop-the-world fashion and introduced pause in application. Throughput Garbage collector can be enable using -XX:UseParallelGC or -XX:UseOldParallelGC. It increases overall throughput of application my minimizing time spent in Garbage collection but still has long pauses during full GC.This is a kind of Garbage collection interview questionswhich gives you an opportunity to show your knowledge in detail while answering. I always suggest to answer these kind of questions in detail.  See Java Performance The Definitive Guide for more details on this topic.
- 
+
 
 
 Question 6 – When does an Object becomes eligible for Garbage collection in Java ?
@@ -98,7 +98,7 @@ Answer : No, you can not force Garbage collection in Java. Though you can reques
 
 Question 10 - Does Garbage collection occur in permanent generation space in JVM?
 Answer : This  is a tricky Garbage collection interview question as many programmers are not sure whether PermGen space is part of Java heap space or not and since it maintains class Meta data and String pool, whether its eligible for garbage collection or not. By the way Garbage Collection does occur inPermGen space and if PermGen space is full or cross a threshold, it can trigger Full GC. If you look at output of GC you will find that PermGen space is also garbage collected. This is why correct sizing of PermGen space is important to avoid frequent full GC. You can control size of PermGen space byJVM options -XX:PermGenSize and -XX:MaxPermGenSize.
- 
+
 
 
 Question 11 : How to you monitor garbage collection activities?
@@ -198,7 +198,7 @@ Daemon thread.
 final: final is a keyword, final can be variable, method or class.You, can't change the value of final variable, can't override final method, can't inherit final class.
 finally: finally block is used in exception handling. finally block is always executed.
 finalize():finalize() method is used in garbage collection.finalize() method is invoked just before the object is garbage collected.The finalize() method can be used to perform any cleanup processing.
- 
+
 123)What is the purpose of the Runtime class?
 The purpose of the Runtime class is to provide access to the Java runtime system.
 124)How will you invoke any external process in Java?
@@ -224,7 +224,7 @@ Ans)
 •	publicstaticvoid main (String [] args){
 •	      String str ="Set the object ref to null";
 •	//String object referenced by variable str is not eligible for GC yet
-•	        str = null;
+•	str = null;
 •	/*String object referenced by variable str becomes eligible for GC */
 •	}
 }
@@ -233,7 +233,7 @@ Ans)
 •	publicstaticvoidmain(String [] args){
 •	  String str1 ="Garbage collected after use";
 •	  String str2 ="Another String";
-•	  System.out.println(str1);
+•	System.out.println(str1);
 •	//String object referred by str1 is not eligible for GC yet
 •	  str1 = str2;
 •	/* Now the str1 variable referes to the String object "Another String" and the object "Garbage collected after use" is not referred by any variable and hence is eligible for GC */
@@ -284,7 +284,7 @@ Source 5: Instance of Java
 
 
 
- 3.So can you guarantee objects destruction?
+3.So can you guarantee objects destruction?
 •	 No, we can not guarantee objects destruction even though it is unreferenced, because we can not guarantee garbage collector execution.
 •	So, we can confirm whether object is eligible for garbage collection or not.
 4.Can we force garbage collector?
@@ -309,14 +309,14 @@ Source 5: Instance of Java
 
 
 1.	package com.instanceofjava;
-2.	  
+2.	
 3.	class GarbageCollectionTest1{
-4.	  
+4.	
 5.	public static void main(String [] args){
-6.	 
+6.	
 7.	String str="garbage collection interview questions";
 8.	// String object referenced by variable str and is not eligible for GC yet.
-9.	 
+9.	
 10.	str=null;
 11.	//String object referenced by variable str is eligible for GC
 12.	}
@@ -326,18 +326,18 @@ Source 5: Instance of Java
 •	Make the reference variable to refer to another object. Decouple the reference variable from the object and set it refer to another object, so the object which was referring to before reassigning is eligible for Garbage Collection
 
 1.	package com.instanceofjava;
-2.	  
+2.	
 3.	class GarbageCollectionTest2{
-4.	  
+4.	
 5.	public static void main(String [] args){
-6.	 
+6.	
 7.	String str1="garbage collection interview questions";
 8.	String str2="Top 15 garbage collection interview questions";
 9.	// String object referenced by variable str1 and str2 and is not eligible for GC yet.
-10.	 
+10.	
 11.	str1=str2;
 12.	//String object referenced by variable str1 is eligible for GC
-13.	 
+13.	
 14.	}
 15.	}
 
@@ -356,55 +356,55 @@ Source 5: Instance of Java
 •	Runtime.getRuntime().runFinalizersOnExit(boolean value). passing the boolean value  true and false will enable or disable the finalize() call.
 
 Source 6: dzone
- 
+
 •	REFCARDZ
- 
+
 •	GUIDES
- 
+
 •	ZONES
- 
+
 •	JOBS
- 
+
 •	|
- 
+
 •	AGILE
 •	AI
- 
+
 •	BIG DATA
- 
+
 •	CLOUD
- 
+
 •	DATABASE
- 
+
 •	DEVOPS
 •	INTEGRATION
- 
+
 •	IOT
- 
+
 •	JAVA
- 
+
 •	MICROSERVICES
 •	MOBILE
- 
+
 •	PERFORMANCE
- 
+
 •	SECURITY
- 
+
 •	WEB DEV
 Potential Java Garbage Collection Interview Questions
-  by 
+by
 Ram Lakshmanan
  •
  Apr. 01, 16 • Java Zone •
 Like (14)
- 
+
  Comment (1)
- 
+
 Save
- 
+
  Tweet
 Download Microservices for Java Developers: A hands-on introduction to frameworks and containers. Brought to you in partnership with Red Hat.
- 
+
 Fig: Java Heap sizes generated from http://gceasy.io
 What are the Different Regions in JVM Memory?
 There are 5 regions:
@@ -465,72 +465,72 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class Main {
-    public static void main(String[] args) {
+public static void main(String[] args) {
         TaskList taskList = new TaskList();
-        final TaskCreator taskCreator = new TaskCreator(taskList);
-        new Thread(new Runnable() {
+final TaskCreator taskCreator = new TaskCreator(taskList);
+new Thread(new Runnable() {
             @Override
-            public void run() {
-                for (int i = 0; i < 100000; i++) {
-                    taskCreator.createTask();
+public void run() {
+for (int i = 0; i < 100000; i++) {
+taskCreator.createTask();
                 }
             }
         }).start();
     }
 
-    private static class TaskCreator {
-        private TaskList taskList;
+private static class TaskCreator {
+private TaskList taskList;
 
-        public TaskCreator(TaskList taskList) {
+public TaskCreator(TaskList taskList) {
             this.taskList = taskList;
         }
 
-        public void createTask() {
-            taskList.addTask(new Task());
+public void createTask() {
+taskList.addTask(new Task());
         }
     }
 
 
-    private static class TaskList {
-        private Deque<Task> tasks = new ArrayDeque<Task>();
+private static class TaskList {
+private Deque<Task> tasks = new ArrayDeque<Task>();
 
-        public void addTask(Task task) {
-            tasks.add(task);
-            tasks.peek().execute();//Memory leak!
+public void addTask(Task task) {
+tasks.add(task);
+tasks.peek().execute();//Memory leak!
         }
     }
 
-    private static class Task {
-        private Object[] array = new Object[1000];
+private static class Task {
+private Object[] array = new Object[1000];
 
-        public void execute() {
+public void execute() {
            //dostuff
         }
     }
 }
 In the above very contrived example, the application executes tasks put onto a Deque.  However when we run this we get an out of memory! What could it possibly be?
- 
+
 To find out we need to use a profiler. A profiler allows us to look at exactly what is going on the VM.  There are a number of options available. VisualVM (https://visualvm.java.net/download.html) is free and allows basic profiling.  For a more complete tool suite there are a number of options but my personal favourite is Yourkit.  It has an amazing array of tools to help you with diagnosis and analysis. However the principles used are generally the same.
 I started running my application locally, then fired up VisualVM and selected the process.  You can then watch exactly what’s going on in the heap, permgen etc.
- 
+
 You can see on the heap (top right) the tell tail signs of a memory leak.  The application sawtooths, which is not a problem per se, but the memory is consistently going up and not returning to a base level. This smells like a memory leak.  But how can we tell what’s going on?  If we head over to the Sampler tab we can get a clear indication of what is sitting on our heap.
- 
+
 Those Object arrays look a bit odd. But how do we know if that’s the problem?  Visual VM allows us to take snapshots, like a photograph of the memory at that time.  The above screenshot is a snapshot from after the application had only been running for a little bit.  The next snapshot a couple of minutes later confirms this:
- 
+
 We can actually compare these directly by selecting both in the menu and selecting compare.
- 
- 
+
+
 There’s definitely something funky going on with the array of objects.  How can we figure out the leak though? By using the profile tab.  If I go to profile, and in settings enable “record allocations stack traces”  we can then find out where the leak has come from.
- 
+
 By now taking snapshot and showing allocation traces we can see where the object arrays are being instantiated.
- 
+
 Looks like there are thousands of Task objects holding references to Object arrays! But what is holding onto these Task items?
 If we go back to the “Monitor” tab we can create a heap dump.  If we double click on the Object[] in the heap dump it will show us all instances in the application, and in the bottom right panel we can identify where the reference is.
- 
+
 It looks like TaskList is the culprit!  If we take a look at the code we can see what the problem is.
 tasks.peek().execute();
 We’re never clearing the reference after we’ve finished with it! If we change this to use poll() then the memory leak is fixed.
- 
+
 Whilst clearly this is a very contrived example, you are asked to explain how you would identify memory leaks in an application.  Look for memory continuing to increase despite GCs happening, take memory snapshot and compare them to see which Objects may be candidates for not being released, and use a heap dump to analyze what is holding references to them.
 
 
@@ -582,14 +582,14 @@ c. NoSuchMethodError: When do not finds appropriate main method.
 12. How to fix OutOfMemoryError and Stackoverflow error (in depth solution)?
 13. Check the problem with the code below:
 public static void start(){
-   System.out.println("Java Exception interivew question Answers for Programmers");
+System.out.println("Java Exception interivew question Answers for Programmers");
 }
 
 public static void main(String args[]) {
-   try{
-      start();
-   }catch(IOException ioe){
-      ioe.printStackTrace();
+try{
+start();
+}catch(IOException ioe){
+ioe.printStackTrace();
    }
 }
 In this Java Exception example code, compiler will complain on line where we are handling IOException, since IOException is a checked Exception and start() method doesn't throw IOException, so compiler will flag error as "exception java.io.IOException is never thrown in body of corresponding try statement", but if you change IOException to Exception compiler error will disappear because Exception can be used to catch all RuntimeException which doesn't require declaration in throws clause. I like this little tricky Java Exception interview question because its not easy to figure out result by chaining IOException to Exception. You can also check Java Puzzlers by Joshua Bloch and Neil Gafter for some tricky questions based on Java Errors and Exceptions.
@@ -639,7 +639,9 @@ Topic: Inner Class
 
 Topic: Multithreading
 1. Why is it necessary to call Thread t = new Thread(classObject) constructor for creating thread rather then just calling new thread()?
-2. 
+2. Why we have wait method in object class while sleep method in thread class?
+3. Write code showing wait(), notify and notifyAll().
+4. Why wait, notify and notifyAll() methods are required to be called from synchronized method?
 
 
 
@@ -746,4 +748,4 @@ java generics
 
 
 
- 
+
