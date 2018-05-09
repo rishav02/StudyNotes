@@ -6,7 +6,7 @@ Now, what do you understand with java as a platform? See, java is a software pla
 Java as a language needs a compiler and run time environment which runs it. 
 Firstly you write code which is written using alphabets, numbers and special character. However, computer understands only byte code. So, we need to convert our code into byte code. Now, the compiler comes into picture. Compiler is solely responsible for conversion of the code written by you into byte code. JDK is the compiler. JDK is physically present in the computer. Adding one more fact for JDK, which is very important, is that it is just Java SDK. 
 Then the byte code needs to run to produce the result of the code written. For running the code we require runtime environment. JRE is the runtime environment for running the code and it is inside JDK only. It too physically present in the computer. There is another thing called JVM (Java Virtual Machine). Java virtual machine is actually a concept which provides java a run time environment which, if taken in details have many important task. JVM is platform dependent and that make java platform independent. That will be explained later.
- 
+
 How actually you run a java program –
 Firstly, let’s talk about the most basic way of doing it. 
 You write code on a notepad and save it in your workspace in .java format. Then, open the command prompt do some basic stuff like setting the CLASSPATH and PATH. Then, you compile the program using the “javac” command which lead to create the source course file (.class file). Then, you can run your program using “java” command. 
@@ -118,7 +118,7 @@ We already know all this.
 ||Internal details of JVM||
 Well, JVM basics we already know that it provides run time environment. Also, it is platform dependent and that why java in platform independent. However, if we further simplify its function than we can say that it has to load, verify, execute and provide runtime environment. 
 It also deals with memory, garbage collection heap. Also describe about JIT. 
- 
+
 ||Variable and Data Type||
 Variable – Variable are nothing but the memory locations which can hold data. They are of three type local, instance and static. 
 Local Variable – well, these are written inside a method, constructor or a block. Local variable is only visible only within the declared method, constructor or block. They do not have any default value so they must to be initialized before accessedi.e. to be assigned an initial value.
@@ -134,7 +134,7 @@ Also, learn the special escape sequence used in java - \n, \r,\f,\b, \s, \t, \�
 \n = new line, \r = carriage return i.e. at the beginning of line, \f = form feed i.e. at the beginning of new page, \b = backspace, \s = white space, \t = tab, \” = print quote, \ddd = Octal character and \uxxxx = Unicode.
 Unicode system
 Well, for the standardization of all languages, Unicode was created which is followed by all languages. Actually, there are many language standards like ASCII, KOI-8, ISO 8859-1 which are American, Russian and Europian language standards. So, according to the place the character code change and so we got Unicode which are used as standard everywhere. 
- 
+
 ||Operators in Java||
 Arithmetic operator – there are basically 7 arithmetic operators. Then, total of 6 relational operators. Until here everything looks fine. Then, bitwise operator comes in picture. They have &, |, ^, ~ and shift (left, right, fill zero right shift). Let’s have a close look at the shift bitwise operator. 
 1.       Left shift – operand is 5: 0101. Operation to be performed is operand << 2. This command means to shift the number of bits left side the number that you mentioned (2 is the number of shift in this case). The answer will be 10100.
@@ -148,7 +148,7 @@ Miscellaneous operator –
 1.    Conditional Operator (?:) – lets learn it through an example. A = (b==2)?20:30; which means that A will be 20 if b==2 and A will be 30 if b is not 2. 
 2.    InstanceOf Operator – this instance of operator is used for reference data types. This only checks if the data belong to a particular reference data type or not (like String, Array, etc) and produce a Boolean result.  For example – first a string name is declared and instantiated as “John”. Then, Boolean result = john instance of String. Result will be true. Example 2, Vehicle obj = new Car(). (vehicle is parent class and car is child class and this is called as upcasting) then, Boolean result = obj instance of Car. Result true. 
 3.    Precedence of java operator – check the precedence of the operator in an expression. Though, this is not a thing to learn. 
- 
+
 Frequently asked Java Programs
 These are some frequently asked java questions.
 1.       Fibonacci Series – using recursion and without recursion.
@@ -197,7 +197,7 @@ Do You Know ?
 
 ||Java Naming Conventions||
 These are not rules which mandatory to be followed but are conventions to make your code standardize and easy to understand. Now, just be a little careful with starting a name with upper case or lower case. Also, use camel casing. That’s it. 
- 
+
 ||Objects and Classes in Java||
 Object – An object has three properties which are state (data or variables), behavior (method) and identity (object identity is implemented by unique ID, infect as a class can have multiple object and but always every object is unique). To relate an object to a class, we can say that an object is an instance of a class.
 Class – A class is a group of objects having similar properties. For example, a student class can have object as S1. Here, student class can have n number of student but an object belongs to a unique student. A class has data member, methods, constructor, block, class and interface. (Here you can see that a class can be contains in another class which means that class nesting is possible. However, method nesting is not possible in java).
@@ -541,7 +541,7 @@ Java.lang.String is the class that contains all the methods which are used to pe
 •	Java String valueOf method – This method covert the primitive type of data into string. When we try to add integer or any other kind of primitive data type it treats everything a string (same type of data type will be written simple and other type in double quotes).
 Note: In simplest words, it just creates the string version of any primitive data type and then we can use it whichever way we want. 
 •	Java replace Method() -  this method replaces the whole string data or some part of string data with a new data. 
-Note: It has different version which are related to regex. Do it later when get time. 
+Note: It has different version which are related to regex. Do it later when get time.
 
 ||Java StringBuffer Class||
 The java StringBuffer class is used to create mutable string which is synchronous as well (Synchronous means multiple thread use the StringBuffer without making program inconsistent). They are same in every other manner to a normal string. This class is thread safe (multiple threads can use StringBuffer without making program inconsistent, due to synchronization). It has three important constructors. 
@@ -605,7 +605,7 @@ Note: you can check more methods later if want to learn more on this.
 
 ||Java String Methods(left out)||
 1.	String contain() Method – This method search the sequence of char in a string i.e one string into other. If found then returns true otherwise false. We can even search any other string in the other. If the sequence is null then it will throw the NullPointerException. 
-Note: we call character sequence to this: String s = “Rishav”;. 
+Note: we call character sequence to this: String s = “Rishav”;.
 2.	String Format() Method –this method is used to format the string in java by giving locale, format and argument. It can throw NullpointerException if format in null and illigalFormatException if format is illegal or impossible. Also, we have different formatting style for int, float, char etc which is out of scope right now. 
 Note: In case of printing the index of the searched string the index returned will be the first appeared character with searched string in the main string. Check javatpoint example for this.
 3.	String IndexOf() method – This method is used to find the index of character or sequence of char in a string. It can receive from Index parameter which takes the index value to start the search start inside the string.
@@ -638,7 +638,7 @@ d. String s4 = new “Mishra”.intern(); Here, no new object will be created if
  e. String s5 = “a”+”b”+”c”; Total 5 object will get create which will be a, b, c, ab and abc.
 12. [NNN] String constant pool from java 7 onwards lies in heap area. Garbage collection in constant pool happens in the same way as in other part of heap. However, String literal inside string constant pool generally be needed by your program. Also, not all strings are interned in java, but the interned are always be needed for your program execution. One good scenario where string literal be garbage collected when the class loaded through custom class loader gets unloaded. Garbage collection of string with new keyword or un-interned and stringbuffer and Stringbuilder happens in the usual way. 	
 
- 
+
 
 ||Java Regex||
 (Over to java oracle docs: https://docs.oracle.com/javase/tutorial/essential/regex/)
@@ -1153,31 +1153,31 @@ A thread can have five states in its life cycle which are called as threads stat
 ||How to create a thread?||
 There are two ways to create a thread. It can be by extending the thread class or by implementing the runnable interface explicitly. 
 •	By thread class – what is a thread class? A thread class contains constructors and methods to create and perform operations on a thread. The thread class extends the object class and implements the runnable interface where object class is the top most class in java and by default extended by every other class in java. Check the commonly used constructors and methods of thread class while few are thread(), thread(runnable r, String s), run(), start(), sleep(), suspend(), resume(), stop() etc. Start() method is used with the run() method of the class extending the thread class (same or the other). Also, the run() method will contain the working of the thread. Also, we create the object of the class extending the thread class and calls the method (Start()) from thread class. So, the compiler automatically converts the extending class object to thread class object through thread class constructor. 
-•	By implementing the runnable interface – In this method, we implement the runnable interface and the entire program is same as by extending the thread class except that we have to create a thread object by casting from the implementing class object. We need to create the thread class object for sure here since we have to call its method start or other while when we extend thread class then its not mandatory since we can access member of parent class from subclass without creating parent object. Try one example for better understanding. @@@Try Example.
+•	By implementing the runnable interface – In this method, we implement the runnable interface and the entire program is same as by extending the thread class except that we have to create a thread object by casting from the implementing class object. We need to create the thread class object for sure here since we have to call its method start or otherwise when we extend thread class then its not mandatory since we can access member of parent class from subclass without creating parent object. Try one example for better understanding. Runnable interface just has one method which is run(). @@@Try Example.
 Note:
 1.	main thread always start the execution of the program and it is created by JVM. 
 2.	Thread class has 7/8 constructors. 
 3.	If we are creating thread by extending thread then also we can create class object and then pass it to thread. It will not give compilation error. If we do so then we will be calling parent class method through parent class object. 
-4.	Thread Class implements runnable interface. 
+4.	Thread Class implements runnable interface. It overrides run method of it as empty body method. 
 5.	If a thread is printed like this “System.out.println(Thread);”, then we get output like Thread[ThreadName, Priority, TypeOfThread]. 
-6.	If run method is not present while start method is called then compilation error will come provided thread is created by implementing the runnable interface. This will come because runnable interface has abstract run method which need to be overriden while thrad class has a run method which does nothing. 
+6.	If run method is not present while start method is called then compilation error will come provided thread is created by implementing the runnable interface. This will come because runnable interface has abstract run method which need to be overridden while thread class has a run method which does nothing. 
 7.	When a thread calls wait then its on sleep by giving its lock as well. Now, at this point in time, if we try to check if that thread is alive through isAlive() method then we will get exception. I guess this is because the thread is neither running nor terminated.
-8. Runnable interface is a functional interface which has a method run. That's when a class implements the run interface works fine.
-9. Why do we have to call run method through start method? Run method is a normal method which is just overriden in your class. While Start() method has its implementation in thread class which provides the functionality of multithreading in java. Start method will ask JVM to call to create the new thread and call the run method through the new thread.
-10. Thread vs Runnable: In java, we can create thread in two ways which are through thread class or through Runnable interface. Let's discuss which one to pick and why. Runnable interface way should be preferred for creating thread for these reasons. Firstly, since multiple inheritance through classes in not allowed in java thus when we extends Thread class then we loose the chance of extending any other thread. Second, Extending a class is generally to use specialize the behaviour of the parent class while here we want to just use the start method which we can do by creating an instance only.
+8. Runnable interface is a functional interface which has just one method i.e. run(). That's when a class implements the run interface works fine.
+9. Why do we have to call run method through start method? Run method is a normal method which is just overridden in your class. While Start() method has its implementation in thread class which provides the functionality of multithreading in java. Start method will ask JVM to create the new thread and call the run method through the new thread.
+10. [NNN]Thread vs Runnable: In java, we can create thread in two ways which are through thread class or through Runnable interface. Let's discuss which one to pick and why. Runnable interface way should be preferred for creating thread for these reasons. Firstly, since multiple inheritance through classes in not allowed in java thus when we extends Thread class then we lose the chance of extending any other thread. Second, Extending a class is generally to use specialize the behaviour of the parent class while here we want to just use the start method which we can do by creating an instance only.
 
 ||Thread Scheduler in Java||
 Thread scheduler as the name suggest schedules that when to run which thread. It is a part of JVM and selects a runnable thread to run. Only one thread can run in a process (while multiple threads can run of different process). The thread scheduler mainly uses preemptive and scheduling or time slicing. In preemptive scheduling, the thread with the highest priority is executed first until it enters the waiting or dead state or even higher priority thread becomes runnable. In time slicing, a task executes for a certain time slice and then again another thread is selected for a slice of time on the basis of priority and other factors.    
-Note: Little insight on Thread Schedular: Thread Schedular is a for of java which is used to schedule or manage which thread should run at what time? Thread schedular under the hood has some algorithms like preemptive, time sclicing or other. The thread schedular take few things in consideration like priority of thread, waiting time of thread and nature of thread. Whenever main methods executes, its thread schedular that provides the main thread for execution. Not only main thread but other thread like thread for garbage collection, thread for event handler or thread for timer to take care of sleep.
+Note: [NNN]Little insight on Thread Scheduler: Thread Scheduler is a part of java (JVM) which is used to schedule or manage which thread should run at what time? Thread scheduler under the hood has some algorithms like preemptive, time sclicing or other. The thread schedular take few things in consideration like priority of thread, waiting time of thread and nature of thread. Whenever main methods executes, its thread scheduler that provides the main thread for execution. Not only main thread but other thread like thread for garbage collection, thread for event handler or thread for timer to take care of sleep.
 
 Sleep Method in Java
 Sleep() method is a thread class method which is used to sleep a thread for a specified amount of time. It has two implementation which are sleep(long miliseconds) or sleep(long miliseconds, int nanos). Try an example, the sleep method written inside the run method and then run method is called by the start() method. When a thread sleep the scheduler picks up the other thread and then runs the other thread. Also, remember to catch the exception thrown by the sleep method. 
 Note: 
 1.	Yield moves a thread to state which I think is runnable state. 
-2.	We cannot override wait method of object class. Wait method (just like notify and notify methods) is final method implemented in Object class. Hence, we cannot override it. Why would it be made final because may be the designer does not wanted the implementatiob of wait to be changed as it provides the core functionality. 
+2.	We cannot override wait method of object class. Wait method (just like notify and notify methods) is final method implemented in Object class. Hence, we cannot override it. Why would it be made final because may be the designer does not wanted the implementation of wait to be changed as it provides the core functionality. 
 3.	We know that when sleep is called in the run method then thread currently using run method goes on sleep. What will happen in a situation where sleep method is called outside the run method? This will make all threads of that class to sleep for the specified time. Hence, isAlive() will return false. Since, the thread is temperorily suspended so false will be returned. 
 4.	Difference in Yield, Join and sleep
-yield() method pauses the currently executing thread temporarily for giving a chance to the remaining waiting threads of the same priority to execute. If there is no waiting thread or all the waiting threads have a lower priority then the same thread will continue its execution. The yielded thread when it will get the chance for execution is decided by the thread scheduler whose behavior is vendor dependent.
+yield() method pauses the currently executing thread temporarily for giving a chance to the remaining waiting threads of the same or higher priority to execute. If there is no waiting thread or all the waiting threads have a lower priority then the same thread will continue its execution. The yielded thread when it will get the chance for execution is decided by the thread scheduler whose behavior is vendor dependent.
 join() If any executing thread t1 calls join() on t2 i.e; t2.join() immediately t1 will enter into waiting state until t2 completes its execution.
 sleep() Based on our requirement we can make a thread to be in sleeping state for a specified period of time (hope not much explanation required for our favorite method).
 
@@ -1192,7 +1192,7 @@ Note: you make object of class and call the start() method. Then we get the func
 ||Join() method||
 Join() method waits for a currently running thread to die so that the joined threads can be executed. This method waits until the thread on which it is called does not terminates. So, in the example given in javaTpoint tutorial, the join method called t1 by “t1.join()”. So, t1 executes first and the other threads t2 and t3 will execute only once t1 is completely executed. You can check the program. Also, we have an option to specify the time until which join should wait the t1 method for execution of t2 and t3. In the nutshell, join() method is used to wait until the thread does not completes its execution to which it is called and we can also specify the time to which the method should wait. IsAlive() method is also used for similar purpose and it returns if the method is active or not. 
 Note: 
-1.	while implement this, make sure that thread which you want to execute the alone i.e. next thread thread waits for its execution is start() before it is joined. First, start() is called and the join the next thread automatically joins. 
+1.	while implement this, make sure that thread which you want to execute is alone i.e. next thread thread waits for its execution to start() before it is joined. First, start() is called and the join the next thread automatically joins. 
 2.	Join method must be placed inside a try catch block otherwise it gives InterruptionException.
 
 ||Naming a Thread||
@@ -1200,12 +1200,12 @@ The thread class provides the methods to change or get the current name of the t
 We have a method called currentThread() in the thread class through which we can get the reference of the currently executing thread. Remember that it returns the reference of the thread but not the name. So, for the name you have to use “Thread.currentThread().getName()”. 
 
 ||Thread priority||
-Every thread has a priority. The priority is scaled from 1 to 10. In most of the cases scheduler executes the threads according to their priority but not always. It is dependent of JVM specification that which scheduling it chooses. Three constants are defined in the thread classes which are “public static int MIN_PRIORITY”, “public static int NORM_PRIORITY” and “public static int MAX_PRIORITY”. Min is 1, normal is 5 which is default priority as well and max is 10. We can get the priority of any thread by getPriority() and set the priority by setPriority(). We can set the priority by simply writing the number from 1 to 10 or by “Thread.MAX/MIN_PRIORITY”. By putting value of priority less than 1 and more than 10 gives exception.  
+Every thread has a priority. The priority is scaled from 1 to 10. In most of the cases scheduler executes the threads according to their priority but not always. It is dependent of JVM specification that which scheduling it chooses. Three constants are defined in the thread classes which are “public static int MIN_PRIORITY”, “public static int NORM_PRIORITY” and “public static int MAX_PRIORITY”. Min is 1, normal is 5 which is default priority as well and max is 10. We can get the priority of any thread by getPriority() and set the priority by setPriority(). We can set the priority by simply writing the number from 1 to 10 or by “Thread.MAX/MIN_PRIORITY”. By putting value of priority less than 1 and more than 10 gives exception. 
 
 ||Daemon Thread|| 
 •	This thread is used to provide service to the user threads and only fulfill the background tasks. JVM terminates all the daemon thread as soon as all the user class dies. It is of lower priority thread. We have to understand the way to check if the thread is daemon thread and to set a thread as deamon thread. For checking if a thread is daemon or not, we have method called isDaemon(). For setting a thread as daemon, we have a method called setDaemon(). Try an example for better understanding.
 •	If we want to make user thread as daemon thread. Then, we can only do it if the thread is not yet started. We will receive an exception even if we try to do so. See, if a thread is not daemon then it will definitely be user thread which means a simple thread. So, when to call a user thread by an object and then try to change it to daemon thread. We will receive an exception. Exception will be illigalThreadStateExcepion. 
-Note: Main thread and deamon threads are created by JVM. 
+Note: Main thread and daemon threads are created by JVM. 
 
 ||Java Thread Pool||
 Thread pool contains the equal sized threads which are waiting for the job and reused many times. A thread is assigned a work by the service provider and then after work completion it again comes back to the thread pool to get a new job. It saves time since avoid it requirement of creating a new thread. One example of it is its use in the servlets and JSP. Servlet and JSP container creates a thread pool to handle the request. 
@@ -1235,11 +1235,11 @@ Below are some important methods:
 Note: we can open a notepad: Runtime.getRuntime().exec("notepad").
 
 Note:
-1.	ThreadLocal is a keyword we can use with thread so the each thread accesing the resource should have their own copy of the variable. Thus, giving synchronization at variable level. 
+1.	ThreadLocal is a keyword we can use with thread so the each thread trying to accessa resource should have their own copy of the variable. Thus, giving synchronization at variable level. 
 2.	Thread leak happens when an application does not releases the reference of a thread and those thread were not garbage collected. 
-3. how to create a thread pool
-Threadpool is group of fixed number of thread which are created and waiting in runnable state to be used for processing any task. Thread schedular picks a thread for processing a task and once task is done then the thread goes back in the thread pool in runnable state. We can improve the performce of an application with threadpool as it saves time in new thread because we already have threads in pool created and in runnable state. One real time usage of Thread pool is in web containers managing JSP and servlets. 
-In web container, if for every new request we give a new thread by creating on the spot then it will be a lot of overhead in managing the life cycle of the thread only. Therefore, thread pool seems to be a good idea where a set of threads are already created in the thread pool in runnable state. This will save alot of time as skips creating and termination of a thread. Infect, the same set of threads can be used multiple times for handling new request.
+3. How to create a thread pool
+Threadpool is group of fixed number of thread which are created and waiting in runnable state to be used for processing any task. Thread scheduler picks a thread for processing a task and once task is done then the thread goes back in the thread pool in runnable state. We can improve the performance of an application with threadpool as it saves time in new thread because we already have threads in pool created and in runnable state. One real time usage of Thread pool is in web containers managing JSP and servlets. 
+In web container, if for every new request we give a new thread by creating on the spot then it will be a lot of overhead in managing the life cycle of the thread only. Therefore, thread pool seems to be a good idea where a set of threads are already created in the thread pool in runnable state. This will save alot of time as skips creating and termination of a thread. In fact, the same set of threads can be used multiple times for handling new request.
 In java, we have executor framework consisting of executor interface, ExecutorService sub interface and Executor class. Below is the code for crearting the thread pool. 
 ExecutorService pool = Executors.newFixedThreadPool(MAX_T);
 So, as we can see we have used newFixedThreadPool() api of Executors class to get pool. Now, we will process a task using the thread from a pool. 
@@ -1249,10 +1249,16 @@ pool.execute(task1);
 In above code, we have created a task through a class called Task which implements Runnable interface and override the run method. Then, we pass this task object to execute method of pool. Likewise, we can create many task and execute through pool. Once all the threads in the pool is in running state then all other received task goes in queue. 
 Risk with Thread Pool:
 a. DeadLock: Deadlock can occur in any multithreaded environment while thread pool is another case of deadlock. One possible situation of deadlock in thread pool could be when all the running threads are waiting the response of a blocked thread due to unavailability of thread. There could be other scenarios which can cause deadlock. 
-b. Thread Leakage: In some scenarios, running thread does not return back to the pool which causes reduction in the size of the thread. One such scenario could be when thread is running an exception occurs and thread class does not handles the exception then that thread goes out of thread pool. 
-c. Resouce Threashing: We need to be carefull regarding the numbers of threads in threadpool. If we avhe threads more than the optimal number then a lot of time will get wasted in context switching. 
+b. Thread Leakage: In some scenarios, running thread does not return back to the pool which causes reduction in the size of the thread. One such scenario could be an exception occurs while a thread is running and thread class does not handles the exception then that thread goes out of thread pool. 
+c. Resouce Threashing: We need to be careful regarding the numbers of threads in threadpool. If we have threads more than the optimal number then a lot of time will get wasted in context switching. 
 Note: we must make sure we close the thread pool explicitly by calling shutdown() method of the thread. 
 5. why wait, notify and notifyAll methods are in object class but not in thread class. 
+Hypothetical Situation for 
+We have a dark room with a lot of containers and people. Assume each container as java object and container’s handle as monitor of the object. Now, imagine different people trying to grab the some container through its handle. Here, people are different threads trying to grab an object through its monitor. A thread does not know about the object which other threads are trying to acquire thus consider the room is dark i.e. one person does not know about which container other person is trying to grab. However, assume hypothetically that each container knows what different people trying to grab it. This means an object knows about different threads trying to acquire it.
+Now, person 1 has already acquired a container A and person 2 & 3 are trying to grab it. Person 1 has release the handle of the container and will wait to grab the handle again after any of the person notifies. This is just like wait method where a thread leaves the monitor of an object but waits for notification from other thread to acquire it back. 
+Now, after person 1, person 2 has acquired container A through its handle. Person 2 however is done with the containers work and does not to grab it back. Then, it will notify a particular person or everyone waiting for the container. However, as I said the room is dark thus one person does not know what other person needs, but containers does. Similarly, threads once done with an object would want to call notify or notifyAll however they do not know which set of threads to notify. But, object does has this info. Therefore, since thread class wait, notify and notifyAll() is written in Object class but not in thread class. Thread class 
+Wait method is used to release the lock by the currently existing thread and to wait for the same object until other thread does not notify. This means 
+What if its in thread class? 
 Wait, notify and notifyAll methods is called on Object since monitor belongs to the object not to the thread. Wait method is called on the object to tell the current monitor accuring thread to release the monitor. So, its objects action to tell thread to release the lock and hence wait is implemented in Object class. Likewaise wait method, notify and notifyAll methods are also called on object not on threads. Notify and NotifyAll method notify one or all thread waiting for thread.
 6. Producer and Consumer Problem
 Assume we have two threads t1 and t2. T1 fills the data in from front of the queue while t2 takes the data out from the back of the queue. T1 is called as producer thread and T2 is called as consumer thread. Now, the producer problem statement says the if the queue gets full then producer should not try to add element and when the queue gets empty then consumer should not try to remove item. Well, we can implement this in java. On a very high level, what we have to do is we need to call wait method on producer thream once queue gets full. When consumer removes an element from queue then we should call notify method for producer. When queue gets empty then wait method is called for consumer thread. When producer placed an element in queue then notify method should be called for consumer. 
@@ -1279,7 +1285,7 @@ This is similar to synchronized method. If you want synchronization for some par
 Note: the synchronization block is syntax is synchronization(this){code}. This can be any object while generally this keyword.
 Static Synchronization 
 Lets say we have two classes, class A and class B. Now, class a has a method named methodA and class B has a method named methodB. We have two threads, T1 and T2, of class A which try to access methodA and threads T3 and T4 which try to access method. Now, thread safety among T1 and T2 for method and T3 and T4 for method can be done through using synchronized eyword with method signature of methodA and methodB. Imagine a situation, methodB class method. Then, either of thread T3 or T4 will try to access methodA. In this scenario, we do have thread safety for methodA. Now, for this if we do static synchronization then we can thread safe this situation as well and thread T3 or T4 has to wait for T1 or T2 to finish. The lock in static synchronization is on class level, not on object level. The syntax of static synchronization: public static synchronized void add(int value){method body}.
-     
+
 Note: 
 1. How actually synchronization makes a piece of code thread safe? Actually, when a thread tries to access any ynchornized block then it checks in the heap to give the most updated code to the currently accessing thread. This is one aspect. 
 2. When synchronization is done with non static methods then thats normal synchronization on the object, not on the class level. However, when synchronized keyword is used with static method then synchronization goes from object level to class level. Also, if synchronized keyword if used with any static method then we are talking about the static synchronized by default. 
@@ -1687,7 +1693,7 @@ Java Applet
 Must Read – understanding of graphics in computer 
 Anything that you see on your computer screen is graphics. There are a lot of APIs in java which are dedicated to graphics. The top level class, just after object class, we have Component class which is super class for all the GUI component classes. After Component Classes we have classes of the component class like button, Label, checkBox, canvas, choices etc and container class. Container class is also a sub class of the Component class (a special one) along with the classes of component. Container is a kind of component which can container other components or other containers.
 
- 
+
 
 Now, the container class has two sub classes which are window and panel. Panel is used only for grouping of components which does not exist alone (when I talk about component then include container as well because it is also a kind of component). Window is for creating a group of component and handling them as well. One example of panel is Applet which does not exist independently, but a web browser or applet viewer is needed to view them. It does not stand on its own. However, a window is represented as independent and is not inside any other component. We have two kinds of windows which are dialog windows and Ordinary windows. Dialog windows are for opening and saving the files which are implemented using dialog class. Other category is the ordinary window which is implemented using the frame class. 
 Useful link for: https://staff.fnwi.uva.nl/a.j.p.heck/Courses/JAVAcourse/ch5/s1.html
@@ -1998,7 +2004,7 @@ I have checked the example. It is same as conventional collection. It has a Poll
 Note: 
 1.	Blocking Queue is tread safe which has two threads which are commonly known as producer and consumer threads. Producer thread keeps on putting the object inside the queue and it is blocked as the queue is completely occupied. The consumer thread then start taking object from queue and until consumer thread takes an object out of queue, producer thread remains blocked.
 2.	Queue and stack are in interfaces with classes implementing them present inside concurrent package and are FIFO and LIFO mostly. So, they cannot be accessed randomly. In such cases, we can use them. 
- 
+
 
 
 HashMap Class
@@ -2027,12 +2033,12 @@ Note:
 Now, let’s see how actually a hashmap works. When we try to add an entry to a map then we make use of put(key, value) method then hashcode method is used to implement to get the hash code of the key. On the basis of the hash code (hash value) of the key, the bucket in which the entry needs to be stored is decided. Similarly, when an entry is retrieved from a hash map then get(key) is used. This also calls the hashcode method to get the hash value of the key which then be used to find the bucket where the value is stored.
 4. Sample of hashcode function override:
     @Override
-    public int hashCode() {
-        int result = 17;
-        result = 31 * result + name.hashCode();
-        result = 31 * result + age;
-        result = 31 * result + passport.hashCode();
-        return result;
+public int hashCode() {
+int result = 17;
+result = 31 * result + name.hashCode();
+result = 31 * result + age;
+result = 31 * result + passport.hashCode();
+return result;
     }
 5. What will happen if we try to store an entry with key thats already present in the Hashmap? Then the value will get overriden. 
 6. Array is the pure datastructure used to created buckets while linkedlist stored all the mappings which maps to same bucket. Lettle confusing it is. 
@@ -2291,14 +2297,14 @@ Example:
 import java.util.*;
 import java.util.function.Consumer;
 public class MyClass {
-    public static void main(String args[]) {
+public static void main(String args[]) {
         Set<Integer> s = new HashSet<Integer>();
-        s.add(1);
-        s.add(2);
-        s.forEach(new Consumer<Integer>(){
+s.add(1);
+s.add(2);
+s.forEach(new Consumer<Integer>(){
            @Override
-           public void accept(Integer i){
-               System.out.println(i);
+public void accept(Integer i){
+System.out.println(i);
            }
         });
     }
@@ -2342,9 +2348,9 @@ Note:
 /* internally above enum Color is converted to
 class Color
 {
-     public static final Color RED = new Color();
-     public static final Color BLUE = new Color();
-     public static final Color GREEN = new Color();
+public static final Color RED = new Color();
+public static final Color BLUE = new Color();
+public static final Color GREEN = new Color();
 }*/
 2. Every enum type represents an object of enum type. Thus, we get true in the above example. 
 3. We can use Enum type in switch statements. 
