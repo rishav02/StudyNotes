@@ -1265,7 +1265,7 @@ Assume we have two threads t1 and t2. T1 fills the data in from front of the que
 7. Some insight on Volatile Keyword
 In multithreading environment, thread safety is very important. Thread safety involves two things manily which are mutual exclusion and visibility. Mutual exclusion means one thread or process will work on a piece of code at a time and visibility means change done by one thread on shared resource is visible to all other threads. Sometime we just needs only visibility. For example, threads of different processecors will get their own local copy of shared object. Thus, we really do not need to manage the mutual exclusion but changes done by one thread may not reach to thread 2 copy and can lead to inconsistency. Therefore, we just need to manage visibility. Volatile comes to rescue here. Volatile only takes care of visibility which means if a vairble is defined volatile then change related to it will done only in the main memory but not in cache or copy of that var and thus available to all threads.
 8. Thread dump is a way of finding out what all threads in your application is doing including the services threads. The thread dump becomes really important when your application getting hang or becomming slow. We can get the thread dump in UNIX/LINUX system using command "kill -QUIT" and "Cntl+break" ion windows.
-
+ 
 
 Java Synchronization 
 
