@@ -644,6 +644,7 @@ Topic: Multithreading
 4. Why wait, notify and notifyAll() methods are required to be called from synchronized method?
 5. When do we use wait, notify and notifyAll methods? 
 Whenever an action of threads depends on the action of other thread on the same resource then first thread calls wait method on the resource which releases the lock on the resource and the other thread captures the lock. Now, once other thread lets the resouce to reach to the state where the first thread can work. Then, it notify the first thread to have the lock of the resource and work on it. 	
+6. Code showing deadlock condition. 
 
 
 
