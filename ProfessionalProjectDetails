@@ -1,4 +1,7 @@
-C ompany 1: Cognizant Technology Solution
+Introduction:
+Hi. I am Rishav Mishra. I have overall of 4 years of experience of as java devloper. During this course, I have worked mainly on three projects. First, I have worked while being in cognizant. It was a property and ownership search engine. It was a web application. Then, for opus, i have built a java based backend tool which is used to create billing for the customer of our client for using their network and update the billing items in the billing table. Currently, I am working on creating a RestFul web service from scratch which was a fraud assessment service. This application further uses a web service which is CDM. Apart from technology, I have good leadership skills and have been known for leading the things whereever i get opportunity. 
+
+Company 1: Cognizant Technology Solution
 Project 1.1: RealQuest
 Brief Introduction - The project i worked on was property and ownership search engine. We used to maintain, enhance and keep the application secure for our client which was a US based company Corelogic with over 1.4 billion of revenue noted for a fiscal year. The motive of this application is to guide the customers towards the sound decisions of buying a property or not by providing the data they are looking in the most convenient way. 
 Function Description - Functionality wise, this application has option of generating different reports which contain different type of data like transaction history of a data, details on profile of the property, surrounding amenities, ownership and owners information, important documents as well as images of the property. A user can look for any particular property or can gives custom search for looking any unknown property. This application supports multiple search options to make experience. We also have the storing and retrieving the stored reports.
@@ -43,4 +46,20 @@ I have worked very briefly on Service Now tool which was a ticketing tool for th
 
 Company 3: Opus Consulting Solutions
 Project 3.1: FAS i.e. Fraud Assessment Service
+Project X
+This application is fraud assessment application. It send a REST web service request to CDM (@RaY: mention the full form). CDM returns accepted, rejected or review status as response of the web service request sent. The response is forwarded to the service which has sent the request originally. Methodology: Agile.
+Technology Stack:
+This application uses spring boot which is a rapid application development framework. We have a usual SpringBoot Class consisting of the main method. All the configurations are taken care in application.properies (name need correction is guess!) file.
+The database used is Casandra. Web service written in RESTful way while both, SOAP and REST, are consumed in the project.
+
+ 
+Architecture Flow: (High Level)
+The web service we created is Fraud Assessment Service. Our system is hit by some internal service of client. We first validate the input upon receiving the request from the consumer. @Ranjana, what kind of request coming (business-wise)? Once the input is validated, then we create a new request using the data we received from the incoming request and with the data in the Cassandra for CDM i.e. Credit decision manager. @What is the role of CDM? Once we create a request using request and Cassandra data and sends it to CDM then we receive whether this transaction is passed, failed or under review. Based on the response we received from the system, we will send the response back to the consumer who sent the request to FAS. @Ranjana So, what FAS has resolved for in its consumers? 
+
+Code Flow (Class wise):
+The request will hit FAController.java which is the only controller. A response instance will be created to be returned as response and is initialized by calling a service class method. The service class method will in term create a request object that supposed to be sent to the CDM. @How exactly the incoming request data is parsed, used and added to request object to be sent to CDM? Once the all the needed data from the incoming request is added to the CDM request object then an API will be called which is nothing but a spring rest client for consumer a micro service which will get all the data from Cassandra db. @Ranjana, why do you thing Cassandra db was used? Why not an sql based db was used and why not the data was pulled from the sql db like we do normally? RestTemplate, HttpEntity are some common classes used to build the client. After the Cassandra data is returned by the micro service as java object then that java object attribute data was used to complete the request for CDM. CDM sends the response once we gets a correctly formatted response. CDM is SOAP based web service thus it is consumed using a stub client generated through its WSDL. @Ranjana, How do we create stub for SOAP web service using WSDL? Based on the response returned by CDM, the service class returns a response object to FAControlle.java. This is then returned to consumer of FAS. @Ranjana, What kind of response is sent by the CDM? What is the processing logic for constructing final response on the basis of CDM response? 
+@Ranjana, Provide at least two examples and what classes or mechanism used to validate input. @Ranjana, what data do we receive from the request and what data do we fetch from Cassandra? @Ranjana, Never share the code as is. 
+Doubts (@Ranjana)
+Is our project web service or micro service?
+
 
