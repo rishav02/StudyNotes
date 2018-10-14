@@ -1,0 +1,46 @@
+C ompany 1: Cognizant Technology Solution
+Project 1.1: RealQuest
+Brief Introduction - The project i worked on was property and ownership search engine. We used to maintain, enhance and keep the application secure for our client which was a US based company Corelogic with over 1.4 billion of revenue noted for a fiscal year. The motive of this application is to guide the customers towards the sound decisions of buying a property or not by providing the data they are looking in the most convenient way. 
+Function Description - Functionality wise, this application has option of generating different reports which contain different type of data like transaction history of a data, details on profile of the property, surrounding amenities, ownership and owners information, important documents as well as images of the property. A user can look for any particular property or can gives custom search for looking any unknown property. This application supports multiple search options to make experience. We also have the storing and retrieving the stored reports.
+Technical Description with architectural diagram
+1.	**draw diagram and describe**
+The architecture of the project is we had 4 production server which are 2 for legacy code and 2 for new code base. Each server has two instances. The application has a VIP (virtual IP) i.e. a web server in front. Then, the request goes to any of the server passing through the load balancer. 
+Once the request hits the web server, a static home page was returned and user suppose to log in the application for using its functionality. Upon successful authentication a user session is created. Then, user can search for a property. For searching a property user has to fill a form and a standard POST request is sent to the server with the form data. @@@Does the form data goes as request parameter or request body? As the request is accepted on the server side. We create a java object which gets all the necessary details for sending REST request to a particular service. Which service to call and which method to use was all depended on the report user has searched the property for. Once the java object is created then it was manually marshaled to XML or JSON request. We have used JAXB and Jackson for marshalling and unmarshalling. Once we receive the response of the web service we convert in into report java object. Then, that java object was used to fill the data in the report UI. A string buffer was built and from header to report footer was taken in the string buffer and printed. 
+I have worked a lot on security remediation for this project. We used to have three third party scan engines like veracode, Qualys and Foundstone. I have worked majorly on veracode as that needs a lot of code change while Qualys and Foundstone issues were majorly related to server configuration changes. 
+The top 5 issues that I remember have worked on are below:
+1.	Cross site scripting issues
+2.	Javascript issues
+3.	SQL Injections
+4.	Information leakage
+5.	Encapsulation 
+Once done with the architecture description then ask interviewer to explain about the XML requests n all.
+a.	We are consumers of web services. Consumers and provider of application has a contract set in XSD files. Now, once the contract is ready then we can create WSDL and include XSD with it or we can simple make use of XSD for converting to the java objects that will be used as input and output objects while creating web services. We make use of XSD. Now, tell what is XSD and how do we get XML request document?  We have XSD files for the other applications where we send the XML request. These XSD files tell use the structure of the XML document that we sent as a request. Actually, XSD which is the XML schema definition document. In the XSD document, we have different tags like schema, element tags etc. <xs: schema>, <xs: element>. Now, I guess then we create an XML request using XSD and Jaxb. How? Actually, first we will create java classes using XSD and then we can create different XML request using the classes that we have created and JaxB. 
+b.	XML request document is prepared, then what? tell about the role of jaxB and complete programming that is needed.  Now, we have prepared the XML document. Also, if the XML request document is the thing that we send then what is the need to create the java object through unmarshalling?
+Some Code for Help!
+String uri =
+    "http://localhost:8080/CustomerService/rest/customers/1";
+URL url = new URL(uri);
+HttpURLConnection connection =
+    (HttpURLConnection) url.openConnection();
+connection.setRequestMethod("GET");
+connection.setRequestProperty("Accept", "application/xml");
+
+JAXBContext jc = JAXBContext.newInstance(Customer.class);
+InputStream xml = connection.getInputStream();
+Customer customer =
+    (Customer) jc.createUnmarshaller().unmarshal(xml);
+
+connection.disconnect();
+
+Software and tools description 
+Intellij as IDE, sql developer, putty for unix, SVn for version control, maven for dependency management and list other softwares as well. 
+My Role –
+We follow agile and scrum. So,all the scrum ceremonies we follow. I have worked on backlogs related to enhancement where we added new report options. After few sprints, the entire team got divided from three. Maintenance, merge and security remediation. I was placed in security remediation and still working in the same team. In security remediation, we need to keep the security flaws minimized and hopefully eliminate them. There is something called veracode applicaitob whjich is used for scanning the application and generating a report with the flaw. When this security remediation team was formed the score was 55 while now it is 86 and progressing. Then describe different flaws like [describe top five security threats, check in internet]. A team of about 15 members works on this application. 
+
+Company 2: Infosys 
+Project 2.1: SNOW
+I have worked very briefly on Service Now tool which was a ticketing tool for the client PWC. We used to work as admin and generally has to resolves tickets. That’s why I quite Infosys in 6months.
+
+Company 3: Opus Consulting Solutions
+Project 3.1: FAS i.e. Fraud Assessment Service
+
