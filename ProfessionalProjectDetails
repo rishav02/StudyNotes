@@ -45,7 +45,10 @@ Project 2.1: SNOW
 I have worked very briefly on Service Now tool which was a ticketing tool for the client PWC. We used to work as admin and generally has to resolves tickets. That’s why I quite Infosys in 6months.
 
 Company 3: Opus Consulting Solutions
-Project 3.1: FAS i.e. Fraud Assessment Service
+Project 3.1: Java Backend Billing Tool
+This tool is used to create billing item and update in the billing DB. This job is used to start through netbatch job which runs every month. The netbatch job used to look for a script file. Through script file the job triggers actually. Then, it looks for the data in table and create object of Vos to be processed. Then, different billing items get created which are @@@Comp=plete this.   
+
+Project 3.2: FAS i.e. Fraud Assessment Service
 Project X
 This application is fraud assessment application. It send a REST web service request to CDM (@RaY: mention the full form). CDM returns accepted, rejected or review status as response of the web service request sent. The response is forwarded to the service which has sent the request originally. Methodology: Agile.
 Technology Stack:
@@ -61,5 +64,7 @@ The request will hit FAController.java which is the only controller. A response 
 @Ranjana, Provide at least two examples and what classes or mechanism used to validate input. @Ranjana, what data do we receive from the request and what data do we fetch from Cassandra? @Ranjana, Never share the code as is. 
 Doubts (@Ranjana)
 Is our project web service or micro service?
+
+
 
 
