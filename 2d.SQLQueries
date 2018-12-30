@@ -84,13 +84,13 @@ select ltrim(name) from employeeinfo.
 Select length(name) from employeeinfo.
 Note: length function will give back the length of the data in each row in a column. 
 
-12. Get First_Name from employee table after replacing 'i' with '$'RRR
+12. Get First_Name from employee table after replacing 'i' with '$'
 select replace(name, I, $,) from employeeinfo;
 13. Get First_Name and Last_Name as single column from employee table separated by a '_'
 Select concat(name,’_’,designation) from employeeinfo.
 Note: Other option is ||. Above goes like “name||”_”||designation”.
 
-14. Get FIRST_NAME ,Joining year,Joining Month and Joining Date from employee table RRR
+14. Get FIRST_NAME ,Joining year,Joining Month and Joining Date from employee table 
 Select name,to_char(joiningdateColumn, ‘YYYY’), to_char(joiningdateColumn, ‘Month’), to_char(joiningdateColumn, ‘dd’) from employeeinfo;
 
 Note: we can have mm in place of ‘month’. 
@@ -114,7 +114,7 @@ Note: string is not case sensitive that we are searching.
 19. Get employee details from employee table whose employee name are “rishav” or “neha”. (check syntax)
 Select * from employeeinfo where name in (‘rishav’, ‘neha’);
 
-20. Get employee details from employee table whose employee name are not “rishav” and “neha”RRR
+20. Get employee details from employee table whose employee name are not “rishav” and “neha”
 Select * from employeeinfo where name not in (‘rishav’, ‘neha’);
 
 "SQL Wild Card Search" Interview Questions
@@ -185,11 +185,11 @@ Select sysdate from dual;
 MySql Version: Select now();
 Note: Dual is a table in oracle given to each DB. It is a single row and single column table. It is given to select pseudo columns like sysdate. 
 
-39. Get names of employees from employee table who has '*' in Last_Name. Tip : Escape character for special characters in a query.AAA
+39. Get names of employees from employee table who has '*' in Last_Name. Tip : Escape character for special characters in a query.
 Select * from employeeinfo where name like ‘%\*%’;
 Note: backward slash is escape character in oracle. Now, There are some special characters which already means something like “. Now, if we have to get names having “, then we need to definitely escape it. Then, use this: where name like “%\”%”. 
 
-40. Get Last Name from employee table after replacing special character with white spaceAAA
+40. Get Last Name from employee table after replacing special character with white space
 Select replace(name, ‘*’, ‘ ’) from employeeinfo; Or Select translate(LAST_NAME,'%',' ') from employee
 
 MySql Version, Select REPLACE(LAST_NAME,'%',' ') from employee
@@ -249,9 +249,9 @@ select salaryband, max(salary) as MaxSalaryPerBand from employeesalary group by 
 46. Get department wise minimum salary from employee table order by salary ascending
 select salaryband, min(salary) as MinSalaryPerBand from employeesalary group by salaryband order by MinSalaryPerBand asc;
 
-47. Select no of employees joined with respect to year and month from employee tableAAA
+47. Select no of employees joined with respect to year and month from employee table. RRR
 
-Select to_char(joiningdate, “YYYY”) as joiningyear, to_char(joiningdate, “MM”) as joiningmonth from employeeinfo group by joiningyear, joiningmonth order by joiningyear;
+Select to_char(joiningdate, “YYYY”) as joiningyear, to_char(joiningdate, “MM”) as joiningmonth, count(id) from employeeinfo group by joiningyear, joiningmonth order by joiningyear;
 MySql Version: select year(joiningdate) joiningyear, month(joiningdate) joiningmonth, count(id) from mycompany.employeeinfo group by joiningyear, joiningmonth order by joiningyear;
 
 Note: In group by clause, we can use both separated by comma.
@@ -270,72 +270,74 @@ Explanation : Here "exists" statement helps us to do the job of If statement. Ma
 Note:
 In this question, we are saying that get the details from employee if "data" exist in incentive. This mean any row present. Also, oracle has not exist as well. 
 
-50. How to fetch data that are common in two query results?AAA
+50. How to fetch data that are common in two query results?
 select * from EMPLOYEE where EMPLOYEE_ID INTERSECT select * from EMPLOYEE where EMPLOYEE_ID < 4
 Explanation : Here "INTERSECT" command is used to fetch data that are common in 2 queries. In this example, we had taken EMPLOYEE table in both the queries. We can apply INTERSECT command on different tables. The result of the above query will return employee details of "ROY" because, employee id of ROY is 3, and both query results have the information about ROY.
 We can find out the common between two table without using sub queries, that through by INTERSECT clause.
 Note:
 1.	Intersection is quite similar to inner join. However, Intersection is applicable to queries that returns same number of column with same data types order. On the other hand, Inner Join has no such restriction and can be applied on any set of columns. 
   
-51. Get Employee ID's of those employees who didn't receive incentives without using sub query ?RRR
+51. Get Employee ID's of those employees who didn't receive incentives without using sub query? RRR
 select EMPLOYEE_ID from EMPLOYEE
 MINUS
 select EMPLOYEE_REF_ID from INCENTIVES
 Explanation : To filter out certain information we use MINUS command. What MINUS Command odes is that, it returns all the results from the first query, that are not part of the second query. In our example, first three employees received the incentives. So query will return employee id's 4 to 8.
 
-52. Select 20 % of salary from John , 10% of Salary for Roy and for other 15 % of salary from employee table. Situation: We need to get the name and the salary to be deducted for an employee. The deduction is salary is for all the employees. For associate trainee we need to deduct 2% of salary, associates we need to deduct 3% and for rest of the employee we need to deduct 5%. AAA
-SELECT FIRST_NAME, CASE FIRST_NAME WHEN 'John' THEN SALARY * .2 WHEN 'Roy' THEN SALARY * .10 ELSE SALARY * .15 END "Deduced_Amount" FROM EMPLOYEE
+52. Select 20 % of salary from John , 10% of Salary for Roy and for other 15 % of salary from employee table. Situation: We need to get the name and the salary to be deducted for an employee. The deduction is salary is for all the employees. For associate trainee we need to deduct 2% of salary, associates we need to deduct 3% and for rest of the employee we need to deduct 5%. RRR
+SELECT FIRST_NAME, SALARY CASE FIRST_NAME WHEN 'John' THEN SALARY * .2 WHEN 'Roy' THEN SALARY * .10 ELSE SALARY * .15 END "Deduced_Amount" FROM EMPLOYEE
 Situation query: 
 Explanation : Here, we are using "SQL CASE" statement to achieve the desired results. After case statement, we had to specify the column on which filtering is applied. In our case it is "FIRST_NAME". And in then condition, specify the name of filter like John, Roy etc. To handle conditions outside our filtelr, use else block where every one other than John and Roy enters.
 We need to use CASE conditions. The syntax is “Column name CASE Column Name when ‘condition’ THEN ‘VALUE’ WHEN ‘condition’ THEN ‘Value’ END Alis_Column_Name”
 
-53. Select Banking as 'Bank Dept', Insurance as 'Insurance Dept' and Services as 'Services Dept' from employee tableAAA.
+53. Select Banking as 'Bank Dept', Insurance as 'Insurance Dept' and Services as 'Services Dept' from employee table. RRRR
 In oracle, we have two possible solutions:
 Select CASE department WHEN “banking” THEN “Bank Dept”, WHEN “Insurance” THEN “INSURANCE DEPT”, WHEN “Services” THEN “Service Dept” END from employeeinfo. 
 Select decode(department, “banking”, “Bank Dept”, “Insurance”, “Insurance Dept”, “Services”, “Service Dept”) from employeeinfo. 
 Note: 
 We use decode() for changing the value of a column. Syntax: decode(ColumnName, ‘oldValue’, ‘NewValue’);. 
 
-54. Delete employee data from employee table who got incentives in incentive tableAAA
+54. Delete employee data from employee table who got incentives in incentive table. RRR
 delete from EMPLOYEE where EMPLOYEE_ID in (select EMPLOYEE_REF_ID from INCENTIVES)
 Explanation : Trick about this question is that we can't delete data from a table based on some condition in another table by joining them. Here to delete multiple entries from EMPLOYEE table, we need to use Subquery. Entries will get deleted based on the result of Subquery.
 We use ‘IN’ with where clause if we are taking number of value in the where clause. 
 
-55. Insert into employee table Last Name with " ' " (Single Quote - Special Character)RRR
+55. Insert into employee table Last Name with " ' " (Single Quote - Special Character). RRR
 Tip - Use another single quote before special character
 Insert into employee (LAST_NAME) values ('Test''')
 
 
-56. Select Last Name from employee table which contain only numbersRRR
+56. Select Last Name from employee table which contain only numbers. RRR
 Select * from EMPLOYEE where lower(LAST_NAME)=upper(LAST_NAME)
 Explanation : In order to achieve the desired result, we use "ASCII" property of the database. If we get results for a column using Lower and Upper commands, ASCII of both results will be same for numbers. If there is any alphabets in the column, results will differ.
 
-57. Write a query to rank employees based on their incentives for a month RRR
+57. Write a query to rank employees based on their incentives for a month. RRR
 select FIRST_NAME,INCENTIVE_AMOUNT,DENSE_RANK() OVER (PARTITION BY INCENTIVE_DATE ORDER BY INCENTIVE_AMOUNT DESC) AS Rank from EMPLOYEE a, INCENTIVES b where a.EMPLOYEE_ID=b.EMPLOYEE_REF_ID
-Explanation : In order to rank employees based on their incentive for a month, "DENSE_RANK" keyword is used. Here partition by keyword helps us to sort the column with which filtering is done. Rank is provided to the column specified in the order by statement. The above query ranks employees with respect to their incentives for a given month.
+Explanation : In order to rank employees based on their incentive for a month, "DENSE_RANK() " keyword is used. Here partition by keyword identifies the column within which rank gets partitioned. This mean in this example that when incentive date will change then ranking will start again all over from 1. Rank is provided to the column specified in the order by statement. This mean the ranking will be done based on the values of incentive amount. The above query ranks employees with respect to their incentives for a given month for a particular date.
 Note:
 Syntax for using DENSE_RANK() is “select col1, col2…coln, DENSE_RANK() OVER(PARTITION BY Col2 order by Col1) from TableName”
-58. Update incentive table where employee name is 'John'RRR
+For example: https://docs.microsoft.com/en-us/sql/t-sql/functions/dense-rank-transact-sql?view=sql-server-2017
+
+58. Update incentive table where employee name is 'John'. RRR
 update INCENTIVES set INCENTIVE_AMOUNT='9000' where EMPLOYEE_REF_ID=(select EMPLOYEE_ID from EMPLOYEE where FIRST_NAME='John' )
 Explanation : We need to join Employee and Incentive Table for updating the incentive amount. But for update statement joining query wont work. We need to use sub query to update the data in the incentive table. SQL Query is as shown below.
-59. Select first_name, incentive amount from employee and incentives table for those employees who have incentivesRRR
+59. Select first_name, incentive amount from employee and incentives table for those employees who have incentives. 
 Select FIRST_NAME,INCENTIVE_AMOUNT from employee a inner join incentives B on A.EMPLOYEE_ID=B.EMPLOYEE_REF_ID
  
-60. Select first_name, incentive amount from employee and incentives table for those employees who have incentives and incentive amount greater than 3000 RRR
-Select FIRST_NAME,INCENTIVE_AMOUNT from employee a inner join incentives B on A.EMPLOYEE_ID=B.EMPLOYEE_REF_ID and INCENTIVE_AMOUNT >3000
+60. Select first_name, incentive amount from employee and incentives table for those employees who have incentives and incentive amount greater than 3000. RRRR
+Select FIRST_NAME,INCENTIVE_AMOUNT from employee a inner join incentives B on A.EMPLOYEE_ID=B.EMPLOYEE_REF_ID and INCENTIVE_AMOUNT >3000 (should be right join)
 
-61. Select first_name, incentive amount from employee and incentives table for all employes even if they didn't get incentives
+61. Select first_name, incentive amount from employee and incentives table for all employes even if they didn't get incentives RRRR
 Select FIRST_NAME,INCENTIVE_AMOUNT from employee a left join incentives B on A.EMPLOYEE_ID=B.EMPLOYEE_REF_ID
 62. Select first_name, incentive amount from employee and incentives table for all employees even if they didn't get incentives and set incentive amount as 0 for those employees who didn't get incentives. RRR
 Select name, nvl(incentive, “0”) from employeeinfo as e left join incentiveinfo as I on e.id=i.ref_id;
 SQL Version: Select name, ifnull(incentive, o) from mycompany.employeeinfo where id NOT IN (Select e.id from mycompany.employeeinfo as e right join incentivesinfo as I on e.designation=i.designation);
 Note: Nvl(Column name, default value) this function will place this value wherever blank in the column. If column is equivalent to ifNull function of other sql languages. 
 
-63. Select first_name, incentive amount from employee and incentives table for all employees who got incentives using left joinRRR
+63. Select first_name, incentive amount from employee and incentives table for all employees who got incentives using left join. 
 select e.name, i.incentive from mycompany.incentivesinfo as i left join mycompany.employeeinfo as e on i.designation = e.designation;
 
-64. Select max incentive with respect to employee from employee and incentives table using sub queryRRR
-SQL Queries in Oracle, select DEPARTMENT,(select nvl(max(INCENTIVE_AMOUNT),0) from INCENTIVES where EMPLOYEE_REF_ID=EMPLOYEE_ID) Max_incentive from EMPLOYEE
+64. Select max incentive with respect to employee from employee and incentives table using sub query. RRR
+SQL Queries in Oracle, select DEPARTMENT, (select nvl(max(INCENTIVE_AMOUNT),0) from INCENTIVES where EMPLOYEE_REF_ID=EMPLOYEE_ID) Max_incentive from EMPLOYEE
 
 SQL Queries in SQL Server, select DEPARTMENT,(select ISNULL(max(INCENTIVE_AMOUNT),0) from INCENTIVES where EMPLOYEE_REF_ID=EMPLOYEE_ID) Max_incentive from EMPLOYEE
 
@@ -346,29 +348,29 @@ SQL Queries in SQL Server, select DEPARTMENT,(select IFNULL (max(INCENTIVE_AMOUN
 Select * from (select * from employee order by salary desc) where rownum<3;
 We can do this simply by “Select Top 2 * from employee;”. This is using sql server. For oracle we have the concept of where rownumber<N+1 for getting top N. 
 
-66. Select TOP N salary from employee tableRRR
+66. Select TOP N salary from employee table. This means highest N salaries RRRR
 Syntax for top N salary:
-Select * from (select * from table order by colx) where rownum<N+1;
+Select * from (select * from table order by colx desc) where rownum<N+1;
 So, actual query is like below:
-Select * from (select * from employeeinfo order by salary) where rownum<N+1;
+Select * from (select * from employeeinfo order by salary desc) where rownum<N+1;
 Note: Rownum in oracle is applied after the records has been returned. It cannot be applied directly in a single query. Therefore, we need a subquery here. 
-67. Select 2nd Highest salary from employee table
-Select min(salary) from (Select * from employee order by salary) where rownum<3;
+67. Select 2nd Highest salary from employee table.
+Select min(salary) from (Select * from employee order by salary desc) where rownum<3;
 
-68. Select Nth Highest salary from employee tableRRR
+68. Select Nth Highest salary from employee table. RRRR
 Syntax for Nth Highest:
 Select min(colX) from (select * from table order by colX) where rownum<N+1;
 So, the actual query is:
-Select min(salary) from (select * from employee order by salary) where rownum<N+1;
+Select min(salary) from (select * from employee order by salary desc) where rownum<N+1;
 "SQL Union" Query Interview Questions
 
-69. Select First_Name,LAST_NAME from employee table as separate rows. Need to show values of same row of two columns in different or separate rows. RRR 
+69. Select First_Name, LAST_NAME from employee table as separate rows. Need to show values of same row of two columns in different or separate rows. RRR 
 select FIRST_NAME from EMPLOYEE union select LAST_NAME from EMPLOYEE
 Note: Here, we are simply putting values of two different columns in different rows. The two column must be of same data type for capable of being placed together with UNION. 
 
-70. What is the difference between UNION and UNION ALL?RRR
+70. What is the difference between UNION and UNION ALL? 
 Both UNION and UNION ALL is used to select information from structurally similar tables. That means corresponding columns specified in the union should have same data type. For example, in the above query, if FIRST_NAME is DOUBLE and LAST_NAME is STRING above query wont work. Since the data type of both the columns are VARCHAR, union is made possible. Difference between UNION and UNION ALL is the way they deal with duplicates. UNION removes the duplicate whereas UNIONALL does not. Hence, UNIONALL is faster.  
-71. Write create table syntax for employee table
+71. Write create table syntax for employee table RRR
 Oracle -CREATE TABLE EMPLOYEE (
 EMPLOYEE_ID NUMBER,
 FIRST_NAME VARCHAR2(20 BYTE),
@@ -388,15 +390,15 @@ DEPARTMENT varchar(50) NULL)
 DROP table employee;
 73. Write syntax to set EMPLOYEE_ID as primary key in employee table RRR
 ALTER TABLE EMPLOYEE add CONSTRAINT EMPLOYEE_PK PRIMARY KEY(EMPLOYEE_ID)
-74. Write syntax to set 2 fields(EMPLOYEE_ID,FIRST_NAME) as primary key in employee tableRRR
+74. Write syntax to set 2 fields(EMPLOYEE_ID,FIRST_NAME) as primary key in employee table. RRR
 ALTER TABLE EMPLOYEE add CONSTRAINT EMPLOYEE_PK PRIMARY KEY(EMPLOYEE_ID,FIRST_NAME)
-75. Write syntax to drop primary key on employee tableRRR
+75. Write syntax to drop primary key on employee table. RRR
 Alter TABLE EMPLOYEE drop CONSTRAINT EMPLOYEE_PK;
-76. Write Sql Syntax to create EMPLOYEE_REF_ID in INCENTIVES table as foreign key with respect to EMPLOYEE_ID in employee tableRRR
+76. Write Sql Syntax to create EMPLOYEE_REF_ID in INCENTIVES table as foreign key with respect to EMPLOYEE_ID in employee table. RRRR
 ALTER TABLE INCENTIVES ADD CONSTRAINT INCENTIVES_FK FOREIGN KEY (EMPLOYEE_REF_ID) REFERENCES EMPLOYEE(EMPLOYEE_ID)
 77. Write SQL to drop foreign key on employee table 
 ALTER TABLE INCENTIVES drop CONSTRAINT INCENTIVES_FK;
-78. Write SQL to create Orcale SequenceRRR
+78. Write SQL to create Orcale Sequence. RRR
 CREATE SEQUENCE EMPLOYEE_ID_SEQ START WITH 0 NOMAXVALUE MINVALUE 0 NOCYCLE NOCACHE NOORDER;
 79. Write Sql syntax to create Oracle Trigger before insert of each row in employee table RRR
 CREATE OR REPLACE TRIGGER EMPLOYEE_ROW_ID_TRIGGER
@@ -435,72 +437,66 @@ Select min(salary) from (Select * from employee order by salary desc) where rown
 Note: Mysql uses LIMIT and Sql server uses TOP keywords. 
 2.	Query to find the duplicate rows in a table.
 Lets understand the logic first. Row_id is a pseudo column that we can use in any table. A table has duplicate rows means two or more rows will have exactly same values for all the column. Now, when we generate row_id for that table then even the duplicate rows row_id column value is different. We need to write a query in such a way that we want all the rows of that table which has row_id not in the row_id (max of a group of duplicate rows). Lastly, the group of duplicate rows can be identified by picking primary key/uniqe column having same value for it. Check the query syntax below:
-Select * from tableName as a where row_id!=(select max(row_id) from tableName b where a.uniqueColumn=b.uniquecolumn);
+Select * from tableName as a where row_id NOT IN (select max(row_id) from tableName b where a.uniqueColumn=b.uniquecolumn);
 Note: the above query will display record of duplicate row leaving the original row of each duplicate row group type. Means if two rows are duplicate then this query will display one of them considering the other as unique. 
 3.	How to fetch monthly salary of employee if yearly is given. 
 Select name, salary/12 from employee;
 4.	What is the query to fetch first record of the table?
 Select * from employee where rownum<2;
 5.	What is query to fetch the last record of the table?
-Select * from employee where row_id=(select max(row_id) from employee);
+Solution 1: Select * from employee where row_id=(select max(row_id) from employee); 
+Solution 2: Select * from (select * from employee order by row_id desc) where rownum<2;
 Note: Whenever we create row id, it is distributed to each row in increasing order. Thus, last row will have highest row_id.
 6.	What is the query to display first 5 records of the table?
 Select * from employee where rownum<=5;
-7.	What is the query to display last 5 records of the table?
+7.	What is the query to display first and last 5 records of the table? RRRR
 Here, we will first select top 5 rows of the table through rowrun then we will first order the records of the table in desc order of row_id which will reverse the record order and then get top 5 record of it. Lastly, do union in both. 
 Select * from employee where rownum<=5 
 UNION
 Select * from (select * from employee order by row_id desc) where rownum<=5;
-8.	What is the query to display the Nth record of a table
+8.	What is the query to display the Nth record of a table 
 Select * from employee where row_id=(select max(row_id) from employee where rownum<N+1);
-9.	How to get the top 3 highest salaries of employees?
+9.	How to get the top 3 highest salaries of employees? RRRR
 Select * from (select * from employee order by salary desc) rownum<4;
-10.	How to show odd/even rows of a table?
+10.	How to show odd/even rows of a table?RRRR
 Select * from (select rownum as rno, e.* from employee as e) where mod(rno, 2)=1; //odd rows
 Select * from (Select rownum as rno, e.* from employee as e) where mod(rno, 2)=0; //even rows
-11.	How to fetch 3rd Highest salary from employee using Rank() function. 
+11.	How to fetch 3rd Highest salary from employee using Rank() function. RRRR
 Select * from (select dense_rank() over (order by salary desc) as rank, e.* from employee e) where rank=3  
-12.	How can I create a table of the same structure as employee table?
+12.	How can I create a table of the same structure as employee table? RRRR
 Create table employee1 as select * from employee where 1=2;
-13.	Select first 50% record from employee table.
+13.	Select first 50% record from employee table. 
 Select * from employee where rownum<=(select count(row_id) from employee)/2;
-14.	Select last 50% record from employee table.
+14.	Select last 50% record from employee table. RRRR
 Select * from (Select * from employee order by row_id desc) rownum<=(select count(row_id) from employee)/2;
 Note: The other way of doing it could be select all record and minus with first 50%. 
-15.	How can I create a table with same structure and data as employee?
+15.	How can I create a table with same structure and data as employee? RRR
 Create table employee_1 as select * from employee;
-16.	How do I fetch only common record between two 2 tables?
+16.	How do I fetch only common record between two 2 tables (with same column details)?
 Well, I guess if we are sure that the number of columns and sequence of the data structure in those column are same then we can use Intersect.  
-17.	Find the details of the employees which are not assigned any department. 
+And if not, then we need to know the common column and can use it as foreign key and place an inner join. 
+17.	Find the details of the employees which are not assigned any department. RRR
 Select * from employees where department NOT IN (Select DISTINCT department from employee);
-18.	How to display distinct records without using distinct word. 
+18.	How to display distinct records without using distinct word. RRR
 Let’s assume I need distinct departments. Check the below query:
 Select department from employee as a where row_id IN (select max(row_id) from employee as b where a.department=b.department);
 Source 3: https://career.guru99.com/top-50-oracle-interview-questions-and-answers/
-Puts these questions in sql interview questions file esp for oracle. 
-Note: 
-1.	cross join is a term by sql while Cartesian join is used by oracle. Otherwise, they are same. These join does not have a join condition. 
-2.	SQL outer join is nothing but showing matched and unmatched rows of any two tables. It can also we understood as inner join + unmatched rows. 
-3.	A pseudo column is a column which is not actually a column of a table. ROWID is a pseudo column. 
-4.	In group by queries, having is used to filter the records based on columns over which aggregate function is applied while where is used with columns on which aggregate function is not applied. 
-5.	Check coding for all the concept like trigger, view, cluster and other. 
-
 
 Source 4: http://www.java67.com/2013/04/10-frequently-asked-sql-query-interview-questions-answers-database.html
 1.	Query to find the second highest salary.
 Select min(salary) from (select * from employee order by salary desc) where rownum<3;
 2.	Query to find max salary of each department. 
 Select department, max(salary) from employee group by department;
-3.	Query to display the current date.
-Select to_char(SYSDATE, “DD-MM-YYYY”);
-4.	Query to check if the date passed is of correct format.
+3.	Query to display the current date. RRR
+Select to_char(SYSDATE, “DD-MM-YYYY”); 
+4.	Query to check if the date passed is of correct format. RRR
 Select ISDATE(“1/12/2017”) AS “DD/MM/YYYY”; 
 Note: This will return 0 as the given date is not is correct format.
-5.	Query to print the name of distinct employee from employee which has DOB between 01/01/1965 and 01/01/1975.
+5.	Query to print the name of distinct employee from employee which has DOB between 01/01/1965 and 01/01/1975. RRRR
 Select distinct name from employee where dob between to_date(“01/01/1956”, “DD/MM/YYYY”) and to_date(01/01/1975, ‘DD/MM/YYYY’);
 6.	Query to print the number of employee gender wise with dob between 01/01/1965 and 01/01/1975.
 Select gender, count(empid) from employee where dob between to_date(“01/01/1956”, “DD/MM/YYYY”) and to_date(01/01/1975, ‘DD/MM/YYYY’) group by gender;
-7.	Query to find the year form the date. 
+7.	Query to find the year from the date. 
 Select to_char(dob, “YYYY”) from employee;
 
 Source 5: http://www.geekinterview.com/Interview-Questions/Oracle/SQL
@@ -510,14 +506,14 @@ INTERSET
 Select * from (Select * from emp order by row_id desc) where rownum<=((select count(row_id) from emp)/2)+1;
 2.	Query to replace the third character of name of each employee by *.
 Select replace(name, substr(name, 3,1), ‘*’) from employee;
-3.	Query to display employee record having same salary.
+3.	Query to display employee record having same salary. That is, we need to show all the record which has a matching salary in the any other row (at least 1) while to not show an row which does not have salary which is not matching even in single record. 
 Select * from employee as e1 where salary IN (select salary from employee as e2 where e1.salary = e2.salary);
 Below is another solution for the same:
 Select * from employee where salary in (select salary from employee group by salary having count(salary)>1);
 Note: Its not mandatory to have aggregate function in select field to have group by in a query. 
 4.	Query to retrieve numeric values.
 Select * from employee where upper(colX) = lower(colX);
-5.	Query to find the department wise second max salary.
+5.	Query to find the department wise second max salary. (@@@Need to verify the query solution!)
 Select department, min(salary) from (select * from employee group by department order by salary desc) where rownum<3;
 6.	Query to find second highest salary department wise. 
 We need to find details of the second highest salary receiver in each group. Check the below query:
@@ -574,3 +570,36 @@ Top functions with respect to mysql:
 11.	Now(): gives you database/current date and time. 
 12.	\: back slash is the escape character for escaping special character. 
 13.	MySql does not has full outer join. We can emulate this by left join UNION right join. 
+
+
+
+
+
+
+
+Recent discoveries:
+1.	Rownum: it is pseudo column in oracle which is given in the result of each query. The first returned row will have rownum pseudo column value as 1 while second will have 2 and so on. 
+Select * from table where rownum<11; 
+The above query will return all the record which will have rownum column and those rows which have rownum less than 11.
+Now, when rownum in where clause has order by after it them the result may vary on the basis of how rows are returned thus its always better to order the records first and then use row in in where clause of outer query. 
+Also, we should use < operator with rownum not >. Like, great than N does not works for the below reason:
+“The first row fetched is assigned a ROWNUM of 1 and makes the condition false. The second row to be fetched is now the first row and is also assigned a ROWNUM of 1 and makes the condition false. All rows subsequently fail to satisfy the condition, so no rows are returned.”
+
+2.	ROWID is also a pseudo column which can be used to identify the row in a table. The difference with rownum is that its permanent while rownum is temporary. We can fetch the record on the basis of rowid while we cannot fetch records on the basis of rownum. We can use it like any other column of the table. 
+Puts these questions in sql interview questions file esp for oracle. 
+Note: 
+1.	cross join is a term by sql while Cartesian join is used by oracle. Otherwise, they are same. These join does not have a join condition. 
+2.	SQL outer join is nothing but showing matched and unmatched rows of any two tables. It can also we understood as inner join + unmatched rows. 
+3.	A pseudo column is a column which is not actually a column of a table. ROWID is a pseudo column. 
+4.	In group by queries, having is used to filter the records based on columns over which aggregate function is applied while where is used with columns on which aggregate function is not applied. 
+5.	Check coding for all the concept like trigger, view, cluster and other. 
+
+
+
+
+=====================================================================================
+Random Questions
+1.	What is difference between partition and index?
+2.	What is the difference in Rank() and DenseRank()? 
+3.	Understand the difference between TOP N salaries and TOP N records.
+In TOP N salaries, I will sort the records in desc order of salary so that top salary comes at the top followed by lesser salaries in order. Then, I will take out TOP N I need by rownum. On the other hand, getting TOP N record is simply applying the rownum to employee table getting original TOP N records without interfering with the order. 
