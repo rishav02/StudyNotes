@@ -1,37 +1,42 @@
 Source 1: http://www.journaldev.com/9193/web-services-interview-questions-soap-restful
-
-    1. 
-    2. What is a Web Service?
+1.	What is a Web Service?
 Web Services work on client-server model where client applications can access web services over the network. Web services provide endpoint URLs and expose methods that can be accessed over network through client programs written in java, shell script or any other different technologies.
 Web services are stateless and doesn’t maintain user session like web applications.
-    3. What are the advantages of Web Services?
-Some of the advantages of web services are:
+
+2.	What are the advantages of Web Services? RRR
+Some of the advantages of web services are: (interoperability, Reusability, Loose Coupling, Easy maintenance)
         ◦ Interoperability: Web services are accessible over network and runs on HTTP/SOAP protocol and uses XML/JSON to transport data, hence it can be developed in any programming language. Web service can be written in java programming and client can be PHP and vice versa.
         ◦ Reusability: One web service can be used by many client applications at the same time.
         ◦ Loose Coupling: Web services client code is totally independent with server code, so we have achieved loose coupling in our application.
         ◦ Easy to deploy and integrate, just like web applications.
         ◦ Multiple service versions can be running at same time.
-    . What are different types of Web Services?
+ 
+3.	What are different types of Web Services?
 There are two types of web services:
         1. SOAP Web Services: Runs on SOAP protocol and uses XML technology for sending data.
         2. Restful Web Services: It’s an architectural style and runs on HTTP/HTTPS protocol almost all the time. REST is a stateless client-server architecture where web services are resources and can be identified by their URIs. Client applications can use HTTP GET/POST methods to invoke Restful web services.
-    . What is SOAP?
+
+4.	What is SOAP?
 SOAP stands for Simple Object Access Protocol. SOAP is an XML based industry standard protocol for designing and developing web services. Since it’s XML based, it’s platform and language independent. So our server can be based on JAVA and client can be on .NET, PHP etc. and vice versa.
-    . What are advantages of SOAP Web Services?
+
+5.	What are advantages of SOAP Web Services? RRR
 SOAP web services have all the advantages that web services has, some of the additional advantages are:
         ◦ WSDL document provides contract and technical details of the web services for client applications without exposing the underlying implementation technologies.
         ◦ SOAP uses XML data for payload as well as contract, so it can be easily read by any technology.
         ◦ SOAP protocol is universally accepted, so it’s an industry standard approach with many easily available open source implementations.
-    . What are disadvantages of SOAP Web Services?
+
+6.	What are disadvantages of SOAP Web Services? RRR
 Some of the disadvantages of SOAP protocol are:
         ◦ Only XML can be used, JSON and other lightweight formats are not supported.
         ◦ SOAP is based on the contract, so there is a tight coupling between client and server applications.
         ◦ SOAP is slow because payload is large for a simple string message, since it uses XML format.
         ◦ Anytime there is change in the server side contract, client stub classes need to be generated again.
         ◦ Can’t be tested easily in browser
-    . What is WSDL?
+
+7.	What is WSDL?
 WSDL stands for Web Service Description Language. WSDL is an XML based document that provides technical details about the web service. Some of the useful information in WSDL document are: method name, port types, service end point, binding, method parameters etc.
-    . What are different components of WSDL?RRR
+
+8.	What are different components of WSDL? 
 Some of the different tags in WSDL xml are:
         ◦ xsd:import namespace and schemaLocation: provides WSDL URL and unique namespace for web service.
         ◦ message: for method arguments
@@ -39,501 +44,175 @@ Some of the different tags in WSDL xml are:
         ◦ portType: service name, there can be multiple services in a wsdl document.
         ◦ operation: contains method name
         ◦ soap:address for endpoint URL.
-    . What is UDDI?
+Note: For more detail and examples check: https://www.w3schools.com/xml/xml_wsdl.asp
+
+
+9.	What is UDDI?
 UDDI is acronym for Universal Description, Discovery and Integration. UDDI is a directory of web services where client applications can lookup for web services. Web Services can register to the UDDI server and make them available to client applications.
-    . What is difference between Top Down and Bottom Up approach in SOAP Web Services?RRR
+Note: Different businesses publishes their web services on UDDI so that other business can lookup for it and to get complete information about the published web service. 
+
+10.	What is difference between Top Down and Bottom Up approach in SOAP Web Services?
 In Top Down approach first WSDL document is created to establish the contract between web service and client and then code is written, it’s also termed as contract first approach. This is hard to implement because classes need to be written to confirm the contract established in WSDL. Benefit of this approach is that both client and server code can be written in parallel.
 In Bottom Up approach, first web service code is written and then WSDL is generated. It’s also termed as contract last approach. This approach is easy to implement because WSDL is generated based on code. In this approach client code have to wait for WSDL from server side to start their work.
-    . What is REST Web Services?
+
+11.	What is REST Web Services?
 REST is the acronym for REpresentational State Transfer. REST is an architectural style for developing applications that can be accessed over the network. REST architectural style was brought in light by Roy Fielding in his doctoral thesis in 2000.
 REST is a stateless client-server architecture where web services are resources and can be identified by their URIs. Client applications can use HTTP GET/POST methods to invoke Restful web services. REST doesn’t specify any specific protocol to use, but in almost all cases it’s used over HTTP/HTTPS. When compared to SOAP web services, these are lightweight and doesn’t follow any standard. We can use XML, JSON, text or any other type of data for request and response.
-    . What are advantages of REST web services?
-Some of the advantages of REST web services are:
+
+12.	What are advantages of REST web services? RRR
+Some of the advantages of REST web services are: (Only HTTP, multiple format, loose coupled, easy maintenance, lightweight due to JSON support, can support wide variety of clients)
         ◦ Learning curve is easy since it works on HTTP protocol
         ◦ Supports multiple technologies for data transfer such as text, xml, json, image etc.
         ◦ No contract defined between server and client, so loosely coupled implementation.
         ◦ REST is a lightweight protocol
         ◦ REST methods can be tested easily over browser.
-    . What are disadvantages of REST web services?
+
+13.	What are disadvantages of REST web services? RRR
 Some of the disadvantages of REST are:
         ◦ Since there is no contract defined between service and client, it has to be communicated through other means such as documentation or emails.
         ◦ Since it works on HTTP, there can’t be asynchronous calls.
-        ◦ Sessions can’t be maintained.
-    . What is a Resource in Restful web services?
+        ◦ Sessions can’t be maintained. (It is recomemded.)
+Note: Asynchronous call are which in which the browser is not blocked. Like, once a http request is send then browser javascript engine is still working and it does not block until response is received. Sadly, all rest calls are synchronous.
+
+14.	What is a Resource in Restful web services?
 Resource is the fundamental concept of Restful architecture. A resource is an object with a type, relationship with other resources and methods that operate on it. Resources are identified with their URI, HTTP methods they support and request/response data type and format of data.
-    . What are different HTTP Methods supported in Restful Web Services?RRR
+Note: Anything that is returned by processing a rest web service request. Like, employee object as response of the web service. Each resource is mapped by a URI through which it is exposed to client. 
+
+15.	What are different HTTP Methods supported in Restful Web Services?
 Restful web services supported HTTP methods are – GET, POST, PUT, DELETE and HEAD.
-    . Compare SOAP and REST web services?RRR
-SOAP
-REST
-SOAP is a standard protocol for creating web services.
-REST is an architectural style to create web services.
-SOAP is acronym for Simple Object Access Protocol.
-REST is acronym for REpresentational State Transfer.
-SOAP uses WSDL to expose supported methods and technical details.
-REST exposes methods through URIs, there are no technical details.
-SOAP web services and client programs are bind with WSDL contract
-REST doesn’t have any contract defined between server and client
-SOAP web services and client are tightly coupled with contract.
-REST web services are loosely coupled.
-SOAP learning curve is hard, requires us to learn about WSDL generation, client stubs creation etc.
-REST learning curve is simple, POJO classes can be generated easily and works on simple HTTP methods.
-SOAP supports XML data format only
-REST supports any data type such as XML, JSON, image etc.
-SOAP web services are hard to maintain, any change in WSDL contract requires us to create client stubs again and then make changes to client code.
-REST web services are easy to maintain when compared to SOAP, a new method can be added without any change at client side for existing resources.
-SOAP web services can be tested through programs or software such as Soap UI.
-REST can be easily tested through CURL command, Browsers and extensions such as Chrome Postman.
-    . What are different ways to test web services?
+
+16.	Compare SOAP and REST web services? RRR
+Compare on the following pointers:
+1.	Soap is protocol layer over HTTP while rest is an architecture only uses HTTP
+2.	Message or payload type like XML, JSON
+3.	WSDL or not
+4.	UDDI (primarily SOAP based, I guess we can use for Rest too)
+5.	Heavy and light weight
+6.	Soap directly exposes methods through WSDL, while Rest exposes the resources through endpoint but no concept of WSDL. 
+7.	Soap tightly coupled as it has contract while rest is loosely coupled. 
+8.	Soap hard to maintain as any change in soap web service leads to changes in client stubs also while methods can be changed by keeping the end points same. 
+9.	Soap can be tested using SoapUI while rest can be tested using Postman. 
+
+
+17.	What are different ways to test web services?
 SOAP web services can be tested programmatically by generating client stubs from WSDL or through software such as Soap UI.
 REST web services can be tested easily with program, curl commands and through browser extensions. Resources supporting GET method can be tested with browser itself, without any program.
-    . Can we maintain user session in web services?
-Web services are stateless so we can’t maintain user sessions in web services.
-    . What is difference between SOA and Web Services?RRR
+
+18.	Can we maintain user session in web services?
+Technically, we can have state full web service but that would be against the rest architecture. Having session in web service will hamper scalability. 
+
+19.	What is difference between SOA and Web Services? RRR
 Service Oriented Architecture (SOA) is an architectural pattern where applications are designed in terms of services that can be accessed through communication protocol over network. SOA is a design pattern and doesn’t go into implementation.
 Web Services can be thought of as Services in SOAP architecture and providing means to implement SOA pattern.
-    . What is the use of Accept and Content-Type Headers in HTTP Request?RRR
+
+20.	What is the use of Accept and Content-Type Headers in HTTP Request? 
 These are important headers in Restful web services. Accept headers tells web service what kind of response client is accepting, so if a web service is capable of sending response in XML and JSON format and client sends Accept header as “application/xml” then XML response will be sent. For Accept header “application/json”, server will send the JSON response.
 Content-Type header is used to tell server what is the format of data being sent in the request. If Content-Type header is “application/xml” then server will try to parse it as XML data. This header is useful in HTTP Post and Put requests.
-    . How would you choose between SOAP and REST web services?RRR
+
+21.	How would you choose between SOAP and REST web services? RRR
 Web Services work on client-server model and when it comes to choose between SOAP and REST, it all depends on project requirements. Let’s look at some of the conditions affecting our choice:
         ◦ Do you know your web service clients beforehand? If Yes, then you can define a contract before implementation and SOAP seems better choice. But if you don’t then REST seems better choice because you can provide sample request/response and test cases easily for client applications to use later on.
         ◦ How much time you have? For quick implementation REST is the best choice. You can create web service easily, test it through browser/curl and get ready for your clients.
         ◦ What kind of data format are supported? If only XML then you can go with SOAP but if you think about supporting JSON also in future then go with REST.
-    . What is JAX-WS API?
+
+22.	What is JAX-WS API?
 JAX-WS stands for Java API for XML Web Services. JAX-WS is XML based Java API to build web services server and client application. It’s part of standard Java API, so we don’t need to include anything else which working with it. Refer to JAX-WS Tutorial for a complete example.
-    . Name some frameworks in Java to implement SOAP web services?RRR
-We can create SOAP web services using JAX-WS API, however some of the other frameworks that can be used are Apache Axis and Apache CXF. Note that they are not implementations of JAX-WS API, they are totally different framework that work on Servlet model to expose your business logic classes as SOAP web services. Read more at Java SOAP Web Service Eclipse example.
-    . Name important annotations used in JAX-WS API?
-Some of the important annotations used in JAX-WS API are:
-        ◦ @WebService
-        ◦ @SOAPBinding
-        ◦ @WebMethod
-    . What is use of javax.xml.ws.Endpoint class?RRR
-Endpoint class provides useful methods to create endpoint and publish existing implementation as web service. This comes handy in testing web services before making further changes to deploy it on actual server.
-    . What is the difference between RPC Style and Document Style SOAP web Services?RRR
-RPC style generate WSDL document based on the method name and it’s parameters. No type definitions are present in WSDL document.
-Document style contains type and can be validated against predefined schema. Let’s look at these with a simple program. Below is a simple test program where I am using Endpoint to publish my simple SOAP web service.
-TestService.java
-package com.journaldev.jaxws.service;
 
-import javax.jws.WebMethod;
-import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
-import javax.xml.ws.Endpoint;
+23.	Name some frameworks in Java to implement SOAP web services?
+Apache axis and apache CFX. (They are not implementation of JAX-WS)
 
-@WebService
-@SOAPBinding(style = SOAPBinding.Style.RPC)
-public class TestService {
+24.	How to get WSDL file of a SOAP web service? RRR
+WSDL document can be accessed by appending? wsdl to the SOAP endoint URL. In above example, we can access it at http://localhost:8888/testWS?wsdl location.
 
-	@WebMethod
-	public String sayHello(String msg){
-		return "Hello "+msg;
-	}
-	
-	public static void main(String[] args){
-		Endpoint.publish("http://localhost:8888/testWS", new TestService());
-	}
-}
-When I run above program and then access the WSDL, it gives me below XML.
-rpc.xml
-<?xml version='1.0' encoding='UTF-8'?>
-<!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10 svn-revision#919b322c92f13ad085a933e8dd6dd35d4947364b. --><!-- Generated by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10 svn-revision#919b322c92f13ad085a933e8dd6dd35d4947364b. -->
-<definitions xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.jaxws.journaldev.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://service.jaxws.journaldev.com/" name="TestServiceService">
-<types/>
-<message name="sayHello">
-<part name="arg0" type="xsd:string"/>
-</message>
-<message name="sayHelloResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<portType name="TestService">
-<operation name="sayHello">
-<input wsam:Action="http://service.jaxws.journaldev.com/TestService/sayHelloRequest" message="tns:sayHello"/>
-<output wsam:Action="http://service.jaxws.journaldev.com/TestService/sayHelloResponse" message="tns:sayHelloResponse"/>
-</operation>
-</portType>
-<binding name="TestServicePortBinding" type="tns:TestService">
-<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
-<operation name="sayHello">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal" namespace="http://service.jaxws.journaldev.com/"/>
-</input>
-<output>
-<soap:body use="literal" namespace="http://service.jaxws.journaldev.com/"/>
-</output>
-</operation>
-</binding>
-<service name="TestServiceService">
-<port name="TestServicePort" binding="tns:TestServicePortBinding">
-<soap:address location="http://localhost:8888/testWS"/>
-</port>
-</service>
-</definitions>
-Notice that types element is empty and we can’t validate it against any schema. Now just change the SOAPBinding.Style.RPC to SOAPBinding.Style.DOCUMENT and you will get below WSDL.
-document.xml
-<?xml version='1.0' encoding='UTF-8'?>
-<!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10 svn-revision#919b322c92f13ad085a933e8dd6dd35d4947364b. --><!-- Generated by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10 svn-revision#919b322c92f13ad085a933e8dd6dd35d4947364b. -->
-<definitions xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.jaxws.journaldev.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://service.jaxws.journaldev.com/" name="TestServiceService">
-<types>
-<xsd:schema>
-<xsd:import namespace="http://service.jaxws.journaldev.com/" schemaLocation="http://localhost:8888/testWS?xsd=1"/>
-</xsd:schema>
-</types>
-<message name="sayHello">
-<part name="parameters" element="tns:sayHello"/>
-</message>
-<message name="sayHelloResponse">
-<part name="parameters" element="tns:sayHelloResponse"/>
-</message>
-<portType name="TestService">
-<operation name="sayHello">
-<input wsam:Action="http://service.jaxws.journaldev.com/TestService/sayHelloRequest" message="tns:sayHello"/>
-<output wsam:Action="http://service.jaxws.journaldev.com/TestService/sayHelloResponse" message="tns:sayHelloResponse"/>
-</operation>
-</portType>
-<binding name="TestServicePortBinding" type="tns:TestService">
-<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="sayHello">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-</binding>
-<service name="TestServiceService">
-<port name="TestServicePort" binding="tns:TestServicePortBinding">
-<soap:address location="http://localhost:8888/testWS"/>
-</port>
-</service>
-</definitions>
-Open schemaLocation URL in browser and you will get below XML.
-schemaLocation.xml
-<?xml version='1.0' encoding='UTF-8'?>
-<!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10 svn-revision#919b322c92f13ad085a933e8dd6dd35d4947364b. -->
-<xs:schema xmlns:tns="http://service.jaxws.journaldev.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://service.jaxws.journaldev.com/">
-
-<xs:element name="sayHello" type="tns:sayHello"/>
-
-<xs:element name="sayHelloResponse" type="tns:sayHelloResponse"/>
-
-<xs:complexType name="sayHello">
-<xs:sequence>
-<xs:element name="arg0" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="sayHelloResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-</xs:schema>
-So here WSDL document can be validated against the schema definintion.
-    . How to get WSDL file of a SOAP web service?RRR
-WSDL document can be accessed by appending ?wsdl to the SOAP endoint URL. In above example, we can access it at http://localhost:8888/testWS?wsdl location.
-    . What is sun-jaxws.xml file?
-This file is used to provide endpoints details when JAX-WS web services are deployed in servlet container such as Tomcat. This file is present in WEB-INF directory and contains endpoint name, implementation class and URL pattern. For example;
-sun-jaxws.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
-  <endpoint
-     name="PersonServiceImpl"
-     implementation="com.journaldev.jaxws.service.PersonServiceImpl"
-     url-pattern="/personWS"/>
-</endpoints>
-    . What is JAX-RS API?
+25.	What is JAX-RS API?
 Java API for RESTful Web Services (JAX-RS) is the Java API for creating REST web services. JAX-RS uses annotations to simplify the development and deployment of web services. JAX-RS is part of JDK, so you don’t need to include anything to use it’s annotations.
-    . Name some implementations of JAX-RS API?RRR
+
+26.	Name some implementations of JAX-RS API?RRR
 There are two major implementations of JAX-RS API.
         1. Jersey: Jersey is the reference implementation provided by Sun. For using Jersey as our JAX-RS implementation, all we need to configure its servlet in web.xml and add required dependencies. Note that JAX-RS API is part of JDK not Jersey, so we have to add its dependency jars in our application.
         2. RESTEasy: RESTEasy is the JBoss project that provides JAX-RS implementation.
-    . What is wsimport utility?RRR
-We can use wsimport utility to generate the client stubs. This utility comes with standard installation of JDK. Below image shows an example execution of this utility for one of JAX-WS project.
 
-    . Name important annotations used in JAX-RS API?
+27.	Name important annotations used in JAX-RS API? 
 Some of the important JAX-RS annotations are:
         ◦ @Path: used to specify the relative path of class and methods. We can get the URI of a webservice by scanning the Path annotation value.
         ◦ @GET, @PUT, @POST, @DELETE and @HEAD: used to specify the HTTP request type for a method.
         ◦ @Produces, @Consumes: used to specify the request and response types.
         ◦ @PathParam: used to bind the method parameter to path value by parsing it.
-    . What is the use of @XmlRootElement annotation?RRR
-XmlRootElement annotation is used by JAXB to transform java object to XML and vice versa. So we have to annotate model classes with this annotation.
-    . How to set different status code in HTTP response?RRR
-For setting HTTP status code other than 200, we have to use javax.ws.rs.core.Response class for response. Below are some of the sample return statements showing it’s usage.
-return Response.status(422).entity(exception).build();
-return Response.ok(response).build(); //200
-Source 2: https://www.javatpoint.com/web-services-interview-questions
-There is given frequently asked Web Services interview questions and answers that has been asked in many companies. Let's see the list of top Web Services interview questions.
-1) What is Web Service?
-Web Service is a software system for communicating two devices over the network. More details...
 
-2) How does a web service work?
+28.	What is the use of @XmlRootElement annotation? RRR
+XmlRootElement annotation is used by JAXB to transform java object to XML and vice versa. So we have to annotate model classes with this annotation. We denote this annotation on the class. 
+
+29.	How to set different status code in HTTP response? RRR
+2xx Success
+a.	200 OK
+b.	201 Created
+c.	202 Acceoted, but not yet handled right now. 
+d.	204 No Content. Request is processed but the client does not need to go to another page.
+3xx Redirection
+e.	304 Not Modified: A good example when browser sends request for asking if the cached copy is still fresh. Then, 304 indicates that the cache copy browser has in not modified. 
+4xx Client Error
+f.	400 Bad Request: It is returned when server does not understand the request due to some reason and poor syntax is a common reason. 
+g.	401 Unauthorized: As the name suggest, when the request lacks proper authentication credential then 401 is returned. 
+h.	403 Forbidden: This response is given when server refuses to process the request with a reason, if it wishes to make public, in the response payload. 403 is not for authentication but it is for authorization. 
+i.	404 Not Found
+j.	406 Not Acceptable: returned when server cannot produced response in the format mentioned in the content negotiation as part of request header. 
+k.	409 Conflict: This response comes when server find a conflict with the current state of resource asked or conflict in any rules setup. Like server might give this response if you try to upload a file which is older then the existing file provided its not allowed according to the rules set. 
+l.	415 Not Supported media type: Server return this response code when the request payload format type is not supported. 
+5xx Server Error
+m.	500 Internal Server Error: server cannot process request due to unknown reason. 
+n.	503 Service Unavailable: Server cannot accept request due to some reason.
+
+Source 2: https://www.javatpoint.com/web-services-interview-questions
+30.	How does a web service work?
 A web service is used to communicate among various applications by using open standards such as HTML, XML, WSDL, and SOAP. You can build a Java-based web service on Solaris that is accessible from your Visual Basic program that runs on Windows. You can also use C# to build new web services on Windows that can be invoked from your web application that is based on JavaServer Pages (JSP) and runs on Linux.
 
-3) What are the advantages of web services?
-    • Interoperability: By the help of web services, an application can communicate with other application developed in any language.
-    • Reusability: We can expose the web service so that other applications can use it.
-    • Modularity: By the help of web service, we can create a service for a specific task such as tax calculation etc.
-More details...
+31.	What is the advantage of XML in web service? 
+Although, JSON is light weight and easy to be loaded in javascript, XML has support for XML schema and namespaces. XML is supported by all the technologies. 
 
-4) What are the different types of web services?
-There are two types of web services:
-    • SOAP
-    • RESTful
+32.	Explain the loosely coupled architecture of web services. RRR
+Web service can be changed by making the URL same as before will not need client to be changed. This way we need not to update the client as web service update. This is what we call loosely coupled behavior. This feature makes the web service to be easily maintained. 
 
-5) What are the main features of web services?
-Following is a list of main features of web services:
-    • It is available over the Internet or private (intranet) networks.
-    • It uses a standardized XML messaging system.
-    • It is not tied to any one operating system or programming language.
-    • It is self-describing via a common XML grammar.
-    • It is discoverable via a simple find mechanism.
-
-6) What is SOAP?
-SOAP stands for Simple Object Access Protocol. It is a XML-based protocol for accessing web services. More details...
-
-7) What are the advantages of SOAP web services?
-    • WS Security
-    • Language Independent
-    • Platform Independent
-More details...
-
-8) What are the disadvantages of SOAP web services?
-    • Slow
-    • WSDL Dependent
-More details...
-
-9) What are the main features of SOAP?
-The following list specifies the features of SOAP:
-    • SOAP is a communication protocol.
-    • SOAP is used for communication between applications.
-    • SOAP is a format for sending messages.
-    • SOAP is designed to communicate via Internet.
-    • SOAP is platform independent.
-    • SOAP is language independent.
-    • SOAP is simple and extensible.
-    • SOAP allows you to get around firewalls.
-    • SOAP will be developed as a W3C standard.
-
-10) What is WSDL?
-WSDL stands for Web Services Description Language. It is a xml document containing information about web services such as method name, method parameter etc. More details...
-
-11) What is UDDI?RRR
-UDDI stands for Universal Description, Discovery and Integration. It is a XML based framework for describing, discovering and integrating web services. It contains a list of available web services. WSDL is the part of UDDI. More details...
-
-12) What is RESTful web services?
-REST stands for REpresentational State Transfer. It is a architectural style. It is not a protocol like SOAP. More details...
-
-13) What are the advantages of RESTful web services?
-    • Fast
-    • Language Independent
-    • Platform Independent
-    • Can use SOAP.
-    • Allows different data format.
-More details...
-
-12) What is the difference between SOAP and REST web services?
-No.
-SOAP
-REST
-1)
-SOAP is a protocol.
-REST is an architectural style.
-2)
-SOAP stands for Simple Object Access Protocol.
-REST stands for REpresentational State Transfer.
-3)
-SOAP can't use REST because it is a protocol.
-REST can use SOAP web services because it is a concept and can use any protocol like HTTP, SOAP.
-4)
-SOAP uses services interfaces to expose the business logic.
-REST uses URI to expose business logic.
-5)
-SOAP defines standards to be strictly followed.
-REST does not define too much standards like SOAP.
-6)
-SOAP permits XML data format only.
-REST permits different data format such as Plain text, HTML, XML, JSON etc.
-More details...
-
-13) What is SOA?RRR
-SOA stands for Service Oriented Architecture. It is a design pattern to provide services to other application through protocol. More details...
-
-14) What tools are used to test web services?
-    • SoapUI tool for testing SOAP and RESTful web services
-    • Poster for firefox browser
-    • Postman extension for Chrome
-
-15) What is the advantage of XML in web service?RRR
-In Web service, an XML is used to tag the data, format the data.
-
-16) What is the usage of WSDL in a web service?
-WSDL is used in web service to describe the availability of service.
-
-17) What is Interoperability in Web services?
-Web services facilitate various applications to communicate with each other and share data and services among themselves. Other applications can also use the web services. For example, a VB or .NET application can communicate with a Java web services and vice versa. Web services are used to make the application platform and technology independent.
-
-18) Explain the loosely coupled architecture of web services.
-A consumer of a web service is not tied to that web service directly. The web service interface can change over time without compromising the client's ability to interact with the service. A tightly coupled system implies that the client and server logic are closely tied to one another, implying that if one interface changes, the other must be updated. Adopting a loosely coupled architecture tends to make software systems more manageable and facilitates simpler integration between different systems.
-
-19) What are the advantages of having XML based Web services?AAA
-Using XML eliminates any networking, operating system, or platform binding. So Web Services based applications are highly interoperable application at their core level.
-
-Well XML and JSON are the two most popularly used formats for exchanging data through web services. XML is good and relied format for years. However, slowly, JSOn is gaining popularity over JSON as the same amount of data in JSON is quite light weighted than XML. Also, the parsing JSON is comparatively easy than XML so it make easier to se the data received. Example, Twitter only supports JSON format exchange. 
-20) What do you mean by synchronicity?RRR
+33.	What do you mean by synchronicity? RRR
 Synchronicity is used to bind the client to the execution of the service. In synchronous invocations, the client blocks and waits for the service to complete its operation before continuing. On the other hand, synchronous operations facilitate a client to invoke a service and then execute other functions.
-
-21) What is the usage of Service Transport Layer in Web service protocol stack?RRR
-The Service Transport Layer is used to transport messages between applications.
-This layer includes Hyper Text Transport Protocol (HTTP), Simple Mail Transfer Protocol (SMTP), File Transfer Protocol (FTP), and newer protocols like Blocks Extensible Exchange Protocol (BEEP).
-
-22) What is the usage of Service Description layer in Web Service Protocol Stack?
-The Service Description layer is used to describe the public interface to a specific web service. Currently, service description is handled via the Web Service Description Language (WSDL).
-
-23) What is the usage of Service Discovery layer in Web Service Protocol Stack?RRR
-The Service Discovery layer is used for centralizing services into a common registry and providing easy publish/find functionality.
-Currently, service discovery is handled via Universal Description, Discovery, and Integration (UDDI).
+Note: This is related to synchronous http calls. Web service cannot accomplish asynchronous call. 
 
 Source 3: https://career.guru99.com/top-50-web-services-interview-questions/
 
 
-1) Define Web Service?
-A web service is a kind of software that is accessible on the Internet. It makes use of the XML messaging system and offers an easy to understand, interface for the end users.
-2) What is new in this field for past few years?
-The initiation of XML in this field is the advancement that provides web service a single language to communicate in between the RPCs, web services and their directories.
-3) Give me an example of real web service?
-One example of web services is IBM Web Services browser. You can get it from IBM Alphaworks site. This browser shows various demos related to web services. Basically web services can be used with the help of SOAP, WSDL, and UDDI . All these, provide a plug-and-play interface for using web services such as stock-quote service, a traffic-report service,  weather service etc.
-4) How you define web service protocol stack?
-It is basically set of various protocols that can be used to explore and execute web services. The entire stack has four layers i.e. Service Transport, XML Messaging, Service Description and Service Discovery.
-5) Can you define each of these layers of protocol stack?
-The Service Transport layer transfer messages between different applications, such as HTTP, SMTP, FTP, and Blocks Extensible Exchange Protocol (BEEP). The XML Messaging layer encodes messages in XML format so that messages can be understood at each end, such as XML-RPC and SOAP. The Service Description layer describes the user interface to a web service, such as WSDL. The Service Discovery layer centralizes services to a common registry and offer simple publish functionality, such as UDDI.
-6) Define XML – RPC?
-It is a protocol that makes use of XML messages to do Remote Procedure Calls.
-7) Define SOAP?
-SOAP is an XML based protocol to transfer between computers.
+34.	Give me an example of real web service?
+Google Map API is one big example of web service. I have personally used it while working in a project. 
 
+35.	Define XML – RPC? 
+RPC stands for remote procedure class and is used to send request from one node to another on a network. Now, if we use XML to encode its call and send over HTTP is called as XML RPC.  
+ 
+36.	What do you mean by PKI?
+It means Public-Key Infrastructure. This infrastructure has got lot of entities to manage the public key encryption. 
 
-8) Define WSDL?
-It means Web Services Description Language. It is basically the service description layer in the web service protocol stock. The Service Description layer describes the user interface to a web service.
-9) What kind of security is needed for web services?
+37.	Can you name few free and commercial implementations for web services?
+JAX_WS, apache axis, apache cfx, JAX-RX, restlet, resteasy, jersey and spring rest. Jeresy is a free implementation of rest web service. 
 
-Web Services
-The security level for web services should be more than that of what we say Secure Socket Layer (SSL). This level of security can be only achieved from Entrust Secure Transaction Platform. Web services need this level of security to ensure reliable transactions and secure confidential information .
-10) Do you have any idea about foundation security services?
-As implies from its name, these services are the foundation or basics of integration, authentication, authorization, digital signatures and encryption processes.
-11) Define Entrust Identification Service?
-Entrust Identification Service comes from the Entrust Security Transaction Platform. This platform allows companies to control the identities that are trusted to perform transactions for Web services transactions.
-12) What UDDI means?
-UDDI stands for Universal, Description, Discovery, and Integration. It is the discovery layer in the web services protocol stack.
-13) Define Entrust Entitlements Service?
-This service verifies entities that attempt to access a web service. For Example, the authentication service, the Entitlements Service ensures security in business operations.
-14) Define Entrust Privacy Service?
-As its name implies, it deals with security and confidentiality. This service encrypts data to ensure that only concerned parties can access the data.
-15) What do you mean by PKI?
-It means Public-Key Infrastructure.
-16) What tools are used to test a web service?
-I have used SoapUI for SOAP WS and Firefox poster plugin for RESTFul Services.
-17) Differentiate between a SOA and a Web service?
-SOA is a design and architecture to implement other services. SOA can be easily implemented using various protocols such as HTTP, HTTPS, JMS, SMTP, RMI, IIOP, RPC etc. While Web service, itself is an implemented technology. In fact one can implement SOA using the web service.
-18) Discuss various approaches to develop SOAP based web service?
-We can develop SOAP based web service with two different types of approaches such as contract-first and contract-last. In the first approach, the contract is defined first and then the classes are derived from the contract while in the later one, the classes are defined first and then the contract is derived from these classes.
-19) If you have to choose one approach, then what will be your choice?
-In my point of view, the first approach that is the contract-first approach is more feasible as compared to the second one but still it depends on other factors too.
-20) Is there any special application required to access web service?
-No, you don’t need to install any special application to access web service. You can access web service from any application that supports XML based object request and response.
-21) Can you name few free and commercial implementations for web services?AAA
-The implementations I know are Apache SOAP, JAX-WS Reference Implementation, JAX-RS Reference Implementation, Metro, Apache CXF, MS.NET and Java 6.
+38.	How one can provide API to users? How can we create a web service and make it open for the world to use it. Like we have various app stores for publishing our apps. RRR
+Once you have created your web service then you have a few options to make it public. You can host it yourself by buying a domain where you can deploy your web service. You can also deploy it on cloud service providers like Google Cloud, Amazon Web Services or Microsoft Azure. If you are not looking for server based deployment then you can probably deploy it to Google AppEngine or AWS Elastic BeanStalk which are more like app store for we service or application. For every option you will ultimately get a URL to access the deployed web service. This way it can be used by anyone who has access to internet. 
+Now, you have deployed your web service but how would people know about it. Well, you need to do a little bit of publicity. You can probably have a blog or educational website for the web service you have created and play around with google search engine optimization technique to get hits from the users. You can also list your web service to some online API directories like ProgrammableWeb or Public APIs.
+I think how google do publicity of their apps by dedicated web site which is developers.google.com.  
+ 
+39.	How can you document web service? RRR
+Well, for creating documentation for not just web service but for any kind of software, we have a lot of tools which are way too handy for this purpose. The best tool that you can use for documentation for your REST web service is swagger which is an open source tool. 
 
-Jeresy is an open source framework to develope REST web services. 
+40.	What are distributed technologies?
+Software which has different parts of it deployed on different servers. 
 
-22) Name browser that allows access to web service?RRR
-JavaScript XmlHttpRequest object is required to access web service via browsers. The browsers that support this object are Internet Explorer, Safari and Mozilla-based browsers like FireFox.
-23) What is REST?
-REST stands for Representational State Transfer. REST itself is not a standard, while it uses various standards such as HTTP, URL, XML/HTML/GIF/JPEG (Resource Representations) and text/xml, text/html, image/gif, image/jpeg, etc (MIME Types).
-24) How one can provide API to users?RRR
-To provide an API to the users, one can easily do this with an “open table”. All you need to do is to write open table which is basically an XML schema that point to a web service.
-25) Name the various communication channels in web service?RRR
-Web service is integrated with three protocols such as HTTP/POST, HTTP/GET, and SOAP. It provides three different communication channels to clients. Client can choose any communication method as per requirements.
-26) How can you document web service?AAA
-Web services are contemplated as self-documenting because they provide entire information regarding the available methods and parameters used for XML based standard, known as WSDL. One can also provide more information to explain web services via their own WebService and WebMethod attributes.
+41.	Explain in brief, what DISCO is? RRR
+DISCO means discovery. It groups the list of interrelated web services. The organization that provides web services, issues a DISCO file on its server and that file contains the links of all the provided web services. This standard is good when client knows the company already. Also it can be used within a local network as well. 
+Note: it is only for soap web service. 
+ 
+42.	What are the steps performed by the client to access a web service?
+As far as rest web service is concerned. We just need to know the end point and the request method needs to be send. These details we must get from the web service provider. 
 
-SOAP web service has WSDL for documenting about the web service however REST web service does not have anything. THis is for the reason
-that REST web service should ideally use only HTTP GET, PUT, POST or DELETE methods. Therefore, we have just have 4 methods on the resource
-so we do not really need any WSDL.
-
-27) What are the situations, when we need ASP.NET web services?
-ASP.NET web services are used when one need to implement three tier architecture in a web service. It allows handy ways to use middle tier components through internet. The main advantage of .NET Web services is that they are capable enough to communicate across firewalls because they use SOAP as transport protocol.
-28) What are distributed technologies?
-The increasing ratio of distributed applications has raised demand for distributed technologies. It allows segmenting of application units and transferring them to different computers on different networks.
-29) Differentiate between web services, CORBA and DCOM?RRR
-Web services transfer/receive messages to/from application respectively, via HTTP protocol. It uses XML to encode data.
-
-
-CORBA and DCOM transfer/receive messages to/from application respectively, via non-standard protocols such as IIOP and RPC.
-30) Can you tell few benefits of web services?
-The biggest advantage of web service is that is supported by wide variety of platforms. Moreover, in near future, web services may spread its boundary and enhance new methods that will provide ease to clients. The enhancement will not affect the clients, even if they offer old methods and parameters.
-31) Can you name some standards used in web services?AAA
-The standards used in web services are WSDL (used to create interface definition), SOAP (used to structure data), HTTP (communication channels), DISCO (used to create discovery documents) and UDDI (used to create business registries).
-
-This hold good for SOAP web service. This has standard like SOAP protocol, WSDL, XML content type, DISCO, UDDI.
-
-32) Explain in brief, what DISCO is?RRR
-DISCO means discovery. It groups the list of interrelated web services. The organization that provides web services, issues a DISCO file on its server and that file contains the links of all the provided web services. This standard is good when client knows the company already. Also it can be used within a local network as well.
-33) Explain in brief, what UDDI is?
-UDDI (Universal Description, Discovery, and Integration) provides consolidated directory for web services on the internet. Clients use UDDI to find web services as per their business needs. It basically hosts the web services from various companies. In order to share web services, you need to publish it in UDDI.
-34) Explain the .NET web services supported data types? 
-.Net web services uses XML-based standards to transfer/receive information. Thus, .NET web services can only works with data types known by XML schema standard. Like FileSteam, Eventlog etc. are not recognized by the XML schema standards and hence, not supported in web services.
-35) How a .NET web service is tested?
-ASP.NET uses a test page routinely, when one calls for the URL of .asmx file in any browser. This page shows complete information regarding web services.
-36) How a .NET web service is consumed?
-Since we know that web services are constructed on XML standards. Therefore, clients need to have complete understanding of XML-based messages to interchange messages. Clients can communicate with web services through .NET framework that offers proxy mechanisms. These proxy mechanisms have detailed information regarding data sharing within web services that can be easily used by the clients.
-37) Can you name the two Microsoft solutions for distributed applications?RRR
-The two Microsoft solutions for distributed applications are .NET Web Services and .NET Remoting.
-38) Differentiate between .NET Web Services and .NET Remoting?
-As far as protocol is concerned, .NET Web Service uses HTTP, while, .NET Remoting uses any protocol i.e. TCP/HTTP/SMTP. When it comes to performance, .NET Remoting is comparatively, faster than.NET Web Service. Also, as .NET Web Services are hosted via IIS, therefore, it is far more reliable than the .NET Remoting.
-39) Name the components to be published while deploying a Web Service?RRR
-The components that need to be published during a web service deployment are Web Application Directory, Webservice.asmx File, Webservice.Disco File, Web.Config File and Bin Directory.
-40) What are the steps performed by the client to access a web service?
-First of all a web reference to the web service is created by the client in his application. Then a proxy class is generated. After that an object of the proxy class is created and at last, the web service is accessed via that proxy object.
-41) How web services are implemented in .NET?
-To implement web services in .NET, HTTP handlers are used that interrupt requests to .asmx files.
-42) Explain few disadvantages of Response Caching?
-Response Caching is useless or incompetent when method accepts extensive amount of values because caching means to store lot of information.  Also, if the method depends on external source of information, and that are not provided within the parameters then such methods are bypassed.
-43) What is the alternate solution to Response Caching?
-One can use Data Caching (System.Web.Caching.Cach) instead of Response Caching.
-44) Brief few drawbacks of using GET and POST methods to communicate with the web service?
-These methods are less secure and inhibit users to pass structures and objects as arguments. Also, it doesn’t allow users to pass ByRef arguments.
-45) How can one access a class as a web service?
-To access a class as a web service, one should inherit the class from the System.Web.Services.WebService class and qualify the class with the WebService attribute.
-46) How can one access the web service class method via internet?
-To access web service class method via internet, one should qualify a method with the WebMethod attribute.
-47) How a SOAP message is structured?
-A SOAP message is consists of SOAP Envelope, SOAP Headers, and SOAP Body.
-48) Can you name different kinds of web services?
-There are two types of web services in total i.e. SOAP based web service and RESTful web service.
-This question is already mentioned earlier.
-49) What’s different in RESTful web services?
-The RESTful web services contains no contract or WSDL file.
-50) Give me few reasons to use RESTful web service?
-The RESTFul web services are simple to implement and test. It supports various data formats such as XML, JSON etc.
-51) Explain what is JAVA web services? What are the methods to create web services?
-Java webservices is developed to build and deploy basic web service on JAVA platform.
-To create a web services, there are two approaches that are adopted
-    • Top-down approach
-    • Top-up approach
-52) Explain what is JAXP?
+43.	Explain what is JAXP?
 JAXP is a JAVA API for XML processing that enables application to write, read, manipulate and transform XML data.  Similarly, to perform other various function there are other Java API’s as well like JAX-RPC, JAXM, JAXR, JAXB, etc.
-53) Mention the JAXB binding framework?
-JAXB binding framework is available in three Java Packages
-    • xml.bind: This package defines abstract classes and interfaces that are used directly with content classes
-    • xml.bind.util: This package contains utility classes that may be availed by client applications to manage marshalling, unmarshalling and validation events
-    • xml.bind.helper: This helper package gives partial implementations for some of the javax.xml.bind interfaces. These APIs are not to be directly used by applications using JAXB architecture
-54) Give a simple example of how XML document can be Marshal and Unmarshal in JAVA framework?
+==================COMPLETE JAXB FIRST AND IF NEED IN FUTURE===========================
+44.	Give a simple example of how XML document can be Marshal and Unmarshal in JAVA framework? Using JAXB for XML and Jackson for JSON. 
 Marshalling is the process of converting XML document into Java readable form while UnMarshalling is the reverse process of Marshalling.  Let see how Java unmarshals an XML document and then marshals it back
 JAXBContext jc= JAXBContext.newInstance (“com.acme.foo”);
 // unmarshal from foo.xml
@@ -543,8 +222,7 @@ FooObject fooObj=
 // marshal to sytem.out
 Marshaller m = jc.createMarshaller ();
 m.marshal (fooObj, System.out);
-55) Explain what does Marshaller do if jaxb.encoding property is not declared?
-By default, the Marshaller will use “UTF-8” if jaxb.encoding property is not declared.
+
 56) Mention what are the types of validation can a JAXB client can perform?
 There are two types of JAXB client validation that a JAXB can perform
     • Unmarshal Time Validation
@@ -562,280 +240,94 @@ In some cases, you are required to customize the default binding like
     • Overriding default binding- like specifying that a model group should be attached to a class rather than a list
 60) Explain what is Inline Customization?
 Customization to JAXB bindings made by means of inline binding declarations  in an XML schema file that take the form of <xsd:appinfo> elements embedded in schema <xsd:annotation>elements.
-61) Explain what is XML signature?
-XML can be used to sign any arbitrary data whether it is a binary or XML.  The data is recognized via URIs in one or more reference elements.  It is described in one or more forms, like detached, enveloping or enveloped.
-62) Explain what is Stax?
+=====================================================================================
+
+45.	Explain what is XML signature?
+XML can be used to sign any arbitrary data whether it is a binary or XML. The purpose XML signing solves is what exactly a digital signing would solve but XML signing provides special feature of signing a section of a document and not necessary the entire document. 
+
+46.	Explain what is Stax?
 Stax stands for Streaming API for XML; it is an API to read and write XML documents, originating from the JAVA programming language.
-63) Mention what are the usual XML APIs?
-The usual XML APIs includes
-    • DOM based or Tree based APIs: The whole document is read into memory as a tree structure for random availability by calling application
-    • Event based APIs: The application registers to get events as entities are encountered within the source document
-64) Explain what is Push parsing and Pull parsing?
-    • Pull Parsing: Streaming pull parsing is referred to a programming model in which a client application calls methods on an XML parsing library, when it needed to communicate with an XML infoset- which means the client will only gets XML data when it is asked for
-    • Push Parsing: In Push Parsing, the parser pushes parsing events or XML data to the application.  In push model, the parser got the hold over the parsing  process and the parser calls the implemented handler methods.
-65) Explain on which technology does XWS security is based on? List out the options that XWS security provides for securing JAX-RPC applications?
-XWS security is based on securing web services build on JAX-RPC and on stand-alone application based on SAAJ.  For securing JAX-RPC application, options that XWS security provides are
-    • XML digital signature
-    • XML encryption
-    • Username token verification
-    • XWS security framework APIs
-66) List out the six packages available in XML Digital signature API?
-Digital signature API is
-    • xml.crypto
-    • xml.crypto.dsig
-    • xml.crypto.dsig.keyinfo
-    • xml.crypto.dsig.spec
-    • xml.crypto.dom
-    • xml.crypto.dsig.dom
-67) Explain what is JAXR?
-JAXR is the JAVA programming APIs for Java platform application to access and programmatically interact with various kinds of meta-data registries.
-68) Explain what does the JAXR architecture consist of?
-JAXR architecture is consists of a JAXR client and JAXR provider.
-    • JAXR client: It is a client program which uses the JAXR API to use a registry through a JAXR provider
-    • JAXR provider: It is an implementation of the JAXR API that provide access to a particular registry provider or to a class of registry providers that are built on a common speicifications.
-69) Explain what is JAXM messaging models?
-There are two types of messaging models for JAXM synchronous and asynchronous
-    • Synchronous messaging model: In such type of model, client directly communicates with the source. In this, the client will send the request and waits.
-    • Asynchronous messaging model: In this model, client directs the message to the messaging provider and returns back.  Messaging provider then executes the routing of the message to the end source.
-70) Explain what is UDDI, DISCO and WSDL?
-    • UDDI: It means Universal Description, Discovery and I It is the directory that is used to publish and discover public web services
-    • DISCO: It is commonly known as discovery. It clubs common services together and exposes schemas document of the web services
-    • WSDL: It stands for web service description language (WSDL). It is used to describe web services.  The description includes URL of web services, properties and methods supported by web services, data type it supports and protocol detail it supports
 
 Source 4: http://www.softwaretestinghelp.com/restful-web-services-interview-question/
-Q #1) What is your understanding of what are RESTful web services?
 
-Just like SOAP (Simple Object Access Protocol), which is used to develop web services by XML method, RESTful web services use web protocol i.e. HTTP protocol method. They have the feature like scalability, maintainability, help multiple application communication built on various programming languages etc.
+47.	What are the core components of HTTP request and HTTP response?
+The core components that come under HTTP Request are: Request Method, URI it wants to connect, Request header (info about the data, metadata), Request body (actual request data).
+The core components that come under HTTP Response are: Response Code, Response header, Response body.
 
-RESTful web service implementation defines the method of accessing various resources which are required by the client and he has sent the request to the server through the web browser. The important aspects of this implementation include:
-
-Resources
-Request Headers
-Request Body
-Response Body
-Status codes
-Q #2) Name the protocol which is used by RESTful web services.
-
-RESTful web services use a famous web protocol i.e. HTTP protocol. This serves as a medium of data communication between client and server. HTTP standard methods are used to access resources in RESTful web service architecture.
-
-Q #3) Explain the term ‘Addressing’ with respect to RESTful WEB service.
-
-Just like we require address with postal code to reach any person, in the same way, ‘Addressing’ locates resources that are present on the server for the purpose of hosting web services. This is usually done with URI i.e. Unified Resource Identifier.
-
-Q #4) Enlist features of RESTful web services.
-
-Every RESTful web services should have following features and characteristics that are enlisted below:
-
-Based on the Client Server representation.
-Use of HTTP protocol for performing functions like fetching data from the web service, retrieving resources, execution of any query, etc.
-The communication between the server and client is performed through the medium known as ‘messaging’.
-Addressing of resources available on the server through URIs.
-Based on the concept of statelessness where every client request and the response is independent of the other with complete assurance of providing required information.
-Uses the concept of caching.
-Works on Uniform interface.
-Q #5) Explain messaging technique.
-
-Messages are the mode of exchanging data for any type of communication to take place. In the same way, HTTP protocol plays the role of message communication between the client and server through HTTP Request and Response methods. HTTP request is sent by the client who contains information about the data and in turn, receives HTTP Response from the server.
-
-Messages are the collection of information about the data i.e. Metadata.
-
-Q #6) What are the core components of HTTP request and HTTP response?
-
-The core components that come under HTTP Request are:
-
-Verb: Includes methods like GET, PUT, POST, etc.
-Uniform Resource Identifier for identifying the resources available on the server.
-HTTP Version for specifying the HTTP version.
-HTTP Request header for containing the information about the data.
-HTTP Request body that contains the representation of the resources in use.
-The core components that come under HTTP Response are:
-
-Request Code: This contains various codes which determine the status of the server response.
-HTTP Version for specifying the HTTP version.
-HTTP Response header for containing the information about the data.
-HTTP Response body that contains the representation of the resources in use.
-Q #7) Explain the term ‘Statelessness’ with respect to RESTful WEB service.
-
-In REST, ST itself defines State Transfer and Statelessness means complete isolation. This means, the state of the client’s application is never stored on the server and is passed on. In this process, the clients send all the information that is required for the server to fulfill the HTTP request that has been sent. Thus every client request and the response is independent of the other with complete assurance of providing required information.
-
-Every client passes a ‘session identifier’ which also acts as an identifier for each session.
-
-Q #8) Enlist advantages and disadvantages of ‘Statelessness’.
+48.	Enlist advantages and disadvantages of ‘Statelessness’. RRR
 
 In the above question, we have understood the meaning of statelessness with respect to the client-server communication. Now, let us see some of its advantages and disadvantages.
 
 Advantages:
-
-Every method required for communication is identified as an independent method i.e. there are no dependencies to other methods.
-Any previous communication with the client and server is not maintained and thus the whole process is very much simplified.
-If any information or metadata used earlier in required in another method, then the client sends again that information with HTTP request.
-HTTP protocol and REST web service, both shares the feature of statelessness.
+In increases the scalability by not having to manage the state. It makes the processing of the web service much simpler. 
 Disadvantages:
+In every HTTP request from the client, the availability of all the information regarding the client state is required by the web service.
 
-In every HTTP request from the client, the availability of some information regarding the client state is required by the web service.
-Q #9) Enlist some important constraints for RESTful web services.
-
-Every constraint has positive as well as negative impacts and to produce an overall architecture, there should be the balance between both of them. Below mentioned are some important constraints for RESTful web service:
-
-
-
- 
-There should be separate concerns for each server and client which will help to maintain the modularity within the application. This will also reduce the complexity and increase the scalability.
-The client-server communication should be stateless, which means no previous information is used and the complete execution is done in isolation. In cases of failure, it also helps the client to recover.
-In client-server communication, the HTTP response should be cacheable so that when required cached copy can be used which in turn enhances the scalability and performance of the server.
-The fourth constraint is the uniform interface which allows client-server interaction to be easily understood. This constraint is further divided into four sub-constraints as:
-Resource Identification
-Resource manipulation
-Each message is easily understood and is self-descriptive.
-Hypermedia, which is defined as the text with hyperlinks and when clicked it moves to another application state.
-Client-server communication should be done on a layered system and thus the client should only have knowledge about the intermediate level with which communication is being done,
-Q #10) What is a ‘Resource’?
-
-Just like the ‘Object’ instance, we have learned in object orient programming Language, in the same way, ‘Resource’ is defined as an object of a type which can be an image, HTML file, text data, and any type of dynamic data. There are varieties of representation formats available in order to represent a resource.
-
+49.	Enlist some important constraints for RESTful web services. RRR
+Below are some constraints on restful web service:
+1.	Uniform Interface: The URIs through which we expose the web service apis should be uniform. This means that the way URIs are build should look uniform.
+2.	Client server coupling: This means that development of client and server should not impact each other. Only the client should depend on the URI not directly how api is build. This makes application and web service more maintainable. 
+3.	Stateless: Should not store any previous request and hence no history. This leads to more scalability and simplification in the processing of web service. 
+4.	Cacheable: These days caching is of at most importance as it can increase the performance.
+5.	Layered System: A web service can have code on multiple server. 
+6.	Code on demand: This is optional but if a client need code of an api then it can be given as response of the request. 
+  
+50.	What is a ‘Resource’?
+Just like the ‘Object’ instance, we have learned in object orient programming Language, in the same way, ‘Resource’ is defined as an object of a type which can be an image, HTML file, text data, and any type of dynamic data. There are varieties of representation formats available in order to represent a resource. Every resource is mapped with a URI. 
 Some most common are enlisted below:
-
 JSON
 YAML
 XML
 HTML
-Q #11) Why proper representation of Resource is required?
 
-Representation is very important because it determines the easy identification of resources. With proper representations of resource in the proper format, allows the client to easily understand the format.
+51.	Enlist some important points that should be kept in mind while designing Resources representation for RESTful web services.
+Consider all the constraints of the roy fielding specification. Makes you rest api best.
 
-Q #12) Enlist some important points that should be kept in mind while designing Resources representation for RESTful web services.
+52.	What is Caching? RRR
 
-As there are no restrictions on the format in which the resource representation is done but just that the main requirement is the format of the representation should be as per the client requirement. A good resource representation is designed by considering the following main points:
-
-The resource representation format should be easily understood by the client and server.
-The representation should be complete regardless of its format structure, which may be complex or simple.
-In the case of the link of the resources to other resources, such cases should also be considered and handled.
-Q #13) What is Caching?
-
-Caching is the process in which server response is stored so that a cached copy can be used when required and there is no need of generating the same response again. This process not only reduces the server load but in turn increase the scalability and performance of the server. Only the client is able to cache the response and that too for a limited period of time.
-
+Caching is the process in which server response is stored so that a cached copy can be used when required and there is no need of generating the same response again. Only the client is able to cache the response and that too for a limited period of time. This boosts the performance of the web service by reducing the load of repetitive same requests.
+GET method is kept cacheable by default while POST method is kept non cacheable by default. Under special situations, we can reverse the caching status for GET and POST. PUT and DELETE method cannot be made cacheable. 
+Below are some http header which are important for controlling caching behavior:   
+1.	Expire: The expire header specifies the absolute time of expiry of cached response. Beyond that time, a cached response is considered stale and need to be validated by the origin. 
+2.	Cache-Control: this is explained in next question in detail. 
+3.	ETag: Server identifies each representation with a unique number which is Etag. Etag changes as the state of the resource changes. 
+4.	Last-Modified: Date header of response indicates when the response is generated while last modified header shows that when the resource was last modified.   
 Mentioned below are the header of the resources and their brief description so that they can be identified for the caching process:
+By the way, cache-control and Expire are two most important for controlling cache behavior. 
 
-Time and Date of resource creation
-Time and date of resource modification that usually stores the last detail.
-Cache control header
-Time and date at which the cached resource will expire.
-The age which determines the time from when the resource has been fetched.
-Q #14) Explain Cache-control header.
-
-A standard Cache control header can help in attaining cache ability. Enlisted below is the brief description of various cache control header:
-
+53.	Explain Cache-control header. RRR
+A standard Cache control header can help in attaining cache ability. Enlisted below is the brief description of various cache control header directives:
 Public: Resources that are marked as the public can be cached by any intermediate components between the client and server.
 Private: Resources that are marked as private can only be cached by the client.
-No cache means that particular resource cannot be cached and thus the whole process is stopped.
-Q #15) What are the best practices that are to be followed while designing RESTful web services?
+No cache: means that particular resource cannot be cached and thus the whole process is stopped.
+max-age: this defines the seconds after which the cached copy should be considered stale.  
 
+54.	What are the best practices that are to be followed while designing RESTful web services?
 To design a secure RESTful web service, there are some best practices or say points that should be considered. These are explained as follows:
+1.	Every input on the server should be validated.
+2.	Never pass any sensitive data through URL.
+3.	Only HTTP error messages should be used for indicating any fault.
+4.	Use message format that is easily understood and is required by the client.
+5.	All the constraints. 
 
-Every input on the server should be validated.
-Input should be well formed.
-Never pass any sensitive data through URL.
-For any session, the user should be authenticated.
-Only HTTP error messages should be used for indicating any fault.
-Use message format that is easily understood and is required by the client.
-Unified Resource Identifier should be descriptive and easily understood.
-Q #16) What is Payload?
-
+55.	What is Payload?
 The request data which is present in the body part of every HTTP message is referred as ‘Payload’.  In Restful web service, the payload can only be passed to the recipient through POST method.
-
 There is no limit of sending data as payload through POST method but the only concern is that more data with consuming more time and bandwidth. This may consume much of user’s time also.
 
-Q #17) Enlist some of the HTTP methods with description.
-
+56.	Enlist some of the HTTP methods with description.
 Mentioned below is the list of HTTP methods with their descriptions:
-
 GET: This is a read only operation which fetches the list of users on the server.
 PUT: This operation is used for the creation of any new resource on the server.
 POST: This operation is used for updating an old resource or for creating a new resource.
 DELETE: As the name suggests, this operation is used for deleting any resource on the server.
 OPTIONS: This operation fetches the list of any supported options of resources that are available on the server.
-Q #18) What is the difference between PUT method and POST method?
-
-The major difference between the PUT and POST method is that the result generated with PUT method is always same no matter how many times the operation is performed. On the other hand, the result generated by POST operation is always different every time. 
-
-Q #19) What is your understanding about JAX-RS?
-
-JAX-RS is defined as the Java API for RESTful web service. Among multiple libraries and framework, this is considered as the most suitable Java programming language based API which supports RESTful web service.
-
-Some of the implementations of JAX-RS are:
-
-Jersey
-RESTEasy
-Apache CFX
-Play
-Among these, Jersey is the most popular framework.
-
-Q #20) What are HTTP status codes? Enlist few with meaning.
-
-HTTP status codes basically are the representation of the status of the task that has been performed on the server, with the mode of some codes. Every code has their own meaning.
-
-Some of the HTTP status codes with their meaning are as follows:
-
-Code 200: This indicates success.
-Code 201: This indicates resource has been successfully created.
-Code 204: This indicates that there is no content in the response body.
-Code 404: This indicates that there is no method available.
-There are few more such codes that indicate the status.
-
-Conclusion:
-
-This article will help you prepare for the RESTful web services interview and help you to understand the concept in the simple and easy way. I have tried to cover all the areas which are very necessary for having the complete knowledge about RESTful Web services.
-
-Just remember, it may be possible that you are not able to answer all questions in the interview but whatever you answer should be accurate. Your basic concept should be strong and your confidence level should be high.
-
 
 Source 5:https://career.guru99.com/rest-api-interview/
 15 Rest API Interview Question & Answers	
+57.	Mention whether you can use GET request instead of PUT to create a resource?
+No, you are not supposed to use POST.  GET operations should only have view rights
 
-
- 
-1) Explain what is REST and RESTFUL?
-
-REST represents REpresentational  State Transfer; it is a relatively new aspect of writing web API.
-
-RESTFUL is referred for web services written by applying REST architectural concept are called RESTful services, it focuses on system resources and how state of resource should be transported over HTTP protocol to different clients written in different language.  In RESTFUL web service HTTP methods like GET, POST, PUT and DELETE can be used to perform CRUD operations.
-
-2) Explain the architectural style for creating web API?
-
-The architectural style for creating web api are
-
-HTTP for client server communication
-XML/JSON as formatting language
-Simple URI as the address for the services
-Stateless communication
-3) Mention what tools are required to test your web API?
-
-SOAPUI tool for SOAP WS and Firefox “poster” plugin for RESTFUL services.
-
-4) Mention what are the HTTP methods supported by REST?
-
-HTTP methods supported by REST are:
-
-GET: It requests a resource at the request URL. It should not contain a request body as it will be discarded. Maybe it can be cached locally or on the server.
-POST: It submits information to the service for processing; it should typically return the modified or new resource
-PUT: At the request URL it update the resource
-DELETE: At the request URL it removes the resource
-OPTIONS: It indicates which techniques are supported
-HEAD: About the request URL it returns meta information
-5) Mention whether you can use GET request instead of PUT to create a resource?
-
-No, you are not supposed to use POST or GET.  GET operations should only have view rights
-
-12-23-2014 12-07-18 PM
-
-6) Mention what are resources in a REST architecture?
-
-Resources are identified by logical URLs; it is the key element of a RESTful design.  Unlike, SOAP web services in REST, you view the product data as a resource and this resource should contain all the required information.
-
-7) Mention what is the difference between AJAX and REST?
-
-
- 
+58.	Mention what is the difference between AJAX and REST? 
                                 AJAX	                                REST
 In Ajax, the request are sent to the server by using XMLHttpRequest objects. The response is used by the JavaScript code to dynamically alter the current page
 Ajax is a set of technology; it is a technique of dynamically updating parts of UI without having to reload the page
@@ -844,336 +336,526 @@ REST requires the interaction between the customer and server
  REST have a URL structure and a request/response pattern the revolve around the use of resources
 REST is a type of software architecture and a method for users to request data or information from servers
 REST requires the interaction between the customer and server
-7) Mention some key characteristics of REST?
 
-Some key characteristics of REST includes
-
-REST is stateless, therefore the SERVER has no state (or session data)
-With a well-applied REST API, the server could be restarted between two calls as every data is passed to the server
-Web service mostly uses POST method to make operations, whereas REST uses GET to access resources
-8) Mention what are the different application integration styles?
-
+59.	Mention what are the different application integration styles? 
 The different integration styles include
-
 Shared database
 Batch file transfer
 Invoking remote procedure (RPC)
 Swapping asynchronous messages over a message oriented middle-ware (MOM)
-9) Explain how JAXB related to RESTful web API?
 
-
- 
-JAXB stands for java arch for XML binding.
-
-10) Mention what is the difference between PUT and POST?
-
-“PUT” puts a file or resource at a particular URI and exactly at that URI.  If there is already a file or resource at that URI, PUT changes that file or resource.  If there is no resource or file there, PUT makes one
-
-POST sends data to a particular URI and expects the resource at that URI to deal with the request.  The web server at this point can decide what to do with the data in the context of specified resource
-
-PUT is idempotent meaning, invoking it any number of times will not have an impact on resources.
-
-However, POST is not idempotent, meaning if you invoke POST multiple times it keeps creating more resources
-
-11) Mention which markup language can be used in restful web api?
-
-JSON and XML are the two markup language that can be used in restful web api
-
-12) Mention what is the difference between RPC or document style web services? How you determine to which one to choose?
-
-In document style web services, we can transport an XML message as part of SOAP request which is not possible in RPC style web service.  Document style web service is most appropriate in some application where XML message behaves as document and content of that document can alter and intention of web service does not rely on the content of XML message.
-
-13) Mention what is JAX-WS and JAX-RS?
-
-Both JAX-WS and JAX-RS are libraries (APIs) for doing communication in various ways in Java.  JAX-WS is a library that can be used to do SOAP communication in JAVA, and JAX-RS lets you do the REST communication in JAVA.
-
-14) List out the tools or API for developing or testing web api?
-
-Testing tools for web services for REST APIs includes
-
-Spring REST web service using MVC
-Jersey API
-CFX
-Axis
-Restlet,
-15) Mention what is the difference between SOAP and REST?
-
-SOAP	REST
-SOAP is a protocol through which two computer communicates by sharing XML document
-SOAP permits only XML
-SOAP based reads cannot be cached
-SOAP is like custom desktop application, closely connected to the server
-SOAP is slower than REST
-It runs on HTTP but envelopes the message
- Rest is a service architecture and design for network-based software architectures
-REST supports many different data formats
-REST reads can be cached
-A REST client is more like a browser; it knows how to standardized methods and an application has to fit inside it
-REST is faster than SOAP
-It uses the HTTP headers to hold meta information
+60.	Mention what is the difference between PUT and POST?RRR
+“PUT” puts a file or resource at a particular URI and exactly at that URI.  If there is already a file or resource at that URI, PUT changes that file or resource.  If there is no resource or file there, PUT makes one. POST sends data to a particular URI and expects the resource at that URI to deal with the request.  The web server at this point can decide what to do with the data in the context of specified resource
+PUT is idempotent meaning, invoking it any number of times will not have an impact on resources. However, POST is not idempotent, meaning if you invoke POST multiple times it keeps creating more resources
+PUT is to update a resource while POST is to create a resource.
 
 source 6: http://www.java67.com/2015/09/top-10-restful-web-service-interview-questions-answers.html
 
-Top 10 RESTful Web Service Interview Questions for Java Developers
-
- 
-REST is an architectural style of developing web services which have become immensely popular in the last couple of years and consequently gained a lot of importance in core Java and Java EE interviews. If you are a Java web developer then you are most likely see a couple of questions from web services every time you go for a Java web developer interview. One of the most frequent one is difference between REST and SOAP web services, which I have recently answered there, but there are lot many other good questions I have collected from friends and my readers, which I have not yet published. In this article, I am sharing those questions, mainly based on REST-style web services for your practice and preparation. 
-
-Some of them are easy to answer and you will find them either in my blog or by doing Google but a couple of them is really interesting and challenging and required real solid experience in Java web service domain to answer. I leave it to you guys for now and will probably update this post with answers in near future. 
-
-If you don't find answer of any REST interview question then I suggest you to take a look at these two resources, Java Programming Interview Exposed and RESTful Web Services, you will most likely find your answer there.
-
-
-
 RESTful Web Services Interview Questions 
-Here is my list of RESTful web services questions for senior Java developers who have a couple of years of experience developing both SOAP and REST based web services. This is actually the second part of my series of Java web services based question, in the earlier article, I have shared some SOAP web services based questions. If you have not looked already, you may want to take a look.
+Here is my list of RESTful web services questions for senior Java developers who have a couple of years of experience developing both SOAP and REST based web services. This is actually the second part of my series of Java web services based question, in the earlier article, I have shared some SOAP web services based questions. If you have not looked already, you may want to take a look. 
 
+61.	What is WADL in RESTFul? RRR
+Web Application Description Language stands for WADL. It is equivalent of WSDL of SOAP web service. Its too an XML document which describes a REST web service. It is very important to have a WADL of rest web service since it really helps use or integrate the rest web service.  
+Very importantly, with jersey we can find the WADL with URL/application.wadl. Spring we need to configure a controller as described in the post here. https://dzone.com/articles/automatically-generating-wadl. 
 
-
- 
-
-
-Question 1 : What is REST?
-Answer : REST is an architectural style of developing web services which take advantage of ubiquity of HTTP protocol and leverages HTTP method to define actions. REST stands for REpresntational State Transfer.
-
-
-Question 2 : What is RESTFul Web Service?
-Answer : There are two popular way to develop web services, using SOAP (Simple Object Access Protocol) which is XML based way to expose web services and second REST based web services which uses HTTP protocol. Web services developed using REST style is also known as RESTful Web Services.
-
-
-Question 3 : What is HTTP Basic Authentication and how it works?
-
-
-Question 4 : Can you tell me which API can be used to develop RESTFul web service in Java?
-Answer : There are many framework and libraries out there which helps to develop RESTful web services in Java including JAX-RS which is standard way to develop REST web services. Jersey is one of the popular implementation of JAX-RS which also offers more than specification recommends. Then you also have RESTEasy, RESTlet and Apache CFX. If you like Scala then you can also use Play framework to develop RESTful web services.
-
-
-Question 5 : How do you configure RESTFul web service?
-
-Question 6 : How you apply security in RESTFul web services?
-
-Question 7 : Have you used securing RESTful APIs with HTTP Basic Authentication
-
-Question 8 : How you maintain session in RESTful services?
-
-
-Question 9 : Have you used Jersey API to develop RESTful services in Java?
-Answer : Jersey is one of the most popular framework and API to develop REST based web services in Java. Since many organization uses Jersey they check if candidate has used it before or not. It's simple to answer, say Yes if you have really used and No, if you have not. In case of No, you should also mention which framework you have used for developing RESTful web services e.g. Apache CFX, Play or Restlet.
-
-
-Question 10 : How you test RESTful web services?
-
-Question 11 : What is WADL in RESTFul?
-
-
-Question 12 : What do you understand by payload in RESTFul?
-Answer : Payload means data which passed inside request body also payload is not request parameters. So only you can do payload in POST  and not in GET and DELTE method
-
-
-Question 13 : Can you do payload in GET method?
-Answer : No, payload can only be passed using POST method.
-
-
-Question 14 : Can you do payload in HTTP DELETE?
+62.	Can you do payload in HTTP DELETE?
 Answer : This is again similar to previous REST interview question, answer is No. You can only pass payload using HTTP POST method.
 
-
-Question 15 : How much maximum pay load you could do in POST method?
+63.	How much maximum pay load you could do in POST method?
 Answer : If you remember difference between GET and POST request then you know that unlike GET which passes data on URL and thus limited by maximum URL length, POST has no such limit. So, theoretically you can pass unlimited data as payload to POST method but you need to take practical things into account e.g. sending POST with large payload will consume more bandwidth, take more time and present performance challenge to your server.
 
-
-Question 16 : What is difference between SOAP and RESTFul web services?
-Answer : There are many difference between these two style of web services e.g. SOAP take more bandwidth because of heavy weight XML based protocol but REST takes less bandwidth because of popular use of JSON as message protocol and leveraging HTTP method to define action. This also means that REST is faster than SOAP based web services. You can derive many differences between SOAP and RESTful with the fact that its HTTP based e.g. REST URLs can be cached or bookmarked. Here are few more differences between them :
-
-RESTFul web services interview questions answers
-
-
-Question 17 : If you have to develop web services which one you will choose SOAP OR RESTful and why?
-Answer : You can answer this question based upon your experience but the key here is if you know difference between them than you can answer this question in more detail. For example, its easy to develop RESTful web services than SOAP based web services but later comes with some in-built security features.
-
-
-Question 18 :  What framework you had used to develop RESTFul services?
-Answer : This is really experience based question. If you have used Jersey to develop RESTFul web services then answer as Jersey but expect some follow-up question on Jersey. Similarly if you have used Apache CFX or Restlet then answer them accordingly.
-
-
-Read more: http://www.java67.com/2015/09/top-10-restful-web-service-interview-questions-answers.html#ixzz512CBZ8o5
-
-
 Source 7: http://javarevisited.blogspot.in/2012/01/rest-web-services-framework-interview.html
-1) What is REST and RESTful web services ?AAA
-this is the first REST interview question on most of interviews as not everybody familiar with REST and also
-start discussion based on candidates response. Anyway REST stands for REpresentational State Transfer (REST) its a relatively new concept of writing web services which enforces a stateless client server design where web services are treated as resource and can be accessed and identified by there URL unlike SOAP web services which were defined by WSDL.
 
-Web services written by apply REST Architectural concept are called RESTful web services which focus on System resources and how state of Resource should be transferred over http protocol to a different clients written in different languages. In RESTful web services http methods like GET, PUT, POST and DELETE can can be used to perform CRUD operations.
-
-In short, REST is a architechtural concept while RESTful is an implementation which uses the REST architecture. 
-
-2) What is differences between RESTful web services and SOAP web services ?RRR
-Though both RESTful Web Services and SOAP web service can operate cross platform they are architecturally different to each other, here is some of differences between REST and SOAP:
-
-1) REST is more simple and easy to use than SOAP
-2) REST uses HTTP protocol for producing or consuming web services while SOAP uses XML.
-3) REST is lightweight as compared to SOAP and preferred choice in mobile devices and PDA's.
-4) REST supports different format like text, JSON and XML while SOAP only support XML.
-5) REST web services call can be cached to improve performance.REST Web Services Framework Interview Questions
-
-
-3) What is Restlet framework ?
-Restlet is leading RESTful web framework for Java applications is used to build RESTFul web services it has two part Restlet API and a Restlet implementation much like Servlet specification. There are many implementation of Restlet framework available you just need to add there jar in your classpath to use them. By using Restlet web framework you can write client and server.
-
-4) What is Resource in REST framework ?
-it represent a "resource" in REST architecture. on RESTLET API it has life cycle methods like init(), handle() and release() and contains a Context, Request and Response corresponding to specific target resource. This is now deprecated over ServerResource class and you should use that. see Restlet documentation for more details.
-
-5) Can you use Restlet without any web-container ?
-Yes, Restlet framework provide default server which can be used to handle service request in web container is not available.
-
-6) What is difference between Restlets and Jersey ?RRR
-This REST web service interview questions is open for you all, post you answer in comment section.
-
-7) What is RESTEasy ?
-RESTEasy is another REST framework introduced in JBoss Application Server. This was rather easy REST interview questions. you can answer in detail only if you have used this or working in JBoss.
-
-8) What are the tools used for creating RESTFull web services ?
-You can use AJAX(Asynchronous JavaScript with XAML) and Direct Web Removing to consume web serives in web application. Both Eclipse and NetBeans also supported development of RESTFul services.
-
-9) How to display custom error pages using RestFull web services ?RRR
-In order to customize error you need to extend StatusService and implement getRepresentation(Status, Request, Response) method with your custom code now assign instance of your CustomStatusService to appropriate "statusService property".
-
-10) Which HTTP methods are supported by RestFull web services ?
-Another common REST interview question regarding RESTFul web service each Resource supports GET, POST, PUT and DELETE http methods.GET is mapped to represent(), POST - acceptRepresentation(), PUT- storeRepresentation and DELET for rmeoveRepresentation.
-
-11) What is difference between top-down and bottom-up approach of developing web services ?RRR
-In top-down approach first WSDL document is created and than Java classes are developed based on WSDL contract, so if WSDL contract changes you got to change your Java classes while in case of bottom up approach of web service development you first create Java code and then use annotations like @WebService to specify contract or interface and WSDL field will be automatically generated from your build.
-
-12) What happens if RestFull resources are accessed by multiple clients ? do you need to make it thread-safe?
-Since a new Resource instance is created for every incoming Request there is no need to make it thread-safe or add synchronization. multiple client can safely access RestFull resources concurrently.
-
-REST Web Service interview questions and Answers J2EEThat’s all on REST interview questions , I will add couple of  more REST Interview questions whenever I got them from my friend circle.
+64.	What happens if RestFul resources are accessed by multiple clients? Do you need to make it thread-safe?
+I think that we need to make our code thread safe and here is why. It is quite likely that a web service will receive multiple request at a given time then there are chances that those thread will try to use same resource in order to process the request and hence the chances of multithreading issue arises. 
+Check this for more: https://stackoverflow.com/questions/16795303/must-spring-mvc-classes-be-thread-safe
 
 Source 8: https://dzone.com/articles/rest-web-service-interview
-1) What is a web service?
 
-2) Can I use GET request instead of PUT to create resources?AAA
+65.	What is the difference between a RESTful web service (on HTTP) and a HTTP Servlet both of which perform the same function? RRR
 
-Yes, we can do this. However, we should not create it neither through get nor through put method as both are idempotent while use POST
-method for this purpose. Also, we can use any method for any purpose however we should better stick to suggestion of making the use of
-method the way they are. 
+REST is completely a architectural pattern while the HTTP servlet is an implementation. Now, RESTful webservices if speak about only in java can be like Servlet. We can create a webservice using jeresy framework which itself is built on top of servlets. However, Restful webservice is a vast topic. 
 
-3) What is the difference between a RESTful web service (on HTTP) and a HTTP Servlet both of which perform the same function?AAA
+66.	How will you migrate from SOAP web service to RESTful web service? RRR
+There can be multiple ways of converting the SOAP web service to REST web service. 
+a.	Create a new REST web service from scratch and utilize the code, sql query and anything if at all of SOAP web service. 
+b.	To build a proxy or a adapter class which takes the request from client, convert it as SAOP likes it, receives SOAP response, convert it to JSON or any other format needed. Then, send the final response to the client. Certain level of performance hit as this process would definitely will take longer than usual time in every call.  
+c.	There are certain tools that can make the work very easy like Apigee Edge which is a part of google cloud and many other. All they need in the link of the WSDL and you get a REST api.
+Depending on various factors like time, cost, man power and other, we can decide which of the above method is best. 
 
-REST is completely a architectural pattern while the HTTP servlet is an implementation. Now, RESTful webservices if speak about only in
-java can be like Servlet. We can create a webservice using jeresy framework which itself is built on top of servlets. However, Restful 
-webservice is a vast topic. 
+67.	Can my web browser be a client to RESTful web service? If yes then how will you generate DELETE request from web browser? RRR
 
-4) How will you migrate from SOAP web service to RESTfull web service?RRR
+Through web browser we can send GET and POST request. GET request by simply putting the url and hit it. POST request by filling and submitting a form. 
+For PUT and DELETE, we can do AJAX call from the browser though. But, we cannot do synchronous PUT or DELETE action to a web service through web browser. 
+Lastly, we can install any useful plugin like PostMan for PUT and DELETE but alone browser is insufficient. 
 
-We can do this creating the proxy class. In fact, we have tools available for this. One good tool is apigee Edge which creates the 
-REST api based on the WSDL of SOAP WS. 
+68.	 How will you handle synchronization issues when multiple clients try to consume web service simultaneously? Check the scenario in the answer. RRR
+We need to handle synchronization issues in the same way in web service as we would do in any web application. This is because when a web service get concurrent requests at a time then each request is handled by a thread in the same process. Then, there are chances when multiple thread would want to work on a same object at a time. Thus, we need to take care of multi threading issues here too. 
+One good scenarios is there is a list of object of about 25000 entries. There are multiple threads which will possibly be reading from this list and in every 30 mints this list updates from db. The update takes a few milliseconds. How to deal with possible multithreading inconsistency issues?
+We can definitely put an explicit synchronization through synchronized keyword or lock interface. Doing that the thread that wants to update will wait until the currently reading thread is done. Then it acquires the lock and updates the thread. Once update thread is done then it releases the lock and threads can read from it. But this will bring synchronization overhead. Do we have a simpler option?
+Evaluate all options suggested https://stackoverflow.com/questions/30045803/java-synchronization-in-web-service
 
-We can create proxy class/adaptor which can convert the SAOP to REST request. Its slightly complicated. 
+69.	Can you describe any one RESTful web service you have written? RRR
+Put Ranjana’s project detail and RealQuest consumer detail. Try and get detail of other rest webservice. 
 
-5) What is the difference between HTTP POST and PUT requests?
 
-In simple term, Post request to send data to an specified URI while PUT places a resource only at a specified URI. To carefully under-
-stand, POST just sends the data to a given URI and then it depends furthur on the web server as what to do with the data. It might redirect
-the received data to a different URI. However, in case of put request, web server cannot re direct the resource and if done so then the 
-status code returned would be 301 (Permanently moved).
-
-6) What all kind of output formats can one generate using RESTful web service?
-
-I think this can produce any kind of format until the client understand. 
-
-7) What all tools have you used to write RESTful web service?RRR
-
-Jeresy and Restlets franework check karo. 
-
-8) Can my web browser be a client to RESTful web service? If yes then how will you generate DELETE request from web browser?AAA
-NO. It can be client for GET request. We either create our own client or we use tools like PostMap or Poster. 
-
-9) What is meant by JAX-WS and JAX-RS?
-
-It is java reference implementation for JSX_WS and JAX-RS for SOAP and REST webservices. 
-
-10) How is JAXB related to RESTful web services?
-
-JAXB is a plugin for marshelling java object to XML and un marshalling back to java object.
-
-11) How will you handle synchronization issues when multiple clients try to consume web service simultaneously?AAA
-
-Well, no web service developer can assure that web service cannot get concurrent client request. Thus, the best for handling such 
-situation is to create a pool where the object has a certain threshold of object that can be created and beyond which the request 
-should be kept on hold until we recover any object back. Ideally, each request to web service run by a sperate thread. 
-
-12) Can you describe any one RESTful web service you have written?RRR
-
-Jeresy and restlets implementation. 
-
-13) What will you do when an error code has to be returned to the clientRRR
-
-OR
-
-How will you handle application error scenarios in RESTful web service
-
+70.	What will you do when an error code has to be returned to the client? RRR
 Important link: http://archive.oreilly.com/pub/post/restful_error_handling.html
-According to the above link, we can handle the error in web services by four ways. 1) stick to standard HTTP errors, 2) give blank 
-xml set, 3) pass extra information in response headers as X-DAS-status: 403 for example while giving standard HTTP error. For this 
-we need to check the resposne header explicitly and 4) we can send an xml document with the error message. last option seems of be the 
-best one. 
+According to the above link, we can handle the error in web services by four ways. 
+1) stick to standard HTTP errors, 
+2) give blank xml set, 
+3) pass extra information in response headers as X-DAS-status: 403 for example while giving standard HTTP error. For this, we need to check the resposne header explicitly. 
+4) we can send an xml document with the error message. last option seems of be the best one. 
 
-Check what we do in jeresy and restlets frameworks. 
+Note:
+In spring Rest, we can handle the exceptions gracefully through annotations which are @ExceptionHandler, @ResponseStatus, @ControllerAdvice and other. 
+Let’s understand this through a situation. Assume, the client sends a request to get the details of an employee with id X and there isn’t any employee with id X. In this scenario, employee object will be returned but with no data set to its data members. Let see what code changes can be code to handle this gracefully. 
+In the controller, we can place a condition to throw a custom exception in case if employee is not found for the input id. So, now we need to create that custom exception EmployeeNotFound.java. We can create it like any other custom exception in java but we need to use annotation on the class level @ResponseStatus(value=HTTPStatus.NOT_FOUND, reason=”Employee does not exist”). 
+While using this in controller we simply need to just throw it like any normal custom exception and use throws keywords as well in method signature. 
+After doing the above code changes, the standard NOT FOUND 404 http error page will be shown as the response with reason that we mentioned in the annotation. But, if we need to give out own custom error page as response then we need to write handler of the custom exception that we created. So, we can create a method in controller class as HandleCutomException and return a modelViewObject setting the values that we want to show on the page. We need to use annotation @ExceptionHandler(EmployeeNotFound.java). This way whenever this exception comes then we can the modelAndView that we are returning through the handler will be sent in response. Also, the response status will be 200 since we are sending the view our self after processing.
+Now, since exception can come in any controller of application thus it is important to have a dedicated handler class which has handler method of each exception (custom or primitive exception). In the dedicated class, we have to use annotation @ControllerAdvice to mark the class as handler exception is applicable for all the controller classes.   
+For everything: https://www.journaldev.com/2651/spring-mvc-exception-handling-controlleradvice-exceptionhandler-handlerexceptionresolver. 
+RRR: check how exception is handled in FAS.
 
-14) Is it mandatory to use HTTP protocol for performing CRUD operations by a REST based web service?AAA
-Actually, i never heard of using any other protocol for performing CRUD or even anything else except HTTP methods like GET< PUT< POST
-and DELETE. 
+71.	Is it mandatory to use HTTP protocol for performing CRUD operations by a REST based web service? 
+Actually, I never heard of using any other protocol for performing CRUD or even anything else except HTTP methods like GET< PUT< POST and DELETE for rest web service. 
 
-15) What are the pros and cons of using the RESTLET framework than CXF for writing RESTful web service?AAA
-CXF is actually created by Apache, has the capability to support various protocols like SMTP, FTP and other. One more advantage of using ApacheCXF is that it makes it easy to produce both a JAX-RS and JAX-WS (SOAP) endpoint from the exact same data model and service interface at the same time. So if that is something which matters to you, this may be the way to go
 
-Read more: http://javarevisited.blogspot.com/2017/02/difference-between-jax-rs-restlet-jersey-apache-cfx-RESTEasy.html#ixzz51WhZtSAO
-
-Read more: http://javarevisited.blogspot.com/2017/02/difference-between-jax-rs-restlet-jersey-apache-cfx-RESTEasy.html#ixzz51WhOuHo2
-
-16) Can one RESTful web service be a client to another RESTful web service for performing business operations? Describe with example?AAA
+72.	Can one RESTful web service be a client to another RESTful web service for performing business operations? Describe with example? 
 Yes. For sure. In fact, not necessarily to be a RESTful. For example, you may have an API which aggregates the data from Twitter and instagram. This you provide to the user of your API.
+Also, provide FAS and CDM example.
 
-17) Can you generate HTML output from a RESTful web service? How?Yes. We can mention @produces(MediaType.APPLICATION_HTML). 
+73.	Can you generate HTML output from a RESTful web service? How?
+Yes. We can mention @produces(MediaType.APPLICATION_HTML). 
 
-18) Can a RESTful web service generate output in various formats based on some parameter received from the client.
-Yes. In request header, we should receive accept as some particular type. This instruct the output type.
+74.	Can a RESTful web service generate output in various formats based on some parameter received from the client?
+Yes. In request header, we should receive accept as some particular type. This instruct the output type. In fact, I guess we can send multiple options in accept header and even set the priority. In case, if web service is unable to send the data in the asked type then it says unsupported media type 415.
 
-19) With a RESTful web service, whose state is getting transferred and how?
+75.	With a RESTful web service, whose state is getting transferred and how?
 State of application (service) gets transferred through the request and response we see. 
 
-20) Who owns the specification for REST web services and how does it get updated to newer versions?AAA
+76.	Who owns the specification for REST web services and how does it get updated to newer versions? 
 Not really sure, but i think this is managed by W3c. World wide web consortium. 
 
+Few more website to follow:
+Source 9: https://javarevisited.blogspot.com/2018/02/top-20-spring-rest-interview-questions-answers-java.html
+77.	What are safe operations in REST?
+Safe operations are those in which do not modify the resource of the server. Rest uses HTTP only and its method. GET and HEAD are safe method making no change on the server resources while PUT, POST and DELETE are not safe operation.
+ 
+78.	What is RestTemplate class and what is its advantage?
+RestTemplate is a class which is a part of Spring Rest framework. This class is used to create REST clients. It has methods like getForPost(), exchange, postForObject() and other.
 
-Read more: http://javarevisited.blogspot.com/2012/01/rest-web-services-framework-interview.html#ixzz512CnXDDh
+79.	What is HttpMessageConverter and what is its advantage? RRR
+HttpMessageConverter is an interface in Spring Rest framework which is used to convert format (JSON, XML etc) before or/and after the http request. We are given default message converters in spring rest while we can create customMessageConverters as well and can use them in controllers. For creating customMessageConverters we need to create a new implementation of AbstractHttpMessageConverter. 
+
+80.	 Are @controller and @RestController stereotypes?
+Yes. Both are stereotype. @Controller is a specialized version of @Component which means that a class is just not a component but a controller component. @RestController is specialized version of @Controller servers a combo of @Controller and @ResponseBody. @RestController indicates that a class its used with is a controller which handles RESTFul request. 
+
+81.	What status does delete request gives? RRR
+There is no standard as such. If an empty body response is sent back to client then the status will be 204 which is no content. While if some content is send back after delete request then the response status will be 200. 
+
+82.	What does CRUD operations mean and how to be achieve in REST api?
+CRUD stand for Create, Read, Update and Delete. In Rest, HTTP request methods are used to perform these operations. GET is used for read, POST is used to create, PUT is used to update and DELETE is used to delete. 
+
+83.	Would you need Spring MVC in your classpath for developing RestFul Web service?
+Yes. I will need spring MVC jar on my class path as it provide crucial annotations like @RestController. @ResponseBody, @ResponseCode, @RequestBody, @PathVariable and other. 
+
+Source 10: https://www.softwaretestinghelp.com/restful-web-services-interview-question/
+84.	What is addressing with respect to rest web service?
+It is nothing by exposing all your resources of web service using URLs. 
 
 
-Webservices Quiz
-Start
-Refer our Web Service Tutorials for an extra edge in your interview.
 
 
- Download PDF
+Special Questions:
 
-You Might Like:
-Top 50 JQuery Interview Questions & Answers Top 50 XML Interview Questions & Answers 15 Rest API Interview Question & Answers Top 17 SOAP Web Services Interview Questions & Answers
-0REPLIES
-Leave a Comment
-Top of Form
+1.	If rest web service does not have WSDL then how can we get to know about the API to consume the web service? Also, what method of web service to use for what function and how?
+Rest web service is all about resources which are nothing but the urls through which the functionality of a web service is exposed. Since, there is no WSDL in rest web services, the responsibility lies with the web service provider to make its endpoints (resources) public. One good example is when we try to use google maps api then we need to go to googles website and look for endpoint. Also, if we wanna use any api of a rest webservice then again service provider has to make details of api public somehow. This is generally done these days by web service provider on their website or some platform. 
 
-Name *  Email *  
-Bottom of Form
-Popular
-Recent
+2.	Why a Rest web service should always be stateless? RRR
+Rest architecture says that a Rest web service should always be stateless which means the session state must entirely be handled on the client side. We must not get confused about the web service of being stateless mean that state in not maintains while dealing with web service. It has to be maintained but entirely on the application communicating with the web service which is client side.
+Now, to understand why rest web service must not be stateful, we need to understand what disadvantage we get if we try to manage state on webservice (server side). We are putting load on web service to manage the session for may be millions of client consuming it. Thus, this impacts the scalability. Therefore, to improvement the scalability the session management is done on client (consumer side).  
+Note: By the way, in web application developer it is common practice to manage session on server side. It is considered good practice as it gives a central point to manage the session (in multi server app, client has to send session data to each server), session will be immediately created (need not to wait for cookie send by browser), user details are not exposed (else you provide a very strong encryption when client sent data to session), cookie size is smaller. 
 
-Important Frameworks for developing RESTful web services
-0. JAX-RX (part of jdk, a reference implementation using REST specification, compatible with spring)
-1. RESTlets (open source, framework supporting JAX-RX API and more features)
-2. Jeresy (open source, framework supporting JAX-RX API and more features. Less features in RestLets, compatible with spring)
-3. RestEasy (Jboss application server)
-Note: Restlets and Jeresy also supports the JAX-RS annotations. All we need to do is just to add the respective jars of a framework and 
-can build the RESTful web service.
+3.	What is the advantages of using XML or JSON in web service? RRR
+The two most generally used types of data used to communicate between client and web service is XML and JSON. Let’s check out the advantage of both.
+a.	JSON is lighter or compact than XML
+b.	JSON can be loaded faster than XML in javascript which is the most popular client side scripting language.
+c.	XML has schema support while JSON does not have. XML schema support i.e. XSD governs the structure or the format of an XML document. XSD is also an XML document so we do not need to learn anything new to create or understand it. With respect to web services, it helps in building the request or response as needed. 
+d.	XML has namespace support while JSON does not have. Namespace is quite helpful in avoiding the name conflict. We give prefixes to avoid conflicts. It can be savior while mixing two XML document and to be protected from the same name tags. Check example: https://www.w3schools.com/xml/xml_namespaces.asp
+e.	Check the differences on parsing of XML and JSON.
 
+4.	What is web service protocol stack? RRR
+Web service protocol stack is protocol to define, locate, implement and make one web service to interact with other. Web service protocol stack has generally four protocols which are below:
+a.	(Service) Transport Protocol: It is responsible for transporting message from network application to web service and the other way too. It includes protocols such as HTTP, FTP, SMTP etc. 
+b.	(XML) Messaging Protocol: responsible for encoding message into a common format to be understood by application and web service. It includes XML, JSON, HTML, Text etc. 
+c.	(Service) Description Protocol: used for describing public interface to web services. It includes WSDL.
+d.	(Service) Discovery Protocol: used to discover the web service from a centralized registry. It includes UDDI. 
+
+5.	How to manage security in REST web services? What are the aspect that we need to manage? Check how to do it in Spring rest and if possible spring security? RRR
+Security is a critical aspect of a web service and which is not an afterthought. It needs to be planned right from the development phase begins. The important aspect of security is authentication, authorization, encryption and other. 
+Before we go in details, let’s clarify the difference in authentication and authorization. Authentication is the process to validating the user identity. This is generally done though login id and password. Once the user is authenticated as it claims, we need to check if the user has authorization of the resource that it is requesting. The process of checking if any specified user has access for a requested resource is what authorization is. 
+Let’s start with understanding different authentication techniques:
+a.	BASIC Authentication
+With Basic authentication, client sends its base64 encoded username and password with each request as authorization header of request. The value of authorization header comes in the format “Basic+base64ClientCredentials”.  
+Since, the credentials are passed from client to server with just base64 encoding (with not encryption) thus is not really that secure. It can easy task for a hacker to sniff credential from basic authentication. Therefore, it is highly advicable to use it with HTTPS rather than HTTP. 
+Now, let’s see how can be configure basic authentication with spring rest web service:
+1.	The very first thing is to get spring security dependencies added in POM.xml. We will mostly will need spring-security-web and spring-security-config. 
+2.	We have to create securityConfiguration class which will extend WebSecurityConfigurerAdapter class of spring security config property. The important method here is configureGlobalSecurity(AuthenticationManagerBuilder auth) to set the user with their password and roles. There are other method which are obviously very difficult to remember for now. @enableWebSecurity is the annotation that we will be using with this class. 
+Once this configuration is done then we can use the basic authentication. In case, no or wrong creds are send in request header then 401 (bad credentials) will be returned as response. 
+Also, I guess for more clarity on implementation we can try hand on to it. 
+
+b.	DIGEST Authentication
+This authentication uses hashing algorithms to encrypt the password before sending it to server. This obviously makes security stronger than basic authentication technique by encrypting the password. The commonly used hashing algorithms for hashing are MD5, SHA etc.
+Also, we need to understand that once the password is converted to hash then it cannot be converted to password. So, when we need to authenticate the user then we need to authenticate with hash of what is sent to the hashcode of the password stored. 
+
+c.	Client CERT Authentication
+In this authentication technique, client shows a certificate to server in each request to authenticate instead of password. The certificate must be signed by an agency which will ensure that the certificate presented to authentication is legitimate. These agencies are known as CA. The certificate actually contains user details and private public key pair. 
+This authentication must only be used with HTTPS otherwise there are chances that the clients identity may get stolen.
+ 
+d.	OAuth 2
+OAuth stand for Open Authorization (not for open authentication) protocol or framework which describes how unrelated servers or services can safely allows authenticated access to their resources without actually sharing initial or logon credentials. 
+One good example, when you try to log on to OLX then it gives options to log in with facebook or other website. The advantage if I am already logged on facebook then I do not need to authenticate myself for OLX. Thus, authentication of facebook provides authorization to use OLX and thus this protocol is Open Authorization but not Open Authentication. Also, facebook does not share the creds with OLX in this case.
+OAuth can only be implemented using HTTPS. For an application, adopting Oauth for authenticating a user would need to use API of commonly used social media platform like facebook which can authenticate a use for them. 
+OAuth 2 is nothing but second version of OAuth framework. OAuth2 was quite criticized for the differences it has over OAuth1. OAuth2 seemed to be more focused towards interoperability and thus lacks of security aspect. OAuth2 is not backward compatible because of major differences with OAuth1. 
+Good Read on OAuth: https://www.csoonline.com/article/3216404/authentication/what-is-oauth-how-the-open-authorization-framework-works.html
+
+6.	Try and describe about using swagger with your spring rest application for documentation. 
+For any web service, it is very important to have its API documentation done properly. Doing it manually could be very tedious and thus we must look for automated ways. Swagger specification is created for serving as a guidelines defines the files needed to describe an API. There are many implementations of swagger specification. SpringFox is one such implementation of swagger 2 specification. 
+With Spring Rest web service, we can quite easily plug in swagger implementation. We have first mention the dependency in POM.xml.  We will need to do some configuration as well. We need to first write SwaggerConfig.java class which returns the Docket. We have to use @EnableSwagger2 annotation for enabling the springFox. In the absence of spring boot, we manually have to write another api in the same config class. addResourceHandler() to add the resource handlers location which is primarily needed for swagger UI. 
+We can test if its working on not using link: https://mywebservice.com/context-root/api/v2/api-docs. 
+Although, the file at this path is not so human readable. Thus, we want swagger UI. We need to add its dependency. Then, through the URI, https://mywebservice.com/context-root/swagger-ui.html  
+There are many other advance configuration for more documentation features. 
+
+7.	Try and describe about how would you implement caching in rest web service?
+Spring provides abstraction layer for plugging in any cache implementation with it. There are many popular cache implementation available which are JDK (concurrentMap) based cache, EhCache, Guava cache and other. In the example, we will be implementing cache using Ehcache implementation. 
+Now, let check out how can we plug in Ehcache to our spring application or REST web service. We obviously need to have dependency of Ehcache jar in POM.xml file. We need to have below dependency:
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context-support</artifactId>
+	    <version>4.1.4.RELEASE</version>
+	</dependency>	  	
+
+This will give all the necessary classes which will be needed to support caching. This dependency will not only get classes for Ehcache support but for other caches file Guava, jcache and other. 
+Once we have all the needed spring support classes for Ehcache then we can configure the Ehcache beans in application-context.xml. Below is the code for same:
+<bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" p:configLocation="classpath:EhCache.xml" p:shared="true"/>
+	  
+<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager" p:cacheManager-ref="ehcache"/>
+If you noticed we have created bean for EhCacheManagerFactoryBean class and set the configlocation to EhCache.xml file. In the second bean, we have created bean for EhCacheCacheManager. 
+We can also configure Ehcache on annotation basis simply like: “<cache: annotation-driven>”. 
+Now, we will create the Ehcache.xml which will have all the configurations needed for EhCache. Below is a sample code: 
+<ehcache>
+	 <defaultCache
+		 maxEntriesLocalHeap="10000"
+		 eternal="false"
+		 timeToIdleSeconds="120"
+		 timeToLiveSeconds="120"
+		 maxEntriesLocalDisk="100000"
+		 diskExpiryThreadIntervalSeconds="120"
+		 memoryStoreEvictionPolicy="LRU">
+		 <persistence strategy="localTempSwap"/>
+	 </defaultCache>
+	 <cache name="customer" 
+	 		maxElementsInMemory="10000" 
+	 		eternal="false" 
+	 		timeToLiveSeconds="3600" 
+	 		diskPersistent="false" 
+	 		memoryStoreEvictionPolicy="LRU" 
+	 		overflowToDisk="false" />
+</ehcache>
+<defaultCache> specify some cache properties while <cache> tag with name attribute sets properties for a specified cache. There can many such caches. 
+Now, in the controller classes, we can use below annotation for different purposes. 
+1.	Cacheable: This makes a particular controller method cacheable. It can be used like “@Cacheable(value=“customer”)” on the method signature. 
+2.	CachePut; This annotation is used to update the cache. The method will always execute and the cache will be updated each time. I guess it is intentionally be placed on any method to update the cache. 
+3.	@CacheEvict: This annotation is used to remove the cache from the memory. This is placed in the special method called only to evict the cache from memory. We can use allEntries=true fro evicting all the cache.  
+
+8.	HATEOAS concept needs to be checked. 
+HATEOAS stands for Hypermedia as the Engine of Application State is one of the feature of RESTful architecture which makes it different from other network application architecture. Here, hypermedia term refers to any content that contains a link to other content. With HATEOAS, we can use links in the response of REST web service so that the client can navigate to the other content as well if needed. This is conceptually same as hyperlink in a web application. 
+Now, to add the HATEOAS in rest web service, below are the steps:
+1.	Add the HATEOAS dependency in POM.xml
+<!-- https://mvnrepository.com/artifact/org.springframework.hateoas/spring-hateoas -->
+<dependency>
+    <groupId>org.springframework.hateoas</groupId>
+    <artifactId>spring-hateoas</artifactId>
+    <version>0.25.0.RELEASE</version>
+</dependency>
+2.	We need to create a class (may be inner class inside controller) where we will mention the field which are needed along with the link. We will create getters and setters like any other class. Then, extend ResourceSupport which is a part of spring HATEOAS. This class has add method which allows us to add the link to the returned object. It does have id property and thus when you try to have id property in sub class then it gives error. So, mind having id property in lower class.
+3.	Then, in the controller class, we will create an api which returns the object or list of object which extends the ResourceSupport class. We need to create a Link object. Link class is again a part of HATEOAS jar. We need to use toLink() api of HATEOAS ControllerLinkBuilder class. Other important method are slash() and withSelfRel(). Slash() method is used to provide slash in the URL while WithSelfRel() method actually created a link with self relation by default. Once you have the link created then use add method to add the link to the class object which extends the ResourceSupport class. 
+Although, this topic has lot of topic but it’s enough to begin. Later, let’s try to create an example.  
+
+
+9.	What are the best practices to name a resource or to create its URI?
+Uniform URI is one of the constraints or guideline for a good rest web service. Every data representation is a resource in web service. A resource can be a collection resource or singleton. Like, customers is a collection resource and customer is a singleton resource. To get the list of customers we can have URI as /customers and to get a certain customer out of all the customer is “/customers/{customer}”. A customer can have multiple accounts and to get those account URI should be “/customers/{customer}/accounts” and to get one of the account of that customer the URI should be like “/customers/{customer}/accounts/{account}”. This shows it’s always good to build the URI following the tree.
+Below are some tips in building good URI:
+1.	Do not use the trailing / in the URI
+2.	Use hyphen instead of underscore. 
+3.	Use lowercase letters in URI
+4.	Do not use file extension
+5.	Never use CRUD functions name in URI since your http method will make it clear. 
+Like, GET request: /customers/{customer} will get you a customer
+POST request: /customers/{customer} will post a customer. 
+
+
+10.	Check Idempotence with respect to REST api.  https://restfulapi.net/rest-architectural-constraints/
+Any API that returns the same result irrespective of how many times its called then its called idempotent. No matter if you have called an idempotent method the first time or tenth time, It will produce the same result. If we follow all the guidelines of REST architecture, then except POST API, every other method will be idempotent. 
+Even in HTTP protocol, except POST method, other methods like GET, PUT and DELETE are idempotent methods. 
+POST is not idempotent because a new resource will be created on the server every time you call it. 
+
+11.	What are your thoughts on response compression?
+The primary advantage of compressing the response to save some bandwidth with a slight cost of adding some complexity. We can manage compression of response through request and response headers. Below two headers are mostly used for the purpose:
+1.	Accept-Encoding: It denotes what type of compression does the client accept and is capable of decompressing and get the original response. While a client sends a request to server, it can mention the accept-encoding header. If it mentions anything that server is not able to perform compression in then 415 HTTP error will be sent. Frequently used values for accept-encode header is gzip or compress. 
+2.	Content_Encoding: When server finds that the compression type asked by the client is fine with server then server can tell client the encoding type it has used through response header content-Encoding. This is especially good when client has mentioned multiple compression type in request. A similar header is transfer-encoding. It is used when each segment of multi-node connection can use different encoding. 
+
+12.	What is content negotiation? How can we control it? RRR
+A resource can be represented in different presentation. This is because a web service generally has variety of client which can ask for different presentations. Asking for a suitable presentation of a resource by the client is known as content negotiation. 
+Content negotiation can be server driven or client driven. Server driven is generally avoided as its very hard to predict which type of presentation would be needed the client and that would unnecessarily add complexity on server. The best approach is when client specifies itself what presentation it needs.
+Below are the ways in which client can tell server about the content type in which it needs a resource:
+1.	Through HTTP headers: client can specify in the request header with header accept about the content it needs resource in. With header, content-type, server gets to know about the data type used by the client. 
+2.	Through request URL: client can also specify the content type needed through request URL. For example, http://mywebservice.com/resources/resource.json. This example URL shows that client needs resource in JSON.
+3.	Defining Preference: It is possible to have multiple values in accept header. It can give preference among the options. For example, “accept=”application/json, application/xml; q=0.9,*/* q-0.8””. This accept header says that the client needs JSON, if not available then XML and if both are not available then anything. Q variable shows priority. If q is not specified then it understood as 1. 
+
+13.	Check all possible annotations can be used in Spring REST web service. RRR
+
+a.	@RestController: This annotation can be understood to have same effect as the combination of @Controller and @ResponseBody. This mean that since we are specially saying that we want a controller of rest web service thus we would mostly want to return the response as object of resource. In case of @RestController, we do not need to use @ResponseBody with method signature but its given automatically unlike in the case of @Controller. 
+
+b.	@RequestMapping: Request mapping annotation is used primarily to map the controller method with a URI. However, it has other many attributes to specify different behavior of that method. Below are the attributes commonly used with @RequestMapping:
+1.	Value = “/URL”
+2.	Method = RequestMethod.GET (Likewise, POST, PUT and DELETE)
+3.	Produces = MediaType.APPLICATION_XML_VALUE (likewise, for other media type)
+4.	Consumes = MediaType.APPLICATION_XML_VALUE (likewise, for other media type)
+5.	Header = {“header-attribute = attribute value”}
+RequestMapping also takes multiple URIs at a time. For example, @RequestMapping(value={“”, “/first”, 
+“*/second”}. Also, it supports wild cards in the URI. 
+RequestMapping also takes variable path like value=”/someConstant/{Variable}”.
+
+c.	@ResponseBody: As the name says, this annotation says that whatever the method returns will be serialized to become the response body directly. The format in which it is convert and then becomes the part of response body depends on the message converted (Jackson, JAXB or other), produces attribute of requestMapping and accepts header attribute of request. When nothing is specified than I guess JSON is sent by default provided you have Jackson. 
+Also, we are not required to use @ResponseBody separately when using @RestController annotation as it is given by default with it. 
+
+d.	@RequestBody: This annotation is opposite of @ResponseBody. It is used to get whatever given in the request body into a java object after deserialization. Like, for creating an employee on the server, you need an employee object. Thus, the JSON version of the employee is given in the request body. The body is directly consumed by the employee object which is an argument of create employee method with the help of this annotation. 
+Method Signature: public @ResponseBody String createEmployee(@RequestBody Employee emp){ 
+We can manage the data format that needs to be sent with the request through content-type header on client side and consumes attribute of RequestMapping on server side. 
+If data sent as request body is different from either the content type or comsumes attribute then 406 comes as unacceptable.   
+
+e.	@PathVariable: Path variables annotation enables us to use any variable in the URI of controller method. The classic example is to get the employee id. For a URL like http://localhost:8080/employeepro/employee/1 and mapping like “value=/employee/{id}”. Now, to use the id provided in the request as path variable, we need @PathVariable annotation. 
+We may also have multiple vairables in the URI and we can use them like below:
+URI: value="getthatemp/{id}/{accountid}" RRR
+Method: public Employee getThatEmployee(@PathVariable(value=”id”) int id, @PathVariable(value=”accountid”) int accountId){}
+
+f.	@RequestParam: Request param annoatation lets the web service method to use the request param. In a URI, the key value param mentioned after the ? symbol are request param. Like, http://localhost:8080/employeepro/deleteemp?id=1 and mapping like “value=”/delete”” will take the request param and can use them for processing with method signature like “public String deleteEmployee(@RequestParam (value=”id”) int id){}”
+Like, @pathVariable annotation, we can use multiple @RequestParam annotations in a method. 
+
+g.	@QueryParam: Firstly, QueryParam is not of Spring framework annotation, but belong to JAX-RX framework. The major different between them is that @ReuestParam will always need a value or bind and if not provided then it gives error while @QueryParam would not mandatorily need a value. We can manage the same though in @RequestParam by mentioning another attribute required=false. 
+
+h.	@PathParam: Like queryParam, this annotation too only belongs to JAX-RX and not to spring. However, serves the same purpose. 
+
+i.	@XmlRootContext: This annotation is used to specify the root element in the bean class so the JAXB can convert XML to java object and vice versa. 
+
+j.	@XmlElement: This annotation is used to specify a variable in bean class as element of XML document. 
+
+k.	@XmlAccessorType: This annotation is used to control whether the serialization and de-serialization. By default its value is PUBLIC. 
+
+l.	@XmlType: can give name, order of the properties. Can get more understanding with more knowledge of XML document. 
+
+m.	@JsonSerialize: This is not a mandatory annotation. It can be used on class level, on variable declaration or on its getter method. Its primarily to control the serialization behavior of the variable. 
+
+n.	@ResponseStatus: This annotation is used with the custom exception class. The important variables for this annotation are below: 
+RRRValue=HttpStatus.NOT_FOUND
+Reason=”The employee with the detail given is not found.”
+
+o.	@ExceptionHandler: This annotation is used with a method that implements the handler of any custom or primitive exception. 
+
+p.	@ControllerAdvice: This annotation is used with the class that has got the handlers of all the exception. 
+
+q.	@EnableWebMvc: This annotation is used to configure Web MVC of spring using annotation. It is equivalent of <mvc: annotation-driven> in XML configuation.
+Note: 
+We can get data from @PathVariable and @RequestParam both, but any mandatory data for the processing of response need to come in @PathVariable while anything that is optional may come in @RequestParam. This is just a good to follow thing. 
+
+14.	Mention all the configuration step by step for creating a basic REST web service. RRR
+Here, we have step by step configuration to have a simple Spring REST web service using all HTTP request method generally used which are GET, PUT, POST, DELETE.
+Step 1: Create a simple java maven project with webapp archetype. Do not know why I got two source folders missing. I created them manually. 
+Step 2:  Write project dependencies in POM. We can check the spring REST jar dependency on maven site. You will find something like below:
+<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-rest-webmvc -->
+<dependency>
+    <groupId>org.springframework.data</groupId>
+    <artifactId>spring-data-rest-webmvc</artifactId>
+    <version>3.1.0.RELEASE</version>
+</dependency>
+Mention the above dependency under dependency tag in POM. We need to mention other dependencies like Jackson and JaxB. 
+Also, the other way around is to manually import these jars if you have already downloaded them. 
+Step 3: Write servlet mapping of dispatcher servlet in web.xml. 
+<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+	</context-param>
+	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Processes application requests -->
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appservlet/servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+Step 4: Create the root-context.xml mentioned in context param and servlet-context.xml mentioned in init param in the specified location. 
+In root-context.xml, we have not wrote generally anything and it is not even mandatory to mention. 
+In servlet-context.xml, we have many thing to me noted. Lets check them one by one:
+1.	Annotation driven tag
+<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+2.	View resolver tag
+<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+3.	Component scan: like what packages to scan for controllers. 
+<context:component-scan base-package="com.mycompany.controller" />
+
+Step 5: Create a bean class. Like, for employeepro app, we have created a bean class which is employeeBean. 
+We need to use annotation @XmlRootElement for specifying the root element of the xml. For JSON, we do not need to specify any in particular. For any controller method, if we need to send any response like user defined object then we need to have root element mentioned in the class.  
+If our bean class have any user defined type variable then we need to create its class like any other bean class and need to specify the xml root element. Address in employee is the user defined class thus have a look at it. 
+Step 6: Create a controller class inside the package mentioned for component scan. 
+We need to write multiple controller method for different purposes. Like, for getting all the employees we can write method getAllEmployees. The basic annotations that we use are 
+@RequestMapping(value="/getallemps", method= RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public @ResponseBody EmployeeList getAllEmployees(){
+		EmployeeList allEmployees = new EmployeeList();
+		List<Employee> allTheEmployee = new ArrayList<Employee>();
+		
+		Employee employee1 = new Employee();
+		employee1.setId(1);
+		employee1.setName("Rishav");
+		employee1.setCreatedDate(new Date("22/04/1992"));
+		
+		Employee employee2 = new Employee();
+		employee2.setId(1);
+		employee2.setName("Rishav");
+		employee2.setCreatedDate(new Date("22/04/1991"));
+		
+		allTheEmployee.add(employee1);
+		allTheEmployee.add(employee2);
+		allEmployees.setEmployees(allTheEmployee);
+		return allEmployees;
+	}
+We can have both XML and JSON in produces. So, whatever accept header value will contain (JSON or XML), that media type will be used. This is a good technique to cover clients that will need to different media type for the same content. If nothing is specified in accept header then JSON content will be send. 
+We can mention TEXT_HTML_VALUE and return a string with @responseBody annotation to simply return HTML content. 
+@ReponseBody annotation is used to directly send the return value in the specified media type. If we do not use this annotation then we might need to send the response as a view. While creating rest web service we will need it almost everywhere. We will discuss other annotations separately. 
+
+15.	How do we implement logger in a web service? Use the log4j.
+I have used logger log4j. We have to give its dependency in POM.xml i.e. it has to be on our class path. 
+I have created a class called Mylogger in common package. There I will created Logger class of log4j instance and initialized it in constructor. Then, we need to use the BasicConfigurator.configure(MyLogger.class). Instead of .class argument we can give a string as well. Then, we need to simply use the instance we have created in this class in any other class we need to do the logging.
+In general, what I have seen is the same I.e to have a customer logger extended log4j in common and used everywhere in the class.  
+Check with Ranjana, how logging is done in their project. Check how your project is doing logging too.
+
+16.	Explore the scenarios where we need to parse XML and JSON content. Especially in web service creation. How do we do XML and JSON data parsing? Try and describe using JAXP and JAXB with REST web service. Also, when do we do marshalling and unmarshalling manually? Like, when we do not use annotations?
+With annotations like @RequestBody and @ResponseBody, whatever xml or json content given directly gets de-serialized and given to java object and vice versa. I guess in the absence of such annotation we would need to parse and map the data to java object manually. In fact, thats when to use marshaller’s marshal and unmarshal methods to manually do the process. 
+Good Link to manually work with Jackson: https://www.journaldev.com/2324/jackson-json-java-parser-api-example-tutorial
+
+17.	What is HttpEntity, RequestEntity and ResponseEntity?
+HttpEntity is a spring framework class which is created to represent entities of http request or response. These entities could be header or body. This is generally used with RestTemplate class of spring. Suppose we need to send custom http header of request or response then we can create a HTTP header object, set the header attributes that we want and add that newly created header as an entity in HttpEntity class object. We can also add httpBody object as entity in HttpEntity object. HttpEntity class is a generic type class and thus we need to define the data type of the entity while creating its object. 
+RequestEntity is also a spring framework class and an extension of HttpEntity class. It adds method type and uri field other than what it gets from HttpEntity. 
+ResponseEntity is also a spring framework and as extension of HttpEntity class. It adds status code other than what it gets from HttpEntity. 
+
+18.	How do we send http request and get response in simple java JDK classes without any framework? Compare the classes that we have for sending requests in spring framework with simple java jdk classes. RRR
+Let’s look at the most naivest way of sending an HTTP GET and POST request using classes given in java JDK. Source: https://www.mkyong.com/java/how-to-send-http-request-getpost-in-java/
+Step 1: Create a String URL like below:
+String url = http://localhost:8080/someendpoint;
+
+Step 2: Create connection object using HttpUrlConnection class. This class has various APIs for setting up a connection and controlling request and response stuff. We can create its object using URL class openConnection() api like below:
+URL obj = new URL(url);
+HttpUrlConnection con = (HttpUrlConnection) obj.openConnection();
+
+Step 3: Now, the connection is created with the target URL. We need to set the request type method bu setRequestMethod() that we want use which is GET by default. We can also set header properties using api setRequestProperties().
+Con.setRequestMethod(“GET”);
+Con.setRequstProperty(“HeaderAttributeName”, “HeaderAttributeValue”);
+
+Step 4: We will not check the response code and if the response code is 200 which is OK then we will capture the response. Here, the key apis are getResponseCode(), getReponseMessage() and getInputStream().
+Int responseCode = con.getResponseCode();
+If(responseCode==200){
+	bufferedReader br = new  BufferedReader(new InputStreamReader(con.getInputStream));
+	String inputLine = “”;
+	StringBuffer response = new StringBuffer();
+	while((inputLine = br.readLine())!=null){
+		response.append(inputLine);
+}
+br.close();
+}else{
+	System.out.println(“Get request did not work”);
+}
+Note: for post request, we need to add request params as well. Thus, we need to create DataOutputStream object and writeByte to the output stream. Below is the code:
+// Send post request
+		con.setDoOutput(true);
+		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+		wr.writeBytes(urlParameters);
+		wr.flush();
+		wr.close();
+
+ 
+Now, there are many other frameworks which gives different classes for sending an HTTP request. Like, apache gives HttpClient for connecting to a server, sending request and capturing response. Lastly, except few situation, we might want to use HTTPClient over HttpUrlConnection because of speed and improved features. 
+Now, since we have worked on creating web services using Spring Rest thus we should also know how to create client using classes provided by spring rest. 
+In spring rest, we are given RestTemplate class which has got lot of APIs which can be used to create rest web service client.
+Case 1: for getting employee as XML response:
+private static void getEmployees()
+{
+   final String uri = "http://localhost:8080/springrestexample/employees.xml";   
+    RestTemplate restTemplate = new RestTemplate();
+    String result = restTemplate.getForObject(uri, String.class);
+    System.out.println(result);
+} 
+In the above code, we are creating a URI string first where we have mentioned the extension XML at last. This will dictate to give response in XML format. Then, we have created an object of RestTemplate class to use its APIs. We have used getForObject(uri, String.class) api which is used for doing GET request on the passed URI and asking for a response to be captured in the mentioned second argument. 
+Note:
+1.	For getting the response in JSON format, all we need to do is to change to extension in the URI from XML to JSON. 
+2.	For getting the response in the form of an object rather than string, all we need to do is to capture the result as object of that type and changing the argument passed like below:
+Employee employee = restTemplate.getFprObject(uri, Employee.class);
+Case 2: For sending custom headers with the Request
+We can also send some header attribute along with the request to web service. We can do it like below:
+
+private static void getEmployees()
+{
+    final String uri = "http://localhost:8080/springrestexample/employees";
+    RestTemplate restTemplate = new RestTemplate();
+    HttpHeaders headers = new HttpHeaders();
+    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+    HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+    ResponseEntity<String> result = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+    System.out.println(result);
+}
+Here, apart from all the basic stuff, we have created HttpHeader object and used setter methods for setting certain header attributes. The 
+
+RRRCase 3: for having variable in URI
+In case, we have a variable in the URI then we need to create a map which will be param and that param map need to be passed in the getForObject() method like below:
+private static void getEmployeeById()
+{
+    final String uri = "http://localhost:8080/springrestexample/employees/{id}";   
+    Map<String, String> params = new HashMap<String, String>();
+    params.put("id", "1");
+    RestTemplate restTemplate = new RestTemplate();
+    EmployeeVO result = restTemplate.getForObject(uri, EmployeeVO.class, params);
+    System.out.println(result);
+}
+
+Case 4: For sending other request method, we have different API in restTemplate like for POST method we have postForObject(), for PUT method we have put(). RestTemplate has lot to offer. 
+
+19.	What will you do for making your spring web service hosted on HTTPS url?
+The straight concept of converting your website to support https is to convert all the URLs from http to https is to purchase ssl certificate and configure it on the server. Generally. Hosting server providers on which you host your web service does it all for you with some charges. Even if you deploy your web service on cloud then you may see option of converting you web service to HTTPS. 
+My previous experience of HTTP to HTTPS is with a web application where server or build team has installed ssl certificate on the server and we need to made all the links from Http to https. However, we noticed a lot of things were then got hampered as it did not allow untrusted media or script on https page. Then, we had to fix all those issues. 
+
+20.	What basic POM dependencies you need for creating Spring Rest webservice?
+Spring-webmvc is the main jar that you would always like to have while developing a spring rest web service. Spring-webmvc has dependency on spring-web and thus if we put dependency of spring-webmvc then spring-web will automatically by downloaded. I guess most frequent annotation used are actually in sping-web.
+Then, spring-core is another important jar that you would want to add in your project to code related to dependency injection in spring project. Spring context is another jar which is related to dependency injection. Spring-context has transitive dependency in spring-core and thus we place dependency of spring-context then spring-core will also get downloaded automatically. 
+Note: we must declare dependency of every jar that our written code is using even if it is transitive dependency of other jar. This is because may be in future the transitive dependency will no longer exist between two jars. In this scenario, our code will break due to missing jar. 
