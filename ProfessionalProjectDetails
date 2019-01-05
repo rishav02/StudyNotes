@@ -1,25 +1,43 @@
-Introduction:
-Hi. I am Rishav Mishra. I have overall of 4 years of experience of as java devloper. During this course, I have worked mainly on three projects. First, I have worked while being in cognizant. It was a property and ownership search engine. It was a web application. Then, for opus, i have built a java based backend tool which is used to create billing for the customer of our client for using their network and update the billing items in the billing table. Currently, I am working on creating a RestFul web service from scratch which was a fraud assessment service. This application further uses a web service which is CDM. Apart from technology, I have good leadership skills and have been known for leading the things whereever i get opportunity. 
+||Introduction||
+Hi. I am Rishav Mishra. I have overall of 4 years of experience of as java developer. During this course, I have worked mainly on three projects. First, I have worked while being in cognizant. It was a property and ownership search engine. It was a web application. Then, for opus, i have built a java based backend tool which is used to create billing for the customer of our client for using their network and update the billing items in the billing table. Currently, I am working on creating a RestFul web service from scratch which was a fraud assessment service. This application further uses a web service which is CDM. I have worked on all the phases of SDLC life cycle, right from gathering the requirement till maintaining the product in production. Apart from technology, I have good leadership skills and have been known for leading the things where ever i get opportunity. 
 
-Company 1: Cognizant Technology Solution
-Project 1.1: RealQuest
-Brief Introduction - The project i worked on was property and ownership search engine. We used to maintain, enhance and keep the application secure for our client which was a US based company Corelogic with over 1.4 billion of revenue noted for a fiscal year. The motive of this application is to guide the customers towards the sound decisions of buying a property or not by providing the data they are looking in the most convenient way. 
-Function Description - Functionality wise, this application has option of generating different reports which contain different type of data like transaction history of a data, details on profile of the property, surrounding amenities, ownership and owners information, important documents as well as images of the property. A user can look for any particular property or can gives custom search for looking any unknown property. This application supports multiple search options to make experience. We also have the storing and retrieving the stored reports.
-Technical Description with architectural diagram
+What different information you need about the project?
+0. Brief Introduction
+1. Functional use that application. 
+2. Architechture diagram and flow of the application
+3. complete technology stack: core technology, server, build tool, database type, deployment tool like jenkins or what, code management.
+4. Your role. Problem faced.
+5. 
+6. Misc: process like waterfall or agile, duration of the work in project, client detail
+7. 
+8. specific things like: sesion management, define individual feature and how they are implemented like file upload antivirus scan clanAV
+9. design pattern used
+10. How exception handling, validations and other is done in the application. 
+
+
+
+
+
+
+
+
+|||Company 1: Cognizant Technology Solution|||
+||Project 1.1: RealQuest||
+
+|Brief Introduction|
+This is a property and ownership search engine. The motive of this application is to guide the customers towards the sound decisions of buying a property or not by providing the data they are looking in the most convenient way. 
+
+|Function Description|
+This application gives its end user a feature to search for a specific address property, range of address, on a basis of location or to search a property on map. Once the user selects property, she has option to get the information about the property in the form of report. Report can be like basic property report (area, dimension, location, current owner and other details), amenities report (detail for near amenities), ownership report (showing the history of ownership) and other many report. In fact, many documents related to a property can also be found. This way user gets the information about property. Generally, banks are end users which need to get the property information for financial mortgages very often. 
+
+|Technical Description with architectural diagram|
 1.	**draw diagram and describe**
-The architecture of the project is we had 4 production server which are 2 for legacy code and 2 for new code base. Each server has two instances. The application has a VIP (virtual IP) i.e. a web server in front. Then, the request goes to any of the server passing through the load balancer. 
-Once the request hits the web server, a static home page was returned and user suppose to log in the application for using its functionality. Upon successful authentication a user session is created. Then, user can search for a property. For searching a property user has to fill a form and a standard POST request is sent to the server with the form data. @@@Does the form data goes as request parameter or request body? As the request is accepted on the server side. We create a java object which gets all the necessary details for sending REST request to a particular service. Which service to call and which method to use was all depended on the report user has searched the property for. Once the java object is created then it was manually marshaled to XML or JSON request. We have used JAXB and Jackson for marshalling and unmarshalling. Once we receive the response of the web service we convert in into report java object. Then, that java object was used to fill the data in the report UI. A string buffer was built and from header to report footer was taken in the string buffer and printed. 
-I have worked a lot on security remediation for this project. We used to have three third party scan engines like veracode, Qualys and Foundstone. I have worked majorly on veracode as that needs a lot of code change while Qualys and Foundstone issues were majorly related to server configuration changes. 
-The top 5 issues that I remember have worked on are below:
-1.	Cross site scripting issues
-2.	Javascript issues
-3.	SQL Injections
-4.	Information leakage
-5.	Encapsulation 
-Once done with the architecture description then ask interviewer to explain about the XML requests n all.
-a.	We are consumers of web services. Consumers and provider of application has a contract set in XSD files. Now, once the contract is ready then we can create WSDL and include XSD with it or we can simple make use of XSD for converting to the java objects that will be used as input and output objects while creating web services. We make use of XSD. Now, tell what is XSD and how do we get XML request document?  We have XSD files for the other applications where we send the XML request. These XSD files tell use the structure of the XML document that we sent as a request. Actually, XSD which is the XML schema definition document. In the XSD document, we have different tags like schema, element tags etc. <xs: schema>, <xs: element>. Now, I guess then we create an XML request using XSD and Jaxb. How? Actually, first we will create java classes using XSD and then we can create different XML request using the classes that we have created and JaxB. 
-b.	XML request document is prepared, then what? tell about the role of jaxB and complete programming that is needed.  Now, we have prepared the XML document. Also, if the XML request document is the thing that we send then what is the need to create the java object through unmarshalling?
-Some Code for Help!
+The application is exposed by a web server behind a VIP (virtual IP address). The request from user hits this VIP in the very beginning. We had 4 production server (1 Customer staging, 2 QA and 1 dev) and each server has two instances which are for classic and modern code base. The request goes to any of the server passing through the load balancer after hitting the VIP.  
+Once the request hits the web server, a static home page was returned and user supposed to log in the application for using its functionality. Upon successful authentication a user session is created. Then, user can search for a property. For searching a property user has to fill a form and a standard POST request is sent to the server with the form data. @@@Does the form data goes as request parameter or request body? As the request is accepted on the server side. We create a java object which gets all the necessary details from the request. Depending on the report requested by the user, a service url and port will be picked from the properties file. Once the java object is created then it was manually marshaled to XML or JSON request. We have used JAXB and Jackson for marshalling and unmarshalling. Once we receive the response of the web service we convert it into report java object. Then, that java object was used to fill the data in the report UI. A string buffer was built and from header to report footer was taken in the string buffer and printed. 
+Note:
+1.	On the service side, it connect with passport service which is a single point for data need. Passport service was managed by client which has all the data that client holds. 
+2.	Also, we had the internal application db which was oracle database. We use to log the report generation history and billing history. We also had concept that some reports are billed only on first generation per user. Thus, the billing scenarios are crucial. 
+3.	For some of the report, we are given XSD while we are not given any XSD for other by service provider. We used to do marshalling and unmarshalling manually. Below is a sample:
 String uri =
     "http://localhost:8080/CustomerService/rest/customers/1";
 URL url = new URL(uri);
@@ -32,28 +50,93 @@ JAXBContext jc = JAXBContext.newInstance(Customer.class);
 InputStream xml = connection.getInputStream();
 Customer customer =
     (Customer) jc.createUnmarshaller().unmarshal(xml);
-
 connection.disconnect();
 
-Software and tools description 
-Intellij as IDE, sql developer, putty for unix, SVn for version control, maven for dependency management and list other softwares as well. 
-My Role –
-We follow agile and scrum. So,all the scrum ceremonies we follow. I have worked on backlogs related to enhancement where we added new report options. After few sprints, the entire team got divided from three. Maintenance, merge and security remediation. I was placed in security remediation and still working in the same team. In security remediation, we need to keep the security flaws minimized and hopefully eliminate them. There is something called veracode applicaitob whjich is used for scanning the application and generating a report with the flaw. When this security remediation team was formed the score was 55 while now it is 86 and progressing. Then describe different flaws like [describe top five security threats, check in internet]. A team of about 15 members works on this application. 
+|Technology and tools description|
+Technology: Java, javascript, HTML, CSS, AJAX, oracle db, Spring mvc.  
+Intellij and eclipse as IDE, sql developer as database client, putty for unix, SVN for version control, maven for dependency management, Cognizant internal tool for build and deployment, server UNIX. 
 
-Company 2: Infosys 
-Project 2.1: SNOW
+|My Role and issues faces|
+I have taken backlogs related to both front end and back end. I have worked a lot on security remediation for this project. We used to have three third party scan engines like veracode, Qualys and Foundstone. I have worked majorly on veracode as that needs a lot of code change while Qualys and Foundstone issues were majorly related to server configuration changes. 
+@@@Pending Issues faced: obvious many problems. Since it was first project. 
+Note:
+The top 5 issues that I remember have worked on are below: Cross site scripting issues, Javascript issues, SQL Injections, Information leakage and Encapsulation. 
+
+|Independent feature implementation|
+Session Management:
+File Antivirus check:
+Exception Handling:
+Input Data Validation:
+
+|Design Pattern|
+
+|Misc|
+Project Process Flow: This project involved agile (scrum methodologies). So, all the scrum ceremonies was follow. Ceremonies like grooming meeting, backlog planning meeting, retrospect meeting and other. A team of about 15 members works on this application.
+Apart from dev, QA and prod, we had customer staging environment where client people do testing for a week and provide signoff to move to prod. 
+I have worked on backlogs related to enhancement where we added new report options. After few sprints, the entire team got divided into three. Maintenance, merge and security remediation. I was placed in security remediation and still working in the same team. In security remediation, we need to keep the security flaws minimized and hopefully eliminate them. There is something called veracode applicaitob whjich is used for scanning the application and generating a report with the flaw. When this security remediation team was formed the score was 55 while now it is 86 and progressing. Then describe different flaws like [describe top five security threats, check in internet].
+Project For: It was for Corelogic account. It is a Irvine headquater based company providing financial, property, consumer information, analytics and business intelligence.  
+Duration: March, 2015 to Sept, 2017. 
+
+|Project 1.2: Report Services (Ript)|
+|Brief Introduction|
+This project is about creating a Restful web service which accepts the XML or JSON request to provide the required response which mainly has data needed to generate certain reports by its consumers.
+|Function Description|
+This service gets XML or JSON request which mainly contains request data like the type of report and address related attributes. Based on the type of report and address location, this services gives a call to passport service which in nothing but an interface to get data from client database. Passport service was managed by client to provide its precious data to authorized users. Therefore, this service simply provides data that will be needed to generated report. There were more than 20 different report services managed. 
+
+|Technical Description with architectural diagram|
+As the request hits the service, the url mapping is checked. The project consists of multiple controller classes as it supports more than 20 different report. We had different controller method and a service class for each type of report.
+
+
+
+
+|||Company 2: Infosys|||
+||Project 2.1: SNOW||
 I have worked very briefly on Service Now tool which was a ticketing tool for the client PWC. We used to work as admin and generally has to resolves tickets. That’s why I quite Infosys in 6months.
 
-Company 3: Opus Consulting Solutions
-Project 3.1: Java Backend Billing Tool
+|||Company 3: Opus Consulting Solutions|||
+||Project 3.1: Java Backend Billing Process||
+|Brief Introduction|
+SIF terminal billing is a project for building a backend process for generating billing items for customer of our client. 
+
+|Functional Description|
+Our client has its own network for carrying out transaction for different FI (banks). The entire transaction may involve a lot of work along with interaction with foreign networks like Mastercard, VISA and many other. Our client network has got many products and SIF (switch in front) is one of them. Thus, the associated FIs are to be charged on monthly basis for using our clients network SIF product. Definitely, there are various services offered by client network to its FIs and thus we were given a task to build a process for generating billing items for their customer FIs. For SIF, we have mainly three type of billing items which are communication type, monitoring type and surcharge type billing.
+Communication type billing item: Need to get all operational terminals and based on the communication type like broadband or dialup we need to charge them. We also need to check one time setup is done of not. If not, we need to create extra billing item for one time setup. 
+Monitoring Type billing item: Some of the terminals were in continuous monitoring of the network if the FI has opted for it. Thus, monitoring billing items are charged. It is only for few communication type and rates too vary then thus we need to take all these things in account. 
+Surcharge Type billing item: For this, we need to check the surcharge identifier must be greater then zero. It also has a set of rule like communication type and other thing which decides if this need to be generated for a terminal. 
+ 
+|Architectural Diagram and Technical description|
+**Architecture Diagram here**
+1.	Netbatch job runs on every 15th of a month at 6:00. It looks for SIFTerminal.sh script file placed on AIX server where we have deployed the code. We also have SIFTerminalRemote.sh file to run the job manually in case of netbatch failure. 
+2.	SIFTerminal does a few work like setting classpath, run some prerequisite script files before calling main.java class by passing SIfTerminalBilling as java argument. This is way lastly SIFTerminalBilling.java class will be called. We have many other process which are called from the same flow of main.java class.
+3.	Here, the actually billing starts. We carry out participation, monitoring and surcharge billing item creation in sequence. This class calls the dao class method for getting raw data to process.
+4.	Dao classes connects with SIFTerminal table and get the database rows which in the same class gets converted to VO through parseResult method. The VO is returned to SIFTerminalBilling class.  
+5.	We need to get the data from multiple classes for creating the billing item considering various condition. 
+6.	Once done with the list of billing items, it again connects to dao layer. 
+7.	This time we insert the data from dao class method to table SIFBillingItem table. It have used simple JDBC used in the dao classes. We have in house client util classes inside dao package in common project. They had connection manager interface which has got all the method which we used to utilize to get connection and execute queries.  
+
+|Software and tools used|
+Technology: java, CORBA, NETBatch job
+Eclipse as IDE, db visualizer as database client, putty for unix, GitBlit for version control, maven for dependency management, jenking for build and deploy (only dev), server AIX, JIRA for bug tracking and review, Ansible for property sync and deployment for para and above servers.  
+
+|My Role and issues faces|
+I worked as java developer but we have interacted directly from client for gathering the requirement and clarification. We received the PLD and we have written the detail design document. So, worked through all the SDLC lifecycle in this project. 
+Learning CORBA was challenge, since we did not had any support for CORBA. We were using to communication between HP system with AIX server. 
+
+|Independent feature implementation|
+
+
 This tool is used to create billing item and update in the billing DB. This job is used to start through netbatch job which runs every month. The netbatch job used to look for a script file. Through script file the job triggers actually. Then, it looks for the data in table and create object of Vos to be processed. Then, different billing items get created which are @@@Comp=plete this.   
 
 Project 3.2: FAS i.e. Fraud Assessment Service
-Project X
-This application is fraud assessment application. It send a REST web service request to CDM (@RaY: mention the full form). CDM returns accepted, rejected or review status as response of the web service request sent. The response is forwarded to the service which has sent the request originally. Methodology: Agile.
+|Brief Introduction|
+This service is a fraud assessment service. The motive of this service is to identify if a financial transaction is a fraud transaction or not with the help of CDM. 
+
+|Functional Description|
+Functional description is same as brief introduction. 
 Technology Stack:
-This application uses spring boot which is a rapid application development framework. We have a usual SpringBoot Class consisting of the main method. All the configurations are taken care in application.properies (name need correction is guess!) file.
+This application uses spring boot which is a rapid application development framework. We have a usual SpringBoot Class consisting of the main method. All the configurations are taken care in application.properies (name need correction i guess!) file.
 The database used is Casandra. Web service written in RESTful way while both, SOAP and REST, are consumed in the project.
+
 
  
 Architecture Flow: (High Level)
@@ -64,7 +147,7 @@ The request will hit FAController.java which is the only controller. A response 
 @Ranjana, Provide at least two examples and what classes or mechanism used to validate input. @Ranjana, what data do we receive from the request and what data do we fetch from Cassandra? @Ranjana, Never share the code as is. 
 Doubts (@Ranjana)
 Is our project web service or micro service?
-
+Is CDM a public web service? I mean free to use or paid?  
 
 What different information you need about the project?
 1. Functional use that application. 
