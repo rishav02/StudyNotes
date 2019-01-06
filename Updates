@@ -1,4 +1,116 @@
+Java Study Quick Revise
+1.	Return type, access modifiers and non-access modifiers for a constructor.
+2.	Static import concept.
+3.	Some example of real Encapsulation.
+4.	Object Cloning: How to do, types, which is better.
+5.	How metaspace introduced in java 8 is better than per gem.
+6.	Garbage Collection Monitoring: how to do monitoring, factors to decide if tuning is needed, If need then how will we tune, arguments used while tuning GC. 
+7.	Codewise what happens when an exception occurs.
+8.	Exception handling in case of method overriding.
+9.	Local inner class and outer class variable usage of each other. 
+10.	Static nested class and outer class variable usage of each other.
+11.	Thread life cycle, when goes to runnable and running. 
+12.	Create thread through thread class.
+13.	Tell about suspend method.
+14.	How to implement shutdown hook. 
+15.	Risk with thread pool.
+16.	Static synchronization, what to pass in case of static synchronization.
+17.	How lock interface provides guarantee of sequence?
+18.	Lock interface method. 
+19.	ReadWriteLock interface, how to use it, its method. 
+20.	Condition interface, how to use it, its method.
+21.	Atomic variables, why do they not use synchronization lock concept.
+22.	COWAL and synchronizationList differences. Why use synchronization block with synchronized list.
+23.	ConcurrentHashMap details, why not even single null allowed. 
+24.	Semaphore, how to use it, why would you use it.
+25.	CountDownLatch details, how to use it, why to use it.
+26.	Cyclic bareer details. 
+27.	Queue interface, its methods, concurrent version, concurrent version method, different implementation of blocking queue. 
+28.	Java Memory model
+29.	Compressed and uncompressed files. 
+30.	Why do we not have a get() method in set interface?
+31.	HashMap internal working
+32.	Random topics in collection: Load factor, why not applicable for non hash collection, Cursors and type, Reference and category.  
+33.	Revise all collection properties including queue.
+34.	Generics: whats this, its advantage, subtyping, wildcard and bounds, Type identifier, check notes.
+35.	Serialization: What this and how to do. Add to serialization process and customize serialization, check note.
+36.	Java 7 and 8 features.
+37.	Enum and Varargs. 
 
+
+Sql Queries Quick Revise
+1.	Select Banking as 'Bank Dept', Insurance as 'Insurance Dept' and Services as 'Services Dept' from employee table. 
+2.	Select first_name, incentive amount from employee and incentives table for those employees who have incentives and incentive amount greater than 3000.
+3.	Select first_name, incentive amount from employee and incentives table for all employes even if they didn't get incentives.
+4.	Select TOP N salary from employee table. This means highest N salaries
+5.	Select Nth Highest salary from employee table. 
+6.	Write Sql Syntax to create EMPLOYEE_REF_ID in INCENTIVES table as foreign key with respect to EMPLOYEE_ID in employee table. 
+7.	What is the query to display first and last 5 records of the table? 
+8.	How to show odd/even rows of a table?
+9.	How to fetch 3rd Highest salary from employee using Rank() function
+10.	How can I create a table of the same structure as employee table? 
+11.	Select last 50% record from employee table.
+12.	Query to print the name of distinct employee from employee which has DOB between 01/01/1965 and 01/01/1975. 
+
+Web Service Questions Quick Revise
+1.	What are the advantages of Web Services?
+2.	What are advantages of SOAP Web Services?
+3.	What are disadvantages of SOAP Web Services?
+4.	What are advantages of REST web services?
+5.	What are disadvantages of REST web services?
+6.	Compare SOAP and REST web services?
+7.	What is difference between SOA and Web Services?
+8.	How would you choose between SOAP and REST web services?
+9.	How to get WSDL file of a SOAP web service?
+10.	What is the use of @XmlRootElement annotation?
+11.	How to set different status code in HTTP response?
+12.	Explain the loosely coupled architecture of web services.
+13.	How one can provide API to users? How can we create a web service and make it open for the world to use it. Like we have various app stores for publishing our apps
+14.	Enlist some important constraints for RESTful web services.
+15.	What is Caching?
+16.	Explain Cache-control header.
+17.	Mention what is the difference between PUT and POST?
+18.	What is WADL in RESTFul?
+19.	What is the difference between a RESTful web service (on HTTP) and a HTTP Servlet both of which perform the same function?
+20.	How will you migrate from SOAP web service to RESTful web service?
+21.	Can my web browser be a client to RESTful web service? If yes then how will you generate DELETE request from web browser?
+22.	How will you handle synchronization issues when multiple clients try to consume web service simultaneously? Check the scenario in the answer
+23.	Can you describe any one RESTful web service you have written?
+24.	What will you do when an error code has to be returned to the client?
+25.	What is HttpMessageConverter and what is its advantage?
+26.	What status does delete request gives?
+27.	Why a Rest web service should always be stateless?
+28.	What is the advantages of using XML or JSON in web service?
+29.	How to manage security in REST web services? What are the aspect that we need to manage? Check how to do it in Spring rest and if possible spring security?
+30.	Try and describe about using swagger with your spring rest application for documentation
+31.	Try and describe about how would you implement caching in rest web service?
+32.	HATEOAS concept needs to be checked.
+33.	What are the best practices to name a resource or to create its URI?
+34.	What are your thoughts on response compression?
+35.	What is content negotiation? How can we control it?
+36.	Cover annotation @PathVariable, @ResponseStatus and @QueryParam in detail.
+37.	Mention all the configuration step by step for creating a basic REST web service.
+38.	How do we implement logger in a web service? Use the log4j.
+39.	What is HttpEntity, RequestEntity and ResponseEntity?
+40.	How do we send http request and get response in simple java JDK classes without any framework? Compare the classes that we have for sending requests in spring framework with simple java jdk classes. @Check variable URI case.
+
+Spring Study Quick Revise
+1.	Basic flow of spring application. 
+2.	Code needed for a basic spring mvc application, notes.
+3.	Use of XML namespace and schema definition, notes.
+4.	Concept of Context in Spring MVC, notes.
+5.	Spring MVC Validation Support, notes.
+6.	Exception handling with Spring MVC, notes.
+7.	File upload with Spring MVC.
+8.	URL redirect with Spring MVC, notes. 
+
+
+
+
+
+
+
+=================================================================================================================================
 1a. Java Study File
 @@@Serialization
 @@@Date formate in java: SimpleDateFormat, DateFormat, Calendar class. 
