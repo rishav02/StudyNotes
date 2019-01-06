@@ -1,1 +1,243 @@
-Must be taken from office computer. 
+Spring MVC
+Source(s): https://dzone.com/articles/top-20-spring-mvc-interview-questions-and-answers; https://howtodoinjava.com/interview-questions/spring-mvc-interview-questions-with-answers/ http://www.java67.com/2012/08/spring-interview-questions-answers.html https://www.baeldung.com/spring-interview-questions
+
+
+1.	Does spring-mvc jar a part of spring-core or do you want to add it in your class path?
+Firstly, spring-mvc in not a part of spring-core. They are different modules of spring framework. Yes, we would want to add it in class path for developing sping mvc application. Generally, we mention it dependency in dependency management tool like maven or gradle and they are default added to the class path of the project. 
+
+2.	What is dispatcher servlet? Can we have multiple dispatcher servlets in spring app?
+Dispatcher servlet is a spring implementation of front controller on mvc design pattern. Thus, we configure dispatcher servlet in deployment descriptor of our project such that all the request redirects to it. We also pass the init-param as the application-context.xml for dispatcher servlet in deployment descriptor. Dispatcher servlet is instantiated through the servlet container.
+We can definitely have multiple dispatcher servlets (front controller) in spring application. We can give different URL pattern to them and that dispatcher servlet will come in action whose url pattern get matched with request URL.
+
+3.	What is the root application context in Spring MVC application? How is it loaded? RRR
+CoxtextLoadListener is the root context of spring application and the context (param) loaded through this is for the entire spring application while one initialized as init param with dispatcher servlet is specific to dispatcher servlet only. So, you can understand this to use if you want to use any other configuration that will be applicable for entire app. We can do something like below.
+<context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+        /WEB-INF/spring-security.xml
+    </param-value>
+</context-param>
+<listener> <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> </listener>
+In the above code, we are adding another configuration file spring-security.xml which will be applicable for entire spring app. 
+When application get deployed then servlet container will create an instance of ContextLoadListner which will load Spring WebApplicationContext. 
+4.	What are stereotype annotations? 
+Stereotype words means something conforming to be a general type. Similarly, annotation like @Component, @Controller, @Service and @Repository are stereotype classes since they define class to application context of sometype.
+5.	Can we create controller without @Controller annotation or with some other annotations?
+We can create controller with @component annotation along with @requestMapping. This is because real work of perform for handling request mapping is through @requestMapping. 
+
+6.	Mention commonly used annotation in Spring MVC app.
+@Component, @Controller, @Service, @Repository, @Autowire, @Qualifier, @RequestMapping, @ModelAttribute, @RequestParam, @PathVariable, @ResponseStatus, @ExceptionHandler, @ControllerAdvice, @ResposneBody, @RequestBody.
+
+7.	What are different valid and commonly seen return type of handler method of controller class?
+The common handler method return type are String, ModelAndView, Model, ResponseEntity, Header, HttpEntity, void, Map and other.
+
+8.	What are Model and View interface in Spring MVC? RRR
+Model is an interface in spring MVC framework which has ModelMap as one of its implementations. Model interface is used to add attribute of model which can be used in view. 
+View is an interface in spring MVC framework which is used to store view details to be used to satisfy the http request. 
+ModelAndView is a class in java which is an object having information of both Model and View. Thus, dispatcher servlet gets the information of model and view through a single object. View name is resolved by dispatcher servlet through view resolver that we have configured in its application context. 
+	
+9.	How the right view is chosen when it comes to rendering phase?
+View Resolver helps dispatcher servlet picking the right view. InternalResourceViewResolver is the default view resolver which uses the prefix and suffix for building the path of the right view with its name. 
+
+10.	How do you get data in jsp through code like #{${message}}? RRR
+${expression} is actually a part of spring expression language. Expression language is used to get data in form of expressions in web pages like jsp. Spring has its own expression language module called SpEL. I guess SpEL uses reflection behind the scene.
+
+11.	Can we unit test controller in java?
+Yes, we can test controllers in java. Like, asserting the view name they are return. 
+
+12.	What is the difference in <context:annotation-config>, <context:component-scan> and <mvc:annotation-driven>? RRR
+<context: annotation-config>: activate the annotations like @Autowire and other in already registered bean. Remember, to already registered bean only. Those bean could be registered by any means though. So, typically, we would probably will use it when registering bean with xml and using @Autowire for providing dependency.
+<context: component-scan>: It does what <context: annotation-config> can do along with scanning the package mentioned and register any bean present through annotations. These annotation could be @Component, @Controller, @Repository, @Service etc. 
+<mvc: annotation-driven>: It declares an explicit support for annotation-driven MVC controller i.e. through @RequestMapping, @Controller, @RestController. Although, the support for these are given by default. You will not use it when you want xml based handler mapper to check appropriate controller for you.
+  
+13.	What is MultipartResolver and when it is used?
+MultipartResolver is used to facilitate file upload. In spring app, we have to create a bean in application-context.xml and its object will be needed in controller handler method as argument. We have used Apaches common File upload implementation CommonsMultipartResolver. 
+
+14.	What is Spring MVC Interceptor and how to use it?
+Spring MVC has got HandlerInterceptor interface which works exactly the same for controller the way filter works for servlet in servlet technology. We can use interceptors for pre and post processing before and after controller works. It also need to be configured in web.xml for a certain URL like servlet filter. 
+Good post giving complete example of interceptor: https://howtodoinjava.com/spring-mvc/spring-intercepting-requests-using-handlerinterceptor-with-example/
+
+15.	How to achieve localization in Spring MVC application?
+We can attain localization is spring through LocalResolver interface which is provided by spring. All we need to create its bean. For a complete example: https://howtodoinjava.com/spring-mvc/spring-mvc-internationalization-i18n-and-localization-i10n-example/
+
+16.	How to get ServletContext and ServletConfig object in spring bean?
+We can get ServletContext and ServletConfig objects in a bean inside any of our class by implementing the ServletContextAware and ServletConfigAware interfaces. Also, we need to override setServletContext() and setServletConfig() methods as well.
+
+17.	How to use Tomcat JNDI datasource with spring mvc application?
+Leaving right now. But, will be back after doing hibernate. 
+
+18.	How do you related Spring MVC as 3 tier application? RRR
+Presentation layer, business layer and Data Access layer. Not sure about this. 
+
+19.	How do we resolve view from ModelAndView class?
+ModelAndView class has many constructors. We can pass a simple string as view name. For example, the view I want to send through a controller is register.jsp then I would have to create ModelAndView object by passing string “register” and obviously have to make sure the suffix value is .jsp in bean for view resolver.
+
+20.	How do you achieve Transaction Management in Spring application?
+
+=====================================================================================
+Spring IOC
+(Sources(s): https://www.journaldev.com/2696/spring-interview-questions-and-answers 
+https://www.edureka.co/blog/interview-questions/spring-interview-questions/
+https://howtodoinjava.com/interview-questions/top-spring-interview-questions-with-answers/)
+1.	Cover different scenarios of creating bean.
+I hope it should be covered. 
+
+2.	What are different features in ApplicationContext container which are not present in BeanFactory container?
+ApplicationContext is based on top of BeanFactory. Therefore, it has got all the features of BeanFactory and some features of its own. Some of the feature of ApplicationContext are support for internationalization, annotation based dependency, events and listener and others. It supports eager loading in contrast of bean factory which support lazy loading. It is recommended to use ApplicationContext container over BeanFactory. 
+
+3.	What is Spring Bean?
+Spring bean is a class in the application which is initialized and provided dependencies by IOC container. In fact, bean has a complete life cycle which is managed by IOC container. Mostly, ApplicationContext container is used. 
+
+4.	What is importance of Spring Configuration File?
+Spring Bean Configuration file is an xml file where all the classes that we want IOC containers to initialize, provide dependencies and in fact manage the entire life cycle. Also, apart from mentioning the bean configuration, other configuration like view resolver, handler mapper, whether we need annotation config or annotation driven application. We can provide any necessary configuration related to any module of spring. 
+Also, we can have multiple configuration files in a spring project. We can differentiate configuration file to be related to a particular servlet or to the entire application through <init-param> or <context-param>.  
+
+5.	What are different ways to configure a class as bean in spring application?
+Bean configuration is all about identifying a class as bean class and providing its dependencies.
+A class can be configured as bean in spring application in three ways:
+1.	XML based configuration:
+In this, we write the bean In spring context file like <bean class=”package.className.class”></bean>. This way we automatically gets all the configured dependent objects in the bean class. 
+Example: Class A has dependency of Class B. So, register both the classes as bean and provide dependency we can code like below:
+<bean id="b" class="package.B">
+
+<bean id="a" class="package.A">
+	<property name="b" ref="b"/>
+</bean>
+Now, in A class, we do not need to instantiate the class B reference as we have mentioned it as dependency for class A.
+
+2.	Java based configuration:
+In this, we use annotations like @Bean, @Configure and @ConponentScan. @Configuration used on the class which should used by the spring container as the source of spring bean and @bean annotation is used on the method which will return object of the bean. Let see how can we provide class B in class A. 
+@Configuration
+public class AConfig{
+	@Bean
+	public A a(){
+		return new A();
+	}
+} 
+Above code is equivalent of below line:
+<bean id="a" class="package.A"/>
+Similarly, we can create for class B and need to write some code to get the object of class B in class A. Below is the code needed get the object of class B in class A. 
+ApplicationContext ctx = new AnnotationConfigApplicationContext(Bconfig.java);
+	B b = ctx.getBean(A.class);
+This way we use java code to register bean and get its dependencies. 
+
+3.	Annotation based configuration: 
+<context: component-scan base-package=”com.application.applicationName”> is used to mention that we are using annotation based configuration. For mentioning the some class as bean, we have to use annotations like @Component, @Service, @Repository, @Controller and other. While to provide dependency, we would like to use annotations like @Autowire, @Qualifier, @Required and other. 
+So, to get the class A instance of class B, we need to annotate both the class a appropriate annotation like @Controller, @Service, @Repository or other. Then, we need to use @Autowire inside class A over the reference of class B. 
+ 
+6.	What are different bean scopes in spring?
+Singleton, prototype, request, session and global session are the scopes that a bean in spring can have.
+Singleton: In this, we get only one object of a bean throughout an application. Singleton is the default bean scope of spring bean
+Prototype: In this scope, a new object of the spring bean provided whenever requested. 	
+Request: In this scope, a new object is created on every new request. 
+Session: In this scope, a new object is created every time a new object session is created. 
+Global Session: This scope is used to create a global session for portlet application. 
+
+7.	Describe the bean life cycle.
+Check the study spring section for details.
+
+8.	How to get ServletContext and ServletConfig object in the spring bean?
+We can get the object of ServletContext and ServletConfig in two ways inside bean class which are below:
+1.	Aware Interfaces
+We have aware interfaces like ServletContextAware and ServletConfigAware which has methods like setServletContext() and setServletConfig() method to get the needed object and set things to it. 
+2.	@Autowire 
+It can use Autowire annotation as well to get object of ServletContext and ServletConfig. 
+
+9.	Does spring beans are thread safe?
+No. Since, the default scope of spring bean is singleton thus same object is created throughout the application and thus multiple thread can make change to it at the same time to lead inconsistency. 
+10.	How will you load java.utils.properties into spring bean?
+Firstly, we need to understand the way of reading from the property file. We need to define the propertyConfigurer bean in spring context file which can load the properties from the given properties file. Below is the sample code for defining propertyConfigurer. 
+<bean id="propertyConfigurer" 
+  class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+    <property name="location" value="/WEB-INF/application.properties" />
+</bean>
+We also should know how to use the loaded properties in bean classes. For that, we can provide them in spring context file where are have create the beans or we can use annotations. Both the ways are shown below: 
+<bean class="com.journaldev.spring.EmployeeDaoImpl">
+    <property name="maxReadResults" value="${results.read.max}"/>
+</bean>
+If using annotations then do it like below:
+@Value("${results.read.max }") 
+private int maxReadResults;
+
+11.	Explain inner beans in spring?
+Inner bean of a class is created only when it is used only as a property of a class. We can do it as we can use bean element inside property element. 
+
+12.	What are limitations of autowiring?
+Autowiring has few limitations which are below:
+1.	Primitive Data Type cannot be autowired. String also cannot be autowired. 
+2.	Overriding possibilities. It can be overridden by dependency written in spring context file. 
+3.	It is confusing in nature. It is less precise. 
+
+13.	What is the difference in Component, Controller, service and repository annotation?
+Component is generic annotation which defined that a class is one of the bean however controller, service and repository annotation are more specific and it specifies that a bean as controller, service class and dao class respectively. 
+
+14.	What @Required annotation do?
+Required annotation is applied on setter property to indicate that the affected property must populated at the configuration time with the help of explicit property value in a bean definition or without autowiring and if this cannot be populated then BeanInitializationException must be thrown. This is a helpful annotation to make sure you have mandatory properties injected during configuration. 
+
+15.	What do you understand by qualifier annotation?
+Qualifier annotation is used to resolve conflict when more than beans are present spring context file and autowiring is done through bytype mode. We can use Qualifier annotation and mention the id of the bean to tell which bean to be used. Check the below sample code.
+public class EmpAccount
+{
+private Employee emp;
+@Autowired
+@Qualifier(emp1)
+public void showName()
+{
+System.out.println(“Employee name : ”+emp.getName);
+}
+}
+
+16.	What is event and listener feature of ApplicationContext container in spring?
+In ApplicationContext, we can create a listener bean which listen to the events raised by spring container. Spring provides 5 standard events which are below
+a.	ContextStartedEvent: It is published when AP is initialized or Refreshed.
+b.	ContextRefereshedEvent: It is published when AP is started using start method of ConfigurableApplicationContext interface. We can start or stop any application on receiving this event.
+c.	ContextStoppedEvent: Whenever stop() method of ConfigurableApplicationContext interface is called. 
+d.	ContextClosedEvent: Whenever closed() method of ConfigurableApplicationContext interface is called. 
+e.	RequestHandlerEvent: Whenever any HTTP request is completely served.
+
+17.	What is the difference in FileSystemResource and ClassPathResource?
+Both the classes are implementation of resource interface of spring. Resource interface is used for abstract access to low level resources. FileSystemResource is used to access a file on any path of a file system while ClassPathResource is used to access a file on the classpath of project. 
+
+18.	What if prototype object is provided as dependency in singleton bean?
+Solution if needed: https://java2blog.com/injecting-prototype-bean-singleton-bean-spring/
+
+19.	What does spring bean definition contains?
+Spring bean definition contains all configuration metadata which is needed for the container to know how to create a bean, its lifecycle details and dependency. Like, while creating bean we can define the bean scope with scope attribute and for setting autowire property we can use autowire attribute. This way we tell about how the bean is to be created and managed by the container. 
+
+20.	How do you provide the configuration data to spring container?
+We can provide configuration data to spring container through XML, java code or through annotations. 
+
+21.	What are important bean lifecycle method that you can override?
+Bean lifecycle mainly has two methods which are setup (init() method) and teardown (destroy() method). We can override them through init-method and destroy-method attribute or through annotations @PostConstruct and @Predestroy. 
+
+22.	Can you inject null or empty string in string property of a bean in spring?
+Yes, we can.
+
+23.	What is component scan in spring?
+Component scan is about asking spring to scan the classes for detecting spring managed components. In xml based configuration, we can mention it like <context:component-scan base-package=”basePackagePath”> 
+24.	
+=====================================================================================
+|Spring Framework Random Questions|
+1.	What is Spring Security?
+Security is mostly about Authentication, Authorization and encryption. Spring Security is the module of Spring Framework focuses on provided security to the Spring application and also takes care of common security vulnerability  such as CSRF attacks. We can use spring security through annotations as well. @EnableWebSecurity is one of the annotations. 
+
+2.	Name some of the design pattern you have used in spring Application.
+Singleton while using the beans with def	ault scope. Factory pattern while using bean factory classes. Front controller design pattern while using sping Dispatcher servlet. 
+
+3.	What are some of the best practices for Spring Framework?
+Below are some best practices:
+a.	Try to configure dependencies as much as possible. Try to avoid using autowire annotation as much as possible. 
+b.	For application level properties, it better to create property file and read it from spring bean configuration file. 
+c.	We should try to handle the exceptions in such a way that we get most accurate cause of the exception. 
+d.	Use of annotation promotes less code in application. 
+
+4.	What are some major features released in different Spring Version?
+Spring 2.5 was released in 2007 and was the first version to support annotation. Spring 3.0 was released in 2009 and was the first version to support fully java 5. Spring 4.0 was released in 2013 and was the first version to support java 8. Spring 5 was released in 2017 and was the first version to support Reactive programming (programming with asynchronous streams) and Kotlin (another static programming language which runs on JVM).  
+
+5.	How many modules are there in spring framework and what are they?
+There are around 20 modules in spring and they together form spring core, Data Access, Web, AOP, Integration and Test. Spring core container has core, context, bean and SpEL. Spring Data Access has JDBC template, ORM, JMS, OXM. Spring Web has web, web-mvc and other module. AOP is a dedicated module for providing Aspect Oriented Programming. While already said are the most frequently used module but spring has got more. 
+
+6.	How spring will deal with circular dependency?
+Circular dependency can be understood like some scenario like class A needs object of class B and class B need object of class A. 
+Link for solution if needed: https://java2blog.com/circular-dependencies-spring/
+
