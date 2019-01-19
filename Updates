@@ -298,7 +298,35 @@ Above is the hashcode and equals method.
 
 33. Can we create a thread by extending Thread class and Runnable interface both. Yes! We can do this. However, we must make sure we extend thread first and then implements runnable interface. The order if reversed will give compilation error. We can create thread in either ways if both thread class and runnable interface is used. 
 
+34. If parent and child class has a common instance method and parent p = new child(); p.commonMethod() is executed then what will happen?
+It will call the child version since the object created is of child. If p = new parent() then it would have called parent version. changing the situation a little; if child only contains the method and if p = new child() and p.childmehtod() is executed then compilation error will be shown. We need to do downcasting then it works fine. Againg changing situation: if only child has that method and code p = new parent() and p.childMethod() is executed then classcastexception would have araised. 
 
+35. Code inside a method: int a, b; if(a=b){//some logic}. WHat will happen?
+Comppilation error because code inside if clause "a=b" will give int and it needs boolean. 
+
+36. Tree with values {1,2,3,4,5}. Tell preorder, inorder and postorder traversal.
+Inorder: left, root, right {4,2,5,1,3}
+Preorder: root, left, right {1,2,4,5,3}
+Postorder: left, right, root {4,5,2,3,1}
+
+37. What is prefix and postfix notations? Check how to convert a normal expression. 
+prefix notation: {operator operand1 operand2} while postfix {operand1 operand2 operator}. Infix is when operator is in between operands. We will look at inter conversion later. 
+
+38. What are native methods in java and why would i ever want to use it?
+Native is a keyword exclusively for methods in java to denotes that the implementation of this method is in some other language like C or C++. It mainly increases the performance while it impacts platform independent characteristic of java. 
+
+39. which operator is this in java "~"?
+It is bitwise operator. & is AND, | is OR, ^ is XOR, ~ is binary ones complement, << is left shift, >> is right shift while >>> is right shift with zero fill.
+
+40. What is hack EJB is?
+Well, java was already become quite popular until 1996 but everyone using java had one common concern which was the lack of standard for doing common stuff for any application. Thus IMB came forward with java's first ever framework specification covering common concerns handle techniques which was later included by sun in 1999. Typically, we can say EJB is a framework based on java for better development of java based applications. Now, we have EJB 3.2 which is mostly annotation based. It is not a comptetor of jsp servlet but a complementory. Like, we can use EJB interfces, classes or annotaiotn for perfoming few things like transaction management through EJB while rest of things based on jsp and servelt is possible. 
+
+41. What is default format of date in sql? How to convert to 10 JAN, 2018?
+The default format in oracle is DD-MON-YY. While we can change it through to_char(datecolumn, "DD MON, YYYY") function.
+
+42. Composition, association and inheritance mai relation.
+
+43. JSP implicit objects, 
 
 
 
