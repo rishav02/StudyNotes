@@ -1,62 +1,157 @@
-Topic: Java Oops Concepts
+Topic: Basics and Java Oops Concepts
+1.	Why main method is kept public and static? 
+Public makes main method accessible from anywhere. Thus, JVM can execute it. It is static because JVM should not need to have a reference and can directly call it.
+If JVM does not find main method then it throws NoSuchMethodExpection.
+
+2.	Why main method has string array as argument why not any collection or anything else?
+Java took the syntax initially from C. Java 1 does not had collections and command line argument are also of string type thus string array seemed a suitable option to be picked up as argument of main method.
+
+3.	How main method can use the instance methods or variables? How static and non-static member (method) uses each other? RRR
+We need to create the object of class and we can call instance member through the object. Any static member can access instance member using object of that class otherwise not. A static member can be accessed by non-static member like it uses other non-static members.
+
+4.	Tell the internal working of JVM.
+https://www.geeksforgeeks.org/jvm-works-jvm-architecture/
+Also, check the image showing important parts of JVM. 
+5.	Do we have destructors in java?
+No. Since we have garbage collection process to take back not required objects from memory. 
+ 
+6.	Why cannot we have constructors to be static?
+The access modifiers allowed with a constructor is public, protected or private. Also, it makes no sense to call constructor as static as a constructor is invoked with respect to an object while static is something that belongs to a class.
+
+7.	Can you change the state of an object which is referenced by a final reference and how? RRR
+Here, we are talking about “final Test t = new Test()”. Here, we have created t reference which is final. We can do this since reference is also a variable. Also, making a reference final means finalizing the memory address of reference as final. Thus, we cannot assign any other memory address to this address but change the state of the object.
+
+8.	Is it possible to change the element of final array or collection class? If yes, how?
+Yes. We can do this. This is possible because changing the element will still let the array to the same memory location in heap. Remember, Array and collection are object type and making them final actually making the reference final. Thus, assigning a new array object to a final array reference is illegal. Check the code below:
+final int[] array = {1,2,3,4,5};
+	array[0] = 1;			//successfully changing element
+	array = new int[5];  //compilation error
+	
+	final List<Integer> lsit = new ArrayList<>();
+	lsit.add(10);   //successfully chnaging element
+	lsit = new ArrayList();  //compilation error
+Note: Exactly like previous question.
+
+9.	What is auto-widening and explicit narrowing? RRR
+Auto widening is the concept of casting a small sized primitive type to large sized primitive type which is allowed or done automatically in java. For example, from byte to short or short to int. Explicit narrowing is opposite which involves casting large primitive type to small primitive type. This we have to do explicitly in java. For example, from short to byte or int to short. 
+Casting code output based questions link: http://javabypatel.blogspot.com/2016/07/type-casting-interview-questions-in-java.html
+
+10.	What is ArrayStoreException? RRR
+When we store element of different type in array than we suppose to we get ArrayStoreException during runtime. With this, I mean of we try to do sub typing like in the below example then ArrayStoreException will be thrown at runtime. However, in a normal array like String[] strings = new String[], if we try to add an integer then we will get compilation error at the first place. 
+Object[] strings = new String[2];
+		strings[0]="RIshav"; //no error
+		strings[1] = 1; //Array Store exception
+		String s = strings[0];  //compilation error of type conversion
 
 
+11.	Can we pass negative number to an array size?
+No. If you try to pass a negative number as size of array then you wont get any compile time error however you will receive NegativeArraySizeException at run time. 0 wont gave any exception when passed as argument of an array. 
 
+12.	Why wrapper classes are made immutable? RRR
+There are multiple reasons which backs for the decision for making wrapper classes immutable.
+a.	When a class is immutable then it becomes thread safe and thus the overhead of synchronization is removed and these can be used in multithreaded environment without any need to synchronization. 
+b.	Immutability makes wrapper classes makes them a good candidate for being the key of a hashmap. 
+c.	It easy to share references of immutable class. 
 
+14.	Is the below code Valid?
+static String string = "helloworld";
+    string = "haha";
+    public static void main(String [] args) {
+    	string = "lol";
+    }
+Ans: in the above code, string = “haha” is not valid as we cannot update a value outside a method once it is defined. Updating the value inside the method does not cause any issue. 
 
+15.	Explain the concept of Oops with a mix of real world example and code touch. RRR
+Inheritance: Inheritance is a concept of oops where child class extends a parent class and can access all the data members except private member of the parent class giving the benefit of code reusability. Example: Employee class has id, name and designation of an employee and its getters and setter. Also, has method receiveSalary(). We have a class Manager which extends the employee class and has a data member which is managerId. Notice that we are not writting data members of manager class like id, name and designation again but we can use them from its parent class employee and set the attribute id, name and designation for manager as well. We also need not to write receiveSalary() method in the manager class as well. Likewise, in a enterprise project, we may have a thousand class using the employee class. Thus, we get protected of writing the same code 1000 times.  https://howtodoinjava.com/object-oriented/java-inheritance/
+What if we do not have inheritance: Then, we might have to write the id, name and designation in sub class of employee like manager again. 
+Popymorphism: Poly means multiple and morphos means forms. Polymorphism is a concept in java where methods with the same name can be given different forms. Its of two categories which are compile time and runtime. Compile time is an intra class activity where methods in a class having same name can be given different forms on the basis of number or type of arguments. The best example for this is the capability of different constructor of a class. A real world example could be, if we have a bike with a method lock which locks your bike. However, you can lock a bike with one lock or two lock together. So, in the bike class we can have two methods with the name lock with different argument with lock1 and other with lock1 and lock2.
+Runtime polymorphism is inter class activity where child class can give a different implementation to any instance method of its parent class while keeping the signature exactly same. One good example is, we have a class called bike which has method called start and this implements the procedure of a bike to start through a kick. We have another class called smart bike which extends class bike. But, since its a smart bike it gets started with a button. Thus, it need to override the start() method and has to give a different form. 
+What if we do not have Polymorphism: In the absence of compile time polymorphism, we might have give different method name and would be difficult to remember and program. In the absence of runtime polymorphism, we either not inherit the bike class in super bike or can keep start() method as is. 
+Abstraction: Abstraction is a concept in java to hide the complexity of the implementation of a method and provide a common interface through which a user can use different type of a particular thing. We can achieve 100% abstraction through interfaces while anything less than 100% through abstract classes. With abstract classes or interfaces, we write abstract methods which does not has the implementation. While we want to use the abstract classes/interface we can be used through the object of implementation class. One good example from java jdk is list interface. Arraylist, linkedlist and vector provides the implementation of list. A good example is we have created a mapper interface and its implementing classes. Then, we first decide which implementation to use depending on a code input received. Then, we instantiate the interface reference with one of the implementation. Here, we are not bother which implementation is selected but we can use same method names as they will be same as named in interface. This way we hiding if the implementation is of which mapper implementation and getting standard method to be across the code base by using method of interface. Another good example of real world abstraction: Every laptop has a usb port. Chip behind the USB port for different kind of laptop is different which is like a implementation hidden while we know the USB port which looks the same to us which is like a common interface. 
+What if we do not have abstraction: In the absence of abstraction, we might be exposing in the which  implementation of code is interface is used and also must be troubled maintaining the same method across and may end up causing inconsistency. 
+Encapsulation: Encapsulation in java is a concept where we bind the data with the methods (getters and setters) to secure it from in-advertent changes. Advantage of encapsulation is more controlled access of data. We can create a class with some private data members and only give getters (methods to access). This way we are only allowing the users to just get the data member while they cannot change it. This will not let anybody to change the data members and access data through method which will ask for authentication first. One example of code, like in a class for processing a transaction, we had a field called total records which is a counter. So, for that we kept a getter and not given a setter while making the field private. This way we can use it to only get the data while its value can never be changed outside the class. A real world example is a wending machine class where we have cans data member inside it. We can only get a can through the operation i.e. the getCan method of that wending machine class (method) after providing money (authentication). 
+With encapsulation, we have bind the access of cans with getCans() method after appropriate authentication.
+What if we do not have encapsulation? If we do not have encapsulation then anyone can access data of the class and set it as well. We cannot achieve read only or right only concept.  
+
+16.	What is method hiding? Why is it called method hiding?
+Child class cannot override a static method of the parent class but it can have a method with the same signature. It will not throw any compilation error. With same static method in the child class, the method in the super class gets hidden and that’s why it is called as method hiding. 
+
+17.	What is the difference between float and double? How programmatically be differentiate between them?
+Double and Float are floating point data type while the difference lies in the precision. Double can give precision up to 15-16 decimal points which is 8 byte size while float can give only up to 5-6 decimal points which is 4 byte size. Programmatically, we have to add f to each floating literals while double does not need to add anything while if we want we can add d.   
+I would prefer using BigDecimal instead of double or float because of its methods like setscale. 
+
+18.	Describe data type byte in java. RRR
+Byte is 8 bit twos complement integer which is of 8 bit capacity. It can be initiated by appending 0b or 0B followed by bits. Something like “0b1111111” (127). This way it only accept bits 0 or 1. We can also initialize it by int number in the range of -128 to 127. Also, if byte a = 129; is given then it shows error while the interesting this is that byte a = (byte) 129; does not show error but print some other value between -128 and 127. It kind of takes the loop from 127 t0 -128.  
+Generally, byte data type is used to store the data received over the network or byte data read from a file. It is used almost in every application where the data is sent over the network. Also, for storing the state of an object after serialization. 
+When I try to print byte data or to convert it to string, then it shows the int version of the byte data. It does not show the bits literally. To show the bits literally as present in byte data type we need to use Integer.toBinaryString() api. This converts the row bytes to binary literally. We can convert byte[] (not a single byte) through string constructor to string. For converting string to byte, we have “01010”.getBytes() api.
+
+19.	What are different benefits we get from java as a programming language?
+We need to count down the traits of java which are like multithreading support, platform independency, robust language, high performance, architechturally neutral and distributed application support. 
+
+20.	How is the composition of JDK, JRE and other?
+Jdk is the java development kit which has got everything that would define that your machine has java. Jdk has jre, different tools like compiler, debugger, jstat, appletviewer and other, other folders like include and lib which contains come other tools. Additionally, it has file like Readme, license, copyright and other. JRE is the implementation of JVM. JRE has got all the library that we would need to write java code and along with everything that would need to provide runtime to run your java code. 
+Like, JRE is runtime environment by which java program can run on your machine while you need JDK to develop program using java. 
+
+21.	What is the order in which constructor, instance initializer and static initializer for child and parent class? RRR
+Static initializer block is called first time when the class loads. Thus, it is called first among the three. Instance initializer is called immediately before then an instance of a class is created. Thus, it is called before constructor is created. So, the final order is Static initializer block, instance initializer block and constructor. 
+When a class extends anther class and its constructor is called for the first time then the order becomes static parent, instance parent, parent constructor, static child, instance child, constructor child. When second object is created then order remains same except the static initializer is not called as it is called only once after class loading. 
+Add in interview asked questions file: Which is the latest version of java that is released? 
+=====================================================================================
 Topic: String
-Source: https://www.journaldev.com/1321/java-string-interview-Topic: Java Oops Concepts
-
-
-
-
-
-Topic: String
-Source: https://www.journaldev.com/1321/java-string-interview-questions-and-answers
-
 1. Is String a data type?
 String is a class in java and a reference data type. 
-2. What is string sub sequence method?
+
+2. What is string sub sequence method? 
 This method give a part of the original string but not in string format but in charSequence format. 
-3. How to convert String to char and vice versa, with int, with charArray. 
+
+3. How to convert String to char and vice versa, with int, with charArray? RRR
 String to char using charAt() and Char to String using toString() or valueOf().
 String to int using Integer.parseInt() and int to String Integer.toString() and valueOf().
 String to int array using toCharArray() and int array to String using String.valueOf(). 
 I think valueof is the best method of converting anything to String. 
-4. why char array is preffered over string for storing password?
-Well, the main reason of Char array picked over string for dealing with password in a java application is that String is immutable. So, if you store your password through string then it will get stored in heap until garbage collection do not run. If somebody gets access to thread dump then they might get the password. However, with char array they are mutable and can me made null from memory once used. Secondly, a side reason, if we print string containing password then it will print the password but in case of char array we will get some code but not the actual password. Lastly, even java team recommends it. they changed method in swing repo.
-5. Why string is popular Hashmap key in java?
+
+4. Why char array is preferred over string for storing password? RRR
+Well, the main reason of Char array picked over string for dealing with password in a java application is that String is immutable. So, if you store your password through string then it will get stored in heap until garbage collection do not run. If somebody gets access to thread dump then they might get the password. However, with char array they are mutable and can me made null from memory once used. Secondly, a side reason, if we print string containing password then it will print the password but in case of char array we will get some code but not the actual password. Lastly, even java team recommends it. They changed method in swing repo.
+
+5. Why string is popular Hashmap key in java? 
 We should remember that hashmap works on the concept of hashing. Therefore, it is key through which we place a value in hashmap and uses the same key for getting the value back. Since, string is immutable then its hashcode does not need to be generated again while getting the value back. We have wrapper classes too which are immutable and equally suitable for being a hashmap key. We can also use user defined object as key of hashmap provided we implements hashcode and equals method. 
 
-Source: http://javarevisited.blogspot.in/2012/10/10-java-string-interview-question-answers-top.html
-1. How does substring method works in Java or how does it considered as memory leakage?
+6. How does substring method works in Java or how does it considered as memory leakage? What improvement is made in java 7? RRR
 On slightly high level substring method is a overloaded method which is overloaded in two forms which are with one argument which take begin index and second is with two argument that takes begin and end index. It return a new string every time as strings are immutable in java. But how does substring method works internally? It calls String(int offset, int count, char[] array). Now, when we create a sub string then an array of the same content is created from the original string. Thus, the string memory object is retained in the memory for the same reason. This way it creates a memory leakage in java. 
-2. Is string thread safe? Careful!
+
+7. Is string thread safe? Careful!
 Yes, String are thread safe as they are immutable. 
-3. Verify how many objects get created in different scenarios.
+
+8. Verify how many objects get created in different scenarios.
 Check note point 11. 
 
-4. What is special about String object compared to other objects in java? 
+9. What is special about String object compared to other objects in java? RRR
 One special thing about string objects is that you can create string objects without using new operator i.e using string literals. This is not possible with other derived types (except wrapper classes). One more special thing about strings is that you can concatenate two string objects using ‘+’. This is the relaxation java gives to string objects as they will be used most of the time while coding. And also java provides string constant pool to store the string objects.
-5. Why Stringbuilder and StringBuffer classes are introduced if we already has String class? Also, Why they are kept final just like String class?
+
+10. Why Stringbuilder and StringBuffer classes are introduced if we already has String class? Also, why they are kept final just like String class?
 The objects of String class are immutable in nature. i.e you can’t modify them once they are created. If you try to modify them (like through concatenation), a new object will be created with modified content. This may cause memory and performance issues if you are performing lots of string modifications in your code. To overcome these issues, StingBuffer and StringBuilder classes are introduced in java. 
 We should not mix a class creating immutable object and class being final. String class does not have method to make its object mutable while StringBUffer and StringBuilder class has. However, making them final just to not allow any other class to extend them by giving those methods. By design, it must have been decided to finalize both the classes as final to avoid having any sub classes which is a good practice. 
-6. What is the main difference between String of C and C++ vs String in Java?
+
+11. What is the main difference between String of C and C++ vs String in Java?
 In C and C++, strings are terminated with null character. But in java, strings are not terminated with null character. Strings are treated as objects in java and backed by char array. You can get the char array from method toCharArray() of string class. 
-7. Check the reasons why String is kept immutable in java? What benefits are we getting of it. 
+
+12. Check the reasons why String is kept immutable in java? What benefits are we getting of it? RRR 
 a) Better security is one of the benefit we receive with string in java being immutable. We can use string for storing file path, passing host and port details, db connection url and other lot of stuff. While using string to read a file. After authentication, if a file path is changed then unauthorized file can read through access of different file. There could be a lot more such scenarios. Overall, change in the value of string could seriously pose security issues for an application. 
 b) Java is multi-threaded language. Thus, immutable string very much suitable for it. 
 c) String objects are used in class loading. If strings are mutable, it is possible that wrong class is being loaded as mutable objects are modifiable.
 d) Efficient use of memory as string object can be shared for multiple references. 
-8. Check important methods of string: split, trim, replace. 
+
+13. Check important methods of string: split, trim, replace. 
 1. Split method returns array. Thus, we can iterate its part. 
 2. Trim method returns a string with removing spaces from front and end, but not in between. 
 3. Replace method replaces char by char, string by string, or string chosen by regex with something. 
-9. Check if string lies in util or lang package?
+
+14. Check if string lies in util or lang package?
 Sting is a part of java.lang package. This package contains all the basic or core java design related classes. All wrapper classes also a part of this package. Util package in java relates to utility classes contains collection framework, date classes, string tokenizer classes and other. 
-10. Learn the basic aiisc to int and char rel.
+
+15. Learn the basic aiisc to int and char rel. RRR
 A-Z: 65-90
-a-z: 91-122
+a-z: 97-122
 
 
 
@@ -67,55 +162,55 @@ a-z: 91-122
 Topic: Garbage Collection
 
 Source 1: javarevisited
-Question 1 - What is structure of Java Heap ? What is Perm Gen space in Heap ?
-Answer : In order to better perform in Garbage collection questions in any Java interview, It’s important to have basic understanding of  Java Heap space. To learn more about heap, see my post 10 points on Java heap space. By the way Heap is divided into different generation e.g. new generation, old generation and PermGen space.PermGen space is used to store class’s metadata and filling of PermGen space can causejava.lang.OutOfMemory:PermGen space. Its also worth noting to remember JVM option to configure PermGen space in Java.
-Question 2 - How do you identify minor and major garbage collection in Java?
+1.	How do you identify minor and major garbage collection in Java? RRR
+Minor collection prints “GC” if garbage collection logging is enable using -XX:+PrintGCDetails, while Major collection prints “Full GC”. This Garbage collection interview question is based on understanding of Garbage collection output. As more and more Interviewer are asking question to check candidate’s ability to understand GC output, this topic become even more important.
 
-Answer: Minor collection prints “GC” if garbage collectionlogging is enable using –verbose:gc or -XX:PrintGCDetails, while Major collection prints “Full GC”. This Garbage collection interview question is based on understanding of Garbage collection output. As more and more Interviewer are asking question to ch 	eck candidate’s ability to understand GC output, this topic become even more important.
+2.	 What is difference between ParNew and DefNew Young Generation Garbage collector?
+This Garbage Collection interview questions is recently asked to one of my friend. It require more than average knowledge on GC to answer this question. By the way ParNew and DefNew is two young generation garbage collector. ParNew is a multi-threaded GC used along with concurrent Mark Sweep while DefNew is single threaded GC used along with Serial Garbage Collector.
+I have noticed that I have seen ParYoungGen for eden and ParOldGen for Object space, Metaspace and class space. Here, Par is basically the GC name and young and old generation is showing just the heap area. 
 
-Question 3 - What is difference between ParNew and DefNewYoung Generation Garbage collector?
-Answer : This Garbage Collection interview questions is recently asked to one of my friend. It require more than average knowledge on GC to answer this question. By the way ParNewand DefNew is two young generation garbage collector.ParNew is a multi-threaded GC used along with concurrent Mark Sweep while DefNew is single threaded GC used along with Serial Garbage Collector.
+3.	 How do you find GC resulted due to calling System.gc()?
+Another GC interview question which is based on GC output. Similar to major and minor collection, there will be a word “System” included in Garbage collection output.
 
-Question 4 - How do you find GC resulted due to callingSystem.gc()?
-Answer : Another GC interview question which is based on GC output. Similar to major and minor collection, there will be a word “System” included in Garbage collection output.
+4.	What is difference between Serial and Throughput Garbage collector? RRR
+Serial Garbage collector is a stop the world GC which stops application thread from running during both minor and major collection. Serial Garbage collector can be enabled using JVM option -XX:UseSerialGC and it's designed for Java application which doesn't have pause time requirement and have client configuration. Serial Garbage collector was also default GC in JDK 1.4 before ergonomics was introduced in JDK 1.5. Serial GC is most suited for small application with less number of thread while throughput GG is more suited for large applications. On the other hand Throughput garbage collector is parallel collector where minor and major collection happens in parallel taking full advantage of all the system resources available like multiple processor. Though both major and minor collection runs on stop-the-world fashion and introduced pause in application. Throughput Garbage collector can be enable using -XX:UseParallelGC or -XX:UseOldParallelGC. It increases overall throughput of application my minimizing time spent in Garbage collection but still has long pauses during full GC. This is a kind of Garbage collection interview questions which gives you an opportunity to show your knowledge in detail while answering. I always suggest to answer these kind of questions in detail.  See Java Performance The Definitive Guide for more details on this topic.
+Note: when I have passed the argument like –XX:+UseSerialGC then the logs were:
+Heap
+ def new generation   total 39296K, used 2097K [0x0000000081800000, 0x00000000842a0000, 0x00000000abaa0000)
+  eden space 34944K,   6% used [0x0000000081800000, 0x0000000081a0c420, 0x0000000083a20000)
+  from space 4352K,   0% used [0x0000000083a20000, 0x0000000083a20000, 0x0000000083e60000)
+  to   space 4352K,   0% used [0x0000000083e60000, 0x0000000083e60000, 0x00000000842a0000)
+ tenured generation   total 87424K, used 0K [0x00000000abaa0000, 0x00000000b1000000, 0x0000000100000000)
+   the space 87424K,   0% used [0x00000000abaa0000, 0x00000000abaa0000, 0x00000000abaa0200, 0x00000000b1000000)
+ Metaspace       used 2599K, capacity 4486K, committed 4864K, reserved 1056768K
+  class space    used 283K, capacity 386K, committed 512K, reserved 1048576K
 
-Question 5 - What is difference between Serial and Throughput Garbage collector?
-Answer : Serial Garbage collector is a stop the world GC which stops application thread from running during both minor and major collection. Serial Garbage collector can be enabled using JVM option -XX:UseSerialGC and it's designed for Java application which doesn't have pause time requirement and have client configuration. Serial Garbage collector was also default GC in JDK 1.4 before ergonomics was introduced in JDK 1.5. Serial GC is most suited for small application with less number of thread while throughput GG is more suited for large applications. On the other hand Throughput garbage collector is parallel collector where minor and major collection happens in parallel taking full advantage of all the system resources available like multiple processor. Though both major and minor collection runs on stop-the-world fashion and introduced pause in application. Throughput Garbage collector can be enable using -XX:UseParallelGC or -XX:UseOldParallelGC. It increases overall throughput of application my minimizing time spent in Garbage collection but still has long pauses during full GC.This is a kind of Garbage collection interview questionswhich gives you an opportunity to show your knowledge in detail while answering. I always suggest to answer these kind of questions in detail.  See Java Performance The Definitive Guide for more details on this topic.
+When I have passed the argument like –XX:+UseParallelGC
+Heap
+ PSYoungGen      total 38400K, used 1997K [0x00000000d5d80000, 0x00000000d8800000, 0x0000000100000000)
+  eden space 33280K, 6% used [0x00000000d5d80000,0x00000000d5f734c0,0x00000000d7e00000)
+  from space 5120K, 0% used [0x00000000d8300000,0x00000000d8300000,0x00000000d8800000)
+  to   space 5120K, 0% used [0x00000000d7e00000,0x00000000d7e00000,0x00000000d8300000)
+ ParOldGen       total 87552K, used 0K [0x0000000081800000, 0x0000000086d80000, 0x00000000d5d80000)
+  object space 87552K, 0% used [0x0000000081800000,0x0000000081800000,0x0000000086d80000)
+ Metaspace       used 2598K, capacity 4486K, committed 4864K, reserved 1056768K
+  class space    used 283K, capacity 386K, committed 512K, reserved 1048576K
 
+5.	Does Garbage collection occur in permanent generation space in JVM?
+This  is a tricky Garbage collection interview question as many programmers are not sure whether PermGen space is part of Java heap space or not and since it maintains class Meta data and String pool, whether its eligible for garbage collection or not. By the way Garbage Collection does occur inPermGen space and if PermGen space is full or cross a threshold, it can trigger Full GC. If you look at output of GC you will find that PermGen space is also garbage collected. This is why correct sizing of PermGen space is important to avoid frequent full GC. You can control size of PermGen space byJVM options -XX:PermGenSize and -XX:MaxPermGenSize.
 
-
-Question 6 – When does an Object becomes eligible for Garbage collection in Java ?
-Answer : An object becomes eligible for garbage collectionwhen there is no live reference for that object or it can not be reached by any live thread. Cyclic reference doesn’t count as live reference and if two objects are pointing to each other and there is no live reference for any of them, than both are eligible for GC. Also Garbage collection thread is a daemon threadwhich will run by JVM based upon GC algorithm and when runs it collects all objects which are eligible for GC.
-
-Question 7 - What is finalize method in Java ? When does Garbage collector calls finalize method in Java ?
-Answer : Finalize method in Java also called finalizer is a method defined in java.lang.Object and called by Garbage collector before collecting any object which is eligible for GC.Finalize() method provides last chance to object to do cleanup and free any remaining resource, to learn more about finalizers, read What is finalize method in Java.
-
-Question 8 - If Object A has reference to Object B and Object B refer to Object A, apart from that there is no live reference to either object A or B, Does they are eligible to Garbage collection ?
-This Garbage collection interview questions is related question 5 “When object become eligible for Garbage collection”. An object becomes eligible for Garbage collection if there is no live reference for it. It can not be accessible from any Thread and cyclic dependency doesn’t prevent Object from being Garbage collected. Which means in this case both Object A and Object B are eligible of Garbage collection. See How Garbage collection works in Java for more details.
-
-Question 9 -Can we force Garbage collector to run at any time ?
-Answer : No, you can not force Garbage collection in Java. Though you can request it by calling Sytem.gc() or its cousinRuntime.getRuntime().gc(). It’s not guaranteed that GC will run immediately as result of calling these method.
-
-Question 10 - Does Garbage collection occur in permanent generation space in JVM?
-Answer : This  is a tricky Garbage collection interview question as many programmers are not sure whether PermGen space is part of Java heap space or not and since it maintains class Meta data and String pool, whether its eligible for garbage collection or not. By the way Garbage Collection does occur inPermGen space and if PermGen space is full or cross a threshold, it can trigger Full GC. If you look at output of GC you will find that PermGen space is also garbage collected. This is why correct sizing of PermGen space is important to avoid frequent full GC. You can control size of PermGen space byJVM options -XX:PermGenSize and -XX:MaxPermGenSize.
-
-
-
-Question 11 : How to you monitor garbage collection activities?
-Answer : One of my favorite interview questions on Garbage collection, just to check whether candidate has ever monitored GC activities or not. You can monitor garbage collection activities either offline or real-time. You can use tools likeJConsole and VisualVM VM with its Visual GC plug-in to monitor real time garbage collection activities and memory status of JVM or you can redirect Garbage collection output to a log file for offline analysis by using -XlogGC=&lt;PATH&gt; JVM parameter. Anyway you should always enable GC options like -XX:PrintGCDetails -X:verboseGC and -XX:PrintGCTimeStamps as it doesn't impact application performance much but provide useful states for performance monitoring.
-
-Question 12: Look at below Garbage collection output and answer following question :
+6.	Look at below Garbage collection output and answer following question : RRR
 [GC
        [ParNew: 1512K->64K(1512K), 0.0635032 secs]
        15604K->13569K(600345K), 0.0636056 secs]
        [Times: user=0.03 sys=0.00, real=0.06 secs]
 
- 1. Is this output of Major Collection or Minor Collection ?
- 2. Which young Generation Garbage collector is used ?
+ 1. Is this output of Major Collection or Minor Collection?
+ 2. Which young Generation Garbage collector is used?
  3. What is size of Young Generation, Old Generation and total Heap Size?
- 4. How much memory is freed from Garbage collection ?
- 5. How much time is taken for Garbage collection ?
- 6. What is current Occupancy of Young Generation ?
+ 4. How much memory is freed from Garbage collection?
+ 5. How much time is taken for Garbage collection?
+ 6. What is current Occupancy of Young Generation?
 
 This Garbage collection Interview questions is completely based on GC output. Following are answers of above GC questions which will not only help you to answer these question but also help you to understand and interpret GC output.
 
@@ -132,29 +227,38 @@ Answer 5: 0.0636056 secs on second line denotes total time it took to collect de
 Answer 6: 64K 
 
 Here are few more interesting Garbage collection Interview question for your practice, I haven’t provided answers of all garbage collection interview questions. If you know the answer than you can  post via comments.
+Note: Below is garbage collection log for serial GC (-XX:+UseSerialGC) and in java 8, it seems like the memory used is shown in percentage:
+Heap
+ def new generation   total 39296K, used 2097K [0x0000000081800000, 0x00000000842a0000, 0x00000000abaa0000)
+  eden space 34944K,   6% used [0x0000000081800000, 0x0000000081a0c420, 0x0000000083a20000)
+  from space 4352K,   0% used [0x0000000083a20000, 0x0000000083a20000, 0x0000000083e60000)
+  to   space 4352K,   0% used [0x0000000083e60000, 0x0000000083e60000, 0x00000000842a0000)
+ tenured generation   total 87424K, used 0K [0x00000000abaa0000, 0x00000000b1000000, 0x0000000100000000)
+   the space 87424K,   0% used [0x00000000abaa0000, 0x00000000abaa0000, 0x00000000abaa0200, 0x00000000b1000000)
+ Metaspace       used 2598K, capacity 4486K, committed 4864K, reserved 1056768K
+  class space    used 283K, capacity 386K, committed 512K, reserved 1048576K
 
-Question -  What is difference between -XX:ParallelGC and-XX:ParallelOldGC?
-Question - When do you ConcurrentMarkSweep Garbage collector and Throughput GC?
-Question -  What is difference betweenConcurrentMarkSweep and G1 garbage collector?
-Question -  Have you done any garbage collection tuning? What was your approach?
 
+7.	What is difference between -XX:ParallelGC and -XX:ParallelOldGC?
+I did not found any answer for this but it looks like we are trying to select different garbage collection for an application by passing these arguments. 
 
-Source 2: greasy 
-What are different regions in JVM memory?
-There are 5 regions.
-1.	Eden
-2.	Survivor 1
-3.	Survivor 2
-4.	Old (or Tenured) Generation
-5.	Perm Generation (until Java 7). From Java 8 Perm Generation has been replaced with Metaspace.
-Note: Eden, Survivor 1 and Survivor 2 are collectively called as Young Generation.
-Can you explain the purpose of each region in Java Memory?
+8.	When do you use ConcurrentMarkSweep Garbage collector and Throughput GC? RRR
+CMS has more has SWT and higher efficiency which comes at the cost of more resource utilization and thus if we can pay this cost then CMS is a way to go.
+
+9.	What is difference between ConcurrentMarkSweep and G1 garbage collector? RRR
+G1 is latest GC with minimum STW events and with highest efficiency. Also, G1 is capable for handling heap size of more than 4 GB which other GCs are incapable of. 
+
+10.	Have you done any garbage collection tuning? What was your approach? RRR
+Check description of garbage collection tuning from java study. 
+
+11.	Can you explain the purpose of each region in Java Memory?
 Eden Generation: When an object is newly constructed it’s created in Young Generation. In most of the applications, many of the objects are short-lived objects. i.e., they will die soon. Thus they will get garbage collected within the Young Generation itself
 Survivor: Objects that survive Minor GC are not directly promoted to the Old Generation. They are kept in the Survivor region for a certain number of Minor GC collections. Only if they survive a certain number of Minor GC collections, then they are promoted to Old Generation.
 Old (or Tenured) Generation: Certain objects tend to be long lived. Example: Application Context, HTTP Sessions, Caches, Connection Pools,… Those long-lived objects are promoted to the old generation.
 Perm Generation: This is the location where JVM objects such as Classes, Methods, String Interns…. are created.
 Metaspace: Starting from Java 8 Perm generation has been replaced with Metaspace for performance reasons.
-What are the different types of GCs?
+
+12.	What are the different types of GCs? RRR
 There are 3 types of GCs:
 1.	Minor GC
 2.	Major GC
@@ -163,149 +267,34 @@ Minor GC: It’s also called as Scavenge GC. This is the GC, which collects garb
 Major GC: This GC collects garbage from the Old Generation
 Full GC: This GC collects garbage from all regions i.e. Young, Old, Perm, Metaspace.
 When Major or Full GC run all application threads are paused. It’s called as stop-the-world events. In Minor GCs also stop-the-world event occurs but momentarily.
-What are different types of GC algorithms?
-1.	Serial
-2.	Parallel
-3.	CMS
-4.	G1
-Serial: The serial collector uses a single thread to perform all garbage collection work. It is best-suited to single processor machines because it cannot take advantage of multiprocessor hardware. It’s enabled with the option -XX:+UseSerialGC.
-Parallel: The parallel collector (also known as the throughput collector) performs minor collections in parallel, which can significantly reduce garbage collection overhead. It is intended for applications with medium-sized to large-sized data sets that are run on multiprocessor or multithreaded hardware. It’s enabled with the option -XX:+UseParallelGC.
-CMS: The mostly concurrent collector performs most of its work concurrently (for example, while the application is still running) to keep garbage collection pauses short. It is designed for applications with medium-sized to large-sized data sets in which response time is more important than overall throughput because the techniques used to minimize pauses can reduce application performance. It’s enabled with the option -XX:+UseConcMarkSweepGC
-G1: G1 is the latest garbage collector, targeted for multi-processor machines with large memories. It meets garbage collection (GC) pause time goals with high probability while achieving high throughput. Whole-heap operations, such as global marking, are performed concurrently with the application threads. It’s enabled with the option -XX:+UseG1GC
-What are the merits and demerits of each GC algorithm?
-To see the Pros and Cons of each algorithm refer – https://blog.gceasy.io/2015/11/27/which-gc-to-use/
-What tools are used for analyzing Garbage Collection logs?
-1.	http://gceasy.io
-2.	IBM Pattern Modeling and Analysis Tool for Java Garbage Collector
-3.	Oracle’s Visual GC, Java Mission Control
 
-Source 3: Javatpoint
-117) What is Garbage Collection?
-Garbage collection is a process of reclaiming the runtime unused objects.It is performed for memory management.
-more details...
-118) What is gc()?
+13.	What tools are used for analyzing Garbage Collection logs and tuning? RRR
+The GC logs monitoring and GC tuning can be doing using CUI and GUI. Jstat is a tool of Hotspot JVM for GC monitoring. Below are some famous tools for GC logs monitoring and tuning:
+1.	Netbeans Profiler
+2.	JProfiler
+3.	GCViewer
+4.	VisualVM 
+
+14.	 What is gc()?
 gc() is a daemon thread.gc() method is defined in System class that is used to send request to JVM to perform garbage collection.
-119) What is the purpose of finalize() method?
-finalize() method is invoked just before the object is garbage collected.It is used to perform cleanup processing.
 
-120) Can an unrefrenced objects be refrenced again?
-Yes.
-121)What kind of thread is the Garbage collector thread?
-Daemon thread.
-121)What kind of thread is the Garbage collector thread?
-Daemon thread.
-122)What is difference between final, finally and finalize?
-final: final is a keyword, final can be variable, method or class.You, can't change the value of final variable, can't override final method, can't inherit final class.
-finally: finally block is used in exception handling. finally block is always executed.
-finalize():finalize() method is used in garbage collection.finalize() method is invoked just before the object is garbage collected.The finalize() method can be used to perform any cleanup processing.
+15.	What is the purpose of the Runtime class? RRR
+The purpose of the Runtime class is to provide access to the Java runtime system i.e. JVM. It is a singleton class and we can get only one object for an app or per JVM. 
 
-123)What is the purpose of the Runtime class?
-The purpose of the Runtime class is to provide access to the Java runtime system.
-124)How will you invoke any external process in Java?
+16.	How will you invoke any external process in Java?
 By Runtime.getRuntime().exec(?) method.
 
-Source 4: java-questions
-Java Garbage Collections Interview Questions
-Q1) Which part of the memory is involved in Garbage Collection? Stack or Heap?
-Ans) Heap
-Q2)What is responsiblity of Garbage Collector?
-Ans) Garbage collector frees the memory occupied by the unreachable objects during the java program by deleting these unreachable objects.
-It ensures that the available memory will be used efficiently, but does not guarantee that there will be sufficient memory for the program to run.
-Q3) Is garbage collector a daemon thread?
-Ans) Yes GC is a daemon thread. A daemon thread runs behind the application. It is started by JVM. The thread stops when all non-daemon threads stop.
-Q4)How is Garbage Collection managed?
-Ans)The JVM controls the Garbage Collector; it decides when to run the Garbage Collector. JVM runs the Garbage Collector when it realizes that the memory is running low. The behavior of GC can be tuned by passing parameters to JVM. One can request the Garbage Collection to happen from within the java program but there is no guarantee that this request will be taken care of by jvm.
-Q5) When does an object become eligible for garbage collection?
-Ans) An object becomes eligible for Garbage Collection when no live thread can access it.
-Q6) What are the different ways to make an object eligible for Garbage Collection when it is no longer needed?
-Ans)
-•	Set all available object references to null once the purpose of creating the object is served :
-•	publicclassGarbageCollnTest1{
-•	publicstaticvoid main (String [] args){
-•	      String str ="Set the object ref to null";
-•	//String object referenced by variable str is not eligible for GC yet
-•	str = null;
-•	/*String object referenced by variable str becomes eligible for GC */
-•	}
-}
-•	Make the reference variable to refer to another object : Decouple the reference variable from the object and set it refer to another object, so the object which it was referring to before reassigning is eligible for Garbage Collection.
-•	publc classGarbageCollnTest2{
-•	publicstaticvoidmain(String [] args){
-•	  String str1 ="Garbage collected after use";
-•	  String str2 ="Another String";
-•	System.out.println(str1);
-•	//String object referred by str1 is not eligible for GC yet
-•	  str1 = str2;
-•	/* Now the str1 variable referes to the String object "Another String" and the object "Garbage collected after use" is not referred by any variable and hence is eligible for GC */
-•	}
-}
-•	Creating Islands of Isolation : If you have two instance reference variables which are referring to the instances of the same class, and these two reference variables refer to each other and the objects referred by these reference variables do not have any other valid reference then these two objects are said to form an Island of Isolation and are eligible for Garbage Collection.
-•	publicclassGCTest3{
-•	    GCTest3 g;
-•	publicstaticvoidmain(String [] str){
-•	        GCTest3 gc1 =newGCTest3();
-•	        GCTest3 gc2 =newGCTest3();
-•	        gc1.g = gc2;//gc1 refers to gc2
-•	        gc2.g = gc1;//gc2 refers to gc1
-•	        gc1 = null;
-•	        gc2 = null;
-•	//gc1 and gc2 refer to each other and have no other valid //references
-•	//gc1 and gc2 form Island of Isolation
-•	//gc1 and gc2 are eligible for Garbage collection here 
-•	}
-}
-Q7) Can the Garbage Collection be forced by any means?
-Ans)No. The Garbage Collection can not be forced, though there are few ways by which it can be requested there is no guarantee that these requests will be taken care of by JVM.
-Q8) How can the Garbage Collection be requested?
-Ans) There are two ways in which we can request the jvm to execute the Garbage Collection.
-•	The methods to perform the garbage collections are present in the Runtime class provided by java. The Runtime class is a Singleton for each java main program. The method getRuntime() returns a singleton instance of the Runtime class. The method gc() can be invoked using this instance of Runtime to request the garbage collection.
-•	Call the System class System.gc() method which will request the jvm to perform GC.
-Q9) What is the purpose of overriding finalize() method?
-Ans) The finalize() method should be overridden for an object to include the clean up code or to dispose of the system resources that should to be done before the object is garbage collected.
-Q11) How many times does the garbage collector calls the finalize() method for an object?
-Ans) Only once.
-Q12) What happens if an uncaught exception is thrown from during the execution of the finalize() method of an object?
-Ans) The exception will be ignored and the garbage collection (finalization) of that object terminates.
-Q13) What are different ways to call garbage collector?
-Ans) Garbage collection can be invoked using System.gc() or Runtime.getRuntime().gc().
-Q14) How to enable/disable call of finalize() method of exit of the application
-Ans) Runtime.getRuntime().runFinalizersOnExit(boolean value) . Passing the boolean value will either disable or enable the finalize() call.
+17.	How is Garbage Collection managed?
+The JVM controls the Garbage Collector; it decides when to run the Garbage Collector. JVM runs the Garbage Collector when it realizes that the memory is running low. The behavior of GC can be tuned by passing parameters to JVM. One can request the Garbage Collection to happen from within the java program but there is no guarantee that this request will be taken care of by jvm.
 
-Source 5: Instance of Java
-.What is Garbage Collection in Java?
-•	Garbage Collection is an automatic memory management feature.
-•	The process of destroying unreferenced objects is called Garbage Collection.
-•	Once object is unreferenced it is considered as unused object, hence JVM automatically destroys that object.
-•	In java developers responsibility is only to creating objects and unreferencing those objects after usage.
-2.How JVM can destroy unreferenced object?
-•	JVM internally uses a daemon thread called "garbage collector" to destroy all unreferenced objects.
-•	A daemon thread is a service thread. Garbage Collector thread is called daemon thread because it provides services to JVM to destroy unreferenced objects.
-•	This thread is low priority thread. Since it is a low priority thread we can not guarantee this execution.
+18.	How to enable/disable call of finalize() method of exit of the application. RRR
+Runtime.getRuntime().runFinalizersOnExit(boolean value) . Passing the boolean value will either disable or enable the finalize() call. By default, it been always called. 
 
+19.	What is the default algorithm JVM internally uses for destroying objects? RRR
+Parallel algorithm is the default algorithms used in JVM of java 7 and 8 for destroying the object. While java 9 uses G1 GC as default GC.  
 
-
-3.So can you guarantee objects destruction?
-•	 No, we can not guarantee objects destruction even though it is unreferenced, because we can not guarantee garbage collector execution.
-•	So, we can confirm whether object is eligible for garbage collection or not.
-4.Can we force garbage collector?
-•	No, we can not force garbage collector to destroy objects , but we can request it.
-5.How can we request JVM to start garbage collection process?
-•	We have a method called gc() in system class as static method and also in Runtime class as non static method to request JVM to start garbage collector execution.
-•	System.gc();
-•	Runtime.getRuntime().gc();
-6.What is the algorithm JVM internally uses for destroying objects?
-•	"mark and swap" is the algorithm JVM internally uses.
-7.Which part of the memory is involved in Garbage Collection?
-•	Heap.
-8.What is responsibility of Garbage Collector?
-•	Garbage Collector frees the memory occupied by the unreachable objects during the java program by deleting these unreachable objects.
-•	It ensures that the available memory will be used efficiently, but does not guarantee that there will be sufficient memory for the program to run.
-
-
-9. When does an object become eligible for garbage collection?
-•	An object becomes eligible for garbage collection when no live thread can access it.
-10. What are the different ways to make an object eligible for garbage collection when it is no longer needed?
-•	Set all available object references to "null" once the purpose of creating object is served.
+20.	 What are the different ways to make an object eligible for garbage collection when it is no longer needed?
+Set all available object references to "null" once the purpose of creating object is served.
 
 
 1.	package com.instanceofjava;
@@ -343,124 +332,21 @@ Source 5: Instance of Java
 
 
 
-11.What is purpose of overriding finalize() method?
-•	The finalize() method should be overridden for an object to include the clean up code or to dispose of the system resources that should to be done before the object is garbage collected.
-12.How many times does the garbage collector calls the finalize() method for an object? 
-•	Only once.
-13.What happens if an uncaught exception is thrown from during the execution of finalize() method of  an object?
-•	 The exception will be ignored and the garbage collection (finalization) of that object terminates
-14.What are the different ways to call garbage collector?
-•	System.gc();
-•	Runtime.getRuntime().gc();
-15. How to enable /disable call of finalize() method of exit of application?
-•	Runtime.getRuntime().runFinalizersOnExit(boolean value). passing the boolean value  true and false will enable or disable the finalize() call.
-
-Source 6: dzone
-
-•	REFCARDZ
-
-•	GUIDES
-
-•	ZONES
-
-•	JOBS
-
-•	|
-
-•	AGILE
-•	AI
-
-•	BIG DATA
-
-•	CLOUD
-
-•	DATABASE
-
-•	DEVOPS
-•	INTEGRATION
-
-•	IOT
-
-•	JAVA
-
-•	MICROSERVICES
-•	MOBILE
-
-•	PERFORMANCE
-
-•	SECURITY
-
-•	WEB DEV
-Potential Java Garbage Collection Interview Questions
-by
-Ram Lakshmanan
- •
- Apr. 01, 16 • Java Zone •
-Like (14)
-
- Comment (1)
-
-Save
-
- Tweet
-Download Microservices for Java Developers: A hands-on introduction to frameworks and containers. Brought to you in partnership with Red Hat.
-
-Fig: Java Heap sizes generated from http://gceasy.io
-What are the Different Regions in JVM Memory?
-There are 5 regions:
-1.	Eden
-2.	Survivor 1
-3.	Survivor 2
-4.	Old (or Tenured) Generation
-5.	Perm Generation (until Java 7). Since Java 8, Perm Generation has been replaced with Metaspace.
-Note: Eden, Survivor 1 and Survivor 2 are collectively called the Young Generation.
-Can You Explain the Purpose of Each Region in Java Memory?
-Eden Generation: When an object is newly constructed it’s created in the Young Generation. In most of the applications, most of the objects are short-lived objects. i.e. they will die soon. Thus they will be collected as garbage within the Young Generation itself.
-Survivor: Objects that survive Minor GC are not directly promoted to the Old Generation. They are kept in the Survivor region for a certain number of Minor GC collections. Only if they survive certain number of Minor GC collections can they be promoted to the Old Generation.
-Old (or Tenured) Generation: Certain objects tend to be long-lived. Example: Application Context, HTTP Sessions, Caches, Connection Pools, etc. Those long-lived objects are promoted to old generation.
-Perm Generation: This is the location where JVM objects such as Classes, Methods, String Interns, etc. are created.
-Metaspace: Starting with Java 8, the perm generation has been replaced with Metaspace for performance reasons.
-What are the Different Types of GC?
-There are 3 types of garbage collection:
-1.	Minor GC
-2.	Major GC
-3.	Full GC
-Minor GC: It’s also called as Scavenge GC. This is the GC which collects garbage from the Young Generation.
-Major GC: This GC collects garbage from the Old Generation
-Full GC: This GC collects garbage from all regions i.e. Young, Old, Perm, Metaspace.
-When Major or Full GC run all application threads are paused. It’s called a stop-the-world event. In Minor GCs, stop-the-world events occurs, but only momentarily.
-What are the Different Types of GC Algorithms?
-1.	Serial
-2.	Parallel
-3.	CMS
-4.	G1
-Serial: The serial collector uses a single thread to perform all garbage collection work. It is best-suited to single processor machines, because it cannot take advantage of multiprocessor hardware. It’s enabled with the option -XX:+UseSerialGC.
-Parallel: The parallel collector (also known as the throughput collector) performs minor collections in parallel, which can significantly reduce garbage collection overhead. It is intended for applications with medium-sized to large-sized data sets that are run on multiprocessors or multithreaded hardware. It’s enabled with the option -XX:+UseParallelGC.
-CMS: The mostly concurrent collector performs most of its work concurrently (for example, while the application is still running) to keep garbage collection pauses short. It is designed for applications with medium-sized to large-sized data sets in which response time is more important than overall throughput because the techniques used to minimize pauses can reduce application performance. It’s enabled with the option -XX:+UseConcMarkSweepGC.
-G1: G1 is the latest garbage collector, targeted for multi-processor machines with large memories. It meets garbage collection (GC) pause time goals with high probability, while achieving high throughput. Whole-heap operations, such as global marking, are performed concurrently with the application threads. It’s enabled with the option -XX:+UseG1GC.
-What are the Pros and Cons of Each GC Algorithm?
-To see the Pros and Cons of each algorithm, refer to http://blog.tier1app.com/2015/04/19/which-gc-to-use/
-What Tools are Used for Analyzing Garbage Collection Logs?
-1.	http://gceasy.io
-2.	IBM Pattern Modeling and Analysis Tool for Java Garbage Collector
-3.	Oracle’s Visual GC, Java Mission Control
-
-Source 7: core Java interview questions
-Tuning
-Java Interview Question: What flags can I use to tune the JVM and GC?
+21.	 What flags can I use to tune the JVM and GC? RRR
 There are textbooks available on tuning the JVM for optimal Garbage Collection.  Nonetheless it’s good to know a few for the purpose of interview.
 -XX:-UseConcMarkSweepGC: Use the CMS collector for the old gen.
 -XX:-UseParallelGC: Use Parallel GC for New Gen
 -XX:-UseParallelOldGC: Use Parallel GC for Old and New Gen.
--XX:-HeapDumpOnOutOfMemoryError:Create a thread dump when the application runs out of memory. Very useful for diagnostics.
+-XX:-HeapDumpOnOutOfMemoryError: Create a thread dump when the application runs out of memory. Very useful for diagnostics.
 -XX:-PrintGCDetails: Log out details of Garbage Collection.
 -Xms512m: Sets the initial heap size to 512m
 -Xmx1024m: Sets the maximum heap size to 1024m
 -XX:NewSize and -XX:MaxNewSize: Specifically set the default and max size of the New Generation
 – XX:NewRatio=3: Set the size of the Young Generation as a ratio of the size of the Old Generation.
 -XX:SurvivorRatio=10: Set the size of Eden space relative to the size of a survivor space.
-Diagnosis
-Whilst all of the questions above are very good to know to show you have a basic understanding of how the JVM works, one of the most standard questions during an interview is this: “Have you ever experience a memory leak? How did you diagnose it?”.  This is a difficult question to answer for most people as although they may have done it, chances are it was a long time ago and isn’t something you’ve done recently. The best way to prepare is to actually try and write an application with a memory leak and attempt to diagnosis it.  Below I have created a ridiculous example of a memory leak which will allow us to go step by step through the process of identifying the problem.  I strongly advise you download the code and follow through this process.  It is much more likely to be committed to your memory if you actually do this process.
+
+22.	Have you ever experience a memory leak? How did you diagnose it? Write an example program and show the complete analysis of memory leakage and troubleshooting.  
+This is a difficult question to answer for most people as although they may have done it, chances are it was a long time ago and isn’t something you’ve done recently. The best way to prepare is to actually try and write an application with a memory leak and attempt to diagnosis it.  Below I have created a ridiculous example of a memory leak which will allow us to go step by step through the process of identifying the problem.  I strongly advise you download the code and follow through this process.  It is much more likely to be committed to your memory if you actually do this process.
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -533,7 +419,10 @@ We’re never clearing the reference after we’ve finished with it! If we chang
 
 Whilst clearly this is a very contrived example, you are asked to explain how you would identify memory leaks in an application.  Look for memory continuing to increase despite GCs happening, take memory snapshot and compare them to see which Objects may be candidates for not being released, and use a heap dump to analyze what is holding references to them.
 
-
+23.	Is it possible to «resurrect» an object that became eligible for garbage collection? RRR
+When an object becomes eligible for garbage collection, the GC has to run the finalize method on it. The finalize method is guaranteed to run only once, thus the GC flags the object as finalized and gives it a rest until the next cycle.
+In the finalize method you can technically “resurrect” an object, for example, by assigning it to a static field. The object would become alive again and non-eligible for garbage collection, so the GC would not collect it during the next cycle.
+The object, however, would be marked as finalized, so when it would become eligible again, the finalize method would not be called. In essence, you can turn this “resurrection” trick only once for the lifetime of the object. Beware that this ugly hack should be used only if you really know what you’re doing — however, understanding this trick gives some insight into how the GC work. 
 
 
 
@@ -549,15 +438,19 @@ Whilst clearly this is a very contrived example, you are asked to explain how yo
 
 =====================================================================================
 Topic: Exception Handling
-1.	What is difference between exception and error?
+1.	What is difference between exception and error? RRR
 Exception is an abnormal situation that occurs in an application majorly due to programmers fault and that has be handled. However, errors are not the errors by programmer. Errors are also runtime exceptions like OutOfMemory (JVM runs out of memory), StackOverFlow (Stack size got fully exhausted) and other. We can handle errors (runtime exception) through try catch but is not a good practice. Errors are generally more serious and holds less chances to be dealt then exception.
 2.	What is exception chaining? 
 Whenever an exception is thrown in response of an exception then that’s called as exception chaining. 
-3.	Why would you want to subclass an exception?
-Exception classification is generally to clarify what exactly went wrong. Similarly, if we finds an scope to clarify an already existing exception, then could sub class it. This will result in better understanding of the exception occurred in an application.
-4.	Can you thrown an exception inside lamba expression body?
-Will do it later.
-5.	Will the below line of code gets executed? throw new RuntimeException(new Exception(new RuntimeException()));  
+
+3.	Why would you ever want to subclass an exception? RRR
+Exception classification is generally to clarify what exactly went wrong. Similarly, if we finds a scope to clarify an already existing exception, then could sub class it. This will result in better understanding of the exception occurred in an application.
+
+4.	Can you thrown an exception inside lambda expression body? RRR
+We can throw an exception inside lambda expression however it is not recommended. Lamba expression the mean to be concise and throwing expression inside it or doing anything that extend it would not be recommended. We can instead create a wrapper for lambda expression. Check how we do this here: https://www.baeldung.com/java-lambda-exceptions. 
+
+5.	Will the below line of code gets executed 
+throw new RuntimeException(new Exception(new RuntimeException())); 
 Yes. This is a kind of exception chaining. Below is the output. 
 Exception in thread "main" java.lang.RuntimeException: java.lang.Exception: java.lang.RuntimeException
 	at Test3.main(Test3.java:5)
@@ -565,22 +458,33 @@ Caused by: java.lang.Exception: java.lang.RuntimeException
 	... 1 more
 Caused by: java.lang.RuntimeException
 	... 1 more
+
 6.	What are main methods of exception class?
 The method of exception class is mainly related to showing exception messages like getCause(), printStackTrace, getMessage(), toString(). 
-7.	Can we have try block, catch block or finally block alone? NO
-8.	What are the good practices for exception handling
+
+7.	Can we have try block, catch block or finally block alone?
+NO
+
+8.	What are the good practices for exception handling? RRR
 We should try to use more specific exception for better debugging. 
 We need to throw an exception as early as possible (for best knowledge of the root cause) and to catch as late as possible (for evaluating the best possible fallback). Check example for this https://softwareengineering.stackexchange.com/questions/231057/exceptions-why-throw-early-why-catch-late.  
 Proper logging of the exception messages. 
 Closing Resource properly in finally block
-9.	What are scenarios where exception in main thread?
+
+9.	What are scenarios where exception in main thread? RRR
 a. UnsupportedClassVersionError: When class is compiled using different JDK. 
 b. NoCLassDefFoundError: When the class is not found on runtime. 
 c. NoSuchMethodError: When do not finds appropriate main method. 
-10. Why we have classification of exception into checked and unchecked exception. Basically, the difference of purpose of checked and unchecked exception. 
-11. What is the need of exception chaining? Why would we want to do it and how?
-12. How to fix OutOfMemoryError and Stackoverflow error (in depth solution)?
-13. Check the problem with the code below:
+
+11. What is the need of exception chaining? Why would we want to do it and how? RRR
+The purpose of exception chaining is to show the cause of an exception occurred or the actual reason behind an exception occurrence. Consider a scenario where Arithmetic exception is thrown but the real reason of the variable turned 0 is IoException. If we do not chain the exception then we will see arithmetic exception as the only exception and will not get the real cause straight away. Thus, with exception chaining we can chain the exception with other to show the real cause.
+  
+12. How to fix OutOfMemoryError and Stackoverflow error (in depth solution)? RRR
+On a very high level, I would say that we need to increase the size of heap to resolve OutOfMemoryError. Also, we can increase the heap size by –Xmx2014m or –Xms1024m. 
+For resolving stackoverflow error, we can increase the size of stack by argument –Xss1m while the default size is 512k. 
+More, in both the errors we can look for why the memory is getting insufficient. Are there any unnecessary objects getting created. Also, we can check for never ending loop for avoiding stackOverFlow error. 
+
+13. Check the problem with the code below: RRR
 public static void start(){
 System.out.println("Java Exception interivew question Answers for Programmers");
 }
@@ -594,10 +498,11 @@ ioe.printStackTrace();
 }
 In this Java Exception example code, compiler will complain on line where we are handling IOException, since IOException is a checked Exception and start() method doesn't throw IOException, so compiler will flag error as "exception java.io.IOException is never thrown in body of corresponding try statement", but if you change IOException to Exception compiler error will disappear because Exception can be used to catch all RuntimeException which doesn't require declaration in throws clause. I like this little tricky Java Exception interview question because its not easy to figure out result by chaining IOException to Exception. You can also check Java Puzzlers by Joshua Bloch and Neil Gafter for some tricky questions based on Java Errors and Exceptions.
 
-14. Why do we need to handle exception or why java has provision of handling exception? 
-In a situation, where we do not have provision of handling exception then we (or user) will receive system generated error message and information related to error in the way that it has been pre designed. However, with provision of handling exception we can handle the exception in the way that we want. We can better present the error to the end user which could be more understandable. Not only for the end user, we also gets great easy in debugging and remediating occurred exception. Most importantly, we can maintain the normal flow of our application.  
+14. Why do we need to handle exception or why java has provision of handling exception? RRR
+In a situation, where we do not have provision of handling exception then we (or user) will receive system generated error message and information related to error in the way that it has been pre designed. However, with provision of handling exception we can handle the exception in the way that we want. We can better present the error to the end user which could be more understandable. Not only for the end user, we also gets great easy in debugging and remediating occurred exception. Most importantly, we can maintain the normal flow of our application. Another aspect is that application can abruptly stop working if we do not handle the exception. With exception handling, we can perform some stopping mechanism. 
+
 15. Why do we have exception classes divided into checked and unchecked exception?
-The classification between checked and uchecked exception was the decision of the designers of java to have a set of exceptions that must be checked during compile time and if found then force the programmer to handle that exception in the form of checked exceltion. While the other set of exception were ignored during the compilation check. They are made optional to be handled by programmer. 
+The classification between checked and uchecked exception was the decision of the designers of java to have a set of exceptions that must be checked during compile time and if found then force the programmer to handle that exception in the form of checked exception. While the other set of exception were ignored during the compilation check. They are made optional to be handled by programmer. I guess the designer must have taken this design decision since they must have that not all exception can be handled and thus should not be made mandatory to be catched. 
 
 
 
@@ -614,7 +519,61 @@ The classification between checked and uchecked exception was the decision of th
 
 
 
+=====================================================================================
 Topic: Inner Class
+1.	Scenario where inner class would be the most suitable option to code. Also, example of inner class used in project. Check for each category of nested class.
+Below are the two scenarios where inner classes are just perfect: 
+a.	If a class is only useful to just one class, a helper class to the other, then we should keep those two classes together. Nesting these helper classes makes the package look more streamlined. So, first reason is to make packages more streamlined provided the nested class is only help to the enclosing class implementation. 
+b.	Another scenario is where we have two top level classes where Class B needs access to Class A members which otherwise be declared private. In such cases, nesting class B within class A, would let class B to access class A member by keeping them private at the same time. Also, B would also be hidden from the outer world in this case. So, the second point is to increase encapsulation where inner class can access private members of outer class. 
+Now, we will look in what scenario we should use different type of inner class:
+a.	Member Inner Class: 
+Well, a normal (member) inner class has a default reference to an object of outer class and thus it can access any member of outer class. It can be accessed by any member of outer class unlike local inner classes. So, in a scenario where multiple inner class may want to use the inner class and inner class too want to use the member of outer class. However, since member inner class needs object of outer class to create its own object thus we should try to use static nested class if possible. 
+b.	Anonymous Inner Class: 
+Anonymous class will best fit in the scenarios where we do not want to extend a class but want to override its method and use it. Esp. in the scenario where a class has to override the method of multiple class.  
+c.	Local Inner Class:
+I havn’t found much on the use case of local inner class. However, in a situation where we want our inner class to be exclusively used a single method of outer class while the inner class can use the members of even the outer class. With local inner class, we make sure no other method to use the inner class except the enclosing one. 
+d.	Static Inner Class: 
+An inner class by default has reference to an object of outer class and thus can directly access any member of outer class. However, static nested class will need an object of outer class to access the instance members while can access static members with outer class object. Therefore, if there no way an inner class would use the members of enclosing class then better use static class. This would save some memory as if does not need outer class object and you do not need to write code for having instance of the outer class. 
+Good example of usage of static nested class is Entry class in HashMap class implementation. Entry class is used by HashMap class only and Entry class do not uses the members of HashMap class and therefore, it is created as static nested class. 
+
+2.	What are the legal modifiers for all nested classes?
+Member inner class: We can make it public, private or protected. Final and abstract keyword can also be used with it. 
+Anonymous inner class: none of the modifiers are applicable since it does not have a name. 
+Local inner class: We cannot use any access modifier with it. Only final and abstract is allowed. 
+Static nested class: We can make it public, private or protected. Final and abstract keyword can also be used with it.
+
+3.	Can nested classes be access outside the enclosing class?
+Anonymous classes cannot be accessed inside or outside the outer class. Local inner classes can be accessed only within the block where they are declared. However, we can access member inner class and static nested class inside as well as outside the enclosing class. 
+Below is the code to access member inner class and static nested class from outside of enclosing class:
+		//Accessing static nested class
+		StaticNestedDemo.NestedInner ref = new StaticNestedDemo.NestedInner();
+		System.out.println(ref.d);
+		
+		//Accessing member inner class
+		MemberInnerDemo outerRef = new MemberInnerDemo();
+MemberInnerDemo.InnerMemberClass innerRef = outerRef.new InnerMemberClass();
+		System.out.println(innerRef.b);
+
+4.	Can static nested class access the instance member of the enclosing class?
+Static nested class cannot directly use the instance member of the enclosing class however can use through the reference of the enclosing class. 
+Confirmed from: https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
+
+5.	Anonymous inner class can access only final local variables of enclosing block while can access non final variables of enclosing class. Check the reason for both. 
+In the anonymous inner class, JVM creates a constructor for it and while creating the constructor it copies the member of the enclosing block in the constructor of the anonymous class. Now, if the other code in the block changes the state of the member then anonymous class copies will be outdated which is not good. Therefore, to eliminate this issue only final variables copies will be given to anonymous class to use. 
+On the other hand, anonymous class can access the member of the outer class directly. This is because anonymous class does not get the copies of the member of enclosing class while they have an implicit reference to the enclosing class. 
+
+6.	What is the main difference between static and non-static nested classes?
+Static classes can be used by the outer class with outer class reference while non-static classes can only be used by its reference. Thus, static class saves memory as well by not having to use memory for creating nested class object. It’s a rule that unless we do not need inner class specifically, then we must use static nested class.
+ 
+7.	What is the disadvantages of using inner classes?
+I do not see any disadvantage of using inner classes however we can have some situational concerns. 
+Sometimes with too many number of classes cause extra duties for JVM to perform. However, if we have to create a top level class to avoid an inner class then this issue rules out. Another possible concern is the uneasiness of using the nested classes. 
+It is important to understand whether advantages of inner classes weights more than the concern that you can tackle. 
+
+8.	How many .class file gets created when a class has inner class?
+One for top level class and one class for each inner class. However, inner classes .class is accessed is OuterClass$InnerClass.class.
+ 
+ 
 
 
 
@@ -632,59 +591,696 @@ Topic: Inner Class
 
 
 
+=====================================================================================
+Topic: Multithreading, Synchronization and Concurrent Package
+1.	Why is it necessary to call Thread t = new Thread(classObject) constructor for creating thread rather then just calling new thread() in case Runnable interface is implemented?
+When you use Thread t = new Thread() in case of runnable interface then a thread will be created but until you do not pass the object of the class then it will be unknown to call run method of which class when start method is invoked on the thread. When using thread class for thread creation by extending it then run method of the same class is automatically used by start method due to the relation of inheritance.
+
+2.	Why we have wait method in object class while sleep method in thread class?
+While wait method implementation in object class is a design decision by the designers of java based on many critical factors, sleep method is solely for pausing the execution of a thread. Thus, best suited to be implemented in thread class. Also, we can say that wait method affects threads other than the thread we called it on while sleep has no affect on other thread. 
+
+3.	Write code showing wait(), notify() and notifyAll(). We can do producer and consumer problem.
+Firstly, producer consumer problem is that producer should not try to insert anything in the queue if its full while consumer should not try to consume anything from queue if its empty. This problem can be resolved with or without wait() and notify. Below is the solution using wait and notify.
+
+public class ThreadClass {
+	static int looping = 0;
+	static int count = 0;
+	public static void main(String args []) {
+		TaskClass tc = new TaskClass();
+		Thread t1 = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				try {
+				tc.producer();
+				}catch(InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		Thread t2 = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				try {
+				tc.consumer();
+				}catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		t1.start();
+		/*System.out.println("Log statement "+count++);*/
+		t2.start();/*
+		System.out.println("Log statement "+count++);*/
+		
+		/*try {
+			t1.join();
+		}catch(InterruptedException e) {
+			e.printStackTrace();
+		}*/
+	}
+}
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class TaskClass {
+	List<Integer> numbers = new ArrayList<>();
+	int capacity = 5;
+		public synchronized void producer() throws InterruptedException {
+			while(true) {
+				if(numbers.size()==5) {
+					System.out.println("wait called from producer");
+					notifyAll();
+					wait();
+				}
+			for(int i=0; i<capacity; i++) {
+				System.out.println("producer has added a value "+i);
+				numbers.add(i);
+			}
+			Thread.sleep(1000);
+		}
+	}
+	
+	public synchronized void consumer() throws InterruptedException{
+		while(true) {
+			if(numbers.size()==0){
+					System.out.println("called wait method from consumer");
+					/*notifyAll();*/
+					wait();
+			}
+			for(int j=capacity-1; j>=0; j--) {
+					numbers.remove(j);
+					System.out.println("Consumer has consumed a value "+j);
+			}
+			Thread.sleep(1000);
+		}
+	}
+}
+The other good way of solving consumer and producer problem is through blocking queue which is a part of concurrent package in java. BlockingQueue is an interface in java which is thread safe to put into and take object from. Try this if get time later. 
+
+4.	Why wait, notify and notifyAll() methods are required to be called from synchronized method? RRR
+Wait, notify and notifyAll() are mandatory to be called from synchronized block otherwise will through illigalMonitorStateException. We need to understand that in order to call wait method which causes in the release of lock, a thread first must have a lock with it. We can make sure this using synchronization block. Also, if we do not use synchronized block then any potential race condition between wait and notify method can cause a trouble. 
+We can also understand this in a bit of detail through a classic example of producer and consumer problem which involves wait and notify method. Lets break the working into steps if synchronized blocks are not used. 
+1.	Producer will produce item and will place in queue. Upon finding that the queue is full, it will call wait method. 
+2.	Consumer thread will consumer an element and will call notify method to notify producer. 
+3.	The notify called by consumer can (Potentially possible) can go unheard by producer since it actually not came to wait state yet. (I mean it’s about to come to wait but not yet)
+4.	Producer thread finally goes to wait state by missing the notification by consumer.
+This race condition between wait and notify can potentially cause in missing of a notification from one thread to the other. 
+
+5.	When do we use wait, notify and notifyAll methods? Practically how to pick between notify and notifyAll()?
+Wait method invocation happens on the basis of a condition. If a specified condition comes true then wait method is called which let the current thread to release the lock of the currently occupied object. 
+Notify method is used to notify just one waiting thread while notifyAll method is used to notify all the waiting thread. When notify method is called then JVM decides which thread to capture the monitor of a method out of all blocked threads while thread scheduler decides in case of notifyAll which seems to be fairer. Therefore, until we are not too sure about the thread that must get running state after notify is called should not be used. Also, in case not sure if notify to be used then notifyAll should be preferred to use. With notify, we may have chances of deadlock. 
+Condition of deadlock in case of notify method is used is below:
+STEP 1:
+- P1 puts 1 char into the buffer
+STEP 2:
+- P2 attempts put - checks wait loop - already a char - waits
+STEP 3:
+- P3 attempts put - checks wait loop - already a char - waits
+STEP 4:
+- C1 attempts to get 1 char 
+- C2 attempts to get 1 char - blocks on entry to the get method
+- C3 attempts to get 1 char - blocks on entry to the get method
+STEP 5:
+- C1 is executing the get method - gets the char, calls notify, exits method
+- The notify wakes up P2
+- BUT, C2 enters method before P2 can (P2 must reacquire the lock), so P2 blocks on entry to the put method
+- C2 checks wait loop, no more chars in buffer, so waits
+- C3 enters method after C2, but before P2, checks wait loop, no more chars in buffer, so waits
+STEP 6:
+- NOW: there is P3, C2, and C3 waiting!
+- Finally P2 acquires the lock, puts a char in the buffer, calls notify, exits method
+STEP 7:
+- P2's notification wakes P3 (remember any thread can be woken)
+- P3 checks the wait loop condition, there is already a char in the buffer, so waits.
+- NO MORE THREADS TO CALL NOTIFY and THREE THREADS PERMANENTLY SUSPENDED!
+SOLUTION: Replace notify with notifyAll in the producer/consumer code (above).
+
+6. Why wait method used inside a while loop? RRR
+Check the below code first:
+public synchronized void put(Object o) {
+    while (buf.size()==MAX_SIZE) {
+        wait(); // called if the buffer is full (try/catch removed for brevity)
+    }
+    buf.add(o);
+    notify(); // called in case there are any getters or putters waiting
+}
+
+public synchronized Object get() {
+    // Y: this is where C2 tries to acquire the lock (i.e. at the beginning of the method)
+    while (buf.size()==0) {
+        wait(); // called if the buffer is empty (try/catch removed for brevity)
+        // X: this is where C1 tries to re-acquire the lock (see below)
+    }
+    Object o = buf.remove(0);
+    notify(); // called if there are any getters or putters waiting
+    return o;
+}
+
+Consumer 1 (C1) enter the synchronized block and the buffer is empty, so C1 is put in the wait set (via the wait call). Consumer 2 (C2) is about to enter the synchronized method (at point Y above), but Producer P1 puts an object in the buffer, and subsequently calls notify. The only waiting thread is C1, so it is woken and now attempts to re-acquire the object lock at point X (above).
+Now C1 and C2 are attempting to acquire the synchronization lock. One of them (nondeterministically) is chosen and enters the method, the other is blocked (not waiting - but blocked, trying to acquire the lock on the method). Let's say C2 gets the lock first. C1 is still blocked (trying to acquire the lock at X). C2 completes the method and releases the lock. Now, C1 acquires the lock. Guess what, lucky we have a while loop, because, C1 performs the loop check (guard) and is prevented from removing a non-existent element from the buffer (C2 already got it!). If we didn't have a while, we would get an IndexArrayOutOfBoundsException as C1 tries to remove the first element from the buffer!
+
+In short, if more than one consumers gets notified after producer puts one item in queue. The second consumer should not try to consume the item already consumed by first consumer. Also, other good way to understand is that in place of while loop, If “IF” condition is being used. 
 
 
+7. Show a situation causing deadlock condition. Write a program for it. Also, how would be solving the deadlock. RRR
+
+public class StringAddition extends Thread{
+	static String string1="hi";
+	static String string2="hello";
+	static String addition;
+	Thread t1  = new Thread(new Runnable() {
+		@Override
+		public void run() {
+			while(true)
+				synchronized(string1) {
+					synchronized(string2) {
+						addition=string1+string2;
+				}
+			}
+		}
+	});
+	Thread t2  = new Thread(new Runnable() {
+		@Override
+		public void run() {
+			while(true)
+				synchronized(string2) {
+					synchronized(string1) {
+						addition=string1+string2;
+				}
+			}
+		}
+	});
+	public static void main(String args []) {
+		StringAddition sa = new StringAddition();
+		System.out.println("App started");
+		sa.t1.start();
+		sa.t2.start();
+		
+	}
+	
+}
+I would prefer to use Lock interface method tryLock() which has timeout option also. Try the implementation. 
+
+8. What the advantages and disadvantages of multithreading in java. 
+Java is the first ever language that has introduced the concept of multithreading. In cleanest and simplest form, with multithreading, we can have a program performing multiple task simultaneously. These task has different execution path. Threads are smaller unit than a process and can work on the shared memory. Thus, having multitasking through threads provides better performance. Since, each thread has a different call stack thus if one gets stuck then this will not affect other threads. 
+Some disadvantages with multithreading is that is slightly difficult to debug and test. Overhead of switching the context needs to be beared. Also, the risk on deadlock comes into picture. 
+
+9. Why do we have both thread class and Runnable interface to create thread in java?
+We have two ways of creating thread. But why two? We can create a thread using thread class and in fact many important methods like sleep, yield, interrupt methods are written in thread class. So, if a class decides to create a thread by extending thread class and later wants to extends another class to implement business logic then it cannot. In fact, if a class already have a class extended and cannot afford to unextend the class. Then, it will need the other way of creating a thread. The other way provided in java is Runnable interface. Thread class extended runnable interface and has empty body run() method. Now, a class can implement the Runnable class and run() method of implementing class is called through Thread(Runnable Target) constructor. 
+Also, the thread class option is only kept for backward compatibility while runnable seems to be a clear choice. 
+10. You have thread t1, t2 and t3. How will you ensure that thread t2 runs after completion of t1 and t3 runs after completion of t2?
+Although, the way thread should work without waiting for the other to finish. But, if we need this for some reason then we can to below:
+Create and start T1
+Call join on T1
+Create and start T2
+Call join on T2
+Create and start T3. 
+Another solution would be calling run method directly. This will give the same result as above solution will. However, we are not actually making multithreading used here.
+Also, we can add here that threads are conceptually created to do something at once. Creating threads and making them work sequentially does not utilizes the benefits of thread and unnecessarily making the code complicated. 
+
+11. What is the advantage of lock interface over synchronization block? You need to implement high performance cache which multiple read but single writer to maintain the integrity of the data. How will you do that?
+The advantage of lock interface over synchronization is quite straight which we can answer. 
+Implementing a cache can be different on how advanced cache we want. We may create a most basic cache by just a hashMap. For multi read and single write high performance cache, we can use ReadWrite lock interface so that many threads can read from the cache simultaneously while single thread can write it at once. 
+For checking on how to implement a high performance cache: https://www.javaworld.com/article/2075440/core-java/develop-a-generic-caching-service-to-improve-performance.html
+ 
+12. What is race condition and how will you solve it?
+“When multiple thread tries to use a shares resource without any synchronization at the same time and operation of one thread interleaves on other, then we call it as race condition.” Generally, race condition happens in “check and act” and “read Modify write” kind of operation. Thus, we should be extra careful about such code. For example, let see how singleton class getInstance method does gets into race condition in multithread environment. Let assume if two threads try to call getInstance method at the same time. GetInstance method first check the object is null and if it is then create a new object and returns. If one thread does not see other thread created the singleton class object then these two thread can create two objects which is not expected. Thus, we would want to have synchronized keyword with getInstance method. So, that only one thread can access it at a time. Other example is a classic counter problem. In count incremental code, first the current value is read, then incremented and then finally modified. However, If thread or multiple threads trying to access it at a time then one thread might override the other thread change then the result could be errored. Again the solution is to use proper synchronization.  
+Generally, it is very hard to identify the race condition. It is better if we keenly look for code that check and act or read modify write. We can also use some code review tools that can alert for potential race condition vulnerable code. Also, it is quite safe if multiple threads are just reading from a shared resource simultaneously.
+ 
+13. How will you take thread dump and how will you analyze it? RRR
+Before we go into how do we get the thread dump and how can we analyze it. Let’s checkout the different status of the thread. 
+1.	New: Thread is created but not processed or start methods isn’t called yet.
+2.	Runnable: Thread is either running or ready to run. CPU (or a core of CPU) can be used by single thread thus a thread get really short time to run and then relinquishes the CPU to other thread. Therefore, all the thread which running or ready to run shows the state runnable. 
+3.	Waiting/blocked: When a thread temporarily inactive then it shows waiting or blocked state. The reason for a thread to be inactive could be different. May it be waiting for lock on a shared resource or it may be joined on another thread. 
+4.	Timed wait: When a thread goes for a wait state for a certain time then it status is shown as timed wait. One good example of it is sleep(time). 
+5.	Terminated: when the thread execution is over or it has given exception. 
+There are many tools available to extracting the thread dump. A thread dump shows the thread status only of at the time of measurement. Therefore, to see the change in the status it is recommended to extract them from 5 to 10 times in 5 second interval. 
+Getting the thread dump, we can use Jstack, jVisualVM or can use linux terminal. The best I see is jVisualVm because it looks more interactive and easy. On left side, it gives list of different processes. We can click on the process for which we need the information. Then, we can select the thread tab to select the thread information in real time. We also have a option to download the thread dump file. 
+Once we have the file then can start analyzing it. We can look for below information in the thread dump file. 
+1.	Thread-name: We might get thread name as thread-(number) or Pool-(number)-thread-(number). 
+2.	Priority: “prio-6”. 
+3.	Thread id: tid=”numeric”. This is a unique id of the thread. CPU usage or memory usage information can be extracted from it. 
+4.	Thread status: java.lang.thread.state: RUNNABLE.
+5.	Thread call stack. 
+Generally, we would like to analyze the thread dump when our application is getting slow. Therefore, we have taken the thread dump and read the information so far along with the stack trace thread wise. Now, we will look at most common issues we can look for.
+a.	Some threads are blocked to get the lock. 
+b.	Possible deadlock scenarios. Two threads waiting for each other to release the lock. 
+c.	When continuously waiting for receiving message from remote server. 
+d.	Long waiting state. Waiting to get notified from queue.
+After we have these analysis observation, we can look for probable resolution according to the symptoms of the application
+1.	When CPU usage is abnormally high
+Like, when you see CPU usage as 99%. Then, this is abnormally high CPU usage. Now, we can check the PID from the task manager and look for the same PID along with nid. Nid we can get converting light weight process number to hexadecimal. We need to check the thread dump several times to see the pattern and identify whats wrong. 
+2.	when process performance is abnormally slow
+Here, we can look for all the threads with the blocked status and examine the stack trace.  
+Well, actually this is huge topic and can definitely be understood when you actually do it. However, whatever we have read so far gives quite good stand point to go and solve the problem.	
+
+14. Write code to implement blocking queue in java.
+Solving Producer consumer problem using BlockingQueue interface:
+public class DriverClass extends Thread{
+	public static void main(String args[]) {
+		/*MyBlockingQueue queue = new MyBlockingQueue(4);*/
+		BlockingQueue queue = new LinkedBlockingQueue(4);
+		Thread r1 = new Thread() {
+			@Override
+			public void run() {
+				for(int i=0; i<5; i++) {
+					/*queue.enqueue(i);*/
+					try {
+					queue.put(i);
+					System.out.println("# "+queue.size());
+					}catch(InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		Thread r2 = new Thread() {
+			@Override
+			public void run() {
+				for(int j=1; j<5; j++) {
+					/*queue.dequeue();*/
+					try {						
+						queue.take();
+						System.out.println("! "+queue.size());
+					}catch(InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		r1.start();
+		r2.start();
+	}	
+}
+Now, implementing our own blocking queue. 
+public class MyBlockingQueue {
+	private int limit;
+	private List queue = new LinkedList();
+	
+	public MyBlockingQueue(int limit) {
+		this.limit = limit;
+	}
+	public synchronized void enqueue(Object item) {
+		while(queue.size()==limit) {
+			try {
+				System.out.println("called wait inside enqueue");
+				wait();
+			}catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		notifyAll();
+		System.out.println("Added item to queue with queue size "+queue.size());
+		queue.add(item);
+	}
+	
+	public synchronized void dequeue() {
+		while(queue.size()==0) {
+			try {
+				System.out.println("called wait inside dequeue");
+				wait();
+			}catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		notifyAll();
+		System.out.println("Removed item to queue with queue size "+queue.size());
+		queue.remove(0);
+	}
+}
 
 
+public class DriverClass extends Thread{
+	public static void main(String args[]) {
+		MyBlockingQueue queue = new MyBlockingQueue(4);
+		Thread r1 = new Thread() {
+			@Override
+			public void run() {
+				for(int i=0; i<5; i++) {
+					queue.enqueue(i);
+				}
+			}
+		};
+		Thread r2 = new Thread() {
+			@Override
+			public void run() {
+				for(int j=1; j<5; j++) {
+					queue.dequeue();
+				}
+			}
+		};
+		r1.start();
+		r2.start();
+	}	
+}
 
-Topic: Multithreading
-1. Why is it necessary to call Thread t = new Thread(classObject) constructor for creating thread rather then just calling new thread()?
-2. Why we have wait method in object class while sleep method in thread class?
-3. Write code showing wait(), notify and notifyAll(). We can do producer and consumer problem. 
-4. Why wait, notify and notifyAll() methods are required to be called from synchronized method?
-5. When do we use wait, notify and notifyAll methods? 
-Whenever an action of threads depends on the action of other thread on the same resource then first thread calls wait method on the resource which releases the lock on the resource and the other thread captures the lock. Now, once other thread lets the resouce to reach to the state where the first thread can work. Then, it notify the first thread to have the lock of the resource and work on it. 	
-6. Code showing deadlock condition. 
+Note: In the producer consumer problem, we made a solution where a producer produces 5 items straight and consumer then consumes all 5 produced item straight. Should the solution be not 1 item gets created and 1 is consumed while limit of the queue being higher than 1. Pending Research. 
+15. What are different ways to prevent deadlock or take care of deadlock in multithreading?
+Below are few preventive measure that can be taken to avoid deadlock. However, we should understand that each solution is not applicable for all circumstances and the effectiveness to varies according to the situation.  
+1. Avoid Lock overlapping: In some cases, a thread might want to acquire multiple lock simultaneously. Like, in the example of deadlock, each thread wants to acquire two lock at time. This is called as overlapping of locks. Thus, the very first way to avoid deadlock is to avoid lock overlapping. However, it is not achievable always. 
+2. Lock Ordering: When you cannot avoid lock overlapping then you should try lock ordering. In lock ordering, we make sure the lock can be acquired only in certain order. If I decide lock A can only be acquired after lock B then in that case no thread can acquire lock b before acquiring lock A. This actually solves the deadlock condition shown in the example in the other question. 
+3. Lock Timeout: Another good way of avoiding deadlock in java is to use Lock interface of concurrent package introduced in java 5. We have a method tryLock(long, timeUnit) method which can be used to get a lock object with specified timeout. If this method is used then thread will only wait for the specified timeout for the lock. This is a simple way of avoiding deadlock. Try deadlock example with this method. 
+4. Deadlock detection: Whenever a thread request for a lock then the request is stored in datastructure. There we can use this to check for possible deadlock. Suppose if thread A ask for a lock which is currently acquired by thread B then we should check if there is a lock that B might need which is acquired by A to avoid deadlock. 
+Note: I am not sure how exactly I can do thread ordering or deadlock detection techniques to avoid deadlock but logically these sounds good.  
+16. What is atomic operations in java in terms of multithreading?
+Atomic Operation in java are where the value of the variable is remain consistent across multiple thread during or after an operation. Majorly, we can use volatile keyword or Atomic classes of concurrent package to have atomic operation in java multithreading environment. However, atomic classes should we preferred over volatile keyword. This is because volatile keyword does not performs atomic operation for compound operation while atomic classes method ensures this. For example, for a=10 volatile is good enough however for a++ is a compound operation since first value of a need to be read, increment by 1 and then needs to be written in the memory. Here, we should prefer using atomic classes. 
+17. What is object lock and class lock?
+Whenever, synchronized keyword is used with static method then the thread need to capture class level lock and thus, other thread cannot use any other synchronized static method. Likewise, in case on non static synchronized method, the object level lock works. For example, if class B extends class A and class A has a synchronized static method. Now, if B.statcA() then class B lock will be applicable and no other thread could make change to any synchronized static method of class B. 
 
+18. Can a thread acquire multiple locks together?
+Yes. A thread can acquire multiple thread which we also call as lock overlapping which is not good though. A sample code is below:
+public void run() {
+			while(true)
+				synchronized(string1) {
+					synchronized(string2) {
+						addition=string1+string2;
+				}
+			}
+		}
+19. Can we change a deamon thread to a main thread? How?
+Not yet found any answer.
+20. What is green thread model?
+In Sun microsystem, the team which designed the java thread library was known as green team. Green threads are those which are created by the VM and not by the underlying OS. Green thread are managed in the user space while not on the kernel space. Green threads were faster as compare to native threads. However, important to note, green thread can only utilize a single operating system or single core of an operating system. Context switching was expensive in green thread. Thus, for these reasons the concept of green threads was abandoned in Java.  
+21. What is lock in java? What different category in java. Difference in Reentrant and ReentrantReadWriteLock?
+Java has a concept of lock to manage synchronization among multiple threads in multithreaded environment. Every object in java has lock or monitor by default. We can do synchronization in java using synchronized keyword or through lock interface. With synchronized keyword, we use the objects intrinsic lock which is reentrant in nature. Reentrant lock is the one by acquiring which a thread becomes eligible to enter different blocks or methods which are synchronized using the same lock. Now, we also have lock and ReadWriteLock interfaces in java concurrent package which is implemented by different classes which are ReadWriteLock and ReentrantLock. Why lock interface needs to be used over synchronization block is a separate discussion.   
+Reentrant class implements the methods of lock interface like lock(), unlock(), tryLock() and other. It also has methods other than in the lock interface like isFair() which return true if lock has fairness. As the name suggest, the nature of the lock in reentrant. Similarly, we have reentrantReadWrite class which imeplements ReadWrite interface. This too has some method of its own. 
+Also, I have not found any other class implementing Lock or ReadWriteLock interfaces. 
+22. Comparison between deadlock, livelock and starvation.
+Deadlock, as we already know, is a situation where two threads waits for each other to release the lock so that the other can acquire it. Thus, endless wait causes deadlock in java multithreading environment. There are various techniques to avoid deadlock in java like avoid lockoverlapping, lock ordering, lock timeout, deadlock detection and other. 	
+LiveLock: It is situation where two threads becomes busy responding to each other action. Unlike deadlock, two threads does not get blocked but keep responding to the action of the other thread. We can also see this as an infinite loop of responding to the other thread such that none of the thread proceeds further. Example: http://www.codejava.net/java-core/concurrency/understanding-deadlock-livelock-and-starvation-with-code-examples-in-java
+Starvation: Starvation is a situation where for certain reason a thread does not get the resource needed and dies ultimately because of starvation of not getting the resource. There can be many reasons for this to happen. First, may some particular thread currently acquiring a resource holds the resource for too long, may be IO operation. Secondly, a thread does not get CPU time for execution because of its low priority. Third, the thread waiting infinitely until dies for some response to come and so to execute further. Example: http://www.codejava.net/java-core/concurrency/understanding-deadlock-livelock-and-starvation-with-code-examples-in-java
 
+23. Synchronized context.
+Not sure, but I think synchronization context is the context up to which the synchronization applies. If synchronized keyword is used with a block then the code written inside synchronized block will be under the synchronization context. 
+24. Executor framework, Threadpool and CompletionExecutor framework. Which one to use over other?
+Thread pool gives us multiple threads which are ready to process multiple task. We can create different type of thread pool through executors class methods. We have executor framework interfaces ike Executor, ExecutorService and ExcutorServiceSchedule to submit task to the threads of the threadpool. There are few classes which implements these interfaces which we can use. We also have completionExecution framework which unlike executor framework holds the successive task until the task prior to it does not finishes. 
+Therefore, threadpool has different role of providing a pool of threads while executor framework and completionExecutor framework has role of submitting task to different thread of thread pool to get processed. CompletionExecutor framework is does not hold a task if a prior task goes on hold. For example, if task A goes not hold then task will not be on hold unlike executor framework. The result gets collected in the order of submission in case of executor framework while in the order of completion in case of executor framework. 
+25. Fixed threadpool and cache threadpool.
+Fixed threadpool gives us a threadpool with specified number of threads which helps improve the performance of application and better utilization of the resources. If we receive task after all the threads already processing the tasks then the new task will go on hold and taken for processing once any of the thread gets free. The lower side is that we wont be able to change the number of thread after the creation of the thread pool. 
+Cached Threadpool has no minimum or maximum number of threads concept. The waittime of thread of a task and to be idle is 60s. Therefore, the size of a thread could be 0 if no task comes for around 60 seconds while there is no upper cap to the number of threads. Thus, we can have a too many (may be infinite) thread at a time. 
+Fixed and Cache threadpools are based on the same implementation of threadpool. The difference lies in the argument that is passed. Fixed threadpool is good when you quite sure about the number of thread you will need while you cannot change once threadpool instance gets created. CachedThreadPool should be used when do not want or cannot specify the number of threads that you would need and it is more flexible here. However, the downside is that it might create swamp of thread and your application run out of memory.  
+26. Callable, Future and FutureTask interfaces.
+We can create threads using Thread class and Runnable interface. However, we do not have feature to return anything after thread terminates in either of them. Thus, we have callable interface which has call method that returns the result before thread terminate. Also, callable interface cannot create threads and call method can throw exception.
+Now, we have Future interface which holds the result returned by other threads so that we become know to the main thread. In simple words, main thread can keep track of result returned by other threads using the future interface. Future can work with callable interface. 
+We also have FutureTask class which implements runnable and future interface combining both the functionality conveniently. With futureTask, we can create a thread as it implements runnable and future interface. 
+Check the example: https://www.geeksforgeeks.org/callable-future-java/
+How does this work together? Thread object is created by passing the FutureTask method since FutureTask implements the runnable interface and FutureTask object is created by passing class implemented callable interface. Now, when the start() method is called by the thread then it looks for run methods implementation inside FutureTask class which in term calls call method which is used to create FutureTask interface. 
+27. How volatile variable works in general and in case of double checking case of singleton implementation. 
+First of all, what is double checking concept in singleton class. The biggest challenge we face in singleton class is to ensure that only one instance of the class is created. With double locking, we can ensure that. Below is the normal code for creating a singleton class:
+private static Singleton _instance;
+public static Singleton getInstance() { 
+if (_instance == null) {
+_instance = new Singleton(); 
+}
+return _instance; 
+}
+Now, in case of the multithreaded environment, we can have chances of having multiple instances of the same class when multiple threads works together. So, provide solution to this issue we can use synchronized keyword with getInstance method. However, we need to bear to cost of synchronization every time the getInstance is called. Thus, we can use double checked pattern. The code for the double checked is shown below:
+private static Singleton _instance;
+public static Singleton getInstance() { 
+if (_instance == null) {
+synchronized(singleton.class){
+if (_instance == null) {
 
+_instance = new Singleton(); 
+}
+}
+}
+return _instance; 
+}
+Now, the above code does the double checking of the _instance variable. The actual advantage of double checking is only if the instance is null then only synchronization comes in. without double checking, everything getINstance is called then synchronization will be needed. Thus, double checking reduces cost or synchronization and only applies when actually needed. 
+28. Thread Life cycle methods?
+Well, I tried checking but I could not directly find any method called as thread life cycle method however I am concluding that thread life cycle methods are those which lets the thread to move to a thread life cycle state. 
+Having set that we have new, runnable, running, nonRunnable/waiting/blocked, terminated are the thread life cycle state. When we just create a thread and until it calls start method, it is known to be in new state. When start() method is called then it moved to runnable state. Thus, start() is one thread life cycle method. Then, wait() method moves the thread to non runnable state and it is called on the object thus making the thread to loose the object lock. Yield() or interrupt() method can move thread back to running state. Stop() method terminates the thread. Also, sleep() method moves the thread to nonrunnable state for a specified time or until it is not interrupted. 
+29. How to stop thread?
+Thread class initially had a method called stop() which was used to stop a thread but later it got deprecated. As soon as stop() method is called then thread throws error threadDeath immediately and that makes that thread to release all the lock immediately too. Since the thread release all its locks immediately then some of the objects can be inconsistent while its lock got released. Thus, these damaged objects can lead to unexpected behavior of you application. 
+There are many questions related to stop() method: http://geekexplains.blogspot.com/2008/07/why-stop-suspend-resume-of-thread-are.html.
+Now, we have seen we do not have stop() method in latest versions of java. Then, how can we stop a thread now? We can do it using a volatile variable as a flag and use it in main method. Assume that we created a stop() method and only setting the volatile variable as true. Therefore, we can call stop() method when we would want and that will set the Boolean flag which in term then be checked in run method. Now, why are we using volatile keyword? It is used because we do not want that thread uses a cached value of the flag instead should get the latest value whenever updated in main memory by some other thread. 
+30. What is busy spinning?
+Busy spinning or waiting is a process where repeated checks are does for checking a condition rather than calling wait() or sleep() and releasing CPU. Lets understand this through producer consumer problem. Assume a queue is empty and a consumer is trying to consume an item to process it and now it has to wait for producer to work. Therefore, consumer keeps calling pool() method repeatedly which keeping consuming the CPU rather than calling wait to resume working only when notified. This is a good example of busy spinning. 
+Busy spinning will rarely be ever used. We could think of applying buzy spinning for getting low latency. 
+31. Work Steel algorithms and Fork Join framework?
+Did not find anything on workSteel algorithms. 
+Fork join framework was introduced in java 7. ForjoinPool is the main class which implements executor and executorService. 
+32. What happens if an exception comes in a thread or run() method?
+Well, if an unchecked exception comes and is not handled (caught) then it terminates the thread with that exception. Now, there is a way to catch exception which is to set uncaughtExceptionHandler. We have static and non static versions of setUncaughtExceptionHandler() method. If we have to set UncaughtExceptionHandler for just one then we can use non static version and override caughtException method which is a method of UncaughtExceptionHandler. For setting uncaughtExceptionHandler for all the threads together, we can use static version.
+1.	33. Write program to show the benefits of method level, block and static synchronization.
+Note: In the program, we try to show the benefit of synchronization is through adding synchronized keyword with the method name. However, we experienced many times that even without using synchronized keyword the numbers to printed 1 to 10 and again by 1 to 10 by another thread. However, still it is random that which thread prints the number first and while if we print number to 10000 which definitely a bigger task then the threads changes back and again. This we can see by printing thread name with number. In short, without synchronized block, threads enters the randomly and may be together.  
+34. The disruptor framework?
+Disruptor is a library in java that provides a concurrent ring buffer data structure of the same name developed at LMAX Exchange. By the way, ring buffer is a data structure that uses single, fixed size buffer connected end to end like a ring. So, disruptor provides the concurrent version of the same. It is designed to provide low latency and high throughput to java applications in asynchronous environment. It make sure that only single thread owns the data.  
+35. Subtle visibility issue and JMM guarantees 
+This I will complete after finishing Java Memory Model. One good link: https://www.ibm.com/developerworks/library/j-jtp03304/index.html
 
+36. How would you avoid deadlock when N threads trying to access N resources?
+Whenever we have a scenario of more than one resource to be accessed by more than one thread then we would want to have lock ordering to avoid deadlock and preferably unlocking in the reverse order. Now, how do we do ordering? We do it by calling lock() method or synchronizing on an object in an order and unlock in the reverser order. Check the answer on this below:
+In the simple case given, unlocking in the reverse order is not necessary to avoid a deadlock.
+However, as the code gets more complicated, unlocking in the reverse order helps you maintain proper lock ordering.
+Consider:
+A.lock();
+B.lock();
+Foo();
+A.unlock();
+Bar();
+B.unlock();
+If Bar() attempts to reacquire A, you've effectively broken your lock ordering. You're holding B and then trying to get A. Now it can deadlock.
+If you unlock in the reverse order style (which is very natural if you use RAII):
+A.lock();
+B.lock();
+Foo();
+B.unlock();
+Bar();
+A.unlock();
+then it doesn't matter if Bar() attempts to take a lock, as lock ordering will be preserved.
 
+37. Why concurrent hashMap faster than hashTable?
+Concurrent hashmap has bucket/segment level lock which allows 16 multiple write on different bucket (considering the default size) while hashTable has locking on the whole hashtable object. This is the key difference in making the concurrent map faster than hashtable. Also, concurrentHashMap reads are lock free unlike HashTable. 
+38. How to share data between two threads?
+Volatile keyword is the way to go for sharing the data between multiple threads. 
+39. Write program to show the benefits of method level, block and static synchronization.
+Note: In the program, we try to show the benefit of synchronization is through adding synchronized keyword with the method name. However, we experienced many times that even without using synchronized keyword the numbers to printed 1 to 10 and again by 1 to 10 by another thread. However, still it is random that which thread prints the number first and while if we print number to 10000 which definitely a bigger task then the threads changes back and again. This we can see by printing thread name with number. In short, without synchronized block, threads enters the randomly and may be together.  
+40.	Clarify where all we cannot have synchronized keyword used and correction in the meaning of static synchronization. 
+Well, we can have synchronized keyword with instance methods, static method and instance block. We cannon have it with static block, constructors and variable. We can have even with run() method but that is quite pointless.   
+41.	Describe both the difference between synchronized method and block. 
+We can use synchronized method with methods and block, however there are slight preference. We should try and use synchronized block with a block as synchronization is an expensive things and should only be used with something that is important to be synchronized. Also, by having synchronized block, we are not having something that does not need to synchronization inside synchronization. Another important factor is that instance method locks on object (this) lock and static method locks on class lock. However, with synchronization block, we can use any object for locking.  
 
+42.	What is wrong with the code below? (https://javarevisited.blogspot.in/2017/02/10-java-wait-notify-locking-and-synchronization-Interview-Questions-Answers.html)
+if(account.getBallance() >= withdrawl ){
+  double ballance = account.getBallance() - withdrawl;
+  account.setBallance(ballance);
+}
 
+The above code, if handled by multiple threads then it can become inconsistent. There are chances if once a thread checks the balance and paused. In between, another thread manages to have a transaction but the original thread has already passed the if condition. Then, it will be a state of inconsistency. Thus, we can apply synchronization. 
+Object accountLock = new Object(); 
+sychronized(accountLock){
+ if(account.getBallance() &gt; withdrawl ){ 
+double ballance = account.getBallance() - withdrawl; account.setBallance(ballance);
+}
+}
 
+43. What is thread leak and how will be analyze if we have thread leak?
+Thread leak is serious issue where threads do not get released after assigned some task and thus a lot of threads get created in java application. This causes the application to become slow. Think of this way, like a thread pool has 10 threads and 6 threads not return after these are assigned task. Now, threadpool only has 4 active thread that can take task. Thus, there will be more chances of task queued up and application become slow. 
+To analyze the thread leak in an application. We can follow the below pointer.
+1.	We should give unique and slightly descriptive name to each thread created in application.
+2.	Change the log message config levels like debug, info or error. 
+3.	Through analyzing the log messages, provided logging done properly, we can find out the classes responsible for thread leak.
+4.	Then, we need to see how thread is instantiated and closed in that thread. 
+5.	Also, we need to make sure that a thread is terminated properly by handling any expected exception.  
+44. Can we synchronize run method and if yes, then what will be its behavior?
+Yes, we can definitely synchronize run method. However, synchronizing run method itself look pointless as it goes opposite of the benefit taken from multithreading. By synchronizing, whatever necessary part as synchronized we can get some multitasking however if we make run method synchronized then multitasking will be zero for that part meaning threads will work one by one. 
+This is similar to the requirement where we wanted three thread to work one by one. So, for any reason if we try to have threads working one by one then its like have no multitasking. 
+45. Can we create deadlock in main thread? Yes, How?
+We can call the below line in main method.
+Thread.currentThread().join(). 
+The above line will ask the main thread to wait for current thread to terminal which is to wait for itself to terminate. 	
+46. Concept of context switching in depth. 
+In Simplest word, switching of the CPU from one process or thread to another is called as context switching which is called as process or task switching. In general, OS is responsible for context switching. 
+Now, an operating system can be multicore processor. Actually, for multiple core of OS we have a kernel which is written milti thread safe. Therefore, in the multicore processors, it’s the kernel being multithread safe, let the different cores to pick a thread to run concurrently without any conflict.
+47. How can we make sure main thread the last thread to get executed in a program?
+First of all, the program terminates when all non daemon thread terminates. Initially, only one non daemon thread is created which is main thread. Then, as the program initiates and progresses. Then, we can have more non daemon thread. So, it is quite possible that the main thread has died long ago while other non daemon thread are running. Thus, it is quite possible that the main thread cannot be the last thread to execute. 
+Now, we need to see how can we make sure that the last thread execute it the main thread. We can do it using join() method. When we create a thread then we need to call join method on this thread so that main method waits for the thread called join(). Now, I do not how practically possible it can be in a large program or application or whether we will ever need it there but a simple program example is in the link https://www.journaldev.com/1024/java-thread-join-example. 
+48. What is difference between thread waiting for the lock and waiting after calling wait() method.
+This question do covers the difference in waiting and blocked state too. Once a thread calls wait method then comes in waiting state or gets added in the wait set of that object. It will remain in waiting state or wait set until some thread some doe notify it or if waited timeout is over, if its interrupted or any other possibility. Once it gets notified it will comes from waiting state to blocked state by leaving the object’s wait set. In blocked state, it is subject to thread scheduler choice it gets the lock. Also, thread will be in runnable state while its blocked while waiting state of life cycle. 
+Also, an thread need to defined the order over the event that can cause to remove from the wait set. Like, its possible that an interrupt and a notification can come. If the notification comes marginally before interrupt then thread will return from wait normally and interrupt will be pending while if interrupt comes first then interrupt flag is set to true and interrupt exception will be thrown causing wait to return throwing exception.   
+50. How will you solve the producer and consumer problem using blocking queue? 
+public class ThreadClass {
+	static int looping = 0;
+	static int count = 0;
+	public static void main(String args []) {
+		TaskClass tc = new TaskClass();
+		Thread t1 = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				try {
+				tc.producer();
+				}catch(InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		Thread t2 = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				try {
+				tc.consumer();
+				}catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		t1.start();
+		t2.start();
+	}
+}
 
+public class TaskClass {
+	BlockingQueue<Integer> numbers = new LinkedBlockingQueue<>();
+	int number=0;
+	int index=-1;
+	int capacity=5;
+	public void producer() throws InterruptedException {
+		for(int i=0; i<capacity; i++) {
+		System.out.println("added:"+number);
+		numbers.put(number);
+		index++;
+		number++;
+		}
+	}
+	
+	public void consumer() throws InterruptedException{
+		for(int j=0; j<capacity; j++) {
+		System.out.println("removed:"+numbers.take());
+		}
+	}
+}
 
+51. Print odd number through thread 1 and even number through thread 2. 
+public class Test extends Thread {
+	String thread;
+	static int count=1;
+	
+	public static void main(String[] args) {
+		Test t = new Test();
+		Thread thread1 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while(count<20) {
+					t.printOdd();
+				}
+				
+			}
+		}); 
+		Thread thread2 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while(count<21) {
+					t.printEven();
+				}
+			}
+		}); 
+		thread1.start();
+		thread2.start();
+	}
+	
+	public synchronized void printOdd() {
+		while(!(count%2!=0)) {
+			try {
+				wait();
+			}catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+		}	
+		System.out.println(count+++": Thread 1");
+		notifyAll();
+	}
+	
+	public synchronized void printEven() {
+		while(!(count%2==0)) {
+			try {
+				wait();
+			}catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(count+++": Thread 2");
+		notifyAll();
+	}	
+}
 
+52. What are the alternatives of synchronization in java?
+Well, there isn’t actually an alternative of synchronization while an alternate of synchronized block is available. We can use lock interface from concurrent package introduced in java 5. We can check out the benefits of concurrent package lock interface over synchronized keyword. 
 
+53. what is latency?
+The application with low latency are those gives fast response to a single request. So, low latency is good. 
+More links to check for multithreading questions:
+1.	GeeksforGeeks archive: https://www.geeksforgeeks.org/tag/java-multithreading/
+2.	Need to find many programs which ask printing certain numbers or char through different threads in a pattern so tha we get know how to control different threads in a program. I am talking about programs like
+54. Print numbers like 010203040506. Here, 0 will be printed by thread 1, odd numbers through thread 2 and even number through thread 3. 
 
+55. What is threadLocal?
+ThreadLocal is a class in java which enables you to create a variable that any particular thread can access while other threads cannot. Even when the two threads executing the same code but still cannot see the thread local variables of each other. 
+We can create a thread local variable like below:
+ThreadLocal myThreadLocal = new ThreadLocal();
+ThreadLocal class has get() and set() method which can set a value and get the set value respectively. 
 
+56. Why do we especially have condition interface. Cant the method provided in condition interface be given inside lock interface?
+Without internet searches, I can only say that we could just have methods of condition interface implemented in implementation classes of different lock interface. Then, we would have used these thread communication method just like we do with synchronized keyword. However, condition interface seems to be more sophisticated way to maintaining a condition. We can do more research on internet. 
 
+=====================================================================================
+Java Memory Model
+1.	What does it mean that the memory is managed in java?
+Unlike languages like C where developer has access to literally to the memory block leaving the room for memory leaks. However, in java, the memory allocation and deallocation is managed by JVM and garbage collection. Garbage collection is part of JVM and especially responsible for deallocation of memory. 
+2.	What is JMM guarantees?
+3.	What are program order, synchronization order and happensbefore order?
 
-
-
-
-Topic: Synchronization
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+=====================================================================================
 Topic: Java I/O
+1.	Tell about the important byte and char oriented data classes for reading and writing single file and multiple files. Also, show how would you read from a file and write into a file. RRR
+We have many file reader and writer classes where some are byte oriented while other are char oriented. Since, there are many we are not going to list out all of them but only the once that are important. In byte oriented streams, we have fileInputStream, fileOutputStream, BufferedInputString and BufferedOutputStream. On the other hand, char oriented streams are FileReader, FileWriter, BufferedFileReader and BufferedFileWriter. 
+
+2.	Options to read from the keyboard. RRR
+There are different classes in java which are used to read data from keyboard like InputStreamReader, console, scanner and may be few more. However, I prefer scanner class. Below is a simple code to show how to use scanner class:
+System.out.println("Dude, type something so that i can read");
+		Scanner s = new Scanner(System.in);
+		int a = s.nextInt();
+		System.out.println("This is what yu wrote: "+a); 
+We have different APIs in scanner class for different data type. 
+
+3.	Different between printStream, Outputstream and printWriter class. RRR
+OutputStream class is an abstract class which is a super class of all the output streams like FileOutputStream, BufferedOutputStream and p	rintStream class. The super class for OutputStream class is object class. 
+PrintStream class is a class that adds functionality to the OutputStream class and is used to print the data to console. We get the object of the PrintStream class through system.out which we use very commonly where out is the reference of PrintStream itself. FileOutputStream is a super class of it. 
+PrintWriter class is also used like printstream class but it is char oriented. We need to create its object by using its constructor that needs system.out object. We can then use write() api. Writer is a super for it which is super class for FileWriter too. 
+PrintStream does convert the content to byte code first on the basis of the underlying operating system which makes it a little dependent on operating system. Thus, it might trouble you a bit if you have to migrate your application to a different platform. On the other hand, PrintWriter does not have involvement of conversion to byte code.  
+4.	Which class would you use to read and write byte oriented data from and to a file?
+We have to use BufferedOutputStream and BufferedInputStream for reading and writing the data to and from a file. Also, we anyway have to use FileOutputStream and FileInputStream to use buffered stream. 
+
+5.	What is the necessity to include byte and char oriented streams? RRR
+Byte oriented streams were added in java 1.0 to support ASCII while java also supports Unicode and to support it included char oriented streams. Since, ACSII is a subset of Unicode thus in java we can use any of the stream category. 
+
+6.	What is a file class? RRR
+File class is a non stream class which is used to know the properties of a file like when the file was created, what is the file extension, permission for read and write and etc.
+File class has all api you will generally need to create, delete, deleted content of directory, delete the directory etc.  
+File object does not create a file but either we need to call createFIle() method or when something is written to it for the first time. Also, once a file is created then we cannot change it directory through java API.  
+
+7.	How to create a new file and delete it in java? RRR
+Below is the code for creating a new file in java:
+File file = new File("D:\\Rishav\\myfile.txt");
+		try {
+			file.createNewFile();
+			file.delete();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+
+8.	What are file separators? RRR
+Java.io.File class has four file separators which are used to create file path independent to platform. The primary advantage of using File separator instead of slash (/) is to make the URL platform independent. 
 
 
 
@@ -699,33 +1295,347 @@ Topic: Java I/O
 
 
 
-
-
-
-
+=====================================================================================
 Topic: Java Collection
+1.	Why Iterator does not have add() method, like it has remove method()? Briefly tell why iterator let each collections to implement and why do we not have a separate generic implementation of iterators? Why map does not use iterator interface directly? Can we write out own iterator in java? 
+We do not have an add method in iterator while having remove method because remove makes sense to all the collection classes (order as well as unordered) but add does not make sense to some of the collection classes like Set implementations (unordered collection) while iteration. Adding an element outside of iterator or inside is equal for it. Thus, add() method isn’t got included in the list of methods inside iterator. On the other hand, remove method can be used to remove a particular element of collection. So, it make sense. 
+Also, we do not have any generic implementation of iterator is provide freedom to all the collection classes to implement it in the way that they want. For example, ArrayList iterator in fail fast while copyOnWriteArrayList iterator implementation is fail safe. Similar logic applies when it comes to why collection interface does not implements cloneable or serializable interface. 
+We do have map directly using iterator interface because map can be iterated in three ways. These three ways are through entries, keys or values. Therefore, Map has three method which first gets the view of iteration like entrySet() gets a set of entries, keyset() gets the view of keys and values() gets Collection of values view. It’s not possible to have a single method like iterator in Set and list for all the three views. 
+We can surely have a custom iterator. All we need to do is to override iterator() method of the Iterable interface. 
+
+2.	Difference between array and arraylist?
+Differences between Array and ArrayList are below:
+a.	Array is a static datastructure which cannot increase its size once created while Arraylist is dynamic data structure which can change its size after creation. 
+b.	Array can store both primitive as well as user defined data while ArrayList only supports user defined data and wrapper classes. 
+c.	Arraylist only support user deinfed data thus never gets contiguous memory location while Array gets in case of storing primitive type data. 
+d.	Array does not have any iterator interface while just uses the for loop. Arraylist has iterator and IistIterator interface and can also use for loop. 
+e.	Array can be multidimensional while ArrayList is always single dimensional. 
+f.	Array does not have a concept of generic while Arraylist has.
+
+3.	Check implementation of linkedList: https://stackoverflow.com/questions/10042/how-do-i-create-a-linked-list-data-structure-in-java, https://stackoverflow.com/questions/4066729/creating-a-linkedlist-class-from-scratch
+I am leaving this as of now. I will do it If I find the scope later.
+
+4.	Do we get synchronized version of queue from collections class?
+We do not have a synchronized version of Queue in Collections class as we have wrapper method for all other collections. However, we can use ArrayBlockingQueue which block on unwanted enqueue and dequeuer which is a concurrent version queue. 
+
+5.	Why is it safe to remove an element through remove method of iterator while concurrent modification is thrown in case if collection remove method is used in multithreading environment? Also, Even if we remove an element from iterator using remove method of iterator then concurrent modification exception can be thrown in multithreading environment. RRR
+While we use iterator remove method to remove an element from collection then iterator is aware of the changes in collection and does not create inconsistency. Thus, does not throw concurrentModification exception. On the other hand, when we use remove() method of collection either inside iterator or loop, then the loop is not aware about the changes made in the collection during looping through the collection and creates consistency. Thus, it throws concurrentModification exception. This is the case of single threaded environment. 
+In case of multithreaded environment, even the remove() method of iterator may not be sufficient. When more than one iterator updating the collection while iterating the same collection object then this would cause one or more iterators to throw concurrent modification exception since one iterator is unaware about the changes made by other iterator. In this situation, concurrent version of collection to be used and then remove method of iterator would be effective. 
+
+6.	Why does Hashing based collection follow the concept of two to power for sizing? The other hashing technique is prime number. If HashMap uses power of two then does it has low performance?
+In the hashing based collection, it is possible to have more than one items or entries in a bucket which is surely not good and on the other hand many buckets to remain empty. It is best to have entries distributed among the buckets as uniformly as possible. With different hashing technique, we are trying to obtain this single goal. 
+To find the bucket for placing a new entry, mod of hash value and collection size is used. If we keep size of collection as power of 2 then, the mod can be found as “(a mod b) = a AND b-1”. Thus, it is easy to found mod in case we keep size of collection as power of 2. However, with prime number which has divisors 1 and itself, is very good candidate of hashing of collection. I do not know how exactly but keeping size of collection to prime number just give quite good distribution.
+Check first and second answer here: https://www.quora.com/Why-should-the-size-of-a-hash-table-be-a-prime-number
+HashMap uses power of 2 hashing technique. However, it uses hashCode() function of its own over the hashcode provided by the hashcode function of object. This way, it improves its hashing and then it becomes insignificant to whether power of 2 or prime is used. 
+
+7.	Check Java 8 Stream API for collections. What is the difference between collection and stream api?
+
+8.	Why Collection doesn’t extend Cloneable and Serializable interfaces? Also, check different collection classes that does not implement them and check why?
+Well, the basic idea of collection not implementing serializable and cloneable interface is to let collection implementation decide if they want to implement these interfaces and if they, then how do they want to. Thus, it is not kept as part of collection interface. Not sure of the reasons but priorityQueue does not implement cloneable interface. Therefore, if collection would have implemented cloneable and serializable interfaces then priorityQueue would also been forced to do so.
+By the way, I did not find any collection other than priorityQueue to not implement cloneable and serializable interfaces.  
+
+9.	Why Map interface doesn’t extend Collection interface? 
+Map interface does not implement Collection interface because Map and Collection interfaces are highly incompatible. These is a lot of differences in Map and Collection interface. Collection expects an element to be a single value thus has add(Object) while Map expects to have a key and value pair and thus has put(Object, Object). Therefore, because of these larges gaps, Map interface cannot simply implement Collection interface.  
+
+10.	Why Iterator don’t have a method to get next element directly without moving the cursor?
+Iterator are the cursor that are used to iterate or traverse through the elements of an underlying collection. Its fundamental task is to iterate one by one. It will be highly rare that you may need to jump to an element without moving cursor. Also, this is not something that every collection would want and thus it is not kept in the iterable interface. Also, it is somewhere the same logic that having some method like this would force each implementation to implement it which is bad. Its like the same logic why we do not have add method in iterable interface.
+ 
+11.	What are different ways to iterate over a list?
+We can traverse through the elements of a collection through many ways like a normal loop, advance for loop, iterator, while loop, Stream API of java 8 and other. However, the one that I prefer I either iterator or advance for loop. Iterator is the safest in terms modifying while iterating a collection while other ways might end up throwing concurrentModification exception. 
+
+12.	What is UnsupportedOperationException? When would you like to use it? Also, an example where you have seen it. 
+It is a RuntimeException. UnsupprtedOperationException is typically thrown when you do not want to support any optional operation. Think of a situation where an interface is implemented by many classes and one of its method is not applicable to all. Thus, that method is understood as optional to support. For a class, that cannot support it can throw an unsupportedOperationException from the implementation. For example, Arrays.asList() returns a ArrayList which is unmodifiable and when you try to remove the element from it throws unsupported exception. Also, a proper documentation should be done with throwing unsupportedOperationException to avoid surprises for the users using your class. 
+For more: https://stackoverflow.com/questions/32846895/understanding-unsupportedoperationexception
+
+13.	Can we use any class as Map key? RRR
+The most basic need of a good key design for HashMap is that “the key should be able to get the stored value back from the HashMap through the hashcode of the key”, otherwise all the values will be lost in HashMap forever. HashMap’s storing and retrieval of entries in HashMap is based on hashing. Hashcode() and equals() are the two crucial methods which are involved in the process. Integer and String are the datatypes which are used generally as key of a HashMap which have hashcode() and equals() implemented already. Therefore, if we want our own defined class to be used as key of HashMap then we must have to implement hashcode() and equals() method for it. We can refer an example of user defined class used as key of map in programs file. 
+Also, generally it is recommended to have key as an immutable class but it is not mandatory. We can have key as mutable class as well. String being immutable is quite recommended thus as a key in hashmap. It is recommended to use immutable object as it does not changes its state once created so there will not be any chances of mismatch of the hashcode while retrieval of the value. In user defined classes, we can overcome this by implementing the hashcode method such that even when the state of the object change but the hashcode does not change. Have a look on the example. 
+Note: 
+1.	In the example, we have created hashcode in such in way that it does only depends on id. Thus, when name of the object is changed the hashcode remains same because of the same id. Also, id is considered unique. 
+2.	In case if user defined class does not overrides hashcode and equals method then also it can be used a key of hashmap. In this case, object class implementation is used. 
+
+14.	What is EnumSet? Also, check how to use enum?
+Enumset class is another implementation of Set interface. It extends AbstractSet and implement set interface. It is a generic class declared as “public abstract class EnumSet<E extends Enum<e>>”. Here, E is the element of enum which enforces that the element of EnumSet will be from Enum only. 
+EnumSet is a member of java collection Framework and is non synchronized. EnumSet is of quite high performance than HashSet. 
+To conclude, EnumSet class was created to have a set made from elements of a specified Enum with high performance. 
+For more details and example: https://www.geeksforgeeks.org/enumset-class-java/
+We can create enum like: enum Day {MONDAY, TUESDAY;}. Then, we can use Monday like Day.MONDAY.
+public class Myclass{
+	enum days{
+		mon, tues;
+	}
+	public static void main(String [] args) {
+		Myclass mc = new Myclass();
+		EnumSet<days> set = EnumSet.allOf(days.class);
+		System.out.println(set.toString());
+	}
+}
+   
+15.	While passing a Collection as argument to a function, how can we make sure the function will not be able to modify it?
+We need to create a read only version of the collection and pass as the argument. So that if any change is tried to be done then unsupportedModificationException is thrown. Also, we can make final parameter to not let a method change it. 
+
+16.	What are common algorithms implemented in Collections Framework?
+Algorithms are just the programs that do something on a data structure. So, java has many algorithms which are implemented in the collection framework. Collection.sort() method sorts the element of a list. Sort() method is actually an algorithm. Likewise, we have many other algorithms in java.  
+
+17.	Why can’t we write code as List<Number> numbers = new ArrayList<Integer>();?
+Number class in java is super class for numbers like int, float, double, short, long and byte. Even it is super class for atomicInteger and AtomicLong. 
+This question has relation with the rule that generics does not support sub typing. Look at the below statement 
+Number a = new Integer(10);
+Integer gives int behind the scene in the above statement which qualifies as number. Now, looking as Integer qualifies as Number. Then the statement in the question should be fine but it will give compilation error. If it does not have given compilation error then we could have added double to the list. This would have resulted in classCastException at runtime as this would seen as Integer. Thus, subtyping in generics is not allowed and this statement will give compilation error.  
+
+18.	Why can’t we create generic array? or write code as List<Integer>[] array = new ArrayList<Integer>[10];? RRR
+We should know one important thing before we begin. Array is covariant while generics in invariant in java. We cannot assign generic list of subtype to generic list of supertype since generic list are invariant. This means the statement “List<Object> list = new ArrayList<String>()” will give compilation error. On the other hand, since array are covariant, we can assign an array of subtype to an array of supertype. This mean the statement Object[] objects = new String[10] will not throw compilation error. 
+Check note in generics section as why array are covariant and why generics are invariant. 
+Lets understand this situation from an example. Check the below line of code:
+1) List<Integer> arrayOfIdList[] = new ArrayList<Integer>[10];// Suppose generic array creation is legal.
+2) List<String> nameList = new ArrayList<String>();
+3) Object objArray[] = arrayOfIdList; // that is allowed because arrays are covariant
+4) objArray[0] = nameList;
+5) Integer id = objArray[0].get(0);
+In the above line, a generic array would throw classCastException, if step is allowed in java. In short, just because of the covariant and invariant nature diff of arrays and generics respectively.
+Also, array being invariant in nature throws arrayStoreException when sub type of element is stored and as expected you try to receive the other type. Check below code:
+Object[] array = new Integer[10];
+		array[0]="String";
+		Integer i = (Integer) array[0];
+		System.out.println(i); 
+
+19.	Which design pattern Iterator follows? RRR
+Iterator in java follows Iterator design pattern. Iterator design pattern allow a sequential access of any aggregate object without bothering about the underlying object or collection type. This in a way mean that have a interface which is iterator interface and let many collections implement it in a way they want. Now, when you want to iterate a collection then you need object of Iterator interface without being bothered about the type of collection. Iterator object holds good for all.  
+
+20.	Why is it preferred to declare: List<String> list = new ArrayList<String>(); instead of ArrayList<String> = new ArrayList<String>();? RRR
+The only reason is to make code flexible. In the first statement, list can be changed to other list implementations.
+1.	If later on code needs to be changed from ArrayList to Vector then only at the declaration place we can do that.
+2.	The most important one – If a function is declared such that it takes list. E.g void showDetails(List list);
+When the parameter is declared as List to the function it can be called by passing any subclass of List like ArrayList, Vector, LinkedList making the function more flexible.
+ 
+21.	Which is faster to iterate LinkedHashSet or LinkedList? Check for all the collection classes. Arrange in the order of speed - HashMap,HashTable, Collections.synchronizedMap,concurrentHashmap. Is both questions are connected. 
+Firstly, LinkedHashSet is a set while LinkedList is a list. These are quite different thus comparing their performance straight would not make much sense. There usage is better be evaluated on the basis of if we want a collection that can take duplicates or not. 
+HashMap is fastest. Then, in the order ConcurrentHashMap, SynchronizedHashMap and HashTable. 
+
+22.	What are identityHashMap, WeakHashMap and EnumHashMap implementations? RRR
+Apart from the popular implementation of Map like HashMap, we also have implementations like IdentityHashMap and WeakHashMap. 
+IdentityHashMap:
+It implements the Map, Cloanable, serializable interfaces and extends AbstractMap class and was introduced in java 1.4. It is not a general purpose implementation of a map and it intentionally violates Map’s general contract of using equals() method instead uses “==” operator. Therefore, this is a special implementation which will be rarely used. This class would be used when user require the object to be compared by the reference. We have all the methods the same like put, get etc. Also, since IdentityHashMap does not uses equals() method hence it is quite faster than HashMap and the key would not need to be immutable.  
+WeakHashMap: 
+It is based on the HashTable based implementation of Map interface with keys which are of weak reference type. An entry of WeakHashMap will automatically be removed when its key is no longer is ordinary use i.e. there is not single reference When the garbage collector discards the key object then its entry get automatically be removed from the map. I guess weakHashMap allows null key and null values. Just like HashMap.
+WeakHashMap is quite suitable for implementing the cache as it allows GC to garbage collect the entry of the cache when the key is not in use of the application. However, it is never a good idea to implement our own cache. 
+EnumMap:
+EnumMap is an implementation of Map interface which is specially created to deal with enumeration types. It extends AbstractMap too. All the keys of a EnumMap has to be a Enum value. It does not allow a single null key and if tried then throws NullPointerException. EnumMap is an ordered Map maintains the natural order of their keys. 
+
+Note:
+1.	All the three map implementation above are non-synchronized. 
+2.	Generally, all these implementations are faster than HashMap. 
+
+23.	How to convert an array of strings into a list? Check how to get modifiable list through stream API. RRRR
+We can use “Arrays.asList(arrayToBeAList)”. This will return an unmodifiable list. If we tried to remove an element, it will throw unsupportedOperationException.
+Below is the way of creating list: 
+String[] wordarray = new String[10];
+		Stream<String> wordStream = Stream.of(wordarray);
+		List<String> wordList =  wordStream.collect(Collectors.toList());
+		wordList.add("rishav");
+		System.out.println(wordList.get(10));
+
+24.	What is NavigableMap in Java? What is a benefit over Map? RRRR
+NavigableMap is an extension of SortedMap while sortedMap is an extension of Map interface. This interface provides various convenient methods for navigating the map. It also provides a way to create a sub map using the existing map. 
+Below are some important methods of Navigable Map:
+1.	lowerKey(Object key): returns the greatest key strictly lesser than the given key or null key no such key is present. 
+2.	floorKey(Object key): return the greatest or equal key strictly lesser than the given key or null key no such key is present. 
+3.	ceilingKey(Object key): returns the least key which is greater or equal than the given key or null if no such key is present. 
+4.	higherKey(Object key): returns the least key which is greater than the given key or null if no such key is present.
+5.	DescendingMap(): returns a reverse order key of the mapping contained in the map. 
+We have a lot of other method which are quite useful. Explore more when you get more time. Also, since, navigableMap extends sortedMap which extends Map interface thus it has all the super interface methods too. 
+Navigational Map has specialty in providing methods for traversing the map, finding the element through comparing with a certain key and also for providing ascending and descending view of the same map. Thus, when we need to use these methods we have to use navigableMap Interface while definitely Map interface cannot do it as it does not has these methods. 
+
+25.	How do you iterator over Synchronized HashMap, do you need to lock iteration and why? RRR
+We can get synchronized HashMap through Collections.SynchronizedMap() api. This version of map has all method synchronized. This means a single operation is synchronized. However, when it comes to iteration, then it can involve more than one operation in a series. Since, we are using the synchronized version of map, then we are obviously working on multithreading environment. In a scenario, where one thread is trying to read the element through iterator while other thread is writing the element to synchronized map. In this situation, we can face concurrentModification Exception. There can be other such scenarios. In this case, we need to use a lock inside the iterator. 
+
+26.	How to iterate over Concurrent Collection? RRR
+We can iterate a concurrent collection and can modify it even without getting concurrentModificationException with usual way of iteration. In multithreaded environment too, multiple threads can change the concurrent exception until each threaded uses its own iterator. However, there is a catch. There is not guarantee that one thread will be able to see changes made by the other thread. There is nothing written in the java specification about it. Its behavior could be different on different run of the program thus we cannot predict it. Also, if multiple thread uses same iterator to iterate same concurrent collection then I guess we might need synchronization on iterator at the first place.
+
+27.	Difference between Concurrent Collection and Synchronized Collection? 
+Synchronized collection are those which let only one thread to work on it at a time in multithreaded environment. This is enabled through locking the object of the synchronized collection. One the other hand, we have concurrent collection which let multiple threads to work on it simultaneously. This is made possible through different techniques for different collection. For example, CopyOnWriteArrayList creates copy for each thread and let it change on it while ConcurrentHashMap provides a bucket level lock instead of an object lock. So, multiple threads work on an object in synchronization one by one while simultaneously in concurrent collections. 
+
+28.	What is difference between List<?> and List<Object> in Java? 
+List<?> is a list of unknown type. Thus, we can assign it any list. However, we cannot add anything this list. Remember, this can only be used to get assigned by any type of list but cannot add ay element since we have not identified the type of the element. 
+On the other hand, List<Object> is a list of Object type and it can get any type of object. Can you pass List<String> to a method which accepts List<Object>? No. We cannot assign string list to object list. We can only assign object list to it. But we can add element to it. We can add any kind of object like string, Integer or any other. But, while getting any element we must use Object data type otherwise error will be generated. 
+
+29.	What are advantages of using Generics? Especially in collection. 
+With generics in collection, we ensure the type safety. At the time of compilation we inform the compiler about the type of the object a particular list will contain and compiler make sure we can only add that type of element otherwise compilation error to be thrown. With this protection, we do not leave any chance for runtime exception. Also, with generics, we do not need to do type casting explicitly. 
+Without generics, we can add any element to a list and compiler does not throw any compilation error and thus we might run in a runtime exception or have to do a type casting. 
+We can also use the generics for classes and methods. We can use type identifier with classes and methods. Below is a simple example of generics with class and method which shows with generics we can mention T data type to be used based on what T is mentioned while creating object of class. 
+public class Myclass<T>{
+	public void usingGenerics(T input) {
+		System.out.println(input);
+	}
+	public static void main(String [] args) {
+		Myclass<Integer> ref = new Myclass<Integer>();
+		ref.usingGenerics(1);
+	}
+}
+
+30.	What is random access and which all collection classes provides random access of element? RRR
+Random Access means accessing any element of the collection with a constant time. Be it first, last or any other element, the time taken to get it should be same. Classes which provide random access are ArrayList that implement random access interface, CopyOnWriteArrayList, AttributeList, Stack, Vector etc. Some other classes like LinkedList also gets you the element through get(index) method but it traverse from the first element to the index of the element asked. 
+
+31.	Check the concurrent classes for different implementations of collections interfaces. RRR
+The popular concurrent implemtation wrt to collection classes are CopyOnArrayList, ConcurrentHashMap. For concurrent HashSet, we can do something like ConcurrentHashMap.newKeySet(). For other classes, we do not have direct concurrent version class. Other implementation in java.lang.concurrent package are related to Queue and Deque. For complete list check: https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/package-summary.html
+ 
+32.	When we add an element in arraylist at the index 2 while it already has 5 element then would it replaced the already existing element at index 2 or would it shift the succeeding elements?
+For arraylist, we can use add(Index, element) which places element at specified index while shift the original element to next index. This behavior is same for all the list. 
+Set does not have such method to specify the element insertion place as set is unordered collection and places of element insertion does not matter. 
+HashMap does store the value on the basis of key. It does not have a concept of index. If we try to place entry with already existing entry then the new values will gets updated.
+
+33.	What is suppress uncheck warning and How can you suppress unchecked warning in Java?
+Sometime we get some warning in our code which we can remove by applying a proper solution but that sometime is very inefficient or can really give bad shape to the code. Thus, we can use @SupressWarning(“unchecked”) over the method to let compiler ignore that and do not show warning. One good example of getting waring is when we try to use a deprecated method. We can come over it by suppressing it. 
+
+34.	What is difference between List<Object> and raw type List in Java?
+Raw type is a complete separate topic in java specification. While a raw list is “List list = new ArrayList()”. This is like collection list with no involvement of generics. Obviously, raw list can contain any element and have to take care of casting while List<Object> uses generics and it too can have any object type while do not need to handle the casting. Since, if we try to get any specific object like string from the object list then we will get compilation error in case of generics and not in raw type. 
+
+35.	What’s wrong using HashMap in the multi-threaded environment? When does the get() method go to an infinite loop? RRR
+If we have to say in quite brief then when multiple threads works on a hashmap then one thread during rehashing reverses the order of the node which the other thread do not know. This result the other thread, calls one node from other and causes a while loop. 
+HashMap works on the concept of hashing with load factor of 12. When size of HashMap become 12 with initial capacity of 16, then rehashing happens that gives the hashmap a size of 32. When rehashing happens the order of nodes in a bucket gets reversed. Lets say, if e1, e2 and e3 exist in bucket one. Then, after rehashing bucket one will have elements in order e3, e2 and e1.
+In multithreaded environment we gets issue of infinite loop in the get or put methods after rehashing of the hashmap. 
+I am not explaining in depth since its quite difficult to. However, I somewhat understood the concept. Thus, if you want to have explanation again then check the link: https://www.quora.com/What%E2%80%99s-wrong-with-using-HashMap-in-a-multithreaded-environment-when-the-get-method-goes-to-an-infinite-loop
+
+36.	Does overriding the hashCode() method have any performance implication? RRR
+Yes. Overriding hashcode() method can cause implication on performance provided its not implemented properly. If your implementation of hashcode generates same hashcode for many different objects then those objects will be stored in the same bucket. Therefore, while retrieving the elements from the bucket the task of equals method will increase by comparing the elements in the bucket. The time complexity of getting an element would be O(n) where n is the number of element in the bucket. Therefore, the lesser the elements in the same bucket the faster your hashmap works (at least for getting the elements). The ideal working of hashcode is to create a unique hashcode for each object and store just one element in the bucket. The time complexity will be O(1) in this case. 
+Also, we need to take care that hashcode generated should not be too heavy and should not involve tedious operations to generate hashcode in order to have unique for each object. This is because hashcode method is used very frequently in hashing based data structures like HashMap.  
+
+37.	What will be the problem if you don’t override hashCode() and equals() method? Why not hashcode() method of object class is sufficient for hashing in hashing based collection. Why we always have to override hashcode() when equals method is overridden? RRR
+HashMap works on the principle of hashing. For getting the hashmap work we have two crucial methods which are hashcode() and equals() method. While adding, hashcode for a key is found and bucket is decided. Then, the keys of already existing entries in that bucket is compared with equals method if none of them are found equal then the new entry is added otherwise the value of already existing equal entry is updated. Similar way, the hashcode and equals methods are used while getting the entry from hashmap. If you are using user defined object as key then you must override in order to get the hashcode and compare the object of that class. All the classes which can be used as key of hashmap does overrides the equals and hashcode method for example string class. 
+Now, we have hashcode and equals method is object class then why do we need to implement in user defined class? We have to override the hashcode method in order to maintain the contract that equal method will have same hashcode. Sometime the state of an object may change a little bit then object hashcode method of object may change the hashcode. I think that we can control with our implementation. The same is written in the comments of hashcode method in Object class as well. 
+In case we override hashcode and do not override equals method then same hashcode will be given for same object but map will not realize that they are same. Therefore, leading to store values of the same object key. Also, second rule says that two objects with same hashcode may not be equal and thus to identify whether they are equal or not we override equals method. We override the equals method in order to compare the object the way we want. In case, equals method is overridden while hashcode not then possibly two equal objects may get different hashcodes and end up getting stored in different bucket. 
+Also, remember to thumb rules for hashing based collection:
+First>> Hashcode method must always produce same hashcode for two equal objects.
+ Second>> It is not necessary that two object which has same hashcode must be same. Different object can have same hashcode. The object comparison by equals completely validates the objects are equals. 
+
+38.	While passing an ArrayList to a method or returning an ArrayList from a method, when is it considered to be a security violation? How to fix this problem?
+I did not find much on the security threats related explanation with arraylist however when they are passed as method argument then their value then to get changed. Java has the concept of pass by value and passing arraylist reference discloses the memory address to the method and hence it can change the arraylist. We can use final keyword in method signature along with argument to avoid change in arraylist content. 
+
+39.	How does the addition and deletion of an object at any index happens in ArrayList? Is it expensive? Explain?
+Yes, manipulation operations on Arraylist are always expensive. When we add any element in an Arraylist then the element originally at that index and following element on the right of it needs to move one place rightward. While we try to remove an element from Arraylist the element on right of the element to be removed needs to shift one place leftward. This whole process of sifting elements makes manipulation operation quite expensive.  
+
+40.	Why Java Vector class is considered obsolete or unofficially deprecated? or Why should I always use ArrayList over Vector? RRR
+Vector class is unofficially deprecated as nobody would generally want to use it as it never do what we want to do. Synchronization is done for each operation individually in vector rather than a sequence of operations. All methods of vector are synchronized. Thus, this approach is less safe as well as more overhead of locking and unlocking. 
+Also, collections.synchronizeLIst() is a better option for having a synchronized version of a list to be used in place of vector. This way we can start as non synchronized and if needed we can use synchronized version of arraylist. 
+
+41.	What is the difference between Sorting performance of Arrays.sort() vs Collections.sort()? Which one is faster? Which one to use and when?
+Arrays.sort() uses dual pivot quicksort algorithm for primitive type data while uses merge sort (timsort a version of mergesort) for object type data. Collections.sort() too uses mergesort algorithm. Quicksort algorithm does not provides stable sorting. However, when dealing with primitive types then stability does not matter as primitives does not has identity and give more efficiency. MergeSort provides stable sorting and thus in collection, which deals with object type only, mergesort is used. 
+Thus, both has got quite same performance as they are using merge sort algo for object type data. 
+
+42.	Why would we want to override equals method while equals implementation of object class works fine? What is contract between equals and hashcode method()?
+Hashcode method of java object class is not good and we want to have our own implementation. Also, if are overriding the hashcode method then we must have to override the equals method to not violate the contract. Object class implementation of hashcode uses “==” to find if two objects are equal or not. 
+The contract between equals and hashcode is that we must have to override the other method if one of them is overridden. We have described in another question what will happen if we just override any one of them.   
+
+Collection sorting, reversing, different ways to iterate.
+
+=====================================================================================
+Java Miscellaneous Small Topics
+1.	What is type erasure in generics? What purpose is it resolving? RRR
+Type erasure is a concept of java generics for providing the backward compatibility. The information of the generics type is only known to the compiler but not to JVM. While compiler compiles the program then it check for which type you are referring and generate some extra metadata for identification of generics in the program. Compiler then check whatever you are doing is valid as per generics type. If not, then it raises compilation error otherwise compilation happens successfully. Just before the time of execution, the compiler erases the extra metadata created. This is to make execution as before generics and to provide backward compatibility. 
+Also, before compilation i.e. in java file whatever generic type parameter or identifier T will get replaced by the appropriate type (Object type only) after compilation in the .class file. This also means the generics type information is not provided during runtime. In this way, we need no type checking in generics during runtime. 
+
+2.	If a class is generics and at the time of instantiation the generic type is omitted then will the code compile? RRR
+Yes, the code will compile while a warning will be given for missing generics parameter. The method will also work for this type identifier is used. 
+
+3.	What is type inference? RRR
+Type inference is a feature where compiler infers the type of the generics types and we do not need to do cast. Check the code below:
+	public T get() {
+		return obj;
+	}
+genericClass<Integer> ref = new genericClass<>();
+	Integer a = get(10);
+In the last line, compiler has inferred the type of the returned value and thus, we do not need to do casting.  
+
+4.	How would you choose between upper and lower bound?
+Generally, it can be decided on the basis of what different classes type we want to pass. Secondly, it also depends that after receiving the argument, how we want to use it. Can explore more here. 
+
+5.	Can you pass List<String> as a method argument which is asking for List<Object>?
+No, we cannot. Although, String is a sub type of Object but List<String> is not a subtype of List<Object>. It will give compilation error if tried doing the same. An object list can have any object while list of string can only have String. 
+
+6.	How restrictions can be placed generics type in java using wildcards? RRR 
+We can have some restrictions on generics type like <T extends someCLass> restricting any class that extends someclass. Also, for restricting to some super class it can be done <T super SomeClass> which restricts that any class which is super class for SomeClass.
+
+7.	What are alternative of Generics for providing type safety?
+I did not found any alternative yet.
+One silly alternate to not use generics is to use same object type array. This is silly because it is rarely possible to consider this option all the time.  
+
+8.	What is difference between wildcard “?” and generic type “T”? RRR
+Wildcard “?” of some type which we do not know while generic type is list of T type which will be fixed soon and known. 
+
+9.	Employee class has a reference type of Address class and Address class does not implement the serializable interface. What will happen when we try to serialize the employee class provided Employee class extends serializable interface. (Not having inheritance relation) RRR
+We will receive NotSerializableException. Making that reference transient should help.
+
+10.	What will happen if the child class contains the reference of the parent class which does not implements serializable interface and we try to serialize the child class? RRR
+Now, we need to understand how serialization happens in case of inheritance. If super class is implementing serializable interface then child can be serialized without implementing itself. 
+On the other hand, if parent class does not implement serializable while child does then the behavior of serialization and deserialization will be different. During serialization, JVM ignores the original value of that variable of the super class and serialize it by default value. While during deserialization, JVM will invoke the default no args constructor for the parent class. Therefore, the non-serializable parent class must have non args parent constructor otherwise runtime exception will be received.
+Check for code example: https://www.quora.com/If-super-class-is-not-implementing-a-serializable-interface-but-child-class-have-extend-superclass-also-implement-a-serializable-interface-br-can-I-serialize-and-deserialize-a-child-class-object-Is-it-called-a-super-class-default-constructor
+
+11.	When should we use customization of serialization process through providing writeObject() and readObject vs writeExternal and readExternal? I mean if we have writeObject() and readObject which can customize serialization then whats the need to customize through writeExternal and readExternal?
+Well, writeObject and readObject private method were primarily done to have customization in the serialization process adding something or doing something extra by keeping the original serialization process exactly the same. On the other hand, Externalizable interface was introduced to have serialization process entirely controller or implemented by the developer. 
+
+12.	What are compatible and non-compatible changes which keeps the older version of serialized object compatible with newer version? RRR
+Compatible changes are those which keeps the older version compatible with the newer version. Lets have a look on what can be a compatible and what not.
+Compatible changes:
+a.	Changing the access modifier as it is not mentioned in the serialized version. 
+b.	Addition of new fields and classes are compatible because the anything new added is ignored by the older version and at the time of serialization the new fields are set to default. 	
+In-Compatible Changes:
+a.	Once implement serializable interface then cannot un-implement it and implement Externalizable interface. 
+b.	Deleting any field could cause trouble. 	
+c.	Changing from non-static to static or non-transient to transient can cause problem. 
+
+13.	What are the alternatives available for Serialization in java?
+There are few alternatives to serialization in java which are below:
+a.	Externalization
+b.	XML Serialization
+c.	You can directly save to object through ObjectOutputStream. 
+d.	I think we have got serializer available.
+
+14.	How can we speedup the serialization process? RRR
+Below are some tips through which we can speed up the serialization process:
+1.	Mark all the unwanted or non serializable (other class or parent member) to be transient. Thus, those members will be skipped directly.
+2.	Serialize attributes only with non-default values.
+3.	Giving your own SerialVersionUID so that JVM does not have to compute it. 
+4.	Far differentiating factor could be using Externalizable interface instead. Some people drive 50% less time for serialization in some cases.
+
+15.	Difference between Externalizable and Serialization interface (Important)? RRR
+Here comes the time to impress interviewer by differentiating Serializable and Externalizable use.
+	SERIALIZABLE
+EXTERNALIZABLE
+
+Methods	It is a marker interface it doesn’t have any method.	It’s not a marker interface.
+It has method’s called writeExternal() and readExternal() 
+Default Serialization process	YES, Serializable provides its own default serialization process, we just need to implement Serializable interface.	NO, we need to override writeExternal() and readExternal() for serialization process to happen. 
+Customize serialization process	We can customize default serialization process by defining following methods in our class >readObject() and writeObject()  
+Note: We are not overriding these methods, we are defining them in our class. 	Serialization process is completely customized
+We need to override Externalizable interface’s writeExternal() and readExternal() methods.
+Control over Serialization	It provides less control over Serialization as it’s not mandatory to define readObject() and writeObject() methods.	Externalizable provides you great control over serialization process as it is important to override  writeExternal() and readExternal() methods.
+Constructor call during deSerialization	Constructor is not called during deSerialization.	Constructor is called during deSerialization.
 
 
+16.	What if Serialization is not available, is any other alternative way to transfer object over network? 
+We can convert the object as XML or JSON through JAXB or Jackson jars and send them over the network, preferably through web service concept. 
 
 
+17.	How you can avoid Deserialization process creating another instance of Singleton class (Important)? RRR
+When singleton class is deserialized then it tend to create a new object of the singleton class which is against the contract of singleton class. Thus, it is necessary to control this. We can control this by implementing the readResolve() method in the singleton class which returns the same instance during deserialization instead of creating one. Also, readResolve method is called when ObjectInputStream has read object from the stream and preparing to return to the caller than it checks if readResolve method is defined. By the way, other ways in which a singleton class contract can be compromised are through Reflection and cloning. 
+
+Defining readResolve() method ensures that we don't break singleton pattern during DeSerialization process.
+    
+ private Object readResolve() throws ObjectStreamException {
+      return INSTANCE;
+ }
 
 
+Also define readObject() method, rather than creating new instance, assign current object to INSTANCE like done below :
+ private void readObject(ObjectInputStream ois) throws IOException,ClassNotFoundException{
+       ois.defaultReadObject();
+       synchronized (SingletonClass.class) {
+        if (INSTANCE == null) {
+              INSTANCE = this;
+        }
+       }
+ }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Topic: Java Serialization
 
 
 
@@ -745,9 +1655,105 @@ Topic: Java Serialization
 
 
 other topics:
-java 7 and 8 features
+java 7 and 8 features: spliterator
 java reflection
-java generics
+Once done with topic wise questions, then we need to have java based tricky questions section. It is very important.
+https://www.quora.com/What-are-some-of-the-tough-Java-questions-you-were-asked-in-an-interview
+
+1.	Do all properties of an Immutable Object need to be final?
+2.	Can we use private modifier with local methods? What different modifiers can we use?
+3.	Why does this statement give issues “System.out.println(null);”.
+4.	What are the access modifiers allowed with top level class?
+5.	Check the different types of class loader and why do we have many?
+6.	Why java does not use pointers?
+7.	
+
+Q21.  Difference between static vs. dynamic class loading?
+
+Ans. 
+
+static loading - Classes are statically loaded with Java’s “new” operator.
+
+dynamic class loading - Dynamic loading is a technique for programmatically invoking the functions of a class loader at run time.
+
+Class.forName (Test className);
+Q26.  What is metaspace ?
+
+Ans. The Permanent Generation (PermGen) space has completely been removed and is kind of replaced by a new space called Metaspace. The consequences of the PermGen removal is that obviously the PermSize and MaxPermSize JVM arguments are ignored and you will never get a java.lang.OutOfMemoryError: PermGen error.
+Q20.  How are classes loaded by JVM ?
+
+Ans. Class loaders are hierarchical. The very first class is specially loaded with the help of static main() method declared in your class. All the subsequently loaded classes are loaded by the classes, which are already loaded and running
+What is the use of system class.
+Ans. The purpose of the System class is to provide access to system resources like streams.
+
+Add the below question to Questions asked in interview:
+1.	We are reading the number of occurances of a character in a given file. Assume this file has text of around 200 pages. What would be the optimized way of reading from the book. 
+It can possibly through multithreading. As multiple threads can read from the files. It would be a problem if these threads has to manipulate the file.
+
+What happens if we place return statement in try catch blocks 
+If we write the return statement only in either try or catch block then we will get compilation error because we need to keep one at last of the method. We must not have any statement after the last return statement because that statement will not be reachable.
+
+Exception handling in method overriding.
+a) if parent method does not throw any exception then child overridden implementation of that method 
+can only send unchecked exception. If checked exception is thrown then we get compile time error. 
+
+
+Custom iterator in java 
+Here, Custom iterator is nothing but nothing but the for each loop only. 
+
+
+
+
+
+
+
+
+Other than java:
+1.	Core Java, Programs.
+(For pointer 2: Will do it only if mandatory to be done.)
+2.	Advance Java: JDBC, RMI, JMS, JSP, Servlet.
+3.	Sql: queries especially. 
+4.	Spring, Spring Boot, Spring Batch: Ranjana complete project scan
+5.	web services: Ranjana complete project scan
+6.	JSon and XML parsing. (Ask Ranjana the parsing related doubt she had.)
+7.	Angular JS (Java Script just revise what you know already)
+8.	Corba.
+9.	Unix
+10.	Deisgn Patterns: Singleton and factory and other.  
+11.	Tools: Jira, Jenkins, Gradle and Maven.
+12.	Previous All projects Details Prep: Cognizant, Corba Project, Ranjana.
+13.	DataStructure and Algorithms  
+Resume Should be like:
+Technologies: Core and Advance Java (check what comes in advance java), Web Services, UNIX, CORBA, DataStructure and algorithms
+Database: Oracle and Mysql.
+UI Based Technologies: Java Script and Angular JS.
+Frameworks: Spring, Spring boot, Spring Batch, Hibernate. 
+Tools, IDEs and Other: Maven, Jira, Jenkins, Eclipse, Intillje, Git, SVN. 
+Programming Skills: Have good knowledge DataStructure and Algorithms
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pramod kumar, age 48, 13th jane ka 15th night ane ka. 
+
+
 
 
 
