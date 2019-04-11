@@ -501,16 +501,41 @@ To avoid breaking of singleton through reflection, we can use enum. Since, enum 
  
 15.	Difference in stored procedure and functions in sql?
 Firstly, stored procedures and functions are part of plsql. Stored procedure may or may not return a value while function must return a single or set of values. SP can have input have input or output parameter while functions can have only input parameters. Transaction can be used with SP while cannot be used with functions. We can all functions from SP while cannot call SP from a function. We can to exception handling (try-catch) in SP while cannot do in functions. 
+
 16.	Who gives the default constructor to a class? JVM or Compiler. 
-Compiler provides the default constructor in case you do not define your own. The default constructor will call no args constructor of super class through super(). If the class does not have any direct super class then it will call the no args constructor of object class. 
-17.	What are different types of classloader in JVM and their uses?
+Compiler provides the default constructor in case you do not define your own. The default constructor will call no args constructor of super class through super(). If the class does not have any direct super class then it will call the no args constructor of object class.
+ 
+17.	What classloader does? What are different types of classloader in JVM and their uses? How is it decided which class loader will be used. 
+Class loader loads a class into memory whenever jvm needs. A JVM has three types of class loaders which are below:
+Bootstrap Class Loader: This class load loads the JDK internal class i.e. the trusted classes for example java.lang.*, java.unit.* and other. We can also say that it stores the classes from /JAVA_HOME/jre/lib. It is implemented in native language like C, C++. 
+Extension Class Loader: It is a child of Bootstrap class loader. It loads the class present in extension directory present in /JAVA_HOME/jre/lib/ext directory. It is implemented in java by the sun.misc.laucncher$ExtClassLoader class. 
+System/Application Class Loader: It is child of extension class loader. This class loader loads class present at the application class path. It is also implemented by sun.misc.launcher$AppClassLoader class. 
+JVM uses Delegation Hierarchy principle to load classes. Class loading request reaches to application class loader which delegates it to extension class loader which further delegates it to bootstrap class loader. If the bootstrap class loader not able to load the class then request goes back to extension class loader. If extension class loader could not load the class then it reaches back to application class loader. Lastly, if application class loader too could not load the class then ClassNotFoundException is thrown. 
 
 18.	How JVM gets to know if a class can be serializable or not?
+Internally, JVM uses “instance of” operator for identifying if the class is an object of serializable or not. If it is found serializable object then only writeObject() works. 
+
 19.	How to get to know the second highest salary if multiple people shares highest salary?
+Select min(salary) from (select distinct(salary) from salary order by salary desc) where rownum<3;
+
 20.	We have given a string with sequence of integer with one number missing. The sequence can start from 1 digit, 2 digit or more digit number. We have to find the missing number. 	
+Will do it later.
+
 21.	How readobject and writeObject works internally?
 Serialization: https://www.javaworld.com/article/2072752/the-java-serialization-algorithm-revealed.html
+To do serialization, we need to make the class implement serializable interface first then pass the object of FileOutputStream to ObjectOutputStream constructor. Then, use the writeObject(Object) of class ObjectOutputStream to write the byte code in the file FileOutputStream is linked with. So, this is how serialization takes place but how things works under the hood is important to know. 
+Below are the steps in which serialization process works internally:
+1.	Serialization protocol and serialization version details are written before anything else. 
+2.	The metadata about the class written whose object is getting serialized. 
+3.	Metadata related to the super classes is written until the object class is not reached. 
+4.	Once metadata is done, the actual data associated with the class is written in the file. However, this starts from the topmost class involved. 
+5.	The data associated to the top most class is written followed by the lower hierarchy is written until the main class is not reached. 
 Deserialization: https://www.tuturself.com/posts/view?menuId=58&postId=901
+With deserialization, we reconstruct the java object using the binary stream related to that object. readObject() method of ObjectInputStream is used which gets the object of FileInputStream object. 
+In the deserialization process, the super class is navigated until object class is not reached. If no non serializable class is found until object class is reached then JVM creates object class object first. However, if any non serializable class is found then it should have no args constructor defined in order to create an object. If the non serializable class does not defines any no args constructor too then InValidClassException is thrown.
+Now, the question is that if any of the super class is non serializable then why wont the exception is thrown while serialization. Actually, this rule is applicable at serialization as well that if a super class is not serializable then it must define no args constructor to avoid InvalidClassException. This exception is thrown while serialization only but like every other exception it also extends throwable interface which is serializable and thus the exception too gets serialized and throws while serialization. 
+However, if no super class is non serializable and JVM reaches to object then object class object is created and readObject() method is invoked. Then, the readObject() sets the values to the blank instances. The deserialization process ends as the readObject() finishes. 
+In the nutshell, for serializable classes the object is created by reading the metadata in the file and for a non serializable class a default constructor is used to create the object. Then, file the data information is read and set in the blank object. 
 
 22.	How to sort a map on the basis of values which are user defined type?
 When we need to sort a map based on its keys then best way to simply create a Treemap passing that map. If your key is user defined then you have to implement comparable interface in it. @@@Pending: how do it comparable for a string based data of user defined object? If we have to sort the map on the basis of values then we have create an entry set and use collections.sort() method. Then, need to create an anonymous class for implementing compare() method which uses compareTo for values of two entries in the map. Also, if the value is user defined then it need to implement comparable.
@@ -519,6 +544,9 @@ Note: Methods in comparable and comparator, both, return type is int.
 
 23.	What are functional Interfaces and their need?
 Firstly, functional interface is not an exclusive thing to java 8 because even prior to java 8 we had interfaces with just on abstract methods like comparable interface. However, the name functional interfaces is given in java 8 and also many new functional interfaces are introduced in java 8. It is more useful as it is a type to be used in labdas expression. Lamdas expression involves implementation on abstract method of interface without name. Since, the implementation if without name, thus only one abstract method makes the lambdas expression implementation as unambiguous. 
+Also, remember that functional interfaces may have one or more default and static method from java 8 onward while can have only one abstract method. 
+@@@Rajneesh: What other advantage or use can you think of?
+
 24.	What are default and static methods inside interface? Tell everything you know about them.
 
 25.	Top five features of java 5, 6, 7 and 8.
@@ -536,3 +564,55 @@ Now, even if we assume that the hashcode by any chance is made same for all the 
 29.	How do we implement deep cloning and shallow cloning?
 Well, we can implement cloning by calling “super.clone()” in overridden clone() method. This implementation of clone() in clonable gets you shallow copy. For deep cloning, we need to manually take the value of the calling object and add to a newly created object and return that. Check the implementation in java file.
 
+30.	Temporal Annotation use. 
+In JPA and its implementations like Hibernate, whenever a field of date type is mapped with database then the entire timestamp is generally stored in the database for this field. We can control this using Temporal annotation. We can use @Temporal(temporaltype.DATE) with a date field and make sure only date will be stored inside the database for the associated column. 
+31.	What is Qualifier annotation? Check if we apply this annotation on class, instance or method level? Not sure, if he was talking about the bean creation level.
+Qualifier annotation is used to identify which bean definition to be used to inject the dependency for Autowired annotation marked field if we have multiple beans for one class. This annotation is used on the instance level just below the autowired annotation. 
+@@@Rajnesh: Has he heard of anything ki bean class, instance ya method level ki hai?
+
+32.	When would you use comparable and comparator over each other? Can we sort based on multiple data member through comparable?
+There are two factors for deciding if we have to use comparable or comparator. First, if we have to compare or sort on the basis of single or multiple data members together. Comparable is implemented within the class and can thus have just one implementation which can sort the object on just one data member. However, comparator can sort an object on the basis of multiple data member at a time. Comparator is implemented in a separator class thus we can have multiple comparator for a class based on different data member. Second, we cannot use comparable if we do not have control on the class like third party classes. However, comparator can be created for those classes as well. 
+
+33.	Parent method A throws exception and child overridden implementation does not throw the exception? What will happen?
+Yes. There wont be an issue. Child class implementation does not mandatorily has to throw an exception because it is already thrown by parent class. If child class wants then it can throw an exception which must be equal or lower in hierarchy as compared to what parent class implementation is throwing.  
+
+34.	How to read property class data in java?
+In java, we have properties class which has some API like setProperty(String key, String Value) and getProperty(String key). These API’s are used in writing and loading the properties inside file. 
+We first create a properties file in our project. Then, we create a Property class object and use setProperty() to write some key property pair. Then, we have to create a FileOutputStream object by giving the location of the properties file we just created. Lastly, use store(FileOutputStream object, String comments) to store the set properties in the property file. 
+Then, for loading the properties present inside properties file, we have to create a Property class object and have to create an InputFileStream object by passing the property file path. Then, we need to use the load(File path) api of Properties class. So, now the property class object has got all the properties like and to call them we can use the API getProperty(String key). This will return a string. 
+
+35.	What are advantages we have in ApplicationContext ioc container which were not present in beanFactory. I mean why do we felt the need of having ApplicatonContext when we already have beanFactory?
+BeanFactory has the feature of instantiating the beans and wiring the dependencies. Also, it can manage the life cycle of the beans. ApplicationContext extends bean factory and thus has all these features. 
+Below are differences which are in brief and will be completed in detail later.
+a.	Automatic BeanPostProcessor registration
+b.	Automatic BeanFactoryPostProcessor registration 
+c.	Convinient messageSource access (for i18n)
+d.	ApplicationEvent publication
+
+36.	Class A has a method which return its own object while class B which is child of class A overrides this method. What return type could be allowed with it? I mean what are the valid return type you can write with the method implementation in child class?
+Child class can return a covariant type of what parent class implementation is returning in case of overriding. We can also mention the covariant return type in the method signature of child class implementation. Thus, the signature can differ in parent and child class. 
+
+37.	Can we have spring configuration file in any other format than XML?
+ I think that only xml is used as configuration file in spring because I could not find any reference where any other type is used. @@@Rajneesh: what you think?
+
+38.	Difference in API and method?
+API is application programmable interface is something which you exposes your application or something to be used. So, you can expose your application through a set of method and in this scenario, API and method will be same. However, this is not always the case. Like List interface declares a set of method which is implemented by its implementing class like Arraylist. List interface defined the complete contract about the method is declares and thus they are the API. Lastly, a method is not always an API. 
+
+39.	What will happen in case overloading where one method form has argument as Integer and other as int? 
+Everything will be normal and without any compilation error. It is because compiler can identify the difference in the argument passed as Integer or int for this method. 
+
+40.	Is it better to have local or instance member in multithreading code piece?
+I think yes, because local variable gets created in the stack area which is unique for a thread. Therefore, less chances of multithreading issues. In short, local variables are thread safe. 
+
+41.	What are alternate of serialization?
+In the case, we do not want to use serialization for storing the state of the object for future use or for transfer then we do have other options. If our purpose behind serialization is to save the current state of the object then we can also have a clone object of the state so that even the state of original object changes but the clone is still in the same state. Also, we can store the state if the object in database. If we are doing serialization for the purpose of transferring the object to other system then we can use XML or JSON based transfer.
+
+42.	How have you used transaction management in your application and how?
+
+43.	What spring version you have used in project?
+
+44.	In singleton class, what will happen when we try to initialize the singleton class instance inside the private constructor? What different will happen than normal way of doing it? 
+
+45.	Will a normal singleton class threadsafe? Will it break singleton contract? What can be done for making singleton class thread safe? Also, tell how actually does multiple threads can hamper singleton contract?
+
+46.	
