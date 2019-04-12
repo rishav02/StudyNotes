@@ -1,0 +1,1345 @@
+Microservice Study
+(Source: https://medium.com/omarelgabrys-blog/microservices-with-spring-boot-intro-to-microservices-part-1-c0d24cd422c3)
+
+||Introduction||
+Microservice Architecture is a way of decomposing applications into single function services which are independently deployed and managed by small team who own the entire life cycle of the service. The small services which are loosely coupled and together making an application for an end user are nothing but microservices. 
+|Monolithic to Microservice Architecture based application|
+Traditionally, if we are asked to build a web application then you would first develop front end then application end which handles all the application logic followed by database layer. Then, you will package all these parts into a WAR (Web Archive Resource) or EAR (Enterprise Application aRchive) and deploy on a server. Since, we are deploying our application as package and thus it is called as a monolithic application. Now, failure of one component causes entire application down, upgrade in the technology stack is a nightmare, can only make it scalable by creating more instance of application (x axis) which is not much effective, creates more dependency among developer during development phase and other many problems with monolithic application style lead the microservice architecture as one good approach to build application. Most of the problems of monolithic application can be solved through microservice by handling some challenges. 
+
+|Advantage of Microservices|
+1.	Entire application does not goes down when any of its component web service goes down.
+2.	Improved scalability with functional decomposition (y axis of scale cube).
+3.	Easier and faster technology stack upgrade. Can have versatile technology stack within an application like can have different component (microservices) with different technologies. 
+4.	Simpler development process and developer can independently developer their component. 
+|Disadvantage of Microservices|
+1.	Intercall between multiple microservice can increase latency which is not good for performance of application. 
+2.	Deploying microservice based application can be complicated. Deployment involves the concept of container (docker) which is definitely not as straight as deploying WAR file. 
+3.	Multiple database and transaction management can be painful. Also, need to make sure proper connectivity with dependent micro services for testing. 
+
+|Deployment of microservice|
+(Quite elaborate: https://www.nginx.com/blog/deploying-microservices/)
+Deployment of microservice based application is not as simple as monolithic application. There can be 100s of microservices in an application built with different technology stack and each has its own technology requirements. Also, it is challenging to provide resource to each microservice based on its usage.  
+Below are some different ways of deploying a microservice:
+1.	Deploy each microservice instance on a separate virtual machine
+In this deployment mode, we package each microservice as virtual machine image such as an Amazon EC2 AMI which will be created as virtual machine on Amazon Elastic. Netflix video streaming service is best example for this mode of deployment. It uses aminator, a tool, for creating EC2 AMI (Elastic Compute Cloud, Amazon Machine Image). There can be many tools for creating virtual image for your microservice. In fact, we can configure CI server, like Jenkins, with tools like aminator to package your service as EC2 AMI. 
+The benefit of this approach is that the deployed service runs in complete isolation without any interference of other service. Also, this encapsulates the implementation technology of your service. The VM’s management API (perhaps Amazon elastic) becomes the api for deployment. On the downside, it has less efficient resource utilization. Each service has complete overhead of complete VM. Also, many tools create VMs of a standard size and thus perhaps possible that VM gets underutilized. Lastly, VM images are generally big in size thus takes slow to build or deploy. However, some tools like Boxfuse is somewhere reached to create limited sized VMs. 
+2.	Deploy microservice instance as a (Docker) container on Kubernates. 
+Firstly, Container are nothing but virtual machine at operating system level which mean kernel of operating system allows multiple isolated user space. The program running inside container will still feel running inside a full fledge computer. However, a program running of ordinary operating system will see all resources like connected devices, files and folders, CPU power, hardware capabilities while program running inside container can only see containers content and resources explicitly provided to container. 
+Other option could be to deploy service as container image. A container image is file system images containing applications and libraries to run a service. So, you can create a container image of the directory containing java runtime, may be apache or other server and your compiled application with tool like Docker. Once we create a virtual machine we can run it on a VM. Generally, multiple containers do run on a VM. Thus, you may need cluster manager like Kubernates or Marathon. These cluster managers decides the place where a container to be deployed based on the resource needed by a container and resource available in a VM.
+The benefits of this approach is that the service gets complete isolation and zero interference just like deploying as VM image. Also, it encapsulates the implementing technology of service. Unlike VM images based deployment, container does not give VM complete overhead on a single service while it is shared across all deployed service. Containers images are not as huge as VM images and thus do not takes much time to build or deploy. One the downside, container are not as mature environment for services as virtual machines are in spite of the fact the container are getting improved. Also, container are not as secure as VM since the kernel is shared across containers. Lastly, developer need to administer the container which comes as extra task unless you have hosted containers like Amazon EC2 container services.
+3.	Deploy each microservice as serverless function.
+We can also deploy our service on servless functions like AWS Lambda. It lets you run the code without provisioning any server. All you have to do is to package your service as zip file and upload on AWS Lambda and pay for the time your service is running. Everything here is quite automatized as even the number of instances needed to properly handle the request is managed by AWS Lambda. With this, since you are not responsible for managing the IT infrastructure, you can focus on developing your service. 
+On the downside, it is still not intended to run long running services. Requests must complete within 300 seconds. Services must be stateless as AWS Lambda must be creates a separate instance of each coming request. Service may have technology not supported by AWS Lamba. Service should start quickly otherwise having timeout or termination. 
+
+||Service Directory||
+Service discovery is nothing but a microservice that we need to create in microservice architecture to register all the other microservice within it and thus one mircroservice can locate other microservice through it.
+|Problems Service Discovery solves|
+Below are some few problems get resolved with Service Discovery.
+1.	Removes the need to hardcoding the microservice URLs.
+2.	While autoscaling or load balancing, a dynamic URLs can also be used. 
+
+|Eureka Server|
+Eureka Server, owned by Netflix, is a naming service or service registry which register the service in it. As soon as a microservice get registered with the Eureka server then it get an id and is available to be located or communicated by other services registered with Eureka Server. Service that is not registered in Eureka Server cannot communicate any service via it. A single or multiple instance of a microservice can be registered with Eureka Server. We might consider having multiple instances of a microservice when load on it increases. 
+A microservice which gets registered with Eureka server is considered as Eureka client from Eureka Server perspective while it will be Eureka service from another service perspective which communicates with it through Eureka server.
+
+|Implementing Service Directory through Eureka Service|
+Below are some steps which are needed to create a Eureka Service.
+1.	Create a spring boot project with Web (spring-boot-start-web), Eureka Server (spring-cloud-starter-netflix-eureka-server) and Dev Tool (optional) (spring-boot-devtools) as dependency. First, download the zip file and extract it. Then, import the same project as the existing maven project. By now, we should have got a basic structure of maven project with all the dependencies.  
+@@@Pending: Check the difference in Eureka Server and Eureka Discovery dependency in spring initializer. 
+2.	Some configuration is application.properties file. “Eureka.client.register-with-eureka” key specifies that if the current service is registered as client or not. We do not want eureka-service to be register itself. “Eureka.client.fetch-registry” is for deciding the fetch to registers client about the registry information and cache it locally. The information updates in every 30 seconds. While there exist a separate procedure to handle the situation if the registry information changes within 30 second.  
+Spring.application.name=eureka-server
+Server.port=8761 (default port for eureka server)
+Eureka.client.register-with-eureka=false
+Eureka.client.fetch-registry=false
+3.	Lastly, in the main spring boot class, use @EnableEurekaServer annotation over the main method to define this service as eureka server. 
+
+||Microservice as Eureka Client||
+All the services which are responsible for a single function of the entire application needs to be added as Eureka client. In the implementation below, we will see how to register a normal service as an instance in Eureka server. 
+|Implementing Eureka Client|
+Below are the changes needed for creating a microservices as Eureka Client.
+1.	Create a spring boot project with web (spring-boot-starter-web) and eureka client (spring-cloud-starter-netflix-eureka-client) as dependencies. Also, we need to search the eureka client dependency through name “eureka discovery”. 
+2.	Then we need to mention below properties. Apart from usual properties like application name and server port, we also need to mention eureka path where we want to register our service. 
+Spring.application.name=appanme
+Server.port=8080
+Eureka.client.service-url.default-zone=http://localhost:8761/eureka
+3.	Use @EnableEurekaClient annotation in spring boot main class. 
+
+Note:
+1.	We must have to create controller package or even other packages inside the package we get main spring boot class. Also, we can then implement the controller the way we do in normal web service.  
+2.	We have Consul and Zookeeper alternatives of Eureka Server which are even for famous. 
+3.	Eureka.client.register-with-eureka is true by default and that why in client we are not using this property. 
+
+||API Gateway||
+API Gateway is a single point entry for clients using microservices. API Gateway also gets registered with Service Directory. API gateway gets the service first then understand which service is been request. Then, checks the location of that service from service directory and routes the request to that location. 
+|Zuul as API Gateway|
+Zuul is also owned by Netflix and has strong compatibility with spring could. 
+
+|Advantage of using API Gateway|
+Advantage:
+1.	Firstly the purpose it is serving is its greatest advantage. API gives a single entry point to your application. 
+2.	It gives additional layer of security to your miroservice. 
+3.	Enable support to additional communication protocol. Since, external (user) requests comes generally in HTTP format thus individual service receives those request directly then they must have to have HTTP protocol.
+Dis-advantage:
+1.	Unless API gateway properly architected for high availability and scale, can become a single point of failure or a limiting factor. 
+2.	We need to get configuration of any routing mechanism. 
+
+|Implementation of API Gateway using Zuul|
+Below the code changes need to create API Gateway using ZUUL.
+1.	Create a web service with dependencies web (spring-boot-starter-web), eureka discovery (spring-cloud-starter-netflix-eureka-client) and zuul (spring-cloud-starter-netflix-zuul). 
+2.	Below are some code changes for application.properties files. Apart from service name and port, we have to register zuul as an eureka instance. Then, we have to write property for not let zuul automatically add services we need to use ignored-service property of zuul. Then, zuul route related properties like path and service-id for adding the services manually to zuul. 
+Spring.application.name=apigateway
+Server.port=8082
+Eureka.client.service-url.default-zone=http://localhost:8761/eureka
+Zuul.ignored-services=*
+Zuul.routes.service1name.path=/service1path/*
+Zuulroutes.service1name.servicd-id=service1Id
+Zuul.routes.service1name.path=/service2path/*
+Zuulroutes.service2name.servicd-id=service2Id
+3.	Lastly, use @EnableEurekaClient and @EnableZuulProxy in the main spring boot class. 
+Note: 
+1.	NGINX, Spring Cloud API Gateway and Linkerd are some alternatives of ZUUL API Gateway. 
+
+||Config server||
+When the microservice landscape becomes complex then managing configuration for each microservice could be a nightmare. Config Server is a center in microservice architecture where we can keep configuration related to all the microsevices together.
+What if we do not have config server? Well, lets assume you have 15 microservices in the application and still you can manage the properties of each inside each microservices. However, if common properties to all changes then we need to redeploy all 15 microservice. Having config server protects us from this effort. 
+|Characteristics of Config Server|
+ We do not need to redeploy the microservices again when we do any configuration change is one advantage among many the config server provides. Also, for proper management of property files versions for different environment, spring provides concept of profile. Therefore, if profile is set to dev then it loads propertyFileName-dev.properties. 
+|Implementing Config Server|
+For implementing the Config Server, we need the code changes below.
+1.	Create a normal spring boot application with dependencies web (spring-boot-starter-web), and eureka discovery (spring-cloud-starter-netflix-eureka-client) and config server (spring-cloud-config-server).
+2.	Add the below properties in application.properties file. We should have properties for mentioning application name and server port. Spring has profiles property which we need to set to native so that we can use native.searchlocations for storing properties file in local file system. We can give file path to get the properties file with the key “native.searchlocations” while can use another key in its place “spring.cloud.config.server.git.uri=*Path*” for getting files from Git. management.security.enabled=false will disable the spring security on the management enpoints like /env, /refresh etc. This is for development settings, in production security should be enabled.
+
+Spring.application.name=applicationname
+Server.port=8888
+Spring.profiles.active=native
+Spring.cloud.config.server.native.searchLocations=*path*. 
+3.	Use @EnableConfigServer and @EnableEurekaClient in the main class of spring boot. @@@Confirm if we actually need @EnableEurekaCLient and eurekaclient dependency in config server. 
+
+|Making a microservice a config server client|
+Any microservice client can reach to the config server in two ways. First, it can directly connect config server without help of discovery server like eureka. Second, connect using discovery server like eureka. In the second case, we need to register config server to eureka server like any other microservice. The preferred way is the second option because of the biggest advantage of avoiding single point of failure. 
+Below are the code changes needed for a normal microservice to be a config server client:
+1.	Add extra dependencies like config client (spring-cloud-starter-config), configuration processor (spring-boot-configuration-processor) and actuator (spring-boot-starter-actuator) other than the already present dependencies like web and enreka client. @@@Check the need of configuration processor and actuator dependency usage. 
+2.	Add below properties in bootstrap.properties file. @@@Check why bootstrap.properties file needed and why not application.properties. 
+spring.cloud.config.discovery.enabled=true (false by default)
+spring.cloud.config.discovery.serviceid=config-server
+Also, mention the application name and server port in application.properties.
+3.	Use @EnableConfigClient annotation along with other annotations like @EnableEurekaClient as necessary. 
+Note:
+1.	For differentiating between properties file for different environment, we have a concept of profile. We can mention different environment files like serviceid-profile.properties (filename-dev.properties). Here, serviceId is nothing but the application name and while profile is the environment name. 
+2.	We might sometime not want a microservice to be a client of config server may be because of no property for that service or any other reason. 
+3.	We can configure .yaml file instead of properties file. 
+4.	Check what other stuff we can do except configuring properties in config server. 
+5.	We can have properties common to all the microservice in a file application.properties in config server. 
+6.	@@@Check how to start an spring boot application through cmd.
+
+||Testing Microservice application||
+As we know that every request coming will first hit the API Gateway in Microservice architecture based application and then API Gateway routes it to a respective microservice through discovery server help. So, the URL that end user supposed to hit is API Gateway URL. 
+For example, for getting name of namingservice with url “localhost:8080/getname” needs to hit API Gateway like this “localhost:8082/nameservice/getname” where 8082 is the port where API Gateway is installed. 
+
+||Authentication using JWT||
+In monolithic application, the module for authenticating the incoming request lies within the package we build it in. While in microservice architecture, we decompose the app into many microservices and thus the authentication and authorization becomes very tedious for each service. This is because each request needs to get authentication as HTTP and services, generally, are stateless, inter service communication will need to be authenticated. Therefore, we need to come up with some new ways authentication to overcome these challenges.
+There are various way of authentication in microservice world which are Distributed session management, Single Sign on, client token and other. Lets see client token way for authentication for now. 
+|JWT based Authentication|
+JWT stands for JSON Web Token and are encrypted sting generated by our app and sent by the user along with each request to authenticate herself.
+JWT is a open standard for creating access token which consist mainly of three parts which are header, payload and signature. Header mentions the hashing algorithm, payload contains the client info like {username:”yxz”, email:”xyz@gmail.com”, role:”admin”} and signature is a string of Header+.+payload+secretcode.
+|High level process flow|
+User sends a request with credentials which passed to authentication sever and if credentials are valid then JWT is generated and returned to client. Then, in the following request, client send token each time. We can create API gateway in such a way that API gateway in such a way it can validate the tokens or else redirect the token to auth service for validation.  	
+|High level code changes| 
+1.	Auth server need to be created with dependencies web, Eureka client, Spring security and JWT. Like, in any app with spring security, we will make a securityconfiguration class which will be extending WebSecurityConfigurerAdapter and annotated with @EnableWebSecurity. We also need to create a filter which validate the user credentials and generate token. Here, we will be making use of security and JWT jar classes. 
+2.	In API gateway, we need to create by same dependencies we added for Auth server. Here, we will be validating the token and preventing all unauthenticated request to go forward. Therefore, we need to have securityConfiguration class extending WebSecurityConfigurerAdapter and using @EnableWebSecurity annotation. 
+Note: Well, the changes are complication thus this much info is sufficient.  
+https://medium.com/omarelgabrys-blog/microservices-with-spring-boot-authentication-with-jwt-part-3-fafc9d7187e8
+https://medium.com/tech-tajawal/microservice-authentication-and-authorization-solutions-e0e5e74b248a
+
+
+
+||Circuit Breaker and Log Tracing||
+|Circuit Breaker concept|
+In microservice world, services do communicate each other for serving the end request. It is thus possible that the called service may be down or is giving some exception. How would be protect normal functioning of the calling service? For this, we need to use circuit breaker pattern. 
+Hystrix, made by Netflix, is a circuit breaker that can be used in microservice world. It prevent cascading of exception from one service to other. Hystrix opens the circuit whenever detects any exception in the protected service part and calls the fallback method. 
+High level code change and flow
+1.	Include the hystrix dependency spring-cloud-starter-netflix-hystrix in the pom of microservice you want to protect through circuit breaker pattern. 
+2.	Add the annotation @HystrixCommand with attribute “fallbackMethd” on the controller method you want to protect. Also, implement the fallback method in the same controller. 
+3.	Add @EnableCircuitBreaker annotation in the spring boot main class. 
+
+|Log Tracing concept|
+In the microservice world, request can propagate through different services and thus when the system grows then its difficult to trace the request propagation. If we want to do it manually then the best option is to mention a header attribute which uniquely identifies each request. But if we do not want to do it manually then sleuth is a tool which can come handy. With Slueth, a trace id to trace across the microservice and a span id for tracking within the individual microservice is added in the logs. All we have to do is to add the Slueth dependency in all the microservices. 
+
+||Managing, Searching and Visualizing logs through ELK Stack||
+ELK stack is an open source stack and can be used for various functions like log analysis, infrastructure monitoring, security, business intelligence, etc. 
+ELK stands for ElasticSearch database, Logstash and Kibana. Elasticsearch is a nosql database which is good for faster searching of the data inserted. It is based on locene index. Logstash is open source tool for collecting, parsing and storing logs. Kibana is an open source plugin for elasticsearch to visualize the data stored. Here, Logstash will collect and pushes logs into the Elasticsearch database and then kibana takes the data and visualize it in graphical form.
+|Why would you use ELK stack| 
+In microservice world, when application grows then even the logs become intensive. When any problem occurs then analysis of the logs or data is needed to understand what went wrong. To narrow down the search of the information that we are looking. With ELK, we can get the graphical picture of how our application is behaving.
+Note: Its quite large topic thus leaving it here and will take it further next time. 
+
+||Conversion of Monolithic application to Microservice based application||
+https://www.nginx.com/blog/refactoring-a-monolith-into-microservices/
+
+||Microservice deployment with docker||
+|Deploying in docker through commands locally|
+For deploying micro service within docker container, we need to create a docker file which has nothing nothing but the commands to build docker image of your project. A simple docker file will look something like this:
+===================
+FROM java:8
+EXPOSE 8080
+ADD /target/dockerdemo.jar dockerdemo.jar
+ENTRYPOINT [“java”, “-jar”, “dockerdemo.jar”] 
+===================
+FROM java:8 means the deployed microservice is java based and needs the libraries of java 8. 
+EXPOSE 8080 means we want to open this microservice to external world on port 8080.
+ADD /target/dockerdemo.jar dockerdemo.jar means we need to add this jar file in the container as well
+ENTRYPOINT shows the command for running the jar inside the container.
+Now, we need to runs certain commands in the directory where the docker file is kept to create a container and run the container inside docker. Below are the command:
+“Docker build –f FileName –t AppName”: This will build a new docker image and a container based on it.
+“Docker run –p 8080:8080 AppName”: This will run the docker image inside docker. 
+
+|Deploying in docker through jenkins in environment server|
+In an enterprise application, we can deploy microservice based on docker through jenkins on the server we intend to. We have two prerequisite though. First, our microservice have to have the docker file in the sourcecode. Second, Jenkins must have the Docker pipe plugin to support docker image creation. Ideally, Jenkins involves 5 steps in the microservice deployment on the intended server. First, the code present in the linked version control is build. Then all the test runs. If all the test passes then it proceeds with the further step otherwise notifies the developer team. Then, next step is to build docker image which will be build through the commands written in the docker file of codebase. Then, it runs the docker image on the docker container of the target server and finishes the process. Actually, all these files are set one on jenkins and that’s how we customize the jenkins. Like, in my project, we do not use CI or CD on jenkins while we have flag concept.
+Also, we need to make sure before we deploy any of the microservice of our application, we need API Gateway and Discovery Server up and running. 
+
+||Separate database for each service in microservice||
+It is important to have separate database for different services in microservices environment to boost the independency of different services which is primary goal of microservices architecture. Having shared data for multiple services will create dependency among the services which end up slowing down the development. We can achieve private data for each service by private-table-per-service within a database, schema per service or the entire database per schema. We can have private tables or schema of the same database to different service when each service is good with same kind of data and are not much data intensive service. However, for data intensive service or service with need of specific database type would need private database all its own. On the downside, it gets difficult to persist data when a transaction updates the data private to different services. Secondly, we cannot use join query when data of multiple data is needed. To conclude, having separate data for each service strongly supports the independency between service development while gets you new chellenges to tackble. 
+
+||Domain Driven Design||
+In shortest form, DDD is breaking the requirement of business into different unit and create the microservices keeping these singular units in mind. A business domain driven decomposition of services actually. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Java Study Quick Revise
+1.	Return type, access modifiers and non-access modifiers for a constructor.
+2.	Static import concept.
+3.	Some example of real Encapsulation.
+4.	Object Cloning: How to do, types, which is better.
+5.	@@@How metaspace introduced in java 8 is better than per gem.
+6.	@@@Garbage Collection Monitoring: how to do monitoring, factors to decide if tuning is needed, If need then how will we tune, arguments used while tuning GC. 
+7.	Codewise what happens when an exception occurs.
+8.	Exception handling in case of method overriding.
+9.	@@@Local inner class and outer class variable usage of each other. 
+10.	@@@Static nested class and outer class variable usage of each other.
+11.	Thread life cycle, when goes to runnable and running. 
+12.	Create thread through thread class.
+13.	Tell about suspend method.
+14.	How to implement shutdown hook. 
+15.	Risk with thread pool.
+16.	Static synchronization, what to pass in case of static synchronization.
+17.	How lock interface provides guarantee of sequence?
+18.	Lock interface method. 
+19.	ReadWriteLock interface, how to use it, its method. 
+20.	Condition interface, how to use it, its method.
+21.	@@@Atomic variables, why do they not use synchronization lock concept.
+22.	COWAL and synchronizationList differences. Why use synchronization block with synchronized list.
+23.	ConcurrentHashMap details, why not even single null allowed. 
+24.	@@@Semaphore, how to use it, why would you use it.
+25.	CountDownLatch details, how to use it, why to use it.
+26.	Cyclic bareer details. 
+27.	Queue interface, its methods, concurrent version, concurrent version method, different implementation of blocking queue. 
+28.	Java Memory model
+29.	Compressed and uncompressed files. 
+30.	Why do we not have a get() method in set interface?
+31.	HashMap internal working
+32.	Random topics in collection: Load factor, why not applicable for non hash collection, Cursors and type, Reference and category.  
+33.	Revise all collection properties including queue.
+34.	Generics: whats this, its advantage, subtyping, wildcard and bounds, Type identifier, check notes.
+35.	Serialization: What this and how to do. Add to serialization process and customize serialization, check note.
+36.	Java 7 and 8 features.
+37.	Enum and Varargs. 
+
+
+Sql Queries Quick Revise
+1.	Select Banking as 'Bank Dept', Insurance as 'Insurance Dept' and Services as 'Services Dept' from employee table. 
+2.	Select first_name, incentive amount from employee and incentives table for those employees who have incentives and incentive amount greater than 3000.
+3.	Select first_name, incentive amount from employee and incentives table for all employes even if they didn't get incentives.
+4.	Select TOP N salary from employee table. This means highest N salaries
+5.	Select Nth Highest salary from employee table. 
+6.	Write Sql Syntax to create EMPLOYEE_REF_ID in INCENTIVES table as foreign key with respect to EMPLOYEE_ID in employee table. 
+7.	What is the query to display first and last 5 records of the table? 
+8.	How to show odd/even rows of a table?
+9.	How to fetch 3rd Highest salary from employee using Rank() function
+10.	How can I create a table of the same structure as employee table? 
+11.	Select last 50% record from employee table.
+12.	Query to print the name of distinct employee from employee which has DOB between 01/01/1965 and 01/01/1975. 
+
+Web Service Questions Quick Revise
+1.	What are the advantages of Web Services?
+2.	What are advantages of SOAP Web Services?
+3.	What are disadvantages of SOAP Web Services?
+4.	What are advantages of REST web services?
+5.	What are disadvantages of REST web services?
+6.	Compare SOAP and REST web services?
+7.	What is difference between SOA and Web Services?
+8.	How would you choose between SOAP and REST web services?
+9.	How to get WSDL file of a SOAP web service?
+10.	What is the use of @XmlRootElement annotation?
+11.	How to set different status code in HTTP response?
+12.	Explain the loosely coupled architecture of web services.
+13.	How one can provide API to users? How can we create a web service and make it open for the world to use it. Like we have various app stores for publishing our apps
+14.	Enlist some important constraints for RESTful web services.
+15.	What is Caching?
+16.	Explain Cache-control header.
+17.	Mention what is the difference between PUT and POST?
+18.	What is WADL in RESTFul?
+19.	What is the difference between a RESTful web service (on HTTP) and a HTTP Servlet both of which perform the same function?
+20.	How will you migrate from SOAP web service to RESTful web service?
+21.	Can my web browser be a client to RESTful web service? If yes then how will you generate DELETE request from web browser?
+22.	How will you handle synchronization issues when multiple clients try to consume web service simultaneously? Check the scenario in the answer
+23.	Can you describe any one RESTful web service you have written?
+24.	What will you do when an error code has to be returned to the client?
+25.	What is HttpMessageConverter and what is its advantage?
+26.	What status does delete request gives?
+27.	Why a Rest web service should always be stateless?
+28.	What is the advantages of using XML or JSON in web service?
+29.	How to manage security in REST web services? What are the aspect that we need to manage? Check how to do it in Spring rest and if possible spring security?
+30.	Try and describe about using swagger with your spring rest application for documentation
+31.	Try and describe about how would you implement caching in rest web service?
+32.	HATEOAS concept needs to be checked.
+33.	What are the best practices to name a resource or to create its URI?
+34.	What are your thoughts on response compression?
+35.	What is content negotiation? How can we control it?
+36.	Cover annotation @PathVariable, @ResponseStatus and @QueryParam in detail.
+37.	Mention all the configuration step by step for creating a basic REST web service.
+38.	How do we implement logger in a web service? Use the log4j.
+39.	What is HttpEntity, RequestEntity and ResponseEntity?
+40.	How do we send http request and get response in simple java JDK classes without any framework? Compare the classes that we have for sending requests in spring framework with simple java jdk classes. @Check variable URI case.
+
+Spring Study Quick Revise
+1.	Basic flow of spring application. 
+2.	Code needed for a basic spring mvc application, notes.
+3.	Use of XML namespace and schema definition, notes.
+4.	Concept of Context in Spring MVC, notes.
+5.	Spring MVC Validation Support, notes.
+6.	Exception handling with Spring MVC, notes.
+7.	File upload with Spring MVC.
+8.	URL redirect with Spring MVC, notes. 
+
+
+
+Question Faced in Interview File
+
+1. Two static overloaded methods in which if one method accept argument as string and other accept Object. If null if passed to the method then which implementation will be invoked? String will get invoked because string can be a null. 
+
+2. Question is same as above question, only this is object argument is replaced by Integer. Now if we pass null then what will happen? It will give compilation error as it will be ambiguous to invoke which of the two overloaded methods. 
+
+3. What is the difference in get and load methods in hibernate. 
+
+4. What all is present under jdk folder? When we download java the we get jdk folder which contains jre folder, bin folder and other stuff. Bin of Jdk has got all the executable files like compiler, debugger, documentor, dessembler and other. JRE folder got the bin folder (contains all dll files), classes folder, liscence file, readme file, introduction html file. 
+
+5. What is overhiding? 
+When child class writes the same method as a static method in parent class then this is called as overhiding. No error is received. 
+
+6. Difference in get and load method of hibernate? 
+
+7. What was the last code change you have done? File upload for anti virus check. 
+
+8. How to print only unique number from an arrayList with mixed numbers? We can convert the list to set as set contains only unique values. 
+
+9. Printing an string from JSP? We can print string in three ways in JSP which are expression element, out.print() and <c:out value=${some exoression or string}>. 
+
+10. Three columns in a table: id, name and salary. Find out the top salary and name of the employee. "select name max(salary) as Max_salary from employee." and second highest salary as "select max(salary) from employee where salary NOT IN (select max(salary) from employee)".
+
+11. Added another column in the above table department. Asked to get max salary of each department. select name, max(salary) from employee group by department. 
+
+12. What is null pointer exception. How will we create a null pointer exception by changing second line of the below code.
+String s = null;
+System.out.println(s);
+A string created as null or got the default value of null does not throw null pointer exception while it prints the "null". In the above code, if no changes are done then it will print null. Yes, it will print null just like string. Also. if a string is created using new keyword and not given anything then will print nothing but not gives null pointer exception. Only when a string is created by using new keyword and given a reference which is null then it gives null pointer exception. This is because if a reference is null then it isnt pointing to a memory address. Therefore below code will give null pointer exception.
+String s;
+String s1 = new String(s);
+System.out.println(s1);
+The best way to handle null pointer exception is to do check if the object we are using is not a null before using it, esp the one that we are getting but we havent created. 
+
+13. What will happen if we override service method is servlet and write one print statement when a request comes? We also have doGet and doPost methods written in the same servlet.
+Only the print statement written in overriden service method will be printed and doGet or doPost will not be called. This is because we are not suppose to override the service method of parent class as its implementation is only responsible for calling either Get or Post method according to the request. 
+
+14. If called and calling methods has catch block catching the Exception and exception comes in try block of called mathod then which catch block will catch the exception and what will the flow of the program. 
+Catch of child will catch the exception. Also, the code written after the catch of the child will execute giving back the control to the called method. 
+
+15. Where have i used inheritance in code or ever written a classes with inheritance relation?
+
+16. What design patterns have you worked on? Singleton, Factory pattern and MVC. Describe each with a real time example. 
+
+17. Difference in primary and unique key?
+
+18. Complete JaxB working. Explain with code.
+
+19. we have an array with numbers which are repeated. We need to find out the count of each numbers in the array.
+public class Class1{
+	public static void main(String args []){
+		Class1 c = new Class1();
+		int[] numbers = {1,2,4,4,5,2,1,3,4,6,3,5,2,5,6};
+		c.checkCount(numbers);
+	}
+	public void checkCount(int[] numbers){
+		Map<Integer, Integer> numberCount = new HashMap<Integer, Integer>();
+		for(int i=0;i<numbers.length; i++){
+			int count=1;
+			for(int j=i+1; j<numbers.length; j++){
+				if(numbers[i]==numbers[j]){
+					count++;
+				}
+			}
+			if(!(numberCount.keySet().contains(numbers[i]))){
+				numberCount.put(numbers[i], count);
+			}
+		}
+		Set set = numberCount.entrySet();
+		Iterator<Entry> i = set.iterator();
+		while(i.hasNext()){
+			System.out.println(i.next());
+		}
+	}
+}
+
+
+20. Print the reverse of an int number without using String or array.
+
+21. How will you manage transaction in jdbc? How will you manage to commit one query while rollback the other query in jdbc if the exception comes in third query. 
+Here we can use savepoint. 
+
+22. Whats the difference between <%@ include file and <jsp:include page="">. First, gets the included resource at the tramslation to servlet time while the other gets it at the request time. 
+
+23. We have two arrays such that the second array has an odd number which is the only missing number in the second array. Example:
+a=[1,2,3,4] and b=[1,5,2,3,4]. The odd number is 5.
+public class Class1{
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		int[] a = {1,2,3,4};
+		int[] b = {1,5,2,3,4};
+		for(int i=0; i<b.length;i++){
+			int flag=0;
+			for(int j=0; j<a.length; j++){
+				if(b[i]==a[j]){
+					flag=1;
+				}
+			}
+			if(flag==0){
+				System.out.println(b[i]);
+			}
+		}
+	}
+}
+
+24. SQL injection?
+
+25. A table has two columns which are emp_id and projectcode. An employee can be tagged with multiple project or 1 project as well. Write a query to find the count of employees with more than 1 project. 
+Example: 
+Emp_id and projectCode Columns: (1,a), (1,b), (1,c), (2,a), (2,b) and (3,a). 
+An Attempt: Select count(employee) from (Select emp_id as employees, count(emp_id) as emp_id from employee groupby count having count>1))
+
+26. QueryParam annotation in web services. 
+
+27. Volatile Variable and trainsient variable.
+
+28. How will you perform caching and use it before making a call to db? We can use hashmap for caching and store data inside the hashmap. Next time if a call is made to the db we can check that first in the internal cache. 
+
+29. We have two string. Find that if both string are rotation of other string or not?
+Example: "hello" and "llohe". This will return true;
+public class Class1{
+	public static void main(String [] args){
+		Class1 c = new Class1();
+		String s = "abcd";
+		String s1 = "bcda";
+		System.out.println(c.isRotationString(s, s1));
+	}
+	public boolean isRotationString(String s1, String s2){
+		char first=s1.charAt(0);
+		char next = s1.charAt(1);
+		if(s1.length()!=s2.length()){
+			return false;
+		}else{ 
+			for(int i=0; i<s1.length()-1; i++){
+				if((s2.charAt(i)==first && s2.charAt(i+1)==next)&& i!=s1.length()-1){
+					return true;
+				}
+			}
+			if(s2.charAt(s2.length()-1)==first && s2.charAt(0)==next){
+				return true;
+			}
+		}
+		return false;
+	}
+}
+
+30. Implement your own hashset. Use it using HashMap. 
+
+31. Write a program to sort array containing 0 and 1 without using an API.
+public class Class1{
+	public static void main(String[] args){
+		Class1 c = new Class1();
+		int[] numbers = {0,1,1,0,1,0};
+		int temp=0;
+		for(int i=0; i<numbers.length; i++){
+			for(int j=i+1; j<numbers.length; j++){
+				if(numbers[i]>numbers[j]){
+					temp=numbers[i];
+					numbers[i]=numbers[j];
+					numbers[j]=temp;
+				}
+			}
+		}
+		for(int k=0; k<numbers.length;k++){
+			System.out.println(numbers[k]);
+		}
+	}
+}
+
+32. If we have employee class and we have three objects e1, e2 and e3 by giving same values to the data member. We tried inserting these tp hashset then what will be the length of hashSet? 
+In ordinary situation, duplicate hashset values will be inserted in the hashSet. For avoiding this situation, user defined class needs to implement hashcode() and equals() method.
+ public int hashCode(){
+        System.out.println("In hashcode");
+        int hashcode = 0;
+        hashcode = price*20;
+        hashcode += item.hashCode();
+        return hashcode;
+    }
+     
+    public boolean equals(Object obj){
+        System.out.println("In equals");
+        if (obj instanceof Price) {
+            Price pp = (Price) obj;
+            return (pp.item.equals(this.item) && pp.price == this.price);
+        } else {
+            return false;
+        }
+    }
+Above is the hashcode and equals method.
+
+33. Can we create a thread by extending Thread class and Runnable interface both. Yes! We can do this. However, we must make sure we extend thread first and then implements runnable interface. The order if reversed will give compilation error. We can create thread in either ways if both thread class and runnable interface is used. 
+
+34. If parent and child class has a common instance method and parent p = new child(); p.commonMethod() is executed then what will happen?
+It will call the child version since the object created is of child. If p = new parent() then it would have called parent version. changing the situation a little; if child only contains the method and if p = new child() and p.childmehtod() is executed then compilation error will be shown. We need to do downcasting then it works fine. Againg changing situation: if only child has that method and code p = new parent() and p.childMethod() is executed then classcastexception would have araised. 
+
+35. Code inside a method: int a, b; if(a=b){//some logic}. WHat will happen?
+Comppilation error because code inside if clause "a=b" will give int and it needs boolean. 
+
+36. Tree with values {1,2,3,4,5}. Tell preorder, inorder and postorder traversal.
+Inorder: left, root, right {4,2,5,1,3}
+Preorder: root, left, right {1,2,4,5,3}
+Postorder: left, right, root {4,5,2,3,1}
+
+37. What is prefix and postfix notations? Check how to convert a normal expression. 
+prefix notation: {operator operand1 operand2} while postfix {operand1 operand2 operator}. Infix is when operator is in between operands. We will look at inter conversion later. 
+
+38. What are native methods in java and why would i ever want to use it?
+Native is a keyword exclusively for methods in java to denotes that the implementation of this method is in some other language like C or C++. It mainly increases the performance while it impacts platform independent characteristic of java. 
+
+39. which operator is this in java "~"?
+It is bitwise operator. & is AND, | is OR, ^ is XOR, ~ is binary ones complement, << is left shift, >> is right shift while >>> is right shift with zero fill.
+
+40. What is hack EJB is?
+Well, java was already become quite popular until 1996 but everyone using java had one common concern which was the lack of standard for doing common stuff for any application. Thus IMB came forward with java's first ever framework specification covering common concerns handle techniques which was later included by sun in 1999. Typically, we can say EJB is a framework based on java for better development of java based applications. Now, we have EJB 3.2 which is mostly annotation based. It is not a comptetor of jsp servlet but a complementory. Like, we can use EJB interfces, classes or annotaiotn for perfoming few things like transaction management through EJB while rest of things based on jsp and servelt is possible. 
+
+41. What is default format of date in sql? How to convert to 10 JAN, 2018?
+The default format in oracle is DD-MON-YY. While we can change it through to_char(datecolumn, "DD MON, YYYY") function.
+
+
+
+=================================================================================================================================
+1a. Java Study File
+@@@Serialization
+@@@Date formate in java: SimpleDateFormat, DateFormat, Calendar class. 
+@@@Java 7 and 8
+@@@jAVA OOPS features with example. 
+@@@What are enum and how to use them. Which java release are they part of?
+
+
+Java Quick Revise
+1. Whats present inside jdk, practically and theorytically?
+2. Is java an interpreted language? No Java is not interpreted language. The recompilation of jvm byte code to jit machin code is considered as interpretation. WHile java involves compilation. 
+3. Copy constructor
+4. Can we have static class? We cannot have top level classes as static while nested classes can be static. 
+5. Can we use super keyword in main method? No. We cannot. Check its use.
+6. Be careful about initializer block and constructor invocation order. It is static initializer of parent, static initializer of child, instance initializer of parent, construtor of parent, instance initializer of child, constructor of child. 
+7. How interface involves loose coupling in java? Interface just not only allow a class to implement its method but it allows multiple classed to implement its method. Now, when we interact with the class using the interface then we can feed any class implementing the class without much modification. 
+**8**. Object Cloning. Deep Cloning and shallow cloning. Explain using: https://dzone.com/articles/currying-functions-in-scala-1
+9. Unboxing. we do it like int a = b.intValue();
+10. String are immutabe. String are inert concept. Doubt: Why two objects are created when string is created using new keyword. 
+11. Immutable Class
+12. Check the working example of string tokenizer. 
+13. Check all note point of Exception handling in java, Correct in note point 6 that after catch block runs the code outside the try block will execute. Also, add one more not point "If we write return only in eighter try or catch block then we will get error. We need to write one at the last as well."
+14. Thead lifecycle, note points of how to create a thread and other too. 
+15. What is the difference in wait and sleep or waiting or sleeping? Wait method is object class method and invoked on an object for synchronization while sleep method is of thread class and invoked on thread for intentionally sleeping the threads work for certain duration. Check Join() method of thread as well. 
+16. Order in sets: This is an eye opener. Let me just brief on the normal behavior of Sets. HashSet maintains no order, LinkedHashSet maintains order of insertion so while iterating it will print the values in the order of insertion and Treeset maintain ascending order which means the elements will be printed in increasing order. Also, hashset and linkedhashset can contain one null value while treeset cannot contain any null value. 
+17. Update in the internal working of HashMap: First the hashvalue of key is find out through hashfunction method. Then, hashvalue is devided by 16. Whatever remainder comes would be the index and that will be the bucket. That's why multiple entries many have same bucket. Eeach bucket is a list in itself. When we try to get a map entry then again the hashcode of key is findout followed by division with 16 which will provide the index. There are changes that the bucket will have multiple entries thus we compare the key of each entry with the key provided as the argument of get method. 
+18. Treemap cannot have any null key while can have one null value and it maintains the ascending order. WRT null values, hashtable works the same as treemap. Hashtable do support enumerator as well and is synchronized.
+19. Check example of comparable and comparator interfaces. 
+20. How do we do transaction management through normal JDBC? We have to create transaction management and need to use methods like rollBack(), commit() and save(). Generally, rollback() is written in catch block. 
+21. Signature of variables and methods in interface. 
+22. How to create a singleton class. CHeck carefully.
+23. Check all programs related to ArrayList, HashSet, TreeSet, HashMap and TreeMap. 
+Add implementation index 1 to downcasting in java study.
+24. Call the child data members in parent class through downcasting. 
+25. Coding example to show inheritance, polymorphism, Abstraction and Encapsulation. 
+26. HOw many type of inheritance allowed in java. Single, multilevel and hierarchical. Hybrid and multiple are not allowed.
+27. Static and dynamic binding in java
+28. Deep CLoning and SHALLOW cloning.
+29. Heap and Stack. How instance and static types gets the value. 
+30. Java Inner classes revision: Heirarchy, Advantage of inner classes, Describe the basics of each type.
+31. Understand the core advantage of multithreading(4){simultaneous, same memory, fast cotext switching, one thread does not interrupt flow of other}, Life cycle of thread, 
+32. All note points of Multithreading and synchronization Section. 
+33. Garbage collection: exact use of finalize(), How can we request GC?
+34. What all we can do with runtime class. 
+35. Interruption of the thread, Reenterant lock in java and benefits. 
+36. Default capacity of arraylist. How will you create your own arraylist. Arraylist based questions.
+37. Check sorting of all collection
+38. joining two list, difference in clear() and removeAll(), Shuffel and swap elements of array, check if list is empty, add element at a particular index, how to remove duplicate?. 
+Check 79 page number for more...! All the best with java buddy.
+
+Java Interview Questions:
+Source 1: 
+
+
+**************************************************************************************************************************************
+2a. SQL Stydy file
+
+
+SQL quick Revise
+1. SET Operators, 
+2. Difference between union and union all,
+3. Temp table concept 
+4. Alter table (what all comes under it and check syntax too). 
+5. check With, like, top Clauses
+6. Check order by random and order by limit, how to get limited records in a select query.  
+7. Important keyword of slect
+8. Insert in one row, insert in multiple column, insert in from other table, insert in multiple rows, insert in multiple rows from other table.
+9. Update and update using join.
+10. SQL delete duplicate rows. We will use with clause and partition to do so. 
+11. Difference in Intersect and inner join. Check all kind of joins with example. 
+12. Check all 7 types of key with book table example and 4 types of integrities. 
+13. Check the example of 6 sql constraints. 
+14. Sub quries and how it is used in select, insert, update and delete. Check corelated and non-corelated queries. How exactly corelated query runs?
+15. Check view, materilized view and inline view. Purpose (all three reasons) and advantage of each. Disadvantages.
+16. Index. Do and dont, types. 
+17. sequence and like operator
+18. Data Control language: Grant, revoke, role, privilage. Check syntax as well. 
+19. Transaction control language: ACID Properties, Set transaction, Commit, Rollback and save.
+20. Stored procedure, syntax, advantages. Comparison with views. 
+21. Trigger (check in a little depth next time)
+22. Complete topics after triggers. **************************************************************************************************************************************
+
+3a. Java Script Study
+updates:
+@@@What is modular front end application? 
+@@@avaScript Prototype based inheritance
+@@@Practically useful abstraction
+@@@**different form fields and events and changing them accorsding to the form field.**
+@@@Is JavaScript an object oriented language? 
+
+JavaScript Quick Revise
+1. JS introduction
+2. JS different ways to print.
+3. JS SYntax, Statement, comments
+4. JS Variables, operator, airthmatic, assigment
+5. JS data types[imp]: mention that undefined and null cannot contain value but still counted as data type. 
+6. JS functions[imp]: Self Invoking Function and its purpose, argument concept, Must check the note point.
+7. JS Object  
+8. JS Scope [imp]: Non declaring a var in function?, Access object property in js, how to add new property to object.
+9. JS Events: Check the syntax for adding event in js, difference in HTML event and JS event names. 
+10. JS String
+11. JS String properties and methods [imp]: length(), substring(index), charAt(), substr(start, length), **slice(). diff in slice and substring**. 
+12. JS Number: Infinity, NaN.
+13. JS Number properties and methods [imp]: parseInt(), toString(), toExponential(), MAX_VALUE, NEGATIVE VALUE.
+14. JS Math object methods: pow(), min(array of numbers), floor(), ciel(). 
+15. JS Dates, Dates Formats, Date Methods [imp]: var date = new Date(), getDate(), getTime(), getMonth().
+16. JS Array and Array Methods: pop(), push(), shift(), unshift(), slice(). 
+17. JS Boolean
+18. JS Comparison and Logical Operator
+19. JS if else conditions: Example
+20. JS Switch Statement: Example
+21. JS For loop: for, while, dowhile.
+22. JS Type Conversion: note point.
+23. **JS Regular Expression[imp]**: test(), exec(), search(), replace().
+24. JS Error: Example.
+25. **JS Hoisting[imp][imp]**: define and check all cases and tricky questions.
+26. JS Scrict Model
+27. **JS Best Practices**: all 7.
+28. JS JSON
+29. **JS Form[imp]**: CHeck the overview of validation using JS. 
+30. JS Object[imp]: Properties{delete property}, **Methods{Built-in JS methods for any object}**, **Constructor{creating cosnstructor & adding new property or method}**, Prototypes.
+31. JS Function {function as variable, self invoking function}, Parameter, **argument object Invocation**, Call and Apply.
+32. JS DOM: Intro, Creating HTML{all methods}, Element, HTML and CSS {methods for traversing DOM, how to change captured HTML element}. 
+33. JS DOM Events {all 8 events with uses}
+34. JS DOM Listener {adding or removing event through JS, event bubbling and capturing}
+35. JS DOM Navigation {navigating through nodes: parentnode, chldnodes[number], firstnode, lastnode, nextsibling, previoussibling}
+36. JS DOM Node {creating HTML, **insertBefore()**}
+37. JS DOM Collection: get elementByTagName(), all new browsers like elementByClassName().
+38. JS DOM nodeList {diff with DOM collection, querySelectorAll()}
+39. **JS BOM**: window, screen, location, history, navigator objects{appVersion, userAgent, appName}. 
+40. **JS BOM**: pop up boxes, Timer and Cookies. 
+
+
+Some Important Questions:
+1. How to submit form using JavaScript? document.form[0].submit();. 
+2. How o read or write a file using JS? active X object or some JS extension. 
+3. Looping options in JS> Same as java. 
+4. void(0) is used to prevent the page from loading. 
+5. Handling exception is also done through try, catch and finally block only. 
+6. Thorough with how to parse different element?
+
+
+JAVASCRIPT COMBO INTERVIEW QUESTIONs
+source1: 11, 18, 21, 29, 32, 36, 43, 47, 56, 58, 60, 66, 73, 74. Also tell the event you know, 74. also tell how to create deferred script, 75, 84.
+source2: 4, 8, 9, 15, 22, 24 here, cursor is the mouse cursor, put @@@A on 35 36.
+Source3: 3, 5, We will do it in hardcore requiorement of JS. 
+Source 4: 3, 6, 11, 12, 19, 21.
+***************************************************************************************************************************************
+4a. Spring Study File
+1. What is spring framework?
+2. Spring MVC
+a. Basic flow of spring MVC framework.
+b. Code of following: Web.xml, applicationContext.xml, Controller.java
+c. Spring mvc validation support.
+d. What is context load listener
+e. <import resource> add multiple config files. 
+
+3. Spring IOC
+a. Spring IOC and DI concept
+b. What is IOC container and its type. Difference in them
+c. Constructor Injection and Setter Injection. Diff in constructor and setter injection
+d. Code related to IOC container.
+e. Spring Bean lifeCycle:
+"Spring bean life cycle starts from bean instanciation and completes when bean is destroyed. ONce the object of IOC container is created then a lot steos happens like calling the methods of different aware interfaces like setBeanName and Other. WHile we can define init and destroy method in bean class which will define what will happen immediately after instanciation or before destruction."
+
+4. Spring ORM 
+a. How can we configure basic app. 
+b. Methods of hibernate. 
+
+5. Spring JDBCTemplate 
+a. Concept of JDBCTemplate
+b. Different classes of JDBC temp.
+c. Different methods of jdbc template.
+d. write code for basic update method. 
+
+
+All annotations used in spring MVC: 
+1. Controller(to mark the controller), 
+2. RequestMapping(map the request iwth url), 
+3. Autowired, MOdelAttribute(It maps the request parameters with the cooresponding bean properties. It can be used on a method or as an argument. With argument type, the request params are added to tha particular method modelandView object but with method level it adds that object to all the method of that cntroller modelAndViewController), 
+4. Service(mark the service class), 
+5. Repository(mark a dao class), 
+6. Component(marks a class to be eligible of making bean. COntroller, repository and services comes as secialization of compoenet annatation), 
+7. Bean(marking a class as bean), 
+8. Qualifier, 
+9. ResponseBody, 
+10. PathVariable((Path varibale in a variable and use it. We ahve pathparam as quivalent annotation in rest), Service(kind of a component and mark a class as service), 
+11. AOP relat: Scope, Aspect, before, after, around, pointcut, 
+12. requestParam(maps the request params with bean properties. We have queryparam is quivalent annotatiob in rest).
+Java based configuration annotation: @Configuration, @ComponentScan and @bean.
+HOw the data processed in the controller goes to view. 
+
+***************************************************************************************************************************************
+5a. Hibernate Study File
+Updates:
+1. The difference between load and get method. These methods are there to returnt the persisted (saved in database) object of a given id. However, when we call load the it does not return the real object but return thw proxy for th real object however get gets use the real persisted object. Also, load return objectNotFoundException if object not found while get gives null if object not found. 
+2. The difference between persist and save method. Both are there to add an object in the database. Firstly, both works the same with persistent object but the difference comes in case of transient (which is not yet saved in db) object. Persist does not execute an insert statement outside the boudary of transaction while save method does that. Persist object not necessary that immediately persist the transient object while save will to it immediately. Other differnce between persist and save is that persist is JPA specifixation method while save is the hibernate specifjc method. Persist returns rull while save returns the primary key of the inserted rexord. By the way, hibernate js an implementation of JPA.
+
+Hiebernate Quick Revise
+1. Spring ORM implementation using Hibernate ORM. {emp.hbm.xml code, AP.xml beans concept}
+2. Hibernate basic implementation for simple j2EE app. Check the client Specially. {hibernate.cfg.xml, javatest class}
+3. Different hibernate methods.
+a. difference in persist and save method(). First, persist method do not garuntee to assign value to transient object the value immediately, that may be assigned during flush time. Alsoo, it does not gaurntee to do insert outside the transaction boundry. Save can perform insert outside the transaction object. Another difference i recollect is that if we use incremental generator where primary id is given by hibernate then save return the primary key assigned while persist does not. 
+b. The difference between load and get method. These methods are there to returnt the persisted (saved in database) object of a given id. However, when we call load the it does not return the real object but return the proxy for th real object however get gets you the real persisted object. Also, load return objectNotFoundException if object not found while get gives null if object not found. 
+c. SaveOrUpdate(): This method will save the data if the data is not present in the table already, while update it if its present. Wwe can use this method outside the transaction boundry. 
+d. update(): method used only to update the existing resource. 
+4. Hibernate hirerarchy or inheritance mapping. 
+5. Hibernate object mapping types. 
+****************************************************************************************************************************************
+
+6a. JSP Study File
+
+
+JSP Quick Revise
+Topics for quick check
+1. Scripting Elements: All 5 categories
+2. Implicit Object: (request, response, session, application, config, page, pageContext, Exception and out)
+3. Action Tag: Used to control the flow of the jsp page and to use the bean. 
+4. Expression Element
+5. JSTL and Custom tags
+
+Important updates:
+1. Write detail functioning of HashMap.
+2. write below note in Set section:
+This is an eye opener. Let me just brief on the normal behavior of Sets. HashSet maintains no order, LinkedHashSet maintains order of insertion so while iterating it will print the values in the order of insertion and Treeset maintain ascending order which means the elements will be printed in increasing order. 
+3. Study about AtomicInteger Class. 
+************************************************************************************************************************************
+
+ServletStudy file
+Difference between web server, web container and application server with examples. 
+Web server: Web server is a server capable of handling HTTP request and send back HTTP response. Web server performs different functons like transalating DNS name to IP address, load balancing is also taken care in case of pool servers or server farms. Examples are Apache HTTP server, 
+Web container or Servlet container: It a container that contains java servlets, JSP and other component and manages them. When i say manage them, then i mean by their co 0mplete life cycle. Example is Apache tomcat.  
+Application servers: Application server contains web server so can priovide all the feature of a web server and in addition to these features it can provide applicatio level services like exposing business logics, connection pooling, transaction support, messaging service. etc. Weblogic, Glassfish are some examples of application servers. 
+
+Make a note in Servlet Attribute section:
+"As we already know that servlet attribute has scopes like session, context or request. So, to create an attribute we have to use the object of the desired scope. Example: for request  attribute request.setAttribute("Id", 101);. Likewise for context and config we will create their objects."
+
+JSP Action Elements
+As the names hints, these are some element created in JSP for some special tasks. Let's have a look at them one by one. 
+1. forward action element: It is used to forward the request and response to another resource. We know about it through servlet. 
+<jsp:forward page="anotherpage.jsp">
+2. include action element: It is the way to implement include fucntion as we ahve in servlet through tags. 
+<jsp:include page="anotherpage.jsp"> 
+3. useBean action element: This element is used to instatiate a bean class in JSP page. 
+<jsp:useBean id="" class="" scope="">
+4. setPropety and getProperty action element: these elements are used to get and set the values of a property of bean. Generally, used in application based on java beans.
+<jsp:getProperty name="nameOfBean" property="propertyName">
+<jsp:setProperty name="nameOfBean" property="propertyName" value="ValueOfProperty">
+5. plugin action element: This element is used to plugin the applet in the bean. 
+
+Expression Language in JSP
+Expression language in JSP actually simplifies the access of object related to session, request, response and other scope.
+The syntax of EL is: ${expression}. To simplify the task even furthur, we are given some commonly used object in JSP. So, we do not need to create them overselve but can use directly. Below are the implcit EL object:
+pageScope (pageLevelScope), requestScope, sessionScope, applicationScope, param, paramValues, header, headerValues, Cookies, initParam, pageContext. 
+There are many operators we can use in Expression language. 
+
+*************************************************************************************************************************************
+ServletInterviewQuestions File
+RRR: Source1: 1, 11, 18, 20, 24, Source2: what is servlet config obkect?, 
+AAA: Source1: 7: "The only difference between printwriter and ServletOutputStream is that first the char oriented used for creating char or string may be while other is used to create may be byte array." Source2: 2: Idempotent method are those which gives the same result even when called multiple times in a row while non idempotent are those which can have different result when same request is sent again. GET is idempotent while POST is non idempotent. Now, Safe methods are those which do not change the representation state of resource at server side. Do not mix up in idempotent and safe because they loop same. 
+*************************************************************************************************************************************
+
+
+
+*************************************************************************************************************************************
+
+*************************************************************************************************************************************
+
+JavaInterview Question File
+source1: 52, 123, 129, how to synchronize a collection like list, Source2: 24, 43, 51, 52, 92; Source3: 1, 7, 9, 11; Source4: what is the use of system class; Source5: Why String is popular as hashmap key?; Source6: 1(java related feature), What is unsupportedModifictaionexception, different view for Map(values, entryset and keyset), Source 7: 10. What is context switching, 11, 14, 15, 22, 23, 25; source 8: 
+**************************************************************************************************************************************
+
+
+
+SQL quries
+1. how to show date column value including second
+2. how to show db date 
+3. escape character in oracle?
+4. get details from one table even a single row present in other table. (Means if other table is not empty).
+5. trick for name only numbers.
+6. Delete duplicate record:question 11, http://www.java67.com/2013/04/10-frequently-asked-sql-query-interview-questions-answers-database.html
+
+***************************************************************************************************************************************
+
+
+Web service Study
+1. Importance of web services
+2. UDDI, WSDL
+3. Layers of Web service protocol stack: It contains four layers contains four layers of protocols which are transport protocol which is HTTP in case of REST, messaging protocol which can be XML, JSON or any other type, description protocol is the WSDL in case of SOAP web services and lastly, discovery protocol layer which is nothing but UDDI which provides the platform for discovery a needed web service. 
+4. Addressing and resource means in RESt
+5. Key features of REST: http protocol, any messaging format, no wsdl, stateless, caching
+6. HTTP request and response components.
+HTTP request must be having the URL and the type of http method used to send the request. Also, it should contain the content type and accept header params in header of request. It can also contain an payload in case of post and put request. Response should contain the status code and resultant output of the request processed. Response should also contains header param like the response type and chache param or any other param, if any. 
+7. Statelessness of web services and its advantage. 
+Statelessness means that web services does not track any state(data) regarding the different calls made a client and therefore, each client request should contain sufficient data for making server capable of processing request. Restful web service should be stateless so as to be simpler and more scalable. It is a design based decision of REST architecture that is quite aligned with HTTP protocol which is stateless too.  
+8. Chaching in web service. How we do it and advantage. 
+Caching means storing servers response on the client side so that client do not need to send request for same resource again and again. Cache control header is send in the server resoonse to decide the properties of caching. The hear can be set public or private. If made public then any component can cache it while private make only destination client to cache the response. We can set the max age of the caching. It mean until what time a response can be cached. 
+9. Payload. It are the data that we send in a request while request param does not fall in this category. We cannot have payload in GET and DELETE request.  
+10. Different application integration styles?
+Here, Integeration styles means how different component of an application can be integrated or can interact. This can be done in multiple way which are messaging (example:JMS), batch files, Remote procedure calls and file transfer. 
+11. Annatation used when exchanging data in XML. @XMLRootElement, @XMLAttribute, @XMLElement.
+12. JAXB purpose in webservice:
+Jaxb is used to marshal and unmarshal the java object to xml and vice versa. 
+Code for marshalling:
+JAXBContext jcontext = JAXBContext.getInstance(Student.class);
+Marshaller marshaller = jcontext.createMarshaller();
+Marshaller.setProperty(Marshaller.JAXB_FORMATED_OUTPUT, true);
+Student s = new Strudent(1, “Rishav”);
+Marshaller.marshal(s, new FileOutputStream(“path of file”));
+Code for Unmarshalling
+JAXBContext jcontext = JAXBContext.getInstance(Student.class);
+Unmarshaller unmarshaller = jcontext.createUnmarshallar();
+File file = new File(“XML data file path”);
+Student student = (Student) unmarshalar.unmarshal(file);
+13. What HTTP basic authentication in web services and how do we implement it?
+HTTP basic authentication is a simple technique of providing authentication on accessing a web resource. For creating the basic autherization param we need to create a string. First create a simple string "username:password", then encode the string through encode Base64 and append the string "Basic " with the previous string. Finally, send the resultant string as a value of Authorization key param in header. On the client side, we can use header param through annotation @headerparam("Authentication") String authString. In servlet technology, we get the header value like "request.getHeader()".
+14. How do we configure web service. 
+15. WADL: Web application description language which a machine readable xml format document to derscribe the http based web service. 
+***************************************************************************************************************************************
+
+AngularJS2Study file
+Source 1: https://www.youtube.com/watch?v=7qq9VDO_28k&list=PLqq-6Pq4lTTbWLgk2YspgXA_xORzD0Ax6
+Source 2: https://www.w3schools.com/angular/default.asp
+
+||Before We begin with AngularJS||
+AngularJS is an javascript framework. Before we begin with angularJS, lets check why do we even need framework for javascipt? 
+Why do we have javascript frameworks like angularjs, amber, reactjs and other at the first place? Well, when we do client side scripting by using raw javascript code then it first uses DOM object to get the element, performs some logic to get the data and finally it modify the element.  This way the code looks messy. Also, the problem that server side developer for really long period about separating the concern is also looks the predominent in client side scripting. Therefore, to write more elegant code with proper separation of concern we should use client side frameworks esp in large enterprise aplications. 
+
+||Intro with AngularJS||
+AngularJS is a javascript framework that extends HTML attibute with directives and adds data to HTML views with expressions. AngularJS is a google project and thus most compatible with google chrome browser.
+
+Now, we will see how angularjs solve the above purpose of client side framework. AngularJS is not like jquery which is just a framework of using javascript in a better way. However, it a whole different way to writting client side scripting. The tagline for AngularJS is enhanced HTML for web apps which means the it extends the current fuctionality of HTML. Let check an example to understand what it means to extends a functionality of HTML. 
+For showing the current date inside a div tag through javascript we will write code like below:
+<div id="dateDiv">
+/*show the date here through javascript*/
+</div>
+<script>
+function showDate(){
+	writing code to show date;
+}
+document.getElementById("dateDiv").innerText = showDate();
+</script>
+In the code above, we are using javascript for getting the element, running the logic and mofifying the HTML. What if HTML element itself had an attribute or an special element that is capable of showing date? Someting like below.
+<div currentDate>date shown here</div>
+Well, we do not have anything in HTML like this. This is what angularJS does. It extends the element of HTML to create custom tags. Also, this kind of programming is called declarative programming where something is declared once and used multiple times later which is indefferent of javascript which is imperative. We also need to understand that in declarative programming we write imperative programming the first time we create an element. 
+
+Angular has important component to understand which are directives, controller, modules, Expression, Services, filters and other. All these we will cover now.
+
+||Creating an AngularJS application||
+We can use visual studio code. For creating AngularJS app we must need to have angular.js file dowloaded. We can do this in couple of way. Firstly, we can download the latest stable version and use it. Second, we can use CDN (content distribution network) which is just link that we can use. We also have minified and uncompressed file. 
+I am using visual studio, so i have added a local directory in visual studio where we have stored angular.js. Thus, angular.js file will also we available in visual studio and we are good to start coding in angularJS. Below is first piece of code written which print good morining if hour of the day is less than 12, prints good afternoon if in between 12 to 17, if greater than 12 and less than 20 then good evening while if greater than 20 then prints good night. 
+
+<html ng-app>
+    <head>
+        <script src="angular.js"></script>
+    </head>
+    <body ng-init="hourOfDay=20">
+        <h1>Hello angular!</h1>
+        <p ng-if="hourOfDay<12">Good Morning</p>
+        <p ng-if="hourOfDay>=12 && hourOfDay<17">Good Afternoon</p>
+        <p ng-if="hourOfDay>=17 && hourOfDay<20">Good Evening</p>
+        <p ng-if="hourOfDay>=20">Good Night</p>
+    </body>
+<html>
+
+||Angular Expression||
+Angular Expression are nothing but the code written inside the double brackets or ng-bind. Expression may contains literal, variable or/and operators. The expression are evaluated and bind with HTML.
+AngularJS variables like number, string, arrays and object as same as we have in javascript. AngularJS expressions does not support looping while support filter which is opposite of jaascript. 
+
+||Angular Modules||
+AngularJS Module(s) defines an angular application while also define a part of angular app. Modules serves as a container for controllers, directives, filters and etc. We have a controller() method for adding controller to a particular module. Let check how can we add code to add these entities to a module.
+1. Adding controller to a module:
+moduleName.controller("controllerName", functionName);. Please note that we do not add () with function name. 
+2. Adding custom directives to a module:
+module.directive("directiveName", function(){
+	//code for defining the directive.
+})
+3. How to add filter? that we will check later
+
+note:
+1. We should avoid having the global function or variables as they are accisable across your app and thus can accidently may get changed. 
+2. Generally, javascript file are written in the bottom of body tag but in angular it is recommended to add them in header or start of body. This is because angular.module can only be loaded when libraries are loaded. 
+
+||Angular Directives||
+Angular directives are more like the magic by angul;ar to extend the properties of directives to a whole new level. Angular provides many builtin directives that we can use. Lets has a look on some of the most commonly used directives in angular. 
+ng-app: This directive shows that the HTML page is an angularJS app and auto bootstrap the angular js appication. It acts as a root element of angular js. It is not necessary to write it in HTML tag. Also, auto bootstrap happens only when we just have one ng-app while for multiple ng-app we need to do manual bootstrap. This you need to write to get started with angular in an HTML page.
+ng-init: This is to initialize a variable. But hold on, where have we declard a variable? We do not need to decalre a variable in angularJS. We can simply initialize it. Also, ng-init should not be used as it is not a good angular coding practice. Only place we should use it is inside loops which we will check later. 
+ng-if: This is just an if condition. If false is return then the element will not be added while works only re expression returns true. 
+ng-controller:
+ng-model:
+ng-show:
+ng-hide:
+ng-repeat:
+
+Note:
+1. Also, we need to understand that howcome a variable is initalized wtih ng-init can be used in ng-if? The moment a variable associate with an ng directive, it is added to the common space called as scope. Each ng directive under a specific ng-app root tag can access this scope. This way an ng-app has a scope. 
+
+Now, we will look at how can we create our own directive. The sole purpose of directives is to extebnd the properties of HTML. With custom directives, we can extends the properties of HTML the way we want. We can create the custom directive using the directive function of module. Angular provide support to create custom directive as Element Directive, attribute, CSS class and comment. 
+Below are steps to create a custom directive:
+1. Create a module and use directive() method of module object. Directive() method takes in two arguments, first being the name of your custom attribute and second being the function which will kind of implement the directive features and functionalities. 
+2. create a directive object which is empty like "var directive = {}". Then, define different properties of direcrtive object like template, restrict, scope, compile and other. Template will show to replace what HTML of the actual directive in HTML. I meam when we use directive in HTML, then that get replaced during bootstraping time by the HTML written inside the tempalte property of directive object. restrict will define the restrictions like E,A,C or M which stands for Element, Attribute, Class and Comment. Scope is used to distinguesh each directive type through a property. For example: directive.scope:"=name" says the student directive will be identified through name of the studnet. Likewise, there are other properties that we can set. Below is the sample code that shows a simple custom directive:
+var app = angular.module("myApp", []);
+app.directive("w3TestDirective", function() {
+    return {
+        restrict : "A",
+        template : "<h1>Made by a directive!</h1>"
+    };
+});
+
+||Angular Model||
+Well, the worth studing directive here is ng-model. We have already used in video tutorial. Their we have used it to get the data given by the user in the input field and added to the scope. Then, till data can be used. 
+Now, we will see how can we validate user supplied data using ng-model:
+<form ng-app="" name="myForm">
+    Email:
+    <input type="email" name="myAddress" ng-model="text">
+    <span ng-show="myForm.myAddress.$error.email">Not a valid e-mail address</span>
+</form>
+In the above code, input email is given by user that is bound with model text which is then used to validate data. In the span below, we have used ng-show to show the error if validation method returns true. 
+
+||Angular Data Binding||
+Here, we just need to understand that ng-bind and {{}} is used to bind data with HTML element. 
+
+||Angular Controller||
+Here, we should know that we creating scrioting functionality using controllers which are registered in the modules. We already know how to reguster it. 
+Remember we can use the controller in the other file as well until it is part of main module. If the controller is part of other module then we have to use the way we add any external module. 
+
+||Angular Scopes||
+We should know that ng-app="moduleName" brings a global scope. When different controllers are regustered in module and $scope is passed as argument then a child scope related to that controller is created. The properties of that controller belongs to the scope of controller. 
+We should know the scopes has heirarchy in angular. Outer controller scope comes under global scope that a module gets while the controller inside a controller gets a scope whi
+
+||Angular Filters||
+AngularJs provides filter to transform data. For example, angular has currency filter which is used to transform a normal number into currency format. Now, how do we use a filter? We can use a filter inside an expression separating the filter through pipe with the expression. 
+A simple piece of code is below:
+<div>
+            {{10000 | currency}}
+</div>
+O/P: $10,000
+Not onl to expression but we can add filter to directives as well and the syntax is similar. See the example below:
+<div ng-repeat="i in array | orderBy:'currency'">
+        {{i}}   
+</div>
+
+We have alot of built in angular filter which are below:
+1. Currency: Formats a numbers like a currency. Adds commas and $ sign.
+2. Date: Format a date into specified date format. 
+3. filter: filters the subset which matches a char or group of chars from an array.
+4. json: Format an object to a JSON string. This is just like marshalling. 
+5. lowercase and uppercase
+6. number: format number to a string
+7. orderBy: it order a for loop iteration of array element based on a particular property of object. 
+8. limitTo: limits an array/string into a specified numbers of elements. 
+
+We can also create our own custom filter which can be done just like we create a custom directive. We have filter() method in module object. 
+
+||Angular Services||
+Angular has another very important feature called as services. Angular has got around 30 in built services and just like directives and filters we can create our custom services. Let's understand what services are through an example $location. 
+var module = angular.module("mymodule", []);
+module.controller("ControllerName", functionName);
+function functionName($scope, $location){ /*here you can see we are using scope and location services passed as arugment of method*/
+	/*some business logic.*/
+}
+This is more like using some information across multiple controllers. We can relate this as window.location. Also, if anything that is not covered by buikltin services then we can create custom services and use then across different controllers. 
+Let's see some commonly used and important services:
+1. $http: This service lets your angular app to make a request to server and handle responses. 
+note: passing services as arguments in controller is also seens as dependency inject as we declare the dependencies of controller and this have been provided by angular. 
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    $http.get("welcome.htm").then(function (response) {
+        $scope.myWelcome = response.data;
+    });
+});
+2. $timeout: This service works equivalent to window.setInterval() in javascript. 
+3. $interval: This service works equivalent to window.interval() in javascript. 
+
+Data binding
+Well, we have another directive ng-bind which helps in binding the variable in the scope of ng-app with the HTML element. Check the example below:
+<p> The hour of the day is: <span ng-bind="hourOfDay+1"></span></p>. 
+OR
+<p> The hour of the day is: <span> {{hourOfDay+1}}</span></p>
+This was we can bind the processed data with HTML and display in our web page. Its all possible because all the variables resides in a common space that we call scope. 
+
+
+
+
+note: As we saw two ways of binding the data with HTML in Angular. With ng-bind directive, we had used the span tag and we havnt used ng-bind with paragraph tag because ng-bind values would have replaced all the value present currently in p. However, with curly brackts we can use it directly inside <p>. Thus, coding becomes simplified. Below is the easiest way:
+<p> The hour of the day is: {{hourOfDay+1}}</p>
+
+[note continues]We have previously discussed that ng-init is not a good way to get the data and we should not use it. Then, how should we setup data for the view? We have to set up data for the view in controller in angular. 
+We will now look at how can we use controller. Angular is also an MVC framework where concerns are separated in the form of modal, view and controller. We will now have to learn the concept of creating controller in AngularJS. We have a directive in Angular called ng-controller through which we can use a controller. Ng-controller is used to call an angular controller which in term is bind with a function before an HTML element to which ng-controller is attached. Have a look at the code below:
+<html ng-app="MyappModule">
+    <head>
+        <script src="angular.js"></script>
+    </head>
+    <body>
+        <div ng-controller="MainCntl">
+            <h1>Hello angular!</h1>
+            <p ng-if="hourOfDay<12">Good Morning</p>
+            <p ng-if="hourOfDay>=12 && hourOfDay<17">Good Afternoon</p>
+        </div>
+        <script>
+            var module = angular.module("MyappModule", []);
+            module.controller("MainCntl", Main);
+            function Main($scope){
+                $scope.hourOfDay=2;
+                console.log("Some business logic is performed.");
+            }
+        </script>
+    </body>
+<html>
+ 
+Here, we have first created a module which you can consider like a phone book. To create a module, we have used module method of object angular. The object angular is provided by the argular.js file that we have imported in the HTML page. We pass two arguments in module method which are module name and an empty array. We will find out what is second argument is all about. So, we have created a module. Then, we can add controller to that module. This is just like adding a phone number entry in the phone book. So, to add a controller to the module we will use controller method of module object. We need to pass two arguments which are the controller name and function name. So far, we have created a module and added a controller to it. Now, we also need to add the module to ng-app. Check the code above see syntax. Now, the directive ng-controller will work if we call a particular module. 
+This way we have removed the ng-init for initializing the hourOfDay variable and using controller for the same. We should also notice that we are using $scope as the controller argument. When a controller is called which will call the function ultimately. Function needs $scope as the argument then who is providing the argument? Ofcourse angular is doing this for us. Then, we can use the same scope to add variable hourOfDay to it and use it as a binding with HTML element. 
+
+
+Clock App
+We have built an app called clock app which prints the current date. This is will cover all the concept of creating module, registering controller to module, adding module to ng-app, using ng-controller, using $scope for registering the variable in angular scope, data will be updated or setup in controller, and is bind using ng-bind or double curly brackets inside the HTML tag. We have also created a button which will refresh the time without reloading the page. To do so we need to have event based action in angular. On the click of the button time should refresh. To do so we need to use another directive called ng-click which is equivalent to onclick attribute of javascript. Now, we ng-click we have to bind a function. Since, we have controller as one function so it cannot call it directly. Thus, we will create a property of controller as a function which is a perfect example where variables are used as function. Actually, I was asked this question in one of the interview and I wasn’t too confident. Check the code below. 
+<html ng-app="ClockModule">
+    <head>
+        <script src="angular.js"></script>
+    </head>
+    <body>
+        <h1>
+            Clock App
+        </h1>
+        <div ng-controller="ClockController">
+            <p>{{timeString}}<p>
+            <button ng-click="updateTime()">refresh</button>
+        </div>
+        <script>
+            var module = angular.module("ClockModule", []);
+            module.controller("ClockController", clock);
+            function clock($scope){
+                var currentDate = new Date();
+                $scope.timeString = currentDate.toTimeString();
+                $scope.updateTime = function(){
+                    var currentDate = new Date();
+                    $scope.timeString = currentDate.toTimeString();
+                }
+            }
+        </script>
+    </body>   
+<html>
+
+Two Way Binding
+We have so far seen one way binding where the data is setup in the controller and either through ng-bind or double curly bracket and is presented in the HTML page. This happens as the data setup in the controller is added to the scope of angular and then utilized in HTML page. But how about anything that is provided as the input of HTML page and is added to the scope and there on can we used anywhere. This is called two ways binding. Below is the code which is quite self-explanatory. 
+<html ng-app>
+    <head>
+        <script src="angular.js"></script>
+    </head>
+    <body>
+        <input type ="text" ng-model="textfield"></input>
+        <input type="checkbox" ng-model="checkbox"></input>
+        <input type="date" ng-model="datefield"></input>
+        <input type="radio" ng-model="radiofield" value="opt1"></input>
+        <input type="radio" ng-model="radiofield" value="opt2"></input>
+        <input type="radio" ng-model="radiofield" value="opt3"></input>
+
+        <p>{{textfield}}</p>
+        <p>{{checkbox}}</p>
+        <p>{{datefield}}</p>
+        <p>{{radiofield}}</p>
+        <script>
+           
+        </script>
+    </body>   
+<html>
+
+Note: one important thing to mention. If we give ng-model value of one input field to other than the change of the original input field will be reflected in other input field too because the field gets changed then the values of it is updated in the scope at that very moment. So, the same updated value gets reflected in the other input field at the same moment. 
+ 
+Nested Controller and scope heirarchy
+We can also have controller inside a controller which has some problems to tackled. When we have multiple controller which are not nested then we can use them in individual div elements and everything works the same way we were working with just one controller. However, we need to be careful when we nest the controller like below. 
+<html ng-app="TestModule">
+    <head>
+        <script src="angular.js"></script>
+    </head>
+    <body>
+        <div ng-controller="cntl1">
+            <p>{{test}}</p>
+            <div ng-controller="cntl2">
+                <p>{{test}}</p>
+            </div>
+        </div>
+        
+        <script>
+           var module = angular.module("TestModule", []);
+           module.controller("cntl1", cntl1);
+           module.controller("cntl2", cntl2);
+           function cntl1($scope){
+                $scope.test="from cntl 1";
+           }
+           function cntl2($scope){
+                //$scope.test="from cntl 2";
+           }
+        </script>
+    </body>   
+<html>
+
+In the above code, we have created two controllers then we are using second controller with div which is nested in other div where first controller is used. we have a variable with the same name in both the controller. Notice that we get scope injected in the controller functions by angular. The scope object injected for a controller is different than the other controller. So, we now have variable with the same name in scope of both the controller. In the nested divs, if we try to use that variables then the variables of correct scope only get utilitzed and everything is fine until now. Assume we have now remove the variable from the inner controller then it should not use the variable since we just removed it. But, the variable with the same name in the outer controller gets used. This is because when we nest the controller then their scopes creates an heirarchy. If a vairbles is not found in main scope of the target controller then the same variable name is looked up in parent scope until it reaches root scope. This way the variables of parent scope get used even though we have removed the variable from child scope for some reason. This is a problem and we need to oversome this.
+
+The solution to the above described problem is very simple. We need to use controller as syntax which provides an alias to a controller and whenever we want to refer any property from the controller we should call it using the alias. So, it makes thing clear that which controller scope to use and if the property is not found then it does not look up. check the code below to see how actually we can do this. 
+<html ng-app="TestModule">
+    <head>
+        <script src="angular.js"></script>
+    </head>
+    <body>
+        <div ng-controller="cntl1 as c1">
+            <p>{{c1.test}}</p>
+            <div ng-controller="cntl2 as c2">
+                <p>{{c2.test}}</p>
+            </div>
+        </div>
+        
+        <script>
+           var module = angular.module("TestModule", []);
+           module.controller("cntl1", cntl1);
+           module.controller("cntl2", cntl2);
+           function cntl1(){
+                this.test="from cntl 1";
+           }
+           function cntl2(){
+                //this.test="from cntl 2";
+           }
+        </script>
+    </body>   
+<html>
+
+As you can see, we have used as and given an alias just next to ng-controller directive. We also have to mention the alias which using that controller. On the script side, we need to remove the scope object that we were writting as the argument because when we use as syntax then we have to use this keyword. Using this keyword we need to write the properties. This change is obviously govern and taken care by angular and we can assume a this keyword value is as the current scope whenever the controller is called. 
+Note: 
+1. Lastly, when we do not use as syntax then we have to use $scope object as argument. 
+2. Some advantage of using as syntax is that it obviously removing the change of getting the wrong value from parent scopes. Secondly, it is quite flexible since we can specify the value from any pther scope if we actually need it by specifying the alias of different controller. 
+
+Calculartor App
+Let create an app which can calculate basic operations like addition, substraction, multiplication and division. Below is the source code:
+app.js
+var module = angular.module("calcModule", []);
+module.controller("calcController", calcfunction);
+function calcfunction(){
+    this.calc = function(action){
+        this.selectedOperation=action;
+    }
+    this.compute = function(){
+        var opr1 = parseFloat(this.op1);
+        var opr2 = parseFloat(this.op2);
+        if(this.selectedOperation==='+'){
+            this.result = opr1 + opr2;
+        }
+        if(this.selectedOperation==='-'){
+            this.result = opr1 - opr2;
+        }
+        if(this.selectedOperation==='*'){
+            this.result = opr1 * opr2;
+        }
+        if(this.selectedOperation==='/'){
+            this.result = opr1 / opr2;
+        }
+    }
+}
+index.html
+<html ng-app="calcModule">
+    <head>
+        <script src="angular.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        </body>
+        <div ng-controller="calcController as cntl">
+            <h1>Calculator App</h1>
+            <input name="text1" ng-model="cntl.op1"></input>
+            <p>{{cntl.selectedOperation}}</p>
+            <input name="text2" ng-model="cntl.op2"></input>
+            <p><button ng-click="cntl.compute()">=</button><p>
+            <p>result: {{cntl.result}}</p>
+                <p>Choose Operator: </p>
+                <button ng-click="cntl.calc('+')" ng-model="action">+</button>
+                <button ng-click="cntl.calc('-')" ng-model="action">-</button>
+                <button ng-click="cntl.calc('*')" ng-model="action">*</button>
+                <button ng-click="cntl.calc('/')" ng-model="action">/</button>  
+        </div>
+    </body>   
+<html>
+
+Note: We could have done the same using controller as syntax as well.
+
+Ng-show and ng-hide Directives
+Its time to see how can we show something HTML element based on boolean value. Well, previosly we have seen ng-if which based on what a consition return will show an element. Well, we have some other directives so doing the same which are ng-show and nh-hide. If ng-show gets boolean true then it shows the element while hides when it gets false. ng-hide is opposite of ng-show. Check the example below.
+<html ng-app="calcModule">
+    <head>
+        <script src="angular.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        </body>
+        <div ng-controller="calcController">
+            <input type="checkbox" ng-model="checkbox"></input>
+            <p ng-show="checkbox">Some text</p>
+        </div>
+    </body>   
+<html>
+
+Now, since we already have ng-if then why should we use ng-show and nh-hide? There is a difference in ng-if and ng-show/hide. If we use ng-if and it gets false then it permanently removes the HTML element while ng-show just adds a angular based css class that simply hides the element. Check more on source tab in dev console.
+
+Ng-repeat
+Now, its time to see how can we perform looping an angular. For this we have another directive called as ng-repeat. If we have an array then we can use ng-repeat just like we have used below to get the iterate through the values of array. Check the example below. 
+
+var module = angular.module("repeatModule", []);
+module.controller("repeatController", repeatCont);
+function repeatCont($scope){
+    /*Array of objects*/ 
+    $scope.array = [
+        {'name':"Rishav", 'age':'25'},
+        {'name':"Mishra", 'age':'26'}
+    ];
+}
+
+<html ng-app="repeatModule">
+    <head>
+        <script src="angular.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        <div ng-controller="repeatController">
+        <div ng-repeat="i in array">
+                <p>name: {{i.name}} and age: {{i.age}}</p>
+            </div>
+        </div>
+    </body>   
+<html>
+
+Now, as you can notice we are using syntax like "i in arrayName". Here, i gets the value of elements of array. If the elements are object then we can use the properties like i.property.
+
+Ng-repeat scope
+So far we have seen that ng-repat directive is used to create looping. We will now understand the scopes in ng-repeat. We have seen ng-controller having scopes. Similarly, we have ng-repeat which has scopes. For each iteration of ng-repeat a new scope is created. Right now its little confusing as to why do we have it. The justification i can offer is since i in array, i has different copy of value which are the values of array. We need to understand the each copy of i exist concurrently thus needs scope for each value. 
+We also get some default variables which are the part of scope that gets created in ng-app and these variables are $index which gets the index for the loop (just like counter), $first return true if its first element and likewise we also have $mid, $last, $even and $odd.
+
+Angular Module
+Now, as the complexity in growing in enterprise application, single module may not suffice. Therefore, we may have multiple modules. HOw can we have multiple modules in angular application. Beloware the steps and a sample code for having multiple module.
+Steps:
+1. Create a separate js file constaining the new module and controllers registered. 2. Add the new module in the module empty array which is registered with ng-app. 
+3. add the new module js file as a script in the HTML page. 
+4. use the controller of new module the same way we use main module. 
+
+Code:
+myModule.js
+var myModule = angular.module("myModule", []);
+myModule.controller("myController", myController);
+function myController(){
+    this.a="Rishav";
+}
+
+app.js
+var module = angular.module("repeatModule", ["myModule"]);
+module.controller("repeatController", repeatCont);
+function repeatCont($scope){
+    /*Array of objects*/ 
+    $scope.array = [
+        {'name':"Rishav", 'age':'25'},
+        {'name':"Mishra", 'age':'26'}
+    ];
+}
+
+index.html
+<html ng-app="repeatModule">
+    <head>
+        <script src="angular.js"></script>
+        <script src="app.js"></script>
+        <script src="myModule.js"></script>
+    </head>
+    <body>
+        <div ng-controller="myController as mycntl">
+            <p>{{mycntl.a}}</p>
+        </div>
+    </body>   
+<html>
+
+Note: check many modules available in ngmodule.org. To use any external module from this source the procedure is same. Try some time.
+***************************************************************************************************************************************
+
+***************************************************************************************************************************************
+
+
+
+hymn of weekend, perfect ed shareen, happier, all the star song, HOw would you feel,,,,,,,, watch movie "The fault in out star", me before you, raocky
