@@ -422,15 +422,16 @@ The default format in oracle is DD-MON-YY. While we can change it through to_cha
 
 Phase 2: 
 
-
 1.	What is the difference in Inheritance, Association, Aggregation and Composition?
 Inheritance: One class can use the feature of other class to extend its functionality and share Is-A relationship. Like, Dog is an Animal. 
 Association: In this, involved classes does not have dependency of other while still have a relation. Like, Teachers and Student class can be associate as teacher can teach any number of student and an student can be taught by any number of teachers. 
 Aggregation: In this, classes share has a relationship. Like, Department has teachers. However, if we delete the department object then teacher object will be not destroyed. 
 Composition: This is more strict form of Aggregation where if the department class is deleted then teacher class will also get deleted.
+
 2.	String name = “Rishav”; name.concat(“Mishra”); System.out.println(name). What name will print?
 It will print “Rishav”. Because we have not assigned the concatenated value to name reference. If we would have done “name=name.concate(“Mishra”)” in the second line then “RishavMishra” would be the result because we are now assigning the concate method result to name reference. 
 The same concept is applicable when we do substring or anyother kind of modification with string. Change will only reflect if we assign to the original string. 
+
 3.	Design a schema for a DB with below conditions:
 @A movie will have just one director while can have multiple actor. 
 @An actor could be a star or a non start actor. 
@@ -449,6 +450,7 @@ BeanClass obj2 = (BeanClass) containerObject.getBean(“id2”);
 In the above code, obj1 and obj2 will be different. 
 
 5.	Write a java api which will get int array which can contain +ve or –ve numbers. We need to return the couple of ints whose sum is closest to zero. Also, if there are multiple couples then return all. 
+Solution: https://www.geeksforgeeks.org/two-elements-whose-sum-is-closest-to-zero/
 We can get O(n2) by using two for loop however we can get O(nlogn). Below are the steps to get n logn:
 a.	Sort the array
 b.	From first element and last element check for the pair with least distance with zero. If the sum is negative then increase left and if sum is positive then increase right. 
@@ -459,6 +461,11 @@ If we do not use regex then we have to check few things like the presence of @. 
 
 7.	There are three pipes which can fill the tank. First and second pipe can fill the tank in the time in which third pipe can fill the tank alone. Also, second pipe can fill the tank in 5 hours less than first pipe while third pipe can fill the tank in 4 hours less than second pipe. 
 We will get some expression like: (1/x)+(1/(x-5))=1/(x-9); After solving this, we will get x = 15.
+Logic: Assume time of the first pipe to fill the tank alone is x. Then, for second (x-5) and third (x-9). Since, first and second can fill the tank in time t as taken by third tank alone. 
+(1/x)+(1/x-5)=1/t; 
+(1/x-9)=1/t;
+So, (1/x)+(1/x-5)= (1/x-9).
+
 8.	Tell how many different 5 letter words can be made out of 3 consonant or 2 vowels with available 7 consonant and 4 vowels. 
 We need to first need to find the ways of selecting 3 consonant out of 7 and 2 vowels out of 4. It will be equal to 7c3 * 4C2. It is equal to 210. Now, we need to find out the ways of arranging these selected words. We can arrange those words in factorial 5 which is 120. So, the overall words which can be made is 210*120 which is 25200. 
 
@@ -467,13 +474,14 @@ A J2EE application can be packaged as JAR, WAR or EAR based on its functionality
 Jar files stands for Java Archive Resource and generally contains java classes, related metadata, resources like text files, images etc. It can also have ejb-jar.xml file. It is given extension of .jar.
 WAR file stand for Web Application Resource and generally contains JSP, servlet, static view files like HTML, resources like text file images etc. For web applications created through java and its extensions are packaged as war file and is given extension is .war. 
 EAR stands for Application Application aRchive. It is used to archive multiple components of a project together into one. This is typically be done to have the deployment of multiple components on an application server simultaneously. These component could be built as jar or war. 
+
 10.	Package for the classes String, StringBuffer/builder, Arrays, Arraylist and other collection classes? Also, wrapper classes. 
-String and Wrapper classes are a part of lang package. Arrays, Arraylist and other collection classes are a part of util package. In fact, the legacy collection class like HashTable is also a part of Util package. 
+String, Wrapper classes and StringBuffer/builder are a part of lang package. Arrays, Arraylist and other collection classes are a part of util package. In fact, the legacy collection class like HashTable is also a part of Util package. 
 
 11.	What’s the difference in array and arraylist?
 Array can store primitive and non-primitive type of data while Arraylist can store only non-primitive type of data. Array is fixed size while Arraylist size can be changed after it is created. Array is covariant in nature and thus subtyping is allowed. ArrayList is invariant in nature thus sub typing is not allowed. Array does have a type information a runtime while Arraylist does not have type information at runtime due to type erasure concept. 
 
-12.	Will an immutable class will still be immutable if it has a mutable class reference (your own or third party) or it has collection classes?
+12.	Will an immutable class still be immutable if it has a mutable class reference (your own or third party) or it has collection classes?
 Source: https://codepumpkin.com/immutable-class-with-mutable-member-fields-in-java/
 Returning a deep cloned copy seems to be best idea for mutable references in order to maintain the immutability of the containing class.  
 User Defined Mutable Class Case:
@@ -484,10 +492,10 @@ In case of collection classes too, we will look for sending a cloned object. But
 
 13.	Memory management: static block, normal instance block, one address class object, main method mai class ka object. What will be the flow of execution and which space of memory will be allocated to different parts?
 Static block is called when class loads, Instance initializer block is called when a constructor is called and then the constructor. Any instance member (reference or primitive) is created in heap. Static member are created in perm gem or meta space. Local member are created on stack. 
-
-14.	Different ways of breaking singleton classes?
+	
+14.	Different ways of breaking singleton classes? Also, how to avoid breaking of singleton class with these techniques? @@@
 Source: https://www.geeksforgeeks.org/prevent-singleton-pattern-reflection-serialization-cloning/
-Breaking of singleton class/pattern means making a second object of a singleton class. We can do it in three ways which are serialization, cloning and reflection. We serialize am object to store object state in byte stream. A new object is created when deserialization happens. To avoid the singleton break with serialization we can use readresolve through which we can force to replace the deserialised object with the original object. Second, by cloning we get a clone object of a class which gives us a new object assuming that the super class of singleton class is implementing clonable interface. To avoid breaking of singleton class with cloning, we can overriding the cloning method in singleton class and throw cloningNotSupported exception. Lastly, we can break singleton class using reflection. Below is the code piece through which we can break singleton class using reflection.
+Breaking of singleton class/pattern means making a second object of a singleton class. We can do it in three ways which are serialization, cloning and reflection. We serialize an object to store object state in byte stream. A new object is created when deserialization happens. To avoid the singleton break with serialization we can use readresolve method through which we can force to replace the deserialised object with the original object. Second, by cloning we get a clone object of a class which gives us a new object assuming that the super class of singleton class is implementing clonable interface. To avoid breaking of singleton class with cloning, we can overriding the cloning method in singleton class and throw cloningNotSupported exception. Lastly, we can break singleton class using reflection. Below is the code piece through which we can break singleton class using reflection.
 Constructor[] constructors =  
                     Singleton.class.getDeclaredConstructors(); 
             for (Constructor constructor : constructors)  
@@ -500,7 +508,11 @@ Constructor[] constructors =
 To avoid breaking of singleton through reflection, we can use enum. Since, enum do not even the default constructor thus reflection cannot affect them. JVM internally manages the enum constructor creation and invocation. Need to check about enum solution here. 
  
 15.	Difference in stored procedure and functions in sql?
-Firstly, stored procedures and functions are part of plsql. Stored procedure may or may not return a value while function must return a single or set of values. SP can have input have input or output parameter while functions can have only input parameters. Transaction can be used with SP while cannot be used with functions. We can all functions from SP while cannot call SP from a function. We can to exception handling (try-catch) in SP while cannot do in functions. 
+Firstly, stored procedures and functions are part of plsql. 
+a.	Stored procedure may or may not return a value while function must return a single or set of values. 
+b.	SP are more flexible in term of its structure as it is just like any other query. Syntax: “create stored procedure SPName as query” while functions are not that flexible as it needs a certain keywords like Returns, Return, Begin, end. Syntax: create function functionName() return varchar(20) as begin query with return end. 
+c.	We call the stored procedure using keyword “exec” or directly as well while functions are called using select keyword in normal select query. 
+d.	SP can have input have input or output parameter while functions can have only input parameters. Transaction can be used with SP while cannot be used with functions. We can all functions from SP while cannot call SP from a function. We can do exception handling (try-catch) in SP while cannot do in functions. 
 
 16.	Who gives the default constructor to a class? JVM or Compiler. 
 Compiler provides the default constructor in case you do not define your own. The default constructor will call no args constructor of super class through super(). If the class does not have any direct super class then it will call the no args constructor of object class.
@@ -519,9 +531,9 @@ Internally, JVM uses “instance of” operator for identifying if the class is 
 Select min(salary) from (select distinct(salary) from salary order by salary desc) where rownum<3;
 
 20.	We have given a string with sequence of integer with one number missing. The sequence can start from 1 digit, 2 digit or more digit number. We have to find the missing number. 	
-Will do it later.
+One simple approach is that we can keep two pointers I and j on consecutive numbers from the beginning and keep moving forward by checking the difference between the two integers. If the number difference is not equal to 1 than the number at j pointer subtract one is the missing number. This solution assumes that numbers are not repeating. 
 
-21.	How readobject and writeObject works internally?
+21.	How readobject and writeObject works internally? @@@
 Serialization: https://www.javaworld.com/article/2072752/the-java-serialization-algorithm-revealed.html
 To do serialization, we need to make the class implement serializable interface first then pass the object of FileOutputStream to ObjectOutputStream constructor. Then, use the writeObject(Object) of class ObjectOutputStream to write the byte code in the file FileOutputStream is linked with. So, this is how serialization takes place but how things works under the hood is important to know. 
 Below are the steps in which serialization process works internally:
@@ -530,20 +542,21 @@ Below are the steps in which serialization process works internally:
 3.	Metadata related to the super classes is written until the object class is not reached. 
 4.	Once metadata is done, the actual data associated with the class is written in the file. However, this starts from the topmost class involved. 
 5.	The data associated to the top most class is written followed by the lower hierarchy is written until the main class is not reached. 
+
 Deserialization: https://www.tuturself.com/posts/view?menuId=58&postId=901
 With deserialization, we reconstruct the java object using the binary stream related to that object. readObject() method of ObjectInputStream is used which gets the object of FileInputStream object. 
 In the deserialization process, the super class is navigated until object class is not reached. If no non serializable class is found until object class is reached then JVM creates object class object first. However, if any non serializable class is found then it should have no args constructor defined in order to create an object. If the non serializable class does not defines any no args constructor too then InValidClassException is thrown.
-Now, the question is that if any of the super class is non serializable then why wont the exception is thrown while serialization. Actually, this rule is applicable at serialization as well that if a super class is not serializable then it must define no args constructor to avoid InvalidClassException. This exception is thrown while serialization only but like every other exception it also extends throwable interface which is serializable and thus the exception too gets serialized and throws while serialization. 
+Now, the question is that if any of the super class is non serializable then why wont the exception is thrown while serialization. Actually, this rule is applicable at serialization as well that if a super class is not serializable then it must define no args constructor to avoid InvalidClassException. This exception is thrown while serialization only but like every other exception it also extends throwable interface which is serializable and thus the exception too gets serialized and throws while de-serialization. 
 However, if no super class is non serializable and JVM reaches to object then object class object is created and readObject() method is invoked. Then, the readObject() sets the values to the blank instances. The deserialization process ends as the readObject() finishes. 
 In the nutshell, for serializable classes the object is created by reading the metadata in the file and for a non serializable class a default constructor is used to create the object. Then, file the data information is read and set in the blank object. 
 
-22.	How to sort a map on the basis of values which are user defined type?
-When we need to sort a map based on its keys then best way to simply create a Treemap passing that map. If your key is user defined then you have to implement comparable interface in it. @@@Pending: how do it comparable for a string based data of user defined object? If we have to sort the map on the basis of values then we have create an entry set and use collections.sort() method. Then, need to create an anonymous class for implementing compare() method which uses compareTo for values of two entries in the map. Also, if the value is user defined then it need to implement comparable.
+22.	How to sort a map on the basis of values which are user defined type? @@@
+When we need to sort a map based on its keys then best way to simply create a Treemap passing that map. If your key is user defined then you have to implement comparable interface in it. Also, remember that for implementing compareTo() for string data member, use compareTo() method of String class. If we have to sort the map on the basis of values then we have create an entry set and use collections.sort() method. Then, need to create an anonymous class for implementing compare() method which uses compareTo for values of two entries in the map. Also, if the value is user defined then it need to implement comparable.
 Now, if we want to sort a map based on multiple data member then we need to make comparator classes. 
 Note: Methods in comparable and comparator, both, return type is int. 
 
-23.	What are functional Interfaces and their need?
-Firstly, functional interface is not an exclusive thing to java 8 because even prior to java 8 we had interfaces with just on abstract methods like comparable interface. However, the name functional interfaces is given in java 8 and also many new functional interfaces are introduced in java 8. It is more useful as it is a type to be used in labdas expression. Lamdas expression involves implementation on abstract method of interface without name. Since, the implementation if without name, thus only one abstract method makes the lambdas expression implementation as unambiguous. 
+23.	What are functional Interfaces and their need? @@@
+Firstly, functional interface is not an exclusive thing to java 8 because even prior to java 8 we had interfaces with just on abstract methods like comparable interface. However, the name functional interfaces is given in java 8 and also many new functional interfaces are introduced in java 8. It is more useful as it is a type to be used in labdas expression. Lamdas expression involves implementation on abstract method of interface without name. Since, the implementation is without name, thus only one abstract method makes the lambdas expression implementation as unambiguous. 
 Also, remember that functional interfaces may have one or more default and static method from java 8 onward while can have only one abstract method. 
 @@@Rajneesh: What other advantage or use can you think of?
 
@@ -552,20 +565,22 @@ Also, remember that functional interfaces may have one or more default and stati
 25.	Top five features of java 5, 6, 7 and 8.
 
 26.	Can we return value any other than 1, -1 or 0 in comapreTo() implementation of Comparable? Also, Can we create a custom comparable alltogether?
- Firstly, with the normal comparable we can return any other integer instead of 1, -1 or 0. This is because we are not breaking the contract of returning an int. Therefore, we can change the values but not the type from int to any other.
+Firstly, with the normal comparable we can return any other integer instead of 1, -1 or 0. This is because we are not breaking the contract of returning an int. Therefore, we can change the values but not the type from int to any other.
 In think, ye we can definitely make comparable comparator. We can do this by creating a class implementing the comparable interface. However, we really need to look at the objective of creating custom comparator.  
-27.	What is the datastructure used in hashmap? 
+
+27.	What is the datastructure used in hashmap? @@@
 I have checked the actual implementation of HashMap in Java 8. I found that for every new entry a node class object is created. Node is nothing but an inner class. Each new entry comes is stored in a index of array. So, Array makes series of buckets while each bucket has a multiple entries (nodes) joined as linked list. Also, in java 8, treefy concept came in which makes the normal nodes to treenodes which somehow decreasing the traversing complexity from O(n) to O(log n). 
 
-28.	If alphabets are same like “abc” and “bca”, then will the hashcode be same? For such keys with same characters we are assuming that hashcode will come same then they could be stored in the same bucket. Then, would all the entries will be stored or only one or how many? 
+28.	If alphabets are same like “abc” and “bca”, then will the hashcode be same? For such keys with same characters we are assuming that hashcode will come same then they could be stored in the same bucket. Then, would all the entries will be stored or only one or how many?
 Firstly, we can have different hashcode for keys like “abc”, “bca” or “cba”. As the hashcodes are different then these records can go to same or different buckets which is unpredictable. The entries will be stored in normal way as hashmap works nothing fancy.
-Now, even if we assume that the hashcode by any chance is made same for all the keys then it is not certain that equals will also find the keys equals. Thus, we cannot predict how many values will be stored. 
+Now, even if we assume that the hashcode by any chance is made same for all the keys then it is not certain that equals will also find the keys equals as unequal objects can have same hashcode. Thus, we cannot predict how many values will be stored. 
 
 29.	How do we implement deep cloning and shallow cloning?
 Well, we can implement cloning by calling “super.clone()” in overridden clone() method. This implementation of clone() in clonable gets you shallow copy. For deep cloning, we need to manually take the value of the calling object and add to a newly created object and return that. Check the implementation in java file.
 
 30.	Temporal Annotation use. 
-In JPA and its implementations like Hibernate, whenever a field of date type is mapped with database then the entire timestamp is generally stored in the database for this field. We can control this using Temporal annotation. We can use @Temporal(temporaltype.DATE) with a date field and make sure only date will be stored inside the database for the associated column. 
+In JPA and its implementations like Hibernate, whenever a field of date type is mapped with database then the entire timestamp is generally stored in the database for this field. We can control this using Temporal annotation. We can use @Temporal(temporaltype.DATE) with a date field and make sure only date will be stored inside the database for the associated column.
+ 
 31.	What is Qualifier annotation? Check if we apply this annotation on class, instance or method level? Not sure, if he was talking about the bean creation level.
 Qualifier annotation is used to identify which bean definition to be used to inject the dependency for Autowired annotation marked field if we have multiple beans for one class. This annotation is used on the instance level just below the autowired annotation. 
 @@@Rajnesh: Has he heard of anything ki bean class, instance ya method level ki hai?
@@ -576,12 +591,12 @@ There are two factors for deciding if we have to use comparable or comparator. F
 33.	Parent method A throws exception and child overridden implementation does not throw the exception? What will happen?
 Yes. There wont be an issue. Child class implementation does not mandatorily has to throw an exception because it is already thrown by parent class. If child class wants then it can throw an exception which must be equal or lower in hierarchy as compared to what parent class implementation is throwing.  
 
-34.	How to read property class data in java?
+34.	How to read property file data in java? @@@
 In java, we have properties class which has some API like setProperty(String key, String Value) and getProperty(String key). These API’s are used in writing and loading the properties inside file. 
 We first create a properties file in our project. Then, we create a Property class object and use setProperty() to write some key property pair. Then, we have to create a FileOutputStream object by giving the location of the properties file we just created. Lastly, use store(FileOutputStream object, String comments) to store the set properties in the property file. 
 Then, for loading the properties present inside properties file, we have to create a Property class object and have to create an InputFileStream object by passing the property file path. Then, we need to use the load(File path) api of Properties class. So, now the property class object has got all the properties like and to call them we can use the API getProperty(String key). This will return a string. 
 
-35.	What are advantages we have in ApplicationContext ioc container which were not present in beanFactory. I mean why do we felt the need of having ApplicatonContext when we already have beanFactory?
+35.	What are advantages we have in ApplicationContext ioc container which were not present in beanFactory. I mean why do we felt the need of having ApplicatonContext when we already have beanFactory? @@@
 BeanFactory has the feature of instantiating the beans and wiring the dependencies. Also, it can manage the life cycle of the beans. ApplicationContext extends bean factory and thus has all these features. 
 Below are differences which are in brief and will be completed in detail later.
 a.	Automatic BeanPostProcessor registration
@@ -598,8 +613,9 @@ Child class can return a covariant type of what parent class implementation is r
 38.	Difference in API and method?
 API is application programmable interface is something which you exposes your application or something to be used. So, you can expose your application through a set of method and in this scenario, API and method will be same. However, this is not always the case. Like List interface declares a set of method which is implemented by its implementing class like Arraylist. List interface defined the complete contract about the method is declares and thus they are the API. Lastly, a method is not always an API. 
 
-39.	What will happen in case overloading where one method form has argument as Integer and other as int? 
-Everything will be normal and without any compilation error. It is because compiler can identify the difference in the argument passed as Integer or int for this method. 
+39.	What will happen in case overloading where one method form has argument as Integer and other as int? String and object as argument type and if null is passed? Actually, how java decides in case of null value is passed?
+Everything will be normal and without any compilation error. It is because compiler can identify the difference in the argument passed as Integer or int for this method.
+In the second case, method with argument string will be called. This is because java always tries to call the most specific version of a method. Null argument is applicable for both String and object version. But, String version is more specific and thus it is called. In this case, if we had String and Integer then compilation error would have come due to ambiguity. 
 
 40.	Is it better to have local or instance member in multithreading code piece?
 I think yes, because local variable gets created in the stack area which is unique for a thread. Therefore, less chances of multithreading issues. In short, local variables are thread safe. 
@@ -615,4 +631,81 @@ In the case, we do not want to use serialization for storing the state of the ob
 
 45.	Will a normal singleton class threadsafe? Will it break singleton contract? What can be done for making singleton class thread safe? Also, tell how actually does multiple threads can hamper singleton contract?
 
-46.	
+46.	Write a normal program and see if it is thread safe or not? Mostly, it won’t be automatically. Then check where the problem would come and how will we resolved it?
+
+47.	Which interface is needed in Java for using the stored procedure?
+
+48.	What is actuator in spring boot?
+Spring Boot provides actuator to monitor and manage our application. It is a tool which has HTTP endpoints. These endpoints can be used to monitor and manager out application when pushed to production. “Spring-Boot-Starter-Actuator” is the name of dependency in spring boot for actuator. Actuator is available in spring right from the first release. 
+Some of the common endpoints of Actuator are:
+/health: It shows application health in the form of status. 
+/info: It shows arbitrary application info. 
+/metrics: Shows metrics which has thread pool and other details. 
+Likewise, there are many endpoints that actuator has and in addition to this we can create our own endpoints.  
+
+49.	What is spring filter?
+In normal web application, we must have used filters which we used to configure in web.xml. In a spring application, we can still have filters. But, I am talking about normal filter and these would not know anything about the spring beans, context, etc. However, we can put these together with spring. The most basic class provided by spring is GenericFilterBean. GenericFilterBean is an implementation of javax.servlet.filter that treats its config properties as beans properties. Unknown parameters get ignored. 
+Now, to have a filter in spring application which is aware about the bean, context and other which we can create a class which extends the GenericFilterBean class and implements doFilter() method of it. We can configure out filter just like any other class in normal java application.
+Check link: http://learningviacode.blogspot.com/2013/07/filters-and-spring.html
+
+50.	Which data structure will you use to implement concurrent hashmap?
+I will use Array and linkedlist to create HashMap. 
+
+51.	What changes would you like to do in dispatcher servlet when too many requests are coming to your spring based application?
+
+52.	String and Object is passed as argument in two overloaded method and null is passed while calling then what will happen?
+
+String will be called because String will be the more specific type between object and String which can hold null. 
+
+53.	If spring application gets a request which does not have any mapping then how would you handle it?
+
+54.	How will you implement linkedlist?
+
+55.	Do you anything called as unreachable exception?
+
+56.	What will happen if we change the user id of employee object after storing an entry in map while user id is only used to generate hashcode and equals. 
+
+57.	Does concurrent hashmap disallow null key, value or both?
+
+58.	Class A has synchronized method. Class B and C two threads which calls the synchronized method of class A. One thread of class B and C will get access. How do we get the synchronization between thread of class B and class C?
+
+59.	Write a code showing deadlock and tell how to resolve deadlock?
+
+60.	We are doing some task where we are inserting some data (4000 records) right now and later we start getting 100000 records and we need to insert them. What better can we do to optimize this insertion on java side? Check things which are possible ways. 
+
+61.	Check how java code is connecting to database? Is it JDBC template or how it works?
+
+62.	Which is better approach? Storing more data inside java side making just one call or making multiple call to database? Which will be faster. What is generally a size of collection pooling? 
+
+63.	 What will you do if 50000 records get processed out of 1 lakh records and some issue occurs? Because when the process starts then it will from the begningin again reprocessing of those 50K record will happen again. 
+We can make the failed records to a certain file and continue the process further and once the entire process is done then we can look back on all the failed records. 
+64.	How much time does the SifTerminalBilling project takes? May be few millisecond.
+
+65.	How do we handle sensitive data within the application? 
+
+66.	Which version of spring boot you have used in your project?
+
+67.	Advantage of spring boot over spring mvc?
+
+68.	Which design pattern is spring based on?
+Spring is based on factory design pattern. Spring AOP is based on proxy deisgn pattern. 
+
+69.	Annotations used with spring?
+
+70.	How have you defined beans in your application?
+
+71.	How can you make your bean in spring application be thread safe?
+We can change the scope of the bean from default scope of singleton to request scope. We can do this in two ways. First, we can annotated bean class with @RequestScope. Second, we can use mention the request scope in scope attribute of bean xml configuration. 
+
+72.	What is factory design pattern?
+
+73.	We have empid, empname and managerid in a table. We need to find out CEO employee employee id?
+We can find out CEO employee id identifying the row where manager id is null. This is because CEO will not have manager. 
+
+74.	Any idea about PLSQL?
+
+75.	Is serializable interface a marker interface? If yes, then where writeObject() and readObject() methods are implemented? Also, readresolve?
+Serializable interface is a marker interface. ReadObject() and WriteObject() methods are implemented in ObjectOutputStream class. Readresolve() needs to be implemented by developer in singleton class itself.
+
+
+	
