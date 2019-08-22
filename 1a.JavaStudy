@@ -234,7 +234,7 @@ Note:
 1.	[III] Can we call child constructor from parent? There is no way of calling child constructor from parent class constructor. 
 2.	[III] Can constructor have any return type? Constructor cannot have return type. If you have method with the same name of class and have return type then that would not be called constructor. Compiler will give a warning. [IIII] You can write void with it then it will be considerd as normal method rather than a constructor. 
 3.	[III]Difference in default and no args constructor? Default constructor and no-args constructor are not exactly same. Default constructor calls the super class constructor thus its body has super(). The exception here is a primordial class which does not has any super class like object class. While the No-args constructor is wrote by dev and overrides the actual implementation of default constructor. 
-4.	[III] What are valid access and non access modifiers with constructor? We can have a private constructor which is only accessible within the class. It can mainly be for constructor chaining or singleton class case. We can also have public, protected and default acces modifiers with constructor. Abstract is invalid modifiers for constructor. Final modifier is allowed with constructor. 
+4.	[III] What are valid access and non access modifiers with constructor? No other access modifier is allowed with constructor except public, private and protected. 
 
 ||Static Keyword|| 
 The Static keyword is used for memory management in java. It can be used with a variable, method, block or nested class. We cannot use it with the outer class.
@@ -306,10 +306,11 @@ Note: [III]
 2.	Is it good to use static member through super or this? Although, we can use static member of parent in child class with super keyword but it is discouraged and if done so then we will receive warning from compiler saying we should be accessing static member in static way. Preferably, we should use it like ClassName.static. 
 
 ||Instance Initializer Block|| [III]
-We already know what a block is. Instance initializer block is something special and used to run a specific set of operation when an object is created. It is called when object is created through any of the constructor out of multiple. In case of multiple constructor, we have written those lines once and is called when any of the constructor is called. It is called right after object is created i.e. before any other method. This is because the block gets called once the object created and then other methods are called. In case if the class extends other class then super() method will be calling the parent class constructor first followed by instance initializer block and then rest of the methods called explicitly. Also, see the example for the better understanding of the topic. Remember all the rules.
+A block in java is nothing but multiple statements written inside braces. They are called before a constructor is called. Also, they are called everytime any constructor is called. Instance initializer block is something special and its primary task is to instanciate instance member before even the constructor is called. It is also called before a constructor is called like ordinary java blocks. In case if the class extends other class then super() method will be calling the parent class constructor first followed by instance initializer block and then rest of the methods called explicitly. Also, see the example for the better understanding of the topic. Remember all the rules. Parent IIB, Parent Constructor, Child IIB, Child Constructor is the flow. 
 Note:
 1. They are called before main method so that all the variables must be initialized before they are used. 
 2. What is the difference between static and non-static initialize block? Static block are used to initialized static variables and is loaded only once the class is loaded. They are different from instance initializer block. 
+3. Why would you want to use IIB if constructor too can instantiate instance member? In case, if you do not have use of constructor beside instantiating instance member then its better to use IIB. We will mostly use constructor for instanciating instance variable when values coming as arguments of constructor. 
 
 ||Final Keyword||
 We will take two cases where a variable is declared final and initialized final. Whenever a variable is declared final (I mean declare but not initialized. Alright?), then its value is finalized as 0 (default value for intiger). But we can change its value through parameterized constructor. Now, if a variable is initialized by making it final then there is no way of changing its value except static block. Also, if the variable is static then static initialize block does the same thing as parameterized constructor.   
@@ -426,7 +427,7 @@ Access modifier defines the scope of data member, method, constructor and class.
 4.	Public access modifier – this modifier make its members to be accessible everywhere.
 Note: 
 1.	In case of overriding, the method in the sub class should not be more restrictive than the method in the parent class. But, we can increase the accessibility like from protected to public. Child implementation will still be the overridden implementation. 
-2.	[III] What are on access modifiers? We also have non access modifiers which are static, final, abstract and synchronized. 
+2.	[III] What are non access modifiers? We also have non access modifiers which are static, final, abstract and synchronized. 
 3.	[III] Access modifiers with outer class? We cannot declare an outer class as protected and private. Only public and default are allowed. 
 
 ||Encapsulation||
@@ -953,7 +954,7 @@ Heap is also divided into multiple spaces which are represented in the below ima
 [III] When the program execution begins, the objects is created in Eden. At some point in time, when eden starts to get full then first minor garbage collection runs. The object in eden which are not referenced are garbage collected. Heap has survivor 0 and servivor 1 after eden. Thus, the object which are not garbage collected in servivor 0 will move to survivor 1. By the way, most of the object die young. After certain number of GC cycles, the object in survivor are moved to tenured or old generation, if not collected from survivor itself. This is also called as tenuring threshold. Then major collection happens where object in old generation are checked for collection. Heap does also have perm gen which stores the data related to the class and other metadata.  
 Note:
 1.	[III] In GC logs, “PSYoungGen”, “PSOldGen”, “DefNewGen”, “ParOldGen” shows different GC. PS stands for parallel scavange and not sure about Def GC full name. While the later part simply shows the generation of heap. 
-2.	[III] In GC logs, after eden space we can see to space and from space are nothing but survivor 0 and survivor 0 space.
+2.	[III] In GC logs, after eden space we can see to space and from space are nothing but survivor 0 and survivor 1 space.
 3.	[III] Does JVM has only one GC? A JVM does not have just one GC but all four GCs we have studies and thats why you can select any of them. The default GC until java 8 is Parallel GC.  
 4.	[IIII] From java 8, permgen is completely removed and MetaSpace is the new memory space which has taken its place. The initial capacity of MetaSpace is subject to native memory availability. A new flag MaxMetaspaceSize allowing to limit the size to a certain point and if this is not set then the re-sizing happens depending on the available memory at the runtime. The key advantages of having metaspace over permgen is auto tuning, auto sized according to underlying OS and concurrent deallocation of data and not during GC pause. 
 Memory Fragmentation:
@@ -1097,7 +1098,7 @@ Note:
 2.	Syntax for Throw keyword: “throw new AirthmaticException(“myMessage”)” or “throw new CustomExceptionName(“MyMessage”)”. 
 3.	We can rethrow an exception by using throw keyword inside catch block. 
 4.	Even after knowing that an exception must be catched, If we do not. Then, that’s called Ducking the exception. 
-5.  [III] Throws with Exception and RuntimeException! While throwing runtime exception its not mandatory to use throws (but we can). While throwing checked exception we must have to mention in signature of method through throws. Same goes with custom exception. Now, understand it this way. Any compilation error get notified to programmer during compilation and it is mandatory to handle it. We can handle it through try catch or throws. Thus, if we are explicitly throwing a checked exception (mostly for implementing certain business logic), we must have to mention in signature through throws keyword. 
+5.  [III] Throws with Exception and RuntimeException! While throwing runtime exception its not mandatory to use throws (but we can). While throwing checked exception we must have to mention in signature of method through throws. Same goes with custom exception. Now, understand it this way. Any compilation error get notified to programmer during compilation and it is mandatory to handle it. We can handle it through try catch or throws. Thus, if we are explicitly throwing a checked exception (mostly for implementing certain business logic), we must have to mention in signature through throws keyword. Also, compiler will only get to know the compiler error thrown through throws keyword.
 
 ||Exception Propagation||
 Exception Propagation is simple process where once an exception is thrown then the runtime system looks for a block containing exception handling code. The search starts from the block throws the exception to the block next (below) in the calling stack. For example, if a calls b, b calls c and c calls d. If d throws an exception then the compiler will look in the order d to c to b to a. Check for deep explanation: http://stackoverflow.com/questions/10633664/what-is-exception-propagation.
@@ -1181,7 +1182,7 @@ Note:
 Local Inner Class
 This is a type of inner class (which means non static in nature) which is declared inside a method of the outer class. Though for calling a method of the local inner class, we must only create instance of local inner class inside the method in which it is created but outside itself (local inner class). Local inner class cannot be invoked outside the method in which it created. Check the example and practice some. We cannot declare local inner class as public. @@@Try Example.
 Note: 
-1.	Usage of local inner class with outer and vice versa! We can directly use the members (static and instance) of outer class as it has implicit reference to the outer class object. [IIII] But to use the local member of the method in which they are written is that those member should be final. However, for outer class to access the local inner class member need to use those members in method in which the local inner class is created because they are local method member for the outer class.  
+1.	Usage of local inner class with outer and vice versa! We can directly use any member (static and instance) of outer class as it has implicit reference to the outer class object. It can modify the instance member of enclosing class but cannot modify the class local variables of the enclosing method. [IIII] But to use the local inner class member inside method in which they are written is through by local inner class instance. Although, we cannot have (or create) static members inside local inner class but we can only have if we make static member final as well to show then as constants. Also, local inner class members cannot be accessed outside method in which inner class is created.
 2.	This is for all the inner classes. They cannot contain any static member since they belong to an object of outer classes. Confirm this though. 
 3.	Local inner class can be written inside a for loop or an if condition.
 4.	[III] Access modifiers with local inner class! We cannot use private, public or protected access modifiers because this does not make sense as the member created inside a class are just local to the method. A local class can be declared abstract or final. 
@@ -1189,7 +1190,7 @@ Note:
 Static Nested class
 Static nested classes are the classes which are inside any other class and declared as static. It cannot access the non-static methods and variable of the outer class. Though it has the advantage of being called by the outer class object but can only access static member of the class. Also, to call the methods of the static class it should be given proper syntax. The syntax is: OuterClass.InnerClass obj = new OuterClass.InnerClass(). Use this object obj to use call the static inner class methods. Also, if the method of inner class is static as well then syntax for calling it will be “outerClass.InnerClass.Method();”.@@@Try Example.
 Note: [IIII]
-1.	Static nested class use outer class member and vice versa! Static nested class can access the static member of outer class directly including private member while it cannot use the non static member since nesting class reference in not available inside the static nested class. Outer class can use static member of nested class directly while need nested class object to access non static memebr. We can create nested class object like “Outer.Nested restedref = new Outer.Nested();”. Outer class can also use the private member of nested class. 
+1.	Static nested class use outer class member and vice versa! Static nested class can access the static member of outer class directly including private member while it cannot use the non static member since nesting class reference is not available inside the static nested class. Outer class can use static member of nested class directly while need nested class object to access non static memebr. We can create nested class object like “Outer.Nested restedref = new Outer.Nested();”. Outer class can also use the private member of nested class. 
 2.	Static inner classes behaves like a top level classes as they can be accessed like any other static member of the enclosing class within enclosing class. Like this, OuterClass.Static.member.
 
 Java Nested Interface
@@ -1380,7 +1381,7 @@ The synchronization block is syntax is synchronization(this){code}. This can be 
 In simplest term, static synchronization is about providing synchronization for static methods of the class. Do not get confused with inter class thread false concept. We used synchronized keyword with static method to have static synchronization. [IIII] Also, we can have synchronized block also inside a static method where we do not use this keyword however we use “ClassName.class”.
 Note: [III]
 1. How actually synchronization makes a piece of code thread safe? Actually, when a thread tries to access anys ynchornized block then it checks in the heap to give (or to update heap with) the most updated code to the currently accessing thread. This is one aspect which is related to visibility. 
-2. When synchronization is done with non static methods then that is normal synchronization on the object, not on the class level. However, when synchronized keyword is used with static method then synchronization goes from object level to class level. Also, if synchronized keyword is used with any static method then we are talking about the static synchronized by default. 
+2. When synchronization is done with non static methods then that is normal synchronization on the object, not on the class level. However, when synchronized keyword is used with static method then synchronization goes from object level to class level. Also, if synchronized keyword is used with any static method then we are talking about the static synchronization by default. 
 
 ||Deadlock in Java||
 It is a situation where we have two threads A and B. A is waiting for the object which is acquired by B and B is waiting for the object acquired by A. This situation is called as Deadlock. Check the example. 
@@ -2367,6 +2368,7 @@ If we would have used normal ArrayList then we would have received concurrentMod
 11. [III] Modification comparison between arraylist and linkedlist! As we know that arraylist performs poorer in modificaton compared to linkedList. However, if we are sure that the insertion is happening at the last then arraylist is a winner. Also, LinkedList has more overhead of memory too. 
 12. [III] Remove method argument of different collections! Remove method of List implementions takes the argument as index or object, Set implemention takes object and Map implementations takes argument as key alone or key and object pair. 
 13. [III] Why set does not have get() method? List implementation passes the index as the argument of get method while Map implementations passes the key as the argument of the get method. Set implementation does not have either thus it does not have get method. 
+14. The classes and interfaces of collection framework are in java.util package.
 
 |LinkedList Class|
 LinkedList Class is doubly linked list which implements the List interface and Deque interface. Since it implements List interface so it is ordered and can contain duplicate elements. It can contain null values as well. It is non-synchronous like ArrayList class. Manipulation is faster in LinkedList because no shifting is needed. The concept of doubly linked list is that the elements of the linkedList are treated as nodes and connected by double linked with preceding and succeeding element. That is why named as doubly named, not because it implements two interfaces. 
@@ -2400,7 +2402,7 @@ Note: There are mainly three ways to iterate a list. First, to iterate with the 
 ||Set Interface||
 Set interface – Set is a collection that cannot contain the duplicate elements. Some of the Set implementations are ordered and some are not. Set allows only one null element. There is no such thing as listIterator for Set but we use Iterator for Sets. It extends the collection interface.
 Note: [IIII]
-1.	We do not have a get() method in Set interface. Then, how can we get a single value or element of set? We can do it through Iterator next method. The reason why we do not have get() method in any of the set implementation is because we do neither have index nor key to get the value like in list and map. Also, there is no point calling the value by passing the value since you already have it that why you able to pass it. 
+1.	We do not have a get() method in Set interface. Then, how can we get a single value or element of set? We can do it through Iterator next method. The reason why we do not have get() method in any of the set implementation is because we do neither have index nor key to get the value like in list and map. Also, there is no point calling the value by passing the value since you already have it that why you able to pass it. The other way of looking into it is the set does not guarantee any sequence of element sorted unless the implementation does. 
 
 |HashSet Class|
 HashSet class implements the Set interface and so it cannot hold duplicate elements and can have only one null element. It is not ordered so can iterate elements in any order. It is non-synchronous. It stores its element in hashTable. (Hashtable is also a data structure which accommodates the value by mapping it to a key. It is also called as associative array.) 
@@ -2430,13 +2432,13 @@ Note: [III]
 1.	LinkedHashSet is internally based on LinkedHashMap. The elements of LinkedHashSet is stored in LinkedHashMap while value as some constant default value. But, along with this, before and and after value references are also stored with each entry. So, linkedHashSet stored the values like (before+KeyValue+After). Since, each entry has info about the before and after element reference thus LinkedHashSet becomes able to maintain the order of insertion. 	 
 
 ||TreeSet Class||
-TreeSet class implements the Set interface and so it cannot contain the duplicate value. Unlike other sets, treeSet cannot contain any null value and if tried then nullPointerExcetion will generate. Actually, adding null element in treeSet was possible until java 6 but later it declared as bug. [III] TreeSet maintains the element iteration in ascending order or the order according to the external comparator provided while creating the map. which means from latest inserted to the older. It is non-synchronized. It is similar to hashSet except the order of element iteration. 
+TreeSet class implements the Set interface and so it cannot contain the duplicate value. Unlike other sets, treeSet cannot contain any null value and if tried then nullPointerExcetion will generate. Actually, adding null element in treeSet was possible until java 6 but later it declared as bug. [III] TreeSet maintains the element iteration in ascending order or the order according to the external comparator provided while creating the map. which means from latest inserted to the older. It is non-synchronized. It is similar to hashSet except the order of element iteration and null value difference. 
 I have checked the example and everything is fine. Just check the tab in the link below. 
 Must to read: http://beginnersbook.com/2013/12/treeset-class-in-java-with-example/
 Internal Working: [III]
 TreeSet implements navigational map interface. It is backed by Navigational map object. We can explore more about navigational map. 
 Note: [III]
-1.	Treeset connot contain any null value because it internally uses treemap. Treemap uses natural comparable interface which throws an exception when any key of the treemap inserted as null. Thus, we cannot have even a single null value in TreeSet.
+1.	Treeset connot contain any null value because it internally uses treemap. Treemap uses natural comparable interface (implements NavigableMap interface which is a sorted map) which throws an exception when any key of the treemap inserted as null. Thus, we cannot have even a single null value in TreeSet.
 2.	TreeSet stores the elements in ascending order. But how this happens? I think behind the scene it uses comparable interface. Because elements types like String, Integer implements comparable interface and thus we gets it. However, in case of user defiend iobjects we need to explicitly implement comparable interface other the order of object will be natural.
 
 Note: check time complexity and try to relate them with the different type of collections. 
@@ -2475,7 +2477,7 @@ Avoid duplicate keys in HashMap: HashMap does not allow duplicate keys. In other
 Getting the value: While get() method is used then key is passed as an argument. The same process happens to find the bucket after getting the key. Once the bucket or index is found then the value is returned when only entry is present in the bucket. However, when multiple entries are present then hashcode are compared for each entry using equals method. The once that matches, its value is returned.
 Note: 
 1.	[III] Why does Map not has any iterator? We can understand the requirement of the set view as the HashMap class does not have the iterator method while set interface have. So, we create an object of set class. Since it is an interface thus we cannot create its object directly and hence we do it through the entryset class that returns an instance of the set interface. I am not sure about this but the reasoning looks fine. Also, map does not have iterator() method because a map can be iterated through entries, values or just by keys. Thus, it was design decision to convert the map to a set or list for an entries, values or keys to iterate over.
-2.	In the hashmap of length 8, a maximum of 8 buckets are possible. Each bucket is an instance of a linkedlist or treeMap.
+2.	In the hashmap of length 8, a maximum of 8 buckets are possible.
 3.	[III] Put method of hashmap returns object currently associated with a given key to see if a key already exist. It returns null if no value was associated with the key earlier. 
 4.	Hashing ideally should give unique code for each input while can have same hashcode even when the same input is given. There are different hashing algorithm which are used to perform hashing. Keep that in mind, it not necessary that all hashing algorithm procudes unqiue hash for an input and this mean two different inputs may have same hashing. It completely, depends on the hashing algorithms. hashCode() function of hashMap class is good example.
 5.	We have concurrentHashMap to avoid concurrentModificationException when some thread tries to modify a map while it is iterating and sunchronizedMap gives a synchronized version of map which is basically thread safe.
@@ -2510,7 +2512,7 @@ Note:
 TreeMap implements the Navigational Map interface and extends AbstractMap methods class. It also cannot contain duplicate key while replaces the latest value for a key with an existing value. [III] It can have multiple null values but cannot have any null keys. It is same as HashMap but it has the ordering of the elements in ascending order. TreeMap is Red Black Tree based Navigational interface implementation.  
 I have checked a program and it is same as other Maps. Check the link given below.
 Internal Working: [III]
-Treemap is backed a Navigational map object. With navigational map, Treemap is able to maintain the order of entries in the natural order of elements or through any comparator explicitly provided. 
+Treemap is backed a Navigable map object. With navigational map, Treemap is able to maintain the order of entries in the natural order of elements or through any comparator explicitly provided. 
 Treemap does not works on principal of hashing while it works on the principle of red black tree. Right from the first entry, treemap performs sorting and always keeps its elements in order. As the name says, TreeMap is quite equal to work with a tree, thus it has parent, left and right elements. Left element will always be logically lesser than parent while the right element will always be greater or equal to the parent. While a value is placed using put method, compareTo() method of overridden by the comparator or default compareTo implementation would be used. Each value placed is added as a tree node. The logically smaller entry is added on left while the greater on right. 
 Check the example on this wonderful exaplaination: http://www.thejavageek.com/2016/06/07/working-of-treemap/
 Must to read: http://beginnersbook.com/2013/12/treemap-in-java-with-example/
@@ -2519,7 +2521,7 @@ Note:
 2.	[III] Treemap uses natural comparable interface which throws an exception when any key of the treemap inserted as null. Thus, we cannot have even a single null value in TreeSet.
 
 |HashTable| [III]
-HashTable is an array of list. Each list is known as bucket. It implements Map interface and extends Dictionary class. Actually, HashTable has implemented Map interface in java 2 and became the part of collection framework. It is similar to hashMap and will update the latest value for a duplicate key placed in. It cannot contain any null key or value. Hashtable is synchronized. HashTable does not maintains the order of iteration. 
+HashTable is an array of list. Each list is known as bucket. It implements Map interface and extends Dictionary class. Actually, HashTable has implemented Map interface in java 1 and is part of collection framework. It is similar to hashMap and will update the latest value for a duplicate key placed in. It cannot contain any null key or value. Hashtable is synchronized. HashTable does not maintains the order of iteration. 
 Internal Working:
 I checked it myself. While creating a Hashtable, an array of Entry objects gets created. All the methods of Hashtable works similar to HashMap but all are synchronized. 
 https://www.javaworld.com/article/2077346/core-java/hashtables.html
@@ -2907,6 +2909,10 @@ Below are the pending programs to cover for this:
 Actions: 1. Printing the date, 2. Changing the format, 3. Getting date, day, year and other parts individually, subtracting the date. 
 
 ||Java Version features|| [IIII]
+|Java 5 features|
+Generics, concurrent package, var args, static import, Autoboxing, enhanced for loop. 
+|Java 6 features|
+JDBC 4.0, Many new annotations.
 |Java 7 Feature|
 a.	Multi-Catch Exception – Before java 7, we have to write a separate block for each category of exception. Shorten the traditional coding practice. Writes from specific to generic exception. [III] Also, we cannot have exception of sharing parent and child relation in same block since parent already covers child. Check the example.
 b.	Try-With-Resource – We used to place the code related to resource opening in try block (file, db connection, socket connection) and close them in finally block. HOwever, if we forget to close then in finally then it will cause memory leak. THus, java 7 can with a better coding practice. We can use try with resouce. Here, we will open the resource in as an argument in try block. Thus, we do not need to write additonal finally block just for closing the resources and resource closing will automatically be handled. 
@@ -2922,6 +2928,10 @@ f.	Binary Literals – Can express any literals (int, long, short, byte) using b
 long a = (long) 0b0110L;
 System.out.println(a);	
 g.	Imporved compiler warning and error when using refieable formal parameters with varargs method
+
+Note: 
+1.	[NNN] We cannot catch an exception along with its super class in same multi catch. Also, we can catch a checked exception if we explicitly throw it or a called method throws it.
+2.	[NNN] We have to even instanciate the resource inside try block. We cannot instanciate it before. 
 
 |Java 8 Features|
 1. Lambdas Expression
@@ -3030,7 +3040,10 @@ System.out.println(locale.getDisplayCountry());
 Below is the code for creating a locale object for a specific location:
 Locale frLocale = new Locale("fr", "FR");
 
+||What do you understand by Advance Java|| [IIII]
+Core java comporises of core concept of java as a language while Advance Java technologies are extensions of java to provide solution to specific problem. Java Servlet, JSP, JDBC, JMS and many other comes under advance java. Also, if we check the package naming convention then java extensions or advance java topics has packages like javax.servlet, javax.jsp, javax.jms with some exceptions.   
 
+||Reflection|| [NNN]
 Implementations
 I have created this section for the sole purpose to speak about the implementation of what we have learned in this tutorial. We must use as many practical examples as we can related to the real world.  
 
