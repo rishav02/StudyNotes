@@ -2934,24 +2934,30 @@ Note:
 2.	[NNN] We have to even instanciate the resource inside try block. We cannot instanciate it before. 
 
 |Java 8 Features|
-1. Lambdas Expression
-Lambdas expression is one of the exciting feature of java 8 which lets you implement the method of a fucntional interface. Function interface is an interface which has just one abstract method. Before lambdas expression, we generally implement method of the functional interface using annonymous class. With Anonymous class, an extra class file will be created while with labda expression no extra class is created. Also, lambda expression reduces the line of code.  
+1. Functonal Interfaces
+Functional interfaces are the interfaces which has just one abstract method while can have one or more default method. Some example of functional interfaces are Runnable interface, Comparble interface and other. Lambda expression is used to implement the abstract method of functional interface. Runnable interface also existed perior to java 8 but was not marked by @FunctionalInterface annotation. 
+@FunctionalInterface annoation is used to make sure that the interface cannot have more than one abstract method. If given then it shows compilation error. 
+Also, Java.util.function packages has all the given functional interfaces in java 8. One of the example is consumer interface.
+
+2. Lambdas Expression
+Lambdas expression is one of the exciting feature of java 8 which lets you implement the method of a fucntional interface. Before lambdas expression, we generally implement method of the functional interface using annonymous class. With Anonymous class, an extra class file will be created while with labda expression no extra class is created. Also, lambda expression reduces the line of code.  
 Check the syntax: {(no. of arguments)->implementation logic}
 Lets see one example of usage of lamba expression. To iterate, filter and sort the collection
 [III]Iteration of collection:
-list.forEach(i->System.out.println(i));
+list.forEach(i->System.out.println(i)); where i is the ith element of collection. 
 Now, we have forEach method of Iterable interface introduced in Java 8 which takes the argument of accpet method of consumer functional interface. Therefore, we are providing the implementation as the argument of forEach method. accept method takes the argument of list data type. 
 Sort the Element:
 Collections.sort(list, (i1, i2)->return i1.compareTo(i2));
+Other example for showing lambdas expression could be Runnable interface run method and Comparator interface compare() method. 
 
-2. ForEach() – This method is used to iterate a collection entries and accept arugment as accept method of consumer interface. Consumer and game class. We need to make an annonymous class by overriding the accept method. Also, we can use lambdas function. 
+3. ForEach() – This method is used to iterate a collection entries and accept arugment as accept method of consumer interface. Consumer and game class. We need to make an annonymous class by overriding the accept method. Also, we can use lambdas function. 
 
 4.	Default and Static methods in Interface
 Prior to java 8, we can have only public abstract method in an interface. In this situation, if we add a new method to an interface then all the implementing class must have to implement it. In case, the implementing class are thousands then it will be a huge task. Therefore, to add new methods to already existing interfaces with complete backward compatibility, we have default and static methods in java. 
 From java 8, we can have interfaces with method implementation by using default or static keyword with its signature. One good example of this feature is forEach() method of Iterator class. Static method can direcltly be used through the interface name while for using default method we need instance of the interface which we can get through anonymous class or through lambdas expression. Also, we can override the default method of interface while cnnot override the static methods.  
 Now, if interfaces have implementation of the methods then they can also cause diamond case problem. The solution is that if diamond case problem occuers then a compile exception will occur pointing if that the same default method with the same arugment exist in multiple super interface and that method need to be implemented in the child class. Thus, multiple inheritance (implementing multiple interfaces) is still possible.
 
-4. Java Stream Package. 
+5. Java Stream Package. 
 In Java 8, a new package java.util.stream is added altogether which contains a lot of classes and interfaces. We basically can do a lot of things using the API inside this package like creating internal iteration, sequiential and parallel execution, filtering and other. In short, we can do a lot processing on the data stored in different datastructures like array, collections and other. Stream APi generally work in a functional style and thus quite suitable for lambdas expression. The main purpose for this package is for working with bulk data operations with a little ease and less lines of code.
 Some common interfaces of stream API are Function, BiFunction, Predicate, BiPredicate, Comsumer, BiConsumer and other. Find out there purpose if needed. 
 For practice, we can look at how to create a stream of different kind in different ways? How to perform certai actions like iteration, filtering or sorting of elements of collection using steam API?
