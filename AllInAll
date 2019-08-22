@@ -2,22 +2,22 @@
 What is instance initializer block? Sequence, sequence in case of inheritance, why needed if we can instantiate an instance member using constructor?
 Array as final effect.
 What if we have private member variable in an interface?
-1.	Return type, access modifiers and non-access modifiers for a constructor.
+1.	@@Return type, access modifiers and non-access modifiers for a constructor.
 2.	Static import concept.
 What are valid access modifiers with outer level class?
 3.	Some example of real Encapsulation.
-4.	Object Cloning: How to do, types, which is better.
+4.	@@@Object Cloning: How to do, types, which is better. Clone method implementation. 
 What is covariant and invariant nature? Why array are covariant and how it deals with heap pollution dues to its co variant nature? Why generics are in-variant?
 5.	How metaspace introduced in java 8 is better than per gem.
 Concurrent Mark and sweep gc, G1 garbage collector. 
-6.	@@@Garbage Collection Monitoring: how to do monitoring, factors to decide if tuning is needed, If need then how will we tune, arguments used while tuning GC. 
+6.	Garbage Collection Monitoring: how to do monitoring, factors to decide if tuning is needed, If need then how will we tune, arguments used while tuning GC. 
 7.	Codewise what happens when an exception occurs.
-Throws with exception and runtime exception
+Throws with exception and runtime exception. 
 8.	Exception handling in case of method overriding.
 Exception brainstorming! Contribution of throwable class, difference in exception and error, difference in checked and unchecked exception. 
 9.	@@@Local inner class and outer class variable usage of each other. 
 Valid access modifiers for local inner class?
-10.	@@@Static nested class and outer class variable usage of each other.
+10.	Static nested class and outer class variable usage of each other. Why would you use static inner class ever?
 11.	Thread life cycle, when goes to runnable and running. 
 12.	Create thread through thread class.
 13.	Tell about suspend method.
@@ -33,18 +33,18 @@ Synchronized keyword can be used with what entities? Does it make sense to use w
 19.	ReadWriteLock interface, how to use it, its method. 
 20.	Condition interface, how to use it, its method.
 21.	Atomic variables, why do they not use synchronization lock concept.
-22.	@@@Normal list issues, COWAL and synchronizationList differences. Why use synchronization block with synchronized list.
-23.	ConcurrentHashMap details, why not even single null allowed. 
-24.	Semaphore, @@@how to use it, why would you use it.
-25.	@@@CountDownLatch details, how to use it, why to use it.
-26.	@@@Cyclic bareer details. Check how to create and all. 
-27.	Queue interface, its methods, concurrent version, @@@concurrent version method, different implementation of blocking queue. Deque and blockdeque. 
+22.	@@@Normal list issues, COWAL and synchronizationList differences. Why use synchronization block with synchronized list. How to created synchronized list?
+23.	@@@ConcurrentHashMap details, why not even single null allowed. 
+24.	Semaphore, how to use it, why would you use it.
+25.	CountDownLatch details, how to use it, why to use it.
+26.	Cyclic bareer details. Check how to create and all. 
+27.	Queue interface, its methods, concurrent version, concurrent version method, different implementation of blocking queue. Deque and blockdeque. 
 28.	Java Memory model
 29.	Compressed and uncompressed files. 
 30.	Why do we not have a get() method in set interface?
 31.	HashMap internal working
-32.	@@@Random topics in collection: Load factor, why not applicable for non hash collection, Cursors and type, Reference and category.  
-33.	@@@Revise all collection properties including queue, internal working, ordering reason and null reason for all, Sorting by single and multiple data member of user defined class.
+32.	Random topics in collection: Load factor, why not applicable for non hash collection, Cursors and type, Reference and category.  
+33.	Revise all collection properties including queue, internal working, ordering reason and null reason for all, @@@Sorting by single and multiple data member of user defined class.
 34.	Generics: whats this, its advantage, subtyping, wildcard and bounds, Type identifier, check notes.
 35.	Serialization: What this and how to do. Add to serialization process and customize serialization, check note.
 36.	@@@Java 5, 6, 7 and 8 features. Java 8 in detail is pending.
@@ -62,40 +62,43 @@ Synchronized keyword can be used with what entities? Does it make sense to use w
 3.	SQL Database: create, drop, rename.
 4.	Table variable (SQL server), Temp table and oracle table type. Local and global temp table. 
 5.	Drop, delete and truncate table. Difference with the three. 
-6.	@@@SQL Copy table data into other.
+6.	SQL Copy table data into other.
 7.	SQL ALTER table. Add, modify, drop and rename column. (taking about column and not tables).
 8.	SQL Clause: group by, having, where, order by, union, unionall, intersect, except, and, or, with, as and exist.
-9.	@@@ What is logical and physical order of sql clauses?
-10.	SQL insert: normal insert, @@@insert with select statement, insert multiple rows.
-11.	@@@SQL update: one column data, multiple column data, date column update. 
-12.	SQL delete: one row, multiple rows, @@@delete duplicate rows, @@@delete joins and views. 
+9.	@@@What is logical and physical order of sql clauses?
+10.	SQL insert: normal insert, insert with select statement, insert multiple rows.
+11.	SQL update: one column data, multiple column data, date column update. 
+12.	SQL delete: one row, multiple rows, @@@delete duplicate rows, delete joins and views. Check concept of row_id and rownum concept. 
 13.	SQL join: inner join, difference in inner join and intersect, outer join, left outer join, right outer join, cross join and @@@self join. All you need for join.
-14.	SQL keys (@@@foreign ki table 1 ka column ya fir table 2 ka)
-15.	@@@SQL constraints: not null, unique, primary key, foreign key, @@@check, default and other. 
-16.	SQL integrities. @@@domain integrity.
-17.	Sub quries, correlated and uncorrelated. How actually a correlated query executes.
-18.	View, advantage and disadvantage, syntax for create, use and drop, types. Materialized views. Inline view. 
-19.	Tell about index, dos and don’t, @@@create and drop query, how exactly indexes makes search faster, types, difference in clustered and non clustered, Query for clustered index.
+14.	SQL keys (foreign ki table 1 ka column ya fir table 2 ka)
+15.	SQL constraints: not null, unique, primary key, foreign key, check, default and other. 
+16.	SQL integrities. domain integrity.
+17.	Sub quries, correlated and uncorrelated. How actually a correlated query executes. Write examples of each. 
+18.	@@@View, advantage and disadvantage, syntax for create, use and drop, types. Materialized views. Inline view. 
+19.	@@@@Tell about index, dos and don’t, create and drop query, how exactly indexes makes search faster, types, difference in clustered and non clustered, Query for clustered index.
 20.	Sequence concept, how to create sequence?
 21.	What is sql injection and different protections against it?
-22.	DCL, grant, revoke, privileges, role. How to a user to a role. 
-23.	Transaction Control language
-24.	Difference in sql and plsql. Stored Procedure
-25.	Triggers 
+22.	DCL, grant, revoke, privileges, role. How to give a role to user. 
+23.	@@@Transaction Control language: What’s its about, acid property, commit, rollback, savepoint, set transaction. 
+24.	@@@Difference in sql and plsql, Stored Procedure: what it is, how to create, modify and drop?, advantages, Difference with views, input and output parameter
+25.	@@@Triggers
+@@@check the database access you have done in your applications.
+@@@check how stored procedure is used in java app.
+@@@type of sql statements in java.
 
 ||Sql Queries Quick Revise||
 1.	Select Banking as 'Bank Dept', Insurance as 'Insurance Dept' and Services as 'Services Dept' from employee table. 
 2.	Select first_name, incentive amount from employee and incentives table for those employees who have incentives and incentive amount greater than 3000.
 3.	Select first_name, incentive amount from employee and incentives table for all employes even if they didn't get incentives.
-4.	Select TOP N salary from employee table. This means highest N salaries
+4.	Select TOP N salary from employee table. This means highest N salaries. Also check how to get first N salaries irrespective of higher or lower. 
 5.	Select Nth Highest salary from employee table. 
 6.	Write Sql Syntax to create EMPLOYEE_REF_ID in INCENTIVES table as foreign key with respect to EMPLOYEE_ID in employee table. 
-7.	@@@Query to find the duplicate rows in a table.
-8.	@@@What is the query to display first and last 5 records of the table? 
-9.	@@@How to show odd/even rows of a table?
+7.	Query to find and delete the duplicate rows in a table.
+8.	What is the query to display first and last 5 records of the table? 
+9.	@@@@How to show odd/even rows of a table?
 10.	How to fetch 3rd Highest salary from employee using Rank() function
 11.	How can I create a table of the same structure as employee table? 
-12.	@@@Select last 50% record from employee table.
+12.	@@@@Select last 50% record from employee table.
 13.	Query to print the name of distinct employee from employee which has DOB between 01/01/1965 and 01/01/1975. 
 
 ||Web Service Questions Quick Revise||
@@ -112,41 +115,41 @@ Synchronized keyword can be used with what entities? Does it make sense to use w
 11.	@@@How to set different status code in HTTP response?
 12.	Explain the loosely coupled architecture of web services.
 13.	How one can provide API to users? How can we create a web service and make it open for the world to use it. Like we have various app stores for publishing our apps
-14.	Enlist some important constraints for RESTful web services.
-15.	What is Caching?
+14.	@@@Enlist some important constraints for RESTful web services.
+15.	@@@What is Caching? Different headers for caching. 
 16.	@@@Explain Cache-control header.
-17.	Mention what is the difference between PUT and POST?
-18.	@@@What is WADL in RESTFul?
-19.	@@@What is the difference between a RESTful web service (on HTTP) and a HTTP Servlet both of which perform the same function?
-20.	@@@How will you migrate from SOAP web service to RESTful web service?
+17.	@@@Mention what is the difference between PUT and POST?
+18.	What is WADL in RESTFul?
+19.	What is the difference between a RESTful web service (on HTTP) and a HTTP Servlet both of which perform the same function?
+20.	How will you migrate from SOAP web service to RESTful web service?
 21.	Can my web browser be a client to RESTful web service? If yes then how will you generate DELETE request from web browser?
-22.	@@@How will you handle synchronization issues when multiple clients try to consume web service simultaneously? Check the scenario in the answer
-23.	Can you describe any one RESTful web service you have written?
-24.	What will you do when an error code has to be returned to the client?
+22.	How will you handle synchronization issues when multiple clients try to consume web service simultaneously? Check the scenario in the answer
+23.	@@@Can you describe any one RESTful web service you have written? Write a sample code.
+24.	@@@What will you do when an error code has to be returned to the client?
 25.	What is HttpMessageConverter and what is its advantage?
 26.	What status does delete request gives?
 27.	Why a Rest web service should always be stateless?
 28.	What is the advantages of using XML or JSON in web service?
-29.	How to manage security in REST web services? What are the aspect that we need to manage? Check how to do it in Spring rest and if possible spring security?
-30.	@@@Try and describe about using swagger with your spring rest application for documentation
-31.	@@@Try and describe about how would you implement caching in rest web service?
-32.	@@@HATEOAS concept needs to be checked.
+29.	@@@How to manage security in REST web services? What are the aspect that we need to manage? Check how to do it in Spring rest and if possible spring security? In detail is pending. 
+30.	Try and describe about using swagger with your spring rest application for documentation
+31.	Try and describe about how would you implement caching in rest web service?
+32.	HATEOAS concept needs to be checked.
 33.	What are the best practices to name a resource or to create its URI?
-34.	@@@What are your thoughts on response compression?
-35.	@@@What is content negotiation? How can we control it? How to mention the preferences. 
-36.	Cover annotation @PathVariable, @ResponseStatus and @QueryParam in detail.
-37.	Mention all the configuration step by step for creating a basic REST web service.
-38.	How do we implement logger in a web service? Use the log4j.
+34.	What are your thoughts on response compression?
+35.	What is content negotiation? How can we control it? How to mention the preferences. 
+36.	@@@Cover annotation @PathVariable, @ResponseStatus, @pathparam and @QueryParam in detail.
+37.	@@@Mention all the configuration step by step for creating a basic REST web service. Check basic example for JSON and XML. 
+38.	How do we implement logger in a web service? Example is pending.
 39.	What is HttpEntity, RequestEntity and ResponseEntity?
-40.	@@@How do we send http request and get response in simple java JDK classes without any framework? Compare the classes that we have for sending requests in spring framework with simple java jdk classes. @Check variable URI case.
+40.	@@@How do we send http request and get response in simple java JDK classes without any framework? How do we send request in REST web service? Check variable URI case.
 
 ||Spring Study Quick Revise||
 Spring MVC:
 1.	Basic flow of spring application. 
-2.	Code needed for a basic spring mvc application, notes.
-3.	Use of XML namespace and schema definition, notes.
+2.	@@@Code needed for a basic spring mvc application, notes. Check the pom dependencies and code for service and dao classes. Write an example for XML and JSON based data.
+3.	Use of XML namespace and schema definition. What should be the return type of spring controller methods? Notes.
 4.	Concept of Context in Spring MVC, notes.
-5.	Spring MVC Validation Support, notes.
+5.	Spring MVC Validation Support, Custom validation, notes.
 6.	Exception handling with Spring MVC, notes.
 7.	File upload with Spring MVC.
 8.	URL redirect with Spring MVC, notes. 
@@ -195,233 +198,7 @@ Spring IOC:
 ||Java Script Quick Revise||
 ||Design Pattern||
 ||Career Project Revise||
-
-
 ||Question Stuck with already||
-
-Phase 1: 
-1. Two static overloaded methods in which if one method accept argument as string and other accept Object. If null if passed to the method then which implementation will be invoked? String will get invoked because string can be a null. 
-
-2. Question is same as above question, only this is object argument is replaced by Integer. Now if we pass null then what will happen? It will give compilation error as it will be ambiguous to invoke which of the two overloaded methods. 
-
-3. What is the difference in get and load methods in hibernate. 
-
-4. What all is present under jdk folder? When we download java the we get jdk folder which contains jre folder, bin folder and other stuff. Bin of Jdk has got all the executable files like compiler, debugger, documentor, dessembler and other. JRE folder got the bin folder (contains all dll files), classes folder, liscence file, readme file, introduction html file. 
-
-5. What is overhiding? 
-When child class writes the same method as a static method in parent class then this is called as overhiding. No error is received. 
-
-6. Difference in get and load method of hibernate? 
-
-7. What was the last code change you have done? File upload for anti virus check. 
-
-8. How to print only unique number from an arrayList with mixed numbers? We can convert the list to set as set contains only unique values. 
-
-9. Printing an string from JSP? We can print string in three ways in JSP which are expression element, out.print() and <c:out value=${some exoression or string}>. 
-
-10. Three columns in a table: id, name and salary. Find out the top salary and name of the employee. "select name max(salary) as Max_salary from employee." and second highest salary as "select max(salary) from employee where salary NOT IN (select max(salary) from employee)".
-
-11. Added another column in the above table department. Asked to get max salary of each department. select name, max(salary) from employee group by department. 
-
-12. What is null pointer exception. How will we create a null pointer exception by changing second line of the below code.
-String s = null;
-System.out.println(s);
-A string created as null or got the default value of null does not throw null pointer exception while it prints the "null". In the above code, if no changes are done then it will print null. Yes, it will print null just like string. Also. if a string is created using new keyword and not given anything then will print nothing but not gives null pointer exception. Only when a string is created by using new keyword and given a reference which is null then it gives null pointer exception. This is because if a reference is null then it isnt pointing to a memory address. Therefore below code will give null pointer exception.
-String s;
-String s1 = new String(s);
-System.out.println(s1);
-The best way to handle null pointer exception is to do check if the object we are using is not a null before using it, esp the one that we are getting but we havent created. 
-
-13. What will happen if we override service method is servlet and write one print statement when a request comes? We also have doGet and doPost methods written in the same servlet.
-Only the print statement written in overriden service method will be printed and doGet or doPost will not be called. This is because we are not suppose to override the service method of parent class as its implementation is only responsible for calling either Get or Post method according to the request. 
-
-14. If called and calling methods has catch block catching the Exception and exception comes in try block of called mathod then which catch block will catch the exception and what will the flow of the program. 
-Catch of child will catch the exception. Also, the code written after the catch of the child will execute giving back the control to the called method. 
-
-15. Where have i used inheritance in code or ever written a classes with inheritance relation?
-
-16. What design patterns have you worked on? Singleton, Factory pattern and MVC. Describe each with a real time example. 
-
-17. Difference in primary and unique key?
-
-18. Complete JaxB working. Explain with code.
-
-19. we have an array with numbers which are repeated. We need to find out the count of each numbers in the array.
-public class Class1{
-	public static void main(String args []){
-		Class1 c = new Class1();
-		int[] numbers = {1,2,4,4,5,2,1,3,4,6,3,5,2,5,6};
-		c.checkCount(numbers);
-	}
-	public void checkCount(int[] numbers){
-		Map<Integer, Integer> numberCount = new HashMap<Integer, Integer>();
-		for(int i=0;i<numbers.length; i++){
-			int count=1;
-			for(int j=i+1; j<numbers.length; j++){
-				if(numbers[i]==numbers[j]){
-					count++;
-				}
-			}
-			if(!(numberCount.keySet().contains(numbers[i]))){
-				numberCount.put(numbers[i], count);
-			}
-		}
-		Set set = numberCount.entrySet();
-		Iterator<Entry> i = set.iterator();
-		while(i.hasNext()){
-			System.out.println(i.next());
-		}
-	}
-}
-
-
-20. Print the reverse of an int number without using String or array.
-
-21. How will you manage transaction in jdbc? How will you manage to commit one query while rollback the other query in jdbc if the exception comes in third query. 
-Here we can use savepoint. 
-
-22. Whats the difference between <%@ include file and <jsp:include page="">. First, gets the included resource at the tramslation to servlet time while the other gets it at the request time. 
-
-23. We have two arrays such that the second array has an odd number which is the only missing number in the second array. Example:
-a=[1,2,3,4] and b=[1,5,2,3,4]. The odd number is 5.
-public class Class1{
-	public static void main(String[] args){
-		Class1 c = new Class1();
-		int[] a = {1,2,3,4};
-		int[] b = {1,5,2,3,4};
-		for(int i=0; i<b.length;i++){
-			int flag=0;
-			for(int j=0; j<a.length; j++){
-				if(b[i]==a[j]){
-					flag=1;
-				}
-			}
-			if(flag==0){
-				System.out.println(b[i]);
-			}
-		}
-	}
-}
-
-24. SQL injection?
-
-25. A table has two columns which are emp_id and projectcode. An employee can be tagged with multiple project or 1 project as well. Write a query to find the count of employees with more than 1 project. 
-Example: 
-Emp_id and projectCode Columns: (1,a), (1,b), (1,c), (2,a), (2,b) and (3,a). 
-An Attempt: Select count(employee) from (Select emp_id as employees, count(emp_id) as emp_id from employee groupby count having count>1))
-
-26. QueryParam annotation in web services. 
-
-27. Volatile Variable and trainsient variable.
-
-28. How will you perform caching and use it before making a call to db? We can use hashmap for caching and store data inside the hashmap. Next time if a call is made to the db we can check that first in the internal cache. 
-
-29. We have two string. Find that if both string are rotation of other string or not?
-Example: "hello" and "llohe". This will return true;
-public class Class1{
-	public static void main(String [] args){
-		Class1 c = new Class1();
-		String s = "abcd";
-		String s1 = "bcda";
-		System.out.println(c.isRotationString(s, s1));
-	}
-	public boolean isRotationString(String s1, String s2){
-		char first=s1.charAt(0);
-		char next = s1.charAt(1);
-		if(s1.length()!=s2.length()){
-			return false;
-		}else{ 
-			for(int i=0; i<s1.length()-1; i++){
-				if((s2.charAt(i)==first && s2.charAt(i+1)==next)&& i!=s1.length()-1){
-					return true;
-				}
-			}
-			if(s2.charAt(s2.length()-1)==first && s2.charAt(0)==next){
-				return true;
-			}
-		}
-		return false;
-	}
-}
-
-30. Implement your own hashset. Use it using HashMap. 
-
-31. Write a program to sort array containing 0 and 1 without using an API.
-public class Class1{
-	public static void main(String[] args){
-		Class1 c = new Class1();
-		int[] numbers = {0,1,1,0,1,0};
-		int temp=0;
-		for(int i=0; i<numbers.length; i++){
-			for(int j=i+1; j<numbers.length; j++){
-				if(numbers[i]>numbers[j]){
-					temp=numbers[i];
-					numbers[i]=numbers[j];
-					numbers[j]=temp;
-				}
-			}
-		}
-		for(int k=0; k<numbers.length;k++){
-			System.out.println(numbers[k]);
-		}
-	}
-}
-
-32. If we have employee class and we have three objects e1, e2 and e3 by giving same values to the data member. We tried inserting these tp hashset then what will be the length of hashSet? 
-In ordinary situation, duplicate hashset values will be inserted in the hashSet. For avoiding this situation, user defined class needs to implement hashcode() and equals() method.
- public int hashCode(){
-        System.out.println("In hashcode");
-        int hashcode = 0;
-        hashcode = price*20;
-        hashcode += item.hashCode();
-        return hashcode;
-    }
-     
-    public boolean equals(Object obj){
-        System.out.println("In equals");
-        if (obj instanceof Price) {
-            Price pp = (Price) obj;
-            return (pp.item.equals(this.item) && pp.price == this.price);
-        } else {
-            return false;
-        }
-    }
-Above is the hashcode and equals method.
-
-33. Can we create a thread by extending Thread class and Runnable interface both. Yes! We can do this. However, we must make sure we extend thread first and then implements runnable interface. The order if reversed will give compilation error. We can create thread in either ways if both thread class and runnable interface is used. 
-
-34. If parent and child class has a common instance method and parent p = new child(); p.commonMethod() is executed then what will happen?
-It will call the child version since the object created is of child. If p = new parent() then it would have called parent version. changing the situation a little; if child only contains the method and if p = new child() and p.childmehtod() is executed then compilation error will be shown. We need to do downcasting then it works fine. Againg changing situation: if only child has that method and code p = new parent() and p.childMethod() is executed then classcastexception would have araised. 
-
-35. Code inside a method: int a, b; if(a=b){//some logic}. WHat will happen?
-Comppilation error because code inside if clause "a=b" will give int and it needs boolean. 
-
-36. Tree with values {1,2,3,4,5}. Tell preorder, inorder and postorder traversal.
-Inorder: left, root, right {4,2,5,1,3}
-Preorder: root, left, right {1,2,4,5,3}
-Postorder: left, right, root {4,5,2,3,1}
-
-37. What is prefix and postfix notations? Check how to convert a normal expression. 
-prefix notation: {operator operand1 operand2} while postfix {operand1 operand2 operator}. Infix is when operator is in between operands. We will look at inter conversion later. 
-
-38. What are native methods in java and why would i ever want to use it?
-Native is a keyword exclusively for methods in java to denotes that the implementation of this method is in some other language like C or C++. It mainly increases the performance while it impacts platform independent characteristic of java. 
-
-39. which operator is this in java "~"?
-It is bitwise operator. & is AND, | is OR, ^ is XOR, ~ is binary ones complement, << is left shift, >> is right shift while >>> is right shift with zero fill.
-
-40. What is hack EJB is?
-Well, java was already become quite popular until 1996 but everyone using java had one common concern which was the lack of standard for doing common stuff for any application. Thus IMB came forward with java's first ever framework specification covering common concerns handle techniques which was later included by sun in 1999. Typically, we can say EJB is a framework based on java for better development of java based applications. Now, we have EJB 3.2 which is mostly annotation based. It is not a comptetor of jsp servlet but a complementory. Like, we can use EJB interfces, classes or annotaiotn for perfoming few things like transaction management through EJB while rest of things based on jsp and servelt is possible. 
-
-41. What is default format of date in sql? How to convert to 10 JAN, 2018?
-The default format in oracle is DD-MON-YY. While we can change it through to_char(datecolumn, "DD MON, YYYY") function.
-
-42. Composition, association and inheritance mai relation.
-
-43. JSP implicit objects, 
-
-Phase 2: 
-
 1.	What is the difference in Inheritance, Association, Aggregation and Composition?
 Inheritance: One class can use the feature of other class to extend its functionality and share Is-A relationship. Like, Dog is an Animal. 
 Association: In this, involved classes does not have dependency of other while still have a relation. Like, Teachers and Student class can be associate as teacher can teach any number of student and an student can be taught by any number of teachers. 
@@ -475,7 +252,7 @@ Jar files stands for Java Archive Resource and generally contains java classes, 
 WAR file stand for Web Application Resource and generally contains JSP, servlet, static view files like HTML, resources like text file images etc. For web applications created through java and its extensions are packaged as war file and is given extension is .war. 
 EAR stands for Application Application aRchive. It is used to archive multiple components of a project together into one. This is typically be done to have the deployment of multiple components on an application server simultaneously. These component could be built as jar or war. 
 
-10.	Package for the classes String, StringBuffer/builder, Arrays, Arraylist and other collection classes? Also, wrapper classes. 
+10.	Package for the classes String, StringBuffer/builder, Arrays, Arraylist and other collection classes? Also, wrapper classes. RRR
 String, Wrapper classes and StringBuffer/builder are a part of lang package. Arrays, Arraylist and other collection classes are a part of util package. In fact, the legacy collection class like HashTable is also a part of Util package. 
 
 11.	What’s the difference in array and arraylist?
@@ -493,7 +270,7 @@ In case of collection classes too, we will look for sending a cloned object. But
 13.	Memory management: static block, normal instance block, one address class object, main method mai class ka object. What will be the flow of execution and which space of memory will be allocated to different parts?
 Static block is called when class loads, Instance initializer block is called when a constructor is called and then the constructor. Any instance member (reference or primitive) is created in heap. Static member are created in perm gem or meta space. Local member are created on stack. 
 	
-14.	Different ways of breaking singleton classes? Also, how to avoid breaking of singleton class with these techniques? @@@
+14.	Different ways of breaking singleton classes? Also, how to avoid breaking of singleton class with these techniques? RRR 	
 Source: https://www.geeksforgeeks.org/prevent-singleton-pattern-reflection-serialization-cloning/
 Breaking of singleton class/pattern means making a second object of a singleton class. We can do it in three ways which are serialization, cloning and reflection. We serialize an object to store object state in byte stream. A new object is created when deserialization happens. To avoid the singleton break with serialization we can use readresolve method through which we can force to replace the deserialised object with the original object. Second, by cloning we get a clone object of a class which gives us a new object assuming that the super class of singleton class is implementing clonable interface. To avoid breaking of singleton class with cloning, we can overriding the cloning method in singleton class and throw cloningNotSupported exception. Lastly, we can break singleton class using reflection. Below is the code piece through which we can break singleton class using reflection.
 Constructor[] constructors =  
@@ -507,17 +284,20 @@ Constructor[] constructors =
             } 
 To avoid breaking of singleton through reflection, we can use enum. Since, enum do not even the default constructor thus reflection cannot affect them. JVM internally manages the enum constructor creation and invocation. Need to check about enum solution here. 
  
-15.	Difference in stored procedure and functions in sql?
+15.	Difference in stored procedure and functions in sql? RRR
 Firstly, stored procedures and functions are part of plsql. 
 a.	Stored procedure may or may not return a value while function must return a single or set of values. 
 b.	SP are more flexible in term of its structure as it is just like any other query. Syntax: “create stored procedure SPName as query” while functions are not that flexible as it needs a certain keywords like Returns, Return, Begin, end. Syntax: create function functionName() return varchar(20) as begin query with return end. 
 c.	We call the stored procedure using keyword “exec” or directly as well while functions are called using select keyword in normal select query. 
-d.	SP can have input have input or output parameter while functions can have only input parameters. Transaction can be used with SP while cannot be used with functions. We can all functions from SP while cannot call SP from a function. We can do exception handling (try-catch) in SP while cannot do in functions. 
+d.	SP can have input have input or output parameter while functions can have only input parameters. 
+e.	Transaction can be used with SP while cannot be used with functions. 
+f.	We can all functions from SP while cannot call SP from a function. 
+g.	We can do exception handling (try-catch) in SP while cannot do in functions. 
 
 16.	Who gives the default constructor to a class? JVM or Compiler. 
 Compiler provides the default constructor in case you do not define your own. The default constructor will call no args constructor of super class through super(). If the class does not have any direct super class then it will call the no args constructor of object class.
  
-17.	What classloader does? What are different types of classloader in JVM and their uses? How is it decided which class loader will be used. 
+17.	What classloader does? What are different types of classloader in JVM and their uses? How is it decided which class loader will be used. RRR
 Class loader loads a class into memory whenever jvm needs. A JVM has three types of class loaders which are below:
 Bootstrap Class Loader: This class load loads the JDK internal class i.e. the trusted classes for example java.lang.*, java.unit.* and other. We can also say that it stores the classes from /JAVA_HOME/jre/lib. It is implemented in native language like C, C++. 
 Extension Class Loader: It is a child of Bootstrap class loader. It loads the class present in extension directory present in /JAVA_HOME/jre/lib/ext directory. It is implemented in java by the sun.misc.laucncher$ExtClassLoader class. 
@@ -531,9 +311,9 @@ Internally, JVM uses “instance of” operator for identifying if the class is 
 Select min(salary) from (select distinct(salary) from salary order by salary desc) where rownum<3;
 
 20.	We have given a string with sequence of integer with one number missing. The sequence can start from 1 digit, 2 digit or more digit number. We have to find the missing number. 	
-One simple approach is that we can keep two pointers I and j on consecutive numbers from the beginning and keep moving forward by checking the difference between the two integers. If the number difference is not equal to 1 than the number at j pointer subtract one is the missing number. This solution assumes that numbers are not repeating. 
+One simple approach is that we can keep two pointers I and j on consecutive numbers from the beginning and keep moving forward by checking the difference between the two integers. If the number difference is not equal to 1 than the number at j pointer subtract one is the missing number. This solution assumes that numbers are not repeating. We can do the same using a for loop. Time complexity should be O(n) in the worst case scenario. 
 
-21.	How readobject and writeObject works internally? @@@
+21.	How readobject and writeObject works internally? RRR
 Serialization: https://www.javaworld.com/article/2072752/the-java-serialization-algorithm-revealed.html
 To do serialization, we need to make the class implement serializable interface first then pass the object of FileOutputStream to ObjectOutputStream constructor. Then, use the writeObject(Object) of class ObjectOutputStream to write the byte code in the file FileOutputStream is linked with. So, this is how serialization takes place but how things works under the hood is important to know. 
 Below are the steps in which serialization process works internally:
@@ -550,12 +330,13 @@ Now, the question is that if any of the super class is non serializable then why
 However, if no super class is non serializable and JVM reaches to object then object class object is created and readObject() method is invoked. Then, the readObject() sets the values to the blank instances. The deserialization process ends as the readObject() finishes. 
 In the nutshell, for serializable classes the object is created by reading the metadata in the file and for a non serializable class a default constructor is used to create the object. Then, file the data information is read and set in the blank object. 
 
-22.	How to sort a map on the basis of values which are user defined type? @@@
+22.	How to sort a map on the basis of values which are user defined type? RRR
 When we need to sort a map based on its keys then best way to simply create a Treemap passing that map. If your key is user defined then you have to implement comparable interface in it. Also, remember that for implementing compareTo() for string data member, use compareTo() method of String class. If we have to sort the map on the basis of values then we have create an entry set and use collections.sort() method. Then, need to create an anonymous class for implementing compare() method which uses compareTo for values of two entries in the map. Also, if the value is user defined then it need to implement comparable.
 Now, if we want to sort a map based on multiple data member then we need to make comparator classes. 
 Note: Methods in comparable and comparator, both, return type is int. 
 
-23.	What are functional Interfaces and their need? @@@
+23.	What are functional Interfaces and their need? Name the few functional interfaces which are introduced in java 8. RRR
+Functional interface is an interface which can contain only one abstract method but can have multiple static or default methods. 
 Firstly, functional interface is not an exclusive thing to java 8 because even prior to java 8 we had interfaces with just on abstract methods like comparable interface. However, the name functional interfaces is given in java 8 and also many new functional interfaces are introduced in java 8. It is more useful as it is a type to be used in labdas expression. Lamdas expression involves implementation on abstract method of interface without name. Since, the implementation is without name, thus only one abstract method makes the lambdas expression implementation as unambiguous. 
 Also, remember that functional interfaces may have one or more default and static method from java 8 onward while can have only one abstract method. 
 @@@Rajneesh: What other advantage or use can you think of?
@@ -563,22 +344,25 @@ Also, remember that functional interfaces may have one or more default and stati
 24.	What are default and static methods inside interface? Tell everything you know about them.
 
 25.	Top five features of java 5, 6, 7 and 8.
-
+Java 5: generics, enum, varargs.
+Java 6: not a major release.
+Java 7: try-with-resource, multicatch, <> diamond operator.
+Java 8: lambdas expression, default and static, stream api. 
 26.	Can we return value any other than 1, -1 or 0 in comapreTo() implementation of Comparable? Also, Can we create a custom comparable alltogether?
 Firstly, with the normal comparable we can return any other integer instead of 1, -1 or 0. This is because we are not breaking the contract of returning an int. Therefore, we can change the values but not the type from int to any other.
 In think, ye we can definitely make comparable comparator. We can do this by creating a class implementing the comparable interface. However, we really need to look at the objective of creating custom comparator.  
 
-27.	What is the datastructure used in hashmap? @@@
+27.	What is the datastructure used in hashmap? RRR
 I have checked the actual implementation of HashMap in Java 8. I found that for every new entry a node class object is created. Node is nothing but an inner class. Each new entry comes is stored in a index of array. So, Array makes series of buckets while each bucket has a multiple entries (nodes) joined as linked list. Also, in java 8, treefy concept came in which makes the normal nodes to treenodes which somehow decreasing the traversing complexity from O(n) to O(log n). 
 
 28.	If alphabets are same like “abc” and “bca”, then will the hashcode be same? For such keys with same characters we are assuming that hashcode will come same then they could be stored in the same bucket. Then, would all the entries will be stored or only one or how many?
 Firstly, we can have different hashcode for keys like “abc”, “bca” or “cba”. As the hashcodes are different then these records can go to same or different buckets which is unpredictable. The entries will be stored in normal way as hashmap works nothing fancy.
 Now, even if we assume that the hashcode by any chance is made same for all the keys then it is not certain that equals will also find the keys equals as unequal objects can have same hashcode. Thus, we cannot predict how many values will be stored. 
 
-29.	How do we implement deep cloning and shallow cloning?
+29.	How do we implement deep cloning and shallow cloning?RRR
 Well, we can implement cloning by calling “super.clone()” in overridden clone() method. This implementation of clone() in clonable gets you shallow copy. For deep cloning, we need to manually take the value of the calling object and add to a newly created object and return that. Check the implementation in java file.
 
-30.	Temporal Annotation use. 
+30.	Temporal Annotation use. RRR
 In JPA and its implementations like Hibernate, whenever a field of date type is mapped with database then the entire timestamp is generally stored in the database for this field. We can control this using Temporal annotation. We can use @Temporal(temporaltype.DATE) with a date field and make sure only date will be stored inside the database for the associated column.
  
 31.	What is Qualifier annotation? Check if we apply this annotation on class, instance or method level? Not sure, if he was talking about the bean creation level.
@@ -588,15 +372,15 @@ Qualifier annotation is used to identify which bean definition to be used to inj
 32.	When would you use comparable and comparator over each other? Can we sort based on multiple data member through comparable?
 There are two factors for deciding if we have to use comparable or comparator. First, if we have to compare or sort on the basis of single or multiple data members together. Comparable is implemented within the class and can thus have just one implementation which can sort the object on just one data member. However, comparator can sort an object on the basis of multiple data member at a time. Comparator is implemented in a separator class thus we can have multiple comparator for a class based on different data member. Second, we cannot use comparable if we do not have control on the class like third party classes. However, comparator can be created for those classes as well. 
 
-33.	Parent method A throws exception and child overridden implementation does not throw the exception? What will happen?
+33.	Parent method A throws exception and child overridden implementation does not throw the exception? What will happen? RRR
 Yes. There wont be an issue. Child class implementation does not mandatorily has to throw an exception because it is already thrown by parent class. If child class wants then it can throw an exception which must be equal or lower in hierarchy as compared to what parent class implementation is throwing.  
 
-34.	How to read property file data in java? @@@
+34.	How to read property file data in java?RRR
 In java, we have properties class which has some API like setProperty(String key, String Value) and getProperty(String key). These API’s are used in writing and loading the properties inside file. 
 We first create a properties file in our project. Then, we create a Property class object and use setProperty() to write some key property pair. Then, we have to create a FileOutputStream object by giving the location of the properties file we just created. Lastly, use store(FileOutputStream object, String comments) to store the set properties in the property file. 
 Then, for loading the properties present inside properties file, we have to create a Property class object and have to create an InputFileStream object by passing the property file path. Then, we need to use the load(File path) api of Properties class. So, now the property class object has got all the properties like and to call them we can use the API getProperty(String key). This will return a string. 
 
-35.	What are advantages we have in ApplicationContext ioc container which were not present in beanFactory. I mean why do we felt the need of having ApplicatonContext when we already have beanFactory? @@@
+35.	What are advantages we have in ApplicationContext ioc container which were not present in beanFactory. I mean why do we felt the need of having ApplicatonContext when we already have beanFactory? RRR
 BeanFactory has the feature of instantiating the beans and wiring the dependencies. Also, it can manage the life cycle of the beans. ApplicationContext extends bean factory and thus has all these features. 
 Below are differences which are in brief and will be completed in detail later.
 a.	Automatic BeanPostProcessor registration
@@ -620,7 +404,7 @@ In the second case, method with argument string will be called. This is because 
 40.	Is it better to have local or instance member in multithreading code piece?
 I think yes, because local variable gets created in the stack area which is unique for a thread. Therefore, less chances of multithreading issues. In short, local variables are thread safe. 
 
-41.	What are alternate of serialization?
+41.	What are alternate of serialization?RRR
 In the case, we do not want to use serialization for storing the state of the object for future use or for transfer then we do have other options. If our purpose behind serialization is to save the current state of the object then we can also have a clone object of the state so that even the state of original object changes but the clone is still in the same state. Also, we can store the state if the object in database. If we are doing serialization for the purpose of transferring the object to other system then we can use XML or JSON based transfer.
 
 42.	How have you used transaction management in your application and how?
@@ -635,7 +419,7 @@ In the case, we do not want to use serialization for storing the state of the ob
 
 47.	Which interface is needed in Java for using the stored procedure?
 
-48.	What is actuator in spring boot?
+48.	What is actuator in spring boot? RRR
 Spring Boot provides actuator to monitor and manage our application. It is a tool which has HTTP endpoints. These endpoints can be used to monitor and manager out application when pushed to production. “Spring-Boot-Starter-Actuator” is the name of dependency in spring boot for actuator. Actuator is available in spring right from the first release. 
 Some of the common endpoints of Actuator are:
 /health: It shows application health in the form of status. 
@@ -643,13 +427,13 @@ Some of the common endpoints of Actuator are:
 /metrics: Shows metrics which has thread pool and other details. 
 Likewise, there are many endpoints that actuator has and in addition to this we can create our own endpoints.  
 
-49.	What is spring filter?
+49.	What is spring filter? RRR
 In normal web application, we must have used filters which we used to configure in web.xml. In a spring application, we can still have filters. But, I am talking about normal filter and these would not know anything about the spring beans, context, etc. However, we can put these together with spring. The most basic class provided by spring is GenericFilterBean. GenericFilterBean is an implementation of javax.servlet.filter that treats its config properties as beans properties. Unknown parameters get ignored. 
 Now, to have a filter in spring application which is aware about the bean, context and other which we can create a class which extends the GenericFilterBean class and implements doFilter() method of it. We can configure out filter just like any other class in normal java application.
 Check link: http://learningviacode.blogspot.com/2013/07/filters-and-spring.html
 
-50.	Which data structure will you use to implement concurrent hashmap?
-I will use Array and linkedlist to create HashMap. 
+50.	Which data structure will you use to implement concurrent hashmap? RRR
+I will use Array and linkedlist to create HashMap. Data structure of concurrenthashmap is hashtable. 
 
 51.	What changes would you like to do in dispatcher servlet when too many requests are coming to your spring based application?
 
@@ -694,7 +478,7 @@ Spring is based on factory design pattern. Spring AOP is based on proxy deisgn p
 
 70.	How have you defined beans in your application?
 
-71.	How can you make your bean in spring application be thread safe?
+71.	How can you make your bean in spring application be thread safe? RRR
 We can change the scope of the bean from default scope of singleton to request scope. We can do this in two ways. First, we can annotated bean class with @RequestScope. Second, we can use mention the request scope in scope attribute of bean xml configuration. 
 
 72.	What is factory design pattern?
@@ -704,8 +488,106 @@ We can find out CEO employee id identifying the row where manager id is null. Th
 
 74.	Any idea about PLSQL?
 
-75.	Is serializable interface a marker interface? If yes, then where writeObject() and readObject() methods are implemented? Also, readresolve?
+75.	Is serializable interface a marker interface? If yes, then where writeObject() and readObject() methods are implemented? Also, readresolve? RRR
 Serializable interface is a marker interface. ReadObject() and WriteObject() methods are implemented in ObjectOutputStream class. Readresolve() needs to be implemented by developer in singleton class itself.
 
 
 	
+
+New:
+1.	What is prototype scope? If a bean employee e with singleton scope has a bean address a which has prototype scope then will the employee e be singleton? If yes, why? How can we get prototype bean in this scenario?
+2.	Difference between prototype and request bean scope?
+3.	A file has test “India, 50 Australia, 20 ….” Like this. How can we put file data from the file to hashmap?
+4.	Difference between queryParam and RequestParam?
+5.	Parent can have static method a then child can have static method a but child cannot have non static method a. true or false?
+6.	Solid principal
+7.	Nio package
+8.	IdentityHashMap
+9.	How will you force arrayList to not increase size or make it constant?
+10.	What is cyclometric complexity?
+11.	Is it a best practice to use finalize method? Is there any harm? In which scenario Ideally should it be used?
+12.	Where would you use concurrent Hashmap except in case of multithreading? What is its significance from algorithm perspective?
+13.	What are graph algorithm and shortest path algorithms?
+14.	What is difference between factory pattern and abstract factory in factory design pattern?
+15.	What is double locking in singleton design pattern?
+16.	What does patch method of HTTP do?
+17.	Tell about different status code of 2XX, 3XX, 4XX and 5XX series. 
+18.	What is multi module support in Maven?
+19.	What are the advantage of hibernate? Is it true that there isn’t any use of queries in hibernate?
+20.	If we put all the business logic in controller then would it be testable? Do we even write junit test for controller?
+21.	What is strangling in microservices?
+22.	Implement hashmap. Esp give focus on the data member and the inner classes being used.
+23.	What is consumer in java 8?
+24.	What is <dependency-management> tag in pom.xml?
+25.	How maven is better than ant?
+26.	How to print all the classes present on the classpath using java?
+27.	How to create constant pool for user defined classes like String java class?
+28.	What do you mean by stateless? Is a restful web service is stateless? What is the difference in stateless and sessionless?
+29.	How does the remove method in arraylist works internally? Does the shifting happens?
+Removes method returns true on successful removal and false on unsuccessful removal. It throws arrayindexoutofbound exception in case of any invalid index is given. Yes, in removal the shifting happens from right to left after the element is removed. Thus, arraylist modification is expensive. In linked list, a link breaks in case of removal and this it’s not that expensive.
+30.	Write the logic of compare method of chained comparator. 
+31.	Tell about the bean life cycle in spring.
+32.	What is profiling in spring boot application?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Latest: 
+1.	If base class has a method “public void method()”, then can the derived class have “protected void method()”? Also, what will happen in case of private access modifier in parent and derived class?
+The child class implementation cannot reduce the visibility of the parent class method thus we cannot have access modifier with less visibility. Derived class implementation can have same level of access or can have broader access. So, we will get compilation error in this case. 
+Parent and derived class method can have private as access modifier but if you put @Override then it will give compilation since it is explicitly saying that you are overriding the parent class method which is not true as parent method which is private cannot be overridden. 
+
+2.	We have two rules for exception between parent and child class exception throwing. Check out why these rules are in place?
+Url: “https://stackoverflow.com/questions/5875414/why-cant-overriding-methods-throw-exceptions-broader-than-the-overridden-method”
+First rule is that if parent class does not throw any exception then child class implementation cannot throw a checked exception but can throw unchecked exception. Second Rule is that if a parent class implementation is throwing any exception then child implementation can throw same type or sub type and any runtime exception. 
+This is because of the compiler will not be able to force an API to catch the other type of exception if you try to access child implementation through parent instance. Suppose parent class implementation throws IO exception while child class implementation throws SQL exception which is not sub exception of IO exception. Now, if we code something like below in a test method:
+ParentClass p = new ChildClass();
+		try {
+			p.method(); //calling child implementation though
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+Above we are calling child implementation though reference of parent which throws IO exception and here compiler cannot force the test method to catch sql exception. Thus, it is not allowed. 
+
+
+
+
+
+
+
